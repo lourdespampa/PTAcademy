@@ -1,13 +1,12 @@
 import React from 'react';
 
+import ListaAlum from './../components/lista/ListaAlum';
 class ListaAlumnos extends React.Component {
 
 
     render(){
         return(
-            <div>
-                Lista de Alumnos
-            </div>
+            <ListaAlum />
         )
     }
 }
