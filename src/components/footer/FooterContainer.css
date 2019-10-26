@@ -91,6 +91,20 @@ iframe {
     height: -webkit-fill-available;
 }
 
+.pres {
+    width: 100%;
+    height: 34%;
+    background-color: rgb(48, 135, 164);
+    border: solid 2px rgb(255, 255, 255);
+    color: rgb(236, 232, 232);
+    border-left-width: 10px;
+    border-right-width: 10px
+}
+
+.pres:hover {
+    background-color: rgb(69, 157, 176);
+}
+
 
 /* Footer Right */
 
