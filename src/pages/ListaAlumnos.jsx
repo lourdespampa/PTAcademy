@@ -7,6 +7,7 @@ class ListaAlumnos extends React.Component {
     render(){
         return(
             <ListaAlum />
+
         )
     }
 }

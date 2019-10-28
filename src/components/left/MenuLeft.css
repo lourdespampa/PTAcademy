@@ -12,6 +12,7 @@
     position: fixed;
     height: 100%;
     width: 10px;
+    z-index: 1;
 }
 
 .socialpestaña {

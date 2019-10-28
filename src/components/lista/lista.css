@@ -1,18 +1,8 @@
-.row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px
+@media (min-width: 576px) {
+    .modal-sm {
+        max-width: 300px;
+    }
 }
-
-.no-gutters {
-    margin-right: 0;
-    margin-left: 0
-}
-
 .punto-marco {
     position: absolute;
     cursor: pointer;
@@ -88,7 +78,7 @@
 }
 
 .modal .modal-dialog {
-    margin-top: 13%;
+    margin-top: 10% !important;
 }
 
 .modal.fade .modal-dialog {
@@ -120,6 +110,7 @@
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
     box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.25);
     outline: 0;
+    border-radius: 20px;
 }
 
 .modal-header {
@@ -230,6 +221,7 @@
     position: static;
     width: 100%;
     height: 100%;
+    border-radius: 20%;
 }
 
 .punto-texto {
@@ -256,15 +248,10 @@
     text-align: center;
 }
 
-table {
+.table {
+    width:  auto !important;
     border-spacing: 0;
     border-collapse: collapse
-}
-
-.table {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 20px;
 }
 
 .table>tbody>tr>td,
@@ -280,7 +267,7 @@ table {
 }
 
 .table>thead>tr>th {
-    vertical-align: middle;
+    vertical-align: bottom;
     border-bottom: 2px solid #ddd
 }
 

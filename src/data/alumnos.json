@@ -1,0 +1,28 @@
+{
+    "alumnos":[
+        {
+            "id":"1",
+            "nombre":"cristhian",
+            "apellido":"ureta",
+            "nota":0,
+            "comportamiento":"A",
+            "puntos":0
+        },
+        {
+            "id":"2",
+            "nombre":"antony",
+            "apellido":"vasquez",
+            "nota":0,
+            "comportamiento":"A",
+            "puntos":0
+        },
+        {
+            "id":"3",
+            "nombre":"paola",
+            "apellido":"santayana",
+            "nota":0,
+            "comportamiento":"A",
+            "puntos":0
+        }
+    ]
+}
