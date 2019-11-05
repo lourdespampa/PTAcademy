@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route,Redirect } from 'react-router-dom';
 
 import Contenido from './components/Contenido';
 import ListaAlumnos from './pages/ListaAlumnos';
-import Azar from './pages/Azar';
+import Azar from './pages/azar/Azar';
 import Grupos from './pages/Grupos';
 import Temporizador from './pages/Temporizador';
 import Trivia from './pages/Trivia';
