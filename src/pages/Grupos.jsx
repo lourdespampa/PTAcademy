@@ -1,13 +1,11 @@
 import React from 'react';
-
+import GruposAlum from '../components/grupos/grupos'
 class Grupos extends React.Component {
 
 
     render(){
         return(
-            <div>
-                Grupos
-            </div>
+            <GruposAlum/>
         )
     }
 }
