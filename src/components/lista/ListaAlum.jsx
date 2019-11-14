@@ -47,9 +47,6 @@ export default class ListaAlum extends Component {
             <>
             <br/>
             <div className="row center" >
-                <button id='getalum' className="button btnMyM">Mostrar Alumnos</button>
-                <button id='exportar' className="button btnMyM">Exportar</button>
-                <button id='enviar' className="button btnMyM">Enviar</button>
             </div>
                      <div className="">
                 <div className="clearfix" >
