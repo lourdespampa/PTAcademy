@@ -35,6 +35,7 @@ iframe {
     height: -webkit-fill-available;
 }
 
+
 /* Footer Center */
 
 .footer-center {
@@ -79,14 +80,14 @@ iframe {
     ;
 }
 
-.center-container{
+.center-container {
     min-height: 115px;
     background-image: url("codigo.gif");
     background-size: cover;
     background-position: center;
 }
 
-.image-code{
+.image-code {
     width: -webkit-fill-available;
     height: -webkit-fill-available;
 }
