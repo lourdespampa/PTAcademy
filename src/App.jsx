@@ -7,7 +7,6 @@ import Azar from './pages/Azar';
 import Grupos from './pages/Grupos';
 import Temporizador from './pages/Temporizador';
 import Trivia from './pages/Trivia';
-// import NotFound from '../pages/NotFound';
 
 function App() {
   return (
