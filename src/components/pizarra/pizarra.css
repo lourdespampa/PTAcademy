@@ -33,6 +33,7 @@
 .container {
     border: solid;
     border-color: green;
+    bottom: 20%;
 }
 
 .container canvas {
@@ -41,6 +42,7 @@
     max-height: 80%;
     width: 100%;
     height: 100%;
+    bottom: 20%;
 }
 
 .menu li a:before {
@@ -76,7 +78,7 @@
 }
 
 .menu li a.home:before {
-    content: "\f039";
+    content: "\f047";
 }
 
 .menu-bar li a:hover,

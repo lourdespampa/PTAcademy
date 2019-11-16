@@ -36,8 +36,8 @@ export default class SketchPad extends Component {
   };*/
 
   static defaultProps = {
-    width: 500,
-    height: 500,
+    width: 900,
+    height: 600,
     color: '#000',
     size: 5,
     fillColor: '',

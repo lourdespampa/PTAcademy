@@ -63,10 +63,11 @@ export default class SketchExample extends Component
      
       <div className="container" id="div_cont" >
 {/*Menu desplegable de pizarra*/}
-        <div className="pizarra-menu">
+        <div className="pizarra-menu" id="draggable">
         <ul className="menu">
 
 <li title="home"><a  id="btn" className="menu-button home">menu</a></li>
+
 <li title="home"><button
               style={tool == TOOL_PENCIL ? {fontWeight:'bold',} : undefined}
               className={tool == TOOL_PENCIL  ? 'item-active' : 'item'}
@@ -112,7 +113,7 @@ export default class SketchExample extends Component
          {/*Inicio del canvas pizarra*/}
           <SketchPad //cambiar las propiedades del Sckethpad
             width={900}
-            height={450}
+            height={600}
             animate={true}
             size={size}
             color={color}
