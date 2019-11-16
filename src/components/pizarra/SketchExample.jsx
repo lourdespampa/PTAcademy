@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { SketchPad, TOOL_PENCIL, TOOL_LINE, TOOL_RECTANGLE, TOOL_ELLIPSE,TOOL_ERASER } from './src';
 //import './pizarra';
-
+//import js from './pizarra.js';
 //import IO from 'socket.io-client'
 
 
@@ -24,6 +24,7 @@ export default class SketchExample extends Component
   }
 
   componentDidMount() {
+//js.arrastrar();
     //wsClient.on('addItem', item => this.setState({items: this.state.items.concat([item])}));
     /*const div = document.getElementById('div_cont')
     const width = div.offsetWidth-(div.offsetWidth*0.1)
@@ -66,47 +67,52 @@ export default class SketchExample extends Component
         <div className="pizarra-menu" id="draggable">
         <ul className="menu">
 
-<li title="home"><a  id="btn" className="menu-button home">menu</a></li>
+<li title="Move"><a  id="btn" className="menu-button home">menu</a></li>
 
-<li title="home"><button
+<li title="Pencil"><button
               style={tool == TOOL_PENCIL ? {fontWeight:'bold',} : undefined}
               className={tool == TOOL_PENCIL  ? 'item-active' : 'item'}
               onClick={() => this.setState({tool:TOOL_PENCIL})}
               id='btn_pencil'
             ><i className="fas fa-pencil-alt"></i></button></li>
 
-<li title="search"><button
+<li title="Eraser"><button
               style={tool == TOOL_ERASER ? {fontWeight:'bold'} : undefined}
               className={tool == TOOL_ERASER  ? 'item-active' : 'item'}
               onClick={() => this.setState({tool:TOOL_ERASER})}
               id='btn_Eraser'
             ><i className="fas fa-eraser"></i></button></li>
-<li title="pencil"><button onClick={()=>this.limpiando()}>
+<li title="Clean"><button onClick={()=>this.limpiando()}>
             <i class="far fa-trash-alt"></i>
             </button></li>
-<li title="about"><button
+<li title="Line"><button
               style={tool == TOOL_LINE ? {fontWeight:'bold'} : undefined}
               className={tool == TOOL_LINE  ? 'item-active' : 'item'}
               onClick={() => this.setState({tool:TOOL_LINE})}
             ><i class="fas fa-slash"></i></button></li>
-<li title="archive"><button
+<li title="Circle"><button
               style={tool == TOOL_ELLIPSE ? {fontWeight:'bold'} : undefined}
               className={tool == TOOL_ELLIPSE  ? 'item-active' : 'item'}
               onClick={() => this.setState({tool:TOOL_ELLIPSE})}
             ><i class="far fa-circle"></i></button></li>
-<li title="contact"><button
+<li title="Square"><button
               style={tool == TOOL_RECTANGLE ? {fontWeight:'bold'} : undefined}
               className={tool == TOOL_RECTANGLE  ? 'item-active' : 'item'}
               onClick={() => this.setState({tool:TOOL_RECTANGLE})}
             ><i class="far fa-square"></i></button></li>
-</ul>
-
-<ul className="menu-bar" id="menu">
-  <li><a href="#" className="menu-button">Menu</a></li>
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Profile</a></li>
-  <li><a href="#">Editorial</a></li>
-  <li><a href="#">About</a></li>
+<li title="Size">Size:<input className="slider" min="1" max="20" type="range" value={size} onChange={(e) => this.setState({size: parseInt(e.target.value)})} /></li>
+<li title="Color"> <label htmlFor="">color: </label>
+            <input type="color" value={color} onChange={(e) => this.setState({color: e.target.value})} /></li>
+            <li title="More">{(this.state.tool == TOOL_ELLIPSE || this.state.tool == TOOL_RECTANGLE) ?
+            <div>
+              <label htmlFor="">fill in:</label>
+              <input type="checkbox" value={fill} style={{margin:'0 8'}}
+                     onChange={(e) => this.setState({fill: e.target.checked})} />
+              {fill ? <span><br></br>
+                  <label htmlFor="">with color:</label><br></br>
+                  <input type="color" value={fillColor} onChange={(e) => this.setState({fillColor: e.target.value})} ></input>
+                </span> : ''}
+            </div> : ''}</li>
 </ul>
         </div>
         {/*FIN Menu desplegable de pizarra*/}
@@ -123,7 +129,7 @@ export default class SketchExample extends Component
          //  onCompleteItem={(i) => wsClient.emit('addItem', i)}
           />
         
-        <div style={{border:"solid",position:"absolute",top:150,left:"60%"}}>
+        <div >
           <div className="" style={{marginBottom:20, boder:"solid",borderColor:"blue"}}>
             {/*<button
               style={tool == TOOL_PENCIL ? {fontWeight:'bold',} : undefined}
@@ -157,16 +163,16 @@ export default class SketchExample extends Component
               onClick={() => this.setState({tool:TOOL_RECTANGLE})}
             ><i class="far fa-square"></i></button>*/}
           </div>
-          <div className="options" style={{marginBottom:20 ,border:"solid"} }>
+          {/*<div className="options" style={{marginBottom:20 ,border:"solid"} }>
             <label htmlFor="">size: </label>
             <input min="1" max="20" type="range" value={size} onChange={(e) => this.setState({size: parseInt(e.target.value)})} />
-          </div>
-          <div className="options" style={{marginBottom:20 ,border:"solid"}}>
+          </div>*/}
+         {/* <div className="options" style={{marginBottom:20 ,border:"solid"}}>
             <label htmlFor="">color: </label>
             <input type="color" value={color} onChange={(e) => this.setState({color: e.target.value})} />
-          </div>
+        </div>*/}
          
-          {(this.state.tool == TOOL_ELLIPSE || this.state.tool == TOOL_RECTANGLE) ?
+          {/*(this.state.tool == TOOL_ELLIPSE || this.state.tool == TOOL_RECTANGLE) ?
             <div>
               <label htmlFor="">fill in:</label>
               <input type="checkbox" value={fill} style={{margin:'0 8'}}
@@ -175,7 +181,7 @@ export default class SketchExample extends Component
                   <label htmlFor="">with color:</label>
                   <input type="color" value={fillColor} onChange={(e) => this.setState({fillColor: e.target.value})} />
                 </span> : ''}
-            </div> : ''}
+              </div> : ''*/}
         </div>
       </div>
     );

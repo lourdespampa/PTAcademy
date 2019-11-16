@@ -35,10 +35,10 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <style>
-      .canvas {
-          border: 1px solid;
-      }
-  </style>
+        .canvas {
+            border: 1px solid;
+        }
+    </style>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -50,33 +50,28 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 </body>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-  <script
-  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 <script>
-$(document).ready(function(){
-    $("#btn").click(function(){
-    $("#menu").toggleClass( "open" );
-    console.log("hola");
-    })
+    $(document).ready(function() {
+        $("#btn").click(function() {
+            $("#menu").toggleClass("open");
+            /* ("#draggable").draggable();*/
+            console.log("hola");
+        })
     });
 
-    $( function() {
-    $( "#draggable" ).draggable();
-  } );
+    $(function() {
+        $("#draggable").draggable();
+    });
 
-  /*$('#mover').mousedown(()=>{
-    $( "#draggable" ).draggable();
-  })
+    /*$('#mover').mousedown(()=>{
+      $( "#draggable" ).draggable();
+    })
 
-  $('#mover').mouseup(()=>{
-    $( "#draggable" ).draggable()
-  })*/
+    $('#mover').mouseup(()=>{
+      $( "#draggable" ).draggable()
+    })*/
 
 
 
@@ -90,4 +85,5 @@ btn.addEventListener('click', ()=>
     menu.toggleClass('open');
 });*/
 </script>
+
 </html>

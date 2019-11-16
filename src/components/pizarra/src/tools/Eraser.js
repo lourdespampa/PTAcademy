@@ -10,7 +10,7 @@ export default (context) => {
         stroke = {
             id: v4(),
             tool: TOOL_ERASER,
-            color: "#ffffff",
+            color: "#f0f0f5",
             size: '25',
             points: [{ x, y }]
         };
