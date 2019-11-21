@@ -29,6 +29,7 @@ class Footer extends Component {
     
             overlay.classList.remove('active');
             popup.classList.remove('active');
+            document.getElementById('video-frame').src ="";
         }
     getUrl=()=> {
             var old = this.state.src;

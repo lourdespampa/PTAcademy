@@ -4,10 +4,11 @@
     }
 }
 .punto-marco {
-    position: absolute;
+    position: relative;
     cursor: pointer;
     background-color: Transparent;
     border: none;
+    margin: 0px 20px 55px 20px;
 }
 
 .modal {
@@ -240,7 +241,6 @@
 }
 
 .punto-text {
-    font-family: Rounded Mplus 1c;
     font-style: normal;
     font-weight: 50;
     font-size: 30px;

@@ -3,7 +3,6 @@
     box-sizing: border-box;
     width: 100%;
     text-align: left;
-    font: bold 16px sans-serif;
     padding: 5px 5px 5px 5px;
     height: 20%;
     position: fixed;
@@ -168,7 +167,6 @@ iframe {
     background: #F8F8F8;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    font-family: 'Montserrat', sans-serif;
     padding: 20px;
     text-align: center;
     width: 70%;
@@ -261,8 +259,6 @@ iframe {
     top: 45%;
     position: absolute;
     right: -50px;
-    ;
-    padding: 4px;
     cursor: pointer;
 }
 
@@ -290,17 +286,10 @@ iframe {
     left: 0;
 }
 
-.btn-back img,
-.btn-next img {
-    top: 34px;
-    right: 20px;
-    position: absolute;
+.btn-back i,
+.btn-next i {
+    font-size: 100px;
 }
-
-.btn-next img {
-    right: 60px
-}
-
 .btn-back {
     left: -50px;
 }
@@ -323,4 +312,10 @@ iframe {
     color: #000;
     background-color: rgb(104, 104, 104);
     border-radius: 5px;
+}
+.modal-content{
+    min-height:100% !important;
+}
+.modal-body{
+    text-align: center;
 }

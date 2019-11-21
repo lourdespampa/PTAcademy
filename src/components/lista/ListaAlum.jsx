@@ -202,7 +202,7 @@ export default class ListaAlum extends Component {
                                     </div>
                                 </div>
                                 <div className="modal-body">
-                                    <button id="puntomas" type="button" onClick="$('#puntoextra').val('1')" className="punto-marco" style={{left: "40px" ,top: "0px"}}>
+                                    <button id="puntomas" type="button" onClick="$('#puntoextra').val('1')" className="punto-marco" >
                                         <div className="punto-marco2">
                                             <div className="punto-marco3">
                                             <img className="punto-img" src={require('../../img/lista/punto1.png')} alt="punto1" />
@@ -212,7 +212,7 @@ export default class ListaAlum extends Component {
                                             <i>Ayuda a Otros</i>
                                         </div>
                                     </button>
-                                    <button id="puntomas2" type="button" onClick="$('#puntoextra').val('1')" className="punto-marco" style={{left: "195px",top: "0px"}}>
+                                    <button id="puntomas2" type="button" onClick="$('#puntoextra').val('1')" className="punto-marco" >
                                         <div className="punto-marco2">
                                             <div className="punto-marco3">
                                             <img className="punto-img" src={require('../../img/lista/punto2.png')} alt="punto2" />
@@ -222,7 +222,7 @@ export default class ListaAlum extends Component {
                                             <i>Cumplimiento de Tareas</i>
                                         </div>
                                     </button>
-                                    <button id="puntomas3" type="submit" onClick="$('#puntoextra').val('1')" className="punto-marco" style={{left: "350px",top: "0px"}}>
+                                    <button id="puntomas3" type="submit" onClick="$('#puntoextra').val('1')" className="punto-marco" >
                                         <div className="punto-marco2">
                                             <div className="punto-marco3">
                                             <img className="punto-img" src={require('../../img/lista/punto3.png')} alt="punto3" />
@@ -232,7 +232,7 @@ export default class ListaAlum extends Component {
                                             <i>Participacion</i>
                                         </div>
                                     </button>
-                                    <button id="puntomas4" type="submit" onClick="$('#puntoextra').val('1')" className="punto-marco" style={{left: "40px",top: "150px"}}>
+                                    <button id="puntomas4" type="submit" onClick="$('#puntoextra').val('1')" className="punto-marco" >
                                         <div className="punto-marco2">
                                             <div className="punto-marco3">
                                             <img className="punto-img" src={require('../../img/lista/punto4.png')} alt="punto4" />
@@ -242,7 +242,7 @@ export default class ListaAlum extends Component {
                                             <i>Persistencia</i>
                                         </div>
                                     </button>
-                                    <button id="puntomas5" type="submit" onClick="$('#puntoextra').val('1')" className="punto-marco" style={{top: "150px",left:"195px"}}>
+                                    <button id="puntomas5" type="submit" onClick="$('#puntoextra').val('1')" className="punto-marco" >
                                         <div className="punto-marco2">
                                             <div className="punto-marco3">
                                             <img className="punto-img" src={require('../../img/lista/punto5.png')} alt="punto5" />
@@ -252,7 +252,7 @@ export default class ListaAlum extends Component {
                                             <i> Responsabilidad</i>
                                         </div>
                                     </button>
-                                    <button id="puntomas6" type="submit" onClick="$('#puntoextra').val('1')" className="punto-marco" style={{top: "150px",left:"350px"}}>
+                                    <button id="puntomas6" type="submit" onClick="$('#puntoextra').val('1')" className="punto-marco" >
                                         <div className="punto-marco2">
                                             <div className="punto-marco3">
                                                 <img className="punto-img" src={require('../../img/lista/punto6.png')} alt="punto6" />
@@ -279,7 +279,7 @@ export default class ListaAlum extends Component {
                                 <div className="modal-body">
     
     
-                                    <button id="puntomenos" type="button" onClick="$('#puntoextra2').val('1')" className="punto-marco" style={{left: "40px",top: "0px"}}>
+                                    <button id="puntomenos" type="button" onClick="$('#puntoextra2').val('1')" className="punto-marco" >
                                         <div className="punto-marco2">
                                             <div className="punto-marco3">
                                                 <img className="punto-img" src={require('../../img/lista/punto-1.png')} alt="punto-1"/>
@@ -289,7 +289,7 @@ export default class ListaAlum extends Component {
                                             <i>Puntualidad de Tareas</i>
                                         </div>
                                     </button>
-                                    <button id="puntomenos2" type="button" onClick="$('#puntoextra2').val('1')" className="punto-marco" style={{left: "195px",top: "0px"}}>
+                                    <button id="puntomenos2" type="button" onClick="$('#puntoextra2').val('1')" className="punto-marco" >
                                         <div className="punto-marco2">
                                             <div className="punto-marco3">
                                                 <img className="punto-img" src={require('../../img/lista/punto-2.png')} alt="punto-2"/>
@@ -299,7 +299,7 @@ export default class ListaAlum extends Component {
                                             <i>Responsabilidad de trabajo</i>
                                         </div>
                                     </button>
-                                    <button id="puntomenos3" type="button" onClick="$('#puntoextra2').val('1')" className="punto-marco" style={{left: "350px",top: "0px"}}>
+                                    <button id="puntomenos3" type="button" onClick="$('#puntoextra2').val('1')" className="punto-marco" >
                                         <div className="punto-marco2">
                                             <div className="punto-marco3">
                                                 <img className="punto-img" src={require('../../img/lista/punto-3.png')} alt="punto-3" />
@@ -341,42 +341,42 @@ export default class ListaAlum extends Component {
                                     </div>
                                 </div>
                                 <div className="modal-body">
-                                    <button id="editcomportamiento" type="button" name="conduct" value="A" onClick={this.onClickConduc} className="punto-marco" style={{left: "40px",top: "0px"}}>
+                                    <button id="editcomportamiento" type="button" name="conduct" value="A" onClick={this.onClickConduc} className="punto-marco">
                                     <div className="punto-marco2">
                                         <div className="punto-marco3">
                                             <img className="punto-img" src={require('../../img/lista/a.jpg')} alt="a" />
                                         </div>
                                     </div>
                                 </button>
-                                    <button id="editcomportamiento2" type="button" name="B" onClick={this.onClickConduc} className="punto-marco" style={{left: "195px",top: "0px"}}>
+                                    <button id="editcomportamiento2" type="button" name="B" onClick={this.onClickConduc} className="punto-marco">
                                     <div className="punto-marco2">
                                         <div className="punto-marco3">
                                             <img className="punto-img" src={require('../../img/lista/b.jpg')} alt="b" />
                                         </div>
                                     </div>
                                 </button>
-                                    <button id="editcomportamiento3" type="button" name="C" onClick={this.onClickConduc} className="punto-marco" style={{left: "350px",top: "0px"}}>
+                                    <button id="editcomportamiento3" type="button" name="C" onClick={this.onClickConduc} className="punto-marco">
                                     <div className="punto-marco2">
                                         <div className="punto-marco3">
                                             <img className="punto-img" src={require('../../img/lista/c.jpg')} alt="c" />
                                         </div>
                                     </div>
                                 </button>
-                                    <button id="editcomportamiento4" type="button" name="D" onClick={this.onClickConduc} className="punto-marco" style={{left: "40px",top: "150px"}}>
+                                    <button id="editcomportamiento4" type="button" name="D" onClick={this.onClickConduc} className="punto-marco">
                                     <div className="punto-marco2">
                                         <div className="punto-marco3">
                                             <img className="punto-img" src={require('../../img/lista/d.jpg')} alt="d" />
                                         </div>
                                     </div>
                                 </button>
-                                    <button id="editcomportamiento5" type="button" name="E" onClick={this.onClickConduc} className="punto-marco" style={{left:"195px",top: "150px"}}>
+                                    <button id="editcomportamiento5" type="button" name="E" onClick={this.onClickConduc} className="punto-marco">
                                     <div className="punto-marco2">
                                         <div className="punto-marco3">
                                             <img className="punto-img" src={require('../../img/lista/e.jpg')} alt="e" />
                                         </div>
                                     </div>
                                 </button>
-                                    <button id="editcomportamiento6" type="button" name="F" onClick={this.onClickConduc} className="punto-marco" style={{left:"350px",top: "150px"}}>
+                                    <button id="editcomportamiento6" type="button" name="F" onClick={this.onClickConduc} className="punto-marco">
                                     <div className="punto-marco2">
                                         <div className="punto-marco3">
                                             <img className="punto-img" src={require('../../img/lista/f.jpg')} alt="f"/>
