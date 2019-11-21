@@ -13,7 +13,7 @@ function HeaderCode(){
                 </h1>
             </div>
             <div className="code-detail">
-                <a className="a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
+                <a href className="a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
                     <span>Código:</span>
                     <h3>
                        ROSALI
