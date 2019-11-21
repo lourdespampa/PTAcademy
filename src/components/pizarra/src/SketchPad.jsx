@@ -36,8 +36,8 @@ export default class SketchPad extends Component {
   };*/
 
   static defaultProps = {
-    width: 900,
-    height: 600,
+    width: 1500,
+    height: 900,
     color: '#000',
     size: 5,
     fillColor: '',
@@ -89,14 +89,15 @@ export default class SketchPad extends Component {
   }
 
   onDebouncedMove() {
-    
+
     if (typeof this.tool.onDebouncedMouseMove == 'function' && this.props.onDebouncedItemChange) {
       this.props.onDebouncedItemChange.apply(null, this.tool.onDebouncedMouseMove());
     }
-  }
+  } 
 
   onMouseMove(e) {//mouse moviendose dentro del canvas
 
+    //var imageData = this.ctx.getImageData(0,0,this.canvas.width,this.canvas.height);
     document.getElementById('canvas').style.cursor = "crosshair";  //cambiar el Mouse
 
    // console.log("move");

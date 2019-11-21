@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 @import url('https://fonts.googleapis.com/css?family=Anton');
-@import url('./components/pizarra/pizarra.css');
+/*@import url('./components/pizarra/pizarra.css');*/
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

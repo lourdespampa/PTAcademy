@@ -11,7 +11,7 @@ export default (context) => {
             id: v4(),
             tool: TOOL_ERASER,
             color: "#f0f0f5",
-            size: '25',
+            size: '35',
             points: [{ x, y }]
         };
         return [stroke];
