@@ -35,7 +35,7 @@ function MenuLeft(props){
                 <ul> 
                     <li>
                       
-                        <Link className="icon-facebook" style={{width: "40px"}} to="/pizarra">PIZARRA</Link>
+                        <Link className="icon-facebook" to="/pizarra"> <img src={board} width="40px" alt="board"></img> <p className="text-menu-left">PIZARRA</p></Link>
                     </li>
                     <li>
                         <a href="xD" className="icon-twitter" ><img src={puzzle} width="40" alt="blocks"/>

@@ -2,14 +2,14 @@ import React from 'react';
 //import '../components/pizarra/pizarra.css'
 
 //import Pizarra from './../components/pizarra/Pizarra';
-import SketchExample from './../components/pizarra/SketchExample'
+import Pizarra from './../components/pizarra/Pizarra.jsx'
 //import '../components/pizarra/pizarra';
 class Pizarra_page extends React.Component {
 
 
     render(){
         return(
-            <SketchExample />
+            <Pizarra/>
 
         )
     }
