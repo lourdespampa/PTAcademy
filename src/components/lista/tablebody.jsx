@@ -33,7 +33,7 @@ export const TableBody = (props) => {
                     </button> 
                     </td>
                     <td style={{width:"80px"}}>
-                    <button className="button btnMyM material-icons" onClick={() => props.deleteStudents(student._id)}>
+                    <button className="button btnMyM material-icons" onClick={()=>props.onClick(student._id)+ props.setShow('showdelete',true)}>
                     delete
                     </button> 
                     </td>

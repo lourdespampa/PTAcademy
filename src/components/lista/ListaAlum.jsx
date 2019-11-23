@@ -15,6 +15,7 @@ export default class ListaAlum extends Component {
                     showpuntosmenos:false,
                     showcomportamiento:false,
                     shownota:false,
+                    showdelete:false
                 },
             pin:'pin',
             point:'',
@@ -53,7 +54,7 @@ export default class ListaAlum extends Component {
     }
 //eliminar estudiante
     deleteStudents = async (studentsId) => {
-        await axios.delete('http://api-playtec.herokuapp.com/v1/api/student/' + studentsId);
+        await axios.delete('http://api-playtec.herokuapp.com/v1/api/student/' + this.state._id);
         this.getStudents();
     }
 //captura value y id 
@@ -223,6 +224,17 @@ export default class ListaAlum extends Component {
                     { this.state.datapoint.camportamiento.map(point=>(
                         <BtnPuntos imgen={point.imgen} title={point.title} fuction={console.log('funcionpunto')} />
                     ))} 
+                </Modal.Body>
+            </Modal> 
+            <Modal size={'SM'} show={this.state.modals.showdelete} onHide={() => this.setShow('showdelete',false)}>
+                <Modal.Header closeButton>
+                    <div className="punto-posi">
+                        <h3 className="punto-text">Eliminara alumno?</h3>          
+                    </div>
+                </Modal.Header>
+                <Modal.Body>
+                    <button class="button btnMyM" onClick={() => this.setShow('showdelete',false)} type="button">No</button> 
+                    <button class="button btnMyM" onClick={() => this.deleteStudents()+this.setShow('showdelete',false)} type="button">si</button> 
                 </Modal.Body>
             </Modal> 
                 </>
