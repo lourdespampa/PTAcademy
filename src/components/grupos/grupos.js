@@ -85,7 +85,6 @@ function imprimeGrupos() {
 			}
 		}
 	}
-
 	$('#salida_grupos').val(cadena);
 }
 

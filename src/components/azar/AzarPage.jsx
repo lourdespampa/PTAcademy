@@ -5,9 +5,8 @@ import Ruleta from './ruleta'
 function AzarPage(pros){
     return(
         <>
-        <div class="azar-con" style={{color:"#000"}}>
+        <div class="azar-con">
                 <div class="cuerpo-azar">
-                    {/* <%- include('./partials/ruleta.html') -%> */}
                     <Ruleta />
                 </div>
                 <div class="GroupsGeneratorResult">

@@ -8,11 +8,6 @@ import puzzle from '../../img/menuLeft/puzzle.png';
 // style
 import './MenuLeft.css'
 
-// function aparecer(){
-//     var soc = document.getElementById('social')
-//     soc.style.display = "block";
-// }
-
 function MenuLeft(props){
     return(
         <>

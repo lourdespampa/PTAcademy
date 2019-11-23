@@ -19,10 +19,10 @@ function FooterContainer(props){
                         {
                         (props.diapositivaHover)
                         ?
-                            <div id="menupresentacion" className="footer-left" style={{position: "fixed",width: "23%",height: "18%",border: "solid 5px white",zIndex: 1}} onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}>
+                            <div id="menupresentacion" className="footer-left" style={{position: "fixed",width: "23%",height: "18%",border: "solid 5px white",zIndex: 0.1}} onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}>
                                 <button className="pres" onClick={()=>props.openPopup('overlay','popup')} >DIAPOSITIVAS</button>
                                 <button className="pres">FORMULARIO</button>
-                                <button className="pres" onClick={() => setShow(true)}>Video</button>
+                                <button className="pres" onClick={() => setShow(true)}>VIDEO</button>
                             </div>
                         :
                             <div className="envoltura" style={{width: "23%", height: "90%", position: "absolute"}} onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}></div>
@@ -51,7 +51,7 @@ function FooterContainer(props){
                 </div>
             </footer>
                 <Modal
-                size={'lg'}
+                size={'SM'}
             show={Show}
             onHide={() => setShow(false)}
           >
