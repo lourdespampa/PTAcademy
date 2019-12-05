@@ -6,8 +6,8 @@ class Footer extends Component {
     state = {
         // variable para mostrar u ocultar los 3 botones que aparecen al hacer hover en la diapositiva del footer
         diapositivaHover: false,
-        src:"https://docs.google.com/presentation/d/e/2PACX-1vQNDqsVLggLYCO546Knez7Ecbs0SCErBbtTfAOn74iEHVtHoUKKECnzcsD6btExAMfn9VnHjsrf867m/pub?start=false&loop=false&delayms=3000"
-
+        src:"https://docs.google.com/presentation/d/e/2PACX-1vQNDqsVLggLYCO546Knez7Ecbs0SCErBbtTfAOn74iEHVtHoUKKECnzcsD6btExAMfn9VnHjsrf867m/pub?start=false&loop=false&delayms=3000",
+        srcForm:"https://docs.google.com/forms/d/e/1FAIpQLSftlA2JivBhsQ0mhdyJ4LQczijxvyjN-SClloK6-9gNIyK2Eg/viewform?usp=sf_link"
     }
 
     //FUNCIONES DE FOOTERCONTAINER
@@ -38,6 +38,9 @@ class Footer extends Component {
             console.log('get URL: ' + enlace)
             document.getElementById("diapo-frame").src = enlace;
             document.getElementById("diminute").src = enlace;
+        }
+        getUrlForm=()=> {
+            document.getElementById("diapo-formulario").src = this.state.srcForm;
         }
 
     nextPpt=()=> {
@@ -78,6 +81,7 @@ class Footer extends Component {
 
     async componentDidMount(){
             this.getUrl();
+        this.getUrlForm();
         }
     render() {
         return (

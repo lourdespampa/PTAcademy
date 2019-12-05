@@ -21,7 +21,7 @@ function FooterContainer(props){
                         ?
                             <div id="menupresentacion" className="footer-left" style={{position: "fixed",width: "23%",height: "18%",border: "solid 5px white",zIndex: 0.1}} onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}>
                                 <button className="pres" onClick={()=>props.openPopup('overlay','popup')} >DIAPOSITIVAS</button>
-                                <button className="pres">FORMULARIO</button>
+                                <button className="pres" onClick={()=>props.openPopup('overlayinframe','popupformulario')}>FORMULARIO</button>
                                 <button className="pres" onClick={() => setShow(true)}>VIDEO</button>
                             </div>
                         :
@@ -37,7 +37,9 @@ function FooterContainer(props){
                     </div>
                 </div>
                 <div className="footer-right">
-                    <h3>unknown</h3>
+                    <button className="col-6 ">
+                        grabar
+                    </button>
                 </div>
 
                 <div className="overlay" id="overlay">
@@ -47,6 +49,17 @@ function FooterContainer(props){
                          mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
                         <div className="btn-back"  onClick={props.backtPpt}><i class="material-icons">navigate_before</i></div>
                         <div className="btn-next" onClick={props.nextPpt}><i class="material-icons">navigate_next</i></div>
+                    </div>
+                </div>
+                <div className="overlay" id="overlayinframe">
+                    <div className="popup" id="popupformulario">
+                        <div class="punto-posi">
+                            <h1>Emitir Formulario</h1>
+                        </div>
+                        <br/>
+                        <a href className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')} ><i class="material-icons">close</i></a>
+                        <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{width: "100% !important",height: "450px"}} allowFullScreen={true}
+                         mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
                     </div>
                 </div>
             </footer>
