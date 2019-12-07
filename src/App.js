@@ -13,13 +13,13 @@ function App() {
     <BrowserRouter>
       <Contenido>
         <Switch>
-          <Route exact path="/alumnos" component={ListaAlumnos} />
+          <Route exact path="/lista" component={ListaAlumnos} />
           <Route exact path="/azar/:user" component={Azar} />
           <Route exact path="/grupos/:user" component={Grupos} />
           <Route exact path="/temporizador/:user" component={Temporizador} />
           <Route exact path="/trivia/:user" component={Trivia} />
           {/* <Route path="/404" component={NotFound} /> */}
-          <Redirect from="/" to="/alumnos" />
+          <Redirect from="/" to="/lista" />
         </Switch>
       </Contenido>
     </BrowserRouter>

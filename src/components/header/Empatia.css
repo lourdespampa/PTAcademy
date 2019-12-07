@@ -38,7 +38,20 @@ header nav ul li .a {
     padding: 20px;
 }
 
-.nav-activo {
+.nav-lista:focus {
+    background: #6ac3c35b;
+}
+
+.nav-azar:focus {
+    background: #6ac3c35b;
+}
+.nav-grupos:focus {
+    background: #6ac3c35b;
+}
+.nav-temporizador:focus {
+    background: #6ac3c35b;
+}
+.nav-trivia:focus {
     background: #6ac3c35b;
 }
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import gruposAlumno from "../components/grupos/grupos";
 class Grupos extends Component {
@@ -30,5 +31,18 @@ class Grupos extends Component {
       </div>
     );
   }
+=======
+import React from 'react';
+import GruposPage from '../components/grupos/GrupoPage'
+
+class Grupos extends React.Component {
+    render(){
+        return(
+            <div>
+                <GruposPage />
+            </div>
+        )
+    }
+>>>>>>> 9fc83b6c8164d8900210a0b1083c237f469ac69e
 }
 export default Grupos;
