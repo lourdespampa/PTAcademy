@@ -123,12 +123,17 @@
 
 /*NUEVO BOTON*/
 
+<<<<<<< HEAD
 /*.div_btn {
+=======
+.div_btn {
+>>>>>>> Gianfranco
     border-radius: 50%;
     width: 100px;
     border: solid 3px;
     height: 100px;
     background: #fff;
+<<<<<<< HEAD
     /*margin: 100px;
     position: relative;
     bottom: 50%;
@@ -138,6 +143,16 @@
     animation-play-state: paused;
    
   }*/
+=======
+    /*margin: 100px;*/
+    position: relative;
+    cursor: pointer;
+    /*top : 0;*/
+   /* animation: ripple 1000ms infinite;
+    animation-play-state: paused;*/
+   
+  }
+>>>>>>> Gianfranco
   
   @keyframes ripple {
     0% {

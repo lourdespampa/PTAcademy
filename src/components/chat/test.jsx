@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import './test_2.css';
 import $ from 'jquery';
+<<<<<<< HEAD
 //import mCustomScrollbar from 'malihu-custom-scrollbar-plugin';
+=======
+import mCustomScrollbar from 'malihu-custom-scrollbar-plugin';
+>>>>>>> Gianfranco
 import io from 'socket.io-client';
 const socketUrl="http://localhost:4000";
 export default class Test extends Component
