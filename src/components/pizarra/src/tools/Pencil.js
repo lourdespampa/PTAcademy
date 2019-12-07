@@ -43,6 +43,14 @@ export default (context) => {
         return [stroke];
     };
 
+    const onTouchMove = (x,y)=>{
+        context.beginPath();
+        context.fillStyle = '#ff8330';
+        context.arc(x, y, 10, 0, 200 * Math.PI);
+        context.fill();
+        context.closePath();
+    }
+
     const onDebouncedMouseMove = () => {
         const debouncedPoints = points;
         points = [];
@@ -78,6 +86,7 @@ export default (context) => {
         onMouseMove,
         onDebouncedMouseMove,
         onMouseUp,
+        onTouchMove,
         draw,
     };
 };

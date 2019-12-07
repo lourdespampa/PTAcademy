@@ -1,6 +1,7 @@
 import React from 'react';
-
+import {Link} from 'react-router-dom';
 import './FooterContainer.css';
+import Audio from '../audio/audio';
 
 function FooterContainer(props){
 
@@ -35,6 +36,9 @@ function FooterContainer(props){
                 </div>
                 <div className="footer-right">
                     <h3>unknown</h3>
+                    <Link to="/chat" className="icon-googleplus"><i class="far fa-comments"></i>CHAT</Link>
+                    
+                    <Audio/>
                 </div>
 
                 <div className="overlay" id="overlay">

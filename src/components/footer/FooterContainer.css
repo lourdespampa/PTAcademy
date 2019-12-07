@@ -109,8 +109,18 @@ iframe {
 
 /* Footer Right */
 
+
+
+
 .footer-distributed .footer-right {
     width: 30%;
+    
+}
+
+.footer-distributed .footer-right .div_audio{
+    position: relative;
+    left:  70%;
+    
 }
 
 .footer-distributed .footer-company-about {

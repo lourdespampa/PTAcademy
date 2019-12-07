@@ -26,6 +26,8 @@ export default class Pizarra extends Component
 
   componentDidMount() {
 
+    
+
     var c = document.getElementById("canvas");
     var ctx = c.getContext("2d");
     ctx.font = "bold 20px sans-serif";
@@ -114,6 +116,7 @@ btn_redo.addEventListener('click',()=>{
               style={tool == TOOL_PENCIL ? {fontWeight:'bold',} : undefined}
               className={tool == TOOL_PENCIL  ? 'item-active' : 'item'}
               onClick={() => this.setState({tool:TOOL_PENCIL})}
+              onTouchStart={() => this.setState({tool:TOOL_PENCIL})}
               id='btn_pencil'
             ><i className="fas fa-pencil-alt"></i></button></li>
 

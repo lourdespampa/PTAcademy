@@ -10,7 +10,8 @@ export const toolsMap = {
   [TOOL_RECTANGLE]: Rectangle,
   [TOOL_ELLIPSE]: Ellipse
 };
-
+/*const canvas = document.getElementById('canvas')
+const ctx = canvas.getContext('2d')*/
 export default class SketchPad extends Component {
 
   tool = null;
@@ -56,13 +57,47 @@ export default class SketchPad extends Component {
     this.onDebouncedMove = this.onDebouncedMove.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
   }
-
+  
   componentDidMount() {
     this.canvas = findDOMNode(this.canvasRef);
     this.ctx = this.canvas.getContext('2d');
+    const canvas1 = document.getElementById('canvas')
+    const ctx1 = canvas1.getContext('2d')
     this.initTool(this.props.tool);
-  }
+  //  canvas1.width = 640;
+    //canvas1.height = 1136;
+    canvas1.addEventListener('touchstart', function(e){
+      console.log(e)
+    /*draw(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+    draw(e.changedTouches[1].pageX, e.changedTouches[1].pageY);*/
+    });
+    
+    canvas1.addEventListener('touchmove', function(e){
+      e.preventDefault();
+    /*draw(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+    draw(e.changedTouches[1].pageX, e.changedTouches[1].pageY);*/
+    });
+    
+    
 
+    /*draw = function(x, y){
+      canvas.beginPath();
+      canvas.fillStyle = '#ff8330';
+      canvas.arc(x, y, 10, 0, 200 * Math.PI);
+      canvas.fill();
+      canvas.closePath();
+    };*/
+    function draw(x,y){
+      ctx1.beginPath();
+      ctx1.fillStyle = '#ff8330';
+      ctx1.arc(x, y, 10, 0, 200 * Math.PI);
+      ctx1.fill();
+      ctx1.closePath();
+    }
+ 
+
+
+  }
 
   componentWillReceiveProps({tool, items}) {
     items
@@ -105,7 +140,16 @@ export default class SketchPad extends Component {
     data && data[0] && this.props.onEveryItemChange && this.props.onEveryItemChange.apply(null, data);
 
   }
+  onTouchMove2(e) {//mouse moviendose dentro del canvas
 
+    //var imageData = this.ctx.getImageData(0,0,this.canvas.width,this.canvas.height);
+   // document.getElementById('canvas').style.cursor = "crosshair";  //cambiar el Mouse
+
+   // console.log("move");
+    const data = this.tool.onTouchMove(...this.getCursorPosition(e));
+    data && data[0] && this.props.onEveryItemChange && this.props.onEveryItemChange.apply(null, data);
+
+  }
 
   
   onMouseUp(e) {//Cuando el mouse sale del canvas
@@ -129,6 +173,31 @@ export default class SketchPad extends Component {
     
   }
 
+  onTouchStart(e){
+  
+      //e.preventDefault();
+      this.draw(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+      this.draw(e.changedTouches[1].pageX, e.changedTouches[1].pageY);
+    console.log("touch START")
+    
+  }
+
+  onTouchEnd(e){
+   
+     // e.preventDefault();
+    
+    //var imageData = this.ctx.getImageData(0,0,this.canvas.width,this.canvas.height);
+   
+  }
+
+  onTouchMove(e){
+   
+      e.preventDefault();
+      this.draw(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+      this.draw(e.changedTouches[1].pageX, e.changedTouches[1].pageY);
+    console.log("touch MOVE")
+  }
+
   render() {
     const {width, height, canvasClassName,color} = this.props;
     return (
@@ -141,6 +210,10 @@ export default class SketchPad extends Component {
         onMouseMove={this.onMouseMove}
         onMouseOut={this.onMouseUp}
         onMouseUp={this.onMouseUp}
+        //onTouchStart={this.onTouchStart}
+        //onTouchMoveCapture={this.onTouchMoveCapture}
+        onTouchMove={this.onTouchMove2}
+       // onTouchEnd={this.onTouchEnd}
        // limpiar={this.limpiar}
         width={width}
         height={height}
