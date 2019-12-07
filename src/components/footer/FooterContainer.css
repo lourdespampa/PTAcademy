@@ -114,16 +114,12 @@ iframe {
 
 .footer-distributed .footer-right {
     width: 30%;
-<<<<<<< HEAD
    
-=======
->>>>>>> Gianfranco
     
 }
 
 .footer-distributed .footer-right .div_audio{
     position: relative;
-<<<<<<< HEAD
     top: -30px;
     left:  30%;
     width: auto;
@@ -147,9 +143,6 @@ iframe {
    /* animation: ripple 1000ms infinite;
     animation-play-state: paused;*/
    
-=======
-    left:  70%;
->>>>>>> Gianfranco
     
 }
 
