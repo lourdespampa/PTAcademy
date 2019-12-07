@@ -8,38 +8,37 @@ import puzzle from '../../img/menuLeft/puzzle.png';
 // style
 import './MenuLeft.css'
 
-// function aparecer(){
-//     var soc = document.getElementById('social')
-//     soc.style.display = "block";
-// }
-
-function MenuLeft(){
+function MenuLeft(props){
     return(
         <>
             <div id="focussocial"
                 className="socialfocus"
-            //   onMouseOver={aparecer} 
-            //   onMouseOut="desaparecer()"
+                onMouseOver={props.aparecer} 
+                onMouseOut={props.desaparecer}
             ></div>
+            <div 
+                className="socialpestaña"
+                onMouseOver={props.aparecer} 
+                onMouseOut={props.desaparecer}
+            ><h5>Arrastre el click aqui</h5></div>
             <div id="social"
                 className="social" 
-            //   onMouseOut="desaparecer()" 
-            //   onMouseOver="aparecer()"
-            style={{display: 'block'}}
+                onMouseOver={props.aparecer}
+                onMouseOut={props.desaparecer}
               >
                 <ul> 
                     <li>
-                        <a href="/command/pizarra/?cod=<%= codigoClase %>" className="icon-facebook"><img src={board} width="40" alt="board"/>
+                        <a href="xD" className="icon-facebook"><img src={board} width="40" alt="board"/>
                             <p className="text-menu-left">PIZARRA</p>
                         </a>
                     </li>
                     <li>
-                        <a href="/command/blockly/?cod=<%= codigoClase %>" className="icon-twitter" ><img src={puzzle} width="40" alt="blocks"/>
+                        <a href="xD" className="icon-twitter" ><img src={puzzle} width="40" alt="blocks"/>
                             <p className="text-menu-left">BLOCKY</p>
                         </a>
                     </li>
                     <li>
-                        <a href="/command/code/?cod=<%= codigoClase %>" className="icon-googleplus"><img src={require('../../img/menuLeft/cat.png')} width="40" alt="cat"/>
+                        <a href="xD" className="icon-googleplus"><img src={require('../../img/menuLeft/cat.png')} width="40" alt="cat"/>
                             <p className="text-menu-left">SCRATCH</p>
                         </a>
                     </li>

@@ -1,12 +1,12 @@
 import React from 'react';
-
+import AzarPage from '../components/azar/AzarPage';
 class Azar extends React.Component {
 
 
     render(){
         return(
             <div>
-                Azar
+              <AzarPage />
             </div>
         )
     }
