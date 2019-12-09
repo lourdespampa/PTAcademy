@@ -4,6 +4,7 @@ import React from 'react';
 import board from '../../img/menuLeft/board.png';
 import puzzle from '../../img/menuLeft/puzzle.png';
 // import cat from '../../img/menuLeft/cat.png';
+import {Link} from 'react-router-dom'
 
 // style
 import './MenuLeft.css'
@@ -33,9 +34,7 @@ function MenuLeft(props){
                         </a>
                     </li>
                     <li>
-                        <a href="xD" className="icon-twitter" ><img src={puzzle} width="40" alt="blocks"/>
-                            <p className="text-menu-left">BLOCKY</p>
-                        </a>
+                        <Link  className="icon-twitter" to="/blockly"> <img src={puzzle} width="40" alt="blocks"/>  <p className="text-menu-left">BLOCKY</p>  </Link>
                     </li>
                     <li>
                         <a href="xD" className="icon-googleplus"><img src={require('../../img/menuLeft/cat.png')} width="40" alt="cat"/>
