@@ -34,6 +34,7 @@ iframe {
     height: -webkit-fill-available;
 }
 
+
 /* Footer Center */
 
 .footer-center {
@@ -78,14 +79,14 @@ iframe {
     ;
 }
 
-.center-container{
+.center-container {
     min-height: 115px;
     background-image: url("codigo.gif");
     background-size: cover;
     background-position: center;
 }
 
-.image-code{
+.image-code {
     width: -webkit-fill-available;
     height: -webkit-fill-available;
 }
@@ -107,8 +108,41 @@ iframe {
 
 /* Footer Right */
 
+
+
+
 .footer-distributed .footer-right {
     width: 30%;
+   
+    
+}
+
+.footer-distributed .footer-right .div_audio{
+    position: relative;
+    top: -30px;
+    left:  30%;
+    width: auto;
+    max-width: 300px;
+    
+    
+}
+
+.footer-distributed .footer-right .div_audio .div_btn{
+    border-radius: 50%;
+    width: 100px;
+    border: solid 3px;
+    height: 100px;
+    background: #fff;
+    /*margin: 100px;*/
+    position: relative;
+    left: 70%;
+    bottom: 50%;
+    cursor: pointer;
+    /*top : 0;*/
+   /* animation: ripple 1000ms infinite;
+    animation-play-state: paused;*/
+   
+    
 }
 
 .footer-distributed .footer-company-about {

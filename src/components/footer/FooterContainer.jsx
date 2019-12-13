@@ -1,14 +1,8 @@
-import React,{useState} from 'react';
+import React from 'react';
+import {Link} from 'react-router-dom';
 import './FooterContainer.css';
-import Modal from 'react-bootstrap/Modal';
-function enviarvideo(url){
-    var urlnombre=url
-    document.getElementById('overlay2').classList.add('active');
-    document.getElementById('popupvideo').classList.add('active');
-    var expresionRegular = 'https://www.youtube.com/watch?v=';
-    var urlembed = urlnombre.split(expresionRegular);
-    document.getElementById('video-frame').src = "https://www.youtube.com/embed/"+urlembed[1]+"?autoplay=1&controls=0"
-}
+import Audio from '../audio/audio';
+
 function FooterContainer(props){
     const [urlnombre,seturlnombre]=useState('');
     const [Show, setShow] = useState(false);
@@ -38,6 +32,9 @@ function FooterContainer(props){
                 </div>
                 <div className="footer-right">
                     <h3>unknown</h3>
+                    <Link to="/chat" className="icon-googleplus"><i class="far fa-comments"></i>CHAT</Link>
+                    
+                    <Audio/>
                 </div>
 
                 <div className="overlay" id="overlay">

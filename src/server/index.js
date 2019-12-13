@@ -7,6 +7,8 @@ const SockeManager=require('./SocketManager')
 
 io.on('connection',SockeManager)
 
+
 app.listen(PORT, ()=>{
+    
     console.log("Conecte to port:"+PORT)
 })

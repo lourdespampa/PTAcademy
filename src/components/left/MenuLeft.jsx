@@ -3,6 +3,7 @@ import React from 'react';
 // images
 import board from '../../img/menuLeft/board.png';
 import puzzle from '../../img/menuLeft/puzzle.png';
+import {Link} from 'react-router-dom';
 // import cat from '../../img/menuLeft/cat.png';
 
 // style
@@ -28,9 +29,8 @@ function MenuLeft(props){
               >
                 <ul> 
                     <li>
-                        <a href="xD" className="icon-facebook"><img src={board} width="40" alt="board"/>
-                            <p className="text-menu-left">PIZARRA</p>
-                        </a>
+                      
+                        <Link className="icon-facebook" to="/pizarra"> <img src={board} width="40px" alt="board"></img> <p className="text-menu-left">PIZARRA</p></Link>
                     </li>
                     <li>
                         <a href="xD" className="icon-twitter" ><img src={puzzle} width="40" alt="blocks"/>
