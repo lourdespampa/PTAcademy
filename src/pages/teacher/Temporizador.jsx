@@ -1,15 +1,15 @@
 import React from 'react';
 
-class Trivia extends React.Component {
+class Temporizador extends React.Component {
 
 
     render(){
         return(
             <div>
-                Trivia
+                temporizador
             </div>
         )
     }
 }
 
-export default Trivia;
+export default Temporizador;

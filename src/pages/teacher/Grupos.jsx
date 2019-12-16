@@ -1,5 +1,5 @@
 import React from 'react';
-import GruposPage from '../components/grupos/GrupoPage'
+import GruposPage from '../../components/teacher/grupos/GrupoPage'
 
 class Grupos extends React.Component {
     render(){

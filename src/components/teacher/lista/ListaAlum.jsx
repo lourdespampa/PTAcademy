@@ -25,21 +25,21 @@ export default class ListaAlum extends Component {
             students:[],
             fileName: 'Nota de alumnos',
             datapoint:{
-                pocitivo:[{imgen:require('../../img/lista/punto1.png'),title:'Ayuda a Otros'},
-                    {imgen:require('../../img/lista/punto2.png'),title:'Cumplimiento de Tareas'},
-                    {imgen:require('../../img/lista/punto3.png'),title:'Participacion'},
-                    {imgen:require('../../img/lista/punto4.png'),title:'Persistencia'},
-                    {imgen:require('../../img/lista/punto5.png'),title:'responsabilidad'},
-                    {imgen:require('../../img/lista/punto6.png'),title:'trabajo en equipo'}],
-                negativo:[{imgen:require('../../img/lista/punto-1.png'),title:'Ayuda a Otros'},
-                    {imgen:require('../../img/lista/punto-2.png'),title:'Cumplimiento de Tareas'},
-                    {imgen:require('../../img/lista/punto-3.png'),title:'Participacion'}],
-                camportamiento:[{imgen:require('../../img/lista/a.jpg'),title:''},
-                    {imgen:require('../../img/lista/b.jpg'),title:''},
-                    {imgen:require('../../img/lista/c.jpg'),title:''},
-                    {imgen:require('../../img/lista/d.jpg'),title:''},
-                    {imgen:require('../../img/lista/e.jpg'),title:''},
-                    {imgen:require('../../img/lista/f.jpg'),title:''}]
+                pocitivo:[{imgen:require('../../../img/lista/punto1.png'),title:'Ayuda a Otros'},
+                    {imgen:require('../../../img/lista/punto2.png'),title:'Cumplimiento de Tareas'},
+                    {imgen:require('../../../img/lista/punto3.png'),title:'Participacion'},
+                    {imgen:require('../../../img/lista/punto4.png'),title:'Persistencia'},
+                    {imgen:require('../../../img/lista/punto5.png'),title:'responsabilidad'},
+                    {imgen:require('../../../img/lista/punto6.png'),title:'trabajo en equipo'}],
+                negativo:[{imgen:require('../../../img/lista/punto-1.png'),title:'Ayuda a Otros'},
+                    {imgen:require('../../../img/lista/punto-2.png'),title:'Cumplimiento de Tareas'},
+                    {imgen:require('../../../img/lista/punto-3.png'),title:'Participacion'}],
+                camportamiento:[{imgen:require('../../../img/lista/a.jpg'),title:''},
+                    {imgen:require('../../../img/lista/b.jpg'),title:''},
+                    {imgen:require('../../../img/lista/c.jpg'),title:''},
+                    {imgen:require('../../../img/lista/d.jpg'),title:''},
+                    {imgen:require('../../../img/lista/e.jpg'),title:''},
+                    {imgen:require('../../../img/lista/f.jpg'),title:''}]
                     }
                 }
     async componentDidMount() {
@@ -82,23 +82,23 @@ export default class ListaAlum extends Component {
     onSubmitNote=async (e)=>{
         e.preventDefault();
            const note=this.state.note
-        await axios.put(''+this.state._id,note)
+        await axios.put('http://api-playtec.herokuapp.com/v1/api/student/'+this.state._id,note)
         this.getStudents();
     }
     onClickPointAdd=async(e)=>{
         e.preventDefault();
         const point=this.state.point+1
-        await axios.put(''+this.state._id,point)
+        await axios.put('http://api-playtec.herokuapp.com/v1/api/student/'+this.state._id,point);
     }
     onClickPointRemove=async(e)=>{
         e.preventDefault();
         const point=this.state.point-1
-        await axios.put(''+this.state._id,point)
+        await axios.put('http://api-playtec.herokuapp.com/v1/api/student/'+this.state._id,point)
     }
     onClickConductAdd=async(e)=>{
         e.preventDefault();
         const conduct=this.state.conduct
-        await axios.put(''+this.state._id,conduct)
+        await axios.put('http://api-playtec.herokuapp.com/v1/api/student/'+this.state._id,conduct)
     }
     onClickConduc=(e)=>{
         this.setState({
@@ -187,7 +187,7 @@ export default class ListaAlum extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     { this.state.datapoint.pocitivo.map(point=>(
-                        <BtnPuntos imgen={point.imgen} title={point.title} fuction={console.log('funcionpunto')} />
+                        <BtnPuntos imgen={point.imgen} title={point.title} />
                     ))}    
                 </Modal.Body>
             </Modal> 
@@ -199,7 +199,7 @@ export default class ListaAlum extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     { this.state.datapoint.negativo.map(point=>(
-                        <BtnPuntos imgen={point.imgen} title={point.title} fuction={console.log('funcionpunto')} />
+                        <BtnPuntos imgen={point.imgen} title={point.title} />
                     ))}  
                 </Modal.Body>
             </Modal> 
@@ -222,7 +222,7 @@ export default class ListaAlum extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     { this.state.datapoint.camportamiento.map(point=>(
-                        <BtnPuntos imgen={point.imgen} title={point.title} fuction={console.log('funcionpunto')} />
+                        <BtnPuntos imgen={point.imgen} title={point.title} />
                     ))} 
                 </Modal.Body>
             </Modal> 

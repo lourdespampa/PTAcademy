@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 import './FooterContainer.css';
 import Modal from 'react-bootstrap/Modal';
-function enviarvideo(url){
-    var urlnombre=url
+function enviarvideo(url,url2){
+    var urlnombre=url+url2
     document.getElementById('overlay2').classList.add('active');
     document.getElementById('popupvideo').classList.add('active');
     var expresionRegular = 'https://www.youtube.com/watch?v=';
@@ -20,12 +20,19 @@ function FooterContainer(props){
                         (props.diapositivaHover)
                         ?
                             <div id="menupresentacion" className="footer-left" style={{position: "fixed",width: "23%",height: "18%",border: "solid 5px white",zIndex: 0.1}} onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}>
-                                <button className="pres" onClick={()=>props.openPopup('overlay','popup')} >DIAPOSITIVAS</button>
-                                <button className="pres" onClick={()=>props.openPopup('overlayinframe','popupformulario')}>FORMULARIO</button>
-                                <button className="pres" onClick={() => setShow(true)}>VIDEO</button>
+                                <button id="btndiapo" className="pres" onClick={()=>props.openPopup('overlay','popup')+props.botonClick('btndiapo')} >DIAPOSITIVAS</button>
+                                <button id="btnform" className="pres" onClick={()=>props.openPopup('overlayinframe','popupformulario')+props.botonClick('btnform')}>FORMULARIO</button>
+                                <button id="btnvideo" className="pres" onClick={() => setShow(true)+props.botonClick('btnvideo')}>VIDEO</button>
                             </div>
                         :
-                            <div className="envoltura" style={{width: "23%", height: "90%", position: "absolute"}} onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}></div>
+                            <>
+                                <div id="menupresentacion" className="footer-left" style={{position: "fixed",width: "23%",height: "18%",border: "solid 5px white",zIndex: 0.1,display:"none"}} onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}>
+                                    <button id="btndiapo" className="pres" onClick={()=>props.openPopup('overlay','popup')+props.botonClick('btndiapo')} >DIAPOSITIVAS</button>
+                                    <button id="btnform" className="pres" onClick={()=>props.openPopup('overlayinframe','popupformulario')+props.botonClick('btnform')}>FORMULARIO</button>
+                                    <button id="btnvideo" className="pres" onClick={() => setShow(true)+props.botonClick('btnvideo')}>VIDEO</button>
+                                </div>
+                                <div id="envoltura" className="envoltura" style={{width: "23%", height: "90%", position: "absolute"}} onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}></div>
+                            </>
                         }
                         <iframe title="myiframe" className="miniatura" id="diminute" 
                             src="" width="100%" height="100%" style={{background: "white"}}>
@@ -37,18 +44,21 @@ function FooterContainer(props){
                     </div>
                 </div>
                 <div className="footer-right">
-                    <button className="col-6 ">
+                    <button className="col-6 " onClick={()=>props.grabar()}>
                         grabar
+                    </button>
+                    <button className="col-6 " onClick={()=>props.reproclick()}>
+                        reproducir
                     </button>
                 </div>
 
                 <div className="overlay" id="overlay">
                     <div className="popup" id="popup">
-                        <a href className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay','popup')} ><i class="material-icons">close</i></a>
+                        <a href id="btnCerrarDiapo" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay','popup')+props.botonClick('btnCerrarDiapo')} ><i class="material-icons">close</i></a>
                         <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",height: "100%"}} allowFullScreen={true}
                          mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
-                        <div className="btn-back"  onClick={props.backtPpt}><i class="material-icons">navigate_before</i></div>
-                        <div className="btn-next" onClick={props.nextPpt}><i class="material-icons">navigate_next</i></div>
+                        <div id="btnBack" className="btn-back"  onClick={()=>props.backtPpt()+props.botonClick('btnBack')}><i class="material-icons">navigate_before</i></div>
+                        <div id="btnNext" className="btn-next" onClick={()=>props.nextPpt()+props.botonClick('btnNext')}><i class="material-icons">navigate_next</i></div>
                     </div>
                 </div>
                 <div className="overlay" id="overlayinframe">
@@ -57,16 +67,17 @@ function FooterContainer(props){
                             <h1>Emitir Formulario</h1>
                         </div>
                         <br/>
-                        <a href className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')} ><i class="material-icons">close</i></a>
+                        <a href id="btnCerrarFormu" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} ><i class="material-icons">close</i></a>
                         <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{width: "100% !important",height: "450px"}} allowFullScreen={true}
                          mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
                     </div>
                 </div>
             </footer>
                 <Modal
+                id="modalvideo"
                 size={'SM'}
             show={Show}
-            onHide={() => setShow(false)}
+            onHide={() => setShow(false)+props.botonClick('modalvideo')}
           >
             <Modal.Header closeButton>
               <div class="punto-posi">
@@ -74,13 +85,13 @@ function FooterContainer(props){
               </div>
             </Modal.Header>
             <Modal.Body>
-              <input id="urlid" type="text" name="urlvideo" onChange={e => seturlnombre(e.target.value)} placeholder="url" style={{fontSize:"20px",width: "80%"}} required/>
-              <button id="btnvideo" onClick={()=>enviarvideo(urlnombre,setShow(false))} class="button btnMyM" type="button">Enviar</button>
+              <input id="urlid" type="text" placeholder={props.txt} name="urlvideo" onChange={e => seturlnombre(e.target.value)+props.changeOn('urlvideo',e.target.value)} style={{fontSize:"20px",width: "80%"}} required/>
+              <button id="btnenviarvideo" onClick={()=>enviarvideo(urlnombre,props.txt,setShow(false))+props.botonClick('btnenviarvideo')} class="button btnMyM" type="button">Enviar</button>
             </Modal.Body>
           </Modal>
           <div class="overlay" id="overlay2">
               <div class="popup" id="popupvideo">
-                  <a href id="btn-cerrar-popup2" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay2','popupvideo')}><i class="material-icons">close</i></a>
+                  <a href id="btn-cerrar-popup2" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay2','popupvideo')+props.botonClick('btn-cerrar-popup2')}><i class="material-icons">close</i></a>
                   <iframe  title="iframevideo" id="video-frame" src="" frameborder="0" style={{width: "100% !important",height: "100%"}} 
                   allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
               </div>

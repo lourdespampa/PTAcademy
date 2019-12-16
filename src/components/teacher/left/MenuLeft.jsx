@@ -1,8 +1,8 @@
 import React from 'react';
 
 // images
-import board from '../../img/menuLeft/board.png';
-import puzzle from '../../img/menuLeft/puzzle.png';
+import board from '../../../img/menuLeft/board.png';
+import puzzle from '../../../img/menuLeft/puzzle.png';
 // import cat from '../../img/menuLeft/cat.png';
 
 // style
@@ -38,7 +38,7 @@ function MenuLeft(props){
                         </a>
                     </li>
                     <li>
-                        <a href="xD" className="icon-googleplus"><img src={require('../../img/menuLeft/cat.png')} width="40" alt="cat"/>
+                        <a href="xD" className="icon-googleplus"><img src={require('../../../img/menuLeft/cat.png')} width="40" alt="cat"/>
                             <p className="text-menu-left">SCRATCH</p>
                         </a>
                     </li>
