@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
+import React,{Component} from 'react'
+import FooterContainer from '../../components/teacher/footer/FooterContainer'
 
-import FooterContainer from './../components/footer/FooterContainer';
-
-class Footer extends Component {
+export default class Footer extends Component {
     state = {
         // variable para mostrar u ocultar los 3 botones que aparecen al hacer hover en la diapositiva del footer
         diapositivaHover: false,
-        src:"https://docs.google.com/presentation/d/e/2PACX-1vQNDqsVLggLYCO546Knez7Ecbs0SCErBbtTfAOn74iEHVtHoUKKECnzcsD6btExAMfn9VnHjsrf867m/pub?start=false&loop=false&delayms=3000"
-
+        src:"https://docs.google.com/presentation/d/e/2PACX-1vQNDqsVLggLYCO546Knez7Ecbs0SCErBbtTfAOn74iEHVtHoUKKECnzcsD6btExAMfn9VnHjsrf867m/pub?start=false&loop=false&delayms=3000",
+        srcForm:"https://docs.google.com/forms/d/e/1FAIpQLSftlA2JivBhsQ0mhdyJ4LQczijxvyjN-SClloK6-9gNIyK2Eg/viewform?usp=sf_link"
     }
-
+        
     //FUNCIONES DE FOOTERCONTAINER
 
     //Funcion para activar o desactivar el estado que se encarga de mostrar los botones de la diapositiva del footer
@@ -38,6 +37,9 @@ class Footer extends Component {
             console.log('get URL: ' + enlace)
             document.getElementById("diapo-frame").src = enlace;
             document.getElementById("diminute").src = enlace;
+        }
+        getUrlForm=()=> {
+            document.getElementById("diapo-formulario").src = this.state.srcForm;
         }
 
     nextPpt=()=> {
@@ -78,19 +80,20 @@ class Footer extends Component {
 
     async componentDidMount(){
             this.getUrl();
+        this.getUrlForm();
         }
-    render() {
-        return (
-            <div>
-                <FooterContainer
-                    // Envio del esatdo y funcion de mostrar los botones de la diapositiva del footer
-                    diapositivaHover={this.state.diapositivaHover} toggleHoverSlide={this.toggleHoverSlide} 
-                    closePopup={this.closePopup} openPopup={this.openPopup} nextPpt={this.nextPpt} 
-                    backtPpt={this.backtPpt} enviarvideo={this.enviarvideo}
-                />
-            </div>
-        )
-    }
-}
 
-export default Footer;
+    render(){
+    return (
+        <>
+        <FooterContainer 
+        diapositivaHover={this.state.diapositivaHover} toggleHoverSlide={this.toggleHoverSlide} 
+        closePopup={this.closePopup} openPopup={this.openPopup} nextPpt={this.nextPpt} 
+        backtPpt={this.backtPpt} enviarvideo={this.enviarvideo} 
+        botonClick={()=>{console.log('')}} 
+        grabar={()=>{console.log('')}} reproclick={()=>{console.log('')}}
+        changeOn={()=>{console.log('')}} txt={()=>{console.log('')}}
+        />
+        </>
+    )}
+}
