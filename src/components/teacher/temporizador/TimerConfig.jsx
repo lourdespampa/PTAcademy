@@ -20,7 +20,7 @@ class TimerConfig extends Component {
   render() {
     return (
       <div className="row">
-        <h2 className="text-primary">Set Timer</h2>
+        <h2 className="text-primary">Configurar tiempo</h2>
         <div className="row control-row">
           <div className="form-group">
             <div className="col-sm-3">

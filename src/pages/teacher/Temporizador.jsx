@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import moment from "moment";
-import TimerHeader from "../../components/teacher/temporizador/TimerHeader";
 import TimerDisplay from "../../components/teacher/temporizador/TimerDisplay";
 import TimerButton from "../../components/teacher/temporizador/TimerButton";
 import TimerConfig from "../../components/teacher/temporizador/TimerConfig";
@@ -81,25 +80,28 @@ export default class Temporizador extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <TimerHeader />
-        <TimerDisplay
-          currentTime={this.state.currentTime}
-          timerState={this.state.timerState}
-        />
-        <TimerButton
-          startTimer={this.startTimer}
-          stopTimer={this.stopTimer}
-          timerState={this.state.timerState}
-        />
-        <br />
-        <button className="btn btn-info center-block">PAUSAR</button>
-        {this.state.timerState !== timerStates.RUNNING && (
-          <TimerConfig
-            baseTime={this.state.baseTime}
-            setBaseTime={this.setBaseTime}
-          />
-        )}
+      <div className="panel panel-default app-content center-block">
+        <div className="panel-body">
+          <div className="container-fluid">
+            <TimerDisplay
+              currentTime={this.state.currentTime}
+              timerState={this.state.timerState}
+            />
+            <TimerButton
+              startTimer={this.startTimer}
+              stopTimer={this.stopTimer}
+              timerState={this.state.timerState}
+            />
+            <br />
+            <button className="btn btn-info center-block">PAUSAR</button>
+            {this.state.timerState !== timerStates.RUNNING && (
+              <TimerConfig
+                baseTime={this.state.baseTime}
+                setBaseTime={this.setBaseTime}
+              />
+            )}
+          </div>
+        </div>
       </div>
     );
   }
