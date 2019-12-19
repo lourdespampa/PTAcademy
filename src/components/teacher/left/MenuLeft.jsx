@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link} from 'react-router-dom'
 // images
 import board from '../../../img/menuLeft/board.png';
 import puzzle from '../../../img/menuLeft/puzzle.png';
@@ -28,9 +28,7 @@ function MenuLeft(props){
               >
                 <ul> 
                     <li>
-                        <a href="xD" className="icon-facebook"><img src={board} width="40" alt="board"/>
-                            <p className="text-menu-left">PIZARRA</p>
-                        </a>
+                      <Link className="icon-facebook" to={props.view}> <img src={board} width="40px" alt="board"></img> <p className="text-menu-left">PIZARRA</p></Link>
                     </li>
                     <li>
                         <a href="xD" className="icon-twitter" ><img src={puzzle} width="40" alt="blocks"/>

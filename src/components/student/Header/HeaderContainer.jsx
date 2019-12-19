@@ -1,5 +1,7 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import './headerStyles.css'
+import Audio from './audio'
 
 export default function HeaderContainer() {
     return (
@@ -12,24 +14,23 @@ export default function HeaderContainer() {
         <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Inicio
-                  <span class="sr-only">(current)</span>
-                </a>
+                    <Link class="nav-link" to="/student/:cod">Inicio</Link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Temporizador</a>
+                    <Link class="nav-link" to="/student/:cod/temporizador">Temporizador</Link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Trivia</a>
+                    <Link class="nav-link" to="/student/:cod/trivia">Trivia</Link>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/" id="btnsalirclase">Salir</a>
+                    <Link class="nav-link" to="/salir" id="btnsalirclase">Salir</Link>
                 </li>
             </ul>
         </div>
     </nav>
+    <Audio></Audio>
         </div>
     )
 }

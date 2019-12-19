@@ -1,5 +1,5 @@
 import React from 'react';
-import AzarPage from '../../components/teacher/azar/AzarPage';
+import AzarPage from '../../components/teacher/azar/Azar';
 class Azar extends React.Component {
 
 

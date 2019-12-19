@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import './FooterContainer.css';
 import Modal from 'react-bootstrap/Modal';
+import Audio from '../audio/audio';
 function enviarvideo(url,url2){
     var urlnombre=url+url2
     document.getElementById('overlay2').classList.add('active');
@@ -39,9 +40,6 @@ function FooterContainer(props){
                         </iframe>
                 </div>
                 <div className="footer-center">
-                    <div className="ml-4 center-container">
-                        
-                    </div>
                 </div>
                 <div className="footer-right">
                     <button className="col-6 " onClick={()=>props.grabar()}>
@@ -50,6 +48,8 @@ function FooterContainer(props){
                     <button className="col-6 " onClick={()=>props.reproclick()}>
                         reproducir
                     </button>
+                    <div><Audio/></div>
+                    
                 </div>
 
                 <div className="overlay" id="overlay">

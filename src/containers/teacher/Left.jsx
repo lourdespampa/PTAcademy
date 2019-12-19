@@ -12,7 +12,7 @@ async desaparecer(){
 }
     render(){
         return(
-            <MenuLeft aparecer={this.aparecer} desaparecer={this.desaparecer} />
+            <MenuLeft view={this.props.view} aparecer={this.aparecer} desaparecer={this.desaparecer} />
         )
     }
 }

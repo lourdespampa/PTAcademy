@@ -3,9 +3,13 @@ import React, { Component } from 'react'
 import Left from '../containers/teacher/Left'
 import Header from '../containers/teacher/Header'
 import Footer from '../containers/teacher/Footer';
-
+import Test from '../components/teacher/chat/test';
 import io from 'socket.io-client';
-const socketUrl="http://localhost:4000";
+// const socketUrl="http://192.168.1.65:4000/teacher";
+const socketUrl="http://localhost:4000/teacher";
+// const socket = io('/command', {
+//     query: 'pin=<%= codigoClase %>'
+// })
 export default class Contenido extends Component {
     constructor(props){
         super(props);
@@ -19,8 +23,8 @@ export default class Contenido extends Component {
     }
     initSocket=()=>{
         const socket=io(socketUrl)
-        socket.on('connect',()=>{
-            console.log("connected")
+        socket.on('connection',()=>{
+            console.log("Teacher Connected")
         })
         this.setState({socket})
     }
@@ -28,11 +32,18 @@ export default class Contenido extends Component {
         const {children}=this.props
         return (
                <>
+               <div id="div_head">
             <Header  botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
-            <Left  botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
+            </div>
+            <Left view={'/teacher/:cod/pizarra'} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
+            <div id="div_children">
             {children}
+            </div>
+            <Test/>
+            <div id="div_foot">
             <Footer  botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick} 
             changeOn={this.props.changeOn} txt={this.props.txt} />
+            </div>
         </>  
         )
     }

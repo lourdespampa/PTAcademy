@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import FooterContainer from '../../components/teacher/footer/FooterContainer'
+import FooterContainer from '../../components/student/footer/footercontainer'
 
 export default class Footer extends Component {
     state = {
@@ -89,10 +89,7 @@ export default class Footer extends Component {
         <FooterContainer 
         diapositivaHover={this.state.diapositivaHover} toggleHoverSlide={this.toggleHoverSlide} 
         closePopup={this.closePopup} openPopup={this.openPopup} nextPpt={this.nextPpt} 
-        backtPpt={this.backtPpt} enviarvideo={this.enviarvideo} 
-        botonClick={()=>{console.log('')}} 
-        grabar={()=>{console.log('')}} reproclick={()=>{console.log('')}}
-        changeOn={()=>{console.log('')}} txt={()=>{console.log('')}}
+        backtPpt={this.backtPpt}
         />
         </>
     )}
