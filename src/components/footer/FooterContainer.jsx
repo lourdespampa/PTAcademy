@@ -1,8 +1,16 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React,{useState} from 'react';
 import './FooterContainer.css';
+import Modal from 'react-bootstrap/Modal';
+import {Link} from 'react-router-dom';
 import Audio from '../audio/audio';
-
+function enviarvideo(url){
+    var urlnombre=url
+    document.getElementById('overlay2').classList.add('active');
+    document.getElementById('popupvideo').classList.add('active');
+    var expresionRegular = 'https://www.youtube.com/watch?v=';
+    var urlembed = urlnombre.split(expresionRegular);
+    document.getElementById('video-frame').src = "https://www.youtube.com/embed/"+urlembed[1]+"?autoplay=1&controls=0"
+}
 function FooterContainer(props){
     const [urlnombre,seturlnombre]=useState('');
     const [Show, setShow] = useState(false);
