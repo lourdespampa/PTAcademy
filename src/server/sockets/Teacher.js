@@ -3,8 +3,7 @@ const teacherSocket = (io) => {
     const Teacher = io.of('/teacher')
 
     Teacher.on('connection', (socket) => {
-        console.log('id:'+socket.id)
-        
+        console.log('id teacher:'+socket.id)
         
     })
 }

@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 //import {MediaPresenter} from 'sfmediastream';
 const {AudioStreamer} = require('sfmediastream');
 
-const socketUrl="http://localhost:4000/student";
+const socketUrl="http://192.168.1.65:4000/student";
 const socket = io(socketUrl)
 
 export default class Audio extends Component{

@@ -8,10 +8,15 @@ import Grupos from '../pages/teacher/Grupos';
 import Temporizador from '../pages/teacher/Temporizador';
 import Trivia from '../pages/teacher/Trivia';
 import Pizarra from '../pages/teacher/Pizarra';
-// import NotFound from '../pages/NotFound';
+//socket initial
+import io from 'socket.io-client';
+const socketUrl="localhost:4000/teacher";
+//
 
-class Views extends Component {
-   state={
+export default class Views extends Component {
+  constructor(props){
+    super(props);
+   this.state={
       class:'clase3',
       socket:null,
       user:null,
@@ -22,9 +27,22 @@ class Views extends Component {
       txt:'',
       grabacion:[]
     };
-  async componentDidMount() {
-      this.getRecord();
   }
+    componentWillMount(){
+    this.initSocket()
+  }
+    async componentDidMount() {
+      this.getRecord();
+    }
+  
+  initSocket=()=>{
+      const socket=io(socketUrl)
+      socket.on('connect',()=>{
+          console.log("Teacher Connected")
+      })
+      this.setState({socket:socket})
+  }
+ 
   getRecord = async () => {
     const res = await axios.get('https://academy-api-v3.herokuapp.com/api/events/'+this.state.class)
     this.setState({
@@ -87,20 +105,18 @@ this.state.grabacion.map(grab=>(
 render(){
   return (
     <BrowserRouter>
-      <Contenido botonClick={this.botonClick} grabar={this.grabar} reproclick={this.reproclick} changeOn={this.changeOn} txt={this.state.txt}>
+      <Contenido socket={this.state.socket} botonClick={this.botonClick} grabar={this.grabar} reproclick={this.reproclick} changeOn={this.changeOn} txt={this.state.txt}>
         <Switch>
-          <Route exact path="/teacher/:user/lista" component={() => <ListaAlumnos/>}  />
-          <Route exact path="/teacher/:user/azar" component={() => <Azar/>} />
-          <Route exact path="/teacher/:user/grupos" component={() => <Grupos/>} />
-          <Route exact path="/teacher/:user/temporizador" component={() => <Temporizador/>} />
-          <Route exact path="/teacher/:user/pizarra" component={Pizarra} />
-          <Route exact path="/teacher/:user/trivia" component={() => <Trivia botonClick={this.botonClick}/>} />
+          <Route exact path="/teacher/:cod" component={() => <ListaAlumnos/>}  />
+          <Route exact path="/teacher/:cod/azar" component={() => <Azar/>} />
+          <Route exact path="/teacher/:cod/grupos" component={() => <Grupos/>} />
+          <Route exact path="/teacher/:cod/temporizador" component={() => <Temporizador/>} />
+          <Route exact path="/teacher/:cod/pizarra" component={Pizarra} />
+          <Route exact path="/teacher/:cod/trivia" component={() => <Trivia botonClick={this.botonClick}/>} />
           {/* <Route path="/404" component={NotFound} /> */}
-          <Redirect from="/" to="/teacher/xxxxxx/lista" />
+          <Redirect from="/" to="/teacher/xxxxx" />
         </Switch>
       </Contenido>
     </BrowserRouter>
   );}
 }
-
-export default Views;

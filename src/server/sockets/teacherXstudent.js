@@ -4,7 +4,7 @@ const studentSocket = (io) => {
 
     var bufferHeader = null;
     
-    Teacher.on('connection', (socket) => {
+    Teacher.on('connect', (socket) => {
         socket.on('bufferHeader', function(packet) {
             bufferHeader = packet;
             Student.emit('bufferHeader', {
@@ -23,8 +23,7 @@ const studentSocket = (io) => {
         })
 
     })
-    Student.on('connection', (socket) => {
-        console.log('id student:'+socket.id)
+    Student.on('connect', (socket) => {
         socket.on('requestBufferHeader', function(packet) {
             Student.emit('bufferHeader', {
                 audio: bufferHeader,
