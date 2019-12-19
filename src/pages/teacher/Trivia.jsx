@@ -1,8 +1,5 @@
 import React from 'react';
-
  const Trivia =(props)=> {
-  
-      
          return(
              <div>
                  trivia
