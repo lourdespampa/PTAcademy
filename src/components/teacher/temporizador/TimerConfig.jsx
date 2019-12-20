@@ -24,7 +24,7 @@ class TimerConfig extends Component {
         <div className="row control-row">
           <div className="form-group">
             <div className="col-sm-3">
-              <label htmlFor="hours">Hours</label>
+              <label htmlFor="hours">Horas</label>
             </div>
             <div className="col-sm-9">
               <input
@@ -40,7 +40,7 @@ class TimerConfig extends Component {
         <div className="row control-row">
           <div className="form-group">
             <div className="col-sm-3">
-              <label htmlFor="minutes">Minutes</label>
+              <label htmlFor="minutes">Minutos</label>
             </div>
             <div className="col-sm-9">
               <input
@@ -56,7 +56,7 @@ class TimerConfig extends Component {
         <div className="row control-row">
           <div className="form-group">
             <div className="col-sm-3">
-              <label htmlFor="seconds">Seconds</label>
+              <label htmlFor="seconds">Segundos</label>
             </div>
             <div className="col-sm-9">
               <input
