@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import AllClass from '../components/class/AllClass'
+import AllClass from './AllClass'
 export default class ClassTeacher extends Component {
   state = {
     Nombre: "carlos",

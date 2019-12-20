@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {Link} from 'react-router-dom'
-import cursoImg from '../../assets/image/cursos.jpg'
+import cursoImg from '../../img/courses/cursos.jpg'
 export default class AllClass extends Component {
   render() {
     return (

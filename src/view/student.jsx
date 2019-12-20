@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route,Redirect } from 'react-router-dom';
-import Container from '../components/studentcontainer'
+import Container from '../components/student/studentcontainer'
 import Index from '../pages/student/Index'
 import Trivia from '../pages/student/Trivia'
 import Temporizador from '../pages/student/temporizador'

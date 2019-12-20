@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import "../../assets/Course.css";
+import "./Course.css";
 import { Modal } from "react-bootstrap";
 import Formulario from './FormPostCourse'
 function BotonAgregar() {

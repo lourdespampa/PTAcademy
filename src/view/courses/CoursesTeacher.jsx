@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import NavCourse from "../components/courses/NavCourse";
-import AllCourses from "../components/courses/AllCourses";
+import NavCourse from "./NavCourse";
+import AllCourses from "./AllCourses";
 import axios from "axios";
-import "../assets/Course.css";
+import "./Course.css";
 export default class CoursesTeacher extends Component {
   state = {
     nombreProfesor: "carlos",

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route,Redirect } from 'react-router-dom';
 import axios from 'axios'
-import Contenido from '../components/teacherContainer';
+import Contenido from '../components/teacher/teacherContainer';
 import ListaAlumnos from '../pages/teacher/ListaAlumnos';
 import Azar from '../pages/teacher/Azar';
 import Grupos from '../pages/teacher/Grupos';

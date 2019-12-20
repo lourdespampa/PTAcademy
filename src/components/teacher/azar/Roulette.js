@@ -2,9 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Roulette.css';
+import io from 'socket.io-client';
 
+const socketUrl="http://192.168.1.65:4000/teacher";
+const socket = io(socketUrl)
 
 class Roulette extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -142,6 +146,7 @@ class Roulette extends React.Component {
   }
 
   stopRotateWheel() {
+    alert("dssdsdz")
     let { startAngle, arc } = this.state;
     const { options, baseSize } = this.props;
 
@@ -154,10 +159,15 @@ class Roulette extends React.Component {
     ctx.save();
     ctx.font = 'bold 20px Helvetica, Arial';
     const text = options[index]
+    //Roulette
+    socket.emit('rouletteWinner',text)
+    console.log('emite el profe')
+    //Roulette END
     ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize / 3);
     ctx.restore();
     this.props.onComplete(text);
   }
+
 
   easeOut(t, b, c, d) {
     const ts = (t/=d)*t;

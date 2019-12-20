@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {Link} from 'react-router-dom';
-import cursoImg from '../../assets/image/cursos.jpg'
+import cursoImg from '../../img/courses/cursos.jpg'
 //import cursoIcon from '../assets/image/bg.curso.webp'
 export default class AllCourses extends Component {
   render() {

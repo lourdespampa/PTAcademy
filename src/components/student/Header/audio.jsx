@@ -58,12 +58,35 @@ export default class Audio extends Component{
         socket.on('onPlay', function() {
                 btn_play.click()
         })
+        //ROULETTE
+        socket.on('rouletteWinnerS',(data)=>{
+            console.log('escucha el alum')
+            document.getElementById("modal_luckyStudent").innerHTML=data
+            document.getElementById("btnLuckyStudent").click()
+        })
 
+        //ROULETTE END
     }
+          
 
     render(){  
         return<div>
            <button id="btn_play"></button>
+           <div>
+            <a href className="a" data-toggle="modal" data-target="#modalRoulette" id="btnLuckyStudent"/>
+            </div>
+           <div id="modalRoulette" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h4 className="modal-title"><strong>The lucky student is :</strong></h4>
+                        </div>
+                        <div id="modal_luckyStudent"className="modal-body" style={{fontSize: "100px"}}>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     }
 }

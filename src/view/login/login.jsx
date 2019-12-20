@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import {Link,Redirect} from 'react-router-dom'
-import logo from "../assets/image/bg-teacher-login.jpg";
-import "../assets/login.css";
+import logo from "./bg-teacher-login.jpg";
+import "./login.css";
 
 import withFirebaseAuth from "react-with-firebase-auth";
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import firebaseConfig from "../assets/firebaseConfig";
+import firebaseConfig from "./firebaseConfig";
 
-import Loading from "../assets/Loading";
+import Loading from "./Loading";
 import axios from "axios";
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
@@ -212,7 +212,7 @@ function App(props) {
       >
         <img
           className="img-rbt"
-          src={require("../assets/image/robotito.webp")}
+          src={require("./robotito.webp")}
           width="180"
           style={{ left: 0, opacity: 0.7 }}
         />

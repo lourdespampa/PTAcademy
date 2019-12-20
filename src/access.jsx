@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Teacher from './view/teacher'
 import Student from './view/student'
-import CoursesTeacher from './view/CoursesTeacher';
-import ClassTeacher from './view/ClassTeacher';
-import ClassDetailTeacher from './view/ClassDetailTeacher';
-import Login from './view/login'
+import CoursesTeacher from './view/courses/CoursesTeacher';
+import ClassTeacher from './view/class/ClassTeacher';
+import ClassDetailTeacher from './view/class/ClassDetailTeacher';
+import Login from './view//login/login'
 import NotFound from './view/NotFound'
 export default class Access extends Component {
     render() {

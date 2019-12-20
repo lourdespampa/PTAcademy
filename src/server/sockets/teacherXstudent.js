@@ -21,6 +21,15 @@ const studentSocket = (io) => {
                 txt: data.txt,
             })
         })
+        //INICIO ROULETTE
+
+        socket.on('rouletteWinner',(data)=>{
+            console.log('escchaa el profe')
+            Student.emit('rouletteWinnerS',data)
+            console.log('emite el alum')
+        })
+
+        //FIN ROULETTE
 
     })
     Student.on('connect', (socket) => {
