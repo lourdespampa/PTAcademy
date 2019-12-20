@@ -56,6 +56,7 @@ class Pomodoro extends React.Component {
           timer: prevState.timer - 1
         }));
       }, 1000);
+      //se tiene que enviar el socket de iniciar
 
       this.setState({
         started: true
@@ -65,6 +66,7 @@ class Pomodoro extends React.Component {
       this.setState({
         started: false
       });
+      //se tiene que enviar el socket de pausa
     }
   }
 
@@ -75,6 +77,7 @@ class Pomodoro extends React.Component {
       started: false,
       sessionTime: 15
     });
+    //se envia el socket de reiniciar tiempo
   }
 
   render() {
