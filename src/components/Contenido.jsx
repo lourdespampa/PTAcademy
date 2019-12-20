@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react'
-import Left from '../containers/Left'
-import Header from '../containers/Header'
-import Footer from '../containers/Footer';
+import Left from '../containers/teacher/Left'
+import Header from '../containers/teacher/Header'
+import Footer from '../containers/teacher/Footer';
 
 import io from 'socket.io-client';
 const socketUrl="http://localhost:4000";
@@ -28,10 +28,11 @@ export default class Contenido extends Component {
         const {children}=this.props
         return (
                <>
-            <Header />
-            <Left />
+            <Header  botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
+            <Left  botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
             {children}
-            <Footer />
+            <Footer  botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick} 
+            changeOn={this.props.changeOn} txt={this.props.txt} />
         </>  
         )
     }

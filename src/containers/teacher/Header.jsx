@@ -1,6 +1,6 @@
 import React from 'react';
-import Empatia from './../components/header/Empatia';
-import HeaderCode from './../components/header/HeaderCode';
+import Empatia from '../../components/teacher/header/Empatia';
+import HeaderCode from '../../components/teacher/header/HeaderCode';
 
 class Header extends React.Component{
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuLeft from './../components/left/MenuLeft';
+import MenuLeft from '../../components/teacher/left/MenuLeft';
 
 class Left extends React.Component{
 async aparecer(){
