@@ -1,5 +1,5 @@
 import React from 'react';
-import Roulette from './Roulette';
+import Roulette from './Roulette.js';
 
 import axios from 'axios'
 

@@ -1,9 +1,9 @@
 import React from 'react'
-
-export default function Trivia() {
+import Trivia from '../../components/student/trivia/Trivia'
+export default function Triviacompo() {
     return (
         <>
-            <h1>Trivia</h1>
+            <Trivia/>
         </>
     )
 }

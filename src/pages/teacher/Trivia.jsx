@@ -1,12 +1,12 @@
 import React from 'react';
-
- const Trivia =(props)=> {
+ import Trivia from '../../components/teacher/trivia/Trivia'
+ const Triviacontainer =(props)=> {
   
       
          return(
              <div>
-                 trivia
+                <Trivia/>
              </div>
          )
  }
- export default Trivia;
+ export default Triviacontainer;

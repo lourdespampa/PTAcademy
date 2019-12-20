@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
-//import ScarletsMediaPresenter from './SFMediaStream.min.js'
-//import {MediaPresenter} from 'sfmediastream';
+
 const {AudioStreamer} = require('sfmediastream');
 
 const socketUrl="http://192.168.1.65:4000/student";
@@ -59,7 +58,7 @@ export default class Audio extends Component{
                 btn_play.click()
         })
         //ROULETTE
-        socket.on('rouletteWinnerS',(data)=>{
+        socket.on('rouletteWinnerS',function (data){
             console.log('escucha el alum')
             document.getElementById("modal_luckyStudent").innerHTML=data
             document.getElementById("btnLuckyStudent").click()
@@ -82,7 +81,7 @@ export default class Audio extends Component{
                             <h4 className="modal-title"><strong>The lucky student is :</strong></h4>
                         </div>
                         <div id="modal_luckyStudent"className="modal-body" style={{fontSize: "100px"}}>
-                            
+                            asdasd
                         </div>
                     </div>
                 </div>

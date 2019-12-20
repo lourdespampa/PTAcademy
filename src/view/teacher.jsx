@@ -10,7 +10,7 @@ import Trivia from '../pages/teacher/Trivia';
 import Pizarra from '../pages/teacher/Pizarra';
 //socket initial
 import io from 'socket.io-client';
-const socketUrl="localhost:4000/teacher";
+const socketUrl="htpp://192.168.1.65:4000/teacher";
 //
 
 export default class Views extends Component {
