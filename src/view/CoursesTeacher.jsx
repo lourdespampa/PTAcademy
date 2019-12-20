@@ -29,8 +29,9 @@ export default class CoursesTeacher extends Component {
         <div className="main">
           <h1>SECCION DE CURSOS</h1>
           <ul className="cards">
-            {this.state.courses.map(cursos => (
-              <li className="cards_item" key={cursos._id}>
+            {
+            this.state.courses.map((cursos,id) => (
+              <li className="cards_item" key={id}>
                 <AllCourses
                   name_course={cursos.course_name}
                   description={cursos.desc}
@@ -38,7 +39,8 @@ export default class CoursesTeacher extends Component {
                   id={cursos._id}
                 />
               </li>
-            ))}
+              ))
+              }
           </ul>
         </div>
       </>
