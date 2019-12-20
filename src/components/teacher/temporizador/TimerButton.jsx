@@ -27,20 +27,6 @@ class Pomodoro extends React.Component {
     console.log(this.state.timer);
   }
 
-  handleClickSessionDecrement() {
-    this.setState(prevState => ({
-      sessionTime: Math.max(prevState.sessionTime - 1, 1),
-      timer: Math.max((prevState.sessionTime - 1) * 60, 1 * 60)
-    }));
-  }
-
-  handleClickSessionIncrement() {
-    this.setState(prevState => ({
-      sessionTime: Math.min(prevState.sessionTime + 1, 60),
-      timer: Math.min((prevState.sessionTime + 1) * 60, 50 * 60)
-    }));
-  }
-
   handleStart() {
     if (this.state.started === false) {
       this.interval = setInterval(() => {
