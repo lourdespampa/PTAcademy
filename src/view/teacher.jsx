@@ -119,7 +119,7 @@ render(){
           <Route exact path="/teacher/:id_class/:id_access/azar" component={() => <Azar/>} />
           <Route exact path="/teacher/:id_class/:id_access/grupos" component={() => <Grupos/>} />
           <Route exact path="/teacher/:id_class/:id_access/temporizador" component={() => <Temporizador/>} />
-          <Route exact path="/teacher/:id_class/:id_access/pizarra" component={Pizarra} />
+          <Route exact path="/teacher/:id_class/:id_access/pizarra" component={()=><Pizarra/>} />
           <Route exact path="/teacher/:id_class/:id_access/trivia" component={() => <Trivia botonClick={this.botonClick}/>} />
           {/* <Route path="/404" component={NotFound} /> */}
           {/* <Redirect from="/" to="/teacher/xxxxx" /> */}

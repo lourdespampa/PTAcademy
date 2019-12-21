@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import './Roulette.css';
 
 
-const socketUrl="http://192.162.1.65:4000/teacher";
+const socketUrl="http://192.168.1.65:4000/teacher";
 const socket = io(socketUrl)
 
 class Roulette extends React.Component {
