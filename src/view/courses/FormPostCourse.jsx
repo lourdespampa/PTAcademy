@@ -35,6 +35,7 @@ export default class FormPostCourse extends Component {
       )
       .then(res => console.log(res))
       .catch(err => console.log(err));
+      this.props.handleClose()
   };
   render() {
     const { course_name, desc } = this.state;
@@ -61,7 +62,7 @@ export default class FormPostCourse extends Component {
               rows="2"
             />
           </Form.Group>
-          <Button type="submit">Crear curso</Button>
+          <Button type="submit"  >Crear curso</Button>
         </Form>
       </>
     );

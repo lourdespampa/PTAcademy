@@ -25,7 +25,7 @@ export default class CoursesTeacher extends Component {
   render() {
     return (
       <>
-        <NavCourse nombreProfesor={this.state.nombreProfesor}></NavCourse>
+        <NavCourse nombreProfesor={this.state.nombreProfesor} getCursos={this.getCursos()}></NavCourse>
         <div className="main">
           <h1>SECCION DE CURSOS</h1>
           <ul className="cards">

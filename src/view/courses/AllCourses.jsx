@@ -12,7 +12,7 @@ export default class AllCourses extends Component {
           <h2 className="card_title">{this.props.name_course}</h2>
           <p className="card_text">{this.props.description}</p>
           <Link to={`/ClassTeacher/${this.props.id}`} className="btn card_btn">Entrar a sus clases</Link>
-          <button>Eliminar el curso</button>
+          {/* <button>Eliminar el curso</button> */}
         </div>
       </div>
       </>
