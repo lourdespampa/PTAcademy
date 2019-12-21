@@ -2,8 +2,13 @@ import React,{useState} from 'react';
 import './FooterContainer.css';
 import Modal from 'react-bootstrap/Modal';
 import Audio from '../audio/audio';
+import io from 'socket.io-client';
+const socketUrl="http://192.168.1.65:4000/teacher";
+const socket = io(socketUrl)
+
 function enviarvideo(url,url2){
     var urlnombre=url+url2
+    socket.emit('VideoEmit',urlnombre)
     document.getElementById('overlay2').classList.add('active');
     document.getElementById('popupvideo').classList.add('active');
     var expresionRegular = 'https://www.youtube.com/watch?v=';

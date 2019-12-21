@@ -4,7 +4,13 @@ const teacherSocket = (io) => {
 
     Teacher.on('connection', (socket) => {
         console.log('id teacher:'+socket.id)
-         
+         //Video
+
+        socket.on('VideoEmit',(url)=>{
+            Student.emit('Video',url)
+        })
+
+        //FIn Video
     })
 }
 
