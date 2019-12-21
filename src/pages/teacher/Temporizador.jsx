@@ -1,4 +1,5 @@
 import React from 'react';
+import Temp from '../../components/teacher/temporizador/temporizador'
 
 class Temporizador extends React.Component {
 
@@ -6,7 +7,7 @@ class Temporizador extends React.Component {
     render(){
         return(
             <div>
-                temporizador
+                <Temp/>
             </div>
         )
     }
