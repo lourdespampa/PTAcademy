@@ -249,7 +249,7 @@
 }
 
 .table {
-    width:  1330px !important;
+    width:  1330px ;
     border-spacing: 0;
     border-collapse: collapse;
     margin-left: 10px !important;

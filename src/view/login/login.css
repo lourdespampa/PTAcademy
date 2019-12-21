@@ -32,7 +32,7 @@
 .footerLogin {
   position: absolute;
   bottom: 0;
-  left: -30px;
+  left: 0px;
   text-align: start;
   cursor: pointer;
   z-index: 10;
@@ -89,4 +89,23 @@
 
 .loading{
   margin-left: 40%;
+}
+.login-background{
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+.login-navbar-brand{
+  right: 0px;
+}
+.login-container{
+  margin-left: 0px;
+}
+.container-login-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

@@ -84,9 +84,9 @@ function App(props) {
         className="navbar navbar-color-on-scroll navbar-transparent fixed-top login-navbar-expand-lg"
         color-on-scroll="100"
       >
-        <div className="container">
+        <div className="login-container">
           <div className="navbar-translate">
-            <a className="navbar-brand" href="/">
+            <a className="login-navbar-brand navbar-brand" href="/">
               PlayTecAcademy
             </a>
           </div>
@@ -103,13 +103,13 @@ function App(props) {
       </nav>
 
       <div
-        className="masthead page-header header-filter"
+        className="masthead page-header header-filter login-background"
         data-parallax="true"
         style={{ backgroundImage: `url(${logo})` }}
       >
-        <div className="container">
+        <div className="container-login-form">
           <div className="row">
-            <div className="col-lg-4 col-md-6 ml-auto mr-auto">
+            <div className="mr-auto">
               <div className="card card-login">
                 <form
                   className="form"

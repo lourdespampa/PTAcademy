@@ -7,7 +7,7 @@ import{TableBody}from './tablebody'
 import Modal from 'react-bootstrap/Modal';
 // import {alumnos} from '../../data/alumnos.json';
 
-const apiurl='http://3.16.110.136:4200/v1/api/lesson/';
+const apiurl='http://3.16.110.136:4200/v1/api/lesson';
 export default class ListaAlum extends Component {
    
         state={
@@ -52,7 +52,7 @@ export default class ListaAlum extends Component {
     getStudents = async () => {
         const res = await axios.get(`${apiurl}/${this.props.id_access}/students`)
         this.setState({
-            students :  await res.data['students']
+            students :  await res.data
         });
     }
 //eliminar estudiante
@@ -162,17 +162,17 @@ export default class ListaAlum extends Component {
                             <div className="body" id="html">
                                 <div className="table-responsive">
                                     <table id="tabla_usuarios" className="table table-bordered table-striped table-hover dataTable js-exportable">
-                                        <thead style={{'display':'block'}}>
+                                        <thead >
                                             <tr>
-                                                <th style={{textAlign:"center",width:'400px'}}>Nombres</th>
-                                                <th style={{textAlign:"center",width:'400px'}}>Apellidos</th>
-                                                <th style={{textAlign:"center",width:'130px'}}>Nota(0-20)</th>
-                                                <th style={{textAlign:"center",width:'150px'}}>Comportamiento</th>
-                                                <th style={{textAlign:"center",width:'160px'}}>puntos</th>
-                                                <th style={{textAlign:"center",width:'80px'}}>...</th>
+                                                <th style={{textAlign:"center"}}>Nombres</th>
+                                                <th style={{textAlign:"center"}}>Apellidos</th>
+                                                <th style={{textAlign:"center"}}>Nota(0-20)</th>
+                                                <th style={{textAlign:"center"}}>Comportamiento</th>
+                                                <th style={{textAlign:"center"}}>puntos</th>
+                                                <th style={{textAlign:"center"}}>...</th>
                                             </tr>
                                         </thead>
-                                        <tbody style={{'height': '350px', 'overflow':'overlay','display':'block'}}>
+                                        <tbody style={{'height': '350px', 'overflow':'overlay'}}>
                                             { this.state.students ?
                                        <TableBody students={this.state.students} onClickNote={this.onClickNote} onClick={this.onClick}
                                         onClickPoint={this.onClickPoint} deleteStudents={this.deleteStudents} setShow={this.setShow} />
