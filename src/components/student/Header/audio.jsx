@@ -31,14 +31,88 @@ export default class Audio extends Component {
         popup.className = 'popup'
         document.getElementById('video-frame').src = ""
     }
-    DisablePopup2(){
+    DisablePopup2() {
         const overlay_popup = document.getElementById('overlayinframe')
         const popup = document.getElementById('popupformulario')
         overlay_popup.className = 'overlay'
         popup.className = 'popup'
         document.getElementById('video-frame').src = ""
     }
+    closePopup = (o, p) => {
+        var overlay = document.getElementById(o),
+            popup = document.getElementById(p);
+
+        overlay.classList.remove('active');
+        popup.classList.remove('active');
+        document.getElementById('video-frame').src = "";
+    }
+    openPopup(o, p) {
+        var overlay = document.getElementById(o),
+            popup = document.getElementById(p);
+
+        overlay.classList.add('active');
+        popup.classList.add('active');
+    }
+    nextPpt=()=> {
+           
+        var cambiado = '';
+        var url_string = document.getElementById("diapo-frame").src;
+        var url = new URL(url_string);
+        var c = url.searchParams.get("slide");
+        //Consigue num de la pagina
+        var pag = parseInt(c.substr(4)); 
+        //Pasas a la siguiente diapo
+        var slide = pag + 1;
+        //Se quita la pagina antigua
+        cambiado = (url.search).substr(0, 58);
+        //Se agrega la nueva pagina
+        cambiado += slide;
+        var final = url.origin + url.pathname + cambiado;
+        document.getElementById("diapo-frame").src = final;
+        document.getElementById("diminute").src = final;
+    }
+
+    backtPpt=()=> {
+        var cambiado = '';
+        var url_string = document.getElementById("diapo-frame").src;
+        var url = new URL(url_string);
+        var c = url.searchParams.get("slide");
+        //Consigue num de la pagina
+        var pag = c.substr(4);
+        //Pasas a la siguiente diapo
+        var slide = parseInt(pag) - 1;
+        //Se quita la pagina antigua
+        cambiado = (url.search).substr(0, 58);
+        //Se agrega la nueva pagina
+        cambiado += slide;
+        var final = url.origin + url.pathname + cambiado;
+        document.getElementById("diapo-frame").src = final;
+        document.getElementById("diminute").src = final;
+    }   
     componentDidMount() {
+        //SLIDES
+
+        socket.on('sendSlidesS', () => {
+            const overlayDiapo = document.getElementById('overlay')
+            const popupDiapo = document.getElementById('popup')
+            this.openPopup(overlayDiapo.id, popupDiapo.id)
+        })
+
+        socket.on('nextPptS', () => {
+            this.nextPpt()
+        })
+
+        socket.on('backtPptS', () => {
+            this.backtPpt()
+        })
+
+        socket.on('closeSlidesS', () => {
+            const overlayDiapo = document.getElementById('overlay')
+            const popupDiapo = document.getElementById('popup')
+            this.closePopup(overlayDiapo.id, popupDiapo.id)
+        })
+
+        //SLIDES END
         //VIDEO
 
         socket.on('Video', (url) => {
@@ -91,19 +165,19 @@ export default class Audio extends Component {
             btn_play.click()
         })
         //ROULETTE
-        socket.on('rouletteWinnerS',function (data){
+        socket.on('rouletteWinnerS', function (data) {
             console.log('escucha el alum')
-            document.getElementById("modal_luckyStudent").innerHTML=data
+            document.getElementById("modal_luckyStudent").innerHTML = data
             document.getElementById("btnLuckyStudent").click()
         })
 
         //ROULETTE END 
         //FORM
-        socket.on('SendFormS',()=>{
-           
+        socket.on('SendFormS', () => {
+
             const overlay_popup = document.getElementById('overlayinframe')
             const popup = document.getElementById('popupformulario')
-           
+
             overlay_popup.className = 'overlay active'
             popup.className = 'popup active'
         })
@@ -115,16 +189,16 @@ export default class Audio extends Component {
         return <div>
             <button id="btn_play"></button>
             <div>
-            <a href className="a" data-toggle="modal" data-target="#modalRoulette" id="btnLuckyStudent"/>
+                <a href className="a" data-toggle="modal" data-target="#modalRoulette" id="btnLuckyStudent" />
             </div>
-<div id="modalRoulette" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div id="modalRoulette" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h4 className="modal-title"><strong>The lucky student is :</strong></h4>
                         </div>
-                        <div id="modal_luckyStudent"className="modal-body" style={{fontSize: "100px"}}>
-                            
+                        <div id="modal_luckyStudent" className="modal-body" style={{ fontSize: "100px" }}>
+
                         </div>
                     </div>
                 </div>
@@ -140,18 +214,31 @@ export default class Audio extends Component {
             </div>
             {/*VIDEO FIN*/}
             <div className="overlay" id="overlayinframe">
-                    <div className="popup" id="popupformulario">
-                        <div class="punto-posi">
-                            <h1>Formulario</h1>
-                        </div>
-                        <br/>
-                        <a href id="btnCerrarFormu" className="btn-cerrar-popup"><i class="material-icons" onClick={()=>this.DisablePopup2()}>close</i></a>
-                        <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{width: "100% !important",height: "450px"}} allowFullScreen={true}
+                <div className="popup" id="popupformulario">
+                    <div class="punto-posi">
+                        <h1>Formulario</h1>
+                    </div>
+                    <br />
+                    <a href id="btnCerrarFormu" className="btn-cerrar-popup"><i class="material-icons" onClick={() => this.DisablePopup2()}>close</i></a>
+                    <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{ width: "100% !important", height: "450px" }} allowFullScreen={true}
+                        mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
+
+
+                </div>
+            </div>
+            {/*Diapo*/}
+
+        <div className="overlay" id="overlay">
+                    <div className="popup" id="popup">
+                        <a href id="btnCerrarDiapo" className="btn-cerrar-popup"  ><i class="material-icons">close</i></a>
+                        <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",height: "100%"}} allowFullScreen={true}
                          mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
-                         
-                        
+                        <div id="btnBack" className="btn-back"  ><i class="material-icons">navigate_before</i></div>
+                        <div id="btnNext" className="btn-next" ><i class="material-icons">navigate_next</i></div>
                     </div>
                 </div>
+
+        {/*END Diapo*/}
 
 
         </div>

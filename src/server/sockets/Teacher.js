@@ -35,6 +35,24 @@ const teacherSocket = (io) => {
         })
 
         //END FORN
+          //SLIDES
+          socket.on('sendSlides',()=>{
+            Student.emit('sendSlidesS')
+        })
+
+        socket.on('nextPpt',()=>{
+            Student.emit('nextPptS')
+        })
+
+        socket.on('backtPpt',()=>{
+            Student.emit('backtPptS')
+        })
+
+        socket.on('closeSlides',()=>{
+            Student.emit('closeSlidesS')
+        })
+
+        //END SLIDES
     })
 }
 
