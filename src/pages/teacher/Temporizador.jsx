@@ -1,11 +1,14 @@
-import React, { Component } from "react";
-import TimerButton from "../../components/teacher/temporizador/TimerButton";
+import React , {Component} from 'react';
+import Temp from '../../components/teacher/temporizador/temporizador'
 
 export default class Temporizador extends Component {
 
-  render() {
-    return (
-      <TimerButton></TimerButton>
-    );
-  }
+
+    render(){
+        return(
+            <div>
+                <Temp/>
+            </div>
+        )
+    }
 }

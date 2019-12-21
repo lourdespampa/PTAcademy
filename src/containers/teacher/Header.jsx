@@ -10,8 +10,8 @@ class Header extends React.Component{
     render(){
         return(
             <>
-                <HeaderCode/>
-                <Empatia />
+                <HeaderCode id_access={this.props.id_access} />
+                <Empatia id_access={this.props.id_access} id_class={this.props.id_class}/>
             </>
         )
     }

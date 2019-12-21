@@ -1,30 +1,88 @@
-import React, { Component } from 'react'
-import './grupos.css'
-import js from './grupos.js'
+import React, { Component } from "react";
+import "./grupos.css";
+import axios from "axios";
 
-
-
+const url = "http://3.16.110.136:4200";
 export default class GrupoPage extends Component {
-    render() {
-        
-        return (
-              <>
-             <div className="wrapper">
-            <div className="panel-principal" width="100%" height="200px">
-                <div className="content">
-                    <div className="form-group">
-                        <label>N° DE GRUPOS: <span id="num_grupos">6</span></label>
-                        <input id="slider" type="range" value="6" min="2" max="20" step="1" className="slider" />
-                        <button onclick={js.generar_grupos} className="btn btn-primary pull-right">GENERAR GRUPOS</button>
-                    </div>
-                </div>
-            </div>
+  constructor(props) {
+    super(props);
+    this.state = {
+      alumnos: [],
+      nro_grupos: "",
+      nro_per_grupo: "",
+      ini_group: "",
+      grupos: [],
+      text: ""
+    };
+  }
 
-        </div><br />
-        <div className="wrapper2">
-            <div id="salida_grupos"></div>
-        </div>
-        </> 
-        )
+  handleNumPerGrou = e => {
+    this.setState({ nro_per_grupo: e.target.value });
+  };
+
+  componentWillMount() {
+    this.getAlumnos();
+  }
+  getAlumnos = () => {
+    axios.get(`${url}/v1/api/lesson/PRJHS/students/roulette`).then(res => {
+      res.data.map(alumno => {
+        this.state.alumnos.push(alumno.name_stu + " " + alumno.lastName_stu);
+      });
+      const temp = this.state.alumnos;
+      this.setState({
+        alumnos: temp
+      });
+    });
+  };
+  groupGenerator = () => {
+    let cadena = this.state.texto;
+    this.getAlumnos();
+    console.log("Numero de personas en total:" + this.state.alumnos.length);
+    let npg = this.state.nro_per_grupo;
+    let n_grupos = Math.ceil(this.state.alumnos.length / npg);
+    let grupo2 = this.state.alumnos;
+    for (let i = 0; i < n_grupos; i++) {
+      console.log("grupo n" + (i + 1));
+      for (let index = 0; index < this.state.nro_per_grupo; index++) {
+        cadena += `Grupo ${i + 1}           `;
+        let randname = Math.floor(Math.random() * grupo2.length);
+        if (grupo2[randname]) {
+          let f = grupo2[randname];
+          cadena += `${grupo2[randname]}
+          
+          `;
+          console.log(f);
+        }
+        grupo2.splice(randname, 1);
+      }
     }
+    this.setState({
+        text: cadena
+    })
+    console.log(cadena);
+  };
+
+  render() {
+    const { nro_per_grupo } = this.state.nro_per_grupo;
+    return (
+      <>
+        <div className="cuerpo-grupos">
+          {nro_per_grupo}
+          <input
+            className="input-text"
+            type="number"
+            name="numGrup"
+            placeholder="numero de personas por grupos"
+            value={this.state.nro_per_grupo}
+            onChange={this.handleNumPerGrou}
+          />
+          <button onClick={this.groupGenerator}>FORMAR GRUPOS</button>
+          <div className="wrapper2">
+            <div id="salida_grupos"></div>
+            {this.state.text}
+          </div>
+        </div>
+      </>
+    );
+  }
 }

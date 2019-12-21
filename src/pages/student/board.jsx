@@ -1,11 +1,9 @@
 import React from 'react'
 
-function ruleta() {
+export default function Board() {
     return (
         <div>
-            
+            <h1>pizarra</h1>
         </div>
     )
 }
-
-export default ruleta

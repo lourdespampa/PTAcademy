@@ -7,9 +7,11 @@ import{TableBody}from './tablebody'
 import Modal from 'react-bootstrap/Modal';
 // import {alumnos} from '../../data/alumnos.json';
 
+const apiurl='http://3.16.110.136:4200/v1/api/lesson';
 export default class ListaAlum extends Component {
    
         state={
+            id_access:'',
                 modals:{
                     showpuntosmas:false,
                     showpuntosmenos:false,
@@ -45,16 +47,17 @@ export default class ListaAlum extends Component {
     async componentDidMount() {
         this.getStudents();
     }
+    
 //rellenar state
     getStudents = async () => {
-        const res = await axios.get('http://api-playtec.herokuapp.com/v1/api/students')
+        const res = await axios.get(`${apiurl}/${this.props.id_access}/students`)
         this.setState({
-            students :  await res.data['students']
+            students :  await res.data
         });
     }
 //eliminar estudiante
     deleteStudents = async (studentsId) => {
-        await axios.delete('http://api-playtec.herokuapp.com/v1/api/student/' + this.state._id);
+        await axios.delete(`${apiurl}/${this.props.id_access}/students`+ this.state._id);
         this.getStudents();
     }
 //captura value y id 
@@ -82,23 +85,23 @@ export default class ListaAlum extends Component {
     onSubmitNote=async (e)=>{
         e.preventDefault();
            const note=this.state.note
-        await axios.put('http://api-playtec.herokuapp.com/v1/api/student/'+this.state._id,note)
+        await axios.put(`${apiurl}/${this.props.id_access}/students`+this.state._id,note)
         this.getStudents();
     }
     onClickPointAdd=async(e)=>{
         e.preventDefault();
         const point=this.state.point+1
-        await axios.put('http://api-playtec.herokuapp.com/v1/api/student/'+this.state._id,point);
+        await axios.put(`${apiurl}/${this.props.id_access}/students`+this.state._id,point);
     }
     onClickPointRemove=async(e)=>{
         e.preventDefault();
         const point=this.state.point-1
-        await axios.put('http://api-playtec.herokuapp.com/v1/api/student/'+this.state._id,point)
+        await axios.put(`${apiurl}/${this.props.id_access}/students`+this.state._id,point)
     }
     onClickConductAdd=async(e)=>{
         e.preventDefault();
         const conduct=this.state.conduct
-        await axios.put('http://api-playtec.herokuapp.com/v1/api/student/'+this.state._id,conduct)
+        await axios.put(`${apiurl}/${this.props.id_access}/students`+this.state._id,conduct)
     }
     onClickConduc=(e)=>{
         this.setState({
@@ -159,19 +162,21 @@ export default class ListaAlum extends Component {
                             <div className="body" id="html">
                                 <div className="table-responsive">
                                     <table id="tabla_usuarios" className="table table-bordered table-striped table-hover dataTable js-exportable">
-                                        <thead style={{'display':'block'}}>
+                                        <thead >
                                             <tr>
-                                                <th style={{textAlign:"center",width:'400px'}}>Nombres</th>
-                                                <th style={{textAlign:"center",width:'400px'}}>Apellidos</th>
-                                                <th style={{textAlign:"center",width:'130px'}}>Nota(0-20)</th>
-                                                <th style={{textAlign:"center",width:'150px'}}>Comportamiento</th>
-                                                <th style={{textAlign:"center",width:'160px'}}>puntos</th>
-                                                <th style={{textAlign:"center",width:'80px'}}>...</th>
+                                                <th style={{textAlign:"center"}}>Nombres</th>
+                                                <th style={{textAlign:"center"}}>Apellidos</th>
+                                                <th style={{textAlign:"center"}}>Nota(0-20)</th>
+                                                <th style={{textAlign:"center"}}>Comportamiento</th>
+                                                <th style={{textAlign:"center"}}>puntos</th>
+                                                <th style={{textAlign:"center"}}>...</th>
                                             </tr>
                                         </thead>
-                                        <tbody style={{'height': '350px', 'overflow':'overlay','display':'block'}}>
+                                        <tbody style={{'height': '350px', 'overflow':'overlay'}}>
+                                            { this.state.students ?
                                        <TableBody students={this.state.students} onClickNote={this.onClickNote} onClick={this.onClick}
                                         onClickPoint={this.onClickPoint} deleteStudents={this.deleteStudents} setShow={this.setShow} />
+                                        : <h1>no hay alumnos para mostrar</h1> }
                                         </tbody>
                                     </table>
                                 </div>

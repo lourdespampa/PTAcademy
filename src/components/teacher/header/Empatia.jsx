@@ -14,11 +14,11 @@ function Empatia(props){
                 </div>
                 <nav>
                     <ul>
-                        <li><Link className="a nav-lista" style={{display: "block"}} to="/alumnos">LISTA DE ALUMNOS</Link></li>
-                        <li><Link className="a nav-azar" style={{display: "block"}} to="/azar/profesor">AL AZAR</Link></li>
-                        <li><Link className="a nav-grupos" style={{display: "block"}} to="/grupos/profesor">GRUPOS</Link></li>
-                        <li><Link className="a nav-temporizador" to="/temporizador/profesor">TEMPORIZADOR</Link></li>
-                        <li><Link className="a nav-trivia" to="/trivia/profesor">TRIVIA</Link></li>
+                        <li><Link className="a nav-lista" style={{display: "block"}} to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA DE ALUMNOS</Link></li>
+                        <li><Link className="a nav-azar" style={{display: "block"}} to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
+                        <li><Link className="a nav-grupos" style={{display: "block"}} to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
+                        <li><Link className="a nav-temporizador" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
+                        <li><Link className="a nav-trivia" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
                     </ul>
                 </nav>
             </header>

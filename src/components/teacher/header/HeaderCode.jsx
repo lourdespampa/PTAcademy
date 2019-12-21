@@ -2,7 +2,7 @@ import React from 'react';
 
 import './HeaderCode.css'
 
-function HeaderCode(){
+function HeaderCode(props){
 
     return(
         <div className="header">
@@ -15,7 +15,7 @@ function HeaderCode(){
                 <a href className="a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
                     <span>Código:</span>
                     <h3>
-                       ASDJA
+                       {props.id_access}
                     </h3>
                 </a>
             </div>

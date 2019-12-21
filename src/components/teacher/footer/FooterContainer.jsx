@@ -1,13 +1,27 @@
 import React,{useState} from 'react';
 import './FooterContainer.css';
 import Modal from 'react-bootstrap/Modal';
+import Audio from '../audio/audio';
+import io from 'socket.io-client';
+const socketUrl="http://192.168.1.65:4000/teacher";
+const socket = io(socketUrl)
+
 function enviarvideo(url,url2){
     var urlnombre=url+url2
+    socket.emit('VideoEmit',urlnombre)
     document.getElementById('overlay2').classList.add('active');
     document.getElementById('popupvideo').classList.add('active');
     var expresionRegular = 'https://www.youtube.com/watch?v=';
     var urlembed = urlnombre.split(expresionRegular);
     document.getElementById('video-frame').src = "https://www.youtube.com/embed/"+urlembed[1]+"?autoplay=1&controls=0"
+}
+function SendForm(){
+    
+    //SEND FORM
+        socket.emit('SendForm')
+    
+
+    //END SEND FORM
 }
 function FooterContainer(props){
     const [urlnombre,seturlnombre]=useState('');
@@ -39,9 +53,6 @@ function FooterContainer(props){
                         </iframe>
                 </div>
                 <div className="footer-center">
-                    <div className="ml-4 center-container">
-                        
-                    </div>
                 </div>
                 <div className="footer-right">
                     <button className="col-6 " onClick={()=>props.grabar()}>
@@ -50,6 +61,8 @@ function FooterContainer(props){
                     <button className="col-6 " onClick={()=>props.reproclick()}>
                         reproducir
                     </button>
+                    <div><Audio/></div>
+                    
                 </div>
 
                 <div className="overlay" id="overlay">
@@ -70,6 +83,8 @@ function FooterContainer(props){
                         <a href id="btnCerrarFormu" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} ><i class="material-icons">close</i></a>
                         <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{width: "100% !important",height: "450px"}} allowFullScreen={true}
                          mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
+                         
+                         <button className="btn btn-block btn-info" onClick={()=>SendForm()}>EMITIR</button>
                     </div>
                 </div>
             </footer>

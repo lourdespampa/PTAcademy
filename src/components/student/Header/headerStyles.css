@@ -1,5 +1,6 @@
 #header {
     z-index: 3000;
+    height: 65px;
 }
 .primary-color {
     background: -webkit-linear-gradient(left, #007bff, #5D00FF)!important;
