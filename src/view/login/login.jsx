@@ -81,7 +81,7 @@ function App(props) {
     
     <div>
       <nav
-        className="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg"
+        className="navbar navbar-color-on-scroll navbar-transparent fixed-top login-navbar-expand-lg"
         color-on-scroll="100"
       >
         <div className="container">

@@ -21,26 +21,34 @@ export default class Trivia extends React.Component {
       preguntaElegida: '',
       eligio: false,
       preguntaCorrecta: '',
+      respuestaRecibida: false,
+      pregunta: '',
       time: 0,
-      respuestaRecibida: false
+      respuesta1: '',
+      respuesta2: '',
+      respuesta3: '',
+      respuesta4: ''
     }
   }
 
   componentDidMount(){
-    let enviado = false
     socket.on('pregunta recibida', data => {
-        enviado = true;
-        console.log(data)
-    })
-    if(enviado){
-      this.setState({time: 15})
+      console.log(data)
+      this.setState({
+        pregunta: data.data.pregunta, 
+        time: data.data.tiempo, 
+        preguntaCorrecta: data.data.respuestaCorrecta,
+        respuesta1: data.data.respuestaOne,
+        respuesta2: data.data.respuestaTwo,
+        respuesta3: data.data.respuestaTree,
+        respuesta4: data.data.respuestaFour
+      })
+      
       setTimeout(() => {
         this.setState({respuestaRecibida: true})
         this.interval = setInterval( () => this.minusOne(), 1000)
       }, 5000);
-    }else{
-      return
-    }
+    })
   };
 
   minusOne() {
@@ -48,7 +56,19 @@ export default class Trivia extends React.Component {
     this.setState({time: this.state.time -1});
     }else{
       clearInterval(this.interval);
+      //Aqui verficamos si el alumno ha elegido la respuesta correcta!!
+      if(this.state.preguntaElegida === this.state.preguntaCorrecta){
+        console.log("elegiste la respuesta correcta!!")
+      }else{
+        console.log("no es la respuesta correcta :c")
+        let color = this.state.preguntaCorrecta
+        this.setState({preguntaElegida: color})
+      }
     }
+  }
+
+  handleSelectAnswer =() => {
+    this.setState({preguntaElegida: 'rojo', eligio: true})
   }
 
   render(){
@@ -69,7 +89,7 @@ export default class Trivia extends React.Component {
                   Cargando...
                 </div>
                 <h1 id="previo" style={{ color: "white", fontSize: "40px" }}>
-                  Esperando pregunta...
+                  {this.state.pregunta ? this.state.pregunta : "Esperando pregunta..."}
                 </h1>
               </div>
             </div>
@@ -79,7 +99,7 @@ export default class Trivia extends React.Component {
         {/* contenido */}
         <div class="contenedorPrincipal" style={{marginTop: "55px"}}>
           <div class="header2">
-            <h1 id="question">¿Es esta una pregunta?</h1>
+            <h1 id="question">{this.state.pregunta ? this.state.pregunta : "¿Es esta una pregunta?"}</h1>
           </div>
           <div class="contenedores" style={{textAlign: "center", width: "99.5%"}}>
             <div class="left">
@@ -107,9 +127,9 @@ export default class Trivia extends React.Component {
                 <td>
                   <button style={pe === 'azul' || pe === 'naranja' || pe === 'verde' ? styles.botonInactivo : {} }
                           id="triangulo" class="trivia-student-button rojo"
-                          onClick={this.state.eligio ? () => {} : () => { this.setState({preguntaElegida: 'rojo', eligio: true}) }}>
+                          onClick={this.state.eligio ? () => {} : this.handleSelectAnswer}>
                     <img src={require("./rombo-blanco.webp")} />
-                    <span id="answerTriangulo">Respuesta 1</span>
+                    <span id="answerTriangulo">{this.state.respuesta1 ? this.state.respuesta1 : "Respuesta 1"}</span>
                   </button>
                 </td>
                 <td>
@@ -117,7 +137,7 @@ export default class Trivia extends React.Component {
                           id="equis" class="trivia-student-button azul"
                           onClick={this.state.eligio ? () => {} : () => { this.setState({preguntaElegida: 'azul', eligio: true}) }}>
                     <img src={require("./equis-blanco.webp")} />
-                    <span id="answerEquis">Respuesta 2</span>
+                    <span id="answerEquis">{this.state.respuesta2 ? this.state.respuesta2 : "Respuesta 2"}</span>
                   </button>
                 </td>
               </tr>
@@ -127,7 +147,7 @@ export default class Trivia extends React.Component {
                           id="circulo" class="trivia-student-button naranja"
                           onClick={this.state.eligio ? () => {} : () => { this.setState({preguntaElegida: 'naranja', eligio: true}) }}>
                     <img src={require("./circulo-blanco.webp")} />
-                    <span id="answerCirculo">Respuesta 3</span>
+                    <span id="answerCirculo">{this.state.respuesta3 ? this.state.respuesta3 : "Respuesta 3"}</span>
                   </button>
                 </td>
                 <td>
@@ -135,7 +155,7 @@ export default class Trivia extends React.Component {
                           id="cuadrado" class="trivia-student-button verde"
                           onClick={this.state.eligio ? () => {} : () => { this.setState({preguntaElegida: 'verde', eligio: true}) }}>
                     <img src={require("./cuadrado-blanco.webp")} />
-                    <span id="answerCuadrado">Respuesta 4</span>
+                    <span id="answerCuadrado">{this.state.respuesta4 ? this.state.respuesta4 : "Respuesta 4"}</span>
                   </button>
                 </td>
               </tr>

@@ -26,6 +26,7 @@ class Trivia extends React.Component {
 
     // Este enlace es necesario para hacer que `this` funcione en el callback
     this.handleSendQuestion = this.handleSendQuestion.bind(this);
+    this.handleChangeTime = this.handleChangeTime.bind(this);
     this.changeAnswer1 = this.changeAnswer1.bind(this);
     this.changeAnswer2 = this.changeAnswer2.bind(this);
     this.changeAnswer3 = this.changeAnswer3.bind(this);
@@ -38,6 +39,11 @@ class Trivia extends React.Component {
       this.setState({
         pregunta: e.target.value
       })
+  }
+  handleChangeTime =e => {
+    this.setState({
+      tiempo: e.target.value
+    })
   }
   changeAnswer1 = e => {
     this.setState({
@@ -90,7 +96,7 @@ class Trivia extends React.Component {
       //aqui ya se empiezan a enviar los datos
       const contenido = {
         pregunta: this.state.pregunta,
-        tiempo: this.state.tiempo,
+        tiempo: parseInt(this.state.tiempo,10),
         respuestaOne: this.state.respuestaOne,
         respuestaTwo: this.state.respuestaTwo,
         respuestaTree: this.state.respuestaTree,

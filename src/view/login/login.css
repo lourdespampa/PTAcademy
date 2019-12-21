@@ -1,11 +1,6 @@
-html {
-  padding: 0;
-  margin: 0;
-  font-family: Opal !important;
-}
 
 @media (min-width: 992px) {
-  .navbar-expand-lg .btn-profesor {
+  .login-navbar-expand-lg .btn-profesor {
     display: none;
   }
 }
@@ -21,9 +16,6 @@ html {
     margin: 44px 20px 0 10px !important;
   }
 }
-body {
-  font-family: Opal;
-}
 
 .navbar-brand{
   font-size: 21px !important;
@@ -31,10 +23,6 @@ body {
 
 .nav-link{
   font-size: 15px !important;
-}
-
-.card-title{
-  font-family: Opal;
 }
 
 .card-login .form{

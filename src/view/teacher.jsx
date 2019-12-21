@@ -115,7 +115,7 @@ render(){
     <BrowserRouter>
       <Contenido id_access={this.state.id_access} id_class={this.state.id_class} socket={this.state.socket} botonClick={this.botonClick} grabar={this.grabar} reproclick={this.reproclick} changeOn={this.changeOn} txt={this.state.txt}>
         <Switch>
-          <Route exact path="/teacher/:id_class/:id_access" component={ListaAlumnos}  />
+          <Route exact path="/teacher/:id_class/:id_access" component={()=><ListaAlumnos id_access={this.state.id_access}/>}  />
           <Route exact path="/teacher/:id_class/:id_access/azar" component={() => <Azar/>} />
           <Route exact path="/teacher/:id_class/:id_access/grupos" component={() => <Grupos/>} />
           <Route exact path="/teacher/:id_class/:id_access/temporizador" component={() => <Temporizador/>} />
