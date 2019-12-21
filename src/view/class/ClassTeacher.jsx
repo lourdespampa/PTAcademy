@@ -30,7 +30,8 @@ export default class ClassTeacher extends Component {
               <li className="cards_item" key={clase._id}>
                 <AllClass
                   name_class={clase.class_name}
-                  desc={clase.desc} />
+                  desc={clase.desc} 
+                  id={clase._id}/>
               </li>
             ))}
           </ul>

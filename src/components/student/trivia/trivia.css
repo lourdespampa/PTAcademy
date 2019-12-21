@@ -80,16 +80,16 @@ body {
     margin: auto auto auto 0;
 }
 
-/* .center {
+ .trivia-student-center {
     background: rgb(93, 0, 146);
-    max-width: 600px;
+    width: 600px;
     min-width: 200px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     height: 300px;
     margin: 12px auto auto auto;
-} */
+} 
 
 .triangulo-equilatero-bottom-left {
     width: 0;
@@ -114,13 +114,13 @@ td {
     width: 49%;
 }
 
-/* .button { */
-    /* color: #fff;
-    display: inline-block; */
+ .trivia-student-button { 
+     color: #fff;
+    display: inline-block;
     /*bloque en linea*/
-    /* font-size: 1.25em; */
+     font-size: 1.25em; 
     /* 20px*/
-    /* margin: 4px;
+     margin: 4px;
     padding: 10px;
     text-align: left;
     min-width: 99%;
@@ -128,7 +128,7 @@ td {
     text-decoration: none;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 2px;
-} */
+} 
 
 
 /* Colores */
@@ -149,14 +149,14 @@ td {
     background: #1FAD18;
 }
 
-.button img {
+.trivia-student-button img {
     display: inline-block;
     vertical-align: middle;
     width: 50px;
     margin-left: 0.5em;
 }
 
-.button span {
+.trivia-student-button span {
     /* position: relative; */
     margin-left: 20px;
     font-size: 25px;
@@ -167,7 +167,7 @@ td {
 
 /* Efectos */
 
-.button:hover {
+.trivia-student-button:hover {
     box-shadow: 0px 0px 0px;
     padding-top: 9px;
 }
@@ -275,11 +275,11 @@ td {
 /* MEDIA QUERYS */
 
 @media screen and (max-width: 500px) {
-    .button {
+    .trivia-student-button {
         min-height: 50px;
         width: 49%;
     }
-    .button img {
+    .trivia-student-button img {
         display: none;
     }
     .left {
@@ -288,7 +288,7 @@ td {
     .right {
         height: 200px;
     }
-    .button img{
+    .trivia-student-button img{
         width:40px
     }
 }

@@ -25,7 +25,9 @@ export default class Views extends Component {
       tiempoinicio:'0',
       tiempo1:'0',
       txt:'',
-      grabacion:[]
+      grabacion:[],
+      id_class:'',
+      id_access:''
     };
   }
     componentWillMount(){
@@ -33,6 +35,12 @@ export default class Views extends Component {
   }
     async componentDidMount() {
       this.getRecord();
+      const {
+        match: { params }
+      } = this.props;
+      this.setState({id_class:params.id_class,id_access:params.id_access})
+      console.log("id class: "+params.id_class);
+      console.log("codigo generado: "+params.id_access);
     }
   
   initSocket=()=>{
@@ -105,16 +113,16 @@ this.state.grabacion.map(grab=>(
 render(){
   return (
     <BrowserRouter>
-      <Contenido socket={this.state.socket} botonClick={this.botonClick} grabar={this.grabar} reproclick={this.reproclick} changeOn={this.changeOn} txt={this.state.txt}>
+      <Contenido id_access={this.state.id_access} id_class={this.state.id_class} socket={this.state.socket} botonClick={this.botonClick} grabar={this.grabar} reproclick={this.reproclick} changeOn={this.changeOn} txt={this.state.txt}>
         <Switch>
-          <Route exact path="/teacher/:cod" component={() => <ListaAlumnos/>}  />
-          <Route exact path="/teacher/:cod/azar" component={() => <Azar/>} />
-          <Route exact path="/teacher/:cod/grupos" component={() => <Grupos/>} />
-          <Route exact path="/teacher/:cod/temporizador" component={() => <Temporizador/>} />
-          <Route exact path="/teacher/:cod/pizarra" component={Pizarra} />
-          <Route exact path="/teacher/:cod/trivia" component={() => <Trivia botonClick={this.botonClick}/>} />
+          <Route exact path="/teacher/:id_class/:id_access" component={ListaAlumnos}  />
+          <Route exact path="/teacher/:id_class/:id_access/azar" component={() => <Azar/>} />
+          <Route exact path="/teacher/:id_class/:id_access/grupos" component={() => <Grupos/>} />
+          <Route exact path="/teacher/:id_class/:id_access/temporizador" component={() => <Temporizador/>} />
+          <Route exact path="/teacher/:id_class/:id_access/pizarra" component={Pizarra} />
+          <Route exact path="/teacher/:id_class/:id_access/trivia" component={() => <Trivia botonClick={this.botonClick}/>} />
           {/* <Route path="/404" component={NotFound} /> */}
-          <Redirect from="/" to="/teacher/xxxxx" />
+          {/* <Redirect from="/" to="/teacher/xxxxx" /> */}
         </Switch>
       </Contenido>
     </BrowserRouter>

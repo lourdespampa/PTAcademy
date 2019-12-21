@@ -91,7 +91,7 @@ export default class Trivia extends React.Component {
                 <nav class="contador"> 0{this.state.time} </nav>
               }
             </div>
-            <div class="center" id="center">
+            <div class="trivia-student-center" id="center">
               <img
                 id="pre-imagen"
                 src={require("./playvr.webp")}
@@ -106,7 +106,7 @@ export default class Trivia extends React.Component {
               <tr>
                 <td>
                   <button style={pe === 'azul' || pe === 'naranja' || pe === 'verde' ? styles.botonInactivo : {} }
-                          id="triangulo" class="button rojo"
+                          id="triangulo" class="trivia-student-button rojo"
                           onClick={this.state.eligio ? () => {} : () => { this.setState({preguntaElegida: 'rojo', eligio: true}) }}>
                     <img src={require("./rombo-blanco.webp")} />
                     <span id="answerTriangulo">Respuesta 1</span>
@@ -114,7 +114,7 @@ export default class Trivia extends React.Component {
                 </td>
                 <td>
                   <button style={pe === 'rojo'  || pe === 'naranja' || pe === 'verde' ? styles.botonInactivo : {} } 
-                          id="equis" class="button azul"
+                          id="equis" class="trivia-student-button azul"
                           onClick={this.state.eligio ? () => {} : () => { this.setState({preguntaElegida: 'azul', eligio: true}) }}>
                     <img src={require("./equis-blanco.webp")} />
                     <span id="answerEquis">Respuesta 2</span>
@@ -124,7 +124,7 @@ export default class Trivia extends React.Component {
               <tr>
                 <td>
                   <button style={pe === 'rojo' || pe === 'azul' || pe === 'verde' ? styles.botonInactivo : {} }
-                          id="circulo" class="button naranja"
+                          id="circulo" class="trivia-student-button naranja"
                           onClick={this.state.eligio ? () => {} : () => { this.setState({preguntaElegida: 'naranja', eligio: true}) }}>
                     <img src={require("./circulo-blanco.webp")} />
                     <span id="answerCirculo">Respuesta 3</span>
@@ -132,7 +132,7 @@ export default class Trivia extends React.Component {
                 </td>
                 <td>
                   <button style={pe === 'rojo' || pe === 'azul' || pe === 'naranja' ? styles.botonInactivo : {} }
-                          id="cuadrado" class="button verde"
+                          id="cuadrado" class="trivia-student-button verde"
                           onClick={this.state.eligio ? () => {} : () => { this.setState({preguntaElegida: 'verde', eligio: true}) }}>
                     <img src={require("./cuadrado-blanco.webp")} />
                     <span id="answerCuadrado">Respuesta 4</span>

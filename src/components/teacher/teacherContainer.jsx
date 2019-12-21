@@ -12,7 +12,7 @@ export default class Contenido extends Component {
         return (
                <>
                <div id="div_head">
-            <Header socket={this.props.socket} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
+            <Header id_access={this.props.id_access} id_class={this.props.id_class} socket={this.props.socket} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
             </div>
             <Left socket={this.props.socket} view={'/teacher/:cod/pizarra'} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
             <div id="div_children">

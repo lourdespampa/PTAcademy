@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./trivia.css";
-// import "./botones.scss";
+import "./botones.scss";
 
 import io from 'socket.io-client';
 
