@@ -1,9 +1,8 @@
 import React from "react";
 import $ from 'jquery';
 import io from 'socket.io-client';
-import "./temporizador.css";
-
-const socketUrl="http://192.168.1.65:4000/teacher";
+// import "./temp.css";
+const socketUrl = "http://192.168.1.65:4000/student";
 const socket = io(socketUrl)
 
 class Temporizador extends React.Component {
@@ -12,12 +11,12 @@ class Temporizador extends React.Component {
     this.state = { store: '',
       valH: '0',
       valM: '0',
-      valS: '0',
-      socket:null
+      valS: '0'
     }
     this.onChangeInputH = this.onChangeInputH.bind(this);
     this.onChangeInputM = this.onChangeInputM.bind(this);
     this.onChangeInputS = this.onChangeInputS.bind(this);
+
   }
 
   onChangeInputH (event){
@@ -39,8 +38,6 @@ class Temporizador extends React.Component {
     //   })
       
       // $(function() {
-        
-
         var g, c, l, d, q = "",
         e = [{
             element: $("#hour"),
@@ -104,9 +101,6 @@ class Temporizador extends React.Component {
                 var hour = $('#id_dt_1').val();
                 var min = $('#id_dt_2').val();
                 var sec = $('#id_dt_3').val();
-                socket.emit('set', {
-                    time: [hour,min,sec]
-                });
                 $('#establecer_tiempo').modal('hide');
                 g = c;
                 n();
@@ -125,16 +119,12 @@ class Temporizador extends React.Component {
                 clearInterval(d);
                 c = l - Date.now();
                 h(!0);
-                socket.emit('stop',{state: 'pause'})
               }                         
             },
             w = function() {
                 console.log("Empieza")
                 clearInterval(d);
                 l = Date.now() + c;
-                socket.emit('start', {
-                    state: 'play'
-                });
                 m.css("color", "black");
                 h(!1);
                 v();
@@ -150,8 +140,31 @@ class Temporizador extends React.Component {
                 }
             }
             window.timer(false);  // autostart
-            $('#button-establecer').click()    
+            // $('#button-establecer').click()    
             
+            var cod = "ABCDE";
+            // var socket = io('/presentation/temp');
+        
+            socket.on('set', function(data) {
+                console.log("Se asigna")
+            //     if (data.pin == cod.toUpperCase()) {
+                    var time = data.data.time;
+                    $("#id_dt_1").val(time[0]);
+                    $("#id_dt_2").val(time[1])
+                    $("#id_dt_3").val(time[2])
+                    u.click()
+            //     }
+            });
+            socket.on('temp', function(data) {
+                // if (data.pin == cod.toUpperCase()) {
+                    k.click();
+                // }
+            });
+            socket.on('stop', function(data) {
+            //     if (data.pin == cod.toUpperCase()) {
+                    k.click();
+            //     }
+            });
   }
   render() {
     
@@ -194,58 +207,27 @@ class Temporizador extends React.Component {
                                     <div className="unit_name">SEGUNDOS</div>
                                 </div>
 
-                                <audio id="alarm" hidden controls>
-                                    <source src="http://www.peter-weinberg.com/files/1014/8073/6015/BeepSound.wav" type="audio/wav" />
-                                    <source src="/images/clock.mp3" type="audio/mpeg" />
-                                    Your browser does not support the audio element.
-                                </audio>
-
+                                <div hidden>
+                                    <input class="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />
+                                    <input class="pure-input-1" type="number" id="id_dt_2" value={this.state.valM} min="0" onChange={this.onChangeInputM} />
+                                    <input class="pure-input-1" type="number" id="id_dt_3" value={this.state.valS} min="0" onChange={this.onChangeInputS} />
+                                    <button type="button" id="button-set">Establecer Tiempo</button>
+                                    <button type="button" id="button-start-stop">INICIAR</button>
+                                    <button type="button" id="button-reset">REINICIAR</button>
+                                    
+                                    <audio id="alarm" hidden controls>
+                                        <source src="http://www.peter-weinberg.com/files/1014/8073/6015/BeepSound.wav" type="audio/wav" />
+                                        <source src="/images/clock.mp3" type="audio/mpeg" />
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="pure-u-1">
-                    <div className="counter-tools">
-                        <div className="counter-tool-6">
-                            <button type="button" className="pure-button pure-button-primary" id="button-start-stop">INICIAR</button>
-                            <button type="button" className="pure-button pure-button-primary" id="button-reset">REINICIAR</button>
-                            <button type="button" className="pure-button pure-button-primary" data-toggle="modal" data-target="#establecer_tiempo" id="button-establecer">ESTABLECER TIEMPO</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div id="establecer_tiempo" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div className="modal-dialog">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h4 className="modal-title"><strong>ESTABLECER TIEMPO:</strong></h4>
-                    </div>
-                    <div className="modal-body" style={{ fontSize: "20px" }}>
-                        <form className="pure-form">
-                        <div className="pure-u-1">
-                            <div className="pure-u-1-4">
-                                <label>Horas</label>
-                                <input className="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />
-                            </div>
-                            <div class="pure-u-1-4">
-                                <label>Minutos</label>
-                                <input className="pure-input-1" type="number" id="id_dt_2" value={this.state.valM} min="0" onChange={this.onChangeInputM} />
-                            </div>
-                            <div className="pure-u-1-4">
-                                <label>Segundos</label>
-                                <input className="pure-input-1" type="number" id="id_dt_3" value={this.state.valS} min="0" onChange={this.onChangeInputS} />
-                            </div>
-                        </div>
-                    </form>
-                    <button type="button" className="pure-button pure-button-primary" id="button-set">Establecer Tiempo</button>
-            
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      </div>
     );
   }
 }

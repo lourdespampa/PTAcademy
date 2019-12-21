@@ -1,8 +1,9 @@
 import React, { Component, useState } from "react";
 import {Link} from 'react-router-dom'
-import "./Course.css";
+import "../courses/Course.css";
 import { Modal, Button, ButtonToolbar } from "react-bootstrap";
-import Formulario from './FormPostCourse'
+import FormularioCourse from './FormPostCourse'
+import FormularioClass from './FormPostClass'
 function BotonAgregar(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -11,14 +12,18 @@ function BotonAgregar(props) {
   return (
     <>
       <button variant="primary" onClick={handleShow}>
-        Agregar curso
+        Agregar {props.agregarX}
       </button>
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Agregando curso</Modal.Title>
+          <Modal.Title>Agregando {props.agregarX}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Formulario handleClose={AgregarClick} ></Formulario>
+          { (props.agregarX==='course')?
+          <FormularioCourse handleClose={AgregarClick} idteacher={props.idteacher} />
+          :
+          <FormularioClass idteacher={props.idteacher} idcourse={props.idcourse}/>
+          }
         </Modal.Body>
       </Modal>
     </>
@@ -69,7 +74,8 @@ export default class NavCourse extends Component {
             </label>
           </div>
           <div className="navegador-links">
-            <BotonAgregar getCursos={this.props.getCursos}></BotonAgregar>
+            <BotonAgregar idteacher={this.props.idteacher} idcourse={this.props.idcourse} agregarX={this.props.agregarX}
+             getCursos={this.props.getCursos}></BotonAgregar>
           </div>
           <div className="navegador-links">
             <BotonCerrarSesion />

@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+
+import NavCourse from "../classAndCourse/NavCourse";
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import AllClass from './AllClass'
 export default class ClassTeacher extends Component {
   state = {
-    Nombre: "carlos",
+    nombreProfesor: "carlos",
     _id: "",
     classes: []
   };
@@ -12,8 +14,9 @@ export default class ClassTeacher extends Component {
   //http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail/id del curso
   componentDidMount() {
     const { match: { params } } = this.props;
-    console.log(params._id)
+    console.log("yara mano",params)
     axios.get(`http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail/${params._id}`)
+    // axios.get(`http://3.16.110.136:4200/v1/api/teacher/${}/course_detail/${params._id}`)
       .then(res => {
         const classes = res.data;
         this.setState({ classes });
@@ -23,6 +26,7 @@ export default class ClassTeacher extends Component {
   render() {
     return (
       <>
+      <NavCourse idteacher={this.props.idteacher} idcourse={this.props.idcourse} agregarX={'class'} nombreProfesor={this.state.nombreProfesor} getCursos={console.log('xD')}></NavCourse>
         <div className="main">
           <h1>SECCION DE CLASES</h1>
           <ul className="cards">
@@ -36,7 +40,7 @@ export default class ClassTeacher extends Component {
             ))}
           </ul>
         </div>
-        <Link to="ClassDetailTeacher">Ir a una clase detallada</Link>
+        {/* <Link to="ClassDetailTeacher">Ir a una clase detallada</Link> */}
 
       </>
     )
