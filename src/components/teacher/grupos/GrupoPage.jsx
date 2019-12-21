@@ -2,15 +2,22 @@ import React, { Component } from "react";
 import "./grupos.css";
 import axios from "axios";
 
+function nombreAlumno(){
+  return(
+    
+    <>
+      Nom
+    </>
+  )
+}
+
 const url = "http://3.16.110.136:4200";
 export default class GrupoPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       alumnos: [],
-      nro_grupos: "",
-      nro_per_grupo: "",
-      ini_group: "",
+      nro_per_grupo: 0,
       grupos: [],
       text: ""
     };
@@ -43,23 +50,20 @@ export default class GrupoPage extends Component {
     let grupo2 = this.state.alumnos;
     for (let i = 0; i < n_grupos; i++) {
       console.log("grupo n" + (i + 1));
+
       for (let index = 0; index < this.state.nro_per_grupo; index++) {
-        cadena += `<table id="" class="table">
-        <thead class="thead-dark"">
-            <tr>
-                <th scope="col">Grupo ${(i + 1)}</th>
-            </tr>
-        </thead>
-        <tbody>`;
         let randname = Math.floor(Math.random() * grupo2.length);
         if (grupo2[randname]) {
-        //   let f = grupo2[randname];
-          cadena += `<tr>
-          <td scope="col"> -${grupo2[randname]}
-          </td>
-                </tr>
-          `;
-        //   console.log(f);
+          let f = grupo2[randname];
+          {
+            return <nombreAlumno></nombreAlumno>
+          }
+          // cadena += `<tr>
+          // <td scope="col"> -${grupo2[randname]}
+          // </td>
+          //       </tr>
+          // `;
+          console.log(f);
         }
         grupo2.splice(randname, 1);
       }
@@ -67,8 +71,6 @@ export default class GrupoPage extends Component {
     this.setState({
       text: cadena
     });
-    console.log(cadena);
-    document.body.innerHTML = cadena;
   };
 
   render() {
@@ -88,9 +90,7 @@ export default class GrupoPage extends Component {
           <button onClick={this.groupGenerator}>FORMAR GRUPOS</button>
           <div className="wrapper2">
             <div id="salida_grupos"></div>
-            <table>
-                
-            </table>
+            
             {this.state.text}
           </div>
         </div>
