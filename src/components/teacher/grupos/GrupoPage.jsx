@@ -44,22 +44,31 @@ export default class GrupoPage extends Component {
     for (let i = 0; i < n_grupos; i++) {
       console.log("grupo n" + (i + 1));
       for (let index = 0; index < this.state.nro_per_grupo; index++) {
-        cadena += `Grupo ${i + 1}           `;
+        cadena += `<table id="" class="table">
+        <thead class="thead-dark"">
+            <tr>
+                <th scope="col">Grupo ${(i + 1)}</th>
+            </tr>
+        </thead>
+        <tbody>`;
         let randname = Math.floor(Math.random() * grupo2.length);
         if (grupo2[randname]) {
-          let f = grupo2[randname];
-          cadena += `${grupo2[randname]}
-          
+        //   let f = grupo2[randname];
+          cadena += `<tr>
+          <td scope="col"> -${grupo2[randname]}
+          </td>
+                </tr>
           `;
-          console.log(f);
+        //   console.log(f);
         }
         grupo2.splice(randname, 1);
       }
     }
     this.setState({
-        text: cadena
-    })
+      text: cadena
+    });
     console.log(cadena);
+    document.body.innerHTML = cadena;
   };
 
   render() {
@@ -79,6 +88,9 @@ export default class GrupoPage extends Component {
           <button onClick={this.groupGenerator}>FORMAR GRUPOS</button>
           <div className="wrapper2">
             <div id="salida_grupos"></div>
+            <table>
+                
+            </table>
             {this.state.text}
           </div>
         </div>
