@@ -5,23 +5,7 @@ const studentSocket = (io) => {
     var bufferHeader = null;
     
     Teacher.on('connect', (socket) => {
-        //INICIO ROULETTE
-
-        socket.on('azarprofe',(data)=>{
-            console.log('escchaa el profe')
-            Student.emit('rouletteWinnerS',data)
-            console.log('emite el alum')
-        })
-
-        //FIN ROULETTE
-        ///¿trivia
-        socket.on('enviando pregunta',function(data){
-            console.log('escchaa el profe')
-            Student.emit('pregunta recibida',{
-                data:data
-            })
-        })
-        //fintrivia
+        
 
         socket.on('bufferHeader', function(packet) {
             bufferHeader = packet;

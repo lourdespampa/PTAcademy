@@ -11,6 +11,30 @@ const teacherSocket = (io) => {
         })
 
         //FIn Video
+        //INICIO ROULETTE
+
+        socket.on('azarprofe',(data)=>{
+            console.log('escchaa el profe')
+            Student.emit('rouletteWinnerS',data)
+            console.log('emite el alum')
+        })
+
+        //FIN ROULETTE
+        ///¿trivia
+        socket.on('enviando pregunta',function(data){
+            console.log('escchaa el profe')
+            Student.emit('pregunta recibida',{
+                data:data
+            })
+        })
+        //fintrivia
+         //FORM
+
+         socket.on('SendForm',()=>{
+            Student.emit('SendFormS')
+        })
+
+        //END FORN
     })
 }
 

@@ -15,6 +15,14 @@ function enviarvideo(url,url2){
     var urlembed = urlnombre.split(expresionRegular);
     document.getElementById('video-frame').src = "https://www.youtube.com/embed/"+urlembed[1]+"?autoplay=1&controls=0"
 }
+function SendForm(){
+    
+    //SEND FORM
+        socket.emit('SendForm')
+    
+
+    //END SEND FORM
+}
 function FooterContainer(props){
     const [urlnombre,seturlnombre]=useState('');
     const [Show, setShow] = useState(false);
@@ -75,6 +83,8 @@ function FooterContainer(props){
                         <a href id="btnCerrarFormu" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} ><i class="material-icons">close</i></a>
                         <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{width: "100% !important",height: "450px"}} allowFullScreen={true}
                          mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
+                         
+                         <button className="btn btn-block btn-info" onClick={()=>SendForm()}>EMITIR</button>
                     </div>
                 </div>
             </footer>

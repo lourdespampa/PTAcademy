@@ -31,6 +31,13 @@ export default class Audio extends Component {
         popup.className = 'popup'
         document.getElementById('video-frame').src = ""
     }
+    DisablePopup2(){
+        const overlay_popup = document.getElementById('overlayinframe')
+        const popup = document.getElementById('popupformulario')
+        overlay_popup.className = 'overlay'
+        popup.className = 'popup'
+        document.getElementById('video-frame').src = ""
+    }
     componentDidMount() {
         //VIDEO
 
@@ -91,6 +98,16 @@ export default class Audio extends Component {
         })
 
         //ROULETTE END
+        //FORM
+        socket.on('SendFormS',()=>{
+           
+            const overlay_popup = document.getElementById('overlayinframe')
+            const popup = document.getElementById('popupformulario')
+           
+            overlay_popup.className = 'overlay active'
+            popup.className = 'popup active'
+        })
+        //FORM END
     }
 
 
@@ -122,6 +139,19 @@ export default class Audio extends Component {
                 </div>
             </div>
             {/*VIDEO FIN*/}
+            <div className="overlay" id="overlayinframe">
+                    <div className="popup" id="popupformulario">
+                        <div class="punto-posi">
+                            <h1>Formulario</h1>
+                        </div>
+                        <br/>
+                        <a href id="btnCerrarFormu" className="btn-cerrar-popup"><i class="material-icons" onClick={()=>this.DisablePopup2()}>close</i></a>
+                        <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{width: "100% !important",height: "450px"}} allowFullScreen={true}
+                         mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
+                         
+                        
+                    </div>
+                </div>
 
 
         </div>
