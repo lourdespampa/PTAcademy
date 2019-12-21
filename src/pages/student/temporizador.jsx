@@ -1,9 +1,10 @@
 import React from 'react'
+import Temp from '../../components/student/temporizador/temporizador'
 
 export default function Temporizador() {
     return (
         <>
-            <h1>temporizador</h1>
+            <Temp/>
         </>
     )
 }

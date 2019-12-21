@@ -30,11 +30,12 @@ export default class FormPostCourse extends Component {
 
     axios
       .post(
-        "http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course",
+        `http://3.16.110.136:4200/v1/api/teacher/${this.props.idteacher}/course`,
         data
       )
       .then(res => console.log(res))
       .catch(err => console.log(err));
+      this.props.handleClose()
   };
   render() {
     const { course_name, desc } = this.state;
@@ -61,7 +62,7 @@ export default class FormPostCourse extends Component {
               rows="2"
             />
           </Form.Group>
-          <Button type="submit">Crear curso</Button>
+          <Button type="submit"  >Crear curso</Button>
         </Form>
       </>
     );

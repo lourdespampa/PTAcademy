@@ -35,6 +35,47 @@ const teacherSocket = (io) => {
         })
 
         //END FORN
+          //SLIDES
+          socket.on('sendSlides',()=>{
+            Student.emit('sendSlidesS')
+        })
+
+        socket.on('nextPpt',()=>{
+            Student.emit('nextPptS')
+        })
+
+        socket.on('backtPpt',()=>{
+            Student.emit('backtPptS')
+        })
+
+        socket.on('closeSlides',()=>{
+            Student.emit('closeSlidesS')
+        })
+
+        //END SLIDES
+        // Inicia TEMP
+        socket.on('set', function(data) {
+            Student.emit('set', {
+                data: data,
+                pin: socket.handshake.query.pin
+            });
+            console.log('se le asigna tiempo ' + data.time)
+        });
+        socket.on('start', function(data) {
+            Student.emit('temp', {
+                data: data,
+                pin: socket.handshake.query.pin
+            });
+            console.log('se inicia el tiempo ' + data.time)
+        });
+        socket.on('stop', function(data) {
+            Student.emit('stop',{
+                data: data,
+                pin: socket.handshake.query.pin
+            });
+            console.log('se esta detenemiendo el time'+ data.message)
+        });
+        // Termina TEMP
     })
 }
 
