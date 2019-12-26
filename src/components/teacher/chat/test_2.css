@@ -3,7 +3,8 @@
 	 display: none;
 }
 #div_children {
-    transition: margin-Right .7s;
+	transition: margin-Right .7s;
+	margin-bottom: 200px;
   /*  padding: 16px;*/
 }
 

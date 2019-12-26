@@ -92,3 +92,7 @@
   -moz-osx-font-smoothing: grayscale;
   -moz-font-feature-settings: "liga" on;
 }
+
+.cuerpo-grupos {
+  text-align: center;
+}
