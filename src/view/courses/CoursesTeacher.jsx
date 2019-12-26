@@ -28,7 +28,7 @@ export default class CoursesTeacher extends Component {
   render() {
     return (
       <>
-        <NavCourse idcourse={this.props.idcourse} idteacher={this.props.idteacher} agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getCursos={this.getCursos()}></NavCourse>
+        <NavCourse idcourse={this.props.idcourse} idteacher={this.state._id} agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos()}></NavCourse>
         <div className="main">
           <h1>SECCION DE CURSOS</h1>
           <ul className="cards">
@@ -40,6 +40,7 @@ export default class CoursesTeacher extends Component {
                   description={cursos.desc}
                   img={cursos.img}
                   id={cursos._id}
+                  idteacher={this.state._id}
                 />
               </li>
               ))
