@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import NavCourse from "../classAndCourse/NavCourse";
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import AllClass from './AllClass'
 export default class ClassTeacher extends Component {
