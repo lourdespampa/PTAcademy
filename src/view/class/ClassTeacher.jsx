@@ -15,7 +15,7 @@ export default class ClassTeacher extends Component {
   componentDidMount() {
     const { match: { params } } = this.props;
     console.log("yara mano",params)
-    axios.get(`http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail/${params._id}`)
+    axios.get(`http://3.16.110.136:4200/v1/api/teacher/5db74edbae96433b08911b38/course_detail/${params._id}`)
     // axios.get(`http://3.16.110.136:4200/v1/api/teacher/${}/course_detail/${params._id}`)
       .then(res => {
         const classes = res.data;

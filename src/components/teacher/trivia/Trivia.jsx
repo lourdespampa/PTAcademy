@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 
 import { Container, Row, Col } from 'reactstrap';
 
-const socketUrl="http://localhost:4000/teacher";
+const socketUrl="http://192.168.1.65:4000/teacher";
 const socket = io(socketUrl)
 
 class Trivia extends React.Component {

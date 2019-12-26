@@ -2,7 +2,7 @@ import React from "react";
 import "./trivia.css";
 import io from 'socket.io-client';
 
-const socketUrl="http://localhost:4000/student";
+const socketUrl="http://192.168.1.65:4000/student";
 const socket = io(socketUrl)
 
 const styles = {

@@ -17,7 +17,7 @@ class Azar extends React.Component {
     }
 
     componentWillMount(){
-        axios.get(`${url}/v1/api/lesson/${this.props.id_access}/students/roulette`).then( (res) => {
+        axios.get(`${url}/v1/api/lesson/PRJHS/students/roulette`).then( (res) => {
             res.data.map( alumno => {
                 this.state.alumnos.push(alumno.name_stu)
             })

@@ -12,11 +12,13 @@ export default class CoursesTeacher extends Component {
 
   componentDidMount() {
     this.getCursos();
+    const { match: { params } } = this.props;
+    this.setState({_id:params.id})
   }
   getCursos = async () => {
     const res = await axios.get(
-      "http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail"
-      // `http://3.16.110.136:4200/v1/api/teacher/${this.props.idteacher}/course_detail`
+     // "http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail"
+       `http://3.16.110.136:4200/v1/api/teacher/${this.state._id}/course_detail`
     );
     this.setState({
       courses: await res.data
