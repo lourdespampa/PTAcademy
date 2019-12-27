@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {Redirect} from 'react-router-dom'
 import logo from "./bg-teacher-login.jpg";
-import "./login.css";
+import "./login.sass";
 
 import withFirebaseAuth from "react-with-firebase-auth";
 import * as firebase from "firebase/app";
