@@ -1,0 +1,53 @@
+import React, { Component } from "react";
+import NavCourse from "../classAndCourse/NavCourse";
+import AllCourses from "./AllCourses";
+import axios from "axios";
+import "../courses/Course.css";
+export default class CoursesTeacher extends Component {
+  state = {
+    nombreProfesor: "carlos",
+    _id: "",
+    courses: []
+  };
+
+  componentDidMount() {
+    this.getCursos();
+    const { match: { params } } = this.props;
+    this.setState({_id:params.id})
+  }
+  getCursos = async () => {
+    const res = await axios.get(
+     // "http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail"
+       `http://3.16.110.136:4200/v1/api/teacher/${this.state._id}/course_detail`
+    );
+    this.setState({
+      courses: await res.data
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <NavCourse idcourse={this.props.idcourse} idteacher={this.state._id} agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos()}></NavCourse>
+        <div className="main">
+          <h1>SECCION DE CURSOS</h1>
+          <ul className="cards">
+            {
+            this.state.courses.map((cursos,id) => (
+              <li className="cards_item" key={id}>
+                <AllCourses
+                  name_course={cursos.course_name}
+                  description={cursos.desc}
+                  img={cursos.img}
+                  id={cursos._id}
+                  idteacher={this.state._id}
+                />
+              </li>
+              ))
+              }
+          </ul>
+        </div>
+      </>
+    );
+  }
+}
