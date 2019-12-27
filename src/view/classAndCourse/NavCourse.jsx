@@ -22,7 +22,7 @@ function BotonAgregar(props) {
           { (props.agregarX==='course')?
           <FormularioCourse handleClose={AgregarClick} idteacher={props.idteacher} />
           :
-          <FormularioClass idteacher={props.idteacher} idcourse={props.idcourse}/>
+          <FormularioClass handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
           }
         </Modal.Body>
       </Modal>

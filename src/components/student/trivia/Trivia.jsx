@@ -20,6 +20,7 @@ export default class Trivia extends React.Component {
     this.state = {
       preguntaElegida: '',
       eligio: false,
+      puntaje: 1000,
       preguntaCorrecta: '',
       respuestaRecibida: false,
       pregunta: '',
@@ -46,15 +47,33 @@ export default class Trivia extends React.Component {
       
       setTimeout(() => {
         this.setState({respuestaRecibida: true})
-        this.interval = setInterval( () => this.minusOne(), 1000)
+        this.interval = setInterval( () => this.cuentaRegresiva(), 1000)
+        this.interval2 = setInterval( () => this.puntaje(), 50)
       }, 5000);
+    })
+
+    socket.on('datos restaurados', data => {
+      this.setState({
+        preguntaElegida: '',
+        puntaje: 1000,
+        eligio: false,
+        preguntaCorrecta: '',
+        respuestaRecibida: false,
+        pregunta: '',
+        time: 0,
+        respuesta1: '',
+        respuesta2: '',
+        respuesta3: '',
+        respuesta4: ''
+      })
     })
   };
 
-  minusOne() {
+  cuentaRegresiva() {
     if(this.state.time > 0){
     this.setState({time: this.state.time -1});
     }else{
+      this.setState({eligio: true});
       clearInterval(this.interval);
       //Aqui verficamos si el alumno ha elegido la respuesta correcta!!
       if(this.state.preguntaElegida === this.state.preguntaCorrecta){
@@ -67,8 +86,20 @@ export default class Trivia extends React.Component {
     }
   }
 
-  handleSelectAnswer =() => {
-    this.setState({preguntaElegida: 'rojo', eligio: true})
+  puntaje() {
+    if(this.state.puntaje > 0){
+      this.setState({puntaje: this.state.puntaje - 1});
+    }
+  }
+
+  handleSelectAnswer = async () => {
+    clearInterval(this.interval2);
+    await this.setState({preguntaElegida: 'rojo', eligio: true})
+    if(this.state.preguntaElegida === this.state.preguntaCorrecta){
+      console.log('pregunta elegida por alumno')
+      socket.emit('enviando elegida', {puntaje: this.state.puntaje})
+    }
+    console.log(this.state.puntaje)
   }
 
   render(){
@@ -127,7 +158,12 @@ export default class Trivia extends React.Component {
                 <td>
                   <button style={pe === 'azul' || pe === 'naranja' || pe === 'verde' ? styles.botonInactivo : {} }
                           id="triangulo" class="trivia-student-button rojo"
-                          onClick={this.state.eligio ? () => {} : this.handleSelectAnswer}>
+                          onClick={this.state.eligio 
+                          ? 
+                          () => {} 
+                          : 
+                          this.handleSelectAnswer
+                          }>
                     <img src={require("./rombo-blanco.webp")} />
                     <span id="answerTriangulo">{this.state.respuesta1 ? this.state.respuesta1 : "Respuesta 1"}</span>
                   </button>
@@ -135,7 +171,17 @@ export default class Trivia extends React.Component {
                 <td>
                   <button style={pe === 'rojo'  || pe === 'naranja' || pe === 'verde' ? styles.botonInactivo : {} } 
                           id="equis" class="trivia-student-button azul"
-                          onClick={this.state.eligio ? () => {} : () => { this.setState({preguntaElegida: 'azul', eligio: true}) }}>
+                          onClick={this.state.eligio 
+                          ? 
+                          () => {} 
+                          : 
+                          async () => {
+                            clearInterval(this.interval2); 
+                            await this.setState({preguntaElegida: 'azul', eligio: true})
+                            if(this.state.preguntaElegida === this.state.preguntaCorrecta){
+                              socket.emit('enviando elegida', {puntaje: this.state.puntaje})
+                            }
+                          }}>
                     <img src={require("./equis-blanco.webp")} />
                     <span id="answerEquis">{this.state.respuesta2 ? this.state.respuesta2 : "Respuesta 2"}</span>
                   </button>
@@ -145,7 +191,17 @@ export default class Trivia extends React.Component {
                 <td>
                   <button style={pe === 'rojo' || pe === 'azul' || pe === 'verde' ? styles.botonInactivo : {} }
                           id="circulo" class="trivia-student-button naranja"
-                          onClick={this.state.eligio ? () => {} : () => { this.setState({preguntaElegida: 'naranja', eligio: true}) }}>
+                          onClick={this.state.eligio 
+                          ? 
+                          () => {} 
+                          : 
+                          async () => {
+                            clearInterval(this.interval2);
+                            await this.setState({preguntaElegida: 'naranja', eligio: true}) 
+                            if(this.state.preguntaElegida === this.state.preguntaCorrecta){
+                              socket.emit('enviando elegida', {puntaje: this.state.puntaje})
+                            }
+                          }}>
                     <img src={require("./circulo-blanco.webp")} />
                     <span id="answerCirculo">{this.state.respuesta3 ? this.state.respuesta3 : "Respuesta 3"}</span>
                   </button>
@@ -153,7 +209,17 @@ export default class Trivia extends React.Component {
                 <td>
                   <button style={pe === 'rojo' || pe === 'azul' || pe === 'naranja' ? styles.botonInactivo : {} }
                           id="cuadrado" class="trivia-student-button verde"
-                          onClick={this.state.eligio ? () => {} : () => { this.setState({preguntaElegida: 'verde', eligio: true}) }}>
+                          onClick={this.state.eligio 
+                          ? 
+                          () => {} 
+                          : 
+                          async () => {
+                            clearInterval(this.interval2);
+                            await this.setState({preguntaElegida: 'verde', eligio: true}) 
+                            if(this.state.preguntaElegida === this.state.preguntaCorrecta){
+                              socket.emit('enviando elegida', {puntaje: this.state.puntaje})
+                            }  
+                          }}>
                     <img src={require("./cuadrado-blanco.webp")} />
                     <span id="answerCuadrado">{this.state.respuesta4 ? this.state.respuesta4 : "Respuesta 4"}</span>
                   </button>

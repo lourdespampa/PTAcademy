@@ -6,7 +6,7 @@ export default class FormPostCourse extends Component {
     super(props);
 
     this.state = {
-      course_name: "",
+      class_name: "",
       desc: ""
     };
   }
@@ -24,7 +24,7 @@ export default class FormPostCourse extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const data = {
-      course_name: this.state.course_name,
+      class_name: this.state.class_name,
       desc: this.state.desc
     };
 
@@ -38,22 +38,22 @@ export default class FormPostCourse extends Component {
       this.props.handleClose()
   };
   render() {
-    const { course_name, desc } = this.state;
+    const { class_name, desc } = this.state;
     return (
       <>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label>Nombre del curso</Form.Label>
+            <Form.Label>Nombre de la Clase</Form.Label>
             <Form.Control
               type="text"
-              name="course_name"
+              name="class_name"
               onChange={this.handleChange}
-              value={course_name}
-              placeholder="Ingresar nombre del curso"
+              value={class_name}
+              placeholder="Ingresar nombre de la clase"
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Descipcion del curso</Form.Label>
+            <Form.Label>Descipcion de la Clase</Form.Label>
             <Form.Control
               name="desc"
               onChange={this.handleChange}
@@ -62,7 +62,7 @@ export default class FormPostCourse extends Component {
               rows="2"
             />
           </Form.Group>
-          <Button type="submit"  >Crear curso</Button>
+          <Button type="submit"  >Crear Clase</Button>
         </Form>
       </>
     );

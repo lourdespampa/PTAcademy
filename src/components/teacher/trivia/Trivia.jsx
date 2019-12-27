@@ -34,6 +34,12 @@ class Trivia extends React.Component {
     this.handleCorrectAnswer = this.handleCorrectAnswer.bind(this);
   }
 
+  componentDidMount(){
+      socket.on('pregunta escogida', function(data){
+        console.log(data)
+      })
+  }
+
   //Funciones que obtienen los valores de sus respectivos inputs en tiempo real
   changeQuestion = e => {
       this.setState({
@@ -82,6 +88,7 @@ class Trivia extends React.Component {
         respuestaTree: '',
         respuestaFour: ''
       })
+      socket.emit('restaurando datos', '')
     }else{
       // preguntaEnviada comienza en false por lo que no existe y a partir de aqui se envian los datos...
       const preg = this.state.pregunta,
@@ -135,13 +142,13 @@ class Trivia extends React.Component {
           </button>
         </div>
         {/* The Modal */}
-        {/* <div id="myModal" class="modal-respuestas"> */}
+        <div id="myModal" class="modal-respuestas">
         {/* Modal content */}
-        {/* <div class="modal-content-respuestas">
+        <div class="modal-content-respuestas">
                     <span id="cerrar" class="close">&times;</span>
                     <h2>Clasificación</h2>
-                    <div class="modal-body-respuestas"> */}
-        {/* <ul class="rolldown-list" id="myList">
+                    <div class="modal-body-respuestas">
+        <ul class="rolldown-list" id="myList">
                             <li class="lista-contenedora">
                                 1.
                                 <div id="one" style={{display: "inline-block"}}></div>
@@ -167,10 +174,10 @@ class Trivia extends React.Component {
                                 <div id="five" style={{display: "inline-block"}}></div>
                                 <img class="imagenClasificacion" src="/plugin/images/trivia/5to.webp" width="30"/>
                             </li>
-                        </ul> */}
-        {/* </div> */}
-        {/* </div> */}
-        {/* </div> */}
+                        </ul>
+        </div>
+        </div>
+        </div>
       </div>
       <Container>
         <form>

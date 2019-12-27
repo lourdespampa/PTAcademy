@@ -22,8 +22,15 @@ const teacherSocket = (io) => {
         //FIN ROULETTE
         ///¿trivia
         socket.on('enviando pregunta',function(data){
-            console.log('escchaa el profe')
+            console.log('pregunta enviada')
             Student.emit('pregunta recibida',{
+                data:data
+            })
+        })
+
+        socket.on('restaurando datos',function(data){
+            console.log('peticion enviada')
+            Student.emit('datos restaurados',{
                 data:data
             })
         })
