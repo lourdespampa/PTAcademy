@@ -43,7 +43,7 @@ export default class LoginStu extends Component {
     render(){
         return(            
         <div className="ingresarCodigo-contenedor">
-        <Link id="link_form" to={`/login.stu/${this.state.id_access}`}/>
+        <Link id="link_form" to={`/loginStudent/${this.state.id_access}`}/>
               <ul className="ingresarCodigo-ul">
                 <li style={{float: "left"}}><a className="ingresarCodigo-a ocultar" href="">PlayTec Academy</a></li>
                 <li style={{float:'right'}}><Link style={{fontSize: '16px'}} className="ingresarCodigo-a" to={'/loginTeacher'}>CAMBIAR A PROFESOR</Link></li>
