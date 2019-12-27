@@ -11,7 +11,7 @@ export const TableBody = (props) => {
                     <td className="ape" style={{width:"400px"}}>
                     {student.lastName_stu}
                     </td>
-                    <td className="nota"style={{textAlign:"center",width:'130px'}}>
+                    <td className="nota" style={{textAlign:"center",width:'130px'}}>
                         {student.calific}10
                         <button onClick={()=>props.onClickNote(student._id,student.nota)+ props.setShow('shownota',true)} className="button pull-right btnMyM material-icons">
                     edit
