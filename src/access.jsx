@@ -7,14 +7,21 @@ import ClassTeacher from './view/class/ClassTeacher';
 import ClassDetailTeacher from './view/class/ClassDetailTeacher';
 import Login from './view//login/login'
 import NotFound from './view/NotFound'
+
+
 export default class Access extends Component {
+    state={
+        nombreProfesor: "carlos",
+    _id: "",
+    courses: []
+    }
     render() {
         return (
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={()=><Login/>} />
-                    <Route exact path="/CoursesTeacher/:id" component={CoursesTeacher} />
-                    <Route exact path="/ClassTeacher/:_id" component={ClassTeacher} />
+                    <Route exact path="/CoursesTeacher/:id" component={(props)=><CoursesTeacher {...props}/>} />
+                    <Route exact path="/:id_teacher/ClassTeacher/:_id" component={(props)=><ClassTeacher {...props} />} />
                     <Route exact path="/ClassDetailTeacher" component={()=><ClassDetailTeacher/>} />
                     <Route path="/teacher/:id_class/:id_access" component={Teacher} />
                     <Route path="/student" component={() => <Student/>} />

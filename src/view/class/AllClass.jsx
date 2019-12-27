@@ -52,9 +52,9 @@ export default class AllClass extends Component {
           <div className="card_content">
             <h2 className="card_title">{this.props.name_class}</h2>
             <p className="card_text">{this.props.desc}</p>
-            <Link to="/ClassTeacher" className="btn card_btn">
+            {/* <Link to="/ClassTeacher" className="btn card_btn">
               Entrar a detalle de la clase
-            </Link>
+            </Link> */}
             <div >
             </div>
             {this.renderRedirect()}

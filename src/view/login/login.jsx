@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Link,Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import logo from "./bg-teacher-login.jpg";
 import "./login.css";
 

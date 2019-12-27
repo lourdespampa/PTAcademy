@@ -12,11 +12,13 @@ export default class CoursesTeacher extends Component {
 
   componentDidMount() {
     this.getCursos();
+    const { match: { params } } = this.props;
+    this.setState({_id:params.id})
   }
   getCursos = async () => {
     const res = await axios.get(
-      "http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail"
-      // `http://3.16.110.136:4200/v1/api/teacher/${this.props.idteacher}/course_detail`
+     // "http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail"
+       `http://3.16.110.136:4200/v1/api/teacher/${this.state._id}/course_detail`
     );
     this.setState({
       courses: await res.data
@@ -26,7 +28,7 @@ export default class CoursesTeacher extends Component {
   render() {
     return (
       <>
-        <NavCourse idcourse={this.props.idcourse} idteacher={this.props.idteacher} agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getCursos={this.getCursos()}></NavCourse>
+        <NavCourse idcourse={this.props.idcourse} idteacher={this.state._id} agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos()}></NavCourse>
         <div className="main">
           <h1>SECCION DE CURSOS</h1>
           <ul className="cards">
@@ -38,6 +40,7 @@ export default class CoursesTeacher extends Component {
                   description={cursos.desc}
                   img={cursos.img}
                   id={cursos._id}
+                  idteacher={this.state._id}
                 />
               </li>
               ))

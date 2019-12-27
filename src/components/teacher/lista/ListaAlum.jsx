@@ -51,6 +51,7 @@ export default class ListaAlum extends Component {
 //rellenar state
     getStudents = async () => {
         const res = await axios.get(`${apiurl}/${this.props.id_access}/students`)
+        // const res = await axios.get(`${apiurl}/PRJHS/students`)
         this.setState({
             students :  await res.data
         });

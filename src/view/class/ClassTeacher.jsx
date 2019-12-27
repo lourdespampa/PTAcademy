@@ -7,25 +7,31 @@ export default class ClassTeacher extends Component {
   state = {
     nombreProfesor: "carlos",
     _id: "",
-    classes: []
+    classes: [],
+    idcourse:"",
+    idteacher:""
   };
 
   //http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail/id del curso
   componentDidMount() {
+    this.getClass()
     const { match: { params } } = this.props;
-    console.log("yara mano",params)
-    axios.get(`http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail/${params._id}`)
-    // axios.get(`http://3.16.110.136:4200/v1/api/teacher/${}/course_detail/${params._id}`)
-      .then(res => {
-        const classes = res.data;
-        this.setState({ classes });
-      })
-      .catch(err => console.log(err));
+    this.setState({
+      _id:params._id,
+      idteacher:params.id_teacher
+    })
+    
+  }
+  getClass=async ()=>{
+    // axios.get(`http://3.16.110.136:4200/v1/api/teacher/5db74edbae96433b08911b38/course_detail/${params._id}`)
+    const res = await axios.get(`http://3.16.110.136:4200/v1/api/teacher/${this.state.idteacher}/course_detail/${this.state._id}`);
+     
+        this.setState({ classes: await res.data });;
   }
   render() {
     return (
       <>
-      <NavCourse idteacher={this.props.idteacher} idcourse={this.props.idcourse} agregarX={'class'} nombreProfesor={this.state.nombreProfesor} getCursos={console.log('xD')}></NavCourse>
+      <NavCourse idteacher={this.state.idteacher} idcourse={this.state._id} agregarX={'clase'} nombreProfesor={this.state.nombreProfesor} getdata={this.getClass()}></NavCourse>
         <div className="main">
           <h1>SECCION DE CLASES</h1>
           <ul className="cards">
