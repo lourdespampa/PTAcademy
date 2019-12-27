@@ -1,7 +1,7 @@
-import React from 'react';
+import React , {Component} from 'react';
 import Temp from '../../components/teacher/temporizador/temporizador'
 
-class Temporizador extends React.Component {
+export default class Temporizador extends Component {
 
 
     render(){
@@ -12,5 +12,3 @@ class Temporizador extends React.Component {
         )
     }
 }
-
-export default Temporizador;

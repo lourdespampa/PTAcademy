@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ListaAlum from '../../components/teacher/lista/ListaAlum';
+import ListaAlum from './../components/lista/ListaAlum';
 class ListaAlumnos extends React.Component {
 
 

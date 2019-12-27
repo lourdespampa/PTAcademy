@@ -36,6 +36,27 @@
     margin-left: 75px;
 }
 
+.socialpestaña {
+    background: #3087a4c9;
+    position: fixed;
+    height: 210px;
+    width: 170px;
+    left: -98px;
+    top: 35%;
+    border-radius: 0px 100px 100px 0px;
+    -moz-border-radius: 0px 100px 100px 0px;
+    -webkit-border-radius: 0px 100px 100px 0px;
+}
+
+.socialpestaña h5 {
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    color: rgba(255, 255, 255, 0.548);
+    /* margin: 80px 0 0 75px; */
+    margin-top: 80px;
+    margin-left: 75px;
+}
+
 .social ul {
     list-style: none;
     padding-left: 0;
