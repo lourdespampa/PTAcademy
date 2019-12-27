@@ -6,7 +6,7 @@ class ListaAlumnos extends React.Component {
 
     render(){
         return(
-            <ListaAlum />
+            <ListaAlum id_access={this.props.id_access} />
         )
     }
 }
