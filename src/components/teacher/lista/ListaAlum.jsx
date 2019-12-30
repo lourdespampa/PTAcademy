@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './lista.css';
+import './lista.sass';
 import axios from 'axios'
 import {ExportCSV} from './exportbtn'
 import{BtnPuntos}from './btnpuntos'

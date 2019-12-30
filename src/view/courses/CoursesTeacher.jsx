@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavCourse from "../classAndCourse/NavCourse";
 import AllCourses from "./AllCourses";
 import axios from "axios";
-import "../courses/Course.css";
+import "../courses/Course.sass";
 export default class CoursesTeacher extends Component {
   state = {
     nombreProfesor: "carlos",
