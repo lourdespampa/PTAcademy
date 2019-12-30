@@ -117,7 +117,7 @@ render(){
         <Switch>
           <Route exact path="/teacher/:id_class/:id_access" component={()=><ListaAlumnos id_access={this.state.id_access}/>}  />
           <Route exact path="/teacher/:id_class/:id_access/azar" component={() => <Azar id_access={this.state.id_access}/>} />
-          <Route exact path="/teacher/:id_class/:id_access/grupos" component={() => <Grupos/>} />
+          <Route exact path="/teacher/:id_class/:id_access/grupos" component={() => <Grupos id_access={this.state.id_access}/>} />
           <Route exact path="/teacher/:id_class/:id_access/temporizador" component={() => <Temporizador/>} />
           <Route exact path="/teacher/:id_class/:id_access/pizarra" component={()=><Pizarra/>} />
           <Route exact path="/teacher/:id_class/:id_access/trivia" component={() => <Trivia botonClick={this.botonClick}/>} />

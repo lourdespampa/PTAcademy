@@ -3,10 +3,13 @@ import './lista.sass';
 import axios from 'axios'
 import {ExportCSV} from './exportbtn'
 import{BtnPuntos}from './btnpuntos'
+import io from 'socket.io-client';
 import{TableBody}from './tablebody'
 import Modal from 'react-bootstrap/Modal';
 // import {alumnos} from '../../data/alumnos.json';
 
+const socketUrl="http://192.168.1.65:4000/teacher";
+const socket = io(socketUrl)
 const apiurl='http://3.16.110.136:4200/v1/api/lesson';
 export default class ListaAlum extends Component {
    
@@ -58,8 +61,15 @@ export default class ListaAlum extends Component {
     }
 //eliminar estudiante
     deleteStudents = async (studentsId) => {
-        await axios.delete(`${apiurl}/${this.props.id_access}/students`+ this.state._id);
-        this.getStudents();
+      
+       //await axios.delete(`${apiurl}/${this.props.id_access}/students`+ this.state._id);
+       //this.getStudents();
+      // console.log(`http://3.16.110.136:4200/v1/api/admin/student/`+ this.state._id)
+       await axios.delete(`http://3.16.110.136:4200/v1/api/admin/student/`+ this.state._id);
+       this.getStudents();
+        socket.emit('RemoveStud')
+        
+
     }
 //captura value y id 
     onClick = (id) => {
@@ -188,7 +198,7 @@ export default class ListaAlum extends Component {
             <Modal size={'SM'} show={this.state.modals.showpuntosmas} onHide={() => this.setShow('showpuntosmas',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">Positivo</h3>
+                        <h3 className="punto-text">Positivo ssddsd</h3>
                     </div>
                 </Modal.Header>
                 <Modal.Body>
@@ -235,7 +245,7 @@ export default class ListaAlum extends Component {
             <Modal size={'SM'} show={this.state.modals.showdelete} onHide={() => this.setShow('showdelete',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">Eliminara alumno?</h3>          
+                        <h3 className="punto-text">¿Desea eliminar al alumno?</h3>          
                     </div>
                 </Modal.Header>
                 <Modal.Body>

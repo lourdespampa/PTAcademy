@@ -9,9 +9,11 @@ export default class GrupoPage extends Component {
     this.state = {
       alumnos: [],
       nro_per_grupo: 1,
-      grupos: []
+      grupos: [],
+      id_access : ''
     };
   }
+  
 
   handleNumPerGrou = e => {
     this.setState({ nro_per_grupo: e.target.value });
@@ -19,9 +21,12 @@ export default class GrupoPage extends Component {
 
   componentWillMount() {
     this.getAlumnos();
+    const data = this.props
+    this.setState({id_access: data})
+    console.log(this.props)
   }
   getAlumnos = () => {
-    axios.get(`${url}/v1/api/lesson/PRJHS/students/roulette`).then(res => {
+    axios.get(`${url}/v1/api/lesson/${this.props.id_access}/students/roulette`).then(res => {
       res.data.map(alumno => {
         this.state.alumnos.push(alumno.name_stu + " " + alumno.lastName_stu);
       });

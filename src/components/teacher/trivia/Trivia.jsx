@@ -21,7 +21,8 @@ class Trivia extends React.Component {
       respuestaTree: '',
       respuestaFour: '',
       selectedCorrectAnswer: 'rojo',
-      preguntaEnviada: false
+      preguntaEnviada: false,
+      modal:false
     }
 
     // Este enlace es necesario para hacer que `this` funcione en el callback
@@ -39,7 +40,14 @@ class Trivia extends React.Component {
         console.log(data)
       })
   }
+  showModal = () => {
+    this.setState(state => ({
+      modal: !state.modal
+    }));
+    if(this.state.modal){
 
+    }
+  }
   //Funciones que obtienen los valores de sus respectivos inputs en tiempo real
   changeQuestion = e => {
       this.setState({
@@ -137,47 +145,52 @@ class Trivia extends React.Component {
           }
         </div>
         <div className="cont-btn-resp2">
-          <button id="myBtn" className="respuestas">
+          <button id="myBtn" className="respuestas" onClick={this.showModal}>
             Respuestas
           </button>
         </div>
-        {/* The Modal */}
+        {
+        this.state.modal
+        ?
         <div id="myModal" class="modal-respuestas">
         {/* Modal content */}
-        <div class="modal-content-respuestas">
-                    <span id="cerrar" class="close">&times;</span>
-                    <h2>Clasificación</h2>
-                    <div class="modal-body-respuestas">
-        <ul class="rolldown-list" id="myList">
-                            <li class="lista-contenedora">
-                                1.
-                                <div id="one" style={{display: "inline-block"}}></div>
-                                <img class="imagenClasificacion" src="/plugin/images/trivia/1ro.webp" width="35"/>
-                            </li>
-                            <li class="lista-contenedora">
-                                2.
-                                <div id="two" style={{display: "inline-block"}}></div>
-                                <img class="imagenClasificacion" src="/plugin/images/trivia/2do.webp" width="35"/>
-                            </li>
-                            <li class="lista-contenedora">
-                                3.
-                                <div id="three" style={{display: "inline-block"}}></div>
-                                <img class="imagenClasificacion" src="/plugin/images/trivia/3ro.webp" width="40"/>
-                            </li>
-                            <li class="lista-contenedora">
-                                4.
-                                <div id="four" style={{display: "inline-block"}}></div>
-                                <img class="imagenClasificacion" src="/plugin/images/trivia/4to.webp" width="30"/>
-                            </li>
-                            <li class="lista-contenedora">
-                                5.
-                                <div id="five" style={{display: "inline-block"}}></div>
-                                <img class="imagenClasificacion" src="/plugin/images/trivia/5to.webp" width="30"/>
-                            </li>
-                        </ul>
+          <div class="modal-content-respuestas">
+            <span id="cerrar" class="close" onClick={this.showModal}>x</span>
+            <h2>Clasificación</h2>
+              <div class="modal-body-respuestas">
+              <ul class="rolldown-list" id="myList">
+                <li class="lista-contenedora">
+                    <div id="one" style={{display: "inline-block"}}></div>
+                    {/* <img class="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
+                    <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
+                </li>
+                <li class="lista-contenedora">
+                    <div id="two" style={{display: "inline-block"}}></div>
+                    {/* <img class="imagenClasificacion" src={require('./2do.webp')} width="35"/> */}
+                    <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
+                </li>
+                <li class="lista-contenedora">
+                    <div id="three" style={{display: "inline-block"}}></div>
+                    {/* <img class="imagenClasificacion" src={require('./3ro.webp')} width="40"/> */}
+                    <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
+                </li>
+                <li class="lista-contenedora">
+                    <div id="four" style={{display: "inline-block"}}></div>
+                    {/* <img class="imagenClasificacion" src={require('./4to.webp')} width="30"/> */}
+                    <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
+                </li>
+                <li class="lista-contenedora">
+                    <div id="five" style={{display: "inline-block"}}></div>
+                    {/* <img class="imagenClasificacion" src={require('./5to.webp')} width="30"/> */}
+                    <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
+        :
+        null
+      }
       </div>
       <Container>
         <form>
