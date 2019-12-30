@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import './headerStyles.css'
+import './headerStyles.sass'
 import Audio from './audio'
 
 export default function HeaderContainer() {
