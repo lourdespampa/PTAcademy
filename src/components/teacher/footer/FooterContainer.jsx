@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import './FooterContainer.css';
+import './FooterContainer.sass';
 import Modal from 'react-bootstrap/Modal';
 import Audio from '../audio/audio';
 import io from 'socket.io-client';
@@ -15,6 +15,7 @@ function enviarvideo(url,url2){
     var urlembed = urlnombre.split(expresionRegular);
     document.getElementById('video-frame').src = "https://www.youtube.com/embed/"+urlembed[1]+"?autoplay=1&controls=0"
 }
+
 function SendForm(){
     
     //SEND FORM
