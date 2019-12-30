@@ -1,40 +1,39 @@
 import React from "react";
-import {Link} from 'react-router-dom'
-import './inicio.css';
+import {Link} from 'react-router-dom';
+import './inicio.sass';
 
 class Inicio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
   render() {
     return (
-      <div className="contenedor">
-        <div className="general">
-          <div className="imagen-robot">
-            <img src={require('./robot.png')} className="robot" />
+      <div className="login-contenedor">
+        <div className="login-general">
+          <div className="login-imagen-robot">
+            <img src={require('./robot.png')} className="login-robot" />
           </div>
-          <h1 className="iniciar">Iniciar sesión en PlayTecEDU</h1>
-          <div className="cuerpo">
+          <h1 className="login-iniciar">Iniciar sesión en PlayTecEDU</h1>
+          <div className="login-cuerpo">
             <Link to="/Login">
-              <div className="izquierda">
-                <img src={require('./alumno.png')} className="alumno" />
-                <h1 className="students">Alumno</h1>
+              <div className="login-izquierda">
+                <img src={require('./alumno.png')} className="login-alumno" />
+                <h1 className="login-students">Alumno</h1>
               </div>
             </Link>
             <Link to="/loginTeacher">
-              <div className="centro">
+              <div className="login-centro">
                 <img
-                  src={require('./profesora.png')} className="teacher"
+                  src={require('./profesora.png')} className="login-teacher"
                 />
-                <h1 className="profesora">Docente</h1>
+                <h1 className="login-profesora">Docente</h1>
               </div>
             </Link>
             <Link to="#">
-              <div className="derecha">
-                <img src={require('./house.png')} className="house" />
-                <h1 className="parents">Padre/Madre</h1>
+              <div className="login-derecha">
+                <img src={require('./house.png')} className="login-house" />
+                <h1 className="login-parents">Padre/Madre</h1>
               </div>
             </Link>
           </div>

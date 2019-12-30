@@ -6,7 +6,7 @@ import puzzle from '../../../img/menuLeft/puzzle.png';
 // import cat from '../../img/menuLeft/cat.png';
 
 // style
-import './MenuLeft.css'
+import './MenuLeft.sass'
 
 function MenuLeft(props){
     return(
