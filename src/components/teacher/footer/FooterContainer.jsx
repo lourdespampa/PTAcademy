@@ -15,6 +15,7 @@ function enviarvideo(url,url2){
     var urlembed = urlnombre.split(expresionRegular);
     document.getElementById('video-frame').src = "https://www.youtube.com/embed/"+urlembed[1]+"?autoplay=1&controls=0"
 }
+
 function SendForm(){
     
     //SEND FORM

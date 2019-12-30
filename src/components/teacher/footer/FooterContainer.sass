@@ -1,4 +1,4 @@
-.footer-distributed
+.footer-distributed 
     background-color: #3087A4
     box-sizing: border-box
     width: 100%
@@ -9,60 +9,61 @@
     bottom: 0
     left: 0
 
-    & .footer-left,
-    & .footer-center,
-    & .footer-right
-        display: inline-block
-        vertical-align: top
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right 
+    display: inline-block
+    vertical-align: top
 
-    & .footer-left
-        width: 23%
+.footer-distributed .footer-left 
+    width: 23%
 
-    & h3
-        color: #ffffff
-        margin: 5px 10px
+.footer-distributed h3 
+    color: #ffffff
+    margin: 5px 10px 
 
-iframe
+iframe 
     width: -webkit-fill-available
     height: -webkit-fill-available
 
+/* Footer Center */
 
-.footer-center
+.footer-center 
     width: 45%
 
-    .footer-distributedi &
-        background-color: #33383b
-        color: #ffffff
-        font-size: 25px
-        width: 38px
-        height: 38px
-        border-radius: 50%
-        text-align: center
-        line-height: 42px
-        margin: 10px 15px
-        vertical-align: middle
 
-    .footer-distributedi.fa-envelope &
-        font-size: 17px
-        line-height: 38px
+.footer-distributed .footer-center i 
+    background-color: #33383b
+    color: #ffffff
+    font-size: 25px
+    width: 38px
+    height: 38px
+    border-radius: 50%
+    text-align: center
+    line-height: 42px
+    margin: 10px 15px
+    vertical-align: middle
 
-    .footer-distributedp &
-        display: inline-block
-        color: #ffffff
-        vertical-align: middle
-        margin: 0
+.footer-distributed .footer-center i.fa-envelope 
+    font-size: 17px
+    line-height: 38px
 
-    .footer-distributedpspan &
-        display: block
-        font-weight: normal
-        font-size: 14px
-        line-height: 2
+.footer-distributed .footer-center p 
+    display: inline-block
+    color: #ffffff
+    vertical-align: middle
+    margin: 0
 
-    .footer-distributedpa &
-        color: #e0ac1c
-        text-decoration: none
+.footer-distributed .footer-center p span 
+    display: block
+    font-weight: normal
+    font-size: 14px
+    line-height: 2
 
-
+.footer-distributed .footer-center p a 
+    color: #e0ac1c
+    text-decoration: none
+    
 .center-container
     min-height: 115px
     background-image: url("codigo.gif")
@@ -73,7 +74,7 @@ iframe
     width: -webkit-fill-available
     height: -webkit-fill-available
 
-.pres
+.pres 
     width: 100%
     height: 34%
     background-color: rgb(48, 135, 164)
@@ -82,45 +83,46 @@ iframe
     border-left-width: 10px
     border-right-width: 10px
 
-    &:hover
-        background-color: rgb(69, 157, 176)
+.pres:hover 
+    background-color: rgb(69, 157, 176);
 
+/* Footer Right */
 
-.footer-distributed .footer-right
+.footer-distributed .footer-right 
     width: 30%
 
-.footer-distributed .footer-company-about
+.footer-distributed .footer-company-about 
     line-height: 20px
     color: #92999f
     font-size: 13px
     font-weight: normal
     margin: 0
 
-    & span
-        display: block
-        color: #ffffff
-        font-size: 18px
-        font-weight: bold
-        margin-bottom: 20px
+.footer-distributed .footer-company-about span 
+    display: block
+    color: #ffffff
+    font-size: 18px
+    font-weight: bold
+    margin-bottom: 20px
 
-.footer-distributed .footer-icons
+.footer-distributed .footer-icons 
     margin-top: 25px
 
-    & a
-        display: inline-block
-        width: 35px
-        height: 35px
-        cursor: pointer
-        background-color: #33383b
-        border-radius: 2px
-        font-size: 20px
-        color: #ffffff
-        text-align: center
-        line-height: 35px
-        margin-right: 3px
-        margin-bottom: 5px
+.footer-distributed .footer-icons a 
+    display: inline-block
+    width: 35px
+    height: 35px
+    cursor: pointer
+    background-color: #33383b
+    border-radius: 2px
+    font-size: 20px
+    color: #ffffff
+    text-align: center
+    line-height: 35px
+    margin-right: 3px
+    margin-bottom: 5px
 
-.overlay
+.overlay 
     background: rgba(0, 0, 0, .3)
     position: fixed
     top: 0
@@ -132,10 +134,11 @@ iframe
     display: flex
     visibility: hidden
 
-    &.active
-        visibility: visible
+.overlay.active 
+    visibility: visible
 
-.popup
+
+.popup 
     background: #F8F8F8
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3)
     border-radius: 10px
@@ -147,62 +150,67 @@ iframe
     opacity: 0
     height: 70%
 
-    & h3
-        font-size: 36px
-        font-weight: 600
-        margin-bottom: 10px
-        opacity: 0
+.popup h3 
+    font-size: 36px
+    font-weight: 600
+    margin-bottom: 10px
+    opacity: 0
 
-    & h4
-        font-size: 26px
-        font-weight: 300
-        margin-bottom: 40px
-        opacity: 0
+.popup h4 
+    font-size: 26px
+    font-weight: 300
+    margin-bottom: 40px
+    opacity: 0
+
+/* ------------------------- */
 
 
-.btn-abrir-popup
+/* ANIMACIONES */
+
+
+/* ------------------------- */
+
+    
+.btn-abrir-popup 
     cursor: pointer
 
-.popup.active
+
+.popup.active 
     transform: scale(1)
     opacity: 1
 
-    & h3
-        animation: entradaTitulo .8s ease .5s forwards
 
-    & h4
-        animation: entradaSubtitulo .8s ease .5s forwards
+.popup.active h3 
+    animation: entradaTitulo .8s ease .5s forwards
 
-    & .contenedor-inputs
-        animation: entradaInputs 1s linear 1s forwards
 
-@keyframes entradaTitulo
-    from
+.popup.active h4 
+    animation: entradaSubtitulo .8s ease .5s forwards
+
+
+.popup.active .contenedor-inputs 
+    animation: entradaInputs 1s linear 1s forwards
+
+
+@keyframes entradaTitulo |
+    from 
         opacity: 0
         transform: translateY(-25px)
-
-    to
+    to 
         transform: translateY(0)
         opacity: 1
+    
 
-@keyframes entradaSubtitulo
-    from
+@keyframes entradaSubtitulo 
+    from 
         opacity: 0
         transform: translateY(25px)
-
-    to
+    to 
         transform: translateY(0)
         opacity: 1
-
-@keyframes entradaInputs
-    from
-        opacity: 0
-
-    to
-        opacity: 1
-
+    
 .btn-back,
-.btn-next
+.btn-next 
     width: 40px
     height: 50px
     color: #fff
@@ -212,7 +220,7 @@ iframe
     cursor: pointer
 
 .btn-back,
-.btn-next
+.btn-next 
     position: absolute
     background: #00a8ff no-repeat center left
     border: 1px solid #fff
@@ -227,20 +235,20 @@ iframe
     height: 100px
     top: 50%
 
-.diapo-content.active
+.diapo-content.active 
     width: 100%
     top: 70px
     transform: none
     left: 0
 
 .btn-back i,
-.btn-next i
+.btn-next i 
     font-size: 100px
 
-.btn-back
+.btn-back 
     left: -50px
 
-.popup .btn-cerrar-popup
+.popup .btn-cerrar-popup 
     line-height: 16px
     text-align: right
     transition: .3s ease all
@@ -250,35 +258,57 @@ iframe
     right: 0
     top: 0
 
-    & .material-icons
-        color: #F8F8F8
-        background-color: #00a8ff
-        border-radius: 5px
+.popup .btn-cerrar-popup .material-icons 
+    color: #F8F8F8
+    background-color: #00a8ff
+    border-radius: 5px 
 
-    & .material-icons:hover
-        color: #000
-        background-color: rgb(104, 104, 104)
-        border-radius: 5px
+.popup .btn-cerrar-popup .material-icons:hover 
+    color: #000
+    background-color: rgb(104, 104, 104)
+    border-radius: 5px
 
 .modal-content
-    min-height: 100% !important
+    min-height:100% !important
 
 .modal-body
     text-align: center
 
 .footer-distributed .footer-right .div_audio
     position: relative
-    left: 30%
+    left:  30%
     width: auto
     max-width: 300px
 
-    & .div_btn
-        border-radius: 50%
-        width: 100px
-        border: solid 3px
-        height: 100px
-        background: #fff
-        position: relative
-        left: 70%
-        bottom: 50%
-        cursor: pointer
+.footer-distributed .footer-right .div_audio .div_btn
+    border-radius: 50%
+    width: 100px
+    border: solid 3px
+    height: 100px
+    background: #fff
+    /*margin: 100px;*/
+    position: relative
+    left: 70%
+    bottom: 50%
+    cursor: pointer
+    /*top : 0;*/
+   /* animation: ripple 1000ms infinite;
+    animation-play-state: paused;*/  
+
+
+
+@media (min-width: 320px) and (max-width: 480px) 
+    .footer-distributed 
+        background-color:#3087a4
+        box-sizing: border-box
+        width: 100%
+        text-align: left
+        padding: 5px 5px 5px 5px
+        height: 20%
+        position: fixed
+        bottom: 0
+        left: 0 
+    .miniatura 
+        width: 250px
+        height: 180px
+        font-size: 10%
