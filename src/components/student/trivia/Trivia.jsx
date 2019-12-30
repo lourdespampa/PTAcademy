@@ -1,5 +1,5 @@
 import React from "react";
-import "./trivia.css";
+import "./Trivia.sass";
 import io from 'socket.io-client';
 
 const socketUrl="http://192.168.1.65:4000/student";

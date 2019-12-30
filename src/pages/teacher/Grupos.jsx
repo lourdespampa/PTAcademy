@@ -10,5 +10,4 @@ class Grupos extends React.Component {
         )
     }
 }
-
 export default Grupos;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Link} from 'react-router-dom'
 
-import './Empatia.css'
+import './Empatia.sass'
 //cambios 
 function Empatia(props){
 

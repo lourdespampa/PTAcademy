@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom'
 import { Modal ,Button, ButtonToolbar } from "react-bootstrap";
-import './HeaderCode.css'
+import './HeaderCode.sass'
 function BotonSalir(props) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -10,7 +10,7 @@ function BotonSalir(props) {
     return (
       <>
         <div className="menu-detail-content" onClick={handleShow}>   
-        <li className="btn-menu material-icons" style={{ fontSize: "50px"}}>exit_to_app</li>
+        <li className="code-btn-menu material-icons" style={{ fontSize: "50px"}}>exit_to_app</li>
         </div>
         <Modal show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
@@ -31,21 +31,21 @@ function BotonSalir(props) {
 function HeaderCode(props){
 
     return(
-        <div className="header">
-            <div className="clase-detail">
+        <div className="code-header">
+            <div className="code-clase-detail">
                 <h1>
                     Nombre del clase : {props.nombre_clase}
                 </h1>
             </div>
             <div className="code-detail">
-                <a href className="a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
+                <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
                     <span>Código:</span>
                     <h3>
                        {props.id_access}
                     </h3>
                 </a>
             </div>
-            <div className="menu-detail">
+            <div className="code-menu-detail">
                 
                 <BotonSalir/>
                 

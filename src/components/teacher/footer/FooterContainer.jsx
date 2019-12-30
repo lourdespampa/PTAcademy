@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import './FooterContainer.css';
+import './FooterContainer.sass';
 import Modal from 'react-bootstrap/Modal';
 import Audio from '../audio/audio';
 import io from 'socket.io-client';
