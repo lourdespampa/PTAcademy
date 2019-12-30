@@ -83,6 +83,14 @@ const teacherSocket = (io) => {
             console.log('se esta detenemiendo el time'+ data.message)
         });
         // Termina TEMP
+
+        //Lista
+
+        socket.on('RemoveStud',()=>{
+            Student.emit('RemoveStudS')
+        })
+
+        //END LISTA
     })
 }
 

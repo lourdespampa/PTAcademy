@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
+import {Link}  from 'react-router-dom';
 import io from 'socket.io-client';
-
+import {Button } from "react-bootstrap";
 const { AudioStreamer } = require('sfmediastream');
 
 const socketUrl = "http://192.168.1.65:4000/student";
@@ -90,6 +91,14 @@ export default class Audio extends Component {
         document.getElementById("diminute").src = final;
     }   
     componentDidMount() {
+        
+        //liSTA
+        socket.on('RemoveStudS',()=>{
+        document.getElementById('ReturnToLogin2').click()
+        })
+        //END LISTA
+       
+       
         //SLIDES
 
         socket.on('sendSlidesS', () => {
@@ -184,9 +193,12 @@ export default class Audio extends Component {
         //FORM END
     }
 
+   
 
     render() {
         return <div>
+             <a id="ReturnToLogin2" style={{display: "none"}} href='/login'></a>
+         
             <button id="btn_play"></button>
             <div>
                 <a href className="a" data-toggle="modal" data-target="#modalRoulette" id="btnLuckyStudent" />
