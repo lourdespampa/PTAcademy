@@ -28,8 +28,8 @@ export default class Access extends Component {
                     <Route exact path="/CoursesTeacher/:id" component={(props)=><CoursesTeacher {...props}/>} />
                     <Route exact path="/:id_teacher/ClassTeacher/:_id" component={(props)=><ClassTeacher {...props} />} />
                     <Route exact path="/ClassDetailTeacher" component={()=><ClassDetailTeacher/>} />
-                    <Route exact path="/teacher/:id_class/:id_access" component={Teacher} />
-                    <Route exact path="/student/:id_access" component={() => <Student/>} />
+                    <Route path="/teacher/:id_class/:id_access" component={Teacher} />
+                    <Route path="/student/:id_access" component={() => <Student/>} />
                     <Route component={NotFound} />
                 </Switch>
             </BrowserRouter>
