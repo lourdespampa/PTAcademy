@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect,Link } from "react-router-dom";
 import axios from 'axios'
-import './loginStu.css'
+import './loginStu.sass'
 import robot from './images/playtecrobot.gif'
 
 export default class FormLoginStu extends Component {

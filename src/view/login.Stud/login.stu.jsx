@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from "react-router-dom";
 import axios from 'axios'
-import './ingresarCodigo.css'
+import './ingresarCodigo.sass'
 
 export default class LoginStu extends Component {
 
