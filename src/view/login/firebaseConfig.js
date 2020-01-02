@@ -1,3 +1,6 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
 const firebaseConfig = {
     apiKey: "AIzaSyBAXD84wkQaocBUTpSgdBL1LuFljWv8Id4",
     authDomain: "fir-webplatzi-94990.firebaseapp.com",
@@ -9,4 +12,6 @@ const firebaseConfig = {
     measurementId: "G-L2P07ZM3D0"
 }
 
-export default firebaseConfig;
+firebase.initializeApp(firebaseConfig)
+
+export default firebase;

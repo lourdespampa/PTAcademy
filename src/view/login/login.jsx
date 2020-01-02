@@ -3,36 +3,18 @@ import {Redirect} from 'react-router-dom'
 import logo from "./bg-teacher-login.jpg";
 import "./login.css";
 
-import withFirebaseAuth from "react-with-firebase-auth";
-import * as firebase from "firebase/app";
-import "firebase/auth";
-import firebaseConfig from "./firebaseConfig";
-
 import Loading from "./Loading";
 import axios from "axios";
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const firebaseAppAuth = firebaseApp.auth();
-
-//Aqui se establecen los proveedores para los servicios que se utilicen
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider()
-};
-
-export default withFirebaseAuth({
-  providers,
-  firebaseAppAuth
-})(App);
+import firebase from "./firebaseConfig";
 
 //Componente principal
-function App(props) {
+export default function App(props) {
   const [methodPay, setMethodPay] = useState(false);
   const [inputs, setInputs] = useState({ email: "", pass: "" });
   const [{ userState, message, token }, getMessage] = useState({ userState: false, message: "" });
   const [{ loading }, setLoading] = useState({ loading: false });
 
-  //valores que devuelve firebase
-  const { user, signOut, signInWithGoogle } = props;
 
   //Funcion cuando cambia el value de los inputs
   const handleChangeInputs = event => {
@@ -69,6 +51,33 @@ function App(props) {
       setLoading({ loading: false });
     }
   };
+
+  const signInWithGoogle =  () => {
+    //Aqui se establecen los proveedores para los servicios que se utilicen
+    let provider = new firebase.auth.GoogleAuthProvider()
+    //Inicializamos la autenticación de firebase pasandole un proveedor
+    firebase.auth().signInWithPopup(provider).then( async result => {
+      setLoading({ loading: false });
+      let displayName = result.user.displayName
+      let emailGoogle = result.user.email
+      let photoURL = result.user.photoURL
+      //enviamos los datos a la API
+      const { data } = await axios.post(`${URL}/signin`, {"fuente": "google", displayName, "email": emailGoogle, photoURL });
+      const { user, token } = data;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      getMessage({
+        userState: user,
+        message: `Logeado como ${user.email}`,
+        token: token
+      });
+      setLoading({ loading: false });
+      console.log(data) 
+    }).catch( e => {
+      setLoading({ loading: false });
+      console.log(e)
+    })
+  }
 
   return (
     <div>
@@ -186,11 +195,7 @@ function App(props) {
                       </div>
                     </div>
                   </div>
-                  {/* <% if (records_error === '') { %> <% } else { %>
-                <div class="alert alert-danger" role="alert">
-                  <%= records_error %>
-                </div>
-                <% } %> */}
+
                 </form>
               </div>
               <div className="loading">
