@@ -3,11 +3,15 @@ import {Link} from 'react-router-dom'
 import './headerStyles.css'
 import Audio from './audio'
 
-export default function HeaderContainer() {
+export default function HeaderContainer(props) {
+
+
+
+
     return (
         <div>
             <nav id="header" class="mb-1 navbar navbar-expand-lg navbar-dark primary-color lighten-1 fixed">
-        <div class="navbar-brand">Bienvenido cristhian</div>
+    <div class="navbar-brand">Bienvenido cristhian {props.id_access} </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555" aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -25,7 +29,7 @@ export default function HeaderContainer() {
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <Link class="nav-link" to="/salir" id="btnsalirclase">Salir</Link>
+                    <a class="nav-link" href="/Login" id="btnsalirclase">Salir</a>
                 </li>
             </ul>
         </div>

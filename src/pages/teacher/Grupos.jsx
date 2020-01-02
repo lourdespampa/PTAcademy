@@ -5,7 +5,7 @@ class Grupos extends React.Component {
     render(){
         return(
             <div>
-                <GruposPage />
+                <GruposPage id_access={this.props.id_access}/>
             </div>
         )
     }

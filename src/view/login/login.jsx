@@ -16,9 +16,6 @@ export default function App(props) {
   const [{ loading }, setLoading] = useState({ loading: false });
 
 
-  //URL de la Api
-  const URL = "http://3.16.110.136:4200";
-
   //Funcion cuando cambia el value de los inputs
   const handleChangeInputs = event => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -32,7 +29,7 @@ export default function App(props) {
     event.preventDefault();
     setLoading({ loading: true });
     try {
-      const { data } = await axios.post(`${URL}/signin`, {fuente:'manual', email, pass });
+      const { data } = await axios.post(`${props.apiUrl}/signin`, {fuente:'manual', email, pass });
       const { user, token } = data;
       // console.log(data);
       localStorage.setItem("token", token);

@@ -48,7 +48,7 @@ export default class FormLoginStu extends Component {
         }
        
         console.log(data)
-        const VerifyCode = await axios.post("http://3.16.110.136:4200/v1/api/student", data)
+        const VerifyCode = await axios.post(this.props.apiUrl+"/v1/api/student", data)
        
             document.getElementById('link_form').click()
              
@@ -75,11 +75,11 @@ export default class FormLoginStu extends Component {
                             <img src={robot} alt="robot" className="login-imagen-robot"/>
                         </span>
                   <div className="wrap-input100 validate-input">
-                  <input id="inputName" className="input100" autoComplete="off" placeholder="Insert names Here" type="text" value={this.state.value1}  onChange={this.handleChange1}/>
+                  <input id="inputName" className="input100" autoComplete="off" placeholder="Nombres" type="text" value={this.state.value1}  onChange={this.handleChange1}/>
                     <span className="focus-input100"></span>
                   </div>
                   <div className="wrap-input100 validate-input">
-                  <input id="inputLastName" className="input100" autoComplete="off" placeholder="Insert last names Here" type="text" value={this.state.value2}  onChange={this.handleChange2}/>
+                  <input id="inputLastName" className="input100" autoComplete="off" placeholder="Apellidos" type="text" value={this.state.value2}  onChange={this.handleChange2}/>
                     <span className="focus-input100"></span>
                   </div>
                   <div className="container-login100-form-btn">

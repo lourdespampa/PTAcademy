@@ -58,7 +58,7 @@ export default class CoursesTeacher extends Component {
   render() {
     return (
       <>
-        <NavCourse idcourse={this.props.idcourse} idteacher={this.state._id} agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos()}></NavCourse>
+        <NavCourse apiUrl={this.props.apiUrl} idcourse={this.props.idcourse} idteacher={this.state._id} agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos()}></NavCourse>
         <div className="main">
           <h1>SECCION DE CURSOS</h1>
           <ul className="cards">

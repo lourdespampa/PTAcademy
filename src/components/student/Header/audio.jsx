@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
+import {Link}  from 'react-router-dom';
 import io from 'socket.io-client';
-
+import {Button } from "react-bootstrap";
 const { AudioStreamer } = require('sfmediastream');
 
 const socketUrl = "http://192.168.1.65:4000/student";
@@ -90,6 +91,14 @@ export default class Audio extends Component {
         document.getElementById("diminute").src = final;
     }   
     componentDidMount() {
+        
+        //liSTA
+        socket.on('RemoveStudS',()=>{
+        document.getElementById('ReturnToLogin2').click()
+        })
+        //END LISTA
+       
+       
         //SLIDES
 
         socket.on('sendSlidesS', () => {
@@ -184,9 +193,12 @@ export default class Audio extends Component {
         //FORM END
     }
 
+   
 
     render() {
         return <div>
+             <a id="ReturnToLogin2" style={{display: "none"}} href='/login'></a>
+         
             <button id="btn_play"></button>
             <div>
                 <a href className="a" data-toggle="modal" data-target="#modalRoulette" id="btnLuckyStudent" />
@@ -230,11 +242,8 @@ export default class Audio extends Component {
 
         <div className="overlay" id="overlay">
                     <div className="popup" id="popup">
-                        <a href id="btnCerrarDiapo" className="btn-cerrar-popup"  ><i class="material-icons">close</i></a>
-                        <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",height: "100%"}} allowFullScreen={true}
+                        <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",height: "100%", pointerEvents: "none"}} allowFullScreen={true}
                          mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
-                        <div id="btnBack" className="btn-back"  ><i class="material-icons">navigate_before</i></div>
-                        <div id="btnNext" className="btn-next" ><i class="material-icons">navigate_next</i></div>
                     </div>
                 </div>
 
