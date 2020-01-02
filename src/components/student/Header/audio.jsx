@@ -242,11 +242,8 @@ export default class Audio extends Component {
 
         <div className="overlay" id="overlay">
                     <div className="popup" id="popup">
-                        <a href id="btnCerrarDiapo" className="btn-cerrar-popup"  ><i class="material-icons">close</i></a>
-                        <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",height: "100%"}} allowFullScreen={true}
+                        <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",height: "100%", pointerEvents: "none"}} allowFullScreen={true}
                          mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
-                        <div id="btnBack" className="btn-back"  ><i class="material-icons">navigate_before</i></div>
-                        <div id="btnNext" className="btn-next" ><i class="material-icons">navigate_next</i></div>
                     </div>
                 </div>
 

@@ -7,10 +7,8 @@ import io from 'socket.io-client';
 import{TableBody}from './tablebody'
 import Modal from 'react-bootstrap/Modal';
 // import {alumnos} from '../../data/alumnos.json';
-
 const socketUrl="http://192.168.1.65:4000/teacher";
 const socket = io(socketUrl)
-const apiurl='http://3.16.110.136:4200/v1/api/lesson';
 export default class ListaAlum extends Component {
    
         state={
@@ -53,7 +51,7 @@ export default class ListaAlum extends Component {
     
 //rellenar state
     getStudents = async () => {
-        const res = await axios.get(`${apiurl}/${this.props.id_access}/students`)
+        const res = await axios.get(`${this.props.apiUrl+'/v1/api/lesson'}/${this.props.id_access}/students`)
         // const res = await axios.get(`${apiurl}/PRJHS/students`)
         this.setState({
             students :  await res.data
@@ -61,15 +59,10 @@ export default class ListaAlum extends Component {
     }
 //eliminar estudiante
     deleteStudents = async (studentsId) => {
-      
-       //await axios.delete(`${apiurl}/${this.props.id_access}/students`+ this.state._id);
-       //this.getStudents();
-      // console.log(`http://3.16.110.136:4200/v1/api/admin/student/`+ this.state._id)
-       await axios.delete(`http://3.16.110.136:4200/v1/api/admin/student/`+ this.state._id);
-       this.getStudents();
+        await axios.delete(this.props.apiUrl+'/v1/api/admin/student/'+ this.state._id);
+        this.getStudents();
         socket.emit('RemoveStud')
         
-
     }
 //captura value y id 
     onClick = (id) => {
@@ -96,23 +89,23 @@ export default class ListaAlum extends Component {
     onSubmitNote=async (e)=>{
         e.preventDefault();
            const note=this.state.note
-        await axios.put(`${apiurl}/${this.props.id_access}/students`+this.state._id,note)
+        await axios.put(this.props.apiUrl+'/v1/api/admin/student/'+ this.state._id,note)
         this.getStudents();
     }
     onClickPointAdd=async(e)=>{
         e.preventDefault();
         const point=this.state.point+1
-        await axios.put(`${apiurl}/${this.props.id_access}/students`+this.state._id,point);
+        await axios.put(this.props.apiUrl+'/v1/api/admin/student/'+ this.state._id,point);
     }
     onClickPointRemove=async(e)=>{
         e.preventDefault();
         const point=this.state.point-1
-        await axios.put(`${apiurl}/${this.props.id_access}/students`+this.state._id,point)
+        await axios.put(this.props.apiUrl+'/v1/api/admin/student/'+ this.state._id,point)
     }
     onClickConductAdd=async(e)=>{
         e.preventDefault();
         const conduct=this.state.conduct
-        await axios.put(`${apiurl}/${this.props.id_access}/students`+this.state._id,conduct)
+        await axios.put(this.props.apiUrl+'/v1/api/admin/student/'+ this.state._id,conduct)
     }
     onClickConduc=(e)=>{
         this.setState({

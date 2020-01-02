@@ -29,7 +29,7 @@ export default class AllClass extends Component {
     console.log(this.state.id_access)
 
     axios
-      .post("http://3.16.110.136:4200/v1/api/access/", data)
+      .post(this.props.apiUrl+"/v1/api/access/", data)
       .then(res => console.log(res))
       .catch(err => console.log(err));
       this.setState({

@@ -18,6 +18,8 @@ function App() {
           <Route exact path="/grupos/:user" component={Grupos} />
           <Route exact path="/temporizador/:user" component={Temporizador} />
           <Route exact path="/trivia/:user" component={Trivia} />
+          <Route exact path="/pizarra" component={Pizarra} />
+          <Route exact path="/chat" component={Chat} />
           {/* <Route path="/404" component={NotFound} /> */}
           <Redirect from="/" to="/lista" />
         </Switch>

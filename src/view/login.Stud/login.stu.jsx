@@ -29,7 +29,7 @@ export default class LoginStu extends Component {
             id_access : codigo
         }
         console.log(this.state.value)
-        axios.post("http://3.16.110.136:4200/v1/api/access/verify_access", data).then(result => {
+        axios.post(this.props.apiUrl+"/v1/api/access/verify_access", data).then(result => {
             console.log(result)
             if(result.message == 'Code doesn´t exist'){
                     alert("codigo incorrecto")
@@ -42,7 +42,6 @@ export default class LoginStu extends Component {
         .catch( (e) => {
             console.log.log(e)
         })
-    
     }
     render(){
         return(            

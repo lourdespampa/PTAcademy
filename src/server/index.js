@@ -1,15 +1,14 @@
 var app = require('http').createServer()
+var io = module.exports.io=require('socket.io')(app)
 
 const PORT = process.env.PORT ||4000
 
-var io = require('socket.io')(app);
+const SockeManager=require('./SocketManager')
+
+io.on('connection',SockeManager)
 
 
 app.listen(PORT, ()=>{
+    
     console.log("Conecte to port:"+PORT)
 })
-
-const {studentSocket,teacherSocket,teacherXstudent} = require('./sockets');
-teacherXstudent(io);
-studentSocket(io);
-teacherSocket(io);
