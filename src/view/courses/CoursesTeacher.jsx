@@ -18,7 +18,7 @@ export default class CoursesTeacher extends Component {
   getCursos = async () => {
     const res = await axios.get(
      // "http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail"
-       `http://3.16.110.136:4200/v1/api/teacher/${this.state._id}/course_detail`
+       `${this.props.apiUrl}/v1/api/teacher/${this.state._id}/course_detail`
     );
     this.setState({
       courses: await res.data
@@ -28,7 +28,7 @@ export default class CoursesTeacher extends Component {
   render() {
     return (
       <>
-        <NavCourse idcourse={this.props.idcourse} idteacher={this.state._id} agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos()}></NavCourse>
+        <NavCourse apiUrl={this.props.apiUrl} idcourse={this.props.idcourse} idteacher={this.state._id} agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos()}></NavCourse>
         <div className="main">
           <h1>SECCION DE CURSOS</h1>
           <ul className="cards">

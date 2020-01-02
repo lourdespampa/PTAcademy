@@ -28,7 +28,7 @@ export default class LoginStu extends Component {
         const data ={
             id_access : InputCode.value
         }
-        const VerifyCode = await axios.post("http://3.16.110.136:4200/v1/api/access/verify_access", data)
+        const VerifyCode = await axios.post(this.props.apiUrl+"/v1/api/access/verify_access", data)
         console.log(VerifyCode.data.message)
 
         if(VerifyCode.data.message == 'Code doesn´t exist'){

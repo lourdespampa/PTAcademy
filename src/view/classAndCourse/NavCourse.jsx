@@ -20,9 +20,9 @@ function BotonAgregar(props) {
         </Modal.Header>
         <Modal.Body>
           { (props.agregarX==='course')?
-          <FormularioCourse handleClose={AgregarClick} idteacher={props.idteacher} />
+          <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} />
           :
-          <FormularioClass handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
+          <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
           }
         </Modal.Body>
       </Modal>
@@ -74,7 +74,7 @@ export default class NavCourse extends Component {
             </label>
           </div>
           <div className="navegador-links">
-            <BotonAgregar idteacher={this.props.idteacher} idcourse={this.props.idcourse} agregarX={this.props.agregarX}
+            <BotonAgregar apiUrl={this.props.apiUrl} idteacher={this.props.idteacher} idcourse={this.props.idcourse} agregarX={this.props.agregarX}
              getdata={this.props.getdata}></BotonAgregar>
           </div>
           <div className="navegador-links">
