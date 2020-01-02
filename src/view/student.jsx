@@ -14,6 +14,7 @@ export default class Student extends Component {
   constructor(props){
     super(props);
     this.state={
+        id_access:'',
         socket:null,
         user:null
     };
@@ -31,12 +32,12 @@ initSocket=()=>{
   render() {
     return (
       <BrowserRouter>
-        <Container socket={this.state.socket}>
+        <Container socket={this.state.socket} id_access={this.state.id_access}>
 					<Switch>
-						<Route exact path="/student/:cod" component={() => <Index/>}/>
-						<Route exact path="/student/:cod/trivia" component={() => <Trivia/>}/>
-						<Route exact path="/student/:cod/temporizador" component={() => <Temporizador/>}/>
-						<Route exact path="/student/:cod/pizarra" component={() => <Board/>}/>
+						<Route exact path="/student/:cod" component={() => <Index  id_access={this.state.id_access}/>}/>
+						<Route exact path="/student/:cod/trivia" component={() => <Trivia id_access={this.state.id_access}/>}/>
+						<Route exact path="/student/:cod/temporizador" component={() => <Temporizador id_access={this.state.id_access}/>}/>
+						<Route exact path="/student/:cod/pizarra" component={() => <Board id_access={this.state.id_access}/>}/>
 						<Redirect from="/" to="/student/xxxxxx" />
 					</Switch>
         </Container>

@@ -3,11 +3,12 @@ import './lista.css';
 import axios from 'axios'
 import {ExportCSV} from './exportbtn'
 import{BtnPuntos}from './btnpuntos'
+import io from 'socket.io-client';
 import{TableBody}from './tablebody'
 import Modal from 'react-bootstrap/Modal';
 // import {alumnos} from '../../data/alumnos.json';
-
-// const apiurl=this.props.apiUrl+'/v1/api/lesson';
+const socketUrl="http://192.168.1.65:4000/teacher";
+const socket = io(socketUrl)
 export default class ListaAlum extends Component {
    
         state={
@@ -60,6 +61,8 @@ export default class ListaAlum extends Component {
     deleteStudents = async (studentsId) => {
         await axios.delete(this.props.apiUrl+'/v1/api/admin/student/'+ this.state._id);
         this.getStudents();
+        socket.emit('RemoveStud')
+        
     }
 //captura value y id 
     onClick = (id) => {
@@ -188,7 +191,7 @@ export default class ListaAlum extends Component {
             <Modal size={'SM'} show={this.state.modals.showpuntosmas} onHide={() => this.setShow('showpuntosmas',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">Positivo</h3>
+                        <h3 className="punto-text">Positivo ssddsd</h3>
                     </div>
                 </Modal.Header>
                 <Modal.Body>
@@ -235,7 +238,7 @@ export default class ListaAlum extends Component {
             <Modal size={'SM'} show={this.state.modals.showdelete} onHide={() => this.setShow('showdelete',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">Eliminara alumno?</h3>          
+                        <h3 className="punto-text">¿Desea eliminar al alumno?</h3>          
                     </div>
                 </Modal.Header>
                 <Modal.Body>

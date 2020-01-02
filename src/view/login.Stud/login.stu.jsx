@@ -23,22 +23,25 @@ export default class LoginStu extends Component {
         event.preventDefault();
       }
 
-    async ValidateCode(){
-        const InputCode = document.getElementById('inputCode')
+    ValidateCode(){
+        const codigo = this.state.value.toUpperCase()
         const data ={
-            id_access : InputCode.value
+            id_access : codigo
         }
-        const VerifyCode = await axios.post(this.props.apiUrl+"/v1/api/access/verify_access", data)
-        console.log(VerifyCode.data.message)
-
-        if(VerifyCode.data.message == 'Code doesn´t exist'){
-            alert("codigo incorrecto")
-        }else{
-            this.setState({id_access: InputCode.value});
-            console.log(this.id_access)
-            document.getElementById('link_form').click()
-        }
-      
+        console.log(this.state.value)
+        axios.post(this.props.apiUrl+"/v1/api/access/verify_access", data).then(result => {
+            console.log(result)
+            if(result.message == 'Code doesn´t exist'){
+                    alert("codigo incorrecto")
+                }else{
+                    this.setState({id_access: codigo});
+                    console.log(this.id_access)
+                    document.getElementById('link_form').click()
+                }
+        })
+        .catch( (e) => {
+            console.log.log(e)
+        })
     }
     render(){
         return(            
