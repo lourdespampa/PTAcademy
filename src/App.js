@@ -2,14 +2,11 @@ import React from 'react';
 import { BrowserRouter, Switch, Route,Redirect } from 'react-router-dom';
 
 import Contenido from './components/Contenido';
-import ListaAlumnos from './pages/ListaAlumnos';
-import Azar from './pages/azar/Azar';
-import Grupos from './pages/Grupos';
-import Temporizador from './pages/Temporizador';
-import Trivia from './pages/trivia/Trivia';
-import Pizarra from './pages/Pizarra';
-import Chat from './pages/Chat';
-// import NotFound from '../pages/NotFound';
+import ListaAlumnos from './pages/teacher/ListaAlumnos';
+import Azar from './pages/teacher/Azar';
+import Grupos from './pages/teacher/Grupos';
+import Temporizador from './pages/teacher/Temporizador';
+import Trivia from './pages/teacher/Trivia';
 
 function App() {
   return (

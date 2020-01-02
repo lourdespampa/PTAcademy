@@ -1,0 +1,58 @@
+.a {
+    text-decoration: none;
+    color: #fff;
+}
+.a:hover{
+    text-decoration: none;
+    color: #D4D7D9;
+}
+
+.header {
+    height: 60px;
+    position: relative;
+    background: #00aae3;
+}
+
+.clase-detail {
+    height: 100%;
+    max-width: 45%;
+}
+
+.clase-detail h1 {
+    padding: 10px 0 0 15px;
+    font-size: 25px;
+    color: #fff;
+    text-align: start;
+}
+
+.code-detail {
+    width: 150px;
+    height: 60px;
+    color: #fff;
+    background: #00aae3;
+    float: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+    text-align: center;
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.menu-detail {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+
+.btn-menu {
+    padding: 8px;
+    margin-right: 10px;
+}
+
+.btn-menu img {
+    width: 35px;
+}
