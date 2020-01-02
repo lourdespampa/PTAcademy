@@ -48,7 +48,7 @@ export default class FormLoginStu extends Component {
         }
        
         console.log(data)
-        const VerifyCode = await axios.post("http://3.16.110.136:4200/v1/api/student", data)
+        await axios.post("http://3.16.110.136:4200/v1/api/student", data)
        
             document.getElementById('link_form').click()
              
