@@ -34,9 +34,6 @@ function App(props) {
   //valores que devuelve firebase
   const { user, signOut, signInWithGoogle } = props;
 
-  //URL de la Api
-  const URL = "http://3.16.110.136:4200";
-
   //Funcion cuando cambia el value de los inputs
   const handleChangeInputs = event => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -50,7 +47,7 @@ function App(props) {
     event.preventDefault();
     setLoading({ loading: true });
     try {
-      const { data } = await axios.post(`${URL}/signin`, {fuente:'manual', email, pass });
+      const { data } = await axios.post(`${props.apiUrl}/signin`, {fuente:'manual', email, pass });
       const { user, token } = data;
       // console.log(data);
       localStorage.setItem("token", token);
@@ -66,7 +63,7 @@ function App(props) {
       console.log(err)
       getMessage({
         userState: null,
-        message: "Email and password incorrects!!",
+        message: "Correo o contraseña incorrecta!!",
         token: null
       });
       setLoading({ loading: false });
@@ -148,7 +145,6 @@ function App(props) {
                         <input
                           onChange={handleChangeInputs}
                           type="password"
-                          style={{ fontFamily: "serif" }}
                           className="form-control"
                           id="password"
                           name="pass"
@@ -189,11 +185,6 @@ function App(props) {
                       </div>
                     </div>
                   </div>
-                  {/* <% if (records_error === '') { %> <% } else { %>
-                <div class="alert alert-danger" role="alert">
-                  <%= records_error %>
-                </div>
-                <% } %> */}
                 </form>
               </div>
               <div className="loading">
@@ -217,13 +208,6 @@ function App(props) {
           style={{ left: 0, opacity: 0.7 }}
         />
         <i
-          style={{
-            color: "#fff",
-            marginTop: "70px",
-            fontSize: "20px",
-            marginLeft: "-20px",
-            opacity: 0.7
-          }}
         >
           Conoce sobre
           <br />
