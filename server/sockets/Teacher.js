@@ -91,6 +91,16 @@ const teacherSocket = (io) => {
         })
 
         //END LISTA
+
+        //grupos
+
+        socket.on('enviando grupos',(data)=>{
+            Student.emit('enviando grupos',data)
+        })
+
+        //END grupos
+
+        
     })
 }
 

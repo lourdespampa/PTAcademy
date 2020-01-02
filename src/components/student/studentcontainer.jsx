@@ -8,8 +8,8 @@ export default class Container extends Component {
         const {children}=this.props
         return (
             <div>
-                <Header socket={this.props.socket} id_access={this.props.id_access}/>
-                <Left view={'/student/:cod/pizarra'} socket={this.props.socket}/>
+                <Header socket={this.props.socket} id_access={this.props.id_access} id_student={this.props.id_student} name={this.props.name} lastName={this.props.lastName}/>
+                <Left view={`/student/${this.props.id_student}/${this.props.id_access}/pizarra`} socket={this.props.socket}/>
                 {children }
                 <Footer socket={this.props.socket}/>
             </div>
