@@ -8,7 +8,7 @@ export default class FormLoginStu extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {value1: '',value2: '',id_access : ''};
+        this.state = {value1: '',value2: '',id_access : '',idStu:''};
 
         this.handleChange1 = this.handleChange1.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
@@ -49,14 +49,16 @@ export default class FormLoginStu extends Component {
        
         console.log(data)
         const VerifyCode = await axios.post(this.props.apiUrl+"/v1/api/student", data)
-       
+      const id=VerifyCode.data.idStu
+      this.setState({idStu:id})
+        console.log(this.state.idStu)
             document.getElementById('link_form').click()
              
     }
     render(){
         return(
             <div>
-                 <Link id="link_form" to={`/student/${this.state.id_access}`}/>
+                 <Link id="link_form" to={`/student/${this.state.idStu}/${this.state.id_access}`}/>
             {/*<div className="container center" >
         <h1>Student Data Form {} </h1>
            <input id="inputName"placeholder="Insert names Here" type="text" value={this.state.value1}  onChange={this.handleChange1}/>
