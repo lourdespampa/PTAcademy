@@ -3,27 +3,57 @@ import NavCourse from "../classAndCourse/NavCourse";
 import AllCourses from "./AllCourses";
 import axios from "axios";
 import "../courses/Course.css";
+
+
 export default class CoursesTeacher extends Component {
-  state = {
-    nombreProfesor: "carlos",
-    _id: "",
-    courses: []
-  };
+
+  finalizarComponente = false
+
+  constructor(props){
+    super(props)
+    this.state = {
+      nombreProfesor: "profesor",
+      _id: "",
+      courses: []
+    }
+  }
 
   componentDidMount() {
-    this.getCursos();
+    this.finalizarComponente = true
+    //obtenemos el id de la url pasada a través de las propiedades
     const { match: { params } } = this.props;
-    this.setState({_id:params.id})
+    this.setState({_id: params.id})
+    //luego, obtenemos la lista de cursos del profesor por petición a la API
+    axios.get(`http://3.16.110.136:4200/v1/api/teacher/${params.id}/course_detail`).then( ({ data }) => {
+      console.log(data)
+      if(this.finalizarComponente){
+        if(data == []){
+          this.setState({courses: []})
+        }else{
+          this.setState({courses: data})
+        }
+      }
+    })
+    .catch( e => console.log(e))
   }
-  getCursos = async () => {
-    const res = await axios.get(
-     // "http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail"
-       `http://3.16.110.136:4200/v1/api/teacher/${this.state._id}/course_detail`
-    );
-    this.setState({
-      courses: await res.data
-    });
-  };
+
+  componentWillUnmount(){
+    this.finalizarComponente = false
+  }
+
+  getCursos(){
+    axios.get(`http://3.16.110.136:4200/v1/api/teacher/${this.state._id}/course_detail`).then( ({ data }) => {
+      console.log(data)
+      if(this.finalizarComponente){
+        if(data == []){
+          this.setState({courses: []})
+        }else{
+          this.setState({courses: data})
+        }
+      }
+    })
+    .catch( e => console.log(e))
+  }
 
   render() {
     return (
@@ -33,17 +63,23 @@ export default class CoursesTeacher extends Component {
           <h1>SECCION DE CURSOS</h1>
           <ul className="cards">
             {
-            this.state.courses.map((cursos,id) => (
-              <li className="cards_item" key={id}>
-                <AllCourses
-                  name_course={cursos.course_name}
-                  description={cursos.desc}
-                  img={cursos.img}
-                  id={cursos._id}
-                  idteacher={this.state._id}
-                />
-              </li>
-              ))
+            this.state.courses.length > 0
+              ?  
+              // <div>true</div>
+              this.state.courses.map((cursos,id) => (
+                <li className="cards_item" key={id}>
+                  <AllCourses
+                    name_course={cursos.course_name}
+                    description={cursos.desc}
+                    img={cursos.img}
+                    id={cursos._id}
+                    idteacher={this.state._id}
+                  />
+                </li>
+                ))
+              :
+              // <div>false</div>
+              <h3>Cargando cursos... Si no tiene, puede crear uno.</h3>
               }
           </ul>
         </div>
