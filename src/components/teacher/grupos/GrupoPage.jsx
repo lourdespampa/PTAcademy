@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./grupos.css";
+import "./Grupos.sass";
 import axios from "axios";
 
 const url = "http://3.16.110.136:4200";

@@ -41,10 +41,13 @@
     padding: 44px 66px
     font-size: 21px
     text-decoration: none !important
+    //se tiene que eliminar el text decoration
+    &:hover
+        color: white
 
 .enter-code__body
     width: 100%
-    height: 450px
+    height: 70%
     display: flex
     justify-content: center
     align-items: center
@@ -66,6 +69,7 @@
 
 .input__field
     position: relative
+    text-align: center
     display: block
     float: right
     padding: .8em
@@ -75,9 +79,8 @@
     background: #f0f0f0
     color: #aaa
     font-weight: 400
-    font-family: "Opal"
+    font-family: Opal
     -webkit-appearance: none
-
     &:focus
         outline: 0
 
@@ -113,7 +116,7 @@
     overflow: hidden
     padding-bottom: 1em
 
-.input__field--kozakuzra
+.input__field--kozakura
     padding: .25em .5em
     margin-top: 1.25em
     width: 100%
@@ -123,6 +126,31 @@
     color: #2f3238
     font-size: 1.55em
     opacity: 0
+    &:focus
+        -webkit-transition: opacity 0s .35s
+        transition: opacity 0s .35s
+        opacity: 1
+        &+.input__label--kozakura
+            -webkit-transition-delay: .15s
+            transition-delay: .15s
+            -webkit-transform: translate3d(0, 0, 0)
+            transform: translate3d(0, 0, 0)
+            & .input__label-content--kozakura
+                -webkit-transition-delay: .15s
+                transition-delay: .15s
+                -webkit-transform: translate3d(0, -100%, 0)
+                transform: translate3d(0, -100%, 0)
+        &~.graphic--kozakura
+            fill: #fff
+            -webkit-transform: translate3d(-66.6%, 0, 0)
+            transform: translate3d(-66.6%, 0, 0)
+            
+
+.input__label-content
+    position: relative
+    display: block
+    padding: 1.6em 0
+    width: 100%
 
 .input__label--kozakura
     width: 100%
@@ -168,45 +196,21 @@
     -webkit-transition-timing-function: cubic-bezier(0, .25, .5, 1)
     transition-timing-function: cubic-bezier(0, .25, .5, 1)
 
-.input--filled .input__field--kozakura,
-.input__field--kozakura:focus
-    -webkit-transition: opacity 0s .35s
-    transition: opacity 0s .35s
-    opacity: 1
-
-.input--filled .input__label--kozakura,
-.input__field--kozakura:focus+.input__label--kozakura
-    -webkit-transition-delay: .15s
-    transition-delay: .15s
-    -webkit-transform: translate3d(0, 0, 0)
-    transform: translate3d(0, 0, 0)
-
-.input--filled .input__label-content--kozakura,
-.input__field--kozakura:focus+.input__label--kozakura .input__label-content--kozakura
-    -webkit-transition-delay: .15s
-    transition-delay: .15s
-    -webkit-transform: translate3d(0, -100%, 0)
-    transform: translate3d(0, -100%, 0)
-
-.input--filled .graphic--kozakura,
-.input__field--kozakura:focus~.graphic--kozakura
-    fill: #fff
-    -webkit-transform: translate3d(-66.6%, 0, 0)
-    transform: translate3d(-66.6%, 0, 0)
-
 .enter-code__body-body
-    margin-top: 20px
+    margin-top: 5px
 
 .enter-code_button
     background: #333333
     border-style: none
-
     &:hover
         background: #202020
 
 @media screen and (max-width: 700px)
     .enter-code__academy-a
-        padding: 44px 1px
+        padding: 15px 0 0 0
+        font-size: 17px
+    .enter-code__body
+        height: 80%
 
 @media screen and (max-width: 400px)
     .enter-code__academy-a
