@@ -5,6 +5,8 @@ import Index from '../pages/student/Index'
 import Trivia from '../pages/student/Trivia'
 import Temporizador from '../pages/student/temporizador'
 import Board from '../pages/student/board'
+
+import Access from '../access'
 //socket initial
 import io from 'socket.io-client';
 import axios from "axios";
@@ -49,15 +51,17 @@ initSocket=()=>{
   render() {
     return (
       <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={()=><Access/>} />
         <Container socket={this.state.socket} id_access={this.state.id_access} id_student={this.state.id_student} name={this.state.name} lastName={this.state.lastName}>
-					<Switch>
+					
 						<Route exact path="/student/:id/:cod" component={() => <Index  id_access={this.state.id_access} id_student={this.state.id_student}  />}/>
 						<Route exact path="/student/:id/:cod/trivia" component={() => <Trivia id_access={this.state.id_access} id_student={this.state.id_student}/>}/>
 						<Route exact path="/student/:id/:cod/temporizador" component={() => <Temporizador id_access={this.state.id_access} id_student={this.state.id_student}/>}/>
 						<Route exact path="/student/:id/:cod/pizarra" component={() => <Board id_access={this.state.id_access} id_student={this.state.id_student}/>}/>
-						{/* <Redirect from="/" to="/student/:id/:cod" /> */}
-					</Switch>
+            {/* <Redirect from="/" to="/student/:id/:cod" /> */}
         </Container>
+        </Switch>
       </BrowserRouter>
     );}
 }

@@ -29,7 +29,8 @@ export default function HeaderContainer(props) {
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/Login" id="btnsalirclase">Salir</a>
+                    {/* <a class="nav-link" href="/Login" id="btnsalirclase">Salir</a> */}
+                    <Link class="nav-link" to="/" id="btnsalirclase">Salir</Link>
                 </li>
             </ul>
         </div>
