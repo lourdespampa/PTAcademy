@@ -53,7 +53,7 @@ initSocket=()=>{
       <BrowserRouter>
       <Switch>
         <Route exact path="/" component={()=><Access/>} />
-        <Container socket={this.state.socket} id_access={this.state.id_access} id_student={this.state.id_student} name={this.state.name} lastName={this.state.lastName}>
+        <Container apiUrl={url} socket={this.state.socket} id_access={this.state.id_access} id_student={this.state.id_student} name={this.state.name} lastName={this.state.lastName}>
 					
 						<Route exact path="/student/:id/:cod" component={() => <Index  id_access={this.state.id_access} id_student={this.state.id_student}  />}/>
 						<Route exact path="/student/:id/:cod/trivia" component={() => <Trivia id_access={this.state.id_access} id_student={this.state.id_student}/>}/>
