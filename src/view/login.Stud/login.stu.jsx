@@ -15,6 +15,8 @@ export default class LoginStu extends Component {
       handleChange(event) {
         
         this.setState({value: event.target.value});
+          
+             
 
       }
 
@@ -23,7 +25,18 @@ export default class LoginStu extends Component {
         event.preventDefault();
       }
 
+    componentDidMount(){
+        
+    }
+    handleKeyPress = (event) => {
+        if(event.key == 'Enter'){
+         
+          this.ValidateCode()
+        }
+      } 
+
     ValidateCode(){
+        console.log("fddfsd")
         const codigo = this.state.value.toUpperCase()
         const data ={
             id_access : codigo
@@ -31,7 +44,7 @@ export default class LoginStu extends Component {
         console.log(this.state.value)
         axios.post(this.props.apiUrl+"/v1/api/access/verify_access", data).then(result => {
             console.log(result)
-            if(result.message == 'Code doesn´t exist'){
+            if(result.data.message == 'Code doesn´t exist'){
                     alert("codigo incorrecto")
                 }else{
                     this.setState({id_access: codigo});
@@ -40,7 +53,7 @@ export default class LoginStu extends Component {
                 }
         })
         .catch( (e) => {
-            console.log.log(e)
+            console.log(e)
         })
     }
     render(){
@@ -56,7 +69,7 @@ export default class LoginStu extends Component {
                         <h1 className="ingresarCodigo-titulo-cuerpo">Ingresa el PIN para unirte a una clase como ALUMNO</h1>
                         <div className="col-md-6 ml-auto mr-auto text-center ingresarCodigo-cuerpo-cuerpo">
                             <span className="ingresarCodigo-input input--kozakura">
-                                <input className="input__field input__field--kozakura" value={this.state.value} onChange={this.handleChange} id="inputCode" type="text" style={{textAlign:'center'}} maxLength="5" minLength="5" autoComplete="off" data-inputmask="'mask':'AAAAAA'" im-insert="true" required/>
+                                <input className="input__field input__field--kozakura" onKeyPress={this.handleKeyPress} value={this.state.value} onChange={this.handleChange} id="inputCode" type="text" style={{textAlign:'center'}} maxLength="5" minLength="5" autoComplete="off" data-inputmask="'mask':'AAAAAA'" im-insert="true" required/>
                                 <label className="input__label input__label--kozakura" htmlFor="inputCode">
                                     <span className="input__label-content input__label-content--kozakura" data-content="Código">CÓDIGO...</span>
                                 </label>
