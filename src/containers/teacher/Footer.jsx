@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 import FooterContainer from '../../components/teacher/footer/FooterContainer';
 import io from 'socket.io-client';
 
-const socketUrl="http://192.168.1.65:4000/teacher";
-const socket = io(socketUrl)
 class Footer extends Component {
     state = {
         // variable para mostrar u ocultar los 3 botones que aparecen al hacer hover en la diapositiva del footer
@@ -19,12 +17,16 @@ class Footer extends Component {
     toggleHoverSlide = () => {
         this.setState({diapositivaHover: !this.state.diapositivaHover})
     }
-    openPopup=(o,p)=>{
+    openPopup=async (o,p)=>{
+        const socket = io(this.props.socketUrl,
+            {query:{pin:this.props.id_access}
+        })
         var overlay = document.getElementById(o),
             popup = document.getElementById(p);
-    
-            
+        
+            console.log(this.props.socketUrl)
             if(overlay.id == 'overlay' && popup.id =='popup'){
+                
                 socket.emit('sendSlides')
             }
     
@@ -33,6 +35,7 @@ class Footer extends Component {
             popup.classList.add('active');
         }
         closePopup=(o,p)=>{
+            const socket = io(this.props.socketUrl)
             var overlay = document.getElementById(o),
                 popup = document.getElementById(p);
             
@@ -58,6 +61,7 @@ class Footer extends Component {
         }
 
         nextPpt=()=> {
+            const socket = io(this.props.socketUrl)
             socket.emit('nextPpt')
             var cambiado = '';
             var url_string = document.getElementById("diapo-frame").src;
@@ -78,7 +82,8 @@ class Footer extends Component {
 
 
  backtPpt=()=> {
-        socket.emit('backtPpt')
+    const socket = io(this.props.socketUrl)
+     socket.emit('backtPpt')
             var cambiado = '';
             var url_string = document.getElementById("diapo-frame").src;
             var url = new URL(url_string);
@@ -95,7 +100,6 @@ class Footer extends Component {
             document.getElementById("diapo-frame").src = final;
             document.getElementById("diminute").src = final;
         }
-
     async componentDidMount(){
             this.getUrl();
         this.getUrlForm();
