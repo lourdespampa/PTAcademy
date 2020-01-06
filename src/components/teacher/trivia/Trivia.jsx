@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./trivia.css";
+import "./trivia.sass";
 import "./botones.scss";
 
 import io from 'socket.io-client';
@@ -195,7 +195,7 @@ class Trivia extends React.Component {
       <Container>
         <form>
         <Row>
-            <Col>
+            <Col md="6">
               <div style={{marginTop:"5px"}}>
                 <label className="label" for="pregunta">Pregunta</label>
                 <input type="text" id="pregunta" name="firstname" class="pregunta" value={this.state.pregunta} onChange={this.changeQuestion}/>
@@ -238,7 +238,7 @@ class Trivia extends React.Component {
                 </div>            
               </div>
             </Col>
-            <Col>
+            <Col md="6">
               <div style={{marginTop:"5px"}}> 
                 <div class="containerRight">
                   <label for="fname">Medio de Comunicación</label>
