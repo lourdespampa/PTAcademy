@@ -10,17 +10,21 @@ const studentSocket = (io) => {
         socket.on('bufferHeader', function(packet) {
             bufferHeader = packet;
             Student.emit('bufferHeader', {
-                audio: packet
+                audio: packet,
+                pin: socket.handshake.query.pin
+                
             });
         });
         socket.on('stream', function(packet) {
             Student.emit('stream', {
-                audio: packet
+                audio: packet,
+                pin: socket.handshake.query.pin
             });
         });
         socket.on('onPlay', function(data) {
           Student.emit('onPlay', {
                 txt: data.txt,
+                pin: socket.handshake.query.pin
             })
         })
         
@@ -30,6 +34,7 @@ const studentSocket = (io) => {
         socket.on('requestBufferHeader', function(packet) {
             Student.emit('bufferHeader', {
                 audio: bufferHeader,
+                pin: socket.handshake.query.pin
             });
         });   
     })

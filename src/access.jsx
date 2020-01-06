@@ -14,7 +14,6 @@ import Index from './view/index/Inicio'
 export default class Access extends Component {
     state={
     apiUrl:'http://3.16.110.136:4200',
-    socketUrl:''
     }
     render() {
         return (

@@ -53,7 +53,7 @@ export default class Views extends Component {
   }
  
   getRecord = async () => {
-    const res = await axios.get('https://academy-api-v3.herokuapp.com/api/events/'+this.state.class)
+    const res = await axios.get('https://academy-api-v3.herokuapp.com/api/events/'+this.state.id_class)
     this.setState({
       grabacion :  await res.data
     });
@@ -67,7 +67,7 @@ botonClick=async(name)=> {
   console.log('{id:'+name+',funcion:click ,tiempo:'+t1+'},')
 
   const params={
-    name : name,time : t1 , Function : 'click', valor : '',class:this.state.class
+    name : name,time : t1 , Function : 'click', valor : '',class:this.state.id_class
 }
 await axios.post('https://academy-api-v3.herokuapp.com/api/events',params)
 }else{
@@ -80,7 +80,7 @@ changeOn=async(id,value)=>{
     this.setState({tiempo1:t1})
     console.log('{id:'+id+',funcion:onChange ,url:'+value+',tiempo:'+t1+'}')
     const params={
-      name : id,time : t1 , Function : 'onChange', valor : value,class:this.state.class
+      name : id,time : t1 , Function : 'onChange', valor : value,class:this.state.id_class
   }
   await axios.post('https://academy-api-v3.herokuapp.com/api/events',params)
   }else{
@@ -116,14 +116,23 @@ render(){
     <BrowserRouter>
     <Switch>
         <Route exact path="/" component={()=><Access/>} />
-        <Route exact path="/CoursesTeacher/:id" component={(props)=><Access {...props} apiUrl={this.state.apiUrl} />} />
-      <Contenido id_access={this.state.id_access} socket={this.state.socket} id_class={this.state.id_class} socketUrl={this.state.socketUrl} botonClick={this.botonClick} grabar={this.grabar} reproclick={this.reproclick} changeOn={this.changeOn} txt={this.state.txt}>
-          <Route exact path="/teacher/:id_class/:id_access" component={()=><ListaAlumnos id_access={this.state.id_access} apiUrl={this.props.apiUrl}/>}  />
-          <Route exact path="/teacher/:id_class/:id_access/azar" component={() => <Azar id_access={this.state.id_access}/>} />
-          <Route exact path="/teacher/:id_class/:id_access/grupos" component={() => <Grupos id_access={this.state.id_access}/>} />
-          <Route exact path="/teacher/:id_class/:id_access/temporizador" component={() => <Temporizador/>} />
-          <Route exact path="/teacher/:id_class/:id_access/pizarra" component={()=><Pizarra/>} />
-          <Route exact path="/teacher/:id_class/:id_access/trivia" component={() => <Trivia botonClick={this.botonClick}/>} />
+        <Route exact path="/CoursesTeacher/:id" component={(props)=><Access {...props} apiUrl={this.props.apiUrl} />} />
+      <Contenido  
+      id_access={this.state.id_access} socket={this.state.socket} id_class={this.state.id_class} 
+      socketUrl={this.state.socketUrl} botonClick={this.botonClick} grabar={this.grabar} reproclick={this.reproclick} 
+      changeOn={this.changeOn} txt={this.state.txt}>
+          <Route exact path="/teacher/:id_class/:id_access" 
+          component={()=><ListaAlumnos id_access={this.state.id_access} socketUrl={this.state.socketUrl} apiUrl={this.props.apiUrl}/>}  />
+          <Route exact path="/teacher/:id_class/:id_access/azar" 
+          component={() => <Azar id_access={this.state.id_access} socketUrl={this.state.socketUrl}/>} />
+          <Route exact path="/teacher/:id_class/:id_access/grupos" 
+          component={() => <Grupos id_access={this.state.id_access} socketUrl={this.state.socketUrl}/>} />
+          <Route exact path="/teacher/:id_class/:id_access/temporizador" 
+          component={() => <Temporizador id_access={this.state.id_access} socketUrl={this.state.socketUrl}/>} />
+          <Route exact path="/teacher/:id_class/:id_access/pizarra" 
+          component={()=><Pizarra id_access={this.state.id_access} socketUrl={this.state.socketUrl}/>} />
+          <Route exact path="/teacher/:id_class/:id_access/trivia" 
+          component={() => <Trivia id_access={this.state.id_access} socketUrl={this.state.socketUrl}/>} />
           {/* <Route path="/404" component={NotFound} /> */}
           {/* <Redirect from="/" to="/teacher/xxxxx" /> */}
       </Contenido>
