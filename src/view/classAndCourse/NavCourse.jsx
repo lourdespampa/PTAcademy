@@ -1,6 +1,5 @@
 import React, { Component, useState } from "react";
 import {Link} from 'react-router-dom'
-import "../courses/Course.css";
 import { Modal, Button, ButtonToolbar } from "react-bootstrap";
 import FormularioCourse from './FormPostCourse'
 import FormularioClass from './FormPostClass'

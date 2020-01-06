@@ -96,7 +96,7 @@ export default class GrupoPage extends Component {
               value={this.state.nro_per_grupo}
               onChange={this.handleNumPerGrou}
             />
-            <button onClick={this.groupGenerator}>FORMAR GRUPOS</button>
+            <div onClick={this.groupGenerator}>FORMAR GRUPOS</div>
           </div>
           <div className="contenedor-grupos">
             <ul className="grupos-cards" id="imprimir"></ul>
