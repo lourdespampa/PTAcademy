@@ -152,36 +152,36 @@ class Trivia extends React.Component {
         {
         this.state.modal
         ?
-        <div id="myModal" class="modal-respuestas">
+        <div id="myModal" className="modal-respuestas">
         {/* Modal content */}
-          <div class="modal-content-respuestas">
-            <span id="cerrar" class="close" onClick={this.showModal}>x</span>
+          <div className="modal-content-respuestas">
+            <span id="cerrar" className="close" onClick={this.showModal}>x</span>
             <h2>Clasificación</h2>
-              <div class="modal-body-respuestas">
-              <ul class="rolldown-list" id="myList">
-                <li class="lista-contenedora">
+              <div className="modal-body-respuestas">
+              <ul className="rolldown-list" id="myList">
+                <li className="lista-contenedora">
                     <div id="one" style={{display: "inline-block"}}></div>
-                    {/* <img class="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
+                    {/* <img className="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
                     <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
                 </li>
-                <li class="lista-contenedora">
+                <li className="lista-contenedora">
                     <div id="two" style={{display: "inline-block"}}></div>
-                    {/* <img class="imagenClasificacion" src={require('./2do.webp')} width="35"/> */}
+                    {/* <img className="imagenClasificacion" src={require('./2do.webp')} width="35"/> */}
                     <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
                 </li>
-                <li class="lista-contenedora">
+                <li className="lista-contenedora">
                     <div id="three" style={{display: "inline-block"}}></div>
-                    {/* <img class="imagenClasificacion" src={require('./3ro.webp')} width="40"/> */}
+                    {/* <img className="imagenClasificacion" src={require('./3ro.webp')} width="40"/> */}
                     <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
                 </li>
-                <li class="lista-contenedora">
+                <li className="lista-contenedora">
                     <div id="four" style={{display: "inline-block"}}></div>
-                    {/* <img class="imagenClasificacion" src={require('./4to.webp')} width="30"/> */}
+                    {/* <img className="imagenClasificacion" src={require('./4to.webp')} width="30"/> */}
                     <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
                 </li>
-                <li class="lista-contenedora">
+                <li className="lista-contenedora">
                     <div id="five" style={{display: "inline-block"}}></div>
-                    {/* <img class="imagenClasificacion" src={require('./5to.webp')} width="30"/> */}
+                    {/* <img className="imagenClasificacion" src={require('./5to.webp')} width="30"/> */}
                     <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
                 </li>
               </ul>
@@ -198,9 +198,9 @@ class Trivia extends React.Component {
             <Col>
               <div style={{marginTop:"5px"}}>
                 <label className="label" for="pregunta">Pregunta</label>
-                <input type="text" id="pregunta" name="firstname" class="pregunta" value={this.state.pregunta} onChange={this.changeQuestion}/>
+                <input type="text" id="pregunta" name="firstname" className="pregunta" value={this.state.pregunta} onChange={this.changeQuestion}/>
                 <label className="label" for="time">Tiempo</label>
-                <select id="time" name="tiempo" class="pregunta input-tiempo" value={this.state.value} onChange={this.handleChangeTime}>
+                <select id="time" name="tiempo" className="pregunta input-tiempo" value={this.state.value} onChange={this.handleChangeTime}>
                     <option value="5">5 segundos</option>
                     <option value="10">10 segundos</option>
                     <option value="20">20 segundos</option>
@@ -210,8 +210,8 @@ class Trivia extends React.Component {
                 
                 <label className="label" for="res1">Respuesta 1</label>
                 <br/>
-                <div class="resp-grp custom-radios">
-                  <input type="text" id="res1" name="res1" class="input-respuestas" value={this.state.respuestaOne} onChange={this.changeAnswer1} />
+                <div className="resp-grp custom-radios">
+                  <input type="text" id="res1" name="res1" className="input-respuestas" value={this.state.respuestaOne} onChange={this.changeAnswer1} />
                   <input type="radio" id="color-1" name="color" value="rojo" 
                           checked={this.state.selectedCorrectAnswer === 'rojo'}
                           onChange={this.handleCorrectAnswer}
@@ -224,8 +224,8 @@ class Trivia extends React.Component {
                 </div>
                 <label className="label" for="res2">Respuesta 3</label>
                 <br/>
-                <div class="resp-grp custom-radios">
-                  <input type="text" id="res3" name="res2" class="input-respuestas" value={this.state.respuestaTree} onChange={this.changeAnswer3}/>
+                <div className="resp-grp custom-radios">
+                  <input type="text" id="res3" name="res2" className="input-respuestas" value={this.state.respuestaTree} onChange={this.changeAnswer3}/>
                   <input type="radio" id="color-2" name="color" value="naranja"
                           checked={this.state.selectedCorrectAnswer === 'naranja'}
                           onChange={this.handleCorrectAnswer}
@@ -240,17 +240,17 @@ class Trivia extends React.Component {
             </Col>
             <Col>
               <div style={{marginTop:"5px"}}> 
-                <div class="containerRight">
+                <div className="containerRight">
                   <label for="fname">Medio de Comunicación</label>
-                  <div class="image-container">
-                    <input type="file" id="file-input" name="file-input" class="imagen"/>
+                  <div className="image-container">
+                    <input type="file" id="file-input" name="file-input" className="imagen"/>
                     <img id="imgSalida" width="120px" height="100px" src="" />
                   </div>
                 </div>
                 <label className="label" for="res1">Respuesta 2</label>
                 <br/>
-                <div class="resp-grp custom-radios">
-                  <input type="text" id="res2" name="res1" class="input-respuestas" value={this.state.respuestaTwo} onChange={this.changeAnswer2}/>
+                <div className="resp-grp custom-radios">
+                  <input type="text" id="res2" name="res1" className="input-respuestas" value={this.state.respuestaTwo} onChange={this.changeAnswer2}/>
                   <input type="radio" id="color-3" name="color" value="azul" 
                           checked={this.state.selectedCorrectAnswer === 'azul'}
                           onChange={this.handleCorrectAnswer}
@@ -263,8 +263,8 @@ class Trivia extends React.Component {
                 </div>
                 <label className="label" for="res2">Respuesta 4</label>
                 <br/>
-                <div class="resp-grp custom-radios">
-                  <input type="text" id="res4" name="res2" class="input-respuestas" value={this.state.respuestaFour} onChange={this.changeAnswer4}/>
+                <div className="resp-grp custom-radios">
+                  <input type="text" id="res4" name="res2" className="input-respuestas" value={this.state.respuestaFour} onChange={this.changeAnswer4}/>
                   <input type="radio" id="color-4" name="color" value="verde" 
                           checked={this.state.selectedCorrectAnswer === 'verde'}
                           onChange={this.handleCorrectAnswer}
