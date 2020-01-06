@@ -18,10 +18,12 @@ function BotonSalir(props) {
           </Modal.Header>
           <Modal.Body>
           <ButtonToolbar>
-            <Button href='/' variant="primary" size="sm">Si</Button>
-            <br/><br/>
-            <Link ><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>`      `
-            <Button href='/CoursesTeacher/5db74edbae96433b08911b38' variant="primary" size="sm" onClick={handleClose}>Regresar a cursos</Button>
+            <Link to='/' variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
+            <Link><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>`      `
+            {/* falta cambiar esta id_teacher estatica */}
+            <Link to='/CoursesTeacher/5db74edbae96433b08911b38'>
+            <Button variant="primary" size="sm" onClick={handleClose}>Regresar a cursos</Button>
+            </Link>
           </ButtonToolbar>
           </Modal.Body>
         </Modal>
