@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./grupos.css";
+import "./Grupos.sass";
 import axios from "axios";
 import io from 'socket.io-client';
 

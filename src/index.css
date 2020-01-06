@@ -1,3 +1,9 @@
+@font-face {
+  font-family: Opal;
+  src: url('./plugins/Opal.ttf') format('truetype');
+}
+
+
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -27,7 +33,7 @@
 
 body {
   margin: 0;
-  font-family:opal !important;
+  font-family: Opal !important;
   background-color: #F4F4F7;
   width: 100%;
   height: 100%;
@@ -72,8 +78,7 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 
-pre {
-  font-family: monospace, monospace; /* 1 */
+pre { /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -115,8 +120,7 @@ strong {
 
 code,
 kbd,
-samp {
-  font-family: monospace, monospace; /* 1 */
+samp { /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -172,8 +176,7 @@ button,
 input,
 optgroup,
 select,
-textarea {
-  font-family: inherit; /* 1 */
+textarea { /* 1 */
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
