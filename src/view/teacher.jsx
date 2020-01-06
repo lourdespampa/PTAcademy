@@ -8,17 +8,18 @@ import Grupos from '../pages/teacher/Grupos';
 import Temporizador from '../pages/teacher/Temporizador';
 import Trivia from '../pages/teacher/Trivia';
 import Pizarra from '../pages/teacher/Pizarra';
+import Access from '../access'
 //socket initial
 import io from 'socket.io-client';
-const socketUrl="htpp://192.168.1.65:4000/teacher";
 //
 
 export default class Views extends Component {
   constructor(props){
     super(props);
    this.state={
-      class:'clase3',
       socket:null,
+      class:'clase3',
+      socketUrl:"http://192.168.1.65:4000/teacher",
       user:null,
       id:'',
       grabar:false,
@@ -44,7 +45,7 @@ export default class Views extends Component {
     }
   
   initSocket=()=>{
-      const socket=io(socketUrl)
+      const socket=io(this.state.socketUrl,{query:{pin:this.state.id_access}})
       socket.on('connect',()=>{
           console.log("Teacher Connected")
       })
@@ -113,8 +114,10 @@ this.state.grabacion.map(grab=>(
 render(){
   return (
     <BrowserRouter>
-      <Contenido id_access={this.state.id_access} id_class={this.state.id_class} socket={this.state.socket} botonClick={this.botonClick} grabar={this.grabar} reproclick={this.reproclick} changeOn={this.changeOn} txt={this.state.txt}>
-        <Switch>
+    <Switch>
+        <Route exact path="/" component={()=><Access/>} />
+        <Route exact path="/CoursesTeacher/:id" component={(props)=><Access {...props} apiUrl={this.state.apiUrl} />} />
+      <Contenido id_access={this.state.id_access} socket={this.state.socket} id_class={this.state.id_class} socketUrl={this.state.socketUrl} botonClick={this.botonClick} grabar={this.grabar} reproclick={this.reproclick} changeOn={this.changeOn} txt={this.state.txt}>
           <Route exact path="/teacher/:id_class/:id_access" component={()=><ListaAlumnos id_access={this.state.id_access} apiUrl={this.props.apiUrl}/>}  />
           <Route exact path="/teacher/:id_class/:id_access/azar" component={() => <Azar id_access={this.state.id_access}/>} />
           <Route exact path="/teacher/:id_class/:id_access/grupos" component={() => <Grupos id_access={this.state.id_access}/>} />
@@ -123,8 +126,8 @@ render(){
           <Route exact path="/teacher/:id_class/:id_access/trivia" component={() => <Trivia botonClick={this.botonClick}/>} />
           {/* <Route path="/404" component={NotFound} /> */}
           {/* <Redirect from="/" to="/teacher/xxxxx" /> */}
-        </Switch>
       </Contenido>
+      </Switch>
     </BrowserRouter>
   );}
 }

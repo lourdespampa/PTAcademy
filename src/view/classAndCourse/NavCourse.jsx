@@ -11,7 +11,7 @@ function BotonAgregar(props) {
   const AgregarClick=()=>setShow(false)+props.getdata
   return (
     <>
-      <button variant="primary" onClick={handleShow}>
+      <button variant="primary" className="btn card_btn" style={{color:'#fff'}} onClick={handleShow}>
         Agregar {props.agregarX}
       </button>
       <Modal show={show} onHide={handleClose} animation={false}>
@@ -35,7 +35,7 @@ function BotonCerrarSesion() {
   const handleShow = () => setShow(true);
   return (
     <>
-      <button variant="primary" onClick={handleShow}>
+      <button className="btn card_btn" style={{color:'#fff'}} onClick={handleShow}>
         Cerrar sesion
       </button>
       <Modal show={show} onHide={handleClose} animation={false}>
@@ -66,20 +66,14 @@ export default class NavCourse extends Component {
             />
             <div className="navegador-title">{this.props.nombreProfesor}</div>
           </div>
-          <div className="navegador-btn">
-            <label htmlFor="navegador-check">
-              <span></span>
-              <span></span>
-              <span></span>
-            </label>
-          </div>
-          <div className="navegador-links">
-            <BotonAgregar apiUrl={this.props.apiUrl} idteacher={this.props.idteacher} idcourse={this.props.idcourse} agregarX={this.props.agregarX}
-             getdata={this.props.getdata}></BotonAgregar>
-          </div>
           <div className="navegador-links">
             <BotonCerrarSesion />
           </div>
+          <div className="navegador-links">
+            <BotonAgregar  apiUrl={this.props.apiUrl} idteacher={this.props.idteacher} idcourse={this.props.idcourse} agregarX={this.props.agregarX}
+             getdata={this.props.getdata}></BotonAgregar>
+          </div>
+          
         </div>
         <div
           className="modal fade"

@@ -44,8 +44,11 @@ const teacherSocket = (io) => {
         //END FORN
           //SLIDES
           socket.on('sendSlides',()=>{
-            Student.emit('sendSlidesS')
-        })
+            Student.emit('sendSlidesS',{
+                pin: socket.handshake.query.pin
+            });
+            console.log(socket.handshake.query.pin);
+        });
 
         socket.on('nextPpt',()=>{
             Student.emit('nextPptS')

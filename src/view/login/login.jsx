@@ -19,6 +19,7 @@ export default function App(props) {
   //Funcion cuando cambia el value de los inputs
   const handleChangeInputs = event => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
+ 
   };
 
   //el estado inputs se destructura en correo y contraseña
@@ -62,7 +63,7 @@ export default function App(props) {
       let emailGoogle = result.user.email
       let photoURL = result.user.photoURL
       //enviamos los datos a la API
-      const { data } = await axios.post(`${URL}/signin`, {"fuente": "google", displayName, "email": emailGoogle, photoURL });
+      const { data } = await axios.post(`${props.apiUrl}/signin`, {"fuente": "google", displayName, "email": emailGoogle, photoURL });
       const { user, token } = data;
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
@@ -78,6 +79,7 @@ export default function App(props) {
       console.log(e)
     })
   }
+
 
   return (
     <div>

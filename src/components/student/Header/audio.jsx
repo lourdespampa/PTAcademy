@@ -101,10 +101,11 @@ export default class Audio extends Component {
        
         //SLIDES
 
-        socket.on('sendSlidesS', () => {
+        socket.on('sendSlidesS', (data) => {
+            if(data.pin == ('ZWKÑV').toUpperCase()) {
             const overlayDiapo = document.getElementById('overlay')
             const popupDiapo = document.getElementById('popup')
-            this.openPopup(overlayDiapo.id, popupDiapo.id)
+            this.openPopup(overlayDiapo.id, popupDiapo.id)}
         })
 
         socket.on('nextPptS', () => {
