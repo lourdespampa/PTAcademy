@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Redirect,Link } from "react-router-dom";
-import axios from 'axios'
-import './loginStu.css'
-import robot from './images/playtecrobot.gif'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "./loginStu.sass";
+import robot from "./images/playtecrobot.gif";
 
 export default class FormLoginStu extends Component {
 
@@ -106,19 +106,7 @@ export default class FormLoginStu extends Component {
               </div>
             </div>
           </div>
-
-
-
-
-
-
-
         </div>
-        )
-    }
-
+    );
+  }
 }
-
-
-
-

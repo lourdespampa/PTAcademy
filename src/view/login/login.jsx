@@ -52,7 +52,7 @@ export default function App(props) {
       console.log(err)
       getMessage({
         userState: null,
-        message: "Email and password incorrects!!",
+        message: "Correo o contraseña incorrecta!!",
         token: null
       });
       setLoading({ loading: false });

@@ -1,6 +1,6 @@
-import React,{useState} from 'react'
-import {Link,Redirect} from 'react-router-dom'
-import './headerStyles.css'
+import React, {useState} from 'react'
+import {Link, Redirect} from 'react-router-dom'
+import './headerStyles.sass'
 import Audio from './audio'
 import axios from 'axios'
 

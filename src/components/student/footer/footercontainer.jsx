@@ -1,5 +1,5 @@
 import React from 'react';
-import './footerStyles.css';
+import './footerStyles.sass';
 
 export default function footercontainer(props) {
   return (

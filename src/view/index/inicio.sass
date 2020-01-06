@@ -1,0 +1,202 @@
+
+.login-contenedor
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 0.75)),url('./bg-login-teacher.webp')
+    background-size: cover
+    background-position: center
+    background-repeat: no-repeat
+    height: 100vh
+
+.login-general
+    position: absolute
+    width: 80%
+    height: 83%
+    top: 30px
+    left: 0
+    right: 0
+    margin: 40px auto
+    box-sizing: border-box
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+    border-radius: 15px
+
+.login-imagen-robot
+    position: absolute
+    width: 99%
+    display: flex
+    justify-content: center
+    align-items: center
+
+.login-robot
+    position: absolute
+    width: 125px
+    height: 118px
+    top: -25px
+
+.login-iniciar
+    text-align: center
+    margin-block-start: 2.8em
+    margin-block-end: 0.8em
+    font-family: sans-serif !important
+    font-size: 2em
+    font-weight: bold
+    color: #ffffff
+
+.login-hijo
+    background-color: yellow
+    padding: 10px
+    margin: 10px
+    display: inline-block
+
+.login-cuerpo
+    text-align: center
+    margin: auto
+    width: 99%
+    height: auto
+    display: flex
+    justify-content: center
+
+.login-izquierda
+    display: inline-block
+    width: 250px
+    min-width: 210px
+    height: 300px
+    margin: 0 35px
+    background: #38C0F6
+    border: 5px solid #FFFFFF
+    box-sizing: border-box
+    border-radius: 15px
+    box-shadow: 10px 10px 25px 0px rgba(0,0,0,0.6)
+    transition: all 300ms
+    padding-top: 25px
+    &:hover
+        transform: scale(1.1)
+        box-shadow: 10px 10px 25px 2px rgba(0,0,0,0.75)
+
+.login-centro
+    display: inline-block
+    width: 250px
+    min-width: 210px
+    height: 300px
+    margin: 0 35px
+    background: #C13077
+    border: 5px solid #FFFFFF
+    box-sizing: border-box
+    border-radius: 15px
+    box-shadow: 10px 10px 25px 0px rgba(0,0,0,0.6)
+    transition: all 300ms
+    padding-top: 25px
+    &:hover
+        transform: scale(1.1)
+        box-shadow: 10px 10px 25px 2px rgba(0,0,0,0.75)
+
+.login-derecha
+    display: inline-block
+    width: 250px
+    min-width: 210px
+    height: 300px
+    margin: 0 35px
+    background: #61CF28
+    border: 5px solid #FFFFFF
+    box-sizing: border-box
+    border-radius: 15px
+    box-shadow: 10px 10px 25px 0px rgba(0,0,0,0.6)
+    transition: all 300ms
+    padding-top: 25px
+
+.login-alumno
+    width: 149px
+    height: 145px
+    margin-top: 16px
+
+.login-house
+    width: 138px
+    height: 160px
+    padding-top: 18px
+
+.login-teacher
+    width: 143px
+    height: 155px
+    padding-top: 15px
+
+.login-students
+    margin-block-start: 0.57em
+    font-family: Rounded Mplus 1c Bold
+    font-weight: bold
+    font-size: 35px
+    color: #FFFFFF
+
+.login-profesora
+    margin-block-start: 0.67em
+    font-family: Rounded Mplus 1c Bold
+    font-weight: bold
+    font-size: 35px
+    color: #FFFFFF
+
+.login-parents
+    margin-block-start: 0.67em
+    font-family: Rounded Mplus 1c Bold
+    font-weight: bold
+    font-size: 30px
+    color: #ffff
+
+@media screen and (max-width: 800px)
+    #root
+        padding-top: 0
+
+@media (max-width: 1000px)
+    .login-cuerpo
+        margin: auto
+        width: 99%
+        min-width: 475px
+        height: auto
+        display: inline-block
+        justify-content: center
+    .login-izquierda
+        width: 90%
+        min-width: 0
+        height: 100px
+        text-align: center
+        margin: 5px 0
+        border: 3px solid #FFFFFF
+    .login-centro
+        width: 90%
+        min-width: 50px
+        height: 100px
+        text-align: center
+        margin: 10px 0
+        border: 3px solid #FFFFFF
+    .login-derecha
+        width: 90%
+        min-width: 50px
+        height: 100px
+        text-align: center
+        margin: 10px 0
+        border: 3px solid #FFFFFF
+    .login-alumno
+        display: none
+    .login-teacher
+        display: none
+    .login-house
+        display: none
+    .login-students
+        margin-block-start: 0
+    .login-profesora
+        margin-block-start: 0
+
+
+@media (max-width: 600px)
+    .login-iniciar
+        text-align: center
+        margin-block-start: 2.8em
+        margin-block-end: 0.4em
+    .login-cuerpo
+        min-width: 0
+    .login-izquierda
+        height: 85px
+    .login-centro
+        height: 85px
+    .login-derecha
+        height: 85px
+    .login-students
+        margin-block-end: 0.4em
+    .login-profesora
+        margin-block-end: 0.4em
