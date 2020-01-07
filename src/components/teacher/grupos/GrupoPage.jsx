@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import "./Grupos.sass";
 import axios from "axios";
+import io from 'socket.io-client';
+
 
 const url = "http://3.16.110.136:4200";
+
+const socketUrl="http://192.168.1.65:4000/teacher";
+const socket = io(socketUrl)
 export default class GrupoPage extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +15,7 @@ export default class GrupoPage extends Component {
       alumnos: [],
       nro_per_grupo: 1,
       grupos: [],
+      socket:null,
       id_access : ''
     };
   }
@@ -68,6 +74,10 @@ export default class GrupoPage extends Component {
       `;
     }
     document.getElementById("imprimir").innerHTML = cadena;
+    socket.emit('enviando grupos',{
+        data : cadena
+    })
+    console.log(cadena)
   };
 
   render() {
@@ -86,7 +96,7 @@ export default class GrupoPage extends Component {
               value={this.state.nro_per_grupo}
               onChange={this.handleNumPerGrou}
             />
-            <button onClick={this.groupGenerator}>FORMAR GRUPOS</button>
+            <div onClick={this.groupGenerator}>FORMAR GRUPOS</div>
           </div>
           <div className="contenedor-grupos">
             <ul className="grupos-cards" id="imprimir"></ul>

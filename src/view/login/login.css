@@ -1,69 +1,254 @@
-
-@media (min-width: 992px) {
-  .login-navbar-expand-lg .btn-profesor {
-    display: none;
-  }
-}
-@media (max-width: 600px) {
-  #btnVerAlumnos {
-    left: 0 !important;
-  }
-
-  #btnVerAlumnos .img-rbt {
-    width: 130px;
-  }
-  #btnVerAlumnos i {
-    margin: 44px 20px 0 10px !important;
-  }
-}
-
-.navbar-brand{
-  font-size: 21px !important;
-}
-
-.nav-link{
-  font-size: 15px !important;
-}
-
-.card-login .form{
-  min-height: 380px;
-}
-
-.footerLogin {
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Oswald|Roboto);
+.loginTeacher {
   position: absolute;
-  bottom: 0;
-  left: 0px;
-  text-align: start;
-  cursor: pointer;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 0px 100px 0px 0px;
-  -moz-border-radius: 0px 100px 0px 0px;
-  -webkit-border-radius: 0px 100px 0px 0px;
-  padding-top: 5px;
-  padding-right: 20px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+  background-color: #5356ad;
+  overflow: hidden;
 }
 
-.wrapper2 {
-  width: 800px;
-  margin: 0;
-  padding-bottom: 0;
+.loginTeacher-table {
+  display: table;
+  width: 100%;
+  height: 100%;
 }
-.espacio {
-  margin-top: 20px;
+
+.loginTeacher-table-cell {
+  display: table-cell;
+  vertical-align: middle;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
+
+.loginTeacher-subtitle{
+  margin: 0 auto 15px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.loginTeacher-container {
+  position: relative;
+  width: 600px;
+  margin: 30px auto 0;
+  height: 320px;
+  background-color: #999ede;
+  top: 50%;
+  margin-top: -160px;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.loginTeacher-container .box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.loginTeacher-container .box:before, .loginTeacher-container .box:after {
+  content: " ";
+  position: absolute;
+  left: 152px;
+  top: 50px;
+  background-color: #9297e0;
+  transform: rotateX(52deg) rotateY(15deg) rotateZ(-38deg);
+  width: 300px;
+  height: 285px;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.loginTeacher-container .box:after {
+  background-color: #a5aae4;
+  top: -10px;
+  left: 80px;
+  width: 320px;
+  height: 180px;
+}
+.loginTeacher-container .container-forms {
+  position: relative;
+}
+.loginTeacher-container .btn {
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  margin: 0 auto;
+  width: 100px;
+  color: #fff;
+  background-color: #ff73b3;
+  opacity: 1;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.loginTeacher-container .btn:hover {
+  opacity: 0.7;
+}
+.loginTeacher-container .btn, .loginTeacher-container input {
+  padding: 10px 15px;
+}
+.loginTeacher-container input {
+  margin: 0 auto 15px;
+  display: block;
+  width: 220px;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.loginTeacher-container .container-forms .container-info {
+  text-align: left;
+  font-size: 0;
+}
+.loginTeacher-container .container-forms .container-info .info-item {
+  text-align: center;
+  font-size: 16px;
+  width: 300px;
+  height: 320px;
+  display: inline-block;
+  vertical-align: top;
+  color: #fff;
+  opacity: 1;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.loginTeacher-container .container-forms .container-info .info-item p {
+  font-size: 20px;
+  margin: 20px;
+}
+.loginTeacher-container .container-forms .container-info .info-item .btn {
+  background-color: transparent;
+  border: 1px solid #fff;
+}
+.loginTeacher-container .container-forms .container-info .info-item .loginTeacher-table-cell {
+  padding-right: 35px;
+}
+.loginTeacher-container .container-forms .container-info .info-item:nth-child(2) .loginTeacher-table-cell {
+  padding-left: 35px;
+  padding-right: 0;
+}
+.loginTeacher-container .container-form {
+  overflow: hidden;
+  position: absolute;
+  left: 30px;
+  top: -30px;
+  width: 305px;
+  height: 380px;
+  background-color: #fff;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.loginTeacher-container .container-form .btn {
+  position: relative;
+  box-shadow: 0 0 10px 1px #ff73b3;
+  margin-top: 30px;
+}
+
+.loginTeacher-container .form-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.loginTeacher-container .form-item.sign-up {
+  position: absolute;
+  left: -100%;
+  opacity: 0;
+}
+.loginTeacher-container.log-in .box:before {
+  position: absolute;
+  left: 180px;
+  top: 62px;
+  height: 265px;
+}
+.loginTeacher-container.log-in .box:after {
+  top: 22px;
+  left: 192px;
+  width: 324px;
+  height: 220px;
+}
+.loginTeacher-container.log-in .container-form {
+  left: 265px;
+}
+.loginTeacher-container.log-in .container-form .form-item.sign-up {
+  left: 0;
+  opacity: 1;
+}
+.loginTeacher-container.log-in .container-form .form-item.log-in {
+  left: -100%;
+  opacity: 0;
+}
+.loginTeacher-container.active {
+  width: 260px;
+  height: 140px;
+  margin-top: -70px;
+}
+.loginTeacher-container.active .container-form {
+  left: 30px;
+  width: 200px;
+  height: 200px;
+}
+.loginTeacher-container.active .container-form:before {
+  content: "✔";
+  position: absolute;
+  left: 51px;
+  top: 5px;
+  color: #5356ad;
+  font-size: 130px;
+  opacity: 1;
+}
+.loginTeacher-container.active input, .loginTeacher-container.active .btn, .loginTeacher-container.active .info-item {
+  display: none;
+  opacity: 0;
+  padding: 0px;
+  margin: 0 auto;
+  height: 0;
+}
+.loginTeacher-container.active .form-item {
+  height: 100%;
+}
+.loginTeacher-container.active .container-forms .container-info .info-item {
+  height: 0%;
+  opacity: 0;
+}
+
+/* Boton logeo con Google */
+
 .button-google {
   float: left;
   font-family: Roboto, arial, sans-serif;
   color: #ffffff !important;
   background: #4285f4;
-  min-width: 100%;
-  height: 48px;
+  min-width: 95%;
+  height: 40px;
+  margin: 10px 0 0 6px;
   text-align: center;
   user-select: none;
   font-size: 15px;
   font-weight: 500;
-  line-height: 48px;
+  line-height: 40px;
   letter-spacing: 0.21px;
   border: #4285f4 1px solid;
   border-radius: 100px;
@@ -77,7 +262,7 @@
   float: left;
   border-radius: 100px;
   background: #ffffff;
-  width: 46px;
+  width: 18px;
   padding: 11px;
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
   transition: transform 0.5s ease-in-out;
@@ -87,25 +272,27 @@
   transform: rotate(360deg);
 }
 
-.loading{
-  margin-left: 40%;
-}
-.login-background{
-  position: absolute;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-}
-.login-navbar-brand{
-  right: 0px;
-}
-.login-container{
-  margin-left: 0px;
-}
-.container-login-form{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
+/* linea intermedia entre login normal y login con google*/
+
+.linea {
+  margin: 0 auto 15px;
+  width: 40px;    
+  border-top:1px solid #999;
+  position: relative;
+  top: 13px;
+  float:left;
+  }
+
+.leyenda {
+  margin-top: 5px;
+  font-size: 12px;
+  float:left;
+ }
+
+ /* loading */
+ .login-loading{
+   margin-left: 45%;
+   margin-top: 45px;
+ }
+
+

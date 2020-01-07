@@ -93,40 +93,46 @@ export default class Audio extends Component {
     componentDidMount() {
         
         //liSTA
-        socket.on('RemoveStudS',()=>{
-        document.getElementById('ReturnToLogin2').click()
+        socket.on('RemoveStudS',(data)=>{
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+                document.getElementById('ReturnToLogin2').click()
+            }
         })
         //END LISTA
        
        
         //SLIDES
 
-        socket.on('sendSlidesS', () => {
+        socket.on('sendSlidesS', (data) => {
+            if(data.pin == (this.props.id_access).toUpperCase()) {
             const overlayDiapo = document.getElementById('overlay')
             const popupDiapo = document.getElementById('popup')
-            this.openPopup(overlayDiapo.id, popupDiapo.id)
+            this.openPopup(overlayDiapo.id, popupDiapo.id)}
         })
 
-        socket.on('nextPptS', () => {
-            this.nextPpt()
+        socket.on('nextPptS', (data) => {
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+            this.nextPpt()}
         })
 
-        socket.on('backtPptS', () => {
-            this.backtPpt()
+        socket.on('backtPptS', (data) => {
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+            this.backtPpt()}
         })
 
-        socket.on('closeSlidesS', () => {
+        socket.on('closeSlidesS', (data) => {
+            if(data.pin == (this.props.id_access).toUpperCase()) {
             const overlayDiapo = document.getElementById('overlay')
             const popupDiapo = document.getElementById('popup')
-            this.closePopup(overlayDiapo.id, popupDiapo.id)
+            this.closePopup(overlayDiapo.id, popupDiapo.id)}
         })
 
         //SLIDES END
         //VIDEO
 
-        socket.on('Video', (url) => {
-
-            this.enviarvideo(url)
+        socket.on('Video', (data) => {
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+            this.enviarvideo(data.url)}
         })
 
         // FIN VIDEO

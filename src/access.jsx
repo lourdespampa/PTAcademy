@@ -14,7 +14,6 @@ import Index from './view/index/Inicio'
 export default class Access extends Component {
     state={
     apiUrl:'http://3.16.110.136:4200',
-    socketUrl:''
     }
     render() {
         return (
@@ -28,7 +27,7 @@ export default class Access extends Component {
                     <Route exact path="/:id_teacher/ClassTeacher/:_id" component={(props)=><ClassTeacher {...props} apiUrl={this.state.apiUrl} />} />
                     <Route exact path="/ClassDetailTeacher" component={()=><ClassDetailTeacher apiUrl={this.state.apiUrl} />} />
                     <Route path="/teacher/:id_class/:id_access" component={(props)=><Teacher {...props} apiUrl={this.state.apiUrl} />}  />
-                    <Route path="/student/:id_access" component={(props) => <Student {...props} apiUrl={this.state.apiUrl}/>}  />
+                    <Route path="/student/:id_student/:id_access" component={(props) => <Student {...props} apiUrl={this.state.apiUrl}/>}  />
                     <Route component={NotFound} />
                 </Switch>
             </BrowserRouter>

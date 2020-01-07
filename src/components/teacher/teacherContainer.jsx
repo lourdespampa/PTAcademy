@@ -12,15 +12,15 @@ export default class Contenido extends Component {
         return (
                <>
                <div id="div_head">
-            <Header id_access={this.props.id_access} id_class={this.props.id_class} socket={this.props.socket} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
+            <Header id_access={this.props.id_access} id_class={this.props.id_class} socketUrl={this.props.socketUrl} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
             </div>
-            <Left socket={this.props.socket} view={`/teacher/${this.props.id_class}/${this.props.id_access}/pizarra`} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
+            <Left socketUrl={this.props.socketUrl} view={`/teacher/${this.props.id_class}/${this.props.id_access}/pizarra`} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
             <div id="div_children">
             {children}
             </div>
             <Test/>
             <div id="div_foot">
-            <Footer socket={this.props.socket}  botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick} 
+            <Footer socket={this.props.socket} socketUrl={this.props.socketUrl} id_access={this.props.id_access} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick} 
             changeOn={this.props.changeOn} txt={this.props.txt} />
             </div>
         </>  

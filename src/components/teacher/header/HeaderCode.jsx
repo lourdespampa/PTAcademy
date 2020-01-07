@@ -18,10 +18,12 @@ function BotonSalir(props) {
           </Modal.Header>
           <Modal.Body>
           <ButtonToolbar>
-            <Button href='/' variant="primary" size="sm">Si</Button>
-            <br/><br/>
-            <Link ><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>`      `
-            <Button href='/CoursesTeacher/5db74edbae96433b08911b38' variant="primary" size="sm" onClick={handleClose}>Regresar a cursos</Button>
+            <Link to='/' variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
+            <Link><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>`      `
+            {/* falta cambiar esta id_teacher estatica */}
+            <Link to='/CoursesTeacher/5db74edbae96433b08911b38'>
+            <Button variant="primary" size="sm" onClick={handleClose}>Regresar a cursos</Button>
+            </Link>
           </ButtonToolbar>
           </Modal.Body>
         </Modal>
@@ -36,13 +38,28 @@ function HeaderCode(props){
                 <h1>
                     Nombre del clase : {props.nombre_clase}
                 </h1>
-            </div>
+            </div>         
+            <nav role="navigation">
+                <div id="menuToggle">
+                    <input type="checkbox"/>
+                        <span className="hamburguesa-span"></span>
+                        <span className="hamburguesa-span"></span>
+                        <span className="hamburguesa-span"></span>
+                        <ul id="menu-header">
+                            <li><Link className="lista"  to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA DE ALUMNOS</Link></li>    
+                            <li><Link className="azar"   to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
+                            <li><Link className="grupos" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
+                            <li><Link className="tempor" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
+                            <li><Link className="trivia" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
+                        </ul>
+                </div>
+            </nav>
             <div className="code-detail">
                 <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
-                    <span>Código:</span>
-                    <h3>
+                    <class className="code">Código:</class>
+                    <div className="codigo-generado">
                        {props.id_access}
-                    </h3>
+                    </div>
                 </a>
             </div>
             <div className="code-menu-detail">
