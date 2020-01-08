@@ -8,6 +8,9 @@
   height: 100%;
   font-family: "Roboto", sans-serif;
   background-color: #5356ad;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 
@@ -18,6 +21,7 @@
 }
 
 .loginTeacher-table-cell {
+  box-sizing: content-box !important;
   display: table-cell;
   vertical-align: middle;
   -moz-transition: all 0.5s;
@@ -29,7 +33,9 @@
 .loginTeacher-subtitle{
   margin: 0 auto 15px;
   text-align: center;
-  font-size: 24px;
+  font-size: 1.5em;
+  font-weight: bold;
+  letter-spacing: normal;
 }
 
 .loginTeacher-container {
@@ -37,7 +43,7 @@
   width: 600px;
   margin: 30px auto 0;
   height: 320px;
-  background-color: #999ede;
+  
   top: 50%;
   margin-top: -160px;
   -moz-transition: all 0.5s;
@@ -45,7 +51,8 @@
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-.loginTeacher-container .box {
+.loginTeacher-container .loginTeacher-box {
+  background:rgba(0, 0, 0, 0.5);
   position: absolute;
   left: 0;
   top: 0;
@@ -53,7 +60,7 @@
   height: 100%;
   overflow: hidden;
 }
-.loginTeacher-container .box:before, .loginTeacher-container .box:after {
+.loginTeacher-container .loginTeacher-box:before, .loginTeacher-container .loginTeacher-box:after {
   content: " ";
   position: absolute;
   left: 152px;
@@ -67,22 +74,22 @@
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-.loginTeacher-container .box:after {
+.loginTeacher-container .loginTeacher-box:after {
   background-color: #a5aae4;
   top: -10px;
   left: 80px;
   width: 320px;
   height: 180px;
 }
-.loginTeacher-container .container-forms {
+.loginTeacher-container .loginTeacher-container-forms {
   position: relative;
 }
-.loginTeacher-container .btn {
+.loginTeacher-container .loginTeacher-btn {
   border: none;
   cursor: pointer;
   text-align: center;
   margin: 0 auto;
-  width: 100px;
+  width: 130px;
   color: #fff;
   background-color: #ff73b3;
   opacity: 1;
@@ -91,26 +98,28 @@
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-.loginTeacher-container .btn:hover {
+.loginTeacher-container .loginTeacher-btn:hover {
   opacity: 0.7;
 }
-.loginTeacher-container .btn, .loginTeacher-container input {
+.loginTeacher-container .loginTeacher-btn, .loginTeacher-container input {
   padding: 10px 15px;
 }
 .loginTeacher-container input {
   margin: 0 auto 15px;
+  border: none;
   display: block;
   width: 220px;
+  font-size: 14px;
   -moz-transition: all 0.3s;
   -o-transition: all 0.3s;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.loginTeacher-container .container-forms .container-info {
+.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info {
   text-align: left;
   font-size: 0;
 }
-.loginTeacher-container .container-forms .container-info .info-item {
+.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item {
   text-align: center;
   font-size: 16px;
   width: 300px;
@@ -124,29 +133,29 @@
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.loginTeacher-container .container-forms .container-info .info-item p {
+.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item p {
   font-size: 20px;
   margin: 20px;
 }
-.loginTeacher-container .container-forms .container-info .info-item .btn {
+.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item .loginTeacher-btn {
   background-color: transparent;
   border: 1px solid #fff;
 }
-.loginTeacher-container .container-forms .container-info .info-item .loginTeacher-table-cell {
+.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item .loginTeacher-table-cell {
   padding-right: 35px;
 }
-.loginTeacher-container .container-forms .container-info .info-item:nth-child(2) .loginTeacher-table-cell {
+.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item:nth-child(2) .loginTeacher-table-cell {
   padding-left: 35px;
   padding-right: 0;
 }
-.loginTeacher-container .container-form {
+.loginTeacher-container .loginTeacher-container-form {
   overflow: hidden;
   position: absolute;
   left: 30px;
   top: -30px;
   width: 305px;
   height: 380px;
-  background-color: #fff;
+  background-color: rgb(230, 230, 230);
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   -moz-transition: all 0.5s;
   -o-transition: all 0.5s;
@@ -154,13 +163,13 @@
   transition: all 0.5s;
 }
 
-.loginTeacher-container .container-form .btn {
+.loginTeacher-container .loginTeacher-container-form .loginTeacher-btn {
   position: relative;
   box-shadow: 0 0 10px 1px #ff73b3;
   margin-top: 30px;
 }
 
-.loginTeacher-container .form-item {
+.loginTeacher-container .loginTeacher-form-item {
   position: absolute;
   left: 0;
   top: 0;
@@ -172,31 +181,31 @@
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-.loginTeacher-container .form-item.sign-up {
+.loginTeacher-container .loginTeacher-form-item.sign-up {
   position: absolute;
   left: -100%;
   opacity: 0;
 }
-.loginTeacher-container.log-in .box:before {
+.loginTeacher-container.log-in .loginTeacher-box:before {
   position: absolute;
   left: 180px;
   top: 62px;
   height: 265px;
 }
-.loginTeacher-container.log-in .box:after {
+.loginTeacher-container.log-in .loginTeacher-box:after {
   top: 22px;
   left: 192px;
   width: 324px;
   height: 220px;
 }
-.loginTeacher-container.log-in .container-form {
+.loginTeacher-container.log-in .loginTeacher-container-form {
   left: 265px;
 }
-.loginTeacher-container.log-in .container-form .form-item.sign-up {
+.loginTeacher-container.log-in .loginTeacher-container-form .loginTeacher-form-item.sign-up {
   left: 0;
   opacity: 1;
 }
-.loginTeacher-container.log-in .container-form .form-item.log-in {
+.loginTeacher-container.log-in .loginTeacher-container-form .loginTeacher-form-item.log-in {
   left: -100%;
   opacity: 0;
 }
@@ -205,45 +214,37 @@
   height: 140px;
   margin-top: -70px;
 }
-.loginTeacher-container.active .container-form {
+.loginTeacher-container.active .loginTeacher-container-form {
   left: 30px;
   width: 200px;
   height: 200px;
 }
-.loginTeacher-container.active .container-form:before {
-  content: "✔";
-  position: absolute;
-  left: 51px;
-  top: 5px;
-  color: #5356ad;
-  font-size: 130px;
-  opacity: 1;
-}
-.loginTeacher-container.active input, .loginTeacher-container.active .btn, .loginTeacher-container.active .info-item {
+
+.loginTeacher-container.active input, .loginTeacher-container.active .loginTeacher-btn, .loginTeacher-container.active .loginTeacher-info-item {
   display: none;
   opacity: 0;
   padding: 0px;
   margin: 0 auto;
   height: 0;
 }
-.loginTeacher-container.active .form-item {
+.loginTeacher-container.active .loginTeacher-form-item {
   height: 100%;
 }
-.loginTeacher-container.active .container-forms .container-info .info-item {
+.loginTeacher-container.active .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item {
   height: 0%;
   opacity: 0;
 }
 
 /* Boton logeo con Google */
 
-.button-google {
+.loginTeacher-button-google {
   float: left;
   font-family: Roboto, arial, sans-serif;
   color: #ffffff !important;
   background: #4285f4;
-  min-width: 95%;
+  min-width: 90%;
   height: 40px;
-  margin: 10px 0 0 6px;
+  margin: 10px 0 0 13px;
   text-align: center;
   user-select: none;
   font-size: 15px;
@@ -255,19 +256,19 @@
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
   transition: background-color 0.18s, border-color 0.18s, box-shadow 0.18s;
 }
-.button-google:hover {
+.loginTeacher-button-google:hover {
   box-shadow: 0px 0px 15px 0px rgba(66, 133, 244, 0.75);
 }
-.google-icon {
+.loginTeacher-google-icon {
   float: left;
   border-radius: 100px;
   background: #ffffff;
-  width: 18px;
+  width: 38px;
   padding: 11px;
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
   transition: transform 0.5s ease-in-out;
 }
-.button-google:hover .google-icon {
+.loginTeacher-button-google:hover .loginTeacher-google-icon {
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg);
 }
@@ -295,4 +296,12 @@
    margin-top: 45px;
  }
 
+
+/* Media queries a partir de 600 px */
+
+@media (max-width: 600px) {
+  .facet_sidebar {
+    display: none;
+  }
+}
 
