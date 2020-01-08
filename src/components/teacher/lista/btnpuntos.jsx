@@ -1,18 +1,22 @@
 import React from 'react'
-export const BtnPuntos = ({imgen,title,fuction}) => {
+export const BtnPuntos = ({data,funcion}) => {
     
     return (
         <>
-            <button id="puntomas" type="button" onClick={fuction} className="punto-marco" >
+        {
+            data.map(point=>(
+            <button id="" type="button" onClick={()=>funcion(point.valor)} className="punto-marco" >
                 <div className="punto-marco2">
                     <div className="punto-marco3">
-                    <img className="punto-img" src={imgen} alt="punto1" />
+                    <img className="punto-img" src={point.imgen} alt="punto1" />
                     </div>
                 </div>
                 <div className="punto-texto">
-                    <i>{title}</i>
+                    <i>{point.title}</i>
                 </div>
             </button>
+            ))
+            }
         </>
     )
 }

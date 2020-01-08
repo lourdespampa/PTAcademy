@@ -6,8 +6,6 @@ import "../courses/Course.sass";
 import {Modal} from 'react-bootstrap'
 export default class CoursesTeacher extends Component {
 
-  finalizarComponente = false
-
   constructor(props){
     super(props)
     this.state = {
@@ -20,20 +18,17 @@ export default class CoursesTeacher extends Component {
   }
 
   componentDidMount() {
-    this.finalizarComponente = true
     //obtenemos el id de la url pasada a través de las propiedades
     const { match: { params } } = this.props;
     this.setState({_id: params.id})
     //luego, obtenemos la lista de cursos del profesor por petición a la API
     axios.get(`${this.props.apiUrl}/v1/api/teacher/${params.id}/course_detail`).then( ({ data }) => {
       // console.log(data)
-      if(this.finalizarComponente){
         if(data == []){
           this.setState({courses: []})
         }else{
           this.setState({courses: data})
         }
-      }
     })
     .catch( e => console.log(e))
     axios.get(`${this.props.apiUrl}/v1/api/admin/user/${params.id}`).then(({data})=>{
@@ -42,12 +37,9 @@ export default class CoursesTeacher extends Component {
     })
   }
 
-  componentWillUnmount(){
-    this.finalizarComponente = false
-  }
-
   getCursos(){
-    axios.get(`${this.props.apiUrl}/v1/api/teacher/${this.state._id}/course_detail`).then( ({ data }) => {
+    const { match: { params } } = this.props;
+    axios.get(`${this.props.apiUrl}/v1/api/teacher/${params.id}/course_detail`).then( ({ data }) => {
       // console.log(data)
       if(this.finalizarComponente){
         if(data == []){

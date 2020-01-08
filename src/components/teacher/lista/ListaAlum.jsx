@@ -10,8 +10,9 @@ import Modal from 'react-bootstrap/Modal';
 const socketUrl="http://192.168.1.65:4000/teacher";
 const socket = io(socketUrl)
 export default class ListaAlum extends Component {
-   
-        state={
+    constructor(props) {
+        super(props);
+        this.state={
             id_access:'',
                 modals:{
                     showpuntosmas:false,
@@ -28,23 +29,26 @@ export default class ListaAlum extends Component {
             students:[],
             fileName: 'Nota de alumnos',
             datapoint:{
-                pocitivo:[{imgen:require('../../../img/lista/punto1.png'),title:'Ayuda a Otros'},
-                    {imgen:require('../../../img/lista/punto2.png'),title:'Cumplimiento de Tareas'},
-                    {imgen:require('../../../img/lista/punto3.png'),title:'Participacion'},
-                    {imgen:require('../../../img/lista/punto4.png'),title:'Persistencia'},
-                    {imgen:require('../../../img/lista/punto5.png'),title:'responsabilidad'},
-                    {imgen:require('../../../img/lista/punto6.png'),title:'trabajo en equipo'}],
-                negativo:[{imgen:require('../../../img/lista/punto-1.png'),title:'Ayuda a Otros'},
-                    {imgen:require('../../../img/lista/punto-2.png'),title:'Cumplimiento de Tareas'},
-                    {imgen:require('../../../img/lista/punto-3.png'),title:'Participacion'}],
-                camportamiento:[{imgen:require('../../../img/lista/a.jpg'),title:''},
-                    {imgen:require('../../../img/lista/b.jpg'),title:''},
-                    {imgen:require('../../../img/lista/c.jpg'),title:''},
-                    {imgen:require('../../../img/lista/d.jpg'),title:''},
-                    {imgen:require('../../../img/lista/e.jpg'),title:''},
-                    {imgen:require('../../../img/lista/f.jpg'),title:''}]
+                pocitivo:[{imgen:require('../../../img/lista/punto1.png'),valor:1,title:'Ayuda a Otros'},
+                    {imgen:require('../../../img/lista/punto2.png'),valor:1,title:'Cumplimiento de Tareas'},
+                    {imgen:require('../../../img/lista/punto3.png'),valor:1,title:'Participacion'},
+                    {imgen:require('../../../img/lista/punto4.png'),valor:1,title:'Persistencia'},
+                    {imgen:require('../../../img/lista/punto5.png'),valor:1,title:'responsabilidad'},
+                    {imgen:require('../../../img/lista/punto6.png'),valor:1,title:'trabajo en equipo'}],
+                negativo:[{imgen:require('../../../img/lista/punto-1.png'),valor:1,title:'Ayuda a Otros'},
+                    {imgen:require('../../../img/lista/punto-2.png'),valor:1,title:'Cumplimiento de Tareas'},
+                    {imgen:require('../../../img/lista/punto-3.png'),valor:1,title:'Participacion'}],
+                camportamiento:[{imgen:require('../../../img/lista/a.jpg'),title:'',valor:'A'},
+                    {imgen:require('../../../img/lista/b.jpg'),title:'',valor:'B'},
+                    {imgen:require('../../../img/lista/c.jpg'),title:'',valor:'C'},
+                    {imgen:require('../../../img/lista/d.jpg'),title:'',valor:'D'},
+                    {imgen:require('../../../img/lista/e.jpg'),title:'',valor:'E'},
+                    {imgen:require('../../../img/lista/f.jpg'),title:'',valor:'F'}]
                     }
-                }
+                };
+        this.onChangeInput = this.onChangeInput.bind(this);
+      }
+        
     async componentDidMount() {
         this.getStudents();
     }
@@ -59,7 +63,7 @@ export default class ListaAlum extends Component {
     }
 //eliminar estudiante
     deleteStudents = async (studentsId) => {
-        await axios.delete(this.props.apiUrl+'/v1/api/admin/student/'+ this.state._id);
+        await axios.put(this.props.apiUrl+'/v1/api/student/disable_student/'+ this.state._id);
         this.getStudents();
         socket.emit('RemoveStud')
         
@@ -71,47 +75,58 @@ export default class ListaAlum extends Component {
         })
         console.log(id)
     }
-    onClickNote = (id,n) => {
+    onClickNote = (id) => {
          this.setState({
-            note: n,
             _id: id
          })
-         console.log(id,n)
+         console.log(id)
     }
-    onClickPoint = (id,p) => {
+    onClickPoint = (id,point) => {
          this.setState({
-            point: p,
-            _id: id
+            _id: id,
+            point:point
          })
-         console.log(id,p)
+         console.log(id,point)
+    }
+    onChangeInput(e){
+        this.setState({
+            note: e.target.value
+        })
+        console.log(e.target.value)
     }
 //funciones cambiar nota,puto y comportamiento
-    onSubmitNote=async (e)=>{
-        e.preventDefault();
-           const note=this.state.note
-        await axios.put(this.props.apiUrl+'/v1/api/admin/student/'+ this.state._id,note)
+    onSubmitNote=async ()=>{
+           const note={
+               score : this.state.note
+            }
+        await axios.put(this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,note)
         this.getStudents();
     }
-    onClickPointAdd=async(e)=>{
-        e.preventDefault();
-        const point=this.state.point+1
-        await axios.put(this.props.apiUrl+'/v1/api/admin/student/'+ this.state._id,point);
+    onClickPointAdd=async(valor)=>{
+        const point=this.state.point + valor
+        const data={
+            point : point
+         }
+        await axios.put(this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,data);
+        this.getStudents();
+        this.setShow('showpuntosmas',false)
     }
-    onClickPointRemove=async(e)=>{
-        e.preventDefault();
-        const point=this.state.point-1
-        await axios.put(this.props.apiUrl+'/v1/api/admin/student/'+ this.state._id,point)
+    onClickPointRemove=async(valor)=>{
+        const point=this.state.point - valor
+        const data={
+            point : point
+         }
+        await axios.put(this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,data)
+        this.getStudents();
+        this.setShow('showpuntosmenos',false)
     }
-    onClickConductAdd=async(e)=>{
-        e.preventDefault();
-        const conduct=this.state.conduct
-        await axios.put(this.props.apiUrl+'/v1/api/admin/student/'+ this.state._id,conduct)
-    }
-    onClickConduc=(e)=>{
-        this.setState({
-            [e.target.name]:e.target.value
-         })
-         console.log(e.target.value)
+    onClickConductAdd=async(valor)=>{
+        const conduct={
+            conduct:valor
+        }
+        await axios.put(this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,conduct)
+        this.getStudents();
+        this.setShow('showcomportamiento',false)
     }
     onClickEnviar=async(e)=>{
         e.preventDefault();
@@ -195,9 +210,7 @@ export default class ListaAlum extends Component {
                     </div>
                 </Modal.Header>
                 <Modal.Body>
-                    { this.state.datapoint.pocitivo.map(point=>(
-                        <BtnPuntos imgen={point.imgen} title={point.title} />
-                    ))}    
+                        <BtnPuntos data={this.state.datapoint.pocitivo} funcion={this.onClickPointAdd} />
                 </Modal.Body>
             </Modal> 
             <Modal size={'SM'} show={this.state.modals.showpuntosmenos} onHide={() => this.setShow('showpuntosmenos',false)}>
@@ -207,9 +220,7 @@ export default class ListaAlum extends Component {
                     </div>
                 </Modal.Header>
                 <Modal.Body>
-                    { this.state.datapoint.negativo.map(point=>(
-                        <BtnPuntos imgen={point.imgen} title={point.title} />
-                    ))}  
+                        <BtnPuntos data={this.state.datapoint.negativo} funcion={this.onClickPointRemove} />
                 </Modal.Body>
             </Modal> 
             <Modal size={'SM'} show={this.state.modals.shownota} onHide={() => this.setShow('shownota',false)}>
@@ -219,8 +230,8 @@ export default class ListaAlum extends Component {
                     </div>
                 </Modal.Header>
                 <Modal.Body style={{justifyContent: 'center',display: 'flex'}}>
-                    <input type="text" placeholder={this.state.note}/>
-                    <button id="btnnotas" class="button btnMyM" type="button">modificar</button> 
+                    <input type="text"  value={this.state.note} onChange={this.onChangeInput} />
+                    <button id="btnnotas" class="button btnMyM" onClick={()=>this.onSubmitNote() + this.setShow('shownota',false)} type="button" >modificar</button> 
                 </Modal.Body>
             </Modal> 
             <Modal size={'SM'} show={this.state.modals.showcomportamiento} onHide={() => this.setShow('showcomportamiento',false)}>
@@ -230,9 +241,7 @@ export default class ListaAlum extends Component {
                     </div>
                 </Modal.Header>
                 <Modal.Body>
-                    { this.state.datapoint.camportamiento.map(point=>(
-                        <BtnPuntos imgen={point.imgen} title={point.title} />
-                    ))} 
+                    <BtnPuntos data={this.state.datapoint.camportamiento} funcion={this.onClickConductAdd}/>
                 </Modal.Body>
             </Modal> 
             <Modal size={'SM'} show={this.state.modals.showdelete} onHide={() => this.setShow('showdelete',false)}>
