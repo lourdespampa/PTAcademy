@@ -2,9 +2,6 @@ import React from "react";
 import "./Trivia.sass";
 import io from 'socket.io-client';
 
-const socketUrl="http://192.168.1.65:4000/student";
-const socket = io(socketUrl)
-
 const styles = {
   botonInactivo: {
     background: '#7f8c8d'
@@ -33,7 +30,12 @@ export default class Trivia extends React.Component {
   }
 
   componentDidMount(){
+    const socket = io(this.props.socketUrl, {
+      query:
+          { pin: this.props.id_access }
+    })
     socket.on('pregunta recibida', data => {
+      if(data.pin == (this.props.id_access).toUpperCase()) {
       console.log(data)
       this.setState({
         pregunta: data.data.pregunta, 
@@ -50,9 +52,11 @@ export default class Trivia extends React.Component {
         this.interval = setInterval( () => this.cuentaRegresiva(), 1000)
         this.interval2 = setInterval( () => this.puntaje(), 50)
       }, 5000);
+    }
     })
 
     socket.on('datos restaurados', data => {
+      if(data.pin == (this.props.id_access).toUpperCase()) {
       this.setState({
         preguntaElegida: '',
         puntaje: 1000,
@@ -66,6 +70,7 @@ export default class Trivia extends React.Component {
         respuesta3: '',
         respuesta4: ''
       })
+    }
     })
   };
 
@@ -93,6 +98,10 @@ export default class Trivia extends React.Component {
   }
 
   handleSelectAnswer = async () => {
+    const socket = io(this.props.socketUrl, {
+      query:
+          { pin: this.props.id_access }
+    })
     clearInterval(this.interval2);
     await this.setState({preguntaElegida: 'rojo', eligio: true})
     if(this.state.preguntaElegida === this.state.preguntaCorrecta){
@@ -176,6 +185,10 @@ export default class Trivia extends React.Component {
                           () => {} 
                           : 
                           async () => {
+                            const socket = io(this.props.socketUrl, {
+                              query:
+                                  { pin: this.props.id_access }
+                            })
                             clearInterval(this.interval2); 
                             await this.setState({preguntaElegida: 'azul', eligio: true})
                             if(this.state.preguntaElegida === this.state.preguntaCorrecta){
@@ -196,6 +209,10 @@ export default class Trivia extends React.Component {
                           () => {} 
                           : 
                           async () => {
+                            const socket = io(this.props.socketUrl, {
+                              query:
+                                  { pin: this.props.id_access }
+                            })
                             clearInterval(this.interval2);
                             await this.setState({preguntaElegida: 'naranja', eligio: true}) 
                             if(this.state.preguntaElegida === this.state.preguntaCorrecta){
@@ -214,6 +231,10 @@ export default class Trivia extends React.Component {
                           () => {} 
                           : 
                           async () => {
+                            const socket = io(this.props.socketUrl, {
+                              query:
+                                  { pin: this.props.id_access }
+                            })
                             clearInterval(this.interval2);
                             await this.setState({preguntaElegida: 'verde', eligio: true}) 
                             if(this.state.preguntaElegida === this.state.preguntaCorrecta){
