@@ -34,34 +34,43 @@ export default function App(props) {
   };
 
   //Funcion para validar y conectar a la API
-  const handleToLogin = async (event) => {
+  const handleToLogin = (event) => {
     event.preventDefault();
     const { email, pass } = inputsLogin;
     console.log(inputsLogin)
     getMessage({message: ""});
     setLoading({ loading: true });
-    try {
-      const { data } = await axios.post(`${props.apiUrl}/signin`, {fuente:'manual', email, pass });
-      const { user, token } = data;
-      // console.log(data);
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-      getMessage({
-        userState: user,
-        message: `Logeado como ${user.email}`,
-        token: token
-      });
-      setLoading({ loading: false });
-      console.log(data, data.user);
-    } catch (err) {
-      console.log(err)
-      getMessage({
-        userState: null,
-        message: "credenciales incorrectas. Si no tiene una cuenta, puede registrarse.",
-        token: null
-      });
-      setLoading({ loading: false });
-    }
+    firebase.auth().signInWithEmailAndPassword(email,pass)
+      .then( async result =>{
+        if(result.user.emailVerified){
+          try {
+            const { data } = await axios.post(`${props.apiUrl}/signin`, {fuente:'manual', email, pass });
+            const { user, token } = data;
+            // console.log(data);
+            localStorage.setItem("token", token);
+            localStorage.setItem("user", JSON.stringify(user));
+            getMessage({
+              userState: user,
+              message: `Logeado como ${user.email}`,
+              token: token
+            });
+            setLoading({ loading: false });
+            console.log(data, data.user);
+          } catch (err) {
+            console.log(err)
+            getMessage({
+              userState: null,
+              message: "credenciales incorrectas. Si no tiene una cuenta, puede registrarse.",
+              token: null
+            });
+            setLoading({ loading: false });
+          }
+        }else{
+          firebase.auth().signOut()
+          setLoading({ loading: false });
+          return getMessage({ message: "Debe verificar su cuenta en su correo para poder acceder" });
+        }
+      })
   }
 
   //Funcion para registrar y conectar a la API
@@ -81,12 +90,13 @@ export default function App(props) {
           url: 'http://localhost:3000/loginTeacher'
         }
         result.user.sendEmailVerification(configuracion)
-          .catch(error => {
-            console.log(error)
-          })
-          firebase.auth().signOut()
-          setTipoAcceso(false)
-          setCuentaVerificada(true)
+        .catch(error => {
+          console.log(error)
+        })
+        firebase.auth().signOut()
+        // setInputsRegister({ email: email})
+        setTipoAcceso(false)
+        setCuentaVerificada(true)
       })
       .catch( error => {
         console.log(error)
@@ -145,14 +155,15 @@ export default function App(props) {
             <div className="loginTeacher-info-item">
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
-                  <p>{cuentaVerificada ? "Ingrese el código de verificación enviado a su correo" : "¿Aún no tienes una cuenta?"}</p>
+                  <p>{cuentaVerificada ? "Verifique su cuenta a través del enlace enviado a su correo" : "¿Aún no tienes una cuenta?"}</p>
                   {
                     cuentaVerificada
                     ?
-                    <div>
-                      <input placeholder="CODIGO" type="text" />
-                      <div className="loginTeacher-btn">Aceptar</div>
-                    </div>
+                    // <div>
+                    //   <input placeholder="CODIGO" type="text" />
+                    //   <div className="loginTeacher-btn">Aceptar</div>
+                    // </div>
+                    null
                     :
                       <div className="loginTeacher-btn" onClick={cambiarTipoAcceso}>Registrate</div>
                   }
@@ -165,8 +176,8 @@ export default function App(props) {
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
                   <h2 className="loginTeacher-subtitle">Iniciar Sesión</h2>
-                  <input name="email" placeholder="Correo" type="text" style={{boxSizing: "content-box"}} onChange={handleChangeInputsLogin} required/>
-                  <input name="pass" placeholder="Contraseña" type="password" style={{boxSizing: "content-box"}} onChange={handleChangeInputsLogin} required/>
+                  <input name="email" placeholder="Correo" type="text" value={inputsRegister.email} onChange={handleChangeInputsLogin} required/>
+                  <input name="pass" placeholder="Contraseña" type="password" onChange={handleChangeInputsLogin} required/>
                   <input className="loginTeacher-btn" type="submit" value="sign in"/>
                   <div style={{width:"210px", margin:"10px auto"}}>
                     <div className="linea">&nbsp;</div>
@@ -185,10 +196,10 @@ export default function App(props) {
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
                 <h2 className="loginTeacher-subtitle">Registrarse</h2>
-                  <input name="email" placeholder="Correo" type="text" style={{boxSizing: "content-box"}} onChange={handleChangeInputsRegister} required/>
-                  <input name="name" placeholder="Nombre Completo" type="text" style={{boxSizing: "content-box"}} onChange={handleChangeInputsRegister} required/>
-                  <input name="pass" placeholder="Contraseña" type="password" style={{boxSizing: "content-box"}} value={inputsRegister.pass} onChange={handleChangeInputsRegister} required/>
-                  <input name="rpass" placeholder="Repita su contraseña" type="password" style={{boxSizing: "content-box"}} value={inputsRegister.rpass} onChange={handleChangeInputsRegister} required/>
+                  <input name="email" placeholder="Correo" type="text" onChange={handleChangeInputsRegister} required/>
+                  <input name="name" placeholder="Nombre Completo" type="text" onChange={handleChangeInputsRegister} required/>
+                  <input name="pass" placeholder="Contraseña" type="password" value={inputsRegister.pass} onChange={handleChangeInputsRegister} minLength="6" required/>
+                  <input name="rpass" placeholder="Repita su contraseña" type="password" value={inputsRegister.rpass} onChange={handleChangeInputsRegister} minLength="6" required/>
                   <input className="loginTeacher-btn" type="submit" value="Sign up"/>
                   <a className="loginTeacher-login-register" onClick={cambiarTipoAcceso}>iniciar sesión</a>
                 </div>
