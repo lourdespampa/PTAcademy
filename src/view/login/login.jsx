@@ -18,11 +18,13 @@ export default function App(props) {
   const [{ loading }, setLoading] = useState({ loading: false });
 
   const cambiarTipoAcceso = () => {
+    getMessage({message: ""});
     setTipoAcceso(!tipoAcceso)
   }
 
   //Funcion cuando cambia el value de los inputs del login
   const handleChangeInputsLogin = event => {
+    getMessage({message: ""});
     setInputsLogin({ ...inputsLogin, [event.target.name]: event.target.value });
   };
 
@@ -36,6 +38,7 @@ export default function App(props) {
     event.preventDefault();
     const { email, pass } = inputsLogin;
     console.log(inputsLogin)
+    getMessage({message: ""});
     setLoading({ loading: true });
     try {
       const { data } = await axios.post(`${props.apiUrl}/signin`, {fuente:'manual', email, pass });
@@ -54,7 +57,7 @@ export default function App(props) {
       console.log(err)
       getMessage({
         userState: null,
-        message: "Correo o contraseña incorrecta!!",
+        message: "credenciales incorrectas. Si no tiene una cuenta, puede registrarse.",
         token: null
       });
       setLoading({ loading: false });
@@ -65,12 +68,36 @@ export default function App(props) {
   const handleToRegister = async (event) => {
     event.preventDefault()
     const { email, name, pass, rpass } = inputsRegister;
-    setTipoAcceso(false)
-    setCuentaVerificada(true)
+    if(pass !== rpass ){
+      setInputsRegister({ pass: "", rpass: ""})
+      return alert("las contraseñas no coinciden. Ingreselas nuevamente")
+    }
+    firebase.auth().createUserWithEmailAndPassword(email, pass)
+      .then(result => {
+        result.user.updateProfile({
+          displayName: name
+        })
+        const configuracion = {
+          url: 'http://localhost:3000/loginTeacher'
+        }
+        result.user.sendEmailVerification(configuracion)
+          .catch(error => {
+            console.log(error)
+          })
+          firebase.auth().signOut()
+          setTipoAcceso(false)
+          setCuentaVerificada(true)
+      })
+      .catch( error => {
+        console.log(error)
+        getMessage({ message: "El correo ya existe. Intente crear uno diferente." });
+      })
     console.log(inputsRegister)
   }
 
   const signInWithGoogle =  () => {
+    getMessage({message: ""});
+    setLoading({ loading: true });
     //Aqui se establecen los proveedores para los servicios que se utilicen
     let provider = new firebase.auth.GoogleAuthProvider()
     //Inicializamos la autenticación de firebase pasandole un proveedor
@@ -93,6 +120,7 @@ export default function App(props) {
       console.log(data) 
     }).catch( e => {
       setLoading({ loading: false });
+      getMessage({ message: "Error al acceder con Google, verifique sus datos e intentelo nuevamente." });
       console.log(e)
     })
   }
@@ -117,11 +145,14 @@ export default function App(props) {
             <div className="loginTeacher-info-item">
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
-                  <p>{cuentaVerificada ? "Ingrese código de verificación enviado a su correo" : "¿Aún no tienes una cuenta?"}</p>
+                  <p>{cuentaVerificada ? "Ingrese el código de verificación enviado a su correo" : "¿Aún no tienes una cuenta?"}</p>
                   {
                     cuentaVerificada
                     ?
-                    <input placeholder="CODIGO" type="text" style={{boxSizing: "content-box"}} />
+                    <div>
+                      <input placeholder="CODIGO" type="text" />
+                      <div className="loginTeacher-btn">Aceptar</div>
+                    </div>
                     :
                       <div className="loginTeacher-btn" onClick={cambiarTipoAcceso}>Registrate</div>
                   }
@@ -146,6 +177,7 @@ export default function App(props) {
                     <img className="loginTeacher-google-icon" src="https://img.icons8.com/color/48/000000/google-logo.png" />
                       Sign in with Google
                   </a>
+                  <a className="loginTeacher-login-register" onClick={cambiarTipoAcceso}>registrese ahora</a>
                 </div>
               </div>
             </form>
@@ -155,9 +187,10 @@ export default function App(props) {
                 <h2 className="loginTeacher-subtitle">Registrarse</h2>
                   <input name="email" placeholder="Correo" type="text" style={{boxSizing: "content-box"}} onChange={handleChangeInputsRegister} required/>
                   <input name="name" placeholder="Nombre Completo" type="text" style={{boxSizing: "content-box"}} onChange={handleChangeInputsRegister} required/>
-                  <input name="pass" placeholder="Contraseña" type="password" style={{boxSizing: "content-box"}} onChange={handleChangeInputsRegister} required/>
-                  <input name="rpass" placeholder="Repita su contraseña" type="password" style={{boxSizing: "content-box"}} onChange={handleChangeInputsRegister} required/>
+                  <input name="pass" placeholder="Contraseña" type="password" style={{boxSizing: "content-box"}} value={inputsRegister.pass} onChange={handleChangeInputsRegister} required/>
+                  <input name="rpass" placeholder="Repita su contraseña" type="password" style={{boxSizing: "content-box"}} value={inputsRegister.rpass} onChange={handleChangeInputsRegister} required/>
                   <input className="loginTeacher-btn" type="submit" value="Sign up"/>
+                  <a className="loginTeacher-login-register" onClick={cambiarTipoAcceso}>iniciar sesión</a>
                 </div>
               </div>
             </form>
@@ -166,6 +199,7 @@ export default function App(props) {
         <div className="login-loading">
           <Loading status={loading} />
         </div>
+          {message == "" ? null : <h5 className="loginTeacher-message" >{message}</h5>}
       </div>
     </div>
   );
