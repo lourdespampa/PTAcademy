@@ -1,5 +1,5 @@
 import React from 'react';
-import Roulette from './Roulette.js';
+import Roulette from './Roulette';
 
 import axios from 'axios'
 
@@ -36,7 +36,7 @@ class Azar extends React.Component {
         if(this.state.alumnos.length > 0){
             return(
                 <div>
-                    <Roulette options={this.state.alumnos} baseSize={220} onComplete={handleOnComplete}/>
+                    <Roulette options={this.state.alumnos} baseSize={220} onComplete={handleOnComplete} socketUrl={this.props.socketUrl} id_access={this.props.id_access}/>
                 </div>
             )
         } else {

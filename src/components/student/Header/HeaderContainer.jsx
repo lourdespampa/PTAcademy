@@ -45,7 +45,7 @@ export default function HeaderContainer(props) {
             </ul>
         </div>
     </nav>
-    <Audio  id_access={props.id_access}/>
+    <Audio  id_access={props.id_access} socketUrl={props.socketUrl}/>
         </div>
     )
 }

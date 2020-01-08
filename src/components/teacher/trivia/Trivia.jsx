@@ -6,9 +6,6 @@ import io from 'socket.io-client';
 
 import { Container, Row, Col } from 'reactstrap';
 
-const socketUrl="http://192.168.1.65:4000/teacher";
-const socket = io(socketUrl)
-
 class Trivia extends React.Component {
   constructor(props){
     super(props)
@@ -35,6 +32,10 @@ class Trivia extends React.Component {
   }
 
   componentDidMount(){
+    const socket = io(this.props.socketUrl, {
+      query:
+          { pin: this.props.id_access }
+    })
       socket.on('pregunta escogida', function(data){
         console.log(data)
       })
@@ -85,6 +86,10 @@ class Trivia extends React.Component {
   }
 
   handleSendQuestion() {
+    const socket = io(this.props.socketUrl, {
+      query:
+          { pin: this.props.id_access }
+    })
     if(this.state.preguntaEnviada){
       console.log("restaurando...")
       this.setState({
