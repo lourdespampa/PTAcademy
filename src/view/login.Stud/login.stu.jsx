@@ -6,7 +6,7 @@ import "./ingresarCodigo.sass";
 export default class LoginStu extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { value: "", acceso: false };
     this.id_access = "";
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,9 +40,8 @@ export default class LoginStu extends Component {
         if (result.data.message == "Code doesn´t exist") {
           alert("codigo incorrecto");
         } else {
-          this.setState({ id_access: codigo });
-          console.log(this.id_access);
-          return <Redirect to={`/loginStudent/${this.state.id_access}`} />
+          console.log(this.state.id_access);
+          this.setState({ id_access: codigo, acceso: true });
         }
       })
       .catch(e => {
@@ -52,6 +51,13 @@ export default class LoginStu extends Component {
   render() {
     return (
       <div className="enter-code__contenedor">
+          {
+          this.state.acceso 
+          ? 
+          <Redirect to={`/loginStudent/${this.state.id_access}`} /> 
+          :
+          null
+          }
         <ul className="enter-code__header">
           <li className="enter-code__academy">
             <Link className="enter-code__academy-a" to="/">
