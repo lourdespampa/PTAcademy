@@ -176,7 +176,7 @@ export default function App(props) {
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
                   <h2 className="loginTeacher-subtitle">Iniciar Sesión</h2>
-                  <input name="email" placeholder="Correo" type="text" value={inputsRegister.email} onChange={handleChangeInputsLogin} required/>
+                  <input name="email" placeholder="Correo" type="text" onChange={handleChangeInputsLogin} required/>
                   <input name="pass" placeholder="Contraseña" type="password" onChange={handleChangeInputsLogin} required/>
                   <input className="loginTeacher-btn" type="submit" value="sign in"/>
                   <div style={{width:"210px", margin:"10px auto"}}>
