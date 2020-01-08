@@ -2,8 +2,6 @@ import React from "react";
 import $ from 'jquery';
 import io from 'socket.io-client';
 // import "./temp.css";
-const socketUrl = "http://192.168.1.65:4000/student";
-const socket = io(socketUrl)
 
 class Temporizador extends React.Component {
   constructor(props) {
@@ -30,6 +28,10 @@ class Temporizador extends React.Component {
   }
 
   componentDidMount = () =>{
+    const socket = io(this.props.socketUrl, {
+        query:
+            { pin: this.props.id_access }
+      })
 
       let _this = this;
 
@@ -146,6 +148,7 @@ class Temporizador extends React.Component {
             // var socket = io('/presentation/temp');
         
             socket.on('set', function(data) {
+                if(data.pin == (this.props.id_access).toUpperCase()) {
                 console.log("Se asigna")
             //     if (data.pin == cod.toUpperCase()) {
                     var time = data.data.time;
@@ -153,17 +156,19 @@ class Temporizador extends React.Component {
                     $("#id_dt_2").val(time[1])
                     $("#id_dt_3").val(time[2])
                     u.click()
-            //     }
+               }
             });
             socket.on('temp', function(data) {
+                if(data.pin == (this.props.id_access).toUpperCase()) {
                 // if (data.pin == cod.toUpperCase()) {
                     k.click();
-                // }
+                 }
             });
             socket.on('stop', function(data) {
+                if(data.pin == (this.props.id_access).toUpperCase()) {
             //     if (data.pin == cod.toUpperCase()) {
                     k.click();
-            //     }
+                 }
             });
   }
   render() {

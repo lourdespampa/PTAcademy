@@ -5,7 +5,7 @@ import React from 'react';
       
          return(
              <div>
-                <Trivia socketUrl={this.props.socketUrl} id_access={this.props.id_access}/>
+                <Trivia socketUrl={props.socketUrl} id_access={props.id_access}/>
              </div>
          )
  }
