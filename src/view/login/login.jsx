@@ -34,15 +34,15 @@ export default function App(props) {
   };
 
   //Funcion para validar y conectar a la API
-  const handleToLogin = (event) => {
+  const handleToLogin = async (event) => {
     event.preventDefault();
     const { email, pass } = inputsLogin;
     console.log(inputsLogin)
     getMessage({message: ""});
     setLoading({ loading: true });
-    firebase.auth().signInWithEmailAndPassword(email,pass)
-      .then( async result =>{
-        if(result.user.emailVerified){
+    // firebase.auth().signInWithEmailAndPassword(email,pass)
+    //   .then( async result =>{
+    //     if(result.user.emailVerified){
           try {
             const { data } = await axios.post(`${props.apiUrl}/signin`, {fuente:'manual', email, pass });
             const { user, token } = data;
@@ -65,12 +65,16 @@ export default function App(props) {
             });
             setLoading({ loading: false });
           }
-        }else{
-          firebase.auth().signOut()
-          setLoading({ loading: false });
-          return getMessage({ message: "Debe verificar su cuenta en su correo para poder acceder" });
-        }
-      })
+      //   }else{
+      //     firebase.auth().signOut()
+      //     setLoading({ loading: false });
+      //     return getMessage({ message: "Debe verificar su cuenta en su correo para poder acceder" });
+      //   }
+      // }).catch(e => {
+      //   console.log(e)
+      //   setLoading({ loading: false });
+      //   getMessage({ message: "Para poder acceder con el mismo correo de Google, debe generar una contraseña en su perfil de profesor." });
+      // })
   }
 
   //Funcion para registrar y conectar a la API
