@@ -4,18 +4,12 @@ import io from 'socket.io-client';
 import {Button } from "react-bootstrap";
 const { AudioStreamer } = require('sfmediastream');
 
-const socketUrl = "http://192.168.1.65:4000/student";
-const socket = io(socketUrl)
-
 export default class Audio extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            socket: null
-        }
-    }
     enviarvideo(url) {
-
+        const socket = io(this.props.socketUrl, {
+            query:
+                { pin: this.props.id_access }
+          })
         var urlnombre = url
         console.log(urlnombre)
         socket.emit('VideoEmit', urlnombre)
@@ -91,7 +85,10 @@ export default class Audio extends Component {
         document.getElementById("diminute").src = final;
     }   
     componentDidMount() {
-        
+        const socket = io(this.props.socketUrl, {
+            query:
+                { pin: this.props.id_access }
+          })
         //liSTA
         socket.on('RemoveStudS',(data)=>{
             if(data.pin == (this.props.id_access).toUpperCase()) {
@@ -152,22 +149,23 @@ export default class Audio extends Component {
 
                 // Buffer header must be received first
                 socket.on('bufferHeader', function (packet) {
+                    if(packet.pin == (this.props.id_access).toUpperCase()) {
                     // if (packet.pin == ('<%= pin %>').toUpperCase()) {
                     console.log('ejecutando buffer');
                     audioStreamer.setBufferHeader(packet.audio);
                     // console.log('El profesor iniciara una demostracion de audio');
-                    // }
+                    }
                 });
 
                 // Receive buffer and play it
                 socket.on('stream', function (packet) {
-
+                    if(packet.pin == (this.props.id_access).toUpperCase()) {
                     //    console.log("3");
                     //if (packet.pin == ('<%= pin %>').toUpperCase()) {
                     //   debug.value = "Buffer received: " + packet.audio[0].byteLength + "bytes";
                     audioStreamer.receiveBuffer(packet.audio);
                     console.log('recibiendo stream...');
-                    // }
+                     }
                     // audioStreamer.realtimeBufferPlay(packet);
                 });
             }
@@ -176,25 +174,27 @@ export default class Audio extends Component {
             socket.emit('requestBufferHeader');
 
         })
-        socket.on('onPlay', function () {
-            btn_play.click()
+        socket.on('onPlay', function (data) {
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+            btn_play.click()}
         })
         //ROULETTE
         socket.on('rouletteWinnerS', function (data) {
+            if(data.pin == (this.props.id_access).toUpperCase()) {
             console.log('escucha el alum')
             document.getElementById("modal_luckyStudent").innerHTML = data
-            document.getElementById("btnLuckyStudent").click()
+            document.getElementById("btnLuckyStudent").click()}
         })
 
         //ROULETTE END 
         //FORM
-        socket.on('SendFormS', () => {
-
+        socket.on('SendFormS', (data) => {
+            if(data.pin == (this.props.id_access).toUpperCase()) {
             const overlay_popup = document.getElementById('overlayinframe')
             const popup = document.getElementById('popupformulario')
 
             overlay_popup.className = 'overlay active'
-            popup.className = 'popup active'
+            popup.className = 'popup active'}
         })
         //FORM END
     }

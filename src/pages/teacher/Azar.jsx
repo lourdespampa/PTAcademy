@@ -6,7 +6,7 @@ class Azar extends React.Component {
     render(){
         return(
             <div>
-              <AzarPage id_access={this.props.id_access} />
+              <AzarPage socketUrl={this.props.socketUrl} id_access={this.props.id_access}  />
             </div>
         )
     }
