@@ -38,9 +38,14 @@ export default class CoursesTeacher extends Component {
         }
     })
     .catch( e => console.log(e))
-    axios.get(`${this.props.apiUrl}/v1/api/admin/user/${params.id}`).then(({data})=>{
+    axios({url:`${this.props.apiUrl}/v1/api/admin/user/${params.id}`,
+    method:'GET' ,
+    headers:{
+      'x-access-token': `${varToken}`
+    }
+    }).then(({data})=>{
       console.log(data)
-      this.setState({nombreProfesor:data.user_name+" "+data.user_lastName})
+      this.setState({nombreProfesor:data.displayName})
     })
   }
 
@@ -67,7 +72,14 @@ export default class CoursesTeacher extends Component {
   }
 
   deleteCurso = async () => {
-    await axios.delete(this.props.apiUrl+'/v1/api/admin/course/'+ this.state.id_curso);
+    var varToken = localStorage.getItem('token');
+
+    await axios({
+      url:this.props.apiUrl+'/v1/api/admin/course/'+ this.state.id_curso,
+      method:'delete',
+      headers:{
+        'x-access-token': `${varToken}`
+      }});
     this.getCursos();
   }
   onClick = (id) => {
