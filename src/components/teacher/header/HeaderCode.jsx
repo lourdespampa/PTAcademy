@@ -9,7 +9,7 @@ function BotonSalir(props) {
     const AgregarClick=()=>setShow(false)+props.getCursos
     return (
       <>
-        <div className="menu-detail-content" onClick={handleShow}>   
+        <div className="Header-code" onClick={handleShow}>   
         <li className="code-btn-menu material-icons" style={{ fontSize: "50px"}}>exit_to_app</li>
         </div>
         <Modal show={show} onHide={handleClose} animation={false}>
@@ -29,10 +29,14 @@ function BotonSalir(props) {
     );
   }
 function HeaderCode(props){
+    const codigo = () => {
+        alert('codigo')
+    }
+    
 
     return(
-        <div className="code-header">
-            <div className="code-clase-detail">
+        <div className="Header-code__header" id="Header-code__header">
+            <div className="code-clase-detail" onClick={codigo}>
                 <h1>
                     Nombre del clase : {props.nombre_clase}
                 </h1>
@@ -43,7 +47,8 @@ function HeaderCode(props){
                         <span className="hamburguesa-span"></span>
                         <span className="hamburguesa-span"></span>
                         <span className="hamburguesa-span"></span>
-                        <ul id="menu-header">
+                    <label className="close-menu" for="checked"></label>
+                        <ul className="menu-header" id="menu-header">
                             <li><Link className="lista"  to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA DE ALUMNOS</Link></li>    
                             <li><Link className="azar"   to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
                             <li><Link className="grupos" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
