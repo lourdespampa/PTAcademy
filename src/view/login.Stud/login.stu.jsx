@@ -34,7 +34,7 @@ export default class LoginStu extends Component {
     };
     console.log(this.state.value);
     axios
-      .post(this.props.apiUrl + "/v1/api/access/verify_access", data)
+      .post(this.props.apiUrl+"/v1/api/access/verify_access", data)
       .then(result => {
         console.log(result);
         if (result.data.message == "Code doesn´t exist") {

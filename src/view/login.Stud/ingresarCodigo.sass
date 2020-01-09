@@ -38,12 +38,17 @@
     display: block
     color: white
     text-align: center
-    padding: 44px 66px
+    padding: 30px 66px
     font-size: 21px
     text-decoration: none !important
     //se tiene que eliminar el text decoration
     &:hover
         color: white
+    .enter-code__changeStudent &:hover
+            background-color: #303035
+            border-radius: 5px
+            margin: 15px 61px;
+            padding: 15px 5px;
 
 .enter-code__body
     width: 100%
@@ -209,6 +214,11 @@
     .enter-code__academy-a
         padding: 15px 0 0 0
         font-size: 17px
+        .enter-code__changeStudent &:hover
+            background-color: #303035
+            border-radius: 5px
+            padding: 15px 3px
+            margin: 0
     .enter-code__body
         height: 80%
 
@@ -217,7 +227,9 @@
         width: 100px
         text-align: center
 
-@media screen and (max-width: 800px)
+@media screen and (max-width: 765px)
     .enter-code__input .input--kozakura
         float: right
         font-size: 15px
+    .enter-code__academy-a
+        padding: 15px 3px
