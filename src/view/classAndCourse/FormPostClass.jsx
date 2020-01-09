@@ -30,17 +30,13 @@ export default class FormPostCourse extends Component {
     };
 
     axios({
-      url: `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`,data,
+      url: `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`,
+      data,
       method: 'post',
       headers: {
         'x-access-token': `${varToken}`
       }
-    })
-      .post(
-        `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`,
-        data
-      )
-      .then(res => console.log(res))
+    }).then(res => console.log(res))
       .catch(err => console.log(err));
       this.props.handleClose()
   };
