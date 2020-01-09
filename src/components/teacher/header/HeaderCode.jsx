@@ -59,27 +59,29 @@ function HeaderCode(props){
                         </ul>
                 </div>
             </nav>
-            <div className="code-detail">
-                <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
-                    <class className="code">Código:</class>
-                    <div className="codigo-generado">
-                       {props.id_access}
-                    </div>
-                </a>
-            </div>
-            <div className="code-menu-detail">
-                
-                <BotonSalir/>
-                
-            </div>
-            <div id="miCodigo" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
-                        </div>
-                        <div className="modal-body" style={{fontSize: "100px"}}>
+            <div className="content">
+                <div className="code-detail">
+                    <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
+                        <class className="code">Código:</class>
+                        <div className="codigo-generado">
                         {props.id_access}
+                        </div>
+                    </a>
+                </div>
+                <div className="code-menu-detail">
+                    
+                    <BotonSalir/>
+                    
+                </div>
+                <div id="miCodigo" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
+                            </div>
+                            <div className="modal-body" style={{fontSize: "100px"}}>
+                            {props.id_access}
+                            </div>
                         </div>
                     </div>
                 </div>
