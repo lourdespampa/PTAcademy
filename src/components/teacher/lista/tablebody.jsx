@@ -11,24 +11,24 @@ export const TableBody = (props) => {
                     <td className="ape" style={{width:"400px"}}>
                     {student.lastName_stu}
                     </td>
-                    <td className="nota"style={{textAlign:"center",width:'130px'}}>
-                        {student.calific}10
-                        <button onClick={()=>props.onClickNote(student._id,student.nota)+ props.setShow('shownota',true)} className="button pull-right btnMyM material-icons">
+                    <td className="nota" style={{textAlign:"center",width:'130px'}}>
+                        {student.score}
+                        <button onClick={()=>props.onClickNote(student._id,student.score)+ props.setShow('shownota',true)} className="button pull-right btnMyM material-icons">
                     edit
                     </button>
                     </td>
                     <td className="compo"style={{textAlign:"center",width:'150px'}}>
-                    {student.comportamiento}A
+                    {student.conduct}
                     <button onClick={()=>props.onClick(student._id)+ props.setShow('showcomportamiento',true)} className="button pull-right btnMyM material-icons">
                     edit
                     </button>
                     </td>
                     <td style={{textAlign:"center",width:"160px"}}>
-                    <button className="button btnMyM material-icons" onClick={()=>props.onClickPoint(student._id,student.puntos)+ props.setShow('showpuntosmas',true)} >
+                    <button className="button btnMyM material-icons" onClick={()=>props.onClickPoint(student._id,student.point)+ props.setShow('showpuntosmas',true)} >
                     add_circle_outline
                     </button>
-                    {student.puntos}12
-                    <button className="button btnMyM material-icons" onClick={()=>props.onClickPoint(student._id,student.puntos)+ props.setShow('showpuntosmenos',true)}>
+                    {student.point}
+                    <button className="button btnMyM material-icons" onClick={()=>props.onClickPoint(student._id,student.point)+ props.setShow('showpuntosmenos',true)}>
                     remove_circle_outline
                     </button> 
                     </td>
@@ -37,6 +37,9 @@ export const TableBody = (props) => {
                     delete
                     </button> 
                     </td>
+                    {/* <td className="nom">
+                    {student.finalScore}
+                    </td> */}
                 </tr>
             ))}
         </>

@@ -5,10 +5,9 @@ class Grupos extends React.Component {
     render(){
         return(
             <div>
-                <GruposPage />
+                <GruposPage id_access={this.props.id_access} socketUrl={this.props.socketUrl}/>
             </div>
         )
     }
 }
-
 export default Grupos;

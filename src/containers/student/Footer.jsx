@@ -86,7 +86,7 @@ export default class Footer extends Component {
     render(){
     return (
         <>
-        <FooterContainer 
+        <FooterContainer socket={this.props.socket} id_access={this.props.id_access}
         diapositivaHover={this.state.diapositivaHover} toggleHoverSlide={this.toggleHoverSlide} 
         closePopup={this.closePopup} openPopup={this.openPopup} nextPpt={this.nextPpt} 
         backtPpt={this.backtPpt}

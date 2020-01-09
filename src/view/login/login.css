@@ -1,111 +1,334 @@
-
-@media (min-width: 992px) {
-  .login-navbar-expand-lg .btn-profesor {
-    display: none;
-  }
-}
-@media (max-width: 600px) {
-  #btnVerAlumnos {
-    left: 0 !important;
-  }
-
-  #btnVerAlumnos .img-rbt {
-    width: 130px;
-  }
-  #btnVerAlumnos i {
-    margin: 44px 20px 0 10px !important;
-  }
-}
-
-.navbar-brand{
-  font-size: 21px !important;
-}
-
-.nav-link{
-  font-size: 15px !important;
-}
-
-.card-login .form{
-  min-height: 380px;
-}
-
-.footerLogin {
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Oswald|Roboto);
+.loginTeacher {
   position: absolute;
-  bottom: 0;
-  left: 0px;
-  text-align: start;
-  cursor: pointer;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 0px 100px 0px 0px;
-  -moz-border-radius: 0px 100px 0px 0px;
-  -webkit-border-radius: 0px 100px 0px 0px;
-  padding-top: 5px;
-  padding-right: 20px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+  background-color: #5356ad;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
-.wrapper2 {
-  width: 800px;
-  margin: 0;
-  padding-bottom: 0;
+.loginTeacher-table {
+  display: table;
+  width: 100%;
+  height: 100%;
 }
-.espacio {
-  margin-top: 20px;
+
+.loginTeacher-table-cell {
+  box-sizing: content-box !important;
+  display: table-cell;
+  vertical-align: middle;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
-.button-google {
+
+.loginTeacher-subtitle{
+  margin: 0 auto 15px;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  letter-spacing: normal;
+}
+
+.loginTeacher-container {
+  position: relative;
+  width: 600px;
+  margin: 30px auto 0;
+  height: 320px;
+  
+  top: 50%;
+  margin-top: -160px;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.loginTeacher-container .loginTeacher-box {
+  background:rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.loginTeacher-container .loginTeacher-box:before, .loginTeacher-container .loginTeacher-box:after {
+  content: " ";
+  position: absolute;
+  left: 152px;
+  top: 50px;
+  background-color: #9297e0;
+  transform: rotateX(52deg) rotateY(15deg) rotateZ(-38deg);
+  width: 300px;
+  height: 285px;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.loginTeacher-container .loginTeacher-box:after {
+  background-color: #a5aae4;
+  top: -10px;
+  left: 80px;
+  width: 320px;
+  height: 180px;
+}
+.loginTeacher-container .loginTeacher-container-forms {
+  position: relative;
+}
+.loginTeacher-container .loginTeacher-btn {
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  margin: 0 auto;
+  width: 130px;
+  color: #fff;
+  background-color: #ff73b3;
+  opacity: 1;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.loginTeacher-container .loginTeacher-btn:hover {
+  opacity: 0.7;
+}
+.loginTeacher-container .loginTeacher-btn, .loginTeacher-container input {
+  padding: 10px 15px;
+}
+.loginTeacher-container input {
+  margin: 0 auto 15px;
+  border: none;
+  display: block;
+  width: 220px;
+  font-size: 14px;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info {
+  text-align: left;
+  font-size: 0;
+}
+.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item {
+  text-align: center;
+  font-size: 16px;
+  width: 300px;
+  height: 320px;
+  display: inline-block;
+  vertical-align: top;
+  color: #fff;
+  opacity: 1;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item p {
+  font-size: 20px;
+  margin: 20px;
+}
+.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item .loginTeacher-btn {
+  background-color: transparent;
+  border: 1px solid #fff;
+}
+.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item .loginTeacher-table-cell {
+  padding-right: 35px;
+}
+.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item:nth-child(2) .loginTeacher-table-cell {
+  padding-left: 35px;
+  padding-right: 0;
+}
+.loginTeacher-container .loginTeacher-container-form {
+  overflow: hidden;
+  position: absolute;
+  left: 30px;
+  top: -30px;
+  width: 305px;
+  height: 380px;
+  background-color: rgb(230, 230, 230);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.loginTeacher-container .loginTeacher-container-form .loginTeacher-btn {
+  position: relative;
+  box-shadow: 0 0 10px 1px #ff73b3;
+  margin-top: 30px;
+}
+
+.loginTeacher-container .loginTeacher-form-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.loginTeacher-container .loginTeacher-form-item.sign-up {
+  position: absolute;
+  left: -100%;
+  opacity: 0;
+}
+.loginTeacher-container.log-in .loginTeacher-box:before {
+  position: absolute;
+  left: 180px;
+  top: 62px;
+  height: 265px;
+}
+.loginTeacher-container.log-in .loginTeacher-box:after {
+  top: 22px;
+  left: 192px;
+  width: 324px;
+  height: 220px;
+}
+.loginTeacher-container.log-in .loginTeacher-container-form {
+  left: 265px;
+}
+.loginTeacher-container.log-in .loginTeacher-container-form .loginTeacher-form-item.sign-up {
+  left: 0;
+  opacity: 1;
+}
+.loginTeacher-container.log-in .loginTeacher-container-form .loginTeacher-form-item.log-in {
+  left: -100%;
+  opacity: 0;
+}
+.loginTeacher-container.active {
+  width: 260px;
+  height: 140px;
+  margin-top: -70px;
+}
+.loginTeacher-container.active .loginTeacher-container-form {
+  left: 30px;
+  width: 200px;
+  height: 200px;
+}
+
+.loginTeacher-container.active input, .loginTeacher-container.active .loginTeacher-btn, .loginTeacher-container.active .loginTeacher-info-item {
+  display: none;
+  opacity: 0;
+  padding: 0px;
+  margin: 0 auto;
+  height: 0;
+}
+.loginTeacher-container.active .loginTeacher-form-item {
+  height: 100%;
+}
+.loginTeacher-container.active .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item {
+  height: 0%;
+  opacity: 0;
+}
+
+/* Boton logeo con Google */
+
+.loginTeacher-button-google {
   float: left;
   font-family: Roboto, arial, sans-serif;
   color: #ffffff !important;
-  background: mediumspringgreen;
-  min-width: 100%;
-  height: 48px;
+  background: #4285f4;
+  min-width: 90%;
+  height: 40px;
+  margin: 10px 0 0 13px;
   text-align: center;
   user-select: none;
   font-size: 15px;
   font-weight: 500;
-  line-height: 48px;
+  line-height: 40px;
   letter-spacing: 0.21px;
   border: #4285f4 1px solid;
   border-radius: 100px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
   transition: background-color 0.18s, border-color 0.18s, box-shadow 0.18s;
 }
-.button-google:hover {
+.loginTeacher-button-google:hover {
   box-shadow: 0px 0px 15px 0px rgba(66, 133, 244, 0.75);
 }
-.google-icon {
+.loginTeacher-google-icon {
   float: left;
   border-radius: 100px;
   background: #ffffff;
-  width: 46px;
+  width: 38px;
   padding: 11px;
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
   transition: transform 0.5s ease-in-out;
 }
-.button-google:hover .google-icon {
+.loginTeacher-button-google:hover .loginTeacher-google-icon {
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg);
 }
 
-.loading{
-  margin-left: 40%;
+/* linea intermedia entre login normal y login con google*/
+
+.linea {
+  margin: 0 auto 15px;
+  width: 40px;    
+  border-top:1px solid #999;
+  position: relative;
+  top: 13px;
+  float:left;
+  }
+
+.leyenda {
+  margin-top: 5px;
+  font-size: 12px;
+  float:left;
+ }
+
+ /* loading */
+ .login-loading{
+   margin-left: 45%;
+   margin-top: 45px;
+ }
+
+ .loginTeacher-login-register {
+  display: none;
 }
-.login-background{
-  position: absolute;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
+
+ .loginTeacher-message{ 
+   color: white;
+   text-align: center;
+   background: red;
+ }
+
+/* Media queries a partir de 600 px */
+
+@media (max-width: 600px) {
+  .loginTeacher-login-register {
+    display: block;
+    position: absolute;
+    width: 100%;
+    left: 33%;
+    bottom: 10px;
+    margin: 10px auto 0 !important;
+    color: #4285f4 !important;
+  }
+  .loginTeacher-message{ 
+    width: 300px;
+    margin-top: 70px;
+    margin-left: 30px;
+  }
+  .loginTeacher-container .loginTeacher-container-form{
+    top: -40px;
+    height: 420px;
+  }
+  .loginTeacher-container.log-in .loginTeacher-container-form {
+    left: 30px;
+  }
 }
-.login-navbar-brand{
-  right: 0px;
-}
-.login-container{
-  margin-left: 0px;
-}
-.container-login-form{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
+

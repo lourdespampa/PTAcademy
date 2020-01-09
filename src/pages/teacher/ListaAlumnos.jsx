@@ -6,8 +6,7 @@ class ListaAlumnos extends React.Component {
 
     render(){
         return(
-            <ListaAlum />
-
+            <ListaAlum socketUrl={this.props.socketUrl} id_access={this.props.id_access} apiUrl={this.props.apiUrl}/>
         )
     }
 }

@@ -1,16 +1,14 @@
-import React from 'react';
+import React , {Component} from 'react';
 import Temp from '../../components/teacher/temporizador/temporizador'
 
-class Temporizador extends React.Component {
+export default class Temporizador extends Component {
 
 
     render(){
         return(
             <div>
-                <Temp/>
+                <Temp socketUrl={this.props.socketUrl} id_access={this.props.id_access}/>
             </div>
         )
     }
 }
-
-export default Temporizador;
