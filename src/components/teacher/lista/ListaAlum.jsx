@@ -55,15 +55,28 @@ export default class ListaAlum extends Component {
     
 //rellenar state
     getStudents = async () => {
-        const res = await axios.get(`${this.props.apiUrl+'/v1/api/lesson'}/${this.props.id_access}/students`)
-        // const res = await axios.get(`${apiurl}/PRJHS/students`)
+        var varToken = localStorage.getItem('token');
+     const res = await axios({
+      url: `${this.props.apiUrl+'/v1/api/lesson'}/${this.props.id_access}/students`,
+      method: 'GET',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    })
         this.setState({
             students :  await res.data
         });
     }
 //eliminar estudiante
     deleteStudents = async (studentsId) => {
-        await axios.put(this.props.apiUrl+'/v1/api/student/disable_student/'+ this.state._id);
+        var varToken = localStorage.getItem('token');
+    await axios({
+      url: this.props.apiUrl+'/v1/api/student/disable_student/'+ this.state._id,
+      method: 'put',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    })
         this.getStudents();
         socket.emit('RemoveStud')
         
@@ -96,10 +109,19 @@ export default class ListaAlum extends Component {
     }
 //funciones cambiar nota,puto y comportamiento
     onSubmitNote=async ()=>{
+        
            const note={
                score : this.state.note
             }
-        await axios.put(this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,note)
+            var varToken = localStorage.getItem('token');
+    await axios({
+      url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
+      note,
+      method: 'put',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    })
         this.getStudents();
     }
     onClickPointAdd=async(valor)=>{
@@ -107,7 +129,15 @@ export default class ListaAlum extends Component {
         const data={
             point : point
          }
-        await axios.put(this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,data);
+         var varToken = localStorage.getItem('token');
+    await axios({
+      url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
+      data,
+      method: 'put',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    })
         this.getStudents();
         this.setShow('showpuntosmas',false)
     }
@@ -116,7 +146,15 @@ export default class ListaAlum extends Component {
         const data={
             point : point
          }
-        await axios.put(this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,data)
+         var varToken = localStorage.getItem('token');
+     await axios({
+      url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
+      data,
+      method: 'put',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    })
         this.getStudents();
         this.setShow('showpuntosmenos',false)
     }
@@ -124,7 +162,15 @@ export default class ListaAlum extends Component {
         const conduct={
             conduct:valor
         }
-        await axios.put(this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,conduct)
+        var varToken = localStorage.getItem('token');
+    await axios({
+      url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
+      conduct,
+      method: 'put',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    })
         this.getStudents();
         this.setShow('showcomportamiento',false)
     }

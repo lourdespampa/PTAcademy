@@ -53,7 +53,14 @@ export default class Views extends Component {
   }
  
   getRecord = async () => {
-    const res = await axios.get('https://academy-api-v3.herokuapp.com/api/events/'+this.state.id_class)
+    var varToken = localStorage.getItem('token');
+    const res = await axios({
+      url:'https://academy-api-v3.herokuapp.com/api/events/'+this.state.id_class ,
+      method: 'GET',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    })
     this.setState({
       grabacion :  await res.data
     });
