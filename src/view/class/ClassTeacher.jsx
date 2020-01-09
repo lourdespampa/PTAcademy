@@ -12,21 +12,33 @@ export default class ClassTeacher extends Component {
     idteacher:""
   };
   componentDidMount() {
+    var varToken = localStorage.getItem('token');
     this.getClass()
     const { match: { params } } = this.props;
     this.setState({
       _id:params._id,
       idteacher:params.id_teacher
     })
-    axios.get(`${this.props.apiUrl}/v1/api/admin/user/${params.id_teacher}`).then(({data})=>{
+    axios({
+      url: `${this.props.apiUrl}/v1/api/admin/user/${params.id_teacher}`,
+      method: 'GET',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    }).then(({data})=>{
       console.log(data)
       this.setState({nombreProfesor:data.user_name+" "+data.user_lastName})
     })
   }
   getClass=async ()=>{
-    // axios.get(`http://3.16.110.136:4200/v1/api/teacher/5db74edbae96433b08911b38/course_detail/${params._id}`)
-    const res = await axios.get(`${this.props.apiUrl}/v1/api/teacher/${this.state.idteacher}/course_detail/${this.state._id}`);
-     
+    var varToken = localStorage.getItem('token');
+    const res = await axios({
+      url: `${this.props.apiUrl}/v1/api/teacher/${this.state.idteacher}/course_detail/${this.state._id}`,
+      method: 'GET',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    })
         this.setState({ classes: await res.data });;
   }
   render() {

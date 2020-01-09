@@ -22,13 +22,20 @@ export default class FormPostCourse extends Component {
   };
 
   handleSubmit = event => {
+    var varToken = localStorage.getItem('token');
     event.preventDefault();
     const data = {
       class_name: this.state.class_name,
       desc: this.state.desc
     };
 
-    axios
+    axios({
+      url: `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`,data,
+      method: 'post',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    })
       .post(
         `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`,
         data
