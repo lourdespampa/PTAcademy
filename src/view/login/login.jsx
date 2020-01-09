@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {Redirect} from 'react-router-dom'
 import "./login.css";
+import logo from "./bg-teacher-login.jpg";
 
 import axios from 'axios';
 import Loading from "./Loading";
@@ -13,6 +14,7 @@ export default function App(props) {
   const [inputsRegister, setInputsRegister] = useState({ email: "", name: "", pass: "", rpass: "" });
   const [{ userState, message, token }, getMessage] = useState({ userState: false, message: "" });
   const [tipoAcceso, setTipoAcceso] = useState(false);
+  const [cuentaVerificada, setCuentaVerificada] = useState(false);
   const [{ loading }, setLoading] = useState({ loading: false });
 
   const cambiarTipoAcceso = () => {
@@ -63,6 +65,8 @@ export default function App(props) {
   const handleToRegister = async (event) => {
     event.preventDefault()
     const { email, name, pass, rpass } = inputsRegister;
+    setTipoAcceso(false)
+    setCuentaVerificada(true)
     console.log(inputsRegister)
   }
 
@@ -94,60 +98,66 @@ export default function App(props) {
   }
   
   return (
-    <div className="loginTeacher">
+    <div className="loginTeacher" style={{ backgroundImage: `url(${logo})` }}>
       {
       userState ? <Redirect to={'/CoursesTeacher/'+userState._id} /> : null
       }
       <div className={ tipoAcceso ? "loginTeacher-container log-in" : "loginTeacher-container" }>
-        <div className="box"></div>
-        <div className="container-forms">
-          <div className="container-info">
-            <div className="info-item">
+        <div className="loginTeacher-box"></div>
+        <div className="loginTeacher-container-forms">
+          <div className="loginTeacher-container-info">
+            <div className="loginTeacher-info-item">
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
                   <p>¿Ya tienes una cuenta?</p>
-                  <div className="btn" onClick={cambiarTipoAcceso}>Iniciar Sesión</div>
+                  <div className="loginTeacher-btn" onClick={cambiarTipoAcceso}>Iniciar Sesión</div>
                 </div>
               </div>
             </div>
-            <div className="info-item">
+            <div className="loginTeacher-info-item">
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
-                  <p>¿Aún no tienes una cuenta?</p>
-                  <div className="btn" onClick={cambiarTipoAcceso}>Registrate</div>
+                  <p>{cuentaVerificada ? "Ingrese código de verificación enviado a su correo" : "¿Aún no tienes una cuenta?"}</p>
+                  {
+                    cuentaVerificada
+                    ?
+                    <input placeholder="CODIGO" type="text" style={{boxSizing: "content-box"}} />
+                    :
+                      <div className="loginTeacher-btn" onClick={cambiarTipoAcceso}>Registrate</div>
+                  }
                 </div>
               </div>
             </div>
           </div>
-          <div className="container-form">
-            <form className="form-item log-in" onSubmit={handleToLogin} >
+          <div className="loginTeacher-container-form">
+            <form className="loginTeacher-form-item log-in" onSubmit={handleToLogin} >
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
                   <h2 className="loginTeacher-subtitle">Iniciar Sesión</h2>
-                  <input name="email" placeholder="Correo" type="text" onChange={handleChangeInputsLogin} required/>
-                  <input name="pass" placeholder="Contraseña" type="password" onChange={handleChangeInputsLogin} required/>
-                  <input className="btn" type="submit" value="sign in"/>
+                  <input name="email" placeholder="Correo" type="text" style={{boxSizing: "content-box"}} onChange={handleChangeInputsLogin} required/>
+                  <input name="pass" placeholder="Contraseña" type="password" style={{boxSizing: "content-box"}} onChange={handleChangeInputsLogin} required/>
+                  <input className="loginTeacher-btn" type="submit" value="sign in"/>
                   <div style={{width:"210px", margin:"10px auto"}}>
                     <div className="linea">&nbsp;</div>
                     <div className="leyenda">&nbsp;&nbsp;o accede con Google&nbsp;&nbsp;</div>
                     <div className="linea">&nbsp;</div>
                   </div>
-                  <a className="button-google" onClick={signInWithGoogle} >
-                    <img className="google-icon" src="https://img.icons8.com/color/48/000000/google-logo.png" />
+                  <a className="loginTeacher-button-google" onClick={signInWithGoogle} >
+                    <img className="loginTeacher-google-icon" src="https://img.icons8.com/color/48/000000/google-logo.png" />
                       Sign in with Google
                   </a>
                 </div>
               </div>
             </form>
-            <form className="form-item sign-up" onSubmit={handleToRegister}>
+            <form className="loginTeacher-form-item sign-up" onSubmit={handleToRegister}>
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
                 <h2 className="loginTeacher-subtitle">Registrarse</h2>
-                  <input name="email" placeholder="Correo" type="text" onChange={handleChangeInputsRegister} required/>
-                  <input name="name" placeholder="Nombre Completo" type="text" onChange={handleChangeInputsRegister} required/>
-                  <input name="pass" placeholder="Contraseña" type="password" onChange={handleChangeInputsRegister} required/>
-                  <input name="rpass" placeholder="Repita su contraseña" type="password" onChange={handleChangeInputsRegister} required/>
-                  <input className="btn" type="submit" value="Sign up"/>
+                  <input name="email" placeholder="Correo" type="text" style={{boxSizing: "content-box"}} onChange={handleChangeInputsRegister} required/>
+                  <input name="name" placeholder="Nombre Completo" type="text" style={{boxSizing: "content-box"}} onChange={handleChangeInputsRegister} required/>
+                  <input name="pass" placeholder="Contraseña" type="password" style={{boxSizing: "content-box"}} onChange={handleChangeInputsRegister} required/>
+                  <input name="rpass" placeholder="Repita su contraseña" type="password" style={{boxSizing: "content-box"}} onChange={handleChangeInputsRegister} required/>
+                  <input className="loginTeacher-btn" type="submit" value="Sign up"/>
                 </div>
               </div>
             </form>
