@@ -11,6 +11,7 @@ export default class AllClass extends Component {
     };
   }
   obtenerCodigo = () => {
+    var varToken = localStorage.getItem('token');
     let id_access = "";
     let possible = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
     for (let i = 0; i < 5; i++) {
@@ -28,9 +29,13 @@ export default class AllClass extends Component {
     console.log(data.id_access)
     console.log(this.state.id_access)
 
-    axios
-      .post(this.props.apiUrl+"/v1/api/access/", data)
-      .then(res => console.log(res))
+    axios({
+      url: this.props.apiUrl+"/v1/api/access/", data,
+      method: 'post',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    }).then(res => console.log(res))
       .catch(err => console.log(err));
       this.setState({
         redirect: true
