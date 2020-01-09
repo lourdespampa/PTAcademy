@@ -12,13 +12,14 @@ export default class ClassTeacher extends Component {
     idteacher:""
   };
   componentDidMount() {
-    var varToken = localStorage.getItem('token');
+   
     this.getClass()
     const { match: { params } } = this.props;
     this.setState({
       _id:params._id,
       idteacher:params.id_teacher
     })
+     var varToken = localStorage.getItem('token');
     axios({
       url: `${this.props.apiUrl}/v1/api/admin/user/${params.id_teacher}`,
       method: 'GET',
