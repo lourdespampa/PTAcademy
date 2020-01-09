@@ -30,7 +30,8 @@ export default class AllClass extends Component {
     console.log(this.state.id_access)
 
     axios({
-      url: this.props.apiUrl+"/v1/api/access/", data,
+      url: this.props.apiUrl+"/v1/api/access/", 
+      data,
       method: 'post',
       headers: {
         'x-access-token': `${varToken}`
