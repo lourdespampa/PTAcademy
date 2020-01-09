@@ -3,17 +3,13 @@ import $ from 'jquery';
 import io from 'socket.io-client';
 import "./temporizador.css";
 
-const socketUrl="http://192.168.1.65:4000/teacher";
-const socket = io(socketUrl)
-
 class Temporizador extends React.Component {
   constructor(props) {
     super(props);
     this.state = { store: '',
       valH: '0',
       valM: '0',
-      valS: '0',
-      socket:null
+      valS: '0'
     }
     this.onChangeInputH = this.onChangeInputH.bind(this);
     this.onChangeInputM = this.onChangeInputM.bind(this);
@@ -31,6 +27,10 @@ class Temporizador extends React.Component {
   }
 
   componentDidMount = () =>{
+    const socket = io(this.props.socketUrl, {
+        query:
+            { pin: this.props.id_access }
+      })
 
       let _this = this;
 
@@ -104,6 +104,7 @@ class Temporizador extends React.Component {
                 var hour = $('#id_dt_1').val();
                 var min = $('#id_dt_2').val();
                 var sec = $('#id_dt_3').val();
+
                 socket.emit('set', {
                     time: [hour,min,sec]
                 });

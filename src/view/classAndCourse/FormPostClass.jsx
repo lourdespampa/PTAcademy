@@ -30,7 +30,7 @@ export default class FormPostCourse extends Component {
 
     axios
       .post(
-        `http://3.16.110.136:4200/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`,
+        `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`,
         data
       )
       .then(res => console.log(res))

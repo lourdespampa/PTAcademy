@@ -12,13 +12,15 @@ class Header extends React.Component{
         this.getNameClass()
     }
     getNameClass = async () => {
+        console.log('hola que hace')
         const res = await axios.get(
           "http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail"
           // `http://3.16.110.136:4200/v1/api/teacher/${this.props.idteacher}/course_detail`
         );
         this.setState({
-          courses: await res.data
+            nombre_clase: await res.data.course_name
         });
+        console.log('nombre curso'+res.data.course_name)
       };
 
     render(){

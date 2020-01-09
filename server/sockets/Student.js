@@ -10,7 +10,9 @@ const studentSocket = (io) => {
             console.log('recibida pregunta elegida')
             console.log(data)
             Teacher.emit('pregunta escogida',{
-                data:data
+                data: data,
+                pin: socket.handshake.query.pin
+                
             })
         })
     })

@@ -3,11 +3,13 @@ import './FooterContainer.sass';
 import Modal from 'react-bootstrap/Modal';
 import Audio from '../audio/audio';
 import io from 'socket.io-client';
-const socketUrl="http://192.168.1.65:4000/teacher";
-const socket = io(socketUrl)
 
-function enviarvideo(url,url2){
+function enviarvideo(url,url2,socketUrl,id_access){
     var urlnombre=url+url2
+    const socket = io(socketUrl, {
+        query:
+            { pin: id_access }
+    })
     socket.emit('VideoEmit',urlnombre)
     document.getElementById('overlay2').classList.add('active');
     document.getElementById('popupvideo').classList.add('active');
@@ -15,10 +17,14 @@ function enviarvideo(url,url2){
     var urlembed = urlnombre.split(expresionRegular);
     document.getElementById('video-frame').src = "https://www.youtube.com/embed/"+urlembed[1]+"?autoplay=1&controls=0"
 }
-function SendForm(){
+function SendForm(socketUrl,id_access){
     
     //SEND FORM
-        socket.emit('SendForm')
+    const socket = io(socketUrl, {
+        query:
+            { pin: id_access }
+    })
+    socket.emit('SendForm')
     
 
     //END SEND FORM
@@ -61,7 +67,9 @@ function FooterContainer(props){
                     <button className="col-6 " onClick={()=>props.reproclick()}>
                         reproducir
                     </button>
-                    <div><Audio/></div>
+                    <div>
+                        <Audio socketUrl={props.socketUrl} id_access={props.id_access}/>
+                    </div>
                     
                 </div>
 
@@ -84,7 +92,7 @@ function FooterContainer(props){
                         <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{width: "100% !important",height: "450px"}} allowFullScreen={true}
                          mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
                          
-                         <button className="btn btn-block btn-info" onClick={()=>SendForm()}>EMITIR</button>
+                         <button className="btn btn-block btn-info" onClick={()=>SendForm(props.socketUrl,props.id_access)}>EMITIR</button>
                     </div>
                 </div>
             </footer>
@@ -101,7 +109,7 @@ function FooterContainer(props){
             </Modal.Header>
             <Modal.Body>
               <input id="urlid" type="text" placeholder={props.txt} name="urlvideo" onChange={e => seturlnombre(e.target.value)+props.changeOn('urlvideo',e.target.value)} style={{fontSize:"20px",width: "80%"}} required/>
-              <button id="btnenviarvideo" onClick={()=>enviarvideo(urlnombre,props.txt,setShow(false))+props.botonClick('btnenviarvideo')} class="button btnMyM" type="button">Enviar</button>
+              <button id="btnenviarvideo" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} class="button btnMyM" type="button">Enviar</button>
             </Modal.Body>
           </Modal>
           <div class="overlay" id="overlay2">

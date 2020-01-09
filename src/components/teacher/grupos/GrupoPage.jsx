@@ -1,17 +1,25 @@
 import React, { Component } from "react";
-import "./grupos.css";
+import "./Grupos.sass";
 import axios from "axios";
+import io from 'socket.io-client';
+
 
 const url = "http://3.16.110.136:4200";
+
+const socketUrl="http://192.168.1.65:4000/teacher";
+const socket = io(socketUrl)
 export default class GrupoPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       alumnos: [],
       nro_per_grupo: 1,
-      grupos: []
+      grupos: [],
+      socket:null,
+      id_access : ''
     };
   }
+  
 
   handleNumPerGrou = e => {
     this.setState({ nro_per_grupo: e.target.value });
@@ -19,9 +27,12 @@ export default class GrupoPage extends Component {
 
   componentWillMount() {
     this.getAlumnos();
+    const data = this.props
+    this.setState({id_access: data})
+    console.log(this.props)
   }
   getAlumnos = () => {
-    axios.get(`${url}/v1/api/lesson/PRJHS/students/roulette`).then(res => {
+    axios.get(`${url}/v1/api/lesson/${this.props.id_access}/students/roulette`).then(res => {
       res.data.map(alumno => {
         this.state.alumnos.push(alumno.name_stu + " " + alumno.lastName_stu);
       });
@@ -63,6 +74,10 @@ export default class GrupoPage extends Component {
       `;
     }
     document.getElementById("imprimir").innerHTML = cadena;
+    socket.emit('enviando grupos',{
+        data : cadena
+    })
+    console.log(cadena)
   };
 
   render() {
@@ -81,7 +96,7 @@ export default class GrupoPage extends Component {
               value={this.state.nro_per_grupo}
               onChange={this.handleNumPerGrou}
             />
-            <button onClick={this.groupGenerator}>FORMAR GRUPOS</button>
+            <div onClick={this.groupGenerator}>FORMAR GRUPOS</div>
           </div>
           <div className="contenedor-grupos">
             <ul className="grupos-cards" id="imprimir"></ul>

@@ -13,23 +13,21 @@ import Index from './view/index/Inicio'
 
 export default class Access extends Component {
     state={
-        nombreProfesor: "carlos",
-    _id: "",
-    courses: []
+    apiUrl:'http://3.16.110.136:4200',
     }
     render() {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route exact path="/" component={()=><Index/>} />
-                    <Route exact path="/Login" component={()=><LoginStu/>} />
-                    <Route exact path="/loginStudent/:id_access" component={(props)=><FormLoginStu {...props}/>} />
-                    <Route exact path="/loginTeacher" component={()=><Login/>} />
-                    <Route exact path="/CoursesTeacher/:id" component={(props)=><CoursesTeacher {...props}/>} />
-                    <Route exact path="/:id_teacher/ClassTeacher/:_id" component={(props)=><ClassTeacher {...props} />} />
-                    <Route exact path="/ClassDetailTeacher" component={()=><ClassDetailTeacher/>} />
-                    <Route path="/teacher/:id_class/:id_access" component={Teacher} />
-                    <Route path="/student/:id_access" component={() => <Student/>} />
+                    <Route exact path="/" component={Index} />
+                    <Route exact path="/Login" component={()=><LoginStu apiUrl={this.state.apiUrl} />} />
+                    <Route exact path="/loginStudent/:id_access" component={(props)=><FormLoginStu {...props} apiUrl={this.state.apiUrl} />} />
+                    <Route exact path="/loginTeacher" component={()=><Login apiUrl={this.state.apiUrl}/>}  />
+                    <Route exact path="/CoursesTeacher/:id" component={(props)=><CoursesTeacher {...props} apiUrl={this.state.apiUrl} />} />
+                    <Route exact path="/:id_teacher/ClassTeacher/:_id" component={(props)=><ClassTeacher {...props} apiUrl={this.state.apiUrl} />} />
+                    <Route exact path="/ClassDetailTeacher" component={()=><ClassDetailTeacher apiUrl={this.state.apiUrl} />} />
+                    <Route path="/teacher/:id_class/:id_access" component={(props)=><Teacher {...props} apiUrl={this.state.apiUrl} />}  />
+                    <Route path="/student/:id_student/:id_access" component={(props) => <Student {...props} apiUrl={this.state.apiUrl}/>}  />
                     <Route component={NotFound} />
                 </Switch>
             </BrowserRouter>

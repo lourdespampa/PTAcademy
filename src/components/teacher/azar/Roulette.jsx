@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import io from 'socket.io-client';
 import './Roulette.css';
 
-
-const socketUrl="http://192.168.1.65:4000/teacher";
-const socket = io(socketUrl)
-
 class Roulette extends React.Component {
 
   constructor(props) {
@@ -159,6 +155,12 @@ class Roulette extends React.Component {
     ctx.font = 'bold 20px Helvetica, Arial';
     const text = options[index];
     //Roulette
+    
+    const socket = io(this.props.socketUrl, {
+      query:
+          { pin: this.props.id_access }
+    })
+    
     socket.emit('azarprofe',text)
     console.log('emite el profe')
     //Roulette END

@@ -4,62 +4,76 @@ const teacherSocket = (io) => {
 
     Teacher.on('connection', (socket) => {
         console.log('id teacher:'+socket.id)
-         //Video
-
+        
+        //Video
         socket.on('VideoEmit',(url)=>{
-            Student.emit('Video',url)
+            Student.emit('Video',{
+                url: url,
+                pin: socket.handshake.query.pin
+            })
         })
+        //FIN Video
 
-        //FIn Video
         //INICIO ROULETTE
-
         socket.on('azarprofe',(data)=>{
             console.log('escchaa el profe')
-            Student.emit('rouletteWinnerS',data)
+            Student.emit('rouletteWinnerS',{
+                data: data,
+                pin: socket.handshake.query.pin
+            })
             console.log('emite el alum')
         })
-
         //FIN ROULETTE
-        ///¿trivia
+
+        //trivia
         socket.on('enviando pregunta',function(data){
             console.log('pregunta enviada')
             Student.emit('pregunta recibida',{
-                data:data
+                data:data,
+                pin: socket.handshake.query.pin
             })
         })
-
         socket.on('restaurando datos',function(data){
             console.log('peticion enviada')
             Student.emit('datos restaurados',{
-                data:data
+                data:data,
+                pin: socket.handshake.query.pin
             })
         })
-        //fintrivia
+        //FIN trivia
+
          //FORM
-
          socket.on('SendForm',()=>{
-            Student.emit('SendFormS')
+            Student.emit('SendFormS',{
+                pin: socket.handshake.query.pin
+            })
         })
-
         //END FORN
-          //SLIDES
+
+        //SLIDES
           socket.on('sendSlides',()=>{
-            Student.emit('sendSlidesS')
-        })
-
+            Student.emit('sendSlidesS',{
+                pin: socket.handshake.query.pin
+            });
+            console.log(socket.handshake.query.pin);
+        });
         socket.on('nextPpt',()=>{
-            Student.emit('nextPptS')
+            Student.emit('nextPptS',{
+                pin: socket.handshake.query.pin
+            })
         })
-
         socket.on('backtPpt',()=>{
-            Student.emit('backtPptS')
+            Student.emit('backtPptS',{
+                pin: socket.handshake.query.pin
+            })
         })
-
         socket.on('closeSlides',()=>{
-            Student.emit('closeSlidesS')
+            Student.emit('closeSlidesS',{
+                pin: socket.handshake.query.pin
+            })
         })
-
         //END SLIDES
+
         // Inicia TEMP
         socket.on('set', function(data) {
             Student.emit('set', {
@@ -82,7 +96,25 @@ const teacherSocket = (io) => {
             });
             console.log('se esta detenemiendo el time'+ data.message)
         });
-        // Termina TEMP
+        //FIN TEMP
+
+        //Lista
+        socket.on('RemoveStud',()=>{
+            Student.emit('RemoveStudS',{
+                pin: socket.handshake.query.pin
+            })
+        })
+        //END LISTA
+
+        //grupos
+        socket.on('enviando grupos',(data)=>{
+            Student.emit('enviando grupos',{
+                data: data,
+                pin: socket.handshake.query.pin
+            })
+        })
+        //END grupos
+
     })
 }
 
