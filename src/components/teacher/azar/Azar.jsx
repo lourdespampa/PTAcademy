@@ -1,5 +1,5 @@
 import React from 'react';
-import Roulette from './Roulette.js';
+import Roulette from './Roulette';
 
 import axios from 'axios'
 
@@ -17,8 +17,14 @@ class Azar extends React.Component {
     }
 
     componentWillMount(){
-        axios.get(`${url}/v1/api/lesson/${this.props.id_access}/students/roulette`)
-        // axios.get(`${url}/v1/api/lesson/PRJHS/students/roulette`)
+        var varToken = localStorage.getItem('token');
+    axios({
+      url: `${url}/v1/api/lesson/${this.props.id_access}/students/roulette`,
+      method: 'GET',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    })
         .then( (res) => {
             res.data.map( alumno => {
                 this.state.alumnos.push(alumno.name_stu)
@@ -36,7 +42,7 @@ class Azar extends React.Component {
         if(this.state.alumnos.length > 0){
             return(
                 <div>
-                    <Roulette options={this.state.alumnos} baseSize={220} onComplete={handleOnComplete}/>
+                    <Roulette options={this.state.alumnos} baseSize={220} onComplete={handleOnComplete} socketUrl={this.props.socketUrl} id_access={this.props.id_access}/>
                 </div>
             )
         } else {
