@@ -19,7 +19,7 @@ export default class Views extends Component {
    this.state={
       socket:null,
       class:'clase3',
-      socketUrl:"http://192.168.1.65:4000/teacher",
+      socketUrl:"http://localhost:4000/teacher",
       user:null,
       id:'',
       grabar:false,
@@ -34,7 +34,7 @@ export default class Views extends Component {
     componentWillMount(){
     this.initSocket()
   }
-    async componentDidMount() {
+    componentDidMount() {
       this.getRecord();
       const {
         match: { params }
@@ -53,7 +53,14 @@ export default class Views extends Component {
   }
  
   getRecord = async () => {
-    const res = await axios.get('https://academy-api-v3.herokuapp.com/api/events/'+this.state.id_class)
+    var varToken = localStorage.getItem('token');
+    const res = await axios({
+      url:'https://academy-api-v3.herokuapp.com/api/events/'+this.state.id_class ,
+      method: 'GET',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    })
     this.setState({
       grabacion :  await res.data
     });

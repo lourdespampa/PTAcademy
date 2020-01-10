@@ -4,24 +4,30 @@ import HeaderCode from '../../components/teacher/header/HeaderCode';
 import axios from 'axios';
 
 class Header extends React.Component{
-
-    state = {
-        nombre_clase:[]
-    }
+    constructor(props) {
+        super(props);
+    this.state = {
+        nombre_clase:''
+    }}
     componentDidMount(){
-        this.getNameClass()
+        setTimeout(() => {
+        this.getName()},1000)
     }
-    getNameClass = async () => {
-        console.log('hola que hace')
-        const res = await axios.get(
-          "http://3.16.110.136:4200/v1/api/teacher/5dee7931d541305009b31c9f/course_detail"
-          // `http://3.16.110.136:4200/v1/api/teacher/${this.props.idteacher}/course_detail`
-        );
+    getName = async () => {
+        console.log('hola que hace'+this.props.id_class)
+        var varToken = localStorage.getItem('token');
+     const res = await axios({
+      url: `http://3.16.110.136:4200/v1/api/teacher/detail_class/${this.props.id_class}`,
+      method: 'GET',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    })
+    console.log(res.data)
         this.setState({
-            nombre_clase: await res.data.course_name
+            nombre_clase :  await res.data.class_name
         });
-        console.log('nombre curso'+res.data.course_name)
-      };
+    }
 
     render(){
         return(
