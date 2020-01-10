@@ -1,7 +1,7 @@
 import React from "react";
 import $ from 'jquery';
 import io from 'socket.io-client';
-import "./temporizador.css";
+import "./temporizador.sass";
 import Modal from 'react-bootstrap/Modal';
 
 class Temporizador extends React.Component {
@@ -204,21 +204,23 @@ class Temporizador extends React.Component {
                 </div>
             </Modal.Header>
             <Modal.Body>
-                <form className="temporizador_form">
-                    <div>
-                        <label>Horas</label>
-                        <input className="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />
-                    </div>
-                    <div>
-                        <label>Minutos</label>
-                        <input className="pure-input-1" type="number" id="id_dt_2" value={this.state.valM} min="0" onChange={this.onChangeInputM} />
-                    </div>
-                    <div>
-                        <label>Segundos</label>
-                        <input className="pure-input-1" type="number" id="id_dt_3" value={this.state.valS} min="0" onChange={this.onChangeInputS} />
-                    </div>
-                </form>
-                <button type="button" id="button-set" onClick={() => this.closeModal()} className="pure-button pure-button-primary" >Establecer Tiempo</button>
+                <div className="temporizador_modal_body">
+                    <form className="temporizador_form">
+                        <div>
+                            <label>Horas</label>
+                            <input className="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />
+                        </div>
+                        <div>
+                            <label>Minutos</label>
+                            <input className="pure-input-1" type="number" id="id_dt_2" value={this.state.valM} min="0" onChange={this.onChangeInputM} />
+                        </div>
+                        <div>
+                            <label>Segundos</label>
+                            <input className="pure-input-1" type="number" id="id_dt_3" value={this.state.valS} min="0" onChange={this.onChangeInputS} />
+                        </div>
+                    </form>
+                    <button type="button" id="button-set" onClick={() => this.closeModal()} className="pure-button pure-button-primary" >Establecer Tiempo</button>
+                </div>
             </Modal.Body>
         </Modal>
     </div>

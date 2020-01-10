@@ -23,7 +23,7 @@
 .temporizador .counter-tools {
     text-align: center
 }
-.temporizador .pure-button {
+.temporizador .pure-button,.temporizador_modal_body .pure-button{
     border: transparent;
     margin-top: 1em!important;
     margin: 0 5px;
@@ -45,7 +45,7 @@
     box-shadow: none;
     pointer-events: none
 }
-.temporizador .pure-button-primary {
+.temporizador .pure-button-primary,.temporizador_modal_body .pure-button-primary{
     background-color: #0078e7;
 }
 .temporizador .unit_value{
