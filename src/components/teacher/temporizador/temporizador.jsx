@@ -108,7 +108,7 @@ class Temporizador extends React.Component {
                 socket.emit('set', {
                     time: [hour,min,sec]
                 });
-                $('#establecer_tiempo').modal('hide');
+                // $('#establecer_tiempo').modal('hide');
                 g = c;
                 n();
                 m.css("color", "black")
