@@ -60,12 +60,10 @@ export default class CoursesTeacher extends Component {
       }
     }).then( ({ data }) => {
       // console.log(data)
-      if(this.finalizarComponente){
         if(data == []){
           this.setState({courses: []})
         }else{
           this.setState({courses: data})
-        }
       }
     })
     .catch( e => console.log(e))
