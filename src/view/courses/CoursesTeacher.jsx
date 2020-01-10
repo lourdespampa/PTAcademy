@@ -30,7 +30,7 @@ export default class CoursesTeacher extends Component {
         'x-access-token': `${varToken}`
       }
     }).then( ({ data }) => {
-      // console.log(data)
+       console.log(data)
         if(data == []){
           this.setState({courses: []})
         }else{
@@ -59,7 +59,7 @@ export default class CoursesTeacher extends Component {
         'x-access-token': `${varToken}`
       }
     }).then( ({ data }) => {
-      // console.log(data)
+       console.log(data)
         if(data == []){
           this.setState({courses: []})
         }else{
