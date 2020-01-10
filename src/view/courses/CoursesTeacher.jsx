@@ -61,7 +61,7 @@ export default class CoursesTeacher extends Component {
       url: `${this.props.apiUrl}/v1/api/teacher/${params.id}/course_detail`,
       method: "GET",
       headers: {
-        "x-access-token": `${varToken}`
+        'x-access-token': `${varToken}`
       }
     })
       .then(({ data }) => {
