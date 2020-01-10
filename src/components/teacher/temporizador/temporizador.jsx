@@ -197,7 +197,7 @@ class Temporizador extends React.Component {
             <button type="button" className="pure-button pure-button-primary" id="button-reset">REINICIAR</button>
             <button type="button" className="pure-button pure-button-success" onClick={() => this.openModal()}  id="button-establecer">ESTABLECER TIEMPO</button>
         </div>
-        <Modal size={'SM'} show={this.state.open} onHide={() => this.closeModal()}>
+        <Modal size={'SM'} id="temporizador-modal" show={this.state.open} onHide={() => this.closeModal()}>
             <Modal.Header>
                 <div className="punto-posi">
                     <h3>ESTABLECER TIEMPO</h3>
