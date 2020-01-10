@@ -3,7 +3,7 @@
   src: url("./plugins/Opal.ttf") format("truetype");
 }
 
-* {
+*, *::before, *::after {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
