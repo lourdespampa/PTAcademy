@@ -18,6 +18,7 @@ export default class CoursesTeacher extends Component {
   }
 
   componentDidMount() {
+    // en varToken se guarda la variable almacenada del localstorage
     var varToken = localStorage.getItem('token');
     //obtenemos el id de la url pasada a través de las propiedades
     const { match: { params } } = this.props;

@@ -8,6 +8,8 @@ import Loading from "./Loading";
 
 import firebase from "./firebaseConfig";
 
+import aesjs from 'aes-js'
+
 export default function App(props) {
 
   const [inputsLogin, setInputsLogin] = useState({ email: "", pass: "" });
@@ -46,8 +48,8 @@ export default function App(props) {
           try {
             const { data } = await axios.post(`${props.apiUrl}/signin`, {fuente:'manual', email, pass });
             const { user, token } = data;
-            // console.log(data);
-            localStorage.setItem("token", token);
+            let tokenEncrypt = encriptarToken(token)
+            localStorage.setItem("token", tokenEncrypt);
             localStorage.setItem("user", JSON.stringify(user));
             getMessage({
               userState: user,
@@ -128,7 +130,8 @@ export default function App(props) {
       //enviamos los datos a la API
       const { data } = await axios.post(`${props.apiUrl}/signin`, {"fuente": "google", displayName, "email": emailGoogle, photoURL });
       const { user, token } = data;
-      localStorage.setItem("token", token);
+      let tokenEncrypt = encriptarToken(token)
+      localStorage.setItem("token", tokenEncrypt);
       localStorage.setItem("user", JSON.stringify(user));
       getMessage({
         userState: user,
@@ -142,6 +145,20 @@ export default function App(props) {
       getMessage({ message: "Error al acceder con Google, verifique sus datos e intentelo nuevamente." });
       console.log(e)
     })
+  }
+
+  const encriptarToken = (token) => {
+    //128-bit key (16 bytes * 8 bits/byte = 128 bits)
+    var key = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
+    //convierte texto a bytes
+    var textBytes = aesjs.utils.utf8.toBytes(token);
+    //El contador es opcional, si lo omites empezará en 1
+    var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(5));
+    //encripta la cadena de bytes
+    var encryptedBytes = aesCtr.encrypt(textBytes);
+    //para imprimir o almacenar los datos binarios, puedes convertirlos a hexadecimal
+    return aesjs.utils.hex.fromBytes(encryptedBytes);
+    
   }
   
   return (
