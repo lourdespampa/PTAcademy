@@ -32,7 +32,7 @@ function BotonSalir(props) {
   }
 function HeaderCode(props){
     const codigo = () => {
-        alert('codigo')
+        // alert('codigo')
     }
     
 
@@ -45,18 +45,19 @@ function HeaderCode(props){
             </div>         
             <nav role="navigation">
                 <div id="menuToggle">
-                    <input type="checkbox"/>
+                    <input id="checked" type="checkbox"/>
                         <span className="hamburguesa-span"></span>
                         <span className="hamburguesa-span"></span>
                         <span className="hamburguesa-span"></span>
-                    <label className="close-menu" for="checked"></label>
-                        <ul className="menu-header" id="menu-header">
-                            <li><Link className="lista"  to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA DE ALUMNOS</Link></li>    
-                            <li><Link className="azar"   to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
-                            <li><Link className="grupos" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
-                            <li><Link className="tempor" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
-                            <li><Link className="trivia" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
-                        </ul>
+                        <label className="close-menu" for="checked"/>
+                            <ul className="menu-header" id="menu-header"> 
+                                <li><Link className="lista"  to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
+                                {/* <li><Link className="lista"  to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li>     */}
+                                <li><Link className="azar"   to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
+                                <li><Link className="grupos" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
+                                <li><Link className="tempor" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
+                                <li><Link className="trivia" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
+                            </ul>
                 </div>
             </nav>
             <div className="content">
