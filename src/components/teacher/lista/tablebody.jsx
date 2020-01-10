@@ -5,10 +5,10 @@ export const TableBody = (props) => {
         <>
             {props.students.map(student=>(
                 <tr key={student._id}>
-                    <td className="nom" style={{width:"400px"}}>
+                    <td className="nom" style={{width:"20%"}}>
                     {student.name_stu}
                     </td>
-                    <td className="ape" style={{width:"400px"}}>
+                    <td className="ape" style={{width:"20%"}}>
                     {student.lastName_stu}
                     </td>
                     <td className="nota" style={{textAlign:"center",width:'130px'}}>
