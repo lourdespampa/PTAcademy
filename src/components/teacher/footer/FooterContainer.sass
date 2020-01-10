@@ -105,7 +105,10 @@ iframe
 /* Footer Right */
 
 .footer-distributed .footer-right 
-    width: 45%
+    width: auto
+    background: blue
+    position: absolute
+    right: 0
     
 
 
@@ -317,10 +320,7 @@ iframe
     text-align: center
 
 .footer-distributed .footer-right .div_audio
-    position: relative
-    left:  30%
-    width: auto
-    max-width: 300px
+   background: yellow
 
 
 .footer-distributed .footer-right .div_audio .div_btn
@@ -329,10 +329,7 @@ iframe
     border: solid 3px
     height: 100px
     background: #020202
-    /*margin: 100px;*/
-    position: relative
-    left: 70%
-    bottom: 50%
+    margin: 0 auto
     cursor: pointer
     /*top : 0;*/
    /* animation: ripple 1000ms infinite;
@@ -360,7 +357,7 @@ iframe
 
 
 
-@media (min-width: 320px) and (max-width: 480px) 
+@media (min-width: 320px) and (max-width: 680px) 
     .footer-distributed 
         box-sizing: border-box
         width: 100%
@@ -378,7 +375,7 @@ iframe
    
     .footer-left
         position: flex
-        width: 35%
+        width: 95%
         height: 17%
         border: solid 5px white 
         zIndex: 0.1
@@ -386,25 +383,20 @@ iframe
         
     .footer-distributed .footer-right .div_audio .div_btn 
         border-radius: 50%
-        width: 100px
-        border: solid 3px
-        height: 100px
+        max-width: 100px
+        border: solid 3px blacks
         background: #ffffff
-        /* margin: 100px; */
-        position: relative
-        left: 70%
-        bottom: 50%
         cursor: pointer
-        /* top: 0;*/
+        top: -12px
 
     .footer-distributed .footer-right .div_audio 
-        position: relative
-        left: -15%
         width: auto
-        max-width: 300px
-    
+        max-width: 50px
 
+    
+    .footer-distributed .footer-left 
+        width: 53%
 
 
         
-   
+       
