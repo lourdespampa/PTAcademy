@@ -18,11 +18,18 @@ export default class CoursesTeacher extends Component {
   }
 
   componentDidMount() {
+    var varToken = localStorage.getItem('token');
     //obtenemos el id de la url pasada a través de las propiedades
     const { match: { params } } = this.props;
     this.setState({_id: params.id})
     //luego, obtenemos la lista de cursos del profesor por petición a la API
-    axios.get(`${this.props.apiUrl}/v1/api/teacher/${params.id}/course_detail`).then( ({ data }) => {
+    axios({
+      url: `${this.props.apiUrl}/v1/api/teacher/${params.id}/course_detail`,
+      method: 'GET',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    }).then( ({ data }) => {
       // console.log(data)
         if(data == []){
           this.setState({courses: []})
@@ -31,15 +38,27 @@ export default class CoursesTeacher extends Component {
         }
     })
     .catch( e => console.log(e))
-    axios.get(`${this.props.apiUrl}/v1/api/admin/user/${params.id}`).then(({data})=>{
+    axios({url:`${this.props.apiUrl}/v1/api/admin/user/${params.id}`,
+    method:'GET' ,
+    headers:{
+      'x-access-token': `${varToken}`
+    }
+    }).then(({data})=>{
       console.log(data)
-      this.setState({nombreProfesor:data.user_name+" "+data.user_lastName})
+      this.setState({nombreProfesor:data.displayName})
     })
   }
 
   getCursos(){
     const { match: { params } } = this.props;
-    axios.get(`${this.props.apiUrl}/v1/api/teacher/${params.id}/course_detail`).then( ({ data }) => {
+    var varToken = localStorage.getItem('token');
+    axios({
+      url: `${this.props.apiUrl}/v1/api/teacher/${params.id}/course_detail`,
+      method: 'GET',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    }).then( ({ data }) => {
       // console.log(data)
       if(this.finalizarComponente){
         if(data == []){
@@ -53,7 +72,14 @@ export default class CoursesTeacher extends Component {
   }
 
   deleteCurso = async () => {
-    await axios.delete(this.props.apiUrl+'/v1/api/admin/course/'+ this.state.id_curso);
+    var varToken = localStorage.getItem('token');
+
+    await axios({
+      url:this.props.apiUrl+'/v1/api/admin/course/'+ this.state.id_curso,
+      method:'delete',
+      headers:{
+        'x-access-token': `${varToken}`
+      }});
     this.getCursos();
   }
   onClick = (id) => {

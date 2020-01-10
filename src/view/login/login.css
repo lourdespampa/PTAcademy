@@ -296,12 +296,39 @@
    margin-top: 45px;
  }
 
+ .loginTeacher-login-register {
+  display: none;
+}
+
+ .loginTeacher-message{ 
+   color: white;
+   text-align: center;
+   background: red;
+ }
 
 /* Media queries a partir de 600 px */
 
 @media (max-width: 600px) {
-  .facet_sidebar {
-    display: none;
+  .loginTeacher-login-register {
+    display: block;
+    position: absolute;
+    width: 100%;
+    left: 33%;
+    bottom: 10px;
+    margin: 10px auto 0 !important;
+    color: #4285f4 !important;
+  }
+  .loginTeacher-message{ 
+    width: 300px;
+    margin-top: 70px;
+    margin-left: 30px;
+  }
+  .loginTeacher-container .loginTeacher-container-form{
+    top: -40px;
+    height: 420px;
+  }
+  .loginTeacher-container.log-in .loginTeacher-container-form {
+    left: 30px;
   }
 }
 
