@@ -32,7 +32,14 @@ export default class GrupoPage extends Component {
     console.log(this.props)
   }
   getAlumnos = () => {
-    axios.get(`${url}/v1/api/lesson/${this.props.id_access}/students/roulette`).then(res => {
+    var varToken = localStorage.getItem('token');
+     axios({
+      url: `${url}/v1/api/lesson/${this.props.id_access}/students/roulette`,
+      method: 'GET',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
+    }).then(res => {
       res.data.map(alumno => {
         this.state.alumnos.push(alumno.name_stu + " " + alumno.lastName_stu);
       });
