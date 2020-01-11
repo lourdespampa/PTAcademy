@@ -34,6 +34,9 @@ function HeaderCode(props){
     const codigo = () => {
         // alert('codigo')
     }
+    const closeMenu = () => {
+        document.getElementById('checked').click()
+    }
     
 
     return(
@@ -51,12 +54,11 @@ function HeaderCode(props){
                         <span className="hamburguesa-span"></span>
                         <label className="close-menu" for="checked"/>
                             <ul className="menu-header" id="menu-header"> 
-                                <li><Link className="lista"  to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
-                                {/* <li><Link className="lista"  to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li>     */}
-                                <li><Link className="azar"   to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
-                                <li><Link className="grupos" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
-                                <li><Link className="tempor" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
-                                <li><Link className="trivia" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
+                                <li><Link onClick={closeMenu} className="lista" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
+                                <li><Link onClick={closeMenu} className="azar"   to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
+                                <li><Link onClick={closeMenu} className="grupos" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
+                                <li><Link onClick={closeMenu} className="tempor" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
+                                <li><Link onClick={closeMenu} className="trivia" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
                             </ul>
                 </div>
             </nav>
