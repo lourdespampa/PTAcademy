@@ -8,11 +8,11 @@ function Empatia(props){
 
     return(
         <>
-            <header>
+            <header id="Empatia-header">
                 <div className="menu_bar">
                     <Link to="/" className="bt-menu"><span className="icon-list2"></span>Menú</Link>
                 </div>
-                <nav>
+                <nav id="Empatia-header__menu">
                     <ul>
                         <li><Link className="a nav-lista" style={{display: "block"}} to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA DE ALUMNOS</Link></li>
                         <li><Link className="a nav-azar" style={{display: "block"}} to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
