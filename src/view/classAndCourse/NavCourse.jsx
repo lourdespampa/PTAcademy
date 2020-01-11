@@ -8,7 +8,7 @@ function BotonAgregar(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const AgregarClick=()=>setShow(false)+props.getdata
+  const AgregarClick=()=>setShow(false)+props.getdata()
   return (
     <>
       <button variant="primary" className="btn card_btn" style={{color:'#fff'}} onClick={handleShow}>
@@ -19,10 +19,10 @@ function BotonAgregar(props) {
           <Modal.Title>Agregando {props.agregarX}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          { (props.agregarX==='course')?
-          <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} />
-          :
+          { (props.agregarX=='clase')?
           <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
+          :
+          <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} />
           }
         </Modal.Body>
       </Modal>
@@ -55,6 +55,7 @@ function BotonCerrarSesion() {
 
 export default class NavCourse extends Component {
   render() {
+    console.log(this.props)
     return (
       <>
         <div className="navegador">

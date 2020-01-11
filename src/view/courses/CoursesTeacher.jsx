@@ -49,7 +49,7 @@ export default class CoursesTeacher extends Component {
     })
   }
 
-  getCursos(){
+  getCursos=()=>{
     const { match: { params } } = this.props;
     var varToken = localStorage.getItem('token');
     axios({
@@ -94,7 +94,7 @@ setShow=(nom,val)=>{
   render() {
     return (
       <>
-        <NavCourse apiUrl={this.props.apiUrl} idcourse={this.props.idcourse} idteacher={this.state._id}
+        <NavCourse apiUrl={this.props.apiUrl} idcourse={this.state.id_curso} idteacher={this.state._id}
          agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos}></NavCourse>
         <div className="main">
           <h1>SECCION DE CURSOS</h1>
