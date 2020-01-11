@@ -22,6 +22,7 @@ export default class FormPostCourse extends Component {
   };
 
   handleSubmit = event => {
+    console.log(this.props)
     var varToken = localStorage.getItem('token');
     event.preventDefault();
     const data = {

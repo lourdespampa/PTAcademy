@@ -16,6 +16,7 @@ export default class ClassTeacher extends Component {
   componentDidMount() {
     var varToken = localStorage.getItem('token');
    const { match: { params } } = this.props;
+   this.setState({idteacher: params.id_teacher,idcourse:params._id})
     axios({
       url: `${this.props.apiUrl}/v1/api/teacher/${params.id_teacher}/course_detail/${params._id}`,
       method: 'GET',
@@ -42,7 +43,7 @@ export default class ClassTeacher extends Component {
       this.setState({nombreProfesor:data.user_name+" "+data.user_lastName})
     })
   }
-  getClass(){
+  getClass=()=>{
     var varToken = localStorage.getItem('token');
     const { match: { params } } = this.props;
     axios({
@@ -66,7 +67,7 @@ export default class ClassTeacher extends Component {
   render() {
     return (
       <>
-      <NavCourse apiUrl={this.props.apiUrl} idteacher={this.state.idteacher} idcourse={this.state._id} agregarX={'clase'}
+      <NavCourse apiUrl={this.props.apiUrl} idteacher={this.state.idteacher} idcourse={this.state.idcourse} agregarX={'clase'}
        nombreProfesor={this.state.nombreProfesor} getdata={this.getClass}></NavCourse>
         <div className="main">
           <h1>SECCION DE CLASES</h1>
