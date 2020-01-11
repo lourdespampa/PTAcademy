@@ -8,6 +8,7 @@ export default class AllCourses extends Component {
           <Link
             to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
             class="courseTeacher-cards"
+            onClick={()=>this.props.onClick(this.props.id)}
           >
             <div class="courseTeacher-card-item">
               <div class="courseTeacher-card-image"></div>
