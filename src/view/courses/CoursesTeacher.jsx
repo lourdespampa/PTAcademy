@@ -30,7 +30,7 @@ export default class CoursesTeacher extends Component {
         'x-access-token': `${varToken}`
       }
     }).then( ({ data }) => {
-      // console.log(data)
+       console.log(data)
         if(data == []){
           this.setState({courses: []})
         }else{
@@ -59,7 +59,7 @@ export default class CoursesTeacher extends Component {
         'x-access-token': `${varToken}`
       }
     }).then( ({ data }) => {
-      // console.log(data)
+       console.log(data)
         if(data == []){
           this.setState({courses: []})
         }else{
@@ -95,7 +95,7 @@ setShow=(nom,val)=>{
     return (
       <>
         <NavCourse apiUrl={this.props.apiUrl} idcourse={this.props.idcourse} idteacher={this.state._id}
-         agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos()}></NavCourse>
+         agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos}></NavCourse>
         <div className="main">
           <h1>SECCION DE CURSOS</h1>
           <ul className="cards">
