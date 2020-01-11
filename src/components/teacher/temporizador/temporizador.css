@@ -1,3 +1,94 @@
-.modal-backdrop.show {
-    display:none !important;
+@font-face{
+    font-family:clockicons;
+    src:url(../../../plugins/clockicons.ttf) format('truetype');
+    font-weight:400;
+    font-style:normal
+}
+.temporizador{
+    text-align: center
+}
+.temporizador .counter_part {
+    display: inline-block;
+    line-height: initial;
+}
+.temporizador .unit_name {
+    font-size: 2rem
+}
+.temporizador .unit_value{
+    font-size: 200px
+}
+.temporizador #alarm {
+    display: none
+}
+.temporizador .counter-tools {
+    text-align: center
+}
+.temporizador .pure-button,.temporizador_modal_body .pure-button{
+    border: transparent;
+    margin-top: 1em!important;
+    margin: 0 5px;
+    font-size: 20px;
+    padding: 0.5em 1em;
+    color: #fff;
+}
+.temporizador .pure-button:focus,
+.temporizador .pure-button:hover {
+    filter: alpha(opacity=90);
+    background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .05) 40%, rgba(0, 0, 0, .1));
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, .05) 40%, rgba(0, 0, 0, .1))
+}
+.temporizador .pure-button[disabled] {
+    border: none;
+    background-image: none;
+    filter: alpha(opacity=40);
+    opacity: .4;
+    box-shadow: none;
+    pointer-events: none
+}
+.temporizador .pure-button-primary,.temporizador_modal_body .pure-button-primary{
+    background-color: #0078e7;
+}
+.temporizador .unit_value{
+    font-family: clockicons !important;
+    color: #000;
+}
+.temporizador .pure-button-success{
+    background-color: #00c851;
+}
+.temporizador_form{
+    font-size: 20px;
+    display: flex;
+}
+.temporizador_form input[type=number] {
+    padding: .5em .6em;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    text-align: center;
+    width: 100%;
+}
+.temporizador_form input[type=number]:focus {
+    outline: 0;
+    border-color: #129FEA
+}
+.temporizador_form input[type=number][disabled] {
+    cursor: not-allowed;
+    background-color: #eaeded;
+    color: #cad2d3
+}
+.temporizador_form input:focus:invalid {
+    color: #e9322d;
+    border-color: #e9322d
+}
+@media only screen and (max-width:469px) {
+    .temporizador .unit_value{
+        font-size: 90px !important;
+    }
+    .temporizador #colon_minute{
+        display: none !important;
+    }  
+}
+@media screen and (max-width:1050px) {
+    .unit_value{
+        font-size: 100px !important;
+    }
 }
