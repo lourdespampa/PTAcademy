@@ -54,12 +54,12 @@ function FooterContainer(props){
                 <div className="footer-center">
                 </div>
                 <div className="footer-right">
-                    <button className="col-6 " onClick={()=>props.grabar()}>
+                    {/* <button className="col-6 " onClick={()=>props.grabar()}>
                         grabar
                     </button>
                     <button className="col-6 " onClick={()=>props.reproclick()}>
                         reproducir
-                    </button>
+                    </button> */}
                     <div>
                         <Audio socketUrl={props.socketUrl} id_access={props.id_access}/>
                     </div>
