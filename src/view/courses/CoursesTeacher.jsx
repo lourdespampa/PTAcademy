@@ -50,6 +50,7 @@ export default class CoursesTeacher extends Component {
   }
 
   getCursos=()=>{
+    console.log('listar cursos')
     const { match: { params } } = this.props;
     var varToken = localStorage.getItem('token');
     axios({
