@@ -306,6 +306,12 @@
    background: red;
  }
 
+ .loginTeacher-message-succefull{ 
+  color: white;
+  text-align: center;
+  background: rgb(0, 184, 0);
+}
+
 /* Media queries a partir de 600 px */
 
 @media (max-width: 600px) {
