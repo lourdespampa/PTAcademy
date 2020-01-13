@@ -127,13 +127,13 @@ render(){
       <Contenido  
       id_access={this.state.id_access} socket={this.state.socket} id_class={this.state.id_class} 
       socketUrl={this.state.socketUrl} botonClick={this.botonClick} grabar={this.grabar} reproclick={this.reproclick} 
-      changeOn={this.changeOn} txt={this.state.txt}>
+      changeOn={this.changeOn} apiUrl={this.props.apiUrl} txt={this.state.txt}>
           <Route exact path="/teacher/:id_class/:id_access" 
           component={()=><ListaAlumnos id_access={this.state.id_access} socketUrl={this.state.socketUrl} apiUrl={this.props.apiUrl}/>}  />
           <Route exact path="/teacher/:id_class/:id_access/azar" 
-          component={() => <Azar id_access={this.state.id_access} socketUrl={this.state.socketUrl}/>} />
+          component={() => <Azar id_access={this.state.id_access} apiUrl={this.props.apiUrl} socketUrl={this.state.socketUrl}/>} />
           <Route exact path="/teacher/:id_class/:id_access/grupos" 
-          component={() => <Grupos id_access={this.state.id_access} socketUrl={this.state.socketUrl}/>} />
+          component={() => <Grupos id_access={this.state.id_access} apiUrl={this.props.apiUrl} socketUrl={this.state.socketUrl}/>} />
           <Route exact path="/teacher/:id_class/:id_access/temporizador" 
           component={() => <Temporizador id_access={this.state.id_access} socketUrl={this.state.socketUrl}/>} />
           <Route exact path="/teacher/:id_class/:id_access/pizarra" 

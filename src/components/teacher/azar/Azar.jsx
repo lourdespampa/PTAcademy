@@ -6,8 +6,6 @@ import axios from 'axios'
 const handleOnComplete = (value) => {
     console.log(value);
   };
-
-  const url = "http://3.16.110.136:4200"
 class Azar extends React.Component {
     constructor(props){
         super(props)
@@ -19,7 +17,7 @@ class Azar extends React.Component {
     componentWillMount(){
         var varToken = localStorage.getItem('token');
     axios({
-      url: `${url}/v1/api/lesson/${this.props.id_access}/students/roulette`,
+      url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
       method: 'GET',
       headers: {
         'x-access-token': `${varToken}`

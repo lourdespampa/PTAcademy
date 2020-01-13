@@ -45,9 +45,7 @@ function FooterContainer(props){
                                 <button id="btnvideo" className="pres" onClick={() => setShow(true)+props.botonClick('btnvideo')}>VIDEO</button>
                             </div>
                         :
-                            <>
                                 <div id="envoltura" className="envoltura" style={{width: "23%", height: "90%", position: "absolute"}} onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}></div>
-                            </>
                         }
                         <iframe title="myiframe" className="miniatura" id="diminute" 
                             src="" width="100%" height="100%" style={{background: "white"}}>
