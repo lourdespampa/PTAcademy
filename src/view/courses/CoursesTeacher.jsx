@@ -102,12 +102,11 @@ export default class CoursesTeacher extends Component {
     var varToken = localStorage.getItem("token");
 
     await axios({
-      url: this.props.apiUrl + "/v1/api/admin/course/" + this.state.id_curso,
-      method: "delete",
-      headers: {
-        "x-access-token": `${varToken}`
-      }
-    });
+      url:`${this.props.apiUrl}/v1/api/teacher/${this.state._id }/${this.state.id_curso}`,
+      method:'post',
+      headers:{
+        'x-access-token': `${varToken}`
+      }});
     this.getCursos();
   };
   onClick = id => {
