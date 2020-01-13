@@ -7,8 +7,6 @@ import io from 'socket.io-client';
 import{TableBody}from './tablebody'
 import Modal from 'react-bootstrap/Modal';
 // import {alumnos} from '../../data/alumnos.json';
-const socketUrl="http://192.168.1.65:4000/teacher";
-const socket = io(socketUrl)
 export default class ListaAlum extends Component {
     constructor(props) {
         super(props);
@@ -50,11 +48,13 @@ export default class ListaAlum extends Component {
       }
         
     async componentDidMount() {
+        
         this.getStudents();
     }
     
 //rellenar state
     getStudents = async () => {
+        console.log(this.props.id_access)
         var varToken = localStorage.getItem('token');
      const res = await axios({
       url: `${this.props.apiUrl+'/v1/api/lesson'}/${this.props.id_access}/students`,
@@ -69,6 +69,10 @@ export default class ListaAlum extends Component {
     }
 //eliminar estudiante
     deleteStudents = async (studentsId) => {
+        const socket = io(this.props.socketUrl, {
+            query:
+                { pin: this.props.id_access }
+          })
         var varToken = localStorage.getItem('token');
     await axios({
       url: this.props.apiUrl+'/v1/api/student/disable_student/'+ this.state._id,
@@ -78,7 +82,7 @@ export default class ListaAlum extends Component {
       }
     })
         this.getStudents();
-        socket.emit('RemoveStud')
+        socket.emit('RemoveStud',{id:this.state._id})
         
     }
 //captura value y id 
@@ -177,34 +181,34 @@ export default class ListaAlum extends Component {
     onClickEnviar=async(e)=>{
         e.preventDefault();
         
-        const a=this.state.students
-        const text=a.map(student=>(
-                <tr>
-                <td className="nom">{student.nombres}</td>
-                <td className="ape">{student.apodo}</td>
-                <td style={{textAlign: "center"}}className="nota">{student.nota}</td>
-                <td style={{textAlign: "center"}}className="compo">{student.comportamiento}</td>
-                <td style={{textAlign: "center"}}>{student.puntos}</td>
-            </tr>))
-            const html=(<table>
-                <thead>
-                    <tr>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th style={{width: "20%"}}>Nota(0-20)</th>
-                        <th style={{width: "20%"}}>Comportamiento</th>
-                        <th style={{width: "20%"}}>puntos</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {text}
-                </tbody>
-            </table>)
-            const params={
-                hml:html,
-                data:a
-            }
-            await axios.post('/sendNotes',params)
+        // const a=this.state.students
+        // const text=a.map(student=>(
+        //         <tr>
+        //         <td className="nom">{student.nombres}</td>
+        //         <td className="ape">{student.apodo}</td>
+        //         <td style={{textAlign: "center"}}className="nota">{student.nota}</td>
+        //         <td style={{textAlign: "center"}}className="compo">{student.comportamiento}</td>
+        //         <td style={{textAlign: "center"}}>{student.puntos}</td>
+        //     </tr>))
+        //     const html=(<table>
+        //         <thead>
+        //             <tr>
+        //                 <th>Nombres</th>
+        //                 <th>Apellidos</th>
+        //                 <th>Nota(0-20)</th>
+        //                 <th>Comportamiento</th>
+        //                 <th>puntos</th>
+        //             </tr>
+        //         </thead>
+        //         <tbody>
+        //             {text}
+        //         </tbody>
+        //     </table>)
+        //     const params={
+        //         hml:html,
+        //         data:a
+        //     }
+        //     await axios.post('/sendNotes',params)
         
     }
     setShow=(nom,val)=>{

@@ -30,7 +30,7 @@ export default class CoursesTeacher extends Component {
         'x-access-token': `${varToken}`
       }
     }).then( ({ data }) => {
-      // console.log(data)
+       console.log(data)
         if(data == []){
           this.setState({courses: []})
         }else{
@@ -49,7 +49,7 @@ export default class CoursesTeacher extends Component {
     })
   }
 
-  getCursos(){
+  getCursos=()=>{
     const { match: { params } } = this.props;
     var varToken = localStorage.getItem('token');
     axios({
@@ -59,13 +59,11 @@ export default class CoursesTeacher extends Component {
         'x-access-token': `${varToken}`
       }
     }).then( ({ data }) => {
-      // console.log(data)
-      if(this.finalizarComponente){
+       console.log(data)
         if(data == []){
           this.setState({courses: []})
         }else{
           this.setState({courses: data})
-        }
       }
     })
     .catch( e => console.log(e))
@@ -96,8 +94,8 @@ setShow=(nom,val)=>{
   render() {
     return (
       <>
-        <NavCourse apiUrl={this.props.apiUrl} idcourse={this.props.idcourse} idteacher={this.state._id}
-         agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos()}></NavCourse>
+        <NavCourse apiUrl={this.props.apiUrl} idcourse={this.state.id_curso} idteacher={this.state._id}
+         agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos}></NavCourse>
         <div className="main">
           <h1>SECCION DE CURSOS</h1>
           <ul className="cards">

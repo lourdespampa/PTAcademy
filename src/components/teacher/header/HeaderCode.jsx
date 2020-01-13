@@ -1,12 +1,15 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import { Modal ,Button, ButtonToolbar } from "react-bootstrap";
 import './HeaderCode.sass'
 function BotonSalir(props) {
+    var user = JSON.parse(localStorage.getItem('user'));
     const [show, setShow] = useState(false);
+    const [idteacher, setidteacher] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const AgregarClick=()=>setShow(false)+props.getCursos
+     useEffect(() => console.log(user._id) );
     return (
       <>
         <div className="menu-detail-content" onClick={handleShow}>   
@@ -21,7 +24,7 @@ function BotonSalir(props) {
             <Link to='/' variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
             <Link><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>`      `
             {/* falta cambiar esta id_teacher estatica */}
-            <Link to='/CoursesTeacher/5db74edbae96433b08911b38'>
+            <Link to={`/CoursesTeacher/${user._id}`}>
             <Button variant="primary" size="sm" onClick={handleClose}>Regresar a cursos</Button>
             </Link>
           </ButtonToolbar>
