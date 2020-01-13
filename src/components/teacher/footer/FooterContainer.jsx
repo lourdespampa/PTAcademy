@@ -46,11 +46,6 @@ function FooterContainer(props){
                             </div>
                         :
                             <>
-                                <div id="menupresentacion" className="footer-left" style={{position: "fixed",width: "23%",height: "18%",border: "solid 5px white",zIndex: 0.1,display:"none"}} onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}>
-                                    <button id="btndiapo" className="pres" onClick={()=>props.openPopup('overlay','popup')+props.botonClick('btndiapo')} >DIAPOSITIVAS</button>
-                                    <button id="btnform" className="pres" onClick={()=>props.openPopup('overlayinframe','popupformulario')+props.botonClick('btnform')}>FORMULARIO</button>
-                                    <button id="btnvideo" className="pres" onClick={() => setShow(true)+props.botonClick('btnvideo')}>VIDEO</button>
-                                </div>
                                 <div id="envoltura" className="envoltura" style={{width: "23%", height: "90%", position: "absolute"}} onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}></div>
                             </>
                         }
