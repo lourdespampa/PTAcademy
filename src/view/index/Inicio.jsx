@@ -11,10 +11,14 @@ class Inicio extends React.Component {
     return (
       <div className="login-contenedor">
         <div className="login-general">
-          <div className="login-imagen-robot">
+          <div className="login-cabecera">
+            <div className="login-imagen-robot">
             <img src={require('./robot.png')} className="login-robot" />
           </div>
-          <h1 className="login-iniciar">Iniciar sesión en PlayTecEDU</h1>
+          <div className="login-iniciar-sesion">
+            <h1 className="login-iniciar">Iniciar sesión en PlayTecEDU</h1>
+          </div>
+          </div>
           <div className="login-cuerpo">
             <Link to="/Login">
               <div className="login-izquierda">

@@ -52,15 +52,12 @@ export default class ClassTeacher extends Component {
         'x-access-token': `${varToken}`
       }
     }).then( ({ data }) => {
-      // console.log(data)
-      if(this.finalizarComponente){
         if(data == []){
           this.setState({classes: []})
         }else{
           this.setState({classes: data})
         }
-      }
-    })
+})
     .catch( e => console.log(e))
   }
   render() {

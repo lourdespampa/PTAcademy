@@ -54,7 +54,7 @@ export default class FormLoginStu extends Component {
 
       console.log(data);
       const VerifyCode = await axios.post(
-        this.props.apiUrl + "/v1/api/student",
+        this.props.apiUrl + "/signin_student",
         data
       );
       const id = VerifyCode.data.idStu;
