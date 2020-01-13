@@ -216,7 +216,7 @@ export default class Audio extends Component {
              <a id="ReturnToLogin2" style={{display: "none"}} href='/login'></a>
          
             <button id="btn_play"></button>
-            <Modal size={'SM'} show={this.state.show}>
+            <Modal size={'SM'} show={this.state.show} onHide={()=>this.setState({show:false})}>
             <Modal.Header closeButton>
                 <h4 className="title"><strong>The lucky student is :</strong></h4>
             </Modal.Header>
