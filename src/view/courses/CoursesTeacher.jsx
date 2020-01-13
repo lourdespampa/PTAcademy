@@ -31,6 +31,23 @@ export default class CoursesTeacher extends Component {
       headers: {
         "x-access-token": `${varToken}`
       }
+    }).then( ({ data }) => {
+       console.log(data)
+        if(data == []){
+          this.setState({courses: []})
+        }else{
+          this.setState({courses: data})
+        }
+    })
+    .catch( e => console.log(e))
+    axios({url:`${this.props.apiUrl}/v1/api/admin/user/${params.id}`,
+    method:'GET' ,
+    headers:{
+      'x-access-token': `${varToken}`
+    }
+    }).then(({data})=>{
+      console.log(data)
+      this.setState({nombreProfesor:data.displayName})
     })
       .then(({ data }) => {
         // console.log(data)
@@ -53,16 +70,21 @@ export default class CoursesTeacher extends Component {
     });
   }
 
-  getCursos() {
-    const {
-      match: { params }
-    } = this.props;
-    var varToken = localStorage.getItem("token");
+  getCursos=()=>{
+    const { match: { params } } = this.props;
+    var varToken = localStorage.getItem('token');
     axios({
       url: `${this.props.apiUrl}/v1/api/teacher/${params.id}/course_detail`,
       method: "GET",
       headers: {
         'x-access-token': `${varToken}`
+      }
+    }).then( ({ data }) => {
+       console.log(data)
+        if(data == []){
+          this.setState({courses: []})
+        }else{
+          this.setState({courses: data})
       }
     })
       .then(({ data }) => {
@@ -102,14 +124,8 @@ export default class CoursesTeacher extends Component {
   render() {
     return (
       <>
-        <NavCourse
-          apiUrl={this.props.apiUrl}
-          idcourse={this.props.idcourse}
-          idteacher={this.state._id}
-          agregarX={"course"}
-          nombreProfesor={this.state.nombreProfesor}
-          getdata={this.getCursos()}
-        ></NavCourse>
+        <NavCourse apiUrl={this.props.apiUrl} idcourse={this.state.id_curso} idteacher={this.state._id}
+         agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos}></NavCourse>
         <div className="main">
           <h1>SECCION DE CURSOS</h1>
           <ul className="cards">

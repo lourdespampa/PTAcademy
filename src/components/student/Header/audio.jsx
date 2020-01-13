@@ -91,8 +91,13 @@ export default class Audio extends Component {
           })
         //liSTA
         socket.on('RemoveStudS',(data)=>{
+            console.log(data)
             if(data.pin == (this.props.id_access).toUpperCase()) {
-                document.getElementById('ReturnToLogin2').click()
+                console.log('REcibe salida')
+                if(data.id==this.props.id_student){
+                    console.log('REcibe  salida fase 2')
+                    document.getElementById('ReturnToLogin2').click()
+                }
             }
         })
         //END LISTA

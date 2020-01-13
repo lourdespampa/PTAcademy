@@ -6,7 +6,7 @@ import io from 'socket.io-client';
 
 const url = "http://3.16.110.136:4200";
 
-const socketUrl="http://192.168.1.65:4000/teacher";
+const socketUrl="http://192.168.1.47:4000/teacher";
 const socket = io(socketUrl)
 export default class GrupoPage extends Component {
   constructor(props) {
