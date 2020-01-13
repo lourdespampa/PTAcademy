@@ -1,330 +1,387 @@
-// .menu_bar
-//     display: none
+.menu_bar
+    display: none
 
-// .code-clase-detail
-//     height: 100%
-//     max-width: 45%
-//     & h1
-//         padding: 10px 0 0 15px
-//         font-size: 25px
-//         color: #fff
-//         text-align: start
+.code-clase-detail
+    height: 100%
+    max-width: 45%
+    & h1
+        padding: 10px 0 0 15px
+        font-size: 25px
+        color: #fff
+        text-align: start
 
-// #menuToggle
-//     display: none
+#menuToggle
+    display: none
 
-// header nav
-//     background: #3087a4
-//     z-index: 1000
-//     max-width: 100%
-//     width: 100%
-//     margin: auto
-//     ul
-//         list-style-type: none
-//         text-align: center
-//         li
-//             display: inline-block
-//             position: relative
-//             width: 15%
-//             &:hover
-//                 background: #E6344A
-//             .a
-//                 color: #fff
-//                 display: block
-//                 text-decoration: none
-//                 padding: 13px
-
-// .nav-lista:focus
-//     background: #6ac3c35b
-
-// .nav-azar:focus
-//     background: #6ac3c35b
-
-// .nav-grupos:focus
-//     background: #6ac3c35b
-
-// .nav-temporizador:focus
-//     background: #6ac3c35b
-
-// .nav-trivia:focus
-//     background: #6ac3c35b
-
-// header nav ul li .a span
-//     margin-right: 10px
-
-// header nav ul li:hover .children
-//     display: block
-
-// header nav ul li .children
-//     display: none
-//     background: #011826
-//     position: absolute
-//     width: 150%
-//     z-index: 1000
-
-// header nav ul li .children li
-//     display: block
-//     overflow: hidden
-//     border-bottom: 1px solid rgba(255, 255, 255, .5)
-
-// header nav ul li .children li .a
-//     display: block
-
-// header nav ul li .children li .a span
-//     float: right
-//     position: relative
-//     top: 3px
-//     margin-right: 0
-//     margin-left: 10px
-
-// header nav ul li .caret
-//     position: relative
-//     top: 3px
-//     margin-left: 10px
-//     margin-right: 0px
+#Empatia-header
+    background: #3087a4
+    z-index: 1000
+    max-width: 100%
+    width: 100%
+    margin: auto 
+    #Empatia-header__menu
+        background: #3087a4
+        z-index: 1000
+        max-width: 100%
+        width: 100%
+        margin: auto
+        ul
+            list-style-type: none
+            text-align: center
+            margin-block-start: 0
+            li
+                display: inline-block
+                position: relative
+                width: 15%
+                &:hover
+                    background: #E6344A
+                .a
+                    color: #fff
+                    display: block
+                    text-decoration: none
+                    padding: 13px
+                    & span
+                        margin-right: 10px
+                .nav-lista:focus
+                    background: #6ac3c35b
+                .nav-azar:focus
+                    background: #6ac3c35b
+                .nav-grupos:focus
+                    background: #6ac3c35b
+                .nav-temporizador:focus
+                    background: #6ac3c35b
+                .nav-trivia:focus
+                    background: #6ac3c35b
+        ul li:hover .children
+            display: block
+        ul li .children
+            display: none
+            background: #011826
+            position: absolute
+            width: 150%
+            z-index: 1000
+        ul li .children li
+            display: block
+            overflow: hidden
+            border-bottom: 1px solid rgba(255, 255, 255, .5)
+        ul li .children li .a
+            display: block
+        ul li .children li .a span
+            float: right
+            position: relative
+            top: 3px
+            margin-right: 0
+            margin-left: 10px
+        ul li .caret
+            position: relative
+            top: 3px
+            margin-left: 10px
+            margin-right: 0px
     
-// .code
-//     font-size: 15px
-//     height: auto
-//     width: auto
-//     font-family: 'Opal'
-//     text-align: centers   
+.code
+    font-size: 15px
+    height: auto
+    width: auto
+    font-family: 'Opal'
+    text-align: centers   
 
-// .codigo-generado
-//     font-size: 1.75rem
-//     text-align: center
-//     margin: 0px 0px 8px
-//     line-height: 1.2
+.codigo-generado
+    font-size: 1.75rem
+    text-align: center
+    margin: 0px 0px 8px
+    line-height: 1.2
 
-// #div_children 
-//     transition: margin-Right .7s
-//     margin-bottom: 200px
-//     padding: 12px
+#div_children 
+    transition: margin-Right .7s
+    margin-bottom: 200px
+    padding: 12px
 
-// @media screen and (max-width: 800px)
-//     #menuToggle
-//         display: block
-//         position: absolute
-//         top: 16px
-//         left: 50px
-//         z-index: 1
-//         webkit-user-select: none
-//         user-select: none      
-//         a
-//             text-decoration: none
-//             color: #fff
-//             transition: color 0.3s ease
-//             &:hover
-//                 color: #E6344A
-//         input
-//             position: absolute
-//             width: 40px
-//             height: 32px
-//             top: -2px
-//             left: -3px
-//             cursor: pointer
-//             opacity: 0
-//             z-index: 2
-//             webkit-touch-callout: none
-//         .hamburguesa-span  
-//             float: none
-//             font-size: 15px
-//             display: block
-//             width: 33px
-//             height: 4px
-//             margin-bottom: 5px
-//             position: relative
-//             background: #fff
-//             border-radius: 3px
-//             z-index: 1
-//             transform-origin: 4px 0px
-//             transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-//             background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),opacity 0.55s ease
-//     #menuToggle span:first-child
-//         transform-origin: 0% 0%
 
-//     #menuToggle span:nth-last-child(2)
-//         transform-origin: 0% 100%
 
-//     #menuToggle input:checked ~ span
-//         opacity: 1
-//         transform: rotate(45deg) translate(-2px, -1px)
-//         background: #fff
+@media screen and (max-width: 800px)
+    #menuToggle
+        display: block
+        position: absolute
+        top: 16px
+        left: 50px
+        z-index: 1
+        webkit-user-select: none
+        user-select: none      
+        a
+            text-decoration: none
+            color: #fff
+            transition: color 0.3s ease
+            &:hover
+                color: #E6344A
+            &
+        input
+            position: absolute
+            width: 40px
+            height: 32px
+            top: -2px
+            left: -3px
+            cursor: pointer
+            opacity: 0
+            z-index: 3
+            webkit-touch-callout: none
+        .hamburguesa-span  
+            float: none
+            font-size: 15px
+            display: block
+            width: 33px
+            height: 4px
+            margin-bottom: 5px
+            position: relative
+            background: #fff
+            border-radius: 3px
+            z-index: 1
+            transform-origin: 4px 0px
+            transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+            background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),opacity 0.55s ease
+    #menuToggle span:first-child
+        transform-origin: 0% 0%
 
-//     #menuToggle input:checked ~ span:nth-last-child(3)
-//         opacity: 0
-//         transform: rotate(0deg) scale(0.2, 0.2)
+    #menuToggle span:nth-last-child(2)
+        transform-origin: 0% 100%
 
-//     #menuToggle input:checked ~ span:nth-last-child(2)
-//         transform: rotate(-45deg) translate(0, -1px)
+    #menuToggle input:checked ~ span
+        opacity: 1
+        transform: rotate(45deg) translate(-2px, -1px)
+        background: #fff
 
-//     #menu-header
-//         position: absolute
-//         width: 300px
-//         margin: -100px 0 0 -50px
-//         padding: 50px
-//         padding-top: 125px
-//         background: #014e4e5b
-//         transform-origin: 0% 0%
-//         list-style-type: none
-//         -webkit-font-smoothing: antialiased
-//         transform-origin: 0% 0%
-//         transform: translate(-100%, 0)
-//         transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0)
-//         li
-//             padding: 10px 0
-//             font-size: 22px
+    #menuToggle input:checked ~ span:nth-last-child(3)
+        opacity: 0
+        transform: rotate(0deg) scale(0.2, 0.2)
+
+    #menuToggle input:checked ~ span:nth-last-child(2)
+        transform: rotate(-45deg) translate(0, -1px)
+
+    #menuToggle .close-menu
+        position: fixed
+        top: 0
+        left: 0
+        width: 100%
+        height: 100vh
+        cursor: pointer
+        -webkit-transition-property: all
+        transition-property: all
+        -webkit-transition-duration: .3s
+        transition-duration: .3s
+        -webkit-transition-delay: 0s
+        transition-delay: 0s
+        visibility: hidden
+        opacity: 0
+
+    #menuToggle .close-menu-menu
+        position: fixed
+        width: 100%
+        height: 100vh
+        cursor: pointer
+        -webkit-transition-property: all
+        transition-property: all
+        -webkit-transition-duration: .3s
+        transition-duration: .3s
+        -webkit-transition-delay: 0s
+        transition-delay: 0s
+        visibility: hidden
+        opacity: 0
+
+    #menuToggle input:checked ~ .close-menu
+        visibility: visible
+        -webkit-transition-duration: 1s
+        transition-duration: 1s
+        -webkit-transition-delay: .3s
+        transition-delay: .3s
+
+    #menuToggle input:checked ~ .close-menu .menu-header 
+        visibility: visible
+        -webkit-transition-duration: 1s
+        transition-duration: 1s
+        -webkit-transition-delay: .3s
+        transition-delay: .3s
+
+    #menu-header
+        position: absolute
+        width: 336px
+        margin: -100px 0 0 -50px
+        padding: 65px
+        padding-top: 165px
+        background: #014e4e5b
+        transform-origin: 0% 0%
+        list-style-type: none
+        -webkit-font-smoothing: antialiased
+        transform-origin: 0% 0%
+        transform: translate(-100%, 0)
+        transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0)
+        z-index: 2
+        li
+            padding: 13px 0
+            font-size: 33px
+        .no-touch 
+            .Header-code__header
+                &:hover + .menu-header
+                    height: 120px
   
-//     #menuToggle input:checked ~ ul
-//         transform: none
+    #menuToggle input:checked ~ ul
+        transform: none
+        -webkit-transition-delay: .3s
+        transition-delay: .3s
+        z-index: 2
     
-//     .code-clase-detail
-//         height: 100%
-//         max-width: 45%
-//         & h1
-//             display: none
-//             padding: 10px 0 0 15px
-//             font-size: 25px
-//             color: #3087a4
-//             text-align: start
-//     body
-//         padding-top: 80px
+    .code-clase-detail
+        height: 100%
+        max-width: 45%
+        & h1
+            display: none
+            padding: 10px 0 0 15px
+            font-size: 25px
+            color: #3087a4
+            text-align: start
+    .content
+        width: 100%
+        height: 100vh
+        padding: 0
+        margin: 0
+        webkit-transition-property: all
+        transition-property: all
+        webkit-transition-delay: .3s
+        transition-delay: .3s
+        webkit-transition-duration: .5s
+        transition-duration: .5s
+            
+        & .bt-menu
+            display: block
+            padding: 20px
+            color: #fff
+            overflow: hidden
+            font-size: 25px
+            font-weight: bold
+            text-decoration: none
 
-//         &
-//             display: block
-//             width: 100%
-//             position: fixed
-//             top: 0
-//             background: #3087a4
-
-//         & .bt-menu
-//             display: block
-//             padding: 20px
-//             color: #fff
-//             overflow: hidden
-//             font-size: 25px
-//             font-weight: bold
-//             text-decoration: none
-
-//         .code
-//             font-size: 15px
-//             height: auto
-//             width: auto
-//             font-family: 'Opal'
-//             text-align: centers
+        .code
+            font-size: 15px
+            height: auto
+            width: auto
+            font-family: 'Opal'
+            text-align: centers
         
-//         .codigo-generado
-//             font-size: 1.75rem
-//             text-align: center
-//             margin: 0px 0px 8px
-//             line-height: 1.2
-
-//     header nav
-//         width: 80%
-//         height: calc(100% - 80px)
-//         position: fixed
-//         right: 100%
-//         margin: 0
-//         overflow: scroll
-
-//     header nav ul li
-//         display: block
-//         border-bottom: 1px solid rgba(255, 255, 255, .5)
-
-//     header nav ul li .a
-//         display: block
-
-//     header nav ul li:hover .children
-//         display: none
-
-//     header nav ul li .children
-//         width: 100%
-//         position: relative
-
-//     header nav ul li .children li .a
-//         margin-left: 20px
-
-//     header nav ul li .caret
-//         float: right
+        .codigo-generado
+            font-size: 1.75rem
+            text-align: center
+            margin: 0px 0px 8px
+            line-height: 1.2
     
-//     #div_children 
-//         transition: margin-Right .7s
-//         margin-bottom: 200px
-//         padding: 12px
+        &:checked ~ .content
+            -webkit-transition-delay: 0s
+            transition-delay: 0s
+            -ms-transform: translateX(-300px)
 
-// @media screen and (max-width: 600px)
-//     #menuToggle
-//         display: block
-//         position: absolute
-//         top: 16px
-//         left: 50px
-//         z-index: 1
-//         webkit-user-select: none
-//         user-select: none      
-//         a
-//             text-decoration: none
-//             color: #fff
-//             transition: color 0.3s ease
-//             &:hover
-//                 color: #E6344A
-//         input
-//             position: absolute
-//             width: 40px
-//             height: 32px
-//             top: -2px
-//             left: -3px
-//             cursor: pointer
-//             opacity: 0
-//             z-index: 2
-//             webkit-touch-callout: none
-//         .hamburguesa-span  
-//             float: none
-//             font-size: 15px
-//             display: block
-//             width: 33px
-//             height: 4px
-//             margin-bottom: 5px
-//             position: relative
-//             background: #fff
-//             border-radius: 3px
-//             z-index: 1
-//             transform-origin: 4px 0px
-//             transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-//             background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),opacity 0.55s ease
-//     #menuToggle span:first-child
-//         transform-origin: 0% 0%
+    header nav
+        width: 80%
+        height: calc(100% - 80px)
+        position: fixed
+        right: 100%
+        margin: 0
+        overflow: scroll
 
-//     #menuToggle span:nth-last-child(2)
-//         transform-origin: 0% 100%
+    header nav ul li
+        display: block
+        border-bottom: 1px solid rgba(255, 255, 255, .5)
 
-//     #menuToggle input:checked ~ span
-//         opacity: 1
-//         transform: rotate(45deg) translate(-2px, -1px)
-//         background: #fff
+    header nav ul li .a
+        display: block
 
-//     #menuToggle input:checked ~ span:nth-last-child(3)
-//         opacity: 0
-//         transform: rotate(0deg) scale(0.2, 0.2)
+    header nav ul li:hover .children
+        display: none
 
-//     #menuToggle input:checked ~ span:nth-last-child(2)
-//         transform: rotate(-45deg) translate(0, -1px)
+    header nav ul li .children
+        width: 100%
+        position: relative
 
-//     #menu-header
-//         position: absolute
-//         width: 300px
-//         margin: -100px 0 0 -50px
-//         padding: 50px
-//         padding-top: 125px
-//         background: #014e4e5b
-//         transform-origin: 0% 0%
-//         list-style-type: none
-//         -webkit-font-smoothing: antialiased
-//         transform-origin: 0% 0%
-//         transform: translate(-100%, 0)
-//         transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0)
-//         li
-//             padding: 10px 0
-//             font-size: 22px
+    header nav ul li .children li .a
+        margin-left: 20px
+
+    header nav ul li .caret
+        float: right
+    
+    #div_children 
+        transition: margin-Right .7s
+        margin-bottom: 200px
+        padding: 12px
+
+@media screen and (max-width: 600px)
+    #menuToggle
+        display: block
+        position: absolute
+        top: 16px
+        left: 50px
+        z-index: 1
+        webkit-user-select: none
+        user-select: none      
+        a
+            text-decoration: none
+            color: #fff
+            transition: color 0.3s ease
+            &:hover
+                color: #E6344A
+        input
+            position: absolute
+            width: 40px
+            height: 32px
+            top: -2px
+            left: -3px
+            cursor: pointer
+            opacity: 0
+            z-index: 2
+            webkit-touch-callout: none
+        .hamburguesa-span  
+            float: none
+            font-size: 15px
+            display: block
+            width: 33px
+            height: 4px
+            margin-bottom: 5px
+            position: relative
+            background: #fff
+            border-radius: 3px
+            z-index: 1
+            transform-origin: 4px 0px
+            transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+            background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),opacity 0.55s ease
+    #menuToggle span:first-child
+        transform-origin: 0% 0%
+
+    #menuToggle span:nth-last-child(2)
+        transform-origin: 0% 100%
+
+    #menuToggle input:checked ~ span
+        opacity: 1
+        transform: rotate(45deg) translate(-2px, -1px)
+        background: #fff
+
+    #menuToggle input:checked ~ span:nth-last-child(3)
+        opacity: 0
+        transform: rotate(0deg) scale(0.2, 0.2)
+
+    #menuToggle input:checked ~ span:nth-last-child(2)
+        transform: rotate(-45deg) translate(0, -1px)
+
+    #menu-header
+        position: absolute
+        width: 415px
+        margin: -100px 0 0 -50px
+        padding: 73px
+        padding-top: 180px
+        background: #014e4e5b
+        transform-origin: 0% 0%
+        list-style-type: none
+        -webkit-font-smoothing: antialiased
+        transform-origin: 0% 0%
+        transform: translate(-100%, 0)
+        transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0)
+        li
+            padding: 10px 0
+            font-size: 28px
   
 //     #menuToggle input:checked ~ ul
 //         transform: none

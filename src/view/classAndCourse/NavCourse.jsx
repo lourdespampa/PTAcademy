@@ -8,7 +8,7 @@ function BotonAgregar(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const AgregarClick=()=>setShow(false)+props.getdata
+  const AgregarClick=()=>setShow(false)+props.getdata()
   return (
     <>
       <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
@@ -19,8 +19,8 @@ function BotonAgregar(props) {
           <Modal.Title>Agregando {props.agregarX}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          { (props.agregarX==='course')?
-          <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} />
+          { (props.agregarX=='course')?
+          <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} />
           :
           <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
           }
@@ -59,6 +59,7 @@ export default class NavCourse extends Component {
           nav.classList.toggle("show");
   }
   render() {
+    console.log(this.props)
     return (
       <>
         {/* <div className="navegador">

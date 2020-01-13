@@ -99,10 +99,13 @@ const teacherSocket = (io) => {
         //FIN TEMP
 
         //Lista
-        socket.on('RemoveStud',()=>{
+        socket.on('RemoveStud',(data)=>{
+            console.log(data.id)
             Student.emit('RemoveStudS',{
+                id:data.id,
                 pin: socket.handshake.query.pin
             })
+            
         })
         //END LISTA
 

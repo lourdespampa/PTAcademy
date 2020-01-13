@@ -7,8 +7,6 @@ import io from 'socket.io-client';
 import{TableBody}from './tablebody'
 import Modal from 'react-bootstrap/Modal';
 // import {alumnos} from '../../data/alumnos.json';
-const socketUrl="http://192.168.1.65:4000/teacher";
-const socket = io(socketUrl)
 export default class ListaAlum extends Component {
     constructor(props) {
         super(props);
@@ -71,6 +69,10 @@ export default class ListaAlum extends Component {
     }
 //eliminar estudiante
     deleteStudents = async (studentsId) => {
+        const socket = io(this.props.socketUrl, {
+            query:
+                { pin: this.props.id_access }
+          })
         var varToken = localStorage.getItem('token');
     await axios({
       url: this.props.apiUrl+'/v1/api/student/disable_student/'+ this.state._id,
@@ -80,7 +82,7 @@ export default class ListaAlum extends Component {
       }
     })
         this.getStudents();
-        socket.emit('RemoveStud')
+        socket.emit('RemoveStud',{id:this.state._id})
         
     }
 //captura value y id 

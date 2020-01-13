@@ -1,7 +1,7 @@
 import React from "react";
 import $ from 'jquery';
 import io from 'socket.io-client';
-// import "./temp.css";
+import "./temporizador.sass";
 
 class Temporizador extends React.Component {
   constructor(props) {
@@ -103,7 +103,7 @@ class Temporizador extends React.Component {
                 var hour = $('#id_dt_1').val();
                 var min = $('#id_dt_2').val();
                 var sec = $('#id_dt_3').val();
-                $('#establecer_tiempo').modal('hide');
+                // $('#establecer_tiempo').modal('hide');
                 g = c;
                 n();
                 m.css("color", "black")
@@ -174,65 +174,48 @@ class Temporizador extends React.Component {
   render() {
     
     return (
-      <div className="wraps">
-        <div className="wrapper">
-            <div className="pure-g">
-                <div className="pure-u-1">
-                    <div className="tcw">
-                        <div className="pure-g counter-wrapper">
-                            <h1 id="name" className="pure-u-1"></h1>
-                            <div id="counter" className="pure-u-1">
-                                <div id="minus_sign" className="counter_part colon">
-                                    <div className="unit_value">-</div>
-                                    <div className="unit_name">&nbsp;</div>
-                                </div>
-
-                                <div className="counter_part" id="hour_wrapper">
-                                    <div className="unit_value" id="hour">.</div>
-                                    <div className="unit_name">HORAS</div>
-                                </div>
-
-                                <div className="counter_part colon" id="colon_hour">
-                                    <div className="unit_value">:</div>
-                                    <div className="unit_name">&nbsp;</div>
-                                </div>
-
-                                <div className="counter_part" id="minute_wrapper">
-                                    <div className="unit_value" id="minute">.</div>
-                                    <div className="unit_name">MINUTOS</div>
-                                </div>
-
-                                <div className="counter_part colon" id="colon_minute">
-                                    <div className="unit_value">:</div>
-                                    <div className="unit_name">&nbsp;</div>
-                                </div>
-
-                                <div className="counter_part" id="second_wrapper">
-                                    <div className="unit_value" id="second">.</div>
-                                    <div className="unit_name">SEGUNDOS</div>
-                                </div>
-
-                                <div hidden>
-                                    <input class="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />
-                                    <input class="pure-input-1" type="number" id="id_dt_2" value={this.state.valM} min="0" onChange={this.onChangeInputM} />
-                                    <input class="pure-input-1" type="number" id="id_dt_3" value={this.state.valS} min="0" onChange={this.onChangeInputS} />
-                                    <button type="button" id="button-set">Establecer Tiempo</button>
-                                    <button type="button" id="button-start-stop">INICIAR</button>
-                                    <button type="button" id="button-reset">REINICIAR</button>
-                                    
-                                    <audio id="alarm" hidden controls>
-                                        <source src="http://www.peter-weinberg.com/files/1014/8073/6015/BeepSound.wav" type="audio/wav" />
-                                        <source src="/images/clock.mp3" type="audio/mpeg" />
-                                        Your browser does not support the audio element.
-                                    </audio>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div className="temporizador">
+            <div>
+                <div className="counter_part" id="hour_wrapper">
+                    <div className="unit_value" id="hour">.</div>
+                    <div className="unit_name">HORAS</div>
                 </div>
+                <div className="counter_part colon" id="colon_hour">
+                    <div className="unit_value">:</div>
+                    <div className="unit_name">&nbsp;</div>
+                </div>
+                <div className="counter_part" id="minute_wrapper">
+                    <div className="unit_value" id="minute">.</div>
+                    <div className="unit_name">MINUTOS</div>
+                </div>
+                <div className="counter_part colon" id="colon_minute">
+                    <div className="unit_value">:</div>
+                    <div className="unit_name">&nbsp;</div>
+                </div>
+                <div className="counter_part" id="second_wrapper">
+                    <div className="unit_value" id="second">.</div>
+                    <div className="unit_name">SEGUNDOS</div>
+                </div>
+                <audio id="alarm" hidden controls>
+                    <source src="http://www.peter-weinberg.com/files/1014/8073/6015/BeepSound.wav" type="audio/wav" />
+                    <source src="/images/clock.mp3" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
             </div>
+            <div hidden>
+                <input class="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />
+                <input class="pure-input-1" type="number" id="id_dt_2" value={this.state.valM} min="0" onChange={this.onChangeInputM} />
+                <input class="pure-input-1" type="number" id="id_dt_3" value={this.state.valS} min="0" onChange={this.onChangeInputS} />
+                <button type="button" id="button-set">Establecer Tiempo</button>
+                <button type="button" id="button-start-stop">INICIAR</button>
+                <button type="button" id="button-reset">REINICIAR</button>
+                <audio id="alarm" hidden controls>
+                    <source src="http://www.peter-weinberg.com/files/1014/8073/6015/BeepSound.wav" type="audio/wav" />
+                    <source src="/images/clock.mp3" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
+            </div>    
         </div>
-      </div>
     );
   }
 }
