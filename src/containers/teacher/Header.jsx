@@ -28,12 +28,15 @@ class Header extends React.Component{
             nombre_clase :  await res.data.class_name
         });
     }
+    redirect=(e)=>{
+        console.log('jorge ctv '+e)
+    }
 
     render(){
         return(
             <>
-                <HeaderCode socketUrl={this.props.socketUrl} id_access={this.props.id_access} nombre_clase={this.state.nombre_clase} />
-                <Empatia socketUrl={this.props.socketUrl} id_access={this.props.id_access} id_class={this.props.id_class}/>
+                <HeaderCode socketUrl={this.props.socketUrl} redirect={this.redirect} id_access={this.props.id_access} nombre_clase={this.state.nombre_clase} />
+                <Empatia socketUrl={this.props.socketUrl} redirect={this.redirect} id_access={this.props.id_access} id_class={this.props.id_class}/>
             </>
         )
     }

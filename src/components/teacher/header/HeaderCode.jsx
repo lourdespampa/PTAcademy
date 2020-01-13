@@ -5,10 +5,8 @@ import './HeaderCode.sass'
 function BotonSalir(props) {
     var user = JSON.parse(localStorage.getItem('user'));
     const [show, setShow] = useState(false);
-    const [idteacher, setidteacher] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const AgregarClick=()=>setShow(false)+props.getCursos
      useEffect(() => console.log(user._id) );
     return (
       <>
@@ -34,7 +32,6 @@ function BotonSalir(props) {
     );
   }
 function HeaderCode(props){
-
     return(
         <div className="code-header">
             <div className="code-clase-detail">
@@ -49,7 +46,7 @@ function HeaderCode(props){
                         <span className="hamburguesa-span"></span>
                         <span className="hamburguesa-span"></span>
                         <ul id="menu-header">
-                            <li><Link className="lista"  to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA DE ALUMNOS</Link></li>    
+                            <li><Link className="lista" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA DE ALUMNOS</Link></li>    
                             <li><Link className="azar"   to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
                             <li><Link className="grupos" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
                             <li><Link className="tempor" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
