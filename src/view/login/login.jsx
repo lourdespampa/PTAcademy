@@ -49,8 +49,8 @@ export default function App(props) {
           try {
             const { data } = await axios.post(`${props.apiUrl}/signin`, {fuente:'manual', email, pass });
             const { user, token } = data;
-            let tokenEncrypt = encriptarToken(token)
-            localStorage.setItem("token", tokenEncrypt);
+            // let tokenEncrypt = encriptarToken(token)
+            localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(user));
             getMessage({
               userState: user,
@@ -138,8 +138,8 @@ export default function App(props) {
         return getMessage({message: "Por favor, registrese primero para acceder con Google."});
       }
       const { user, token } = data;
-      let tokenEncrypt = encriptarToken(token)
-      localStorage.setItem("token", tokenEncrypt);
+      // let tokenEncrypt = encriptarToken(token)
+      localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
       getMessage({
         userState: user,
@@ -155,18 +155,18 @@ export default function App(props) {
     })
   }
 
-  const encriptarToken = (token) => {
-    //128-bit key (16 bytes * 8 bits/byte = 128 bits)
-    var key = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
-    //convierte texto a bytes
-    var textBytes = aesjs.utils.utf8.toBytes(token);
-    //Inicia el modo de operación de encriptado. El contador es opcional, si lo omites empezará en 1
-    var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(5));
-    //encripta la cadena de bytes a bytes encriptados.
-    var encryptedBytes = aesCtr.encrypt(textBytes);
-    //para imprimir o almacenar los datos binarios, puedes convertirlos a un string hexadecimal
-    return aesjs.utils.hex.fromBytes(encryptedBytes);
-  }
+  // const encriptarToken = (token) => {
+  //   //128-bit key (16 bytes * 8 bits/byte = 128 bits)
+  //   var key = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
+  //   //convierte texto a bytes
+  //   var textBytes = aesjs.utils.utf8.toBytes(token);
+  //   //Inicia el modo de operación de encriptado. El contador es opcional, si lo omites empezará en 1
+  //   var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(5));
+  //   //encripta la cadena de bytes a bytes encriptados.
+  //   var encryptedBytes = aesCtr.encrypt(textBytes);
+  //   //para imprimir o almacenar los datos binarios, puedes convertirlos a un string hexadecimal
+  //   return aesjs.utils.hex.fromBytes(encryptedBytes);
+  // }
   
   return (
     <div className="loginTeacher" style={{ backgroundImage: `url(${logo})` }}>

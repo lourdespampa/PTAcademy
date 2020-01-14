@@ -56,7 +56,6 @@ export default class CoursesTeacher extends Component {
     console.log('listar cursos')
     const { match: { params } } = this.props;
     var varToken = localStorage.getItem('token');
-
     axios({
       url: `${this.props.apiUrl}/v1/api/teacher/${params.id}/course_detail`,
       method: "GET",
@@ -109,7 +108,6 @@ export default class CoursesTeacher extends Component {
       <>
         <NavCourse apiUrl={this.props.apiUrl} idcourse={this.state.id_curso} idteacher={this.state._id}
          agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos}></NavCourse>
-
         <div className="main">
           <h1>SECCION DE CURSOS</h1>
           <ul className="cards">

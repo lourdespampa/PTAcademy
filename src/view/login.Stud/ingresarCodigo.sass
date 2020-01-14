@@ -1,15 +1,21 @@
 
 @keyframes bgcolor
     0%
-        background-color: #e8d1ff
+        // background-color: #e8d1ff
+        background-color: #45a3e5
+
     30%
-        background-color: #D7E8FF
+        // background-color: #D7E8FF
+        background-color: #66bf39
     60%
-        background-color: #F0FFE2
+        // background-color: #F0FFE2
+        background-color: #b8cf37
     90%
-        background-color: #FFF8D2
+        // background-color: #FFF8D2
+        background-color: #fff133
     100%
-        background-color: #FBECEE
+        // background-color: #FBECEE
+        background-color: #864cbf
     //contenedor principal
 .enter-code__contenedor
     -webkit-animation: bgcolor 20s infinite
@@ -21,7 +27,7 @@
 .enter-code__header
     list-style-type: none
     margin: 0
-    padding: 5px 30px
+    padding: 5px 10px
     overflow: hidden
 
 .enter-code__academy
@@ -34,14 +40,18 @@
     display: block
     color: white
     text-align: center
-    padding: 30px 66px
+    padding: 21px 18px
+    margin: 25px 25px
     font-size: 21px
     text-decoration: none !important
     //se tiene que eliminar el text decoration
     &:hover
         color: white
+        background-color: #333333
+        border-radius: 5px
     .enter-code__changeStudent &
-        color: #2B4F95
+        // color: #2B4F95
+        color: #ffffff
 
 .enter-code__body
     width: 100%
@@ -52,9 +62,11 @@
 
 .enter-code__formulario
     text-align: center
+    font-family: Opal
+    padding: 15px
 
 .enter-code__tittle-body
-    color: #3CA69B
+    color: #000000
     font-weight: 700
     font-size: 2em
 
@@ -65,6 +77,19 @@
     width: 100%
     vertical-align: top
 
+.enter-code__body-body
+    margin-top: 5px
+
+.enter-code__button
+    background: #333333
+    border-style: none
+    width: 100%
+    height: 35px
+    padding: 5px
+    color: white
+    border-radius: 5px
+    &:hover
+        background: #202020
 .input__field
     position: relative
     text-align: center
@@ -75,9 +100,9 @@
     border: none
     border-radius: 0
     background: #f0f0f0
-    color: #aaa
+    // color: #aaa
+    color: black
     font-weight: 400
-    font-family: Opal
     -webkit-appearance: none
     &:focus
         outline: 0
@@ -157,8 +182,8 @@
     pointer-events: none
     overflow: hidden
     padding: 0 .25em
-    -webkit-transform: translate3d(1em, 1.75em, 0)
-    transform: translate3d(1em, 1.75em, 0)
+    -webkit-transform: translate3d(0em, 1em, 0);
+    transform: translate3d(0em, 1em, 0);
     -webkit-transition: -webkit-transform .3s
     transition: transform .3s
 
@@ -194,14 +219,7 @@
     -webkit-transition-timing-function: cubic-bezier(0, .25, .5, 1)
     transition-timing-function: cubic-bezier(0, .25, .5, 1)
 
-.enter-code__body-body
-    margin-top: 5px
 
-.enter-code_button
-    background: #333333
-    border-style: none
-    &:hover
-        background: #202020
 
 @media screen and (max-width: 700px)
     .enter-code__academy-a
@@ -219,6 +237,7 @@
     .enter-code__academy-a
         width: 100px
         text-align: center
+        margin: 0
 
 @media screen and (max-width: 765px)
     .enter-code__input .input--kozakura
@@ -226,3 +245,4 @@
         font-size: 15px
     .enter-code__academy-a
         padding: 15px 3px
+        margin: 0
