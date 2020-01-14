@@ -29,7 +29,7 @@ export default class FormPostCourse extends Component {
       course_name: this.state.course_name,
       desc: this.state.desc
     };
-
+    console.log(data)
     axios({
       url: `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course`,
       data,

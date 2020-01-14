@@ -11,9 +11,9 @@ function BotonAgregar(props) {
   const AgregarClick=()=>setShow(false)+props.getdata()
   return (
     <>
-      <button variant="primary" className="btn card_btn" style={{color:'#fff'}} onClick={handleShow}>
+      <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
         Agregar {props.agregarX}
-      </button>
+      </div>
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Agregando {props.agregarX}</Modal.Title>
@@ -35,9 +35,9 @@ function BotonCerrarSesion() {
   const handleShow = () => setShow(true);
   return (
     <>
-      <button className="btn card_btn" style={{color:'#fff'}} onClick={handleShow}>
+      <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
         Cerrar sesion
-      </button>
+      </div>
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Desea cerrar sesión?</Modal.Title>
@@ -54,11 +54,15 @@ function BotonCerrarSesion() {
 }
 
 export default class NavCourse extends Component {
+  Abrir = () => {
+    const nav = document.getElementById("main-nav");
+          nav.classList.toggle("show");
+  }
   render() {
     console.log(this.props)
     return (
       <>
-        <div className="navegador">
+        {/* <div className="navegador">
           <input type="checkbox" id="navegador-check" />
           <div className="navegador-header">
             <img
@@ -83,7 +87,31 @@ export default class NavCourse extends Component {
           role="dialog"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
-        ></div>
+        ></div> */}
+         <header className="teacherCourses__main-header">
+          <div className="teacherCourses__l-container teacherCourses__main-header__block">
+            <h3>Nombre del querido profesor </h3>
+            
+            <div
+              className="teacherCourses__main-menu-toggle"
+              id="main-menu-toggle"
+              onClick={this.Abrir}
+            ></div>
+            <nav className='teacherCourses__main-nav' id="main-nav">
+              <ul className="teacherCourses__main-menu">
+                <li className="teacherCourses__main-menu__item">
+                  <BotonAgregar apiUrl={this.props.apiUrl} idteacher={this.props.idteacher} idcourse={this.props.idcourse} agregarX={this.props.agregarX}
+             getdata={this.props.getdata}>
+                  </BotonAgregar>
+                </li>
+                <li className="teacherCourses__main-menu__item">
+                  <BotonCerrarSesion>
+                  </BotonCerrarSesion>
+                </li>
+              </ul> 
+            </nav>
+          </div>
+        </header>
       </>
     );
   }

@@ -60,8 +60,7 @@ export default class ClassTeacher extends Component {
         }else{
           this.setState({classes: data})
         }
-      
-    })
+})
     .catch( e => console.log(e))
   }
   render() {

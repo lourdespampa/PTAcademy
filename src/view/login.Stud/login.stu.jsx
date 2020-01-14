@@ -112,9 +112,7 @@ export default class LoginStu extends Component {
               </span>
               <button
                 onClick={() => this.ValidateCode()}
-                className="btn btn-block btn-lg btn-info enter-code__button"
-                style={{backgroundColor : "#FB7800",
-              border: 'none'}}
+                className="enter-code__button"
               >
                 INGRESAR
               </button>

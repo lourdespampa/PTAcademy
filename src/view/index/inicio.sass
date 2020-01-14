@@ -5,7 +5,16 @@
     background-position: center
     background-repeat: no-repeat
     height: 100vh
-
+.login-cabecera
+    display: flex
+    flex-direction: column
+    width: 100%
+    height: 0%
+.login-iniciar-sesion
+    align-items: center
+    text-align: center
+    justify-content: center
+    width: 100%
 .login-general
     position: absolute
     width: 80%
@@ -16,6 +25,8 @@
     margin: 40px auto
     box-sizing: border-box
     border-radius: 15px
+    display: flex
+    flex-wrap: wrap
 
 .login-imagen-robot
     position: absolute
@@ -28,11 +39,12 @@
     position: absolute
     width: 125px
     height: 118px
-    top: -25px
+    // top: -25px
+    // top: 56px
 
 .login-iniciar
     text-align: center
-    margin-block-start: 2.8em
+    margin-block-start: 4em
     margin-block-end: 0.8em
     font-family: sans-serif !important
     font-size: 2em
@@ -184,7 +196,7 @@
 @media (max-width: 600px)
     .login-iniciar
         text-align: center
-        margin-block-start: 2.8em
+        margin-block-start: 3.8em
         margin-block-end: 0.4em
     .login-cuerpo
         min-width: 0

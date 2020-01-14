@@ -39,7 +39,7 @@ function FooterContainer(props){
                         {
                         (props.diapositivaHover)
                         ?
-                            <div id="menupresentacion" className="footer-left" style={{position: "fixed",width: "23%",height: "18%",border: "solid 5px white",zIndex: 0.1}} onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}>
+                            <div id="menupresentacion" className="footer-left" onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}>
                                 <button id="btndiapo" className="pres" onClick={()=>props.openPopup('overlay','popup')+props.botonClick('btndiapo')} >DIAPOSITIVAS</button>
                                 <button id="btnform" className="pres" onClick={()=>props.openPopup('overlayinframe','popupformulario')+props.botonClick('btnform')}>FORMULARIO</button>
                                 <button id="btnvideo" className="pres" onClick={() => setShow(true)+props.botonClick('btnvideo')}>VIDEO</button>
@@ -47,8 +47,8 @@ function FooterContainer(props){
                         :
                                 <div id="envoltura" className="envoltura" style={{width: "23%", height: "90%", position: "absolute"}} onMouseEnter={props.toggleHoverSlide} onMouseLeave={props.toggleHoverSlide}></div>
                         }
-                        <iframe title="myiframe" className="miniatura" id="diminute" 
-                            src="" width="100%" height="100%" style={{background: "white"}}>
+                        <iframe title="myiframe" className="formulario" id="diminute" 
+                            src="" >
                         </iframe>
                 </div>
                 <div className="footer-center">
@@ -63,7 +63,7 @@ function FooterContainer(props){
                     <div>
                         <Audio socketUrl={props.socketUrl} id_access={props.id_access}/>
                     </div>
-                    
+                    s
                 </div>
 
                 <div className="overlay" id="overlay">
