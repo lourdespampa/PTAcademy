@@ -1,5 +1,5 @@
 import React from "react";
-import "./trivia.sass";
+import "./trivia.css";
 import "./botones.scss";
 
 import io from 'socket.io-client';
@@ -93,6 +93,7 @@ class Trivia extends React.Component {
     if(this.state.preguntaEnviada){
       console.log("restaurando...")
       this.setState({
+        navbarResponsive: false,
         pregunta: '',
         tiempo: '5',
         respuestaOne: '',
@@ -132,36 +133,49 @@ class Trivia extends React.Component {
   render() {
     return (
       <>
-      <div id="cabeza" className="cabeza">
-        <div className="titulo">
+      <div className={this.state.navbarResponsive ? "triviaT-topnav responsive" : "triviaT-topnav"}>
+        <a href="#home"></a>
+        <a href="#news">Enviar</a>
+        <a href="#contact">Respuestas</a>
+        <a className="triviaT-icon" onClick="myFunction()">
+          <i className="fa fa-bars"></i>
+        </a>
+      </div>
+      <div className="triviaT-cabecera">
+        <div className="triviaT-cabecera-titulo">
           <h1>PLAYTEC Trivia</h1>
         </div>
-        <div className="cont-btn-resp">
+        <div className="contenedor-btn-enviar">
           { this.state.preguntaEnviada
           ?
-          <button id="restaurar" className="restaurar" onClick={this.handleSendQuestion}>
+          <button className="triviaT-restaurar" onClick={this.handleSendQuestion}>
             Restaurar
           </button>
           :
-          <button id="enviar" className="enviar" onClick={this.handleSendQuestion}>
-          Enviar
-        </button>
+          <button className="triviaT-enviar" onClick={this.handleSendQuestion}>
+            Enviar
+          </button>
           }
         </div>
-        <div className="cont-btn-resp2">
-          <button id="myBtn" className="respuestas" onClick={this.showModal}>
+        <div className="contenedor-btn-respuestas">
+          <button className="triviaT-respuestas" onClick={this.showModal}>
             Respuestas
           </button>
+        </div>
+        <div className="triviaT-responsive-nav">
+          <a className="icon" onClick={"handleNavbarResponsive"}>
+            <i class="fa fa-bars"></i>
+          </a>
         </div>
         {
         this.state.modal
         ?
-        <div id="myModal" className="modal-respuestas">
+        <div className="modal-respuestas">
         {/* Modal content */}
           <div className="modal-content-respuestas">
             <span id="cerrar" className="close" onClick={this.showModal}>x</span>
             <h2>Clasificación</h2>
-              <div className="modal-body-respuestas">
+            
               <ul className="rolldown-list" id="myList">
                 <li className="lista-contenedora">
                     <div id="one" style={{display: "inline-block"}}></div>
@@ -189,101 +203,105 @@ class Trivia extends React.Component {
                     <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
                 </li>
               </ul>
-            </div>
+
           </div>
         </div>
         :
         null
       }
       </div>
-      <Container>
+      <div>
         <form>
-        <Row>
-            <Col md="6">
-              <div style={{marginTop:"5px"}}>
-                <label className="label" for="pregunta">Pregunta</label>
-                <input type="text" id="pregunta" name="firstname" className="pregunta" value={this.state.pregunta} onChange={this.changeQuestion}/>
-                <label className="label" for="time">Tiempo</label>
-                <select id="time" name="tiempo" className="pregunta input-tiempo" value={this.state.value} onChange={this.handleChangeTime}>
-                    <option value="5">5 segundos</option>
-                    <option value="10">10 segundos</option>
-                    <option value="20">20 segundos</option>
-                    <option value="30">30 segundos</option>
-                    <option value="60">60 segundos</option>
-                </select>
-                
-                <label className="label" for="res1">Respuesta 1</label>
-                <br/>
-                <div className="resp-grp custom-radios">
-                  <input type="text" id="res1" name="res1" className="input-respuestas" value={this.state.respuestaOne} onChange={this.changeAnswer1} />
-                  <input type="radio" id="color-1" name="color" value="rojo" 
-                          checked={this.state.selectedCorrectAnswer === 'rojo'}
-                          onChange={this.handleCorrectAnswer}
-                          />
-                  <label for="color-1">
-                    <span>
-                      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                    </span>
-                  </label>
-                </div>
-                <label className="label" for="res2">Respuesta 3</label>
-                <br/>
-                <div className="resp-grp custom-radios">
-                  <input type="text" id="res3" name="res2" className="input-respuestas" value={this.state.respuestaTree} onChange={this.changeAnswer3}/>
-                  <input type="radio" id="color-2" name="color" value="naranja"
-                          checked={this.state.selectedCorrectAnswer === 'naranja'}
-                          onChange={this.handleCorrectAnswer}
-                          />
-                  <label for="color-2">
-                    <span>
-                      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                    </span>
-                  </label>
-                </div>            
+          <div className="triviaT-row">
+            <div className="triviaT-column">
+              <label for="pregunta">Pregunta</label>
+              <input type="text" id="pregunta" className="triviaT-input-pregunta" value={this.state.pregunta} onChange={this.changeQuestion}/>
+              <label for="time">Tiempo</label>
+              <select id="time" name="tiempo" className="triviaT-input-pregunta triviaT-input-tiempo" value={this.state.value} onChange={this.handleChangeTime}>
+                  <option value="5">5 segundos</option>
+                  <option value="10">10 segundos</option>
+                  <option value="20">20 segundos</option>
+                  <option value="30">30 segundos</option>
+                  <option value="60">60 segundos</option>
+              </select>
+            </div>
+            <div className="triviaT-column">
+              <label for="input-img">Medio de Comunicación</label>
+              <div className="triviaT-image-container">
+                <input type="file" id="input-img" className="imagen"/>
+                <img id="imgSalida" width="120px" height="100px" src="" />
               </div>
-            </Col>
-            <Col md="6">
-              <div style={{marginTop:"5px"}}> 
-                <div className="containerRight">
-                  <label for="fname">Medio de Comunicación</label>
-                  <div className="image-container">
-                    <input type="file" id="file-input" name="file-input" className="imagen"/>
-                    <img id="imgSalida" width="120px" height="100px" src="" />
-                  </div>
-                </div>
-                <label className="label" for="res1">Respuesta 2</label>
-                <br/>
-                <div className="resp-grp custom-radios">
-                  <input type="text" id="res2" name="res1" className="input-respuestas" value={this.state.respuestaTwo} onChange={this.changeAnswer2}/>
-                  <input type="radio" id="color-3" name="color" value="azul" 
-                          checked={this.state.selectedCorrectAnswer === 'azul'}
-                          onChange={this.handleCorrectAnswer}
-                          />
-                  <label for="color-3">
-                    <span>
-                      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                    </span>
-                  </label>
-                </div>
-                <label className="label" for="res2">Respuesta 4</label>
-                <br/>
-                <div className="resp-grp custom-radios">
-                  <input type="text" id="res4" name="res2" className="input-respuestas" value={this.state.respuestaFour} onChange={this.changeAnswer4}/>
-                  <input type="radio" id="color-4" name="color" value="verde" 
-                          checked={this.state.selectedCorrectAnswer === 'verde'}
-                          onChange={this.handleCorrectAnswer}
-                          />
-                  <label for="color-4">
-                    <span>
-                      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                    </span>
-                  </label>
-                </div>
-              </div>
-            </Col>
-        </Row>
+            </div>
+          </div>
+
+          <div className="triviaT-row">
+            <div className="triviaT-column">
+            <label for="res1">Respuesta 1</label>
+            <br/>
+            <div className="triviaT-contenedor-respuesta custom-radios">
+              <input type="text" id="res1" className="triviaT-input-respuestas" value={this.state.respuestaOne} onChange={this.changeAnswer1} />
+              <input type="radio" id="color-1" name="color" value="rojo" 
+                      checked={this.state.selectedCorrectAnswer === 'rojo'}
+                      onChange={this.handleCorrectAnswer}
+                      />
+              <label for="color-1">
+                <span>
+                  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                </span>
+              </label>
+            </div>
+
+            <label for="res1">Respuesta 2</label>
+            <br/>
+            <div className="triviaT-contenedor-respuesta custom-radios">
+              <input type="text" id="res2" className="triviaT-input-respuestas" value={this.state.respuestaTwo} onChange={this.changeAnswer2}/>
+              <input type="radio" id="color-3" name="color" value="azul" 
+                      checked={this.state.selectedCorrectAnswer === 'azul'}
+                      onChange={this.handleCorrectAnswer}
+                      />
+              <label for="color-3">
+                <span>
+                  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                </span>
+              </label>
+            </div>
+            </div>
+
+            <div className="triviaT-column">
+            <label for="res2">Respuesta 3</label>
+            <br/>
+            <div className="triviaT-contenedor-respuesta custom-radios">
+              <input type="text" id="res3" className="triviaT-input-respuestas" value={this.state.respuestaTree} onChange={this.changeAnswer3}/>
+              <input type="radio" id="color-2" name="color" value="naranja"
+                      checked={this.state.selectedCorrectAnswer === 'naranja'}
+                      onChange={this.handleCorrectAnswer}
+                      />
+              <label for="color-2">
+                <span>
+                  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                </span>
+              </label>
+            </div>
+            
+            <label for="res2">Respuesta 4</label>
+            <br/>
+            <div className="triviaT-contenedor-respuesta custom-radios">
+              <input type="text" id="res4" className="triviaT-input-respuestas" value={this.state.respuestaFour} onChange={this.changeAnswer4}/>
+              <input type="radio" id="color-4" name="color" value="verde" 
+                      checked={this.state.selectedCorrectAnswer === 'verde'}
+                      onChange={this.handleCorrectAnswer}
+                      />
+              <label for="color-4">
+                <span>
+                  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                </span>
+              </label>
+            </div>
+            </div>
+
+          </div>
         </form>
-      </Container>
+      </div>
       </>
     );
   }

@@ -26,7 +26,6 @@ function SendForm(socketUrl,id_access){
     })
     socket.emit('SendForm')
     
-
     //END SEND FORM
 }
 function FooterContainer(props){

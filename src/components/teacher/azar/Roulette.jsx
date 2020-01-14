@@ -11,6 +11,7 @@ class Roulette extends React.Component {
       spinAngleStart: 0,
       startAngle: 0,
       spinTime: 0,
+      responsiveSize: 0,
       arc: Math.PI / (props.options.length / 2),
     }
     this.spinTimer = null;
@@ -71,11 +72,13 @@ class Roulette extends React.Component {
     // const spinTimeTotal = 0;
 
     let ctx;
+    let outsideRadius, textRadius;
 
     const canvas = this.refs.canvas;
     if (canvas.getContext) {
-      const outsideRadius = baseSize - 25;
-      const textRadius = baseSize - 45;
+      if(window.screen.width <= 360){}
+      outsideRadius = baseSize - 25;
+      textRadius = baseSize - 45;
       //tamaño de tringulitos
       const insideRadius = baseSize - 210;
 

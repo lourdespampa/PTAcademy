@@ -144,7 +144,7 @@ export default class CoursesTeacher extends Component {
           </Modal.Header>
           <Modal.Body>
             <button
-              class="button btnMyM"
+              className="button btnMyM"
               onClick={() =>
                 this.deleteCurso() + this.setShow("showdelete", false)
               }
@@ -153,7 +153,7 @@ export default class CoursesTeacher extends Component {
               si
             </button>
             <button
-              class="button btnMyM"
+              className="button btnMyM"
               onClick={() => this.setShow("showdelete", false)}
               type="button"
             >
