@@ -93,6 +93,7 @@ class Trivia extends React.Component {
     if(this.state.preguntaEnviada){
       console.log("restaurando...")
       this.setState({
+        navbarResponsive: false,
         pregunta: '',
         tiempo: '5',
         respuestaOne: '',
@@ -132,6 +133,14 @@ class Trivia extends React.Component {
   render() {
     return (
       <>
+      <div className={this.state.navbarResponsive ? "triviaT-topnav responsive" : "triviaT-topnav"}>
+        <a href="#home"></a>
+        <a href="#news">Enviar</a>
+        <a href="#contact">Respuestas</a>
+        <a className="triviaT-icon" onClick="myFunction()">
+          <i className="fa fa-bars"></i>
+        </a>
+      </div>
       <div className="triviaT-cabecera">
         <div className="triviaT-cabecera-titulo">
           <h1>PLAYTEC Trivia</h1>
@@ -144,14 +153,19 @@ class Trivia extends React.Component {
           </button>
           :
           <button className="triviaT-enviar" onClick={this.handleSendQuestion}>
-          Enviar
-        </button>
+            Enviar
+          </button>
           }
         </div>
         <div className="contenedor-btn-respuestas">
           <button className="triviaT-respuestas" onClick={this.showModal}>
             Respuestas
           </button>
+        </div>
+        <div className="triviaT-responsive-nav">
+          <a className="icon" onClick={"handleNavbarResponsive"}>
+            <i class="fa fa-bars"></i>
+          </a>
         </div>
         {
         this.state.modal
@@ -161,7 +175,7 @@ class Trivia extends React.Component {
           <div className="modal-content-respuestas">
             <span id="cerrar" className="close" onClick={this.showModal}>x</span>
             <h2>Clasificación</h2>
-              <div className="modal-body-respuestas">
+            
               <ul className="rolldown-list" id="myList">
                 <li className="lista-contenedora">
                     <div id="one" style={{display: "inline-block"}}></div>
@@ -189,7 +203,7 @@ class Trivia extends React.Component {
                     <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
                 </li>
               </ul>
-            </div>
+
           </div>
         </div>
         :
