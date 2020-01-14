@@ -5,10 +5,8 @@ import './HeaderCode.sass'
 function BotonSalir(props) {
     var user = JSON.parse(localStorage.getItem('user'));
     const [show, setShow] = useState(false);
-    const [idteacher, setidteacher] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const AgregarClick=()=>setShow(false)+props.getCursos
      useEffect(() => console.log(user._id) );
     return (
       <>
@@ -51,23 +49,23 @@ function HeaderCode(props){
             </div>         
             <div id="menuToggle">
                 <input id="checked" type="checkbox" className="check"/>
-                <label class="menu-btn" for="checked">
+                <label class="menuToggle__menu-btn" for="checked">
                     <span className="bar top"></span>
                     <span className="bar middle"></span>
                     <span className="bar bottom"></span>
                 </label>
                 <label className="close-menu" for="checked"></label>
-                <nav className="drawer-menu">
+                <nav className="menuToggle__drawer-menu">
                     <ul className="menu-header" > 
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
                     </ul>
                 </nav>
             </div>
-            <div className="content">
+            <div className="content-headercode">
                 <div className="code-detail">
                     <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
                         <class className="code">Código:</class>
