@@ -32,14 +32,15 @@ function BotonSalir(props) {
     );
   }
 function HeaderCode(props){
+    const [showcod, setShowcod] = useState(false);
+    const handleClose = () => setShowcod(false);
+    const handleShow = () => setShowcod(true);
     const codigo = () => {
         // alert('codigo')
     }
     const closeMenu = () => {
         document.getElementById('checked').click()
-    }
-    
-
+    }       
     return(
         <div className="Header-code__header" id="Header-code__header">
             <div className="code-clase-detail" onClick={codigo}>
@@ -60,8 +61,8 @@ function HeaderCode(props){
                         <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
                         <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
                         <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
+                        <li className="menu-header__item"><Link onClick={()=>props.redirect('temporizador')+closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
+                        <li className="menu-header__item"><Link onClick={()=>props.redirect('trivia')+closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
                     </ul>
                 </nav>
             </div>
@@ -69,7 +70,7 @@ function HeaderCode(props){
                 <div className="code-detail">
                     <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
                         <class className="code">Código:</class>
-                        <div className="codigo-generado">
+                        <div className="codigo-generado" onClick={handleShow}>
                         {props.id_access}
                         </div>
                     </a>
@@ -79,18 +80,14 @@ function HeaderCode(props){
                     <BotonSalir/>
                     
                 </div>
-                <div id="miCodigo" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
-                            </div>
-                            <div className="modal-body" style={{fontSize: "100px"}}>
-                            {props.id_access}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Modal show={showcod} onHide={handleClose}>
+                <Modal.Header>
+                    <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
+                </Modal.Header>
+                <Modal.Body>
+                    <h1>{props.id_access}</h1>
+                </Modal.Body>
+                </Modal>
             </div>
         </div>
     )

@@ -2,6 +2,7 @@ import React from 'react';
 import Empatia from '../../components/teacher/header/Empatia';
 import HeaderCode from '../../components/teacher/header/HeaderCode';
 import axios from 'axios';
+import io from 'socket.io-client';
 
 class Header extends React.Component{
     constructor(props) {
@@ -29,7 +30,12 @@ class Header extends React.Component{
         });
     }
     redirect=(e)=>{
-        console.log('jorge ctv '+e)
+        const socket = io(this.props.socketUrl, {
+            query:
+                { pin: this.props.id_access }
+          })
+        socket.emit('redirectAlum',{page:e})
+        console.log('redirect '+e)
     }
 
     render(){

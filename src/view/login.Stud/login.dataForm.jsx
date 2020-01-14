@@ -58,8 +58,10 @@ export default class FormLoginStu extends Component {
         data
       );
       const id = VerifyCode.data.idStu;
+      const token = VerifyCode.data.token;
+      localStorage.setItem("token", token);
+      localStorage.setItem("alumId", id);
       this.setState({ idStu: id });
-      console.log(this.state.idStu);
       document.getElementById("link_form").click();
     }
   }

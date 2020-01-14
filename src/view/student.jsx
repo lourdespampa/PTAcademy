@@ -26,14 +26,20 @@ componentWillMount(){
     this.initSocket()
 }
 async componentDidMount() {
+  var varToken = localStorage.getItem('token');
  const {
     match: { params }
   } = this.props;
   this.setState({id_student:params.id_student,id_access:params.id_access})
   console.log("id estudent: "+params.id_student+" id Acceso: "+params.id_access);
 
-  const res= await axios.get(`${this.props.apiUrl}/v1/api/admin/student/${params.id_student}`)
-    console.log(res.data)
+  const res= await axios({
+    url: `${this.props.apiUrl}/v1/api/admin/student/${params.id_student}`,
+    method: 'GET',
+    headers: {
+      'x-access-token': `${varToken}`
+    }
+  })
     this.setState({
       name:res.data.name_stu,
       lastName:res.data.lastName_stu

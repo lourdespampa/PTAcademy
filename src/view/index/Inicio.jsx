@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+
 import './inicio.sass';
 
 class Inicio extends React.Component {
@@ -7,6 +8,7 @@ class Inicio extends React.Component {
     super(props);
     this.state = {};
   }
+  
   render() {
     return (
       <div className="login-contenedor">
