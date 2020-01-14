@@ -13,7 +13,7 @@
 .code-clase-detail
     height: 100%
     max-width: 45%
-    & h1
+    .code-clase-detail__name
         padding: 10px 0 0 15px
         font-size: 25px
         color: #fff
@@ -40,67 +40,225 @@
     bottom: 0
     cursor: pointer
 
-.code-btn-menu
-    padding: 8px
-    margin-right: 10px
-    & img
-        width: 35px
+#menuToggle
+    display: none
+    
+.code-clase-detail
+    height: 100%
+    max-width: 45%
+    & .code-clase-detail__name
+        padding: 10px 0 0 15px
+        font-size: 25px
+        color: #fff
+        text-align: start
 
-#Empatia-header 
-    #Empatia-header__menu
-        background: #3087a4
-        z-index: 1000
-        max-width: 100%
-        width: 100%
-        margin: auto
-        ul
-            list-style-type: none
-            text-align: center
-            li
-                display: inline-block
-                position: relative
-                width: 15%
-                &:hover
-                    background: #E6344A
-                .a
-                    color: #fff
-                    display: block
-                    text-decoration: none
-                    padding: 13px
-                .nav-lista:focus
-                    background: #6ac3c35b
-                .nav-azar:focus
-                    background: #6ac3c35b
-                .nav-grupos:focus
-                    background: #6ac3c35b
-                .nav-temporizador:focus
-                    background: #6ac3c35b
-                .nav-trivia:focus
-                    background: #6ac3c35b
-        ul li .a span
-            margin-right: 10px
-        ul li:hover .children
-            display: block
-        ul li .children
+.code
+    font-size: 15px
+    height: auto
+    width: auto
+    font-family: 'Opal'
+    text-align: centers   
+
+.codigo-generado
+    font-size: 1.75rem
+    text-align: center
+    margin: 0px 0px 8px
+    line-height: 1.2
+
+#div_children 
+    transition: margin-Right .7s
+    margin-bottom: 200px
+    padding: 12px
+
+#div_head 
+    transition: margin-Right .7s
+    margin-block-start: -17px
+
+
+
+@media screen and (max-width: 800px)
+    #menuToggle
+        display: block
+        position: absolute
+        top: 16px
+        left: 50px
+        z-index: 1
+        webkit-user-select: none
+        user-select: none      
+        .menuToggle__drawer-menu 
             display: none
-            background: #011826
-            position: absolute
-            width: 150%
-            z-index: 1000
-        ul li .children li
+            position: fixed
+            top: 0
+            left: -58px
+            width: 333px
+            height: 56%
+            padding: 64px 0
+            background: #014e4e5b
+            -webkit-transition-property: all
+            transition-property: all
+            -webkit-transition-duration: .5s
+            transition-duration: .5s
+            -webkit-transition-delay: 0s
+            transition-delay: 0s
+            -webkit-transform-origin: left center
+            -ms-transform-origin: left center
+            transform-origin: left center
+            -webkit-transform: perspective(-66px) rotateY(17deg)
+            transform: perspective(-66px) rotateY(17deg)
+            .menu-header__item
+                text-align: center
+                .menu-header__item-link
+                    display: block
+                    height: 50px
+                    line-height: 50px
+                    font-size: 20px
+                    color: #fff
+                    -webkit-transition: all .8s
+                    transition: all .8s
+                    text-decoration: none
+                    &:hover 
+                        color: #fff
+                        background: #E6344A
+        .check 
+            display: none
+        .menuToggle__menu-btn
+            position: fixed
+            top: 19px
             display: block
+            cursor: pointer
+            z-index: 3
+        .bar 
+            position: relative
+            top: 0
+            left: 0
+            display: block
+            width: 40px
+            height: 4px
+            background: #fff
+            -webkit-transition: all .5s
+            transition: all .5s
+            -webkit-transform-origin: left top
+            -ms-transform-origin: left top
+            transform-origin: left top
+            border-radius: 3px
+            margin-bottom: 5px
+            .middle 
+                top: 15px
+                opacity: 1
+            .bottom 
+                top: 30px
+                -webkit-transform-origin: left bottom
+                -ms-transform-origin: left bottom
+                transform-origin: left bottom
+        .check:checked ~ .menuToggle__drawer-menu 
+            -webkit-transition-delay: .3s
+            transition-delay: .3s
+            -webkit-transform: none
+            -ms-transform: none
+            transform: none
+            opacity: 1
+            z-index: 1
+            display: block
+        .check:checked ~ .menuToggle__menu-btn .bar.top 
+            width: 44px
+            height: 4px
+            left: 2px
+            -webkit-transform: rotate(45deg)
+            -ms-transform: rotate(45deg)
+            transform: rotate(45deg)
+        .check:checked ~ .menuToggle__menu-btn .bar.middle 
+            opacity: 0
+        .check:checked ~ .menuToggle__menu-btn .bar.bottom 
+            width: 44px
+            height: 4px
+            top: 13px
+            -webkit-transform: rotate(-45deg)
+            -ms-transform: rotate(-45deg)
+            transform: rotate(-45deg)
+        .close-menu
+            position: fixed
+            top: 0
+            left: 0
+            width: 100%
+            height: 100vh
+            cursor: pointer
+            -webkit-transition-property: all
+            transition-property: all
+            -webkit-transition-duration: .3s
+            transition-duration: .3s
+            -webkit-transition-delay: 0s
+            transition-delay: 0s
+            visibility: hidden
+            opacity: 0
+        .check:checked ~ .close-menu 
+            visibility: visible
+            -webkit-transition-duration: 1s
+            transition-duration: 1s
+            -webkit-transition-delay: .3s
+            transition-delay: .3s
+        input:checked ~ ul
+            transform: none
+            -webkit-transition-delay: .3s
+            transition-delay: .3s
+            z-index: 2
+
+    .code-clase-detail
+        height: 100%
+        max-width: 45%
+        .code-clase-detail__name
+            display: none
+
+    .content-headercode
+        width: 100%
+        padding: 0
+        margin: 0
+        webkit-transition-property: all
+        transition-property: all
+        webkit-transition-delay: .3s
+        transition-delay: .3s
+        webkit-transition-duration: .5s
+        transition-duration: .5s
+        & .bt-menu
+            display: block
+            padding: 20px
+            color: #fff
             overflow: hidden
-            border-bottom: 1px solid rgba(255, 255, 255, .5)
-        ul li .children li .a
-            display: block
-        ul li .children li .a span
-            float: right
-            position: relative
-            top: 3px
-            margin-right: 0
-            margin-left: 10px
-        ul li .caret
-            position: relative
-            top: 3px
-            margin-left: 10px
-            margin-right: 0px
+            font-size: 25px
+            font-weight: bold
+            text-decoration: none
+        .code
+            font-size: 15px
+            height: auto
+            width: auto
+            font-family: 'Opal'
+            text-align: centers
+        .codigo-generado
+            font-size: 1.75rem
+            text-align: center
+            margin: 0px 0px 8px
+            line-height: 1.2
+        &:checked ~ .content-headercode
+            -webkit-transition-delay: 0s
+            transition-delay: 0s
+            -ms-transform: translateX(-300px)
+
+    #Empatia-header 
+        display: none
+
+    #div_head 
+        transition: margin-Right .7s
+        margin-block-start: 0
+
+
+@media screen and (max-width: 600px)
+    #menuToggle
+        display: block     
+        .menuToggle__drawer-menu 
+            .menu-header__item
+                text-align: center
+        .check 
+            display: none
+        .menuToggle__menu-btn
+            position: fixed
+            left: 26px
+            z-index: 3
