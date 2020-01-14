@@ -1,13 +1,5 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-*, ::after, ::before {
-    box-sizing: border-box;
-}
-
 /* cabecera */
-.cabeza {
+.triviaT-cabecera {
     margin-top: -16px;
     background: #333;
     color: #fff;
@@ -15,28 +7,23 @@
     height: 60px;
     box-shadow: rgba(150, 150, 150, 0.5) 0px 2px 2px;
     position: static;
-    /* Hacemos que la cabecera tenga una posición fija */
+    margin-bottom: 8px;
 }
 
-.cuerpo {
-    width: 100%;
-    height: 65%;
-}
-
-.cabeza .titulo {
+.triviaT-cabecera .triviaT-cabecera-titulo {
     margin: 10px auto auto auto;
 }
 
-.cont-btn-resp {
+.contenedor-btn-enviar {
     margin: auto 0 auto 15px;
 }
 
-.cont-btn-resp2 {
+.contenedor-btn-respuestas {
     margin: auto 15px auto 0;
 }
 
 /* botones cabecera */
-.enviar,.restaurar,.respuestas {
+.triviaT-enviar, .triviaT-restaurar, .triviaT-respuestas {
     width: 130px;
     background: #26890c;
     color: #fff;
@@ -51,109 +38,99 @@
     outline: none !important;
 }
 
-.respuestas {
+.triviaT-respuestas {
     background: #45a3e5;
 }
 
-.respuestas:hover {
+.triviaT-respuestas:hover {
     background: #3086c4;
     box-shadow: inset 0 -1px rgba(0, 0, 0, .25);
     margin: 9px 10px 10px 10px;
     outline:none;
 }
 
-
-.restaurar {
+.triviaT-restaurar {
     background: #F11D0B;
 }
 
-.enviar:hover {
+.triviaT-enviar:hover {
     background: #1e7209;
     box-shadow: inset 0 -1px rgba(0, 0, 0, .25);
     margin: 9px 10px 10px 10px;
 }
 
-.restaurar:hover {
+.triviaT-restaurar:hover {
     background: rgb(197, 20, 4);
     box-shadow: inset 0 -1px rgba(0, 0, 0, .25);
     margin: 9px 10px 10px 10px;
 }
 
 
-/* Contenido */
-.label{
-    margin-bottom: 0;
-}
+/* Contenido o cuerpo */
 
-.pregunta:focus {
+/* estilos grid de row and column */
+.triviaT-row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .triviaT-column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 100px;
+  }
+
+.triviaT-input-pregunta:focus, .triviaT-input-respuestas:focus {
     border: 2px solid #000;
 }
 
-.pregunta {
-    width: 100%;
-    /* Full width */
-    padding: 9px;
-    /* Some padding */
-    font-size: 20px;
-    border: 2px solid gray;
-    /* Gray border */
-    box-sizing: border-box;
-    /* Make sure that padding and width stays in place */
-    margin-top: 6px;
-    /* Add a top margin */
-    margin-bottom: 5px;
-    /* Bottom margin */
-    resize: vertical;
-    /* Allow the user to vertically resize the textarea (not horizontally) */
-    outline: none;
-}
-
-.resp-grp{
-    display: flex;
-}
-
-.input-tiempo{
-    margin-bottom: 18px;
-}
-
-.image-container {
+.triviaT-image-container {
     display: flex;
     height: 142px;
     width: 99%;
     padding: 12px;
     border: 3px dotted #B2BABB;
     background: #F2F4F4;
-    /* Add a top margin */
     margin-bottom: 18px;
-    /* Bottom margin */
 }
 
 .imagen {
     margin: auto;
 }
 
-.input-respuestas {
-    width: 91%;
-    padding: 10px;
-    /* Some padding */
+.triviaT-input-pregunta {
+    width: 100%;
+    padding: 9px;
     font-size: 20px;
     border: 2px solid gray;
-    /* Gray border */
     box-sizing: border-box;
-    /* Make sure that padding and width stays in place */
     margin-top: 6px;
-    /* Add a top margin */
-    margin-bottom: 6px;
-    /* Bottom margin */
-    margin-right: 8px;
+    margin-bottom: 5px;
     resize: vertical;
-    /* Allow the user to vertically resize the textarea (not horizontally) */
     outline: none;
 }
 
-.respuesta:focus,
-.respuesta2:focus {
-    border: 2px solid #000;
+.triviaT-contenedor-respuesta{
+    display: flex;
+}
+
+.triviaT-input-tiempo{
+    margin-bottom: 18px;
+}
+
+.triviaT-input-respuestas {
+    width: 91%;
+    padding: 10px;
+    font-size: 20px;
+    border: 2px solid gray;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-right: 8px;
+    resize: vertical;
+    outline: none;
 }
 
 /* The Modal (background) */

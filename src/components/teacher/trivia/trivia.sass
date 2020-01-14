@@ -10,7 +10,7 @@
     height: 60px
     box-shadow: rgba(150, 150, 150, 0.5) 0px 2px 2px
     position: static
-    /* Hacemos que la cabecera tenga una posición fija */
+//  /* Hacemos que la cabecera tenga una posición fija */
 .containerRight
     margin-top: 5px
 .cuerpo 
@@ -26,7 +26,7 @@
 .cont-btn-resp2 
     margin: auto 15px auto 0
 
-/* botones cabecera */
+//  /* botones cabecera */
 .enviar,.restaurar,.respuestas 
     width: 130px
     background: #26890c
@@ -50,7 +50,7 @@
         background: #3086c4
         box-shadow: inset 0 -1px rgba(0, 0, 0, .25)
         margin: 9px 10px 10px 10px
-        outline:none
+        outline: none
 
 .restaurar 
     background: #F11D0B
@@ -65,7 +65,7 @@
     box-shadow: inset 0 -1px rgba(0, 0, 0, .25)
     margin: 9px 10px 10px 10px
 
-/* Contenido */
+//  /* Contenido */
 .label
     margin-bottom: 0
 
@@ -74,20 +74,20 @@
 
 .pregunta 
     width: 100%
-    /* Full width */
+//  /* Full width */
     padding: 9px
-    /* Some padding */
+//  /* Some padding */
     font-size: 20px
     border: 2px solid gray
-    /* Gray border */
+//  /* Gray border */
     box-sizing: border-box
-    /* Make sure that padding and width stays in place */
+//  /* Make sure that padding and width stays in place */
     margin-top: 6px
-    /* Add a top margin */
+//  /* Add a top margin */
     margin-bottom: 5px
-    /* Bottom margin */
+//  /* Bottom margin */
     resize: vertical
-    /* Allow the user to vertically resize the textarea (not horizontally) */
+//  /* Allow the user to vertically resize the textarea (not horizontally) */
     outline: none
 
 .resp-grp
@@ -103,9 +103,9 @@
     padding: 12px
     border: 3px dotted #B2BABB
     background: #F2F4F4
-    /* Add a top margin */
+//  /* Add a top margin */
     margin-bottom: 18px
-    /* Bottom margin */
+//  /* Bottom margin */
 
 .imagen 
     margin: auto
@@ -113,19 +113,19 @@
 .input-respuestas 
     width: 91%
     padding: 10px
-    /* Some padding */
+//  /* Some padding */
     font-size: 20px
     border: 2px solid gray
-    /* Gray border */
+//  /* Gray border */
     box-sizing: border-box
-    /* Make sure that padding and width stays in place */
+//  /* Make sure that padding and width stays in place */
     margin-top: 6px
-    /* Add a top margin */
+//  /* Add a top margin */
     margin-bottom: 6px
-    /* Bottom margin */
+//  /* Bottom margin */
     margin-right: 8px
     resize: vertical
-    /* Allow the user to vertically resize the textarea (not horizontally) */
+//  /* Allow the user to vertically resize the textarea (not horizontally) */
     outline: none
 
 .respuesta:focus,
@@ -156,3 +156,88 @@
 
 .modal-body-respuestas 
     margin: 25px
+
+
+
+//  /* The Close Button */
+
+.close 
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+
+.close:hover,
+.close:focus
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+
+.rolldown-list
+    text-align: left;
+    padding: 0;
+    margin: 0;
+
+.rolldown-list li 
+    padding: 12px;
+    margin-bottom: .125em;
+    display: block;
+    list-style: none;
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+    overflow: hidden;
+    margin-top: 10px;
+    visibility: hidden;
+    animation: rolldown .7s 1;
+    transform-origin: 50% 0;
+    animation-fill-mode: forwards;
+
+
+.rolldown-list li:nth-child(2n) 
+    background-color: #444;
+
+
+.rolldown-list li:nth-child(2n+1) 
+    background-color: #333;
+
+
+.rolldown-list li:nth-child(2n+1) 
+    animation-delay: 0.25s;
+    -webkit-animation-delay: 0.25s !important;
+
+.rolldown-list li:nth-child(2n+2) 
+    animation-delay: 0.50s;
+    -webkit-animation-delay: 0.50s !important;
+
+.rolldown-list li:nth-child(2n+3) 
+    animation-delay: 4s;
+    -webkit-animation-delay: 0.75s !important;
+
+.rolldown-list li:nth-child(2n+4) 
+    animation-delay: 4s;
+    -webkit-animation-delay: 1s !important;
+
+.rolldown-list li:nth-child(2n+5) 
+    animation-delay: 4s;
+    -webkit-animation-delay: 1.25s !important;
+
+
+#myList 
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    margin-left: -25%;
+
+
+@keyframes rolldown 
+    0% 
+        visibility: visible;
+        transform: rotateX(180deg) perspective(500px);
+    70%
+        visibility: visible;
+        transform: rotateX(-20deg);
+    100% 
+        visibility: visible;
+        transform: rotateX(0deg);
+    
