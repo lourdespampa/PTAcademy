@@ -8,10 +8,12 @@ import Loading from "./Loading";
 
 import firebase from "./firebaseConfig";
 
+// import aesjs from 'aes-js'
+
 export default function App(props) {
 
   const [inputsLogin, setInputsLogin] = useState({ email: "", pass: "" });
-  const [inputsRegister, setInputsRegister] = useState({ email: "", name: "", pass: "", rpass: "" });
+  const [inputsRegister, setInputsRegister] = useState({ email: "", username: "", lastname: "", pass: "", rpass: "" });
   const [{ userState, message, token }, getMessage] = useState({ userState: false, message: "" });
   const [tipoAcceso, setTipoAcceso] = useState(false);
   const [cuentaVerificada, setCuentaVerificada] = useState(false);
@@ -30,6 +32,7 @@ export default function App(props) {
 
   //Funcion cuando cambia el value de los inputs de registro
   const handleChangeInputsRegister = event => {
+    getMessage({message: ""});
     setInputsRegister({ ...inputsRegister, [event.target.name]: event.target.value });
   };
 
@@ -46,7 +49,7 @@ export default function App(props) {
           try {
             const { data } = await axios.post(`${props.apiUrl}/signin`, {fuente:'manual', email, pass });
             const { user, token } = data;
-            // console.log(data);
+            // let tokenEncrypt = encriptarToken(token)
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(user));
             getMessage({
@@ -73,27 +76,27 @@ export default function App(props) {
       }).catch(e => {
         console.log(e)
         setLoading({ loading: false });
-        if(e.code == "auth/wrong-password") getMessage({ message: "La contraseña es invalida o el usuario aún no ha creado una contraseña" });
-        if(e.code == "auth/user-not-found") getMessage({ message: "No se ha podido identificar al usuario, verifique las credenciales e intentelo de nuevo." });
+        if(e.code === "auth/wrong-password") getMessage({ message: "La contraseña es invalida o el usuario aún no ha creado una contraseña" });
+        if(e.code === "auth/user-not-found") getMessage({ message: "No se ha podido identificar al usuario, verifique las credenciales e intentelo de nuevo." });
       })
   }
 
   //Funcion para registrar y conectar a la API
   const handleToRegister = async (event) => {
     event.preventDefault()
-    const { email, name, pass, rpass } = inputsRegister;
+    const { email, username, lastname, pass, rpass } = inputsRegister;
     if(pass !== rpass ){
       setInputsRegister({ pass: "", rpass: ""})
       return alert("las contraseñas no coinciden. Ingreselas nuevamente")
     }
-    axios.post(`${props.apiUrl}/signup`, { email, pass, "displayName": name })
+    axios.post(`${props.apiUrl}/signup`, { email, pass, username, lastname })
     .then( result => {
       console.log(result.message)
     }).catch(e => console.log(e))
     firebase.auth().createUserWithEmailAndPassword(email, pass)
       .then(result => {
         result.user.updateProfile({
-          displayName: name
+          displayName: `${username} ${lastname}`
         })
         const configuracion = {
           url: 'http://localhost:3000/loginTeacher'
@@ -122,12 +125,20 @@ export default function App(props) {
     //Inicializamos la autenticación de firebase pasandole un proveedor
     firebase.auth().signInWithPopup(provider).then( async result => {
       setLoading({ loading: false });
-      let displayName = result.user.displayName
       let emailGoogle = result.user.email
       let photoURL = result.user.photoURL
+      let displayName = result.user.displayName
+      let username = `${displayName.split(" ")[0]} ${displayName.split(" ")[1]}`;
+      let lastname = `${displayName.split(" ")[2]} ${displayName.split(" ")[3]}`;
       //enviamos los datos a la API
-      const { data } = await axios.post(`${props.apiUrl}/signin`, {"fuente": "google", displayName, "email": emailGoogle, photoURL });
+      const { data } = await axios.post(`${props.apiUrl}/signin`, {"fuente": "google", username, lastname, "email": emailGoogle, photoURL });
+      if(data.message === "usuario no existe"){
+        setTipoAcceso(true);
+        setInputsRegister({ email: emailGoogle, username, lastname })
+        return getMessage({message: "Por favor, registrese primero para acceder con Google."});
+      }
       const { user, token } = data;
+      // let tokenEncrypt = encriptarToken(token)
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
       getMessage({
@@ -136,13 +147,26 @@ export default function App(props) {
         token: token
       });
       setLoading({ loading: false });
-      console.log(data) 
+      // console.log(username, lastname)
     }).catch( e => {
       setLoading({ loading: false });
-      getMessage({ message: "Error al acceder con Google, verifique sus datos e intentelo nuevamente." });
+      getMessage({ message: "Error al acceder con Google, intentelo de nuevo o más tarde." });
       console.log(e)
     })
   }
+
+  // const encriptarToken = (token) => {
+  //   //128-bit key (16 bytes * 8 bits/byte = 128 bits)
+  //   var key = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
+  //   //convierte texto a bytes
+  //   var textBytes = aesjs.utils.utf8.toBytes(token);
+  //   //Inicia el modo de operación de encriptado. El contador es opcional, si lo omites empezará en 1
+  //   var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(5));
+  //   //encripta la cadena de bytes a bytes encriptados.
+  //   var encryptedBytes = aesCtr.encrypt(textBytes);
+  //   //para imprimir o almacenar los datos binarios, puedes convertirlos a un string hexadecimal
+  //   return aesjs.utils.hex.fromBytes(encryptedBytes);
+  // }
   
   return (
     <div className="loginTeacher" style={{ backgroundImage: `url(${logo})` }}>
@@ -205,8 +229,9 @@ export default function App(props) {
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
                 <h2 className="loginTeacher-subtitle">Registrarse</h2>
-                  <input name="email" placeholder="Correo" type="text" onChange={handleChangeInputsRegister} required/>
-                  <input name="name" placeholder="Nombre Completo" type="text" onChange={handleChangeInputsRegister} required/>
+                  <input name="email" placeholder="Correo" type="email" onChange={handleChangeInputsRegister} value={inputsRegister.email} required/>
+                  <input name="username" placeholder="Nombres" type="text" onChange={handleChangeInputsRegister} value={inputsRegister.username} required/>
+                  <input name="lastname" placeholder="Apellidos" type="text" onChange={handleChangeInputsRegister} value={inputsRegister.lastname} required/>
                   <input name="pass" placeholder="Contraseña" type="password" value={inputsRegister.pass} onChange={handleChangeInputsRegister} minLength="6" required/>
                   <input name="rpass" placeholder="Repita su contraseña" type="password" value={inputsRegister.rpass} onChange={handleChangeInputsRegister} minLength="6" required/>
                   <input className="loginTeacher-btn" type="submit" value="Sign up"/>
@@ -219,7 +244,7 @@ export default function App(props) {
         <div className="login-loading">
           <Loading status={loading} />
         </div>
-          {message == "" ? null : <h5 className="loginTeacher-message" >{message}</h5>}
+          {message === "" ? null : <h5 className="loginTeacher-message" >{message}</h5>}
       </div>
     </div>
   );

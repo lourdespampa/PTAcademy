@@ -43,27 +43,29 @@ function HeaderCode(props){
     return(
         <div className="Header-code__header" id="Header-code__header">
             <div className="code-clase-detail" onClick={codigo}>
-                <h1>
+                <h1 className="code-clase-detail__name">
                     Nombre del clase : {props.nombre_clase}
                 </h1>
             </div>         
-            <nav role="navigation">
-                <div id="menuToggle">
-                    <input id="checked" type="checkbox"/>
-                        <span className="hamburguesa-span"></span>
-                        <span className="hamburguesa-span"></span>
-                        <span className="hamburguesa-span"></span>
-                        <label className="close-menu" for="checked"/>
-                            <ul className="menu-header" id="menu-header"> 
-                                <li><Link onClick={closeMenu} className="lista" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
-                                <li><Link onClick={closeMenu} className="azar"   to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
-                                <li><Link onClick={closeMenu} className="grupos" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
-                                <li><Link onClick={closeMenu} className="tempor" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
-                                <li><Link onClick={closeMenu} className="trivia" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
-                            </ul>
-                </div>
-            </nav>
-            <div className="content">
+            <div id="menuToggle">
+                <input id="checked" type="checkbox" className="check"/>
+                <label class="menuToggle__menu-btn" for="checked">
+                    <span className="bar top"></span>
+                    <span className="bar middle"></span>
+                    <span className="bar bottom"></span>
+                </label>
+                <label className="close-menu" for="checked"></label>
+                <nav className="menuToggle__drawer-menu">
+                    <ul className="menu-header" > 
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
+                    </ul>
+                </nav>
+            </div>
+            <div className="content-headercode">
                 <div className="code-detail">
                     <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
                         <class className="code">Código:</class>
