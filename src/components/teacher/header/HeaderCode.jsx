@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom'
-import { Modal ,Button, ButtonToolbar } from "react-bootstrap";
+import { Button, ButtonToolbar } from "react-bootstrap";
+import Modal from 'react-bootstrap/Modal';
+
 import './HeaderCode.sass'
 function BotonSalir(props) {
     var user = JSON.parse(localStorage.getItem('user'));
@@ -31,8 +33,10 @@ function BotonSalir(props) {
       </>
     );
   }
+
+
 function HeaderCode(props){
-    const [showcod, setShowcod] = useState(false);
+    const [showcod, setShowcod] = useState(true);
     const handleClose = () => setShowcod(false);
     const handleShow = () => setShowcod(true);
     const codigo = () => {
@@ -58,7 +62,7 @@ function HeaderCode(props){
                 <label className="close-menu" for="checked"></label>
                 <nav className="menuToggle__drawer-menu">
                     <ul className="menu-header" > 
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA DE ALUMNOS</Link></li> 
                         <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
                         <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
                         <li className="menu-header__item"><Link onClick={()=>props.redirect('temporizador')+closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
@@ -67,7 +71,7 @@ function HeaderCode(props){
                 </nav>
             </div>
             <div className="content-headercode">
-                <div className="code-detail">
+                <div className="code-detail" onClick={handleShow}>
                     <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
                         <class className="code">Código:</class>
                         <div className="codigo-generado" onClick={handleShow}>
@@ -80,12 +84,12 @@ function HeaderCode(props){
                     <BotonSalir/>
                     
                 </div>
-                <Modal show={showcod} onHide={handleClose}>
+                <Modal show={showcod} onHide={handleClose} className="modal-headercode">
                 <Modal.Header>
                     <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
                 </Modal.Header>
                 <Modal.Body>
-                    <h1>{props.id_access}</h1>
+                    <h1 id="modal-codigogenerado">{props.id_access}</h1>
                 </Modal.Body>
                 </Modal>
             </div>
