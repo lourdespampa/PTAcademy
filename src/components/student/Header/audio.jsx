@@ -1,12 +1,13 @@
 import React, { Component} from 'react';
-import {Link}  from 'react-router-dom';
+import {Link,Redirect}  from 'react-router-dom';
 import io from 'socket.io-client';
 import {Modal,Button } from "react-bootstrap";
 const { AudioStreamer } = require('sfmediastream');
 
+
 export default class Audio extends Component {
     state={
-        show:false
+        show:false,
     }
     enviarvideo(url) {
         const socket = io(this.props.socketUrl, {
@@ -206,13 +207,27 @@ export default class Audio extends Component {
             overlay_popup.className = 'overlay active'
             popup.className = 'popup active'}
         })
-        //FORM END
     }
 
    
 
     render() {
-        return <div>
+        return (
+        <>
+        {
+          this.state.trivia==true
+          ? 
+          <Redirect to={`/student/5e1dd2ad105aa60778160a04/WJRQU/trivia`} /> 
+          :
+          null
+          }
+          {
+          this.state.temporizador==true
+          ? 
+          <Redirect to={`/student/5e1dd2ad105aa60778160a04/WJRQU/temporizador`} /> 
+          :
+          null
+          }
              <a id="ReturnToLogin2" style={{display: "none"}} href='/login'></a>
          
             <button id="btn_play"></button>
@@ -261,6 +276,7 @@ export default class Audio extends Component {
         {/*END Diapo*/}
 
 
-        </div>
+        </>
+        )
     }
 }
