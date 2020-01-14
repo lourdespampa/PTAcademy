@@ -17,7 +17,7 @@ class Header extends React.Component{
         console.log('hola que hace'+this.props.id_class)
         var varToken = localStorage.getItem('token');
      const res = await axios({
-      url: `http://3.16.110.136:4200/v1/api/teacher/detail_class/${this.props.id_class}`,
+      url: `${this.props.apiUrl}/v1/api/teacher/detail_class/${this.props.id_class}`,
       method: 'GET',
       headers: {
         'x-access-token': `${varToken}`
@@ -28,12 +28,15 @@ class Header extends React.Component{
             nombre_clase :  await res.data.class_name
         });
     }
+    redirect=(e)=>{
+        console.log('jorge ctv '+e)
+    }
 
     render(){
         return(
             <>
-                <HeaderCode id_access={this.props.id_access} nombre_clase={this.state.nombre_clase} />
-                <Empatia id_access={this.props.id_access} id_class={this.props.id_class}/>
+                <HeaderCode socketUrl={this.props.socketUrl} redirect={this.redirect} id_access={this.props.id_access} nombre_clase={this.state.nombre_clase} />
+                <Empatia socketUrl={this.props.socketUrl} redirect={this.redirect} id_access={this.props.id_access} id_class={this.props.id_class}/>
             </>
         )
     }

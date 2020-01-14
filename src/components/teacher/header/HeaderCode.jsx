@@ -1,12 +1,13 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import { Modal ,Button, ButtonToolbar } from "react-bootstrap";
 import './HeaderCode.sass'
 function BotonSalir(props) {
+    var user = JSON.parse(localStorage.getItem('user'));
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const AgregarClick=()=>setShow(false)+props.getCursos
+     useEffect(() => console.log(user._id) );
     return (
       <>
         <div className="Header-code" onClick={handleShow}>   
@@ -21,7 +22,7 @@ function BotonSalir(props) {
             <Link to='/' variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
             <Link><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>`      `
             {/* falta cambiar esta id_teacher estatica */}
-            <Link to='/CoursesTeacher/5db74edbae96433b08911b38'>
+            <Link to={`/CoursesTeacher/${user._id}`}>
             <Button variant="primary" size="sm" onClick={handleClose}>Regresar a cursos</Button>
             </Link>
           </ButtonToolbar>
@@ -31,6 +32,7 @@ function BotonSalir(props) {
     );
   }
 function HeaderCode(props){
+<<<<<<< HEAD
     const codigo = () => {
         // alert('codigo')
     }
@@ -39,6 +41,8 @@ function HeaderCode(props){
     }
     
 
+=======
+>>>>>>> 2b84553b0ff10a18c137ed8be9e986aef6f41a7c
     return(
         <div className="Header-code__header" id="Header-code__header">
             <div className="code-clase-detail" onClick={codigo}>
@@ -52,6 +56,7 @@ function HeaderCode(props){
                         <span className="hamburguesa-span"></span>
                         <span className="hamburguesa-span"></span>
                         <span className="hamburguesa-span"></span>
+<<<<<<< HEAD
                         <label className="close-menu" for="checked"/>
                             <ul className="menu-header" id="menu-header"> 
                                 <li><Link onClick={closeMenu} className="lista" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
@@ -60,6 +65,15 @@ function HeaderCode(props){
                                 <li><Link onClick={closeMenu} className="tempor" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
                                 <li><Link onClick={closeMenu} className="trivia" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
                             </ul>
+=======
+                        <ul id="menu-header">
+                            <li><Link className="lista" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA DE ALUMNOS</Link></li>    
+                            <li><Link className="azar"   to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
+                            <li><Link className="grupos" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
+                            <li><Link className="tempor" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
+                            <li><Link className="trivia" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
+                        </ul>
+>>>>>>> 2b84553b0ff10a18c137ed8be9e986aef6f41a7c
                 </div>
             </nav>
             <div className="content">
