@@ -32,7 +32,6 @@ function BotonSalir(props) {
     );
   }
 function HeaderCode(props){
-<<<<<<< HEAD
     const codigo = () => {
         // alert('codigo')
     }
@@ -41,8 +40,6 @@ function HeaderCode(props){
     }
     
 
-=======
->>>>>>> 2b84553b0ff10a18c137ed8be9e986aef6f41a7c
     return(
         <div className="Header-code__header" id="Header-code__header">
             <div className="code-clase-detail" onClick={codigo}>
