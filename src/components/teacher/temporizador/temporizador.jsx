@@ -109,7 +109,7 @@ class Temporizador extends React.Component {
                 var hour = $('#id_dt_1').val();
                 var min = $('#id_dt_2').val();
                 var sec = $('#id_dt_3').val();
-
+                
                 socket.emit('set', {
                     time: [hour,min,sec]
                 });
