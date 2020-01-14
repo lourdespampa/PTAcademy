@@ -37,9 +37,8 @@ export default class FormPostCourse extends Component {
       headers: {
         'x-access-token': `${varToken}`
       }
-    }).then(res => console.log(res))
+    }).then(res => console.log(res)+this.props.handleClose())
       .catch(err => console.log(err));
-      this.props.handleClose()
   };
   render() {
     const { class_name, desc } = this.state;

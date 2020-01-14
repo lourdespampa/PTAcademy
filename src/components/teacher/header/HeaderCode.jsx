@@ -1,12 +1,13 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import { Modal ,Button, ButtonToolbar } from "react-bootstrap";
 import './HeaderCode.sass'
 function BotonSalir(props) {
+    var user = JSON.parse(localStorage.getItem('user'));
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const AgregarClick=()=>setShow(false)+props.getCursos
+     useEffect(() => console.log(user._id) );
     return (
       <>
         <div className="Header-code" onClick={handleShow}>   
@@ -21,7 +22,7 @@ function BotonSalir(props) {
             <Link to='/' variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
             <Link><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>`      `
             {/* falta cambiar esta id_teacher estatica */}
-            <Link to='/CoursesTeacher/5db74edbae96433b08911b38'>
+            <Link to={`/CoursesTeacher/${user._id}`}>
             <Button variant="primary" size="sm" onClick={handleClose}>Regresar a cursos</Button>
             </Link>
           </ButtonToolbar>
@@ -48,19 +49,19 @@ function HeaderCode(props){
             </div>         
             <div id="menuToggle">
                 <input id="checked" type="checkbox" className="check"/>
-                <label class="menu-btn" for="checked">
+                <label class="menuToggle__menu-btn" for="checked">
                     <span className="bar top"></span>
                     <span className="bar middle"></span>
                     <span className="bar bottom"></span>
                 </label>
                 <label className="close-menu" for="checked"></label>
-                <nav className="drawer-menu">
+                <nav className="menuToggle__drawer-menu">
                     <ul className="menu-header" > 
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
                     </ul>
                 </nav>
             </div>

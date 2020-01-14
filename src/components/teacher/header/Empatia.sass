@@ -76,7 +76,7 @@
         z-index: 1
         webkit-user-select: none
         user-select: none      
-        .drawer-menu 
+        .menuToggle__drawer-menu 
             position: fixed
             top: 0
             left: -58px
@@ -99,7 +99,7 @@
             z-index: 2
             .menu-header__item
                 text-align: center
-                .item
+                .menu-header__item-link
                     display: block
                     height: 50px
                     line-height: 50px
@@ -112,7 +112,7 @@
                         background: #E6344A
         .check 
             display: none
-        .menu-btn
+        .menuToggle__menu-btn
             position: fixed
             display: block
             top: 19px
@@ -147,7 +147,7 @@
                 -webkit-transform-origin: left bottom
                 -ms-transform-origin: left bottom
                 transform-origin: left bottom
-        .check:checked ~ .drawer-menu 
+        .check:checked ~ .menuToggle__drawer-menu 
             -webkit-transition-delay: .3s
             transition-delay: .3s
             -webkit-transform: none
@@ -155,16 +155,16 @@
             transform: none
             opacity: 1
             z-index: 1
-        .check:checked ~ .menu-btn .bar.top 
+        .check:checked ~ .menuToggle__menu-btn .bar.top 
             width: 44px
             height: 4px
             left: 2px
             -webkit-transform: rotate(45deg)
             -ms-transform: rotate(45deg)
             transform: rotate(45deg)
-        .check:checked ~ .menu-btn .bar.middle 
+        .check:checked ~ .menuToggle__menu-btn .bar.middle 
             opacity: 0
-        .check:checked ~ .menu-btn .bar.bottom 
+        .check:checked ~ .menuToggle__menu-btn .bar.bottom 
             width: 44px
             height: 4px
             top: 13px
@@ -260,7 +260,7 @@
         z-index: 1
         webkit-user-select: none
         user-select: none      
-        .drawer-menu 
+        .menuToggle__drawer-menu 
             position: fixed
             top: 0
             left: -58px
@@ -283,7 +283,7 @@
             z-index: 2
         .menu-header__item
                 text-align: center
-                .item
+                .menu-header__item-link
                     display: block
                     height: 50px
                     line-height: 50px
@@ -296,7 +296,7 @@
                         background: #E6344A
         .check 
             display: none
-        .menu-btn
+        .menuToggle__menu-btn
             position: fixed
             display: block
             top: 19px
@@ -331,7 +331,7 @@
                 -webkit-transform-origin: left bottom
                 -ms-transform-origin: left bottom
                 transform-origin: left bottom
-        .check:checked ~ .drawer-menu 
+        .check:checked ~ .menuToggle__drawer-menu 
             -webkit-transition-delay: .3s
             transition-delay: .3s
             -webkit-transform: none
@@ -339,16 +339,16 @@
             transform: none
             opacity: 1
             z-index: 1
-        .check:checked ~ .menu-btn .bar.top 
+        .check:checked ~ .menuToggle__menu-btn .bar.top 
             width: 44px
             height: 4px
             left: 2px
             -webkit-transform: rotate(45deg)
             -ms-transform: rotate(45deg)
             transform: rotate(45deg)
-        .check:checked ~ .menu-btn .bar.middle 
+        .check:checked ~ .menuToggle__menu-btn .bar.middle 
             opacity: 0
-        .check:checked ~ .menu-btn .bar.bottom 
+        .check:checked ~ .menuToggle__menu-btn .bar.bottom 
             width: 44px
             height: 4px
             top: 13px

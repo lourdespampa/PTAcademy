@@ -50,6 +50,7 @@ export default class CoursesTeacher extends Component {
   }
 
   getCursos=()=>{
+    console.log('listar cursos')
     const { match: { params } } = this.props;
     var varToken = localStorage.getItem('token');
     axios({
@@ -73,8 +74,8 @@ export default class CoursesTeacher extends Component {
     var varToken = localStorage.getItem('token');
 
     await axios({
-      url:this.props.apiUrl+'/v1/api/admin/course/'+ this.state.id_curso,
-      method:'delete',
+      url:`${this.props.apiUrl}/v1/api/teacher/${this.state._id }/${this.state.id_curso}`,
+      method:'post',
       headers:{
         'x-access-token': `${varToken}`
       }});
