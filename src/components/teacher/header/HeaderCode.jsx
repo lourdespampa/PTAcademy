@@ -64,7 +64,7 @@ function HeaderCode(props){
                     </ul>
                 </nav>
             </div>
-            <div className="content">
+            <div className="content-headercode">
                 <div className="code-detail">
                     <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
                         <class className="code">Código:</class>
