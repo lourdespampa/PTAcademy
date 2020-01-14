@@ -32,10 +32,13 @@ function BotonSalir(props) {
     );
   }
 function HeaderCode(props){
+    const [showcod, setShowcod] = useState(false);
+    const handleClose = () => setShowcod(false);
+    const handleShow = () => setShowcod(true);
     return(
         <div className="code-header">
-            <div className="code-clase-detail">
-                <h1>
+            <div className="code-clase-detail" >
+                <h1 onClick={handleShow}>
                     Nombre del clase : {props.nombre_clase}
                 </h1>
             </div>         
@@ -57,7 +60,7 @@ function HeaderCode(props){
             <div className="code-detail">
                 <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
                     <class className="code">Código:</class>
-                    <div className="codigo-generado">
+                    <div className="codigo-generado" onClick={handleShow}>
                        {props.id_access}
                     </div>
                 </a>
@@ -67,18 +70,14 @@ function HeaderCode(props){
                 <BotonSalir/>
                 
             </div>
-            <div id="miCodigo" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
-                        </div>
-                        <div className="modal-body" style={{fontSize: "100px"}}>
-                        {props.id_access}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Modal show={showcod} onHide={handleClose}>
+                <Modal.Header>
+                    <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
+                </Modal.Header>
+                <Modal.Body>
+                    <h1>{props.id_access}</h1>
+                </Modal.Body>
+            </Modal>
         </div>
     )
 }
