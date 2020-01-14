@@ -16,7 +16,7 @@ export default class Student extends Component {
     super(props);
     this.state={
         id_access:'',
-        socketUrl:"http://3.16.110.136:4000/student",
+        socketUrl:"http://localhost:4000/student",
         id_student:'',
         name:'',
         lastName:''

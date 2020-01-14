@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 //import './css/main.css';
 import './main.css';
 //import '../public/css/bootstrap.min.css';
-const socketUrl="http://localhost:4000";
+const socketUrl="http://3.16.110.136:4000/teacher";
 export default class CHAT extends Component{
 //class chat extends React.Component {
   

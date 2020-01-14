@@ -48,8 +48,16 @@ export default class ListaAlum extends Component {
       }
         
     async componentDidMount() {
-        
         this.getStudents();
+        const socket = io(this.props.socketUrl, {
+            query:
+                { pin: this.props.id_access }
+          })
+          socket.on('newAlum',(data)=>{
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+                this.getStudents()
+            }
+          })
     }
     
 //rellenar state
