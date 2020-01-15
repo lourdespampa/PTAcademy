@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom'
-import { Modal ,Button, ButtonToolbar } from "react-bootstrap";
+import { Button, ButtonToolbar } from "react-bootstrap";
+import Modal from 'react-bootstrap/Modal';
+
 import './HeaderCode.sass'
 function BotonSalir(props) {
     var user = JSON.parse(localStorage.getItem('user'));
@@ -10,6 +12,7 @@ function BotonSalir(props) {
      useEffect(() => console.log(user._id) );
     return (
       <>
+
         <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />           
         <Modal show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
@@ -17,7 +20,7 @@ function BotonSalir(props) {
           </Modal.Header>
           <Modal.Body>
           <ButtonToolbar>
-            <Link to='/' variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
+            <Link to='/' onClick={()=>props.ExitSocket()} variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
             <Link><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>`      `
             {/* falta cambiar esta id_teacher estatica */}
             <Link to={`/CoursesTeacher/${user._id}`}>
@@ -29,8 +32,10 @@ function BotonSalir(props) {
       </>
     );
   }
+
+
 function HeaderCode(props){
-    const [showcod, setShowcod] = useState(false);
+    const [showcod, setShowcod] = useState(true);
     const handleClose = () => setShowcod(false);
     const handleShow = () => setShowcod(true);
     const codigo = () => {
@@ -80,7 +85,7 @@ function HeaderCode(props){
                 <label className="close-menu" for="checked"></label>
                 <nav className="menuToggle__drawer-menu">
                     <ul className="menu-header" > 
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA DE ALUMNOS</Link></li> 
                         <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
                         <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
                         <li className="menu-header__item"><Link onClick={()=>props.redirect('temporizador')+closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>

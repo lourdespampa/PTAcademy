@@ -8,6 +8,7 @@ const { AudioStreamer } = require('sfmediastream');
 export default class Audio extends Component {
     state={
         show:false,
+        showGrupo:false
     }
     enviarvideo(url) {
         const socket = io(this.props.socketUrl, {
@@ -93,20 +94,7 @@ export default class Audio extends Component {
             query:
                 { pin: this.props.id_access }
           })
-        //liSTA
-        socket.on('RemoveStudS',(data)=>{
-            console.log(data)
-            if(data.pin == (this.props.id_access).toUpperCase()) {
-                console.log('REcibe salida')
-                if(data.id==this.props.id_student){
-                    console.log('REcibe  salida fase 2')
-                    document.getElementById('ReturnToLogin2').click()
-                }
-            }
-        })
-        //END LISTA
-       
-       
+        
         //SLIDES
 
         socket.on('sendSlidesS', (data) => {
@@ -140,7 +128,11 @@ export default class Audio extends Component {
             if(data.pin == (this.props.id_access).toUpperCase()) {
             this.enviarvideo(data.url)}
         })
-
+        socket.on('closeVideo', (data) => {
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+            this.DisablePopup()
+            }
+        })
         // FIN VIDEO
         // this.socket = io(socketUrl)
         //RECEPTOR
@@ -196,8 +188,18 @@ export default class Audio extends Component {
             
             }
         })
-    
         //ROULETTE END 
+        //grupos
+        socket.on('enviando grupos',  (data) =>{
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+            console.log(data.data.data)
+            this.setState({showGrupo:true});
+            document.getElementById("modal_GrupoStudent").innerHTML = data.data.data;
+            
+            }
+        })
+        //grupos END 
+
         //FORM
         socket.on('SendFormS', (data) => {
             if(data.pin == (this.props.id_access).toUpperCase()) {
@@ -207,6 +209,11 @@ export default class Audio extends Component {
             overlay_popup.className = 'overlay active'
             popup.className = 'popup active'}
         })
+        socket.on('closeForm', (data) => {
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+                this.DisablePopup2()
+            }
+        })
     }
 
    
@@ -214,24 +221,18 @@ export default class Audio extends Component {
     render() {
         return (
         <>
-        {
-          this.state.trivia==true
-          ? 
-          <Redirect to={`/student/5e1dd2ad105aa60778160a04/WJRQU/trivia`} /> 
-          :
-          null
-          }
-          {
-          this.state.temporizador==true
-          ? 
-          <Redirect to={`/student/5e1dd2ad105aa60778160a04/WJRQU/temporizador`} /> 
-          :
-          null
-          }
-             <a id="ReturnToLogin2" style={{display: "none"}} href='/login'></a>
-         
             <button id="btn_play"></button>
-            <Modal size={'SM'} show={this.state.show} onHide={()=>this.setState({show:false})}>
+            <Modal size={'xl'} show={this.state.showGrupo} onHide={()=>this.setState({showGrupo:false})}>
+            <Modal.Header closeButton>
+                <h4 className="title"><strong>Grupos elejidos son:</strong></h4>
+            </Modal.Header>
+            <Modal.Body>
+                <div id="modal_GrupoStudent" style={{ fontSize: "60px" ,display: 'flex',flexFlow: 'wrap',maxHeight: '350px',overflow: 'scroll'}}>
+                            
+                </div>
+            </Modal.Body>
+          </Modal>
+            <Modal size={'lg'} show={this.state.show} onHide={()=>this.setState({show:false})}>
             <Modal.Header closeButton>
                 <h4 className="title"><strong>The lucky student is :</strong></h4>
             </Modal.Header>
@@ -245,7 +246,7 @@ export default class Audio extends Component {
             {/*VIDEO*/}
             <div class="overlay" id="overlay2">
                 <div class="popup" id="popupvideo">
-                    <a href id="btn-cerrar-popup2" className="btn-cerrar-popup" onClick={() => this.DisablePopup()}><i class="material-icons">close</i></a>
+                    {/* <a href id="btn-cerrar-popup2" className="btn-cerrar-popup" onClick={() => this.DisablePopup()}><i class="material-icons">close</i></a> */}
                     <iframe title="iframevideo" id="video-frame" src="" frameborder="0" style={{ width: "100% !important", height: "100%" }}
                         allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </div>
@@ -257,7 +258,7 @@ export default class Audio extends Component {
                         <h1>Formulario</h1>
                     </div>
                     <br />
-                    <a href id="btnCerrarFormu" className="btn-cerrar-popup"><i class="material-icons" onClick={() => this.DisablePopup2()}>close</i></a>
+                    {/* <a href id="btnCerrarFormu" className="btn-cerrar-popup"><i class="material-icons" onClick={() => this.DisablePopup2()}>close</i></a> */}
                     <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{ width: "100% !important", height: "450px" }} allowFullScreen={true}
                         mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
 

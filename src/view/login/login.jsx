@@ -5,44 +5,51 @@ import logo from "./bg-teacher-login.jpg";
 
 import axios from 'axios';
 import Loading from "./Loading";
-
+//importamos la configuración de firebase
 import firebase from "./firebaseConfig";
-
-// import aesjs from 'aes-js'
+//libreria que cifra el token
+import aesjs from 'aes-js'
 
 export default function App(props) {
 
+  //hook para obtener valores de los inputs de login
   const [inputsLogin, setInputsLogin] = useState({ email: "", pass: "" });
-  const [inputsRegister, setInputsRegister] = useState({ email: "", username: "", lastname: "", pass: "", rpass: "" });
+  //hook para obtener valores de los inputs de registro y acceso con google
+  const [inputsRegister, setInputsRegister] = useState({ email: "", photoURL: "", username: "", lastname: "", pass: "", rpass: "" });
+  //hook para guardar el usuario y token al haberse registrado o logeado
   const [{ userState, message, token }, getMessage] = useState({ userState: false, message: "" });
+  //hook para cambiar efecto entre login o registro
   const [tipoAcceso, setTipoAcceso] = useState(false);
+  //hook para efecto si se ha verificado o no la cuenta por correo
   const [cuentaVerificada, setCuentaVerificada] = useState(false);
+  //hook para mostrar loading mientras se hace una petición
   const [{ loading }, setLoading] = useState({ loading: false });
 
+  //funcion que cambia el efecto entre login y registro
   const cambiarTipoAcceso = () => {
     getMessage({message: ""});
     setTipoAcceso(!tipoAcceso)
   }
 
-  //Funcion cuando cambia el value de los inputs del login
+  //Funcion que se llama cada vez que cambian los value de los inputs del login
   const handleChangeInputsLogin = event => {
     getMessage({message: ""});
     setInputsLogin({ ...inputsLogin, [event.target.name]: event.target.value });
   };
 
-  //Funcion cuando cambia el value de los inputs de registro
+  //Funcion que se llama cada vez que cambian los value de los inputs del registro
   const handleChangeInputsRegister = event => {
     getMessage({message: ""});
     setInputsRegister({ ...inputsRegister, [event.target.name]: event.target.value });
   };
 
-  //Funcion para validar y conectar a la API
+  //Funcion para validar y conectar a la API cuando se logea
   const handleToLogin = (event) => {
     event.preventDefault();
     const { email, pass } = inputsLogin;
-    console.log(inputsLogin)
     getMessage({message: ""});
     setLoading({ loading: true });
+    //llamamos a la función de firebase que crea al usuario por correo y contraseña
     firebase.auth().signInWithEmailAndPassword(email,pass)
       .then( async result =>{
         if(result.user.emailVerified){
@@ -58,7 +65,6 @@ export default function App(props) {
               token: token
             });
             setLoading({ loading: false });
-            console.log(data, data.user);
           } catch (err) {
             console.log(err)
             getMessage({
@@ -84,15 +90,11 @@ export default function App(props) {
   //Funcion para registrar y conectar a la API
   const handleToRegister = async (event) => {
     event.preventDefault()
-    const { email, username, lastname, pass, rpass } = inputsRegister;
+    const { email, photoURL, username, lastname, pass, rpass } = inputsRegister;
     if(pass !== rpass ){
       setInputsRegister({ pass: "", rpass: ""})
       return alert("las contraseñas no coinciden. Ingreselas nuevamente")
     }
-    axios.post(`${props.apiUrl}/signup`, { email, pass, username, lastname })
-    .then( result => {
-      console.log(result.message)
-    }).catch(e => console.log(e))
     firebase.auth().createUserWithEmailAndPassword(email, pass)
       .then(result => {
         result.user.updateProfile({
@@ -106,6 +108,10 @@ export default function App(props) {
           console.log(error)
         })
         firebase.auth().signOut()
+        axios.post(`${props.apiUrl}/signup`, { email, pass, photoURL, username, lastname })
+        .then( result => {
+          getMessage({message: "Cuenta creada correctamente."});
+        }).catch(e => console.log(e))
         // setInputsRegister({ email: email})
         setTipoAcceso(false)
         setCuentaVerificada(true)
@@ -131,10 +137,16 @@ export default function App(props) {
       let username = `${displayName.split(" ")[0]} ${displayName.split(" ")[1]}`;
       let lastname = `${displayName.split(" ")[2]} ${displayName.split(" ")[3]}`;
       //enviamos los datos a la API
-      const { data } = await axios.post(`${props.apiUrl}/signin`, {"fuente": "google", username, lastname, "email": emailGoogle, photoURL });
+      const { data } = await axios.post(`${props.apiUrl}/signin`, {"fuente": "google", username, lastname, "email": emailGoogle });
       if(data.message === "usuario no existe"){
+        firebase.auth().currentUser.delete().then(function() {
+          console.log("como es la primera vez que se logea y  con Google, se borra por conflictos.")
+        }).catch(function(error) {
+          console.log("si algo pasa, el error es: " + error)
+        });
         setTipoAcceso(true);
-        setInputsRegister({ email: emailGoogle, username, lastname })
+        //guardamos la photoURL, email y nombres para enviarla al registro
+        setInputsRegister({ email: emailGoogle, username, lastname, photoURL })
         return getMessage({message: "Por favor, registrese primero para acceder con Google."});
       }
       const { user, token } = data;
@@ -147,7 +159,7 @@ export default function App(props) {
         token: token
       });
       setLoading({ loading: false });
-      // console.log(username, lastname)
+      console.log(result)
     }).catch( e => {
       setLoading({ loading: false });
       getMessage({ message: "Error al acceder con Google, intentelo de nuevo o más tarde." });
@@ -192,10 +204,6 @@ export default function App(props) {
                   {
                     cuentaVerificada
                     ?
-                    // <div>
-                    //   <input placeholder="CODIGO" type="text" />
-                    //   <div className="loginTeacher-btn">Aceptar</div>
-                    // </div>
                     null
                     :
                       <div className="loginTeacher-btn" onClick={cambiarTipoAcceso}>Registrate</div>
@@ -244,7 +252,13 @@ export default function App(props) {
         <div className="login-loading">
           <Loading status={loading} />
         </div>
-          {message === "" ? null : <h5 className="loginTeacher-message" >{message}</h5>}
+          {message === "" 
+          ? 
+            null 
+          : 
+            <h5 className={message === "Cuenta creada correctamente." 
+                            ? "loginTeacher-message-succefull" 
+                            : "loginTeacher-message"} >{message}</h5>}
       </div>
     </div>
   );

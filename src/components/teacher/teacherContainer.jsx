@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Left from '../../containers/teacher/Left'
 import Header from '../../containers/teacher/Header'
 import Footer from '../../containers/teacher/Footer';
-import Test from '../../components/teacher/chat/test';
+// import Test from '../../components/teacher/chat/test';
 export default class Contenido extends Component {
 
     

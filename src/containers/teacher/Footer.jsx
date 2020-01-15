@@ -46,6 +46,10 @@ class Footer extends Component {
 
         if (overlay.id == 'overlay' && popup.id == 'popup') {
             socket.emit('closeSlides')
+        }else if (overlay.id == 'overlay2' && popup.id == 'popupvideo') {
+            socket.emit('closeVideo')
+        }else if (overlay.id == 'overlayinframe' && popup.id == 'popupformulario') {
+            socket.emit('closeForm')
         }
 
 

@@ -37,11 +37,19 @@ class Header extends React.Component{
         socket.emit('redirectAlum',{page:e})
         console.log('redirect '+e)
     }
+    ExitSocket=()=>{
+        const socket = io(this.props.socketUrl, {
+            query:
+                { pin: this.props.id_access }
+          })
+        socket.emit('ExitSocket')
+        console.log('ExitSocket')
+    }
 
     render(){
         return(
             <>
-                <HeaderCode socketUrl={this.props.socketUrl} redirect={this.redirect} id_access={this.props.id_access} nombre_clase={this.state.nombre_clase} />
+                <HeaderCode socketUrl={this.props.socketUrl} ExitSocket={this.ExitSocket} redirect={this.redirect} id_access={this.props.id_access} nombre_clase={this.state.nombre_clase} />
                 <Empatia socketUrl={this.props.socketUrl} redirect={this.redirect} id_access={this.props.id_access} id_class={this.props.id_class}/>
             </>
         )

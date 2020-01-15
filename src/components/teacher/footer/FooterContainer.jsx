@@ -1,33 +1,30 @@
-import React,{useState} from 'react';
-import './FooterContainer.sass';
-import Modal from 'react-bootstrap/Modal';
-import Audio from '../audio/audio';
-import io from 'socket.io-client';
+import React, { useState } from "react";
+import "./FooterContainer.sass";
+import Modal from "react-bootstrap/Modal";
+import Audio from "../audio/audio";
+import io from "socket.io-client";
 
-function enviarvideo(url,url2,socketUrl,id_access){
-    var urlnombre=url+url2
-    const socket = io(socketUrl, {
-        query:
-            { pin: id_access }
-    })
-    socket.emit('VideoEmit',urlnombre)
-    document.getElementById('overlay2').classList.add('active');
-    document.getElementById('popupvideo').classList.add('active');
-    var expresionRegular = 'https://www.youtube.com/watch?v=';
-    var urlembed = urlnombre.split(expresionRegular);
-    document.getElementById('video-frame').src = "https://www.youtube.com/embed/"+urlembed[1]+"?autoplay=1&controls=0"
+function enviarvideo(url, url2, socketUrl, id_access) {
+  var urlnombre = url + url2;
+  const socket = io(socketUrl, {
+    query: { pin: id_access }
+  });
+  socket.emit("VideoEmit", urlnombre);
+  document.getElementById("overlay2").classList.add("active");
+  document.getElementById("popupvideo").classList.add("active");
+  var expresionRegular = "https://www.youtube.com/watch?v=";
+  var urlembed = urlnombre.split(expresionRegular);
+  document.getElementById("video-frame").src =
+    "https://www.youtube.com/embed/" + urlembed[1] + "?autoplay=1&controls=0";
 }
-function SendForm(socketUrl,id_access){
-    
-    //SEND FORM
-    const socket = io(socketUrl, {
-        query:
-            { pin: id_access }
-    })
-    socket.emit('SendForm')
-    
+function SendForm(socketUrl, id_access) {
+  //SEND FORM
+  const socket = io(socketUrl, {
+    query: { pin: id_access }
+  });
+  socket.emit("SendForm");
 
-    //END SEND FORM
+  //END SEND FORM
 }
 function FooterContainer(props){
     const [urlnombre,seturlnombre]=useState('');
@@ -59,6 +56,7 @@ function FooterContainer(props){
                     <span>Chat</span>
                 </div>
                 {/* <button className="col-6 " onClick={()=>props.grabar()}>
+>>>>>>> e5155333daad71dc6bc34ce832eabe6e36a60bfb
                         grabar
                     </button>
                     <button className="col-6 " onClick={()=>props.reproclick()}>
