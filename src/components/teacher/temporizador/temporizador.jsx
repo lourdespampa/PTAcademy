@@ -105,7 +105,7 @@ class Temporizador extends React.Component {
             p = function() {
                 for (var a = c = 0; a < e.length; ++a) {
                     var b = e[a];
-                    c += b.value * parseInt(b.input_element.val())
+                    c += b.value * parseInt(b.input_element.val() ? b.input_element.val() : 0)
                 }
                 var hour = $('#id_dt_1').val();
                 var min = $('#id_dt_2').val();
@@ -156,6 +156,7 @@ class Temporizador extends React.Component {
                 if(a){
                   w()
                 }
+                $('#modal-temp').css("display", "block");
             }
             window.timer(false);  // autostar   
   }
