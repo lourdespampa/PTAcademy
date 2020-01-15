@@ -1,6 +1,6 @@
 import React from 'react';
 import Roulette from './Roulette';
-
+import io from 'socket.io-client';
 import axios from 'axios'
 
 const handleOnComplete = (value) => {
@@ -15,25 +15,42 @@ class Azar extends React.Component {
     }
 
     componentWillMount(){
+        this.getStudents();
+        const socket = io(this.props.socketUrl, {
+            query:
+                { pin: this.props.id_access }
+          })
+          socket.on('newAlum',(data)=>{
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+                this.getStudents()
+            }
+          })
+    }
+
+    getStudents = () => {
         var varToken = localStorage.getItem('token');
-    axios({
-      url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
-      method: 'GET',
-      headers: {
-        'x-access-token': `${varToken}`
-      }
-    })
+        axios({
+            url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
+            method: 'GET',
+            headers: {
+                'x-access-token': `${varToken}`
+            }
+        })
         .then( (res) => {
+            const temp = [];
             res.data.map( alumno => {
-                this.state.alumnos.push(alumno.name_stu)
+                temp.push(alumno.name_stu)
             })
-            const temp = this.state.alumnos
-            this.setState({
-                alumnos: temp
-            })
-            console.log(this.state.alumnos)
+            this.setState({ alumnos: this.sortearElementos(temp) })
         })
     }
+    sortearElementos = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
 
 
     render(){
@@ -44,7 +61,7 @@ class Azar extends React.Component {
                 </div>
             )
         } else {
-            return <p className="text-center">Cargando ruleta...</p>
+            return <p className="text-center">Esperando alumnos para ruleta...</p>
           }
     }
 }
