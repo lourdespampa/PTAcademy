@@ -1,33 +1,41 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 //import cursoIcon from '../assets/image/bg.curso.webp'
+import iconDelete from "./assets/delete.svg";
+// import iconView from "./assets/view.svg";
+import iconEdit from "./assets/edit.svg";
 export default class AllCourses extends Component {
   render() {
     return (
       <>
-          <Link
-            to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
-            className="courseTeacher-cards"
-            onClick={()=>this.props.onClick(this.props.id)}
-          >
             <div className="courseTeacher-card-item">
-              <div className="courseTeacher-card-image"></div>
+              <div className="courseTeacher-card-image">
+              <button onClick={() =>
+                this.props.onClick(this.props.id) +
+                this.props.setShow("showdelete", true)
+              } className="courseTeacher__button-delette">
+                    <img
+                      className="courseTeacher__img"
+                      src={iconDelete}
+                      alt="imagen de borrar cursos"
+                    />
+                  </button>
+                  <button className="courseTeacher__button-Edit">
+                    <img className="courseTeacher__img" src={iconEdit} alt="imagen de borrar cursos" />
+                  </button>
+              </div>
               <div className="courseTeacher-card-info">
                 <h2 className="courseTeacher-card-title">{this.props.name_course}</h2>
                 <p className="courseTeacher-card-intro">
                 {this.props.description}</p>
-                <button
-              onClick={() =>
-                this.props.onClick(this.props.id) +
-                this.props.setShow("showdelete", true)
-              }
-              className="btn card_btn"
-            >
-              Eliminar el curso
-            </button>
+                <Link 
+                onClick={()=>this.props.onClick(this.props.id)}
+                to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
+             className="courseTeacher__buttonEntry">
+                      ver clases
+                    </Link>
               </div>
             </div>
-          </Link>
       </>
     );
   }

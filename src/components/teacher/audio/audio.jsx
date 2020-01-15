@@ -19,13 +19,14 @@ export default class Audio extends Component{
     var presenterMedia = false;
     var micon = document.getElementById('btn');
     var btn = document.getElementById('btn');
+    var micro = document.getElementById('micro');
  
     
 //EMISOR
     const controller = []
     micon.addEventListener('click', () => {
         if(controller.length%2===0){
-            btn.style.animation ='ripple 1000ms infinite' ;
+            micro.style.animation ='ripple 1000ms infinite' ;
             socket.emit('onPlay', {
                 txt: "Se inicio una nueva emision de voz.Por favor da click en el boton reproducir"
             });
@@ -67,19 +68,19 @@ export default class Audio extends Component{
         btn.addEventListener('click',()=>{
         
             if(i.length%2===0){
-        	btn.style.animation ='ripple 1000ms infinite' ;
+        	micro.style.animation ='ripple 1000ms infinite' ;
           i.push("sx");
         }else{
-        btn.style.animation ='none';
+        micro.style.animation ='none';
         i.push("sx");
         }
         })
     }
     render(){  
-        return  <div className="div_audio">
-            <div class="div_btn" id="btn" >
-                <i class="fas fa-microphone fa-3x"></i>
-            </div>
-        </div>
+        return  <div id="btn" >
+                    <img id="micro" width="30px" height="30px" src={require("../../../img/footer/micro.svg")} />
+                    <span>Audio</span>                
+                </div>
+                
     }
 }

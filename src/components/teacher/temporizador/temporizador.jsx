@@ -19,13 +19,14 @@ class Temporizador extends React.Component {
   }
 
   openModal=()=>{
-    this.setState({open:true})
+    // this.setState({open:true})
+    $('#modal-temp').css("display", "block");
+
   }
   closeModal=()=>{
     this.setState({open:false});
-    // this.p();
   }
-
+  
   onChangeInputH (event){
     this.setState({valH: event.target.value})
   }
@@ -104,15 +105,16 @@ class Temporizador extends React.Component {
             p = function() {
                 for (var a = c = 0; a < e.length; ++a) {
                     var b = e[a];
-                    c += b.value * parseInt(b.input_element.val())
+                    c += b.value * parseInt(b.input_element.val() ? b.input_element.val() : 0)
                 }
                 var hour = $('#id_dt_1').val();
                 var min = $('#id_dt_2').val();
                 var sec = $('#id_dt_3').val();
-
+                
                 socket.emit('set', {
                     time: [hour,min,sec]
                 });
+                $('#modal-temp').css("display", "none");
                 // $('#establecer_tiempo').modal('hide');
                 g = c;
                 n();
@@ -154,10 +156,9 @@ class Temporizador extends React.Component {
                 if(a){
                   w()
                 }
+                $('#modal-temp').css("display", "block");
             }
-            window.timer(false);  // autostart
-            $('#button-establecer').click()    
-            
+            window.timer(false);  // autostar   
   }
   render() {
     
@@ -194,9 +195,35 @@ class Temporizador extends React.Component {
         <div className="counter-tools">
             <button type="button" className="pure-button pure-button-primary" id="button-start-stop">INICIAR</button>
             <button type="button" className="pure-button pure-button-primary" id="button-reset">REINICIAR</button>
-            <button type="button" className="pure-button pure-button-success" onClick={() => this.openModal()}  id="button-establecer">ESTABLECER TIEMPO</button>
+            <button type="button" className="pure-button pure-button-success"  onClick={() => this.openModal()} id="button-establecer">ESTABLECER TIEMPO</button>
         </div>
-        <Modal size={'SM'} id="temporizador-modal" show={this.state.open} onHide={() => this.closeModal()}>
+        
+        <div id="modal-temp" role="dialog" aria-modal="true" className="modal" tabindex="-1" aria-hidden="true" style={{display: 'block'}}>
+            <div role="document" className="modal-dialog modal-SM">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <div className="punto-posi">
+                            <h3>ESTABLECER TIEMPO</h3>
+                            </div>
+                            </div>
+                            <div className="modal-body">
+                                <div className="temporizador_modal_body">
+                                    <form class="temporizador_form">
+                                        <div><label>Horas</label>
+                            <input className="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />
+                                            </div><div><label>Minutos</label>
+                                            <input className="pure-input-1" type="number" id="id_dt_2" value={this.state.valM} min="0" onChange={this.onChangeInputM} />
+
+                                                </div><div><label>Segundos</label>
+                                                <input className="pure-input-1" type="number" id="id_dt_3" value={this.state.valS} min="0" onChange={this.onChangeInputS} />
+
+                                                </div>
+                                                </form>
+                                                <button type="button" id="button-set" className="pure-button pure-button-primary">Establecer Tiempo</button>
+                                                </div></div></div>
+                                                </div></div>
+
+        {/* <Modal size={'SM'} show={this.state.open} onHide={() => this.closeModal()}>
             <Modal.Header>
                 <div className="punto-posi">
                     <h3>ESTABLECER TIEMPO</h3>
@@ -221,7 +248,7 @@ class Temporizador extends React.Component {
                     <button type="button" id="button-set" onClick={() => this.closeModal()} className="pure-button pure-button-primary" >Establecer Tiempo</button>
                 </div>
             </Modal.Body>
-        </Modal>
+        </Modal> */}
     </div>
     );
   }

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom'
-import { Button, ButtonToolbar } from "react-bootstrap";
+import { Button, ButtonToolbar, CloseButton } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 
 import './HeaderCode.sass'
@@ -12,21 +12,19 @@ function BotonSalir(props) {
      useEffect(() => console.log(user._id) );
     return (
       <>
-        <div className="Header-code" onClick={handleShow}>   
-        <li className="code-btn-menu material-icons" style={{ fontSize: "50px"}}>exit_to_app</li>
-        </div>
+        <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />           
         <Modal show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
-            <Modal.Title>¿Desea cerrar sesión?</Modal.Title>
+            <Modal.Title id="modal-header__title-question">¿Desea cerrar sesión?</Modal.Title>
           </Modal.Header>
           <Modal.Body>
           <ButtonToolbar>
-            <Link to='/' variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
-            <Link><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>`      `
+            <Link to='/' variant="primary"><Button id="modal-body__button-yes" size="sm" onClick={handleClose}>SI</Button></Link>`      `
+            <Link><Button id="modal-body__button-no" size="sm" onClick={handleClose}>NO</Button></Link>`      `
             {/* falta cambiar esta id_teacher estatica */}
-            <Link to={`/CoursesTeacher/${user._id}`}>
+            {/* <Link to={`/CoursesTeacher/${user._id}`}>
             <Button variant="primary" size="sm" onClick={handleClose}>Regresar a cursos</Button>
-            </Link>
+            </Link> */}
           </ButtonToolbar>
           </Modal.Body>
         </Modal>
@@ -47,11 +45,33 @@ function HeaderCode(props){
     }       
     return(
         <div className="Header-code__header" id="Header-code__header">
-            <div className="code-clase-detail" onClick={codigo}>
-                <h1 className="code-clase-detail__name">
-                    Nombre del clase : {props.nombre_clase}
-                </h1>
-            </div>         
+
+            <div class="logo">
+                <img src={require("../../../img/index/icon.svg")} alt="" />        
+                <img className="logo-img" src={require("../../../img/index/logo.svg")} alt="" />        
+            </div>
+            <div className="code-detail" onClick={handleShow}>
+                <span className="code">Código:</span>
+                <div className="codigo-generado" >
+                    {props.id_access}
+                </div>
+            </div>
+            <div className="class-name">
+                Clase de ksksks{props.nombre_clase}
+            </div>
+
+            <div className="options">
+                <BotonSalir/>
+                <Modal show={showcod} onHide={handleClose}>
+                    <Modal.Header>
+                        <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <h1>{props.id_access}</h1>
+                    </Modal.Body>
+                </Modal>
+            </div>
+
             <div id="menuToggle">
                 <input id="checked" type="checkbox" className="check"/>
                 <label class="menuToggle__menu-btn" for="checked">
@@ -84,13 +104,13 @@ function HeaderCode(props){
                     <BotonSalir/>
                     
                 </div>
-                <Modal show={showcod} onHide={handleClose} className="modal-headercode">
-                <Modal.Header>
-                    <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
-                </Modal.Header>
-                <Modal.Body>
-                    <h1 id="modal-codigogenerado">{props.id_access}</h1>
-                </Modal.Body>
+                <Modal show={showcod} onHide={handleClose} id="modal-general">
+                    <Modal.Header id="modal-general__header" closeButton>
+                        <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <h1 id="modal-content__codigogenerado">{props.id_access}</h1>
+                    </Modal.Body>
                 </Modal>
             </div>
         </div>
