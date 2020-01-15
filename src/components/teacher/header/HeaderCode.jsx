@@ -13,7 +13,7 @@ function BotonSalir(props) {
     return (
       <>
         <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />           
-        <Modal show={show} onHide={handleClose} animation={false}>
+        <Modal id="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
             <Modal.Title id="modal-header__title-question">¿Desea cerrar sesión?</Modal.Title>
           </Modal.Header>
@@ -90,7 +90,7 @@ function HeaderCode(props){
                     <BotonSalir/>
                     
                 </div>
-                <Modal show={showcod} onHide={handleClose}>
+                <Modal id="modal-teacher__general" show={showcod} onHide={handleClose}>
                     <Modal.Header id="modal-general__header" closeButton>
                         <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
                     </Modal.Header>
