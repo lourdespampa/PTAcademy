@@ -8,6 +8,7 @@ class Roulette extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      intervalId: "",
       spinAngleStart: 0,
       startAngle: 0,
       spinTime: 0,
@@ -128,7 +129,7 @@ class Roulette extends React.Component {
 
   rotate(){
     const { spinAngleStart, spinTimeTotal } = this.props;
-    if(this.state.spinTime > 2800) {
+    if(this.state.spinTime > 3800) {
       clearTimeout(this.spinTimer);
       this.stopRotateWheel();
     } else {
@@ -179,8 +180,12 @@ class Roulette extends React.Component {
     return b+c*(tc + -3*ts + 3*t);
   }
 
-  handleOnClick() {
-    this.spin();
+  handleOnClick = () => {
+    let pulsadas = Math.round(Math.random()*10)
+    console.log(pulsadas)
+    let intervalId = setInterval(() => this.spin(), 100)
+    this.setState({intervalId: intervalId})
+    setTimeout( () => clearInterval(this.state.intervalId), pulsadas*1000)
   }
 
   render() {
@@ -192,7 +197,7 @@ class Roulette extends React.Component {
           <canvas ref="canvas" className="roulette-canvas" width={baseSize*2} height={baseSize*2}></canvas>
         </div>
         <div className="roulette-container2">
-          <input type="button" value="spin" onClick={this.handleOnClick} className="button" id="spin" />
+          <input type="button" value="spin" onClick={this.handleOnClick} className="button" id="spin"/>
         </div>
       </div>
     );
