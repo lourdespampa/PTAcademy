@@ -1,10 +1,40 @@
 import React, {useState,useEffect} from 'react'
 import {Link, Redirect} from 'react-router-dom'
+import $ from 'jquery'
 import './headerStyles.sass'
 import Audio from './audio'
 import axios from 'axios'
 import io from 'socket.io-client';
 
+// User has switched back to the tab
+const onFocus = () => {
+  console.log('Tab is in focus');
+};
+
+// User has switched away from the tab (AKA tab is hidden)
+const onBlur = (props) => {
+    const socket = io(props.socketUrl, {
+        query:
+            { pin: props.id_access }
+      })
+      socket.emit('tabBlurred',{fullname:props.fullname})
+  console.log(props.fullname);
+  console.log('Tab is blurred');
+};
+
+const WindowFocusHandler = (props) => {
+  useEffect(() => {
+    window.addEventListener('focus',onFocus);
+    window.addEventListener('blur', ()=>onBlur(props));    
+    // Specify how to clean up after this effect:
+    return () => {
+      window.removeEventListener('focus',onFocus);
+      window.removeEventListener('blur',onBlur);
+    };
+  });
+
+  return <></>;
+};
 export default function HeaderContainer(props) {
     const [redirect,setredirect]=useState(false);
     const [trivia,settrivia]=useState(false);
@@ -37,6 +67,7 @@ export default function HeaderContainer(props) {
                 setExit(true)
             }
         })
+        
         //liSTA
         socket.on('RemoveStudS',(data)=>{
             console.log(data)
@@ -52,6 +83,7 @@ export default function HeaderContainer(props) {
     })
     return (
         <div>
+            <WindowFocusHandler id_access={props.id_access} fullname={props.name+' '+props.lastName} id_student={props.id_student} socketUrl={props.socketUrl} ></WindowFocusHandler>
         {
           trivia==true
           ? 
