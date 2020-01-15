@@ -37,10 +37,15 @@
     padding: 1rem
     cursor: pointer
     &:hover
-        background-color: #52BE7F
+        background-color: #ffffff
+    &:hover .teacherCourses__main-menu__addCourse
+        color: #000000
+    &:hover .teacherCourses__main-menu__LogOut
+        color: #000000
+
 .teacherCourses__main-menu__addCourse,
 .teacherCourses__main-menu__LogOut
-    color: #CCC
+    color: #ffffff
     margin-left: 1rem
     text-decoration: none
     
@@ -104,6 +109,8 @@
         &:hover
             background-color: #FB9600
             color: white
+    // .teacherCourses__main-menu__item:hover .teacherCourses__main-menu__LogOut
+    //     color: #ffffff;
 
     .teacherCourses__main-menu__LogOut
         color: #53575A
@@ -127,7 +134,14 @@
         --padding: 5rem 1rem 6rem
         --logo-height: 5rem 
     .teacherCourses__main-menu__item:hover
-        background: none
+        background-color: transparent
+        & .teacherCourses__main-menu__LogOut
+            color: white
+            background-color: #E91E63
+        & .teacherCourses__main-menu__addCourse
+            background-color: #FB9600
+            color: white
+
 
 .courseTeacher-container
     display: flex
@@ -291,7 +305,7 @@
     text-align: center;
     color: white
 .courseTeacher-title--class
-    background-color: #c72aa0;
+    background-color: #e74c3c;
     height: 50px;
     margin: 0;
     padding: 1rem;
@@ -314,3 +328,9 @@
 .CourseTeacher-main
     height: 55rem
     background-color: #51bd7e
+
+
+    // css para clases     #e74c3c
+.courseTeacher-cards__nullCourses
+    color: #ffffff
+    padding: 0 1rem

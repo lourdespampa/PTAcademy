@@ -128,7 +128,7 @@ export default class CoursesTeacher extends Component {
               ))
             ) : (
               // <div>false</div>
-              <h3>Cargando cursos... Si no tiene, puede crear uno.</h3>
+              <h3 className="courseTeacher-cards__nullCourses">Cargando cursos... Si no tiene, puede crear uno.</h3>
             )}
           </ul>
         </div>
