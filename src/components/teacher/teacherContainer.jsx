@@ -10,17 +10,17 @@ export default class Contenido extends Component {
     render() {
         const {children}=this.props
         return (
-               <>
-            <Header id_access={this.props.id_access} apiUrl={this.props.apiUrl} id_class={this.props.id_class} socketUrl={this.props.socketUrl} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
-            <Left socketUrl={this.props.socketUrl} view={`/teacher/${this.props.id_class}/${this.props.id_access}/pizarra`} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
-            {/* <div id="div_children"> */}
-            {children}
-            {/* </div> */}
-            {/* <Test/> */}
-            {/* <div id="div_foot"> */}
-            <Footer socket={this.props.socket} socketUrl={this.props.socketUrl} id_access={this.props.id_access} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick} 
-            changeOn={this.props.changeOn} txt={this.props.txt} />
-            {/* </div> */}
+            <>
+            <div className="main-teacher-container">
+                <Header id_access={this.props.id_access} apiUrl={this.props.apiUrl} id_class={this.props.id_class} socketUrl={this.props.socketUrl} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
+                <Left socketUrl={this.props.socketUrl} view={`/teacher/${this.props.id_class}/${this.props.id_access}/pizarra`} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}/>
+                <div id="div_children">
+                {children}
+                </div>
+                {/* <Test/> */}
+                <Footer socket={this.props.socket} socketUrl={this.props.socketUrl} id_access={this.props.id_access} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick} 
+                changeOn={this.props.changeOn} txt={this.props.txt} />
+            </div>
         </>  
         )
     }
