@@ -18,6 +18,7 @@ class Trivia extends React.Component {
       respuestaFour: '',
       selectedCorrectAnswer: 'rojo',
       preguntaEnviada: false,
+      alumnosRecibidos: [],
       modal:false,
       navbarResponsive: false
     }
@@ -37,10 +38,13 @@ class Trivia extends React.Component {
       query:
           { pin: this.props.id_access }
     })
-      socket.on('pregunta escogida', function(data){
-        console.log(data)
+      socket.on('pregunta escogida', (data) => {
+        this.state.alumnosRecibidos.push(data)
+        const temp = this.state.alumnosRecibidos
+        this.setState({alumnosRecibidos: temp})
       })
   }
+
   showModal = () => {
     this.setState(state => ({
       modal: !state.modal
