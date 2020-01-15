@@ -189,34 +189,34 @@ export default class ListaAlum extends Component {
     onClickEnviar=async(e)=>{
         e.preventDefault();
         
-        // const a=this.state.students
-        // const text=a.map(student=>(
-        //         <tr>
-        //         <td className="nom">{student.nombres}</td>
-        //         <td className="ape">{student.apodo}</td>
-        //         <td style={{textAlign: "center"}}className="nota">{student.nota}</td>
-        //         <td style={{textAlign: "center"}}className="compo">{student.comportamiento}</td>
-        //         <td style={{textAlign: "center"}}>{student.puntos}</td>
-        //     </tr>))
-        //     const html=(<table>
-        //         <thead>
-        //             <tr>
-        //                 <th>Nombres</th>
-        //                 <th>Apellidos</th>
-        //                 <th>Nota(0-20)</th>
-        //                 <th>Comportamiento</th>
-        //                 <th>puntos</th>
-        //             </tr>
-        //         </thead>
-        //         <tbody>
-        //             {text}
-        //         </tbody>
-        //     </table>)
-        //     const params={
-        //         hml:html,
-        //         data:a
-        //     }
-        //     await axios.post('/sendNotes',params)
+         const a=this.state.students
+         const text=a.map(student=>(
+                 `<tr>
+                 <td>${student.nombres}</td>
+                 <td>${student.apodo}</td>
+                 <td>${student.nota}</td>
+                 <td>${student.comportamiento}</td>
+                 <td>${student.puntos}</td>
+             </tr>`))
+             const html=(`<table>
+                 <thead>
+                     <tr>
+                         <th>Nombres</th>
+                         <th>Apellidos</th>
+                         <th>Nota(0-20)</th>
+                         <th>Comportamiento</th>
+                         <th>puntos</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     ${text}
+                 </tbody>
+             </table>`)
+             const params={
+                 hml:html,
+                 data:a
+             }
+             await axios.post('/sendNotes',params)
         
     }
     setShow=(nom,val)=>{
