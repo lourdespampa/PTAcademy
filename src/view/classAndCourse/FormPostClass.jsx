@@ -46,8 +46,8 @@ export default class FormPostCourse extends Component {
       <>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label>Nombre de la Clase</Form.Label>
-            <Form.Control
+            <Form.Label className="modal-title__controlname">Nombre de la Clase</Form.Label>
+            <Form.Control className="modal-teacher__general-controlname"
               type="text"
               name="class_name"
               onChange={this.handleChange}
@@ -56,8 +56,8 @@ export default class FormPostCourse extends Component {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Descipcion de la Clase</Form.Label>
-            <Form.Control
+            <Form.Label className="modal-title__controldescription">Descipcion de la Clase</Form.Label>
+            <Form.Control className="modal-teacher__general-controldescription"
               name="desc"
               onChange={this.handleChange}
               value={desc}
@@ -65,7 +65,7 @@ export default class FormPostCourse extends Component {
               rows="2"
             />
           </Form.Group>
-          <Button type="submit"  >Crear Clase</Button>
+          <Button id="modal-body__button-cursos2" type="submit"  >CREAR CLASE</Button>
         </Form>
       </>
     );
