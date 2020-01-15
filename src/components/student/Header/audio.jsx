@@ -1,10 +1,14 @@
 import React, { Component} from 'react';
-import {Link}  from 'react-router-dom';
+import {Link,Redirect}  from 'react-router-dom';
 import io from 'socket.io-client';
-import {Button } from "react-bootstrap";
+import {Modal,Button } from "react-bootstrap";
 const { AudioStreamer } = require('sfmediastream');
 
+
 export default class Audio extends Component {
+    state={
+        show:false,
+    }
     enviarvideo(url) {
         const socket = io(this.props.socketUrl, {
             query:
@@ -153,7 +157,7 @@ export default class Audio extends Component {
                 audioStreamer.playStream();
 
                 // Buffer header must be received first
-                socket.on('bufferHeader', function (packet) {
+                socket.on('bufferHeader',  (packet) =>{
                     if(packet.pin == (this.props.id_access).toUpperCase()) {
                     // if (packet.pin == ('<%= pin %>').toUpperCase()) {
                     console.log('ejecutando buffer');
@@ -163,7 +167,7 @@ export default class Audio extends Component {
                 });
 
                 // Receive buffer and play it
-                socket.on('stream', function (packet) {
+                socket.on('stream', (packet) =>{
                     if(packet.pin == (this.props.id_access).toUpperCase()) {
                     //    console.log("3");
                     //if (packet.pin == ('<%= pin %>').toUpperCase()) {
@@ -179,18 +183,20 @@ export default class Audio extends Component {
             socket.emit('requestBufferHeader');
 
         })
-        socket.on('onPlay', function (data) {
+        socket.on('onPlay',  (data)=> {
             if(data.pin == (this.props.id_access).toUpperCase()) {
             btn_play.click()}
         })
         //ROULETTE
-        socket.on('rouletteWinnerS', function (data) {
+        socket.on('rouletteWinnerS',  (data) =>{
             if(data.pin == (this.props.id_access).toUpperCase()) {
             console.log('escucha el alum')
-            document.getElementById("modal_luckyStudent").innerHTML = data
-            document.getElementById("btnLuckyStudent").click()}
+            this.setState({show:true});
+            document.getElementById("modal_luckyStudent").innerHTML = data.data;
+            
+            }
         })
-
+    
         //ROULETTE END 
         //FORM
         socket.on('SendFormS', (data) => {
@@ -201,31 +207,40 @@ export default class Audio extends Component {
             overlay_popup.className = 'overlay active'
             popup.className = 'popup active'}
         })
-        //FORM END
     }
 
    
 
     render() {
-        return <div>
+        return (
+        <>
+        {
+          this.state.trivia==true
+          ? 
+          <Redirect to={`/student/5e1dd2ad105aa60778160a04/WJRQU/trivia`} /> 
+          :
+          null
+          }
+          {
+          this.state.temporizador==true
+          ? 
+          <Redirect to={`/student/5e1dd2ad105aa60778160a04/WJRQU/temporizador`} /> 
+          :
+          null
+          }
              <a id="ReturnToLogin2" style={{display: "none"}} href='/login'></a>
          
             <button id="btn_play"></button>
-            <div>
-                <a href className="a" data-toggle="modal" data-target="#modalRoulette" id="btnLuckyStudent" />
-            </div>
-            <div id="modalRoulette" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h4 className="modal-title"><strong>The lucky student is :</strong></h4>
-                        </div>
-                        <div id="modal_luckyStudent" className="modal-body" style={{ fontSize: "100px" }}>
-
-                        </div>
-                    </div>
+            <Modal size={'SM'} show={this.state.show} onHide={()=>this.setState({show:false})}>
+            <Modal.Header closeButton>
+                <h4 className="title"><strong>The lucky student is :</strong></h4>
+            </Modal.Header>
+            <Modal.Body>
+                <div id="modal_luckyStudent" className="modal-body" style={{ fontSize: "60px" }}>
+                            
                 </div>
-            </div>
+            </Modal.Body>
+          </Modal>
 
             {/*VIDEO*/}
             <div class="overlay" id="overlay2">
@@ -261,6 +276,7 @@ export default class Audio extends Component {
         {/*END Diapo*/}
 
 
-        </div>
+        </>
+        )
     }
 }

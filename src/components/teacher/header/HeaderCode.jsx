@@ -1,14 +1,14 @@
 import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom'
-import { Modal ,Button, ButtonToolbar } from "react-bootstrap";
+import { Button, ButtonToolbar } from "react-bootstrap";
+import Modal from 'react-bootstrap/Modal';
+
 import './HeaderCode.sass'
 function BotonSalir(props) {
     var user = JSON.parse(localStorage.getItem('user'));
     const [show, setShow] = useState(false);
-    const [idteacher, setidteacher] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const AgregarClick=()=>setShow(false)+props.getCursos
      useEffect(() => console.log(user._id) );
     return (
       <>
@@ -33,15 +33,18 @@ function BotonSalir(props) {
       </>
     );
   }
+
+
 function HeaderCode(props){
+    const [showcod, setShowcod] = useState(true);
+    const handleClose = () => setShowcod(false);
+    const handleShow = () => setShowcod(true);
     const codigo = () => {
         // alert('codigo')
     }
     const closeMenu = () => {
         document.getElementById('checked').click()
-    }
-    
-
+    }       
     return(
         <div className="Header-code__header" id="Header-code__header">
             <div className="code-clase-detail" onClick={codigo}>
@@ -51,27 +54,27 @@ function HeaderCode(props){
             </div>         
             <div id="menuToggle">
                 <input id="checked" type="checkbox" className="check"/>
-                <label class="menu-btn" for="checked">
+                <label class="menuToggle__menu-btn" for="checked">
                     <span className="bar top"></span>
                     <span className="bar middle"></span>
                     <span className="bar bottom"></span>
                 </label>
                 <label className="close-menu" for="checked"></label>
-                <nav className="drawer-menu">
+                <nav className="menuToggle__drawer-menu">
                     <ul className="menu-header" > 
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA</Link></li> 
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="item" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA DE ALUMNOS</Link></li> 
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
+                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
+                        <li className="menu-header__item"><Link onClick={()=>props.redirect('temporizador')+closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
+                        <li className="menu-header__item"><Link onClick={()=>props.redirect('trivia')+closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
                     </ul>
                 </nav>
             </div>
-            <div className="content">
-                <div className="code-detail">
+            <div className="content-headercode">
+                <div className="code-detail" onClick={handleShow}>
                     <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
                         <class className="code">Código:</class>
-                        <div className="codigo-generado">
+                        <div className="codigo-generado" onClick={handleShow}>
                         {props.id_access}
                         </div>
                     </a>
@@ -81,18 +84,14 @@ function HeaderCode(props){
                     <BotonSalir/>
                     
                 </div>
-                <div id="miCodigo" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
-                            </div>
-                            <div className="modal-body" style={{fontSize: "100px"}}>
-                            {props.id_access}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Modal show={showcod} onHide={handleClose} className="modal-headercode">
+                <Modal.Header>
+                    <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
+                </Modal.Header>
+                <Modal.Body>
+                    <h1 id="modal-codigogenerado">{props.id_access}</h1>
+                </Modal.Body>
+                </Modal>
             </div>
         </div>
     )

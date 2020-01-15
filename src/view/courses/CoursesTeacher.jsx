@@ -31,23 +31,6 @@ export default class CoursesTeacher extends Component {
       headers: {
         "x-access-token": `${varToken}`
       }
-    }).then( ({ data }) => {
-       console.log(data)
-        if(data == []){
-          this.setState({courses: []})
-        }else{
-          this.setState({courses: data})
-        }
-    })
-    .catch( e => console.log(e))
-    axios({url:`${this.props.apiUrl}/v1/api/admin/user/${params.id}`,
-    method:'GET' ,
-    headers:{
-      'x-access-token': `${varToken}`
-    }
-    }).then(({data})=>{
-      console.log(data)
-      this.setState({nombreProfesor:data.displayName})
     })
       .then(({ data }) => {
         // console.log(data)
@@ -69,8 +52,8 @@ export default class CoursesTeacher extends Component {
       this.setState({ nombreProfesor: data.displayName });
     });
   }
-
   getCursos=()=>{
+    console.log('listar cursos')
     const { match: { params } } = this.props;
     var varToken = localStorage.getItem('token');
     axios({

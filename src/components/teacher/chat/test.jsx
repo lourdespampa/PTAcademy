@@ -3,7 +3,7 @@ import './test_2.css';
 // import $ from 'jquery';
 //import mCustomScrollbar from 'malihu-custom-scrollbar-plugin';
 import io from 'socket.io-client';
-const socketUrl="http://localhost:4000";
+const socketUrl="http://3.16.110.136:4000/teacher";
 export default class Test extends Component
 {
     constructor(props) {

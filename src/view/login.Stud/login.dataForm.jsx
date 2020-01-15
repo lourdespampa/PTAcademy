@@ -58,8 +58,10 @@ export default class FormLoginStu extends Component {
         data
       );
       const id = VerifyCode.data.idStu;
+      const token = VerifyCode.data.token;
+      localStorage.setItem("token", token);
+      localStorage.setItem("alumId", id);
       this.setState({ idStu: id });
-      console.log(this.state.idStu);
       document.getElementById("link_form").click();
     }
   }
@@ -84,7 +86,7 @@ export default class FormLoginStu extends Component {
                 INGRESO A LA CLASE
               </span>
               <span class="login100-form-title">
-                <img src={robot} alt="robot" className="login-imagen-robot" />
+                <img src={robot} alt="robot" className="login-imagen-robot-student" />
               </span>
               <div className="wrap-input100 validate-input">
                 <input
