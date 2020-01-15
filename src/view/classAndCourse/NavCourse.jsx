@@ -45,7 +45,7 @@ function BotonCerrarSesion() {
         <Modal.Body>
           <ButtonToolbar>
             <Link to='/'><Button variant="primary" size="sm">Si</Button></Link>
-            <Link><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>
+            <Button variant="secondary" size="sm" onClick={handleClose}>No</Button>
           </ButtonToolbar>
         </Modal.Body>
       </Modal>
