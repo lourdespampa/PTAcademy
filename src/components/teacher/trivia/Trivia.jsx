@@ -108,7 +108,8 @@ class Trivia extends React.Component {
         respuestaOne: '',
         respuestaTwo: '',
         respuestaTree: '',
-        respuestaFour: ''
+        respuestaFour: '',
+        alumnosRecibidos: []
       })
       socket.emit('restaurando datos', '')
     }else{
@@ -140,6 +141,7 @@ class Trivia extends React.Component {
   }
 
   render() {
+    console.log(this.state.alumnosRecibidos)
     return (
       <>
       <div className={this.state.navbarResponsive ? "triviaT-topnav responsive" : "triviaT-topnav"}>
@@ -175,31 +177,25 @@ class Trivia extends React.Component {
             <h2>Clasificación</h2>
             
               <ul className="rolldown-list" id="myList">
-                <li className="lista-contenedora">
-                    <div id="one" style={{display: "inline-block"}}></div>
-                    {/* <img className="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
-                    <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
-                </li>
-                <li className="lista-contenedora">
-                    <div id="two" style={{display: "inline-block"}}></div>
-                    {/* <img className="imagenClasificacion" src={require('./2do.webp')} width="35"/> */}
-                    <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
-                </li>
-                <li className="lista-contenedora">
-                    <div id="three" style={{display: "inline-block"}}></div>
-                    {/* <img className="imagenClasificacion" src={require('./3ro.webp')} width="40"/> */}
-                    <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
-                </li>
-                <li className="lista-contenedora">
-                    <div id="four" style={{display: "inline-block"}}></div>
-                    {/* <img className="imagenClasificacion" src={require('./4to.webp')} width="30"/> */}
-                    <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
-                </li>
-                <li className="lista-contenedora">
-                    <div id="five" style={{display: "inline-block"}}></div>
-                    {/* <img className="imagenClasificacion" src={require('./5to.webp')} width="30"/> */}
-                    <h5 style={{display: "inline-block", marginLeft: "20px"}}></h5>
-                </li>
+                {this.state.alumnosRecibidos.length > 0 
+                  ?
+                  this.state.alumnosRecibidos.map( (alumno, index) => (
+                    index > 4 
+                    ?
+                    null
+                    :
+                    <li className="lista-contenedora" key={index}>
+                      <div style={{display: "inline-block"}}></div>
+                      {/* <img className="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
+                      <h3 style={{display: "inline-block", marginLeft: "20px", marginTop: "25px"}}>
+                        {alumno.data.alumno}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puntaje:&nbsp;&nbsp;{alumno.data.puntaje}
+                      </h3>
+                    </li>
+                  ))
+                  :
+                  <h2>Aún no hay alumnos en el top.</h2>
+                }
+                
               </ul>
 
           </div>

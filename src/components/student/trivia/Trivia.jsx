@@ -15,7 +15,6 @@ export default class Trivia extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      alumno: "",
       preguntaElegida: '',
       eligio: false,
       puntaje: 1000,
@@ -31,8 +30,6 @@ export default class Trivia extends React.Component {
   }
 
   componentDidMount(){
-    const studiante = JSON.parse(localStorage.getItem("alumno"))
-    this.setState({alumno: `${studiante.name_stu} ${studiante.lastName_stu}`})
     const socket = io(this.props.socketUrl, {
       query:
           { pin: this.props.id_access }
@@ -109,7 +106,7 @@ export default class Trivia extends React.Component {
     await this.setState({preguntaElegida: 'rojo', eligio: true})
     if(this.state.preguntaElegida === this.state.preguntaCorrecta){
       console.log('pregunta elegida por alumno')
-      socket.emit('enviando elegida', {alumno: this.state.alumno, puntaje: this.state.puntaje})
+      socket.emit('enviando elegida', {alumno: this.props.fullname, puntaje: this.state.puntaje})
     }
     console.log(this.state.puntaje)
   }
@@ -195,7 +192,7 @@ export default class Trivia extends React.Component {
                             clearInterval(this.interval2); 
                             await this.setState({preguntaElegida: 'azul', eligio: true})
                             if(this.state.preguntaElegida === this.state.preguntaCorrecta){
-                              socket.emit('enviando elegida', {alumno: this.state.alumno, puntaje: this.state.puntaje})
+                              socket.emit('enviando elegida', {alumno: this.props.fullname, puntaje: this.state.puntaje})
                             }
                           }}>
                     <img src={require("./equis-blanco.webp")} />
@@ -219,7 +216,7 @@ export default class Trivia extends React.Component {
                             clearInterval(this.interval2);
                             await this.setState({preguntaElegida: 'naranja', eligio: true}) 
                             if(this.state.preguntaElegida === this.state.preguntaCorrecta){
-                              socket.emit('enviando elegida', {alumno: this.state.alumno, puntaje: this.state.puntaje})
+                              socket.emit('enviando elegida', {alumno: this.props.fullname, puntaje: this.state.puntaje})
                             }
                           }}>
                     <img src={require("./circulo-blanco.webp")} />
@@ -241,7 +238,7 @@ export default class Trivia extends React.Component {
                             clearInterval(this.interval2);
                             await this.setState({preguntaElegida: 'verde', eligio: true}) 
                             if(this.state.preguntaElegida === this.state.preguntaCorrecta){
-                              socket.emit('enviando elegida', {alumno: this.state.alumno, puntaje: this.state.puntaje})
+                              socket.emit('enviando elegida', {alumno: this.props.fullname, puntaje: this.state.puntaje})
                             }  
                           }}>
                     <img src={require("./cuadrado-blanco.webp")} />

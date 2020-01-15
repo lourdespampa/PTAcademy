@@ -13,7 +13,7 @@ function BotonSalir(props) {
     return (
       <>
         <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />           
-        <Modal show={show} onHide={handleClose} animation={false}>
+        <Modal id="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
             <Modal.Title id="modal-header__title-question">¿Desea cerrar sesión?</Modal.Title>
           </Modal.Header>
@@ -50,18 +50,14 @@ function HeaderCode(props){
         <div className="Header-code__header" id="Header-code__header">
 
             <div class="logo">
-                <img src={require("../../../img/index/icon.svg")} alt="" />        
+                <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" />        
                 <img className="logo-img" src={require("../../../img/index/logo.svg")} alt="" />        
             </div>
-            <div className="code-detail" onClick={handleShow}>
-                <span className="code">Código:</span>
-                <div className="codigo-generado" >
-                    {props.id_access}
-                </div>
-            </div>
+            
             <div className="class-name">
                 Clase de ksksks{props.nombre_clase}
             </div>
+
 
             <div id="menuToggle">
                 <input id="checked" type="checkbox" className="check"/>
@@ -95,7 +91,7 @@ function HeaderCode(props){
                     <BotonSalir/>
                     
                 </div>
-                <Modal show={showcod} onHide={handleClose}>
+                <Modal id="modal-teacher__general" show={showcod} onHide={handleClose}>
                     <Modal.Header id="modal-general__header" closeButton>
                         <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
                     </Modal.Header>

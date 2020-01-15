@@ -74,7 +74,7 @@ export default class LoginStu extends Component {
             <h1 className="enter-code__tittle-body">
               Ingresa el PIN para unirte a una clase como ALUMNO
             </h1>
-            <div className="col-md-6 ml-auto mr-auto text-center enter-code__body-body">
+            <div className="enter-code__body-body">
               <span className="enter-code__input input--kozakura">
                 <input
                   className="input__field input__field--kozakura"
