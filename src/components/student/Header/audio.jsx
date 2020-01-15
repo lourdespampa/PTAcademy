@@ -127,7 +127,11 @@ export default class Audio extends Component {
             if(data.pin == (this.props.id_access).toUpperCase()) {
             this.enviarvideo(data.url)}
         })
-
+        socket.on('closeVideo', (data) => {
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+            this.DisablePopup()
+            }
+        })
         // FIN VIDEO
         // this.socket = io(socketUrl)
         //RECEPTOR
@@ -194,6 +198,11 @@ export default class Audio extends Component {
             overlay_popup.className = 'overlay active'
             popup.className = 'popup active'}
         })
+        socket.on('closeForm', (data) => {
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+                this.DisablePopup2()
+            }
+        })
     }
 
    
@@ -216,7 +225,7 @@ export default class Audio extends Component {
             {/*VIDEO*/}
             <div class="overlay" id="overlay2">
                 <div class="popup" id="popupvideo">
-                    <a href id="btn-cerrar-popup2" className="btn-cerrar-popup" onClick={() => this.DisablePopup()}><i class="material-icons">close</i></a>
+                    {/* <a href id="btn-cerrar-popup2" className="btn-cerrar-popup" onClick={() => this.DisablePopup()}><i class="material-icons">close</i></a> */}
                     <iframe title="iframevideo" id="video-frame" src="" frameborder="0" style={{ width: "100% !important", height: "100%" }}
                         allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </div>
@@ -228,7 +237,7 @@ export default class Audio extends Component {
                         <h1>Formulario</h1>
                     </div>
                     <br />
-                    <a href id="btnCerrarFormu" className="btn-cerrar-popup"><i class="material-icons" onClick={() => this.DisablePopup2()}>close</i></a>
+                    {/* <a href id="btnCerrarFormu" className="btn-cerrar-popup"><i class="material-icons" onClick={() => this.DisablePopup2()}>close</i></a> */}
                     <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{ width: "100% !important", height: "450px" }} allowFullScreen={true}
                         mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
 
