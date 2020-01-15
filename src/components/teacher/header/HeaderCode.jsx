@@ -10,9 +10,7 @@ function BotonSalir(props) {
      useEffect(() => console.log(user._id) );
     return (
       <>
-        <div className="Header-code" onClick={handleShow}>   
-        <li className="code-btn-menu material-icons" style={{ fontSize: "50px"}}>exit_to_app</li>
-        </div>
+        <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />           
         <Modal show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
             <Modal.Title>¿Desea cerrar sesión?</Modal.Title>
@@ -43,11 +41,33 @@ function HeaderCode(props){
     }       
     return(
         <div className="Header-code__header" id="Header-code__header">
-            <div className="code-clase-detail" onClick={codigo}>
-                <h1 className="code-clase-detail__name">
-                    Nombre del clase : {props.nombre_clase}
-                </h1>
-            </div>         
+
+            <div class="logo">
+                <img src={require("../../../img/index/icon.svg")} alt="" />        
+                <img className="logo-img" src={require("../../../img/index/logo.svg")} alt="" />        
+            </div>
+            <div className="code-detail" onClick={handleShow}>
+                <span className="code">Código:</span>
+                <div className="codigo-generado" >
+                    {props.id_access}
+                </div>
+            </div>
+            <div className="class-name">
+                Clase de ksksks{props.nombre_clase}
+            </div>
+
+            <div className="options">
+                <BotonSalir/>
+                <Modal show={showcod} onHide={handleClose}>
+                    <Modal.Header>
+                        <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <h1>{props.id_access}</h1>
+                    </Modal.Body>
+                </Modal>
+            </div>
+
             <div id="menuToggle">
                 <input id="checked" type="checkbox" className="check"/>
                 <label class="menuToggle__menu-btn" for="checked">
@@ -65,29 +85,6 @@ function HeaderCode(props){
                         <li className="menu-header__item"><Link onClick={()=>props.redirect('trivia')+closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
                     </ul>
                 </nav>
-            </div>
-            <div className="content-headercode">
-                <div className="code-detail">
-                    <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
-                        <class className="code">Código:</class>
-                        <div className="codigo-generado" onClick={handleShow}>
-                        {props.id_access}
-                        </div>
-                    </a>
-                </div>
-                <div className="code-menu-detail">
-                    
-                    <BotonSalir/>
-                    
-                </div>
-                <Modal show={showcod} onHide={handleClose}>
-                <Modal.Header>
-                    <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
-                </Modal.Header>
-                <Modal.Body>
-                    <h1>{props.id_access}</h1>
-                </Modal.Body>
-                </Modal>
             </div>
         </div>
     )
