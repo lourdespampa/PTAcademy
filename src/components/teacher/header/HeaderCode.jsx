@@ -47,15 +47,10 @@ function HeaderCode(props){
         <div className="Header-code__header" id="Header-code__header">
 
             <div class="logo">
-                <img src={require("../../../img/index/icon.svg")} alt="" />        
+                <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" />        
                 <img className="logo-img" src={require("../../../img/index/logo.svg")} alt="" />        
             </div>
-            <div className="code-detail" onClick={handleShow}>
-                <span className="code">Código:</span>
-                <div className="codigo-generado" >
-                    {props.id_access}
-                </div>
-            </div>
+            
             <div className="class-name">
                 Clase de ksksks{props.nombre_clase}
             </div>
@@ -70,6 +65,13 @@ function HeaderCode(props){
                         <h1>{props.id_access}</h1>
                     </Modal.Body>
                 </Modal>
+            </div>
+
+            <div className="code-detail" onClick={handleShow}>
+                <span className="code">Código:</span>
+                <div className="codigo-generado" >
+                    {props.id_access}
+                </div>
             </div>
 
             <div id="menuToggle">
@@ -89,29 +91,6 @@ function HeaderCode(props){
                         <li className="menu-header__item"><Link onClick={()=>props.redirect('trivia')+closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
                     </ul>
                 </nav>
-            </div>
-            <div className="content-headercode">
-                <div className="code-detail" onClick={handleShow}>
-                    <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
-                        <class className="code">Código:</class>
-                        <div className="codigo-generado" onClick={handleShow}>
-                        {props.id_access}
-                        </div>
-                    </a>
-                </div>
-                <div className="code-menu-detail">
-                    
-                    <BotonSalir/>
-                    
-                </div>
-                <Modal show={showcod} onHide={handleClose} id="modal-general">
-                    <Modal.Header id="modal-general__header" closeButton>
-                        <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <h1 id="modal-content__codigogenerado">{props.id_access}</h1>
-                    </Modal.Body>
-                </Modal>
             </div>
         </div>
     )
