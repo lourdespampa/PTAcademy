@@ -15,16 +15,16 @@ function BotonSalir(props) {
         <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />           
         <Modal show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
-            <Modal.Title>¿Desea cerrar sesión?</Modal.Title>
+            <Modal.Title id="modal-header__title-question">¿Desea cerrar sesión?</Modal.Title>
           </Modal.Header>
           <Modal.Body>
           <ButtonToolbar>
-            <Link to='/' onClick={()=>props.ExitSocket()} variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
-            <Link><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>`      `
+            <Link to='/' variant="primary"><Button id="modal-body__button-yes" size="sm" onClick={handleClose}>SI</Button></Link>`      `
+            <Link><Button id="modal-body__button-no" size="sm" onClick={handleClose}>NO</Button></Link>`      `
             {/* falta cambiar esta id_teacher estatica */}
-            <Link to={`/CoursesTeacher/${user._id}`}>
+            {/* <Link to={`/CoursesTeacher/${user._id}`}>
             <Button variant="primary" size="sm" onClick={handleClose}>Regresar a cursos</Button>
-            </Link>
+            </Link> */}
           </ButtonToolbar>
           </Modal.Body>
         </Modal>
@@ -89,6 +89,29 @@ function HeaderCode(props){
                         <li className="menu-header__item"><Link onClick={()=>props.redirect('trivia')+closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
                     </ul>
                 </nav>
+            </div>
+            <div className="content-headercode">
+                <div className="code-detail" onClick={handleShow}>
+                    <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
+                        <class className="code">Código:</class>
+                        <div className="codigo-generado" onClick={handleShow}>
+                        {props.id_access}
+                        </div>
+                    </a>
+                </div>
+                <div className="code-menu-detail">
+                    
+                    <BotonSalir/>
+                    
+                </div>
+                <Modal show={showcod} onHide={handleClose} id="modal-general">
+                    <Modal.Header id="modal-general__header" closeButton>
+                        <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <h1 id="modal-content__codigogenerado">{props.id_access}</h1>
+                    </Modal.Body>
+                </Modal>
             </div>
         </div>
     )
