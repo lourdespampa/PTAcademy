@@ -86,7 +86,7 @@ export default class CoursesTeacher extends Component {
 
     await axios({
       url:`${this.props.apiUrl}/v1/api/teacher/${this.state._id }/${this.state.id_curso}`,
-      method:'post',
+      method:'put',
       headers:{
         'x-access-token': `${varToken}`
       }});

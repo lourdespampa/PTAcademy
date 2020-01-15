@@ -229,7 +229,7 @@ export default class ListaAlum extends Component {
     render() {
         return(
             <>
-            <div className="row center" >
+            <div className="mt-2 row text-center" >
                 <button id='enviar' onClick={this.onClickEnviar} className="button btnMyM">Enviar</button>
                 <ExportCSV csvData={this.state.students} fileName={this.state.fileName} />
             </div>

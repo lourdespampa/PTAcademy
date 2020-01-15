@@ -11,10 +11,10 @@ function Empatia(props){
             <header id="Empatia-header">
                 <div></div>
                 <div>
-                    <Link className="nav-menu" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA DE ALUMNOS</Link>
+                    <Link className="nav-menu" to={`/teacher/${props.id_class}/${props.id_access}`}>ALUMNOS</Link>
                 </div>
                 <div>
-                    <Link className="nav-menu" to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link>    
+                    <Link className="nav-menu" to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AZAR</Link>    
                 </div>
                 <div>
                     <Link className="nav-menu" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link>
