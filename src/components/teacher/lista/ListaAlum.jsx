@@ -122,13 +122,13 @@ export default class ListaAlum extends Component {
 //funciones cambiar nota,puto y comportamiento
     onSubmitNote=async ()=>{
         
-           const note={
+           const data={
                score : this.state.note
             }
             var varToken = localStorage.getItem('token');
     await axios({
       url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
-      note,
+      data,
       method: 'put',
       headers: {
         'x-access-token': `${varToken}`
@@ -136,7 +136,7 @@ export default class ListaAlum extends Component {
     })
         this.getStudents();
     }
-    onClickPointAdd=async(valor)=>{
+    onClickPointAdd=async (valor)=>{
         const point=this.state.point + valor
         const data={
             point : point
@@ -171,13 +171,13 @@ export default class ListaAlum extends Component {
         this.setShow('showpuntosmenos',false)
     }
     onClickConductAdd=async(valor)=>{
-        const conduct={
+        const data={
             conduct:valor
         }
         var varToken = localStorage.getItem('token');
     await axios({
       url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
-      conduct,
+      data,
       method: 'put',
       headers: {
         'x-access-token': `${varToken}`
