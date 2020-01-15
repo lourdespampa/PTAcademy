@@ -26,228 +26,88 @@ function SendForm(socketUrl, id_access) {
 
   //END SEND FORM
 }
-function FooterContainer(props) {
-  const [urlnombre, seturlnombre] = useState("");
-  const [Show, setShow] = useState(false);
-  let container;
-  return (
-      
-    <>
-      <footer className="footer-distributed">
-        <div className="footer-left column">
-          {props.diapositivaHover ? (
-            <div
-              id="menupresentacion"
-              className="footer-left"
-              onMouseEnter={props.toggleHoverSlide}
-              onMouseLeave={props.toggleHoverSlide}
-            >
-              <button
-                id="btndiapo"
-                className="pres"
-                onClick={() =>
-                  props.openPopup("overlay", "popup") +
-                  props.botonClick("btndiapo")
-                }
-              >
-                DIAPOSITIVAS
-              </button>
-              <button
-                id="btnform"
-                className="pres"
-                onClick={() =>
-                  props.openPopup("overlayinframe", "popupformulario") +
-                  props.botonClick("btnform")
-                }
-              >
-                FORMULARIO
-              </button>
-              <button
-                id="btnvideo"
-                className="pres"
-                onClick={() => setShow(true) + props.botonClick("btnvideo")}
-              >
-                VIDEO
-              </button>
-            </div>
-          ) : (
-            <div
-              id="envoltura"
-              className="envoltura"
-              style={{ width: "23%", height: "90%", position: "absolute" }}
-              onMouseEnter={props.toggleHoverSlide}
-              onMouseLeave={props.toggleHoverSlide}
-            ></div>
-          )}
-          <iframe
-            title="myiframe"
-            className="formulario"
-            id="diminute"
-            src=""
-          ></iframe>
-        </div>
-        <div className="footer-center"></div>
-        <div className="footer-right">
-          {/* <button className="col-6 " onClick={()=>props.grabar()}>
+function FooterContainer(props){
+    const [urlnombre,seturlnombre]=useState('');
+    const [Show, setShow] = useState(false);
+        return(
+        <>           
+            <div className="footer-distributed">
+                <div id="btndiapo" onClick={()=>props.openPopup('overlay','popup')+props.botonClick('btndiapo')}>
+                    <img width="30px" height="30px" src={require("../../../img/footer/slide.svg")} />
+                    <span>Diapositivas</span>
+                </div>
+                <div id="btnform" onClick={()=>props.openPopup('overlayinframe','popupformulario')+props.botonClick('btnform')}>
+                    <img width="30px" height="30px" src={require("../../../img/footer/form.svg")} />
+                    <span>Formulario</span>
+                </div>
+                <div id="btnvideo" onClick={() => setShow(true)+props.botonClick('btnvideo')}>
+                    <img width="30px" height="30px" src={require("../../../img/footer/video.svg")} />
+                    <span>Youtube</span>
+                </div>
+                <div>
+                    <img width="30px" height="30px" src={require("../../../img/footer/share.svg")} />
+                    <span>Compartir Pantalla</span>
+                </div>
+                <div>
+                    <Audio socketUrl={props.socketUrl} id_access={props.id_access}/>
+                </div>
+                <div>
+                    <img id="btn-chat" width="30px" height="30px" src={require("../../../img/footer/chat.svg")} />
+                    <span>Chat</span>
+                </div>
+                {/* <button className="col-6 " onClick={()=>props.grabar()}>
+>>>>>>> e5155333daad71dc6bc34ce832eabe6e36a60bfb
                         grabar
                     </button>
                     <button className="col-6 " onClick={()=>props.reproclick()}>
                         reproducir
                     </button> */}
-          <div>
-            <Audio socketUrl={props.socketUrl} id_access={props.id_access} />
-          </div>
-          s
-        </div>
+            </div>
+            <div className="overlay" id="overlay">
+                <div className="popup" id="popup">
+                    <a href id="btnCerrarDiapo" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay','popup')+props.botonClick('btnCerrarDiapo')} ><i class="material-icons">close</i></a>
+                    <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",height: "100%"}} allowFullScreen={true}
+                    mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
+                    </iframe>
+                    <div id="btnBack" className="btn-back"  onClick={()=>props.backtPpt()+props.botonClick('btnBack')}><i class="material-icons">navigate_before</i></div>
+                    <div id="btnNext" className="btn-next" onClick={()=>props.nextPpt()+props.botonClick('btnNext')}><i class="material-icons">navigate_next</i></div>
+                </div>
+            </div>
+            <div className="overlay" id="overlayinframe">
+                <div className="popup" id="popupformulario">
+                    <div class="punto-posi">
+                        <h1>Emitir Formulario</h1>
+                    </div>
+                    <br/>
+                    <a href id="btnCerrarFormu" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} ><i class="material-icons">close</i></a>
+                    <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{width: "100% !important",height: "450px"}} allowFullScreen={true}
+                    mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
+                    <button className="btn btn-block btn-info" onClick={()=>SendForm(props.socketUrl,props.id_access)}>EMITIR</button>
+                </div>
+            </div>        
 
-        <div className="overlay" id="overlay">
-          <div className="popup" id="popup">
-            <a
-              href
-              id="btnCerrarDiapo"
-              className="btn-cerrar-popup"
-              onClick={() =>
-                props.closePopup("overlay", "popup") +
-                props.botonClick("btnCerrarDiapo")
-              }
-            >
-              <i class="material-icons">close</i>
-            </a>
-            <iframe
-              title="diapo-iframe"
-              id="diapo-frame"
-              frameBorder="0"
-              width="960"
-              height="569"
-              style={{ width: "100% !important", height: "100%" }}
-              allowFullScreen={true}
-              mozallowfullscreen="true"
-              webkitallowfullscreen="true"
-              src=""
-            ></iframe>
-            <div
-              id="btnBack"
-              className="btn-back"
-              onClick={() => props.backtPpt() + props.botonClick("btnBack")}
-            >
-              <i class="material-icons">navigate_before</i>
-            </div>
-            <div
-              id="btnNext"
-              className="btn-next"
-              onClick={() => props.nextPpt() + props.botonClick("btnNext")}
-            >
-              <i class="material-icons">navigate_next</i>
-            </div>
-          </div>
-        </div>
-        <div className="overlay" id="overlayinframe">
-          <div className="popup" id="popupformulario">
-            <div class="punto-posi">
-              <h1>Emitir Formulario</h1>
-            </div>
-            <br />
-            <a
-              href
-              id="btnCerrarFormu"
-              className="btn-cerrar-popup"
-              onClick={() =>
-                props.closePopup("overlayinframe", "popupformulario") +
-                props.botonClick("btnCerrarFormu")
-              }
-            >
-              <i class="material-icons">close</i>
-            </a>
-            <iframe
-              title="diapo-iframe"
-              id="diapo-formulario"
-              frameBorder="0"
-              style={{ width: "100% !important", height: "450px" }}
-              allowFullScreen={true}
-              mozallowfullscreen="true"
-              webkitallowfullscreen="true"
-              src=""
-            ></iframe>
+            <Modal id="modalvideo" size={'SM'} show={Show}
+            onHide={() => setShow(false)+props.botonClick('modalvideo')} >
+                <Modal.Header closeButton>
+                    <div class="punto-posi">
+                        <h2>Emitir video</h2>
+                    </div>
+                </Modal.Header>
+                <Modal.Body>
+                    <input id="urlid" type="text" placeholder={props.txt} name="urlvideo" onChange={e => seturlnombre(e.target.value)+props.changeOn('urlvideo',e.target.value)} style={{fontSize:"20px",width: "80%"}} required/>
+                    <button id="btnenviarvideo" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} class="button btnMyM" type="button">Enviar</button>
+                </Modal.Body>
+            </Modal>
 
-            <button
-              className="btn btn-block btn-info"
-              onClick={() => SendForm(props.socketUrl, props.id_access)}
-            >
-              EMITIR
-            </button>
-          </div>
-        </div>
-      </footer>
-      <Modal
-        id="modalvideo"
-        size={"lg"}
-        show={Show}
-        onHide={() => setShow(false) + props.botonClick("modalvideo")}
-      >
-        <Modal.Header closeButton>
-          <div class="punto-posi">
-            <h2>Emitir video</h2>
-          </div>
-        </Modal.Header>
-        <Modal.Body>
-          <input
-            id="urlid"
-            type="text"
-            placeholder={props.txt}
-            name="urlvideo"
-            onChange={e =>
-              seturlnombre(e.target.value) +
-              props.changeOn("urlvideo", e.target.value)
-            }
-            style={{ fontSize: "20px", width: "80%" }}
-            required
-          />
-          <button
-            id="btnenviarvideo"
-            onClick={() =>
-              enviarvideo(
-                urlnombre,
-                props.txt,
-                props.socketUrl,
-                props.id_access,
-                setShow(false)
-              ) + props.botonClick("btnenviarvideo")
-            }
-            class="button btnMyM"
-            type="button"
-          >
-            Enviar
-          </button>
-        </Modal.Body>
-      </Modal>
-      <div class="overlay" id="overlay2">
-        <div class="popup" id="popupvideo">
-          <a
-            href
-            id="btn-cerrar-popup2"
-            className="btn-cerrar-popup"
-            onClick={() =>
-              props.closePopup("overlay2", "popupvideo") +
-              props.botonClick("btn-cerrar-popup2")
-            }
-          >
-            <i class="material-icons">close</i>
-          </a>
-          <iframe
-            title="iframevideo"
-            id="video-frame"
-            src=""
-            frameborder="0"
-            style={{ width: "100% !important", height: "100%" }}
-            allowfullscreen="true"
-            mozallowfullscreen="true"
-            webkitallowfullscreen="true"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          ></iframe>
-        </div>
-      </div>
-    </>
-  );
+            <div class="overlay" id="overlay2">
+                <div class="popup" id="popupvideo">
+                    <a href id="btn-cerrar-popup2" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay2','popupvideo')+props.botonClick('btn-cerrar-popup2')}><i class="material-icons">close</i></a>
+                    <iframe  title="iframevideo" id="video-frame" src="" frameborder="0" style={{width: "100% !important",height: "100%"}} 
+                    allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default FooterContainer;

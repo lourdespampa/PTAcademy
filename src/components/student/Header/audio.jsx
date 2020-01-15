@@ -69,7 +69,7 @@ export default class Audio extends Component {
         cambiado += slide;
         var final = url.origin + url.pathname + cambiado;
         document.getElementById("diapo-frame").src = final;
-        document.getElementById("diminute").src = final;
+        // document.getElementById("diminute").src = final;
     }
 
     backtPpt=()=> {
@@ -87,7 +87,7 @@ export default class Audio extends Component {
         cambiado += slide;
         var final = url.origin + url.pathname + cambiado;
         document.getElementById("diapo-frame").src = final;
-        document.getElementById("diminute").src = final;
+        // document.getElementById("diminute").src = final;
     }   
     componentDidMount() {
         const socket = io(this.props.socketUrl, {
