@@ -8,7 +8,7 @@ const Loading = ({status}) => {
     )
   }else{
     return(
-      <ReactLoading className='center' type='bars' color='rgb(230, 8, 8)' height={64} width={64}/>
+      <ReactLoading className='center' type='bars' color='#52BE7F' height={64} width={64}/>
     )
   }
 }

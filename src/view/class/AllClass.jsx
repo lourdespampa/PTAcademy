@@ -64,9 +64,9 @@ export default class AllClass extends Component {
             <div >
             </div>
             {this.renderRedirect()}
-            <button className="courseTeacher__buttonEntry" onClick={this.obtenerCodigo}>
-              ACTIVAR CLASE
-            </button>
+            <div className="classTeacher__buttonEntry courseTeacher__button" onClick={this.obtenerCodigo}>
+              <label className="courseTeacher__buttonEntry-label ">ACTIVAR CLASE</label>
+            </div>
           </div>
         </div>
       </>

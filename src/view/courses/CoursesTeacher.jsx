@@ -108,7 +108,7 @@ export default class CoursesTeacher extends Component {
       <>
         <NavCourse apiUrl={this.props.apiUrl} idcourse={this.state.id_curso} idteacher={this.state._id}
          agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos}></NavCourse>
-        <div className="main">
+        <div className="CourseTeacher-main">
           <h1 className="courseTeacher-title">SECCION DE CURSOS</h1>
           <ul className="courseTeacher-container">
             {this.state.courses.length > 0 ? (
@@ -128,7 +128,7 @@ export default class CoursesTeacher extends Component {
               ))
             ) : (
               // <div>false</div>
-              <h3>Cargando cursos... Si no tiene, puede crear uno.</h3>
+              <h3 className="courseTeacher-cards__nullCourses">Cargando cursos... Si no tiene, puede crear uno.</h3>
             )}
           </ul>
         </div>

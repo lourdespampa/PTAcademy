@@ -35,18 +35,24 @@
 
 .teacherCourses__main-menu__item
     padding: 1rem
+    cursor: pointer
     &:hover
-        background-color: #52BE7F
+        background-color: #ffffff
+    &:hover .teacherCourses__main-menu__addCourse
+        color: #000000
+    &:hover .teacherCourses__main-menu__LogOut
+        color: #000000
+
 .teacherCourses__main-menu__addCourse,
 .teacherCourses__main-menu__LogOut
-    color: #CCC
+    color: #ffffff
     margin-left: 1rem
     text-decoration: none
     
 .teacherCourses__main-nav
     position: fixed
     height: calc(100vh - 3rem)
-    width: 80vw
+    width: 50vw
     background: #141618
     top: 3rem
     right: -80vw
@@ -103,6 +109,8 @@
         &:hover
             background-color: #FB9600
             color: white
+    // .teacherCourses__main-menu__item:hover .teacherCourses__main-menu__LogOut
+    //     color: #ffffff;
 
     .teacherCourses__main-menu__LogOut
         color: #53575A
@@ -119,13 +127,20 @@
         padding-top: 0
         height: auto
         width: auto
+        
     .teacherCourses__main-menu-toggle
         display: none
     .teacherCourses__main-banner
         --padding: 5rem 1rem 6rem
         --logo-height: 5rem 
     .teacherCourses__main-menu__item:hover
-        background: none
+        background-color: transparent
+        & .teacherCourses__main-menu__LogOut
+            color: white
+            background-color: #E91E63
+        & .teacherCourses__main-menu__addCourse
+            background-color: #FB9600
+            color: white
 
 .courseTeacher-container
     display: flex
@@ -136,13 +151,14 @@
     flex-wrap: wrap
     padding: 0
     margin: 0
-    background-color: #52BE7F
+    // background-color: #52BE7F
   
 .courseTeacher-cards
     display: flex
     margin: 1rem
     width: 100%
     list-style: none
+    height: 371px
     & .courseTeacher-card-item
         display: flex
         flex-direction: column
@@ -169,6 +185,7 @@
         flex-direction: column
         padding: .25rem
         align-items: center
+        color: black
         & .courseTeacher-card-intro
             font-size: 13px
             height: 30%
@@ -176,7 +193,7 @@
 
     & .courseTeacher-card-title
         font-size: 20px
-        color: #32325d
+        color: #000000
         height: 15%
     & .courseTeacher-card-image
         height: 180px
@@ -191,6 +208,8 @@
 @media (min-width: 640px)
     .courseTeacher-cards 
         width: 45%
+    // .CourseTeacher-main
+    //     height: 100% !important
  
   
 @media (min-width: 896px)
@@ -214,19 +233,17 @@
     width: 100%;
     cursor: pointer
     & .courseTeacher__img
-            transition: transform 0.3s ease-in-out;
-            -webkit-transition: all .4s ease;
-            -moz-transition: all .4s ease;
-            -o-transition: all .4s ease;
-            -ms-transition: all .4s ease;
+        transition: transform 0.3s ease-in-out;
+        -webkit-transition: all .4s ease;
+        -moz-transition: all .4s ease;
+        -o-transition: all .4s ease;
+        -ms-transition: all .4s ease;
     &:hover .courseTeacher__img
-            // transform: scale(1.8)
-            // -webkit-transform: scale(1.3)
-            -webkit-transform: scale(1.25);
-            -moz-transform: scale(1.25);
-            -ms-transform: scale(1.25);
-            -o-transform: scale(1.25);
-            transform: scale(1.3)
+        -webkit-transform: scale(1.25);
+        -moz-transform: scale(1.25);
+        -ms-transform: scale(1.25);
+        -o-transform: scale(1.25);
+        transform: scale(1.3)
 
 .courseTeacher__button-Edit
     float: left
@@ -258,10 +275,62 @@
     text-decoration: none
     padding: .5rem
     background-color: #52BE7F
+    color: #FFFFFF
     &:hover
         background-color: #52BE7F
-        color: white
+        color: #ffffff
         padding: .5rem
+    & .courseTeacher__buttonEntry-label 
+        width: 150px
+        transition: transform 0.3s ease-in-out;
+        -webkit-transition: all .4s ease;
+        -moz-transition: all .4s ease;
+        -o-transition: all .4s ease;
+        -ms-transition: all .4s ease;
+        cursor: pointer
+        &:hover
+            -webkit-transform: scale(1.25);
+            -moz-transform: scale(1.25);
+            -ms-transform: scale(1.25);
+            -o-transform: scale(1.25);
+            transform: scale(1.25)
+            font-size: 20px
+
+
+
+.classTeacher__buttonEntry
+    width: 100%
+    border: 0
+    height: 20%
+    display: block
+    margin: .2em
+    border-radius: 5px
+    vertical-align: middle
+    position: relative
+    z-index: 1
+    cursor: pointer
+    text-decoration: none
+    padding: .5rem
+    background-color: #E74C3C
+    color: #FFFFFF
+    & .courseTeacher__buttonEntry-label 
+        width: 150px
+        transition: transform 0.3s ease-in-out;
+        -webkit-transition: all .4s ease;
+        -moz-transition: all .4s ease;
+        -o-transition: all .4s ease;
+        -ms-transition: all .4s ease;
+        cursor: pointer
+        &:hover
+            -webkit-transform: scale(1.25);
+            -moz-transform: scale(1.25);
+            -ms-transform: scale(1.25);
+            -o-transform: scale(1.25);
+            transform: scale(1.25)
+            font-size: 20px
+    
+
+
 .courseTeacher-title
     background-color: #51bd7e;
     height: 50px;
@@ -270,7 +339,7 @@
     text-align: center;
     color: white
 .courseTeacher-title--class
-    background-color: #c72aa0;
+    background-color: #e74c3c;
     height: 50px;
     margin: 0;
     padding: 1rem;
@@ -287,5 +356,15 @@
 // 		margin: 0;
 .courseTeacher-container .class
     background-color: #e74c3c
-.main
-    height: 100vh
+.ClassTeacher-main
+    height: 55rem
+    background-color: #e74c3c
+.CourseTeacher-main
+    height: 55rem
+    background-color: #51bd7e
+
+
+    // css para clases     #e74c3c
+.courseTeacher-cards__nullCourses
+    color: #ffffff
+    padding: 0 1rem

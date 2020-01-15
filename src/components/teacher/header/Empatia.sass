@@ -1,18 +1,29 @@
-
+#div_children
+    background: #F1F0F9
+    max-height: calc(100vh - 140px)
+    overflow-y: auto
 #Empatia-header
     background: #52BE7F
-    display: flex
     text-align: center
-    div 
-        flex-grow: 1
-        margin: auto
-        a   
-            cursor: pointer
-            border-radius: 25px
-            padding: 10px
-            text-decoration: none
-            color: #fff
-            display: block
-            &:hover
-                background: white
-                color: #52BE7F
+    .empatia-menu
+        display: flex
+        height: 100%
+        div 
+            flex-grow: 1
+            margin: auto
+            a   
+                cursor: pointer
+                border-radius: 25px
+                padding: 10px
+                text-decoration: none
+                color: #fff
+                display: block
+                &:hover
+                    background: white
+                    color: #52BE7F
+
+@media  (max-width: 680px) 
+    #div_children
+        max-height: calc(100vh - 95px)
+    #Empatia-header 
+        display: none

@@ -83,6 +83,7 @@
     position: relative
     display: flex
     flex-direction: column
+    width: 100%
     // width: 500px
     min-height: 400px
     pointer-events: auto
@@ -119,7 +120,7 @@
     /* Agregar sombras para crear el efecto */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
     transition: 0.3s
-    margin: 10px 100px
+    margin: 10px 50px
     padding: 10px
 
 .center 
@@ -210,7 +211,7 @@
     text-align: center
 
 .table 
-    width:  1330px 
+    width:  100%
     border-spacing: 0
     border-collapse: collapse
     margin-left: 10px !important
@@ -572,6 +573,8 @@ table th[class*=col-]
     overflow-x: auto
 
 @media screen and (max-width:767px) 
+    .card
+        margin: 10px
     .table-responsive 
         width: 100%
         margin-bottom: 15px

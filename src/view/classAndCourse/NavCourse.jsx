@@ -62,32 +62,6 @@ export default class NavCourse extends Component {
     console.log(this.props)
     return (
       <>
-        {/* <div className="navegador">
-          <input type="checkbox" id="navegador-check" />
-          <div className="navegador-header">
-            <img
-              src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"
-              width="40px" alt="some value"
-            />
-            <div className="navegador-title">{this.props.nombreProfesor}</div>
-          </div>
-          <div className="navegador-links">
-            <BotonCerrarSesion />
-          </div>
-          <div className="navegador-links">
-            <BotonAgregar  apiUrl={this.props.apiUrl} idteacher={this.props.idteacher} idcourse={this.props.idcourse} agregarX={this.props.agregarX}
-             getdata={this.props.getdata}></BotonAgregar>
-          </div>
-          
-        </div>
-        <div
-          className="modal fade"
-          id="exampleModal"
-          tabIndex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        ></div> */}
          <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
             <h3>Nombre del querido profesor </h3>
