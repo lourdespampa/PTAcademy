@@ -24,7 +24,6 @@
     animation-direction: alternate
     height: 100vh
     display: grid
-    grid-template-rows: .3fr 2fr
 
 
 
@@ -38,6 +37,7 @@
 
 .enter-code__academy
     float: left
+    padding: 3px;
     background-color: transparent
 
 .enter-code__changeStudent
@@ -64,8 +64,7 @@
 
 .enter-code__body
     width: 100%
-    height: 100%
-    display: grid
+    height: 0vh
     justify-content: center
     align-items: center
 
@@ -249,8 +248,9 @@
         .enter-code__changeStudent &:hover
             background-color: #303035
             border-radius: 5px
-            padding: 15px 3px
-            margin: 0
+            padding: 3px;
+            margin: 0;
+            width: fit-content;
     .enter-code__body
         height: 80%
 
@@ -271,3 +271,4 @@
     .enter-code__academy-a
         // padding: 15px 3px
         margin: 0
+        padding: 3px;
