@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom'
-import { Button, ButtonToolbar } from "react-bootstrap";
+import { Button, ButtonToolbar, CloseButton } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 
 import './HeaderCode.sass'
@@ -84,13 +84,13 @@ function HeaderCode(props){
                     <BotonSalir/>
                     
                 </div>
-                <Modal show={showcod} onHide={handleClose} className="modal-headercode">
-                <Modal.Header>
-                    <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
-                </Modal.Header>
-                <Modal.Body>
-                    <h1 id="modal-codigogenerado">{props.id_access}</h1>
-                </Modal.Body>
+                <Modal show={showcod} onHide={handleClose} id="modal-general">
+                    <Modal.Header id="modal-general__header" closeButton>
+                        <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
+                    </Modal.Header>
+                    <Modal.Body id="modal-general__codigogenerado">
+                        <h1 id="modal-general__content">{props.id_access}</h1>
+                    </Modal.Body>
                 </Modal>
             </div>
         </div>
