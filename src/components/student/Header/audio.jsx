@@ -93,20 +93,7 @@ export default class Audio extends Component {
             query:
                 { pin: this.props.id_access }
           })
-        //liSTA
-        socket.on('RemoveStudS',(data)=>{
-            console.log(data)
-            if(data.pin == (this.props.id_access).toUpperCase()) {
-                console.log('REcibe salida')
-                if(data.id==this.props.id_student){
-                    console.log('REcibe  salida fase 2')
-                    document.getElementById('ReturnToLogin2').click()
-                }
-            }
-        })
-        //END LISTA
-       
-       
+        
         //SLIDES
 
         socket.on('sendSlidesS', (data) => {
@@ -214,22 +201,6 @@ export default class Audio extends Component {
     render() {
         return (
         <>
-        {
-          this.state.trivia==true
-          ? 
-          <Redirect to={`/student/5e1dd2ad105aa60778160a04/WJRQU/trivia`} /> 
-          :
-          null
-          }
-          {
-          this.state.temporizador==true
-          ? 
-          <Redirect to={`/student/5e1dd2ad105aa60778160a04/WJRQU/temporizador`} /> 
-          :
-          null
-          }
-             <a id="ReturnToLogin2" style={{display: "none"}} href='/login'></a>
-         
             <button id="btn_play"></button>
             <Modal size={'SM'} show={this.state.show} onHide={()=>this.setState({show:false})}>
             <Modal.Header closeButton>

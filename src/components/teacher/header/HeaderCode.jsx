@@ -19,7 +19,7 @@ function BotonSalir(props) {
           </Modal.Header>
           <Modal.Body>
           <ButtonToolbar>
-            <Link to='/' variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
+            <Link to='/' onClick={()=>props.ExitSocket()} variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
             <Link><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>`      `
             {/* falta cambiar esta id_teacher estatica */}
             <Link to={`/CoursesTeacher/${user._id}`}>
@@ -77,7 +77,7 @@ function HeaderCode(props){
                 </div>
                 <div className="code-menu-detail">
                     
-                    <BotonSalir/>
+                    <BotonSalir ExitSocket={props.ExitSocket}/>
                     
                 </div>
                 <Modal show={showcod} onHide={handleClose}>
