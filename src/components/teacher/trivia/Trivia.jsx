@@ -18,7 +18,8 @@ class Trivia extends React.Component {
       respuestaFour: '',
       selectedCorrectAnswer: 'rojo',
       preguntaEnviada: false,
-      modal:false
+      modal:false,
+      navbarResponsive: false
     }
 
     // Este enlace es necesario para hacer que `this` funcione en el callback
@@ -47,6 +48,11 @@ class Trivia extends React.Component {
     if(this.state.modal){
 
     }
+  }
+  handleNavbarResponsive = () => {
+    this.setState(state => ({
+      navbarResponsive: !state.navbarResponsive
+    }));
   }
   //Funciones que obtienen los valores de sus respectivos inputs en tiempo real
   changeQuestion = e => {
@@ -93,7 +99,6 @@ class Trivia extends React.Component {
     if(this.state.preguntaEnviada){
       console.log("restaurando...")
       this.setState({
-        navbarResponsive: false,
         pregunta: '',
         tiempo: '5',
         respuestaOne: '',
@@ -134,39 +139,28 @@ class Trivia extends React.Component {
     return (
       <>
       <div className={this.state.navbarResponsive ? "triviaT-topnav responsive" : "triviaT-topnav"}>
-        <a href="#home"></a>
-        <a href="#news">Enviar</a>
-        <a href="#contact">Respuestas</a>
-        <a className="triviaT-icon" onClick="myFunction()">
+        <a className="titulo-responsive"><h1>PLAYTEC Trivia</h1></a>
+        <a>
+          <div className="contenedor-btn-enviar">
+              { this.state.preguntaEnviada
+              ?
+              <button className="triviaT-restaurar" onClick={this.handleSendQuestion}>
+                Restaurar
+              </button>
+              :
+              <button className="triviaT-enviar" onClick={this.handleSendQuestion}>
+                Enviar
+              </button>
+              }
+              <button className="triviaT-respuestas" onClick={this.showModal}>
+                Respuestas
+              </button>
+          </div>
+        </a>
+        <a className="titulo"><h1>PLAYTEC Trivia</h1></a>
+        <a className="triviaT-icon" onClick={this.handleNavbarResponsive}>
           <i className="fa fa-bars"></i>
         </a>
-      </div>
-      <div className="triviaT-cabecera">
-        <div className="triviaT-cabecera-titulo">
-          <h1>PLAYTEC Trivia</h1>
-        </div>
-        <div className="contenedor-btn-enviar">
-          { this.state.preguntaEnviada
-          ?
-          <button className="triviaT-restaurar" onClick={this.handleSendQuestion}>
-            Restaurar
-          </button>
-          :
-          <button className="triviaT-enviar" onClick={this.handleSendQuestion}>
-            Enviar
-          </button>
-          }
-        </div>
-        <div className="contenedor-btn-respuestas">
-          <button className="triviaT-respuestas" onClick={this.showModal}>
-            Respuestas
-          </button>
-        </div>
-        <div className="triviaT-responsive-nav">
-          <a className="icon" onClick={"handleNavbarResponsive"}>
-            <i class="fa fa-bars"></i>
-          </a>
-        </div>
         {
         this.state.modal
         ?
@@ -208,12 +202,13 @@ class Trivia extends React.Component {
         </div>
         :
         null
-      }
+        }
       </div>
+        
       <div>
         <form>
           <div className="triviaT-row">
-            <div className="triviaT-column">
+            <div className="triviaT-col-6">
               <label for="pregunta">Pregunta</label>
               <input type="text" id="pregunta" className="triviaT-input-pregunta" value={this.state.pregunta} onChange={this.changeQuestion}/>
               <label for="time">Tiempo</label>
@@ -225,17 +220,17 @@ class Trivia extends React.Component {
                   <option value="60">60 segundos</option>
               </select>
             </div>
-            <div className="triviaT-column">
+            <div className="triviaT-col-6">
               <label for="input-img">Medio de Comunicación</label>
               <div className="triviaT-image-container">
                 <input type="file" id="input-img" className="imagen"/>
-                <img id="imgSalida" width="120px" height="100px" src="" />
+                <img className="triviaT-imgSalida" width="120px" height="100px" src="" />
               </div>
             </div>
           </div>
 
           <div className="triviaT-row">
-            <div className="triviaT-column">
+            <div className="triviaT-col-6">
             <label for="res1">Respuesta 1</label>
             <br/>
             <div className="triviaT-contenedor-respuesta custom-radios">
@@ -267,7 +262,7 @@ class Trivia extends React.Component {
             </div>
             </div>
 
-            <div className="triviaT-column">
+            <div className="triviaT-col-6">
             <label for="res2">Respuesta 3</label>
             <br/>
             <div className="triviaT-contenedor-respuesta custom-radios">
