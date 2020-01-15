@@ -43,15 +43,10 @@ function HeaderCode(props){
         <div className="Header-code__header" id="Header-code__header">
 
             <div class="logo">
-                <img src={require("../../../img/index/icon.svg")} alt="" />        
+                <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" />        
                 <img className="logo-img" src={require("../../../img/index/logo.svg")} alt="" />        
             </div>
-            <div className="code-detail" onClick={handleShow}>
-                <span className="code">Código:</span>
-                <div className="codigo-generado" >
-                    {props.id_access}
-                </div>
-            </div>
+            
             <div className="class-name">
                 Clase de ksksks{props.nombre_clase}
             </div>
@@ -66,6 +61,13 @@ function HeaderCode(props){
                         <h1>{props.id_access}</h1>
                     </Modal.Body>
                 </Modal>
+            </div>
+
+            <div className="code-detail" onClick={handleShow}>
+                <span className="code">Código:</span>
+                <div className="codigo-generado" >
+                    {props.id_access}
+                </div>
             </div>
 
             <div id="menuToggle">
