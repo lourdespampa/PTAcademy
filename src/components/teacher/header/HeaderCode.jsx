@@ -17,16 +17,16 @@ function BotonSalir(props) {
         </div>
         <Modal show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
-            <Modal.Title>¿Desea cerrar sesión?</Modal.Title>
+            <Modal.Title id="modal-header__title-question">¿Desea cerrar sesión?</Modal.Title>
           </Modal.Header>
           <Modal.Body>
           <ButtonToolbar>
-            <Link to='/' variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
-            <Link><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>`      `
+            <Link to='/' variant="primary"><Button id="modal-body__button-yes" size="sm" onClick={handleClose}>SI</Button></Link>`      `
+            <Link><Button id="modal-body__button-no" size="sm" onClick={handleClose}>NO</Button></Link>`      `
             {/* falta cambiar esta id_teacher estatica */}
-            <Link to={`/CoursesTeacher/${user._id}`}>
+            {/* <Link to={`/CoursesTeacher/${user._id}`}>
             <Button variant="primary" size="sm" onClick={handleClose}>Regresar a cursos</Button>
-            </Link>
+            </Link> */}
           </ButtonToolbar>
           </Modal.Body>
         </Modal>
@@ -88,8 +88,8 @@ function HeaderCode(props){
                     <Modal.Header id="modal-general__header" closeButton>
                         <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
                     </Modal.Header>
-                    <Modal.Body id="modal-general__codigogenerado">
-                        <h1 id="modal-general__content">{props.id_access}</h1>
+                    <Modal.Body>
+                        <h1 id="modal-content__codigogenerado">{props.id_access}</h1>
                     </Modal.Body>
                 </Modal>
             </div>

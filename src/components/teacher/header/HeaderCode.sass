@@ -74,31 +74,70 @@
     transition: margin-Right .7s
     margin-block-start: -17px
 
-#modal-general
-    position: absolute
-    width: 542px
-    height: 175px
-    left: 430px
-    top: 40px
-    background: #fff
-    box-sizing: border-box
-    border-radius: 14px
+.modal-content
+    position: relative
+    display: flex
+    flex-direction: column
+    width: 500px
+    pointer-events: auto
+    background: #ffffff
+    top: 97px
+    border-radius: 20px
 
-#modal-general__header
+.modal-header
     font-size: 30px
-    text-align: center
-
+    align-items: center
+    display: flex
+    justify-content: space-between
+    padding: 1.2rem 0.5rem
 .close
     position: absolute
-    width: 40px
-    height: 32px
-    left: 435px
-    top: 20px
+    width: 42px
+    height: 35px
+    left: 440px
+    top: 10px
     background: #E91E63
     border-radius: 9px
 
-#modal-general__codigogenerado
-    font-size: 75px
+.modal-body
+    flex: 1 1 auto 
+    position: relative
+
+#modal-content__codigogenerado
+    font-size: 100px
+
+#modal-header__title-question
+    position: absolute
+    width: 308px
+    height: 58px
+    left: 111px
+    top: 1px
+    font-weight: 500
+    font-size: 26px
+    display: flex
+    align-items: center
+
+#modal-body__button-yes
+    position: absolute
+    width: 55px
+    height: 40px
+    left: 150px
+    top: 6px
+    background: #E91E63
+    border-radius: 10px
+    color: #fff
+    font-size: 16px
+
+#modal-body__button-no
+    position: absolute
+    width: 55px
+    height: 40px
+    left: 275px
+    top: 6px
+    background: #52BE7F
+    border-radius: 10px
+    color: #fff
+    font-size: 16px
 
 @media screen and (max-width: 800px)
     #menuToggle
