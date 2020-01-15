@@ -28,11 +28,7 @@ class Temporizador extends React.Component {
   }
 
   componentDidMount = () =>{
-    const socket = io(this.props.socketUrl, {
-        query:
-            { pin: this.props.id_access }
-      })
-
+    
       let _this = this;
 
     //   $('#button-set').on('click', function(){
@@ -146,11 +142,14 @@ class Temporizador extends React.Component {
             
             var cod = "ABCDE";
             // var socket = io('/presentation/temp');
-        
-            socket.on('set', function(data) {
-                if(data.pin == (this.props.id_access).toUpperCase()) {
+            const socket = io(this.props.socketUrl, {
+                query:
+                    { pin: this.props.id_access }
+              })
+        console.log(this.props.id_access)
+            socket.on('set', (data)=> {
                 console.log("Se asigna")
-            //     if (data.pin == cod.toUpperCase()) {
+                if(data.pin == (this.props.id_access).toUpperCase()) {
                     var time = data.data.time;
                     $("#id_dt_1").val(time[0]);
                     $("#id_dt_2").val(time[1])
@@ -158,15 +157,13 @@ class Temporizador extends React.Component {
                     u.click()
                }
             });
-            socket.on('temp', function(data) {
+            socket.on('temp', (data) =>{
                 if(data.pin == (this.props.id_access).toUpperCase()) {
-                // if (data.pin == cod.toUpperCase()) {
                     k.click();
                  }
             });
-            socket.on('stop', function(data) {
+            socket.on('stop', (data) =>{
                 if(data.pin == (this.props.id_access).toUpperCase()) {
-            //     if (data.pin == cod.toUpperCase()) {
                     k.click();
                  }
             });

@@ -14,7 +14,7 @@ function BotonAgregar(props) {
       <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
         Agregar {props.agregarX}
       </div>
-      <Modal show={show} onHide={handleClose} animation={false}>
+      <Modal size={'lg'}show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Agregando {props.agregarX}</Modal.Title>
         </Modal.Header>
@@ -38,7 +38,7 @@ function BotonCerrarSesion() {
       <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
         Cerrar sesion
       </div>
-      <Modal show={show} onHide={handleClose} animation={false}>
+      <Modal size={'lg'} show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Desea cerrar sesión?</Modal.Title>
         </Modal.Header>

@@ -90,7 +90,7 @@ function FooterContainer(props){
             </footer>
                 <Modal
                 id="modalvideo"
-                size={'SM'}
+                size={'lg'}
             show={Show}
             onHide={() => setShow(false)+props.botonClick('modalvideo')}
           >

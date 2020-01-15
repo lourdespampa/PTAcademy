@@ -9,7 +9,7 @@ export default function HeaderContainer(props) {
     const [redirect,setredirect]=useState(false);
     const [trivia,settrivia]=useState(false);
     const [temporizador,settemporizador]=useState(false);
-    const [index,setindex]=useState(false);
+    const [Exit,setExit]=useState(false);
     const reinicio=()=>settrivia(false)+settemporizador(false)
     const deleteStudent=async ()=>{
         console.log(props.apiUrl,props.id_access,props.id_student)
@@ -32,6 +32,23 @@ export default function HeaderContainer(props) {
                 }
             }
         })
+        socket.on('ExitSocket',(data)=>{
+            if(data.pin==(props.id_access).toUpperCase()){
+                setExit(true)
+            }
+        })
+        //liSTA
+        socket.on('RemoveStudS',(data)=>{
+            console.log(data)
+            if(data.pin == (props.id_access).toUpperCase()) {
+                console.log('REcibe salida')
+                if(data.id==props.id_student){
+                    console.log('REcibe  salida fase 2')
+                    setExit(true)
+                }
+            }
+        })
+        //END LISTA
     })
     return (
         <div>
@@ -46,6 +63,13 @@ export default function HeaderContainer(props) {
           temporizador==true
           ? 
           <Redirect to={`/student/${props.id_student}/${props.id_access}/temporizador`} /> 
+          :
+          null
+          }
+          {
+          Exit==true
+          ? 
+          <Redirect to={`/`} /> 
           :
           null
           }

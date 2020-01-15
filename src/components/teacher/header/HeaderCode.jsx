@@ -15,13 +15,13 @@ function BotonSalir(props) {
         <div className="Header-code" onClick={handleShow}>   
         <li className="code-btn-menu material-icons" style={{ fontSize: "50px"}}>exit_to_app</li>
         </div>
-        <Modal show={show} onHide={handleClose} animation={false}>
+        <Modal size={'lg'} show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
             <Modal.Title>¿Desea cerrar sesión?</Modal.Title>
           </Modal.Header>
           <Modal.Body>
           <ButtonToolbar>
-            <Link to='/' variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
+            <Link to='/' onClick={()=>props.ExitSocket()} variant="primary"><Button variant="secondary" size="sm" onClick={handleClose}>Si</Button></Link>`      `
             <Link><Button variant="secondary" size="sm" onClick={handleClose}>No</Button></Link>`      `
             {/* falta cambiar esta id_teacher estatica */}
             <Link to={`/CoursesTeacher/${user._id}`}>
@@ -81,10 +81,10 @@ function HeaderCode(props){
                 </div>
                 <div className="code-menu-detail">
                     
-                    <BotonSalir/>
+                    <BotonSalir ExitSocket={props.ExitSocket}/>
                     
                 </div>
-                <Modal show={showcod} onHide={handleClose} className="modal-headercode">
+                <Modal size={'lg'} show={showcod} onHide={handleClose}>
                 <Modal.Header>
                     <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
                 </Modal.Header>
