@@ -121,16 +121,14 @@ class Footer extends Component {
     }
     render() {
         return (
-            <div>
-                <FooterContainer
-                    // Envio del esatdo y funcion de mostrar los botones de la diapositiva del footer
-                    diapositivaHover={this.state.diapositivaHover} toggleHoverSlide={this.toggleHoverSlide}
-                    closePopup={this.closePopup} openPopup={this.openPopup} nextPpt={this.nextPpt}
-                    backtPpt={this.backtPpt} enviarvideo={this.enviarvideo} id_access={this.props.id_access}
-                    botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}
-                    changeOn={this.props.changeOn} txt={this.props.txt} socketUrl={this.props.socketUrl}
-                />
-            </div>
+            <FooterContainer
+                // Envio del esatdo y funcion de mostrar los botones de la diapositiva del footer
+                diapositivaHover={this.state.diapositivaHover} toggleHoverSlide={this.toggleHoverSlide}
+                closePopup={this.closePopup} openPopup={this.openPopup} nextPpt={this.nextPpt}
+                backtPpt={this.backtPpt} enviarvideo={this.enviarvideo} id_access={this.props.id_access}
+                botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}
+                changeOn={this.props.changeOn} txt={this.props.txt} socketUrl={this.props.socketUrl}
+            />
         )
     }
 }

@@ -34,7 +34,7 @@ function BotonSalir(props) {
 
 
 function HeaderCode(props){
-    const [showcod, setShowcod] = useState(true);
+    const [showcod, setShowcod] = useState(false);
     const handleClose = () => setShowcod(false);
     const handleShow = () => setShowcod(true);
     const codigo = () => {
@@ -52,7 +52,7 @@ function HeaderCode(props){
             </div>
             
             <div className="class-name">
-                Clase de ksksks{props.nombre_clase}
+                {props.nombre_clase}
             </div>
 
             <div className="options">
