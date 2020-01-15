@@ -32,7 +32,7 @@ export default class CHAT extends Component{
   //document.getElementById("main").style.marginRight = "250px";
   document.getElementById('btn_open').style.marginRight = "250px";
   document.getElementById('div_children').style.marginRight = "250px";
-  document.getElementById('div_head').style.marginRight = "250px";
+  // document.getElementById('div_head').style.marginRight = "250px";
   document.getElementById('div_foot').style.marginRight = "250px";
 }
 
@@ -42,7 +42,7 @@ closeNav() {
  // document.getElementById("main").style.marginRight = "0px";
   document.getElementById('btn_open').style.marginRight = "0px";
   document.getElementById('div_children').style.marginRight = "0px";
-  document.getElementById('div_head').style.marginRight = "0px";
+  // document.getElementById('div_head').style.marginRight = "0px";
   document.getElementById('div_foot').style.marginRight = "0px";
 }
 

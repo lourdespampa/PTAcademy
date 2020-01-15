@@ -3,9 +3,9 @@
 	 display: none;
 }
 #div_children {
-	transition: margin-Right .7s;
-	margin-bottom: 200px;
-  /*  padding: 16px;*/
+	background: #F1F0F9;
+	max-height: calc(100vh - 140px);
+	overflow-y: auto;
 }
 
 #div_head{

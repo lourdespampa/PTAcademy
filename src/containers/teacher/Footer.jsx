@@ -63,7 +63,7 @@ class Footer extends Component {
         var enlace = casi.replace("delayms=3000", "delayms=3000&rm=minimal&slide=id.p1");
         console.log('get URL: ' + enlace)
         document.getElementById("diapo-frame").src = enlace;
-        document.getElementById("diminute").src = enlace;
+        // document.getElementById("diminute").src = enlace;
     }
     getUrlForm = () => {
         document.getElementById("diapo-formulario").src = this.state.srcForm;
@@ -89,7 +89,7 @@ class Footer extends Component {
         cambiado += slide;
         var final = url.origin + url.pathname + cambiado;
         document.getElementById("diapo-frame").src = final;
-        document.getElementById("diminute").src = final;
+        // document.getElementById("diminute").src = final;
     }
 
 
@@ -113,7 +113,7 @@ class Footer extends Component {
         cambiado += slide;
         var final = url.origin + url.pathname + cambiado;
         document.getElementById("diapo-frame").src = final;
-        document.getElementById("diminute").src = final;
+        // document.getElementById("diminute").src = final;
     }
     async componentDidMount() {
         this.getUrl();
