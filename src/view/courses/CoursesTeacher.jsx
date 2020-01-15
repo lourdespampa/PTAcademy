@@ -109,12 +109,12 @@ export default class CoursesTeacher extends Component {
         <NavCourse apiUrl={this.props.apiUrl} idcourse={this.state.id_curso} idteacher={this.state._id}
          agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos}></NavCourse>
         <div className="main">
-          <h1>SECCION DE CURSOS</h1>
-          <ul className="cards">
+          <h1 className="courseTeacher-title">SECCION DE CURSOS</h1>
+          <ul className="courseTeacher-container">
             {this.state.courses.length > 0 ? (
               // <div>true</div>
               this.state.courses.map((cursos, id) => (
-                <li className="cards_item" key={id}>
+                <li className="courseTeacher-cards" key={id}>
                   <AllCourses
                     name_course={cursos.course_name}
                     description={cursos.desc}
