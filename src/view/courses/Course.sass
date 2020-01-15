@@ -35,6 +35,7 @@
 
 .teacherCourses__main-menu__item
     padding: 1rem
+    cursor: pointer
     &:hover
         background-color: #52BE7F
 .teacherCourses__main-menu__addCourse,
@@ -171,6 +172,7 @@
         flex-direction: column
         padding: .25rem
         align-items: center
+        color: black
         & .courseTeacher-card-intro
             font-size: 13px
             height: 30%
@@ -178,7 +180,7 @@
 
     & .courseTeacher-card-title
         font-size: 20px
-        color: #32325d
+        color: #000000
         height: 15%
     & .courseTeacher-card-image
         height: 180px
@@ -218,19 +220,17 @@
     width: 100%;
     cursor: pointer
     & .courseTeacher__img
-            transition: transform 0.3s ease-in-out;
-            -webkit-transition: all .4s ease;
-            -moz-transition: all .4s ease;
-            -o-transition: all .4s ease;
-            -ms-transition: all .4s ease;
+        transition: transform 0.3s ease-in-out;
+        -webkit-transition: all .4s ease;
+        -moz-transition: all .4s ease;
+        -o-transition: all .4s ease;
+        -ms-transition: all .4s ease;
     &:hover .courseTeacher__img
-            // transform: scale(1.8)
-            // -webkit-transform: scale(1.3)
-            -webkit-transform: scale(1.25);
-            -moz-transform: scale(1.25);
-            -ms-transform: scale(1.25);
-            -o-transform: scale(1.25);
-            transform: scale(1.3)
+        -webkit-transform: scale(1.25);
+        -moz-transform: scale(1.25);
+        -ms-transform: scale(1.25);
+        -o-transform: scale(1.25);
+        transform: scale(1.3)
 
 .courseTeacher__button-Edit
     float: left
@@ -262,10 +262,27 @@
     text-decoration: none
     padding: .5rem
     background-color: #52BE7F
+    color: #FFFFFF
     &:hover
         background-color: #52BE7F
-        color: white
+        color: #ffffff
         padding: .5rem
+    & .courseTeacher__buttonEntry-label 
+        width: 150px
+        transition: transform 0.3s ease-in-out;
+        -webkit-transition: all .4s ease;
+        -moz-transition: all .4s ease;
+        -o-transition: all .4s ease;
+        -ms-transition: all .4s ease;
+        cursor: pointer
+        &:hover
+            -webkit-transform: scale(1.25);
+            -moz-transform: scale(1.25);
+            -ms-transform: scale(1.25);
+            -o-transform: scale(1.25);
+            transform: scale(1.25)
+            font-size: 20px
+
 .courseTeacher-title
     background-color: #51bd7e;
     height: 50px;
