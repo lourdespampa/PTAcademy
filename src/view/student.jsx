@@ -60,7 +60,7 @@ initSocket=()=>{
         <Container apiUrl={this.props.apiUrl} socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student} name={this.state.name} lastName={this.state.lastName}>
 					
 						<Route exact path="/student/:id/:cod" component={() => <Index socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student}  />}/>
-						<Route exact path="/student/:id/:cod/trivia" component={() => <Trivia socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student}/>}/>
+						<Route exact path="/student/:id/:cod/trivia" component={() => <Trivia socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student} fullname={`${this.state.name} ${this.state.lastName}`}/>}/>
 						<Route exact path="/student/:id/:cod/temporizador" component={() => <Temporizador socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student}/>}/>
 						<Route exact path="/student/:id/:cod/pizarra" component={() => <Board socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student}/>}/>
             {/* <Redirect from="/" to="/student/:id/:cod" /> */}
