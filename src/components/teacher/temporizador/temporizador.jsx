@@ -19,7 +19,9 @@ class Temporizador extends React.Component {
   }
 
   openModal=()=>{
-    this.setState({open:true})
+    // this.setState({open:true})
+    $('#modal-temp').css("display", "block");
+
   }
   closeModal=()=>{
     this.setState({open:false});
@@ -101,7 +103,6 @@ class Temporizador extends React.Component {
                 for (var b = 0; b < e.length; ++b) e[b].input_element.prop("disabled", !a)
             },
             p = function() {
-                console.log("Inicia P")
                 for (var a = c = 0; a < e.length; ++a) {
                     var b = e[a];
                     c += b.value * parseInt(b.input_element.val())
@@ -113,6 +114,7 @@ class Temporizador extends React.Component {
                 socket.emit('set', {
                     time: [hour,min,sec]
                 });
+                $('#modal-temp').css("display", "none");
                 // $('#establecer_tiempo').modal('hide');
                 g = c;
                 n();
