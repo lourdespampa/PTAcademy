@@ -198,7 +198,7 @@ class Temporizador extends React.Component {
             <button type="button" className="pure-button pure-button-success"  onClick={() => this.openModal()} id="button-establecer">ESTABLECER TIEMPO</button>
         </div>
         
-        <div id="modal-temp" role="dialog" aria-modal="true" className="modal" tabindex="-1" aria-hidden="true" style={{display: 'block'}}>
+        <div id="modal-temp" role="dialog" aria-modal="true" className="modal" tabIndex="-1" aria-hidden="true" style={{display: 'block'}}>
             <div role="document" className="modal-dialog modal-SM">
                 <div className="modal-content">
                     <div className="modal-header">
