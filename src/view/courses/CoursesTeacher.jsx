@@ -133,7 +133,7 @@ export default class CoursesTeacher extends Component {
           </ul>
         </div>
         <Modal
-          size={"SM"}
+          size={"lg"}
           show={this.state.showdelete}
           onHide={() => this.setShow("showdelete", false)}
         >

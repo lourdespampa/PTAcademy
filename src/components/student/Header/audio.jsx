@@ -8,6 +8,7 @@ const { AudioStreamer } = require('sfmediastream');
 export default class Audio extends Component {
     state={
         show:false,
+        showGrupo:false
     }
     enviarvideo(url) {
         const socket = io(this.props.socketUrl, {
@@ -187,8 +188,18 @@ export default class Audio extends Component {
             
             }
         })
-    
         //ROULETTE END 
+        //grupos
+        socket.on('enviando grupos',  (data) =>{
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+            console.log(data.data.data)
+            this.setState({showGrupo:true});
+            document.getElementById("modal_GrupoStudent").innerHTML = data.data.data;
+            
+            }
+        })
+        //grupos END 
+
         //FORM
         socket.on('SendFormS', (data) => {
             if(data.pin == (this.props.id_access).toUpperCase()) {
@@ -211,7 +222,17 @@ export default class Audio extends Component {
         return (
         <>
             <button id="btn_play"></button>
-            <Modal size={'SM'} show={this.state.show} onHide={()=>this.setState({show:false})}>
+            <Modal size={'xl'} show={this.state.showGrupo} onHide={()=>this.setState({showGrupo:false})}>
+            <Modal.Header closeButton>
+                <h4 className="title"><strong>Grupos elejidos son:</strong></h4>
+            </Modal.Header>
+            <Modal.Body>
+                <div id="modal_GrupoStudent" style={{ fontSize: "60px" ,display: 'flex',flexFlow: 'wrap',maxHeight: '350px',overflow: 'scroll'}}>
+                            
+                </div>
+            </Modal.Body>
+          </Modal>
+            <Modal size={'lg'} show={this.state.show} onHide={()=>this.setState({show:false})}>
             <Modal.Header closeButton>
                 <h4 className="title"><strong>The lucky student is :</strong></h4>
             </Modal.Header>

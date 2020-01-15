@@ -13,7 +13,7 @@ function BotonSalir(props) {
         <div className="Header-code" onClick={handleShow}>   
         <li className="code-btn-menu material-icons" style={{ fontSize: "50px"}}>exit_to_app</li>
         </div>
-        <Modal show={show} onHide={handleClose} animation={false}>
+        <Modal size={'lg'} show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
             <Modal.Title>¿Desea cerrar sesión?</Modal.Title>
           </Modal.Header>
@@ -80,7 +80,7 @@ function HeaderCode(props){
                     <BotonSalir ExitSocket={props.ExitSocket}/>
                     
                 </div>
-                <Modal show={showcod} onHide={handleClose}>
+                <Modal size={'lg'} show={showcod} onHide={handleClose}>
                 <Modal.Header>
                     <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
                 </Modal.Header>
