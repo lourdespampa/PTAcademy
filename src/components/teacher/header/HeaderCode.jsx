@@ -12,7 +12,6 @@ function BotonSalir(props) {
      useEffect(() => console.log(user._id) );
     return (
       <>
-
         <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />           
         <Modal show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
@@ -47,7 +46,7 @@ function HeaderCode(props){
     return(
         <div className="Header-code__header" id="Header-code__header">
 
-            <div class="logo">
+            <div className="logo">
                 <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" />        
                 <img className="logo-img" src={require("../../../img/index/logo.svg")} alt="" />        
             </div>
