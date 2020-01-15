@@ -17,7 +17,7 @@ export default class Contenido extends Component {
                 <div id="div_children">
                 {children}
                 </div>
-                <Test/>
+                {/* <Test/> */}
                 <Footer socket={this.props.socket} socketUrl={this.props.socketUrl} id_access={this.props.id_access} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick} 
                 changeOn={this.props.changeOn} txt={this.props.txt} />
             </div>
