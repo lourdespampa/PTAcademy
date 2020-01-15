@@ -8,7 +8,7 @@ import Loading from "./Loading";
 
 import firebase from "./firebaseConfig";
 
-import aesjs from 'aes-js'
+// import aesjs from 'aes-js'
 
 export default function App(props) {
 

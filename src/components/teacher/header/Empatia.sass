@@ -16,13 +16,11 @@
 
 #Empatia-header
     background: #3087a4
-    z-index: 1000
     max-width: 100%
     width: 100%
     margin: auto 
     #Empatia-header__menu
         background: #3087a4
-        z-index: 1000
         max-width: 100%
         width: 100%
         margin: auto
@@ -78,11 +76,12 @@
         webkit-user-select: none
         user-select: none      
         .menuToggle__drawer-menu 
+            display: none
             position: fixed
             top: 0
             left: -58px
             width: 333px
-            height: 39%
+            height: 60%
             padding: 64px 0
             background: #014e4e5b
             -webkit-transition-property: all
@@ -96,8 +95,6 @@
             transform-origin: left center
             -webkit-transform: perspective(-66px) rotateY(17deg)
             transform: perspective(-66px) rotateY(17deg)
-            opacity: 0
-            z-index: 2
             .menu-header__item
                 text-align: center
                 .menu-header__item-link
@@ -155,7 +152,8 @@
             -ms-transform: none
             transform: none
             opacity: 1
-            z-index: 1
+            z-index: 2
+            display: block
         .check:checked ~ .menuToggle__menu-btn .bar.top 
             width: 44px
             height: 4px
@@ -235,18 +233,13 @@
             text-align: center
             margin: 0px 0px 8px
             line-height: 1.2
-        &:checked ~ .content
+        &:checked ~ .content-headercode
             -webkit-transition-delay: 0s
             transition-delay: 0s
             -ms-transform: translateX(-300px)
 
     #Empatia-header 
         display: none
-       
-    #div_children 
-        transition: margin-Right .7s
-        margin-bottom: 200px
-        padding: 12px
 
     #div_head 
         transition: margin-Right .7s
@@ -417,12 +410,8 @@
             text-align: center
             margin: 0px 0px 8px
             line-height: 1.2
-        &:checked ~ .content
+        &:checked ~ .content-headercode
             -webkit-transition-delay: 0s
             transition-delay: 0s
             -ms-transform: translateX(-300px)
 
-    #div_children 
-        transition: margin-Right .7s
-        margin-bottom: 200px
-        padding: 12px
