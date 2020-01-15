@@ -52,7 +52,7 @@ export default class FormLoginStu extends Component {
         id_access: this.state.id_access
       };
 
-      console.log(data);
+      localStorage.setItem("alumno",JSON.stringify(data))
       const VerifyCode = await axios.post(
         this.props.apiUrl + "/signin_student",
         data
