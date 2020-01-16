@@ -119,6 +119,39 @@ export default function HeaderContainer(props) {
                 <li className="nav-item">
                     <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}/temporizador`}>Temporizador</Link>
                 </li>
+                
+                <li className="nav-item">
+                    <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}/trivia`}>Trivia</Link>
+                </li>
+            </ul>
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <div className="btn nav-link" onClick={() => deleteStudent()+setredirect(true)}>salir</div>
+                    {
+                        redirect==true?
+                        <Redirect to = '/' /> :
+                        null
+                    }
+                    {/* <Link className="nav-link" to="/" id="btnsalirclase">Salir</Link> */}
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav id="header" className="mb-1 navbar navbar-expand-lg navbar-dark primary-color lighten-1 fixed">
+    <div className="navbar-brand">Bienvenido {props.name} {props.lastName} </div>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555" aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent-555">
+            <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                    <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}`}>Inicio</Link>
+                </li>
+                <li className="nav-item">
+                    <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}/temporizador`}>Temporizador</Link>
+                </li>
+                
                 <li className="nav-item">
                     <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}/trivia`}>Trivia</Link>
                 </li>

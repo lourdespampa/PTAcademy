@@ -23,15 +23,12 @@
     -webkit-animation-direction: alternate
     animation-direction: alternate
     height: 100vh
-    display: grid
 
 .enter-code__header
     list-style-type: none
     margin: 0
     padding: 5px 10px
     overflow: hidden
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
 
 .enter-code__academy
     float: left
@@ -61,10 +58,11 @@
         float: right;
 
 .enter-code__body
-    width: 100%
-    height: 0vh
-    justify-content: center
-    align-items: center
+    width: 100%;
+    height: 78%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 
 .enter-code__formulario
     text-align: center
@@ -73,6 +71,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center
+    width: 405px;
 
 .enter-code__tittle-body
     color: #ffffff
@@ -88,18 +87,20 @@
 
 .enter-code__body-body
     margin-top: 5px
-    width: 50%
 
 .enter-code__button
     background: #333333
     border-style: none
     width: 100%
-    height: 35px
+    height: 50px
     padding: 5px
     color: white
     border-radius: 5px
+    font-family: Opal;
+    font-size: 1.5em;
     &:hover
         background: #202020
+        cursor: pointer
 .input__field
     position: relative
     text-align: center
