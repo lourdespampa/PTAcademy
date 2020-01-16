@@ -14,9 +14,9 @@ function BotonAgregar(props) {
       <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
         Agregar {props.agregarX}
       </div>
-      <Modal size={'lg'}show={show} onHide={handleClose} animation={false}>
+      <Modal id="modal-teacher__general2" show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Agregando {props.agregarX}</Modal.Title>
+          <Modal.Title >Agregando {props.agregarX}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           { (props.agregarX=='course')?
