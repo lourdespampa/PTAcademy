@@ -69,7 +69,7 @@ export default class FormPostCourse extends Component {
             />
             {/* <Upload handleClose={this.props.handleClose} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc}    ></Upload> */}
           </Form.Group>
-          <Button id="modal-body__button-cursos2" type="submit"  >CREAR CLASE</Button>
+          <Button id="modal-body__button-cursos" className="btn" type="submit"  >CREAR CLASE</Button>
         </Form>
       </>
     );

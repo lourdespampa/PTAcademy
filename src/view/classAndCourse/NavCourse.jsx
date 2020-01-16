@@ -14,7 +14,7 @@ function BotonAgregar(props) {
       <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
         Agregar {props.agregarX}
       </div>
-      <Modal id="modal-teacher__general2" show={show} onHide={handleClose} animation={false}>
+      <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title >Agregando {props.agregarX}</Modal.Title>
         </Modal.Header>
@@ -38,14 +38,14 @@ function BotonCerrarSesion() {
       <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
         Cerrar sesion
       </div>
-      <Modal size={'lg'} show={show} onHide={handleClose} animation={false}>
+      <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Desea cerrar sesión?</Modal.Title>
+          <Modal.Title id="modal-header__title-question">¿DESEA CERRAR SESIÓN?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ButtonToolbar>
-            <Link to='/'><Button variant="primary" size="sm">Si</Button></Link>
-            <Button variant="secondary" size="sm" onClick={handleClose}>No</Button>
+            <Link to='/'><Button id="modal-body__button-yes" className="btn" variant="primary" size="sm">SI</Button></Link>
+            <Button id="modal-body__button-no" className="btn" variant="secondary" size="sm" onClick={handleClose}>NO</Button>
           </ButtonToolbar>
         </Modal.Body>
       </Modal>

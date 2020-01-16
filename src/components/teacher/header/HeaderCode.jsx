@@ -13,15 +13,14 @@ function BotonSalir(props) {
     return (
       <>
         <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />           
-        <Modal id="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
+        <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
-            <Modal.Title id="modal-header__title-question">¿Desea cerrar sesión?</Modal.Title>
+            <Modal.Title id="modal-header__title-question">¿DESEA CERRAR SESIÓN?</Modal.Title>
           </Modal.Header>
           <Modal.Body id="modal-body__exit">
           <ButtonToolbar>
-            <Link to='/' variant="primary"><Button id="modal-body__button-yes" size="sm" onClick={handleClose}>SI</Button></Link>`      `
-            <Link><Button id="modal-body__button-no" size="sm" onClick={handleClose}>NO</Button></Link>`      `
-            {/* falta cambiar esta id_teacher estatica */}
+            <Link id="modal-body__button-yes" className="btn" onClick={handleClose} to='/' variant="primary">SI</Link>`      `
+            <Link id="modal-body__button-no" className="btn" onClick={handleClose}>NO</Link>`      `
             <Link to={`/CoursesTeacher/${user._id}`}>
             <Button id="modal-body__button-cursos" onClick={handleClose}>Regresar a cursos</Button>
             </Link>
@@ -87,12 +86,12 @@ function HeaderCode(props){
                     <BotonSalir/>
                     
                 </div>
-                <Modal id="modal-teacher__general" show={showcod} onHide={handleClose}>
+                <Modal className="modal-teacher__general" show={showcod} onHide={handleClose}>
                     <Modal.Header id="modal-general__header" closeButton>
-                        <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
+                        <span className="modal-title"><strong>CODIGO DE LA CLASE:</strong></span>
                     </Modal.Header>
                     <Modal.Body>
-                        <h1 id="modal-content__codigogenerado">{props.id_access}</h1>
+                        <span id="modal-content__codigogenerado">{props.id_access}</span>
                     </Modal.Body>
                 </Modal>
             </div>
