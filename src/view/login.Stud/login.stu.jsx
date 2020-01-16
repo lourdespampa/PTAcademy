@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import "./ingresarCodigo.sass";
-import logo from './logiAcademy.svg'
+import logo from './images/Logo.svg'
 
 export default class LoginStu extends Component {
   constructor(props) {
@@ -62,6 +62,9 @@ export default class LoginStu extends Component {
         <ul className="enter-code__header">
           <li className="enter-code__academy">
             <img className="enter-code__academy-a" src={logo} alt="este logo es academy"/>
+          </li>
+          <li className="">
+            
           </li>
           <li className="enter-code__changeStudent">
             <Link className="enter-code__academy-a" to={"/loginTeacher"}>

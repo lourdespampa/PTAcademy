@@ -18,7 +18,7 @@ class Inicio extends React.Component {
             <img src={require('./robot.png')} className="login-robot" />
           </div>
           <div className="login-iniciar-sesion">
-            <h1 className="login-iniciar">Iniciar sesión en PlayTecEDU</h1>
+            <h1 className="login-iniciar">Iniciar sesión en PlayTec Academy</h1>
           </div>
           </div>
           <div className="login-cuerpo">

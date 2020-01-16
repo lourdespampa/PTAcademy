@@ -30,7 +30,7 @@
   transition: all 0.5s;
 }
 
-.loginTeacher-subtitle{
+.loginTeacher-subtitle {
   margin: 0 auto 15px;
   text-align: center;
   font-size: 1.5em;
@@ -51,7 +51,7 @@
   transition: all 0.5s;
 }
 .loginTeacher-container .loginTeacher-box {
-  background:rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   position: absolute;
   left: 0;
   top: 0;
@@ -59,7 +59,8 @@
   height: 100%;
   overflow: hidden;
 }
-.loginTeacher-container .loginTeacher-box:before, .loginTeacher-container .loginTeacher-box:after {
+.loginTeacher-container .loginTeacher-box:before,
+.loginTeacher-container .loginTeacher-box:after {
   content: " ";
   position: absolute;
   left: 152px;
@@ -100,7 +101,8 @@
 .loginTeacher-container .loginTeacher-btn:hover {
   opacity: 0.7;
 }
-.loginTeacher-container .loginTeacher-btn, .loginTeacher-container input {
+.loginTeacher-container .loginTeacher-btn,
+.loginTeacher-container input {
   padding: 10px 15px;
 }
 .loginTeacher-container input {
@@ -115,11 +117,16 @@
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info {
+.loginTeacher-container
+  .loginTeacher-container-forms
+  .loginTeacher-container-info {
   text-align: left;
   font-size: 0;
 }
-.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item {
+.loginTeacher-container
+  .loginTeacher-container-forms
+  .loginTeacher-container-info
+  .loginTeacher-info-item {
   text-align: center;
   font-size: 16px;
   width: 300px;
@@ -133,18 +140,34 @@
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item p {
+.loginTeacher-container
+  .loginTeacher-container-forms
+  .loginTeacher-container-info
+  .loginTeacher-info-item
+  p {
   font-size: 20px;
   margin: 20px;
 }
-.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item .loginTeacher-btn {
+.loginTeacher-container
+  .loginTeacher-container-forms
+  .loginTeacher-container-info
+  .loginTeacher-info-item
+  .loginTeacher-btn {
   background-color: transparent;
   border: 1px solid #fff;
 }
-.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item .loginTeacher-table-cell {
+.loginTeacher-container
+  .loginTeacher-container-forms
+  .loginTeacher-container-info
+  .loginTeacher-info-item
+  .loginTeacher-table-cell {
   padding-right: 35px;
 }
-.loginTeacher-container .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item:nth-child(2) .loginTeacher-table-cell {
+.loginTeacher-container
+  .loginTeacher-container-forms
+  .loginTeacher-container-info
+  .loginTeacher-info-item:nth-child(2)
+  .loginTeacher-table-cell {
   padding-left: 35px;
   padding-right: 0;
 }
@@ -201,11 +224,15 @@
 .loginTeacher-container.log-in .loginTeacher-container-form {
   left: 265px;
 }
-.loginTeacher-container.log-in .loginTeacher-container-form .loginTeacher-form-item.sign-up {
+.loginTeacher-container.log-in
+  .loginTeacher-container-form
+  .loginTeacher-form-item.sign-up {
   left: 0;
   opacity: 1;
 }
-.loginTeacher-container.log-in .loginTeacher-container-form .loginTeacher-form-item.log-in {
+.loginTeacher-container.log-in
+  .loginTeacher-container-form
+  .loginTeacher-form-item.log-in {
   left: -100%;
   opacity: 0;
 }
@@ -220,7 +247,9 @@
   height: 200px;
 }
 
-.loginTeacher-container.active input, .loginTeacher-container.active .loginTeacher-btn, .loginTeacher-container.active .loginTeacher-info-item {
+.loginTeacher-container.active input,
+.loginTeacher-container.active .loginTeacher-btn,
+.loginTeacher-container.active .loginTeacher-info-item {
   display: none;
   opacity: 0;
   padding: 0px;
@@ -230,7 +259,10 @@
 .loginTeacher-container.active .loginTeacher-form-item {
   height: 100%;
 }
-.loginTeacher-container.active .loginTeacher-container-forms .loginTeacher-container-info .loginTeacher-info-item {
+.loginTeacher-container.active
+  .loginTeacher-container-forms
+  .loginTeacher-container-info
+  .loginTeacher-info-item {
   height: 0%;
   opacity: 0;
 }
@@ -277,43 +309,47 @@
 
 .linea {
   margin: 0 auto 15px;
-  width: 40px;    
-  border-top:1px solid #999;
+  width: 40px;
+  border-top: 1px solid #999;
   position: relative;
   top: 13px;
-  float:left;
-  }
+  float: left;
+}
 
 .leyenda {
   margin-top: 5px;
   font-size: 12px;
-  float:left;
- }
+  float: left;
+}
 
- /* loading */
- .login-loading{
-   margin-left: 45%;
-   margin-top: 45px;
- }
+/* loading */
+.login-loading {
+  margin-left: 45%;
+  margin-top: 45px;
+}
 
- .loginTeacher-login-register {
+.loginTeacher-login-register {
   display: none;
 }
 
- .loginTeacher-message{ 
-  color: white;
-    text-align: center;
-    background: #E91E63;
-    height: 39px;
-    align-content: center;
-    padding: 10px;
-    font-size: 15px;
- }
-
- .loginTeacher-message-succefull{ 
+.loginTeacher-message {
   color: white;
   text-align: center;
-  background: rgb(0, 184, 0);
+  background: #e91e63;
+  height: 39px;
+  align-content: center;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.loginTeacher-message-succefull {
+  color: white;
+  text-align: center;
+  background: #52be7f;
+  height: 39px;
+  align-content: center;
+  padding: 10px;
+  font-size: 15px;
 }
 
 /* Media queries a partir de 600 px */
@@ -328,12 +364,13 @@
     margin: 10px auto 0 !important;
     color: #4285f4 !important;
   }
-  .loginTeacher-message{ 
-    width: 300px;
+  .loginTeacher-message {
+    width: 305px;
     margin-top: 70px;
     margin-left: 30px;
+    height: 50px;
   }
-  .loginTeacher-container .loginTeacher-container-form{
+  .loginTeacher-container .loginTeacher-container-form {
     top: -40px;
     height: 420px;
   }
@@ -341,4 +378,3 @@
     left: 30px;
   }
 }
-

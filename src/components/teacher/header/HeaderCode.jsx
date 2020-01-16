@@ -37,7 +37,7 @@ function BotonSalir(props) {
 
 
 function HeaderCode(props){
-    const [showcod, setShowcod] = useState(true);
+    const [showcod, setShowcod] = useState(false);
     const handleClose = () => setShowcod(false);
     const handleShow = () => setShowcod(true);
     const codigo = () => {
@@ -49,15 +49,14 @@ function HeaderCode(props){
     return(
         <div className="Header-code__header" id="Header-code__header">
 
-            <div class="logo">
+            <div className="logo">
                 <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" />        
                 <img className="logo-img" src={require("../../../img/index/logo.svg")} alt="" />        
             </div>
             
             <div className="class-name">
-                Clase de ksksks{props.nombre_clase}
+                {props.nombre_clase}
             </div>
-
 
             <div id="menuToggle">
                 <input id="checked" type="checkbox" className="check"/>

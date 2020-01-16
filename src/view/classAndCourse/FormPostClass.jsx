@@ -53,6 +53,7 @@ export default class FormPostCourse extends Component {
               onChange={this.handleChange}
               value={class_name}
               placeholder="Ingresar nombre de la clase"
+              required
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -63,6 +64,7 @@ export default class FormPostCourse extends Component {
               value={desc}
               as="textarea"
               rows="2"
+              required
             />
           </Form.Group>
           <Button id="modal-body__button-cursos2" type="submit"  >CREAR CLASE</Button>
