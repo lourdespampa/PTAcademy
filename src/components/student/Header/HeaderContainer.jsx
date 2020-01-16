@@ -1,6 +1,5 @@
 import React, {useState,useEffect} from 'react'
 import {Link, Redirect} from 'react-router-dom'
-import $ from 'jquery'
 import './headerStyles.sass'
 import Audio from './audio'
 import axios from 'axios'
@@ -84,60 +83,53 @@ export default function HeaderContainer(props) {
     })
     return (
         <div>
-            <WindowFocusHandler id_access={props.id_access} fullname={props.name+' '+props.lastName} id_student={props.id_student} socketUrl={props.socketUrl} ></WindowFocusHandler>
-        {
-          trivia==true
-          ? 
-          <Redirect to={`/student/${props.id_student}/${props.id_access}/trivia`} /> 
-          :
-          null
+          <WindowFocusHandler id_access={props.id_access} fullname={props.name+' '+props.lastName} id_student={props.id_student} socketUrl={props.socketUrl} ></WindowFocusHandler>
+          {
+          trivia
+          ? <Redirect to={`/student/${props.id_student}/${props.id_access}/trivia`} /> : null
           }
           {
-          temporizador==true
-          ? 
-          <Redirect to={`/student/${props.id_student}/${props.id_access}/temporizador`} /> 
-          :
-          null
+          temporizador
+          ? <Redirect to={`/student/${props.id_student}/${props.id_access}/temporizador`} /> : null
           }
           {
-          Exit==true
-          ? 
-          <Redirect to={`/`} /> 
-          :
-          null
+          Exit
+          ? <Redirect to={`/`} /> : null
           }
-            <nav id="header" className="mb-1 navbar navbar-expand-lg navbar-dark primary-color lighten-1 fixed">
-    <div className="navbar-brand">Bienvenido {props.name} {props.lastName} </div>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555" aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent-555">
-            <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                    <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}`}>Inicio</Link>
-                </li>
-                <li className="nav-item">
-                    <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}/temporizador`}>Temporizador</Link>
-                </li>
-                <li className="nav-item">
-                    <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}/trivia`}>Trivia</Link>
-                </li>
-            </ul>
-            <ul className="navbar-nav">
-                <li className="nav-item">
-                    <div className="btn nav-link" onClick={() => deleteStudent()+setredirect(true)}>salir</div>
-                    {
-                        redirect==true?
-                        <Redirect to = '/' /> :
-                        null
-                    }
-                    {/* <Link className="nav-link" to="/" id="btnsalirclase">Salir</Link> */}
+          <nav id="header" className="mb-1 navbar navbar-expand-lg navbar-dark primary-color lighten-1 fixed">
+            <div className="navbar-brand">Bienvenido {props.name} {props.lastName} </div>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555" aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent-555">
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item">
+                        <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}`}>Inicio</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}/temporizador`}>Temporizador</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}/trivia`}>Trivia</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}/trivia`}>Trivia2</Link>
+                    </li>
+                </ul>
+                <ul className="navbar-nav">
+                    <li className="nav-item">
+                        <div className="btn nav-link" onClick={() => deleteStudent()+setredirect(true)}>salir</div>
+                        {
+                            redirect
+                            ? <Redirect to = '/' /> : null
+                        }
+                        {/* <Link className="nav-link" to="/" id="btnsalirclase">Salir</Link> */}
 
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <Audio  id_access={props.id_access} id_student={props.id_student} socketUrl={props.socketUrl}/>
+                    </li>
+                </ul>
+            </div>
+          </nav>
+          <Audio  id_access={props.id_access} id_student={props.id_student} socketUrl={props.socketUrl}/>
         </div>
     )
 }
