@@ -6,26 +6,27 @@ import Audio from './audio'
 import axios from 'axios'
 import io from 'socket.io-client';
 
-// User has switched back to the tab
-const onFocus = () => {
-  console.log('Tab is in focus');
-};
 
-// User has switched away from the tab (AKA tab is hidden)
-const onBlur = (props) => {
-    const socket = io(props.socketUrl, {
-        query:
-            { pin: props.id_access }
-      })
-      socket.emit('tabBlurred',{fullname:props.fullname})
-  console.log(props.fullname);
-  console.log('Tab is blurred');
-};
 
 const WindowFocusHandler = (props) => {
+    // User has switched back to the tab
+const onFocus = () => {
+    console.log('Tab is in focus');
+  };
+  
+  // User has switched away from the tab (AKA tab is hidden)
+  const onBlur = () => {
+      const socket = io(props.socketUrl, {
+          query:
+              { pin: props.id_access }
+        })
+        socket.emit('tabBlurred',{fullname:props.fullname})
+    console.log(props.fullname);
+    console.log('Tab is blurred');
+  };
   useEffect(() => {
     window.addEventListener('focus',onFocus);
-    window.addEventListener('blur', ()=>onBlur(props));    
+    window.addEventListener('blur',onBlur);    
     // Specify how to clean up after this effect:
     return () => {
       window.removeEventListener('focus',onFocus);

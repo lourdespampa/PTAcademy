@@ -4,8 +4,6 @@ import HeaderContainer from '../../components/student/Header/HeaderContainer'
 
 class Header extends React.Component{
 
-        
-    
     render(){
         return(
             <>
@@ -17,14 +15,3 @@ class Header extends React.Component{
 }
 
 export default Header
-
-
-
-
-// export default function Footer() {
-//     return (
-//         <>
-//             <HeaderContainer id_access={this.props.id_access}/>
-//         </>
-//     )
-// }
