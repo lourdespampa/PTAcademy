@@ -76,26 +76,26 @@ function FooterContainer(props){
             <div className="overlay" id="overlayinframe">
                 <div className="popup" id="popupformulario">
                     <div class="punto-posi">
-                        <h1>Emitir Formulario</h1>
+                        <span>EMITIR FORMULARIO</span>
                     </div>
                     <br/>
                     <a href id="btnCerrarFormu" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} ><i class="material-icons">close</i></a>
-                    <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{width: "100% !important",height: "450px"}} allowFullScreen={true}
+                    <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{width: "100% !important",height: "335px"}} allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
-                    <button className="btn btn-block btn-info" onClick={()=>SendForm(props.socketUrl,props.id_access)}>EMITIR</button>
+                    <button class="button btnMyM" onClick={()=>SendForm(props.socketUrl,props.id_access)}>EMITIR</button>
                 </div>
             </div>        
 
-            <Modal id="modalvideo" size={'SM'} show={Show}
+            <Modal className="modal-teacher__general" id="modalvideo" size={'SM'} show={Show}
             onHide={() => setShow(false)+props.botonClick('modalvideo')} >
                 <Modal.Header closeButton>
                     <div class="punto-posi">
-                        <h2>Emitir video</h2>
+                        <span>EMITIR VIDEO</span>
                     </div>
                 </Modal.Header>
                 <Modal.Body>
                     <input id="urlid" type="text" placeholder={props.txt} name="urlvideo" onChange={e => seturlnombre(e.target.value)+props.changeOn('urlvideo',e.target.value)} style={{fontSize:"20px",width: "80%"}} required/>
-                    <button id="btnenviarvideo" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} class="button btnMyM" type="button">Enviar</button>
+                    <button id="btnenviarvideo" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} class="button btnMyM" type="button">ENVIAR</button>
                 </Modal.Body>
             </Modal>
 

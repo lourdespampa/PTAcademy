@@ -383,58 +383,55 @@ template {
 
 */
 
-#modal-teacher__general{
+.modal-teacher__general{
     position: relative;
-    width: 460px;
-    height: 215px;
     pointer-events: auto;
-    background: #ffffff;
     border-radius: 20px;
     transform: none !important;
-    margin-top: 0 !important;
-    top: 80px
   }
 
-#modal-teacher__general2{
-    position: relative;
-    width: 460px;
-    height: 400px;
-    pointer-events: auto;
-    background: #ffffff;
-    border-radius: 20px;
-    transform: none !important;
-    margin-top: 0 !important;
-    top: 80px
-}
-
 .modal-header{
-    font-size: 30px;
+    font-size: 26px;
     align-items: center;
     display: flex;
     justify-content: space-between;
     position: relative;
-    top: 17px
+    top: 17px;
+    padding: 1.25rem 1.5rem;
+
   }
 
+.modal-content {
+  position: relative;
+  width: 500px;
+  margin: auto;
+  background-color: #ffffff;
+  background-clip: padding-box;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.25);
+  outline: 0;
+  border-radius: 20px;
+}
+
 .modal-title{
-    font-size: 1.25rem;
-    left: 18px;
-    margin: 0;
-    position: relative;
-    line-height: 1.4;
     letter-spacing: .02em}
 
-.close{
+.modal-teacher__general .close{
     position: absolute;
     width: 42px;
     height: 35px;
-    left: 392px;
-    top: 10px;
+    top: 0;
+    right: 15px;
+    cursor: pointer;
     background: #E91E63;
-    border-radius: 9px}
+    color: #fff;
+    border-radius: 9px;
+    font-weight:bold}
+.modal-teacher__general .close:hover{
+  color: #eee
+}
 
 .modal-teacher__general-controlname{
-    position: absolute;
     height: 48px;
     width: 300px;
     left: 80px;
@@ -447,23 +444,16 @@ template {
 
 .modal-title__controlname{
     font-size: 1.25rem;
-    left: -91px;
     margin: 0;
-    position: relative;
     line-height: 1.4;
-    letter-spacing: .02em;
-    top: -20px}
+    letter-spacing: .02em;}
 
-.modal-title__controldescription{
+.modal-body .modal-title__controldescription{
     font-size: 1.25rem;
-    left: -75px;
     margin: 0;
-    position: relative;
     line-height: 1.4;
-    letter-spacing: .02em;
-    top: 30px}
+    letter-spacing: .02em;}
 .modal-teacher__general-controldescription{
-    position: absolute;
     height: 120px;
     width: 300px;
     left: 80px;
@@ -475,76 +465,72 @@ template {
     border-radius: 8px;
     bottom: -28px}
 
-.modal-body{
-    flex: 1 1 auto; 
-    position: relative}
-
 #modal-content__codigogenerado{
     font-size: 112px;
     position: relative;
     display: initial;
+    font-weight: bold;
     margin-inline-start: 0;
     margin-inline-end: 0;
     margin-block-start: 0;
     margin-block-end: 0}
 
-#modal-header__title-question{
-    position: absolute;
-    width: 308px;
-    height: 58px;
-    left: 88px;
-    top: 19px;
-    font-weight: 500;
-    font-size: 26px;
-    display: flex;
-    align-items: center}
 
 #modal-body__button-yes{
-    position: absolute;
-    width: 75px;
-    height: 50px;
-    left: 100px;
-    top: 25px;
-    background: #52BE7F;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 16px}
+    background: #52BE7F}
+   #modal-body__button-yes:hover{
+      background: #52BE7F88}
 
 #modal-body__button-no{
-    position: absolute;
-    width: 75px;
-    height: 50px;
-    left: 190px;
-    top: 25px;
-    background: #E91E63;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 16px}
+    background: #E91E63}
+    #modal-body__button-no:hover{
+      background: #E91E6388}
 
 #modal-body__button-cursos {
-    position: absolute;
-    width: 175px;
-    height: 50px;
-    left: 280px;
-    top: 25px;
-    background: #FB9600;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 16px}
+    background: #FB9600}
+#modal-body__button-cursos:hover {
+      background: #FB960088}
 
-#modal-body__button-cursos2{
+.modal-body{
+    padding: 2.25rem 1.5rem;
+    text-align: center;
     position: relative;
-    width: 175px;
-    height: 50px;
-    top: 170px;
-    background: #FB9600;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 16px}
+    padding-top:20px}
 
-#modal-body__exit{
-    flex: 1 1 auto;
-    padding: 1.25rem 1.5rem;
-    position: relative;
-    top: 40px;
-    right: 40px}
+.modal-body .btn{
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 10px;
+  color:#fff;
+  font-size:18px;
+  background: #00aae3;
+  cursor: pointer
+}
+.modal-body .btn:hover{
+  background: #00aae388;
+}
+
+@media screen and (max-width:600px){
+.modal-content {
+  width: 360px;
+  margin: 50px}
+
+.modal-body{
+  padding: 2.25rem 0.5rem;}
+
+#modal-content__codigogenerado{
+  font-size: 95px;}
+}
+
+@media screen and (max-width:350px){
+  .modal-content {
+    width: 300px;
+    margin:40px}
+
+  .modal-header{
+    font-size: 18px;}
+
+  .modal-body{
+    padding: 2.25rem 0.5rem;}
+  
+}
