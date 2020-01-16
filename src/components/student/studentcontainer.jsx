@@ -7,11 +7,11 @@ export default class Container extends Component {
     render() {
         const {children}=this.props
         return (
-            <div>
+            <div className="main-student-container">
                 <Header apiUrl={this.props.apiUrl} socketUrl={this.props.socketUrl} id_access={this.props.id_access} 
                 id_student={this.props.id_student} name={this.props.name} lastName={this.props.lastName}/>
                 <Left view={`/student/${this.props.id_student}/${this.props.id_access}/pizarra`} socketUrl={this.props.socketUrl} id_access={this.props.id_access}/>
-                {children }
+                {children}
                 <Footer socketUrl={this.props.socketUrl} id_access={this.props.id_access}/>
             </div>
         )
