@@ -3,7 +3,7 @@ import "./FooterContainer.sass";
 import Modal from "react-bootstrap/Modal";
 import Audio from "../audio/audio";
 import io from "socket.io-client";
-
+import Slide from '../slides/slide_02';
 function enviarvideo(url, url2, socketUrl, id_access) {
   var urlnombre = url + url2;
   const socket = io(socketUrl, {
@@ -66,9 +66,11 @@ function FooterContainer(props){
             <div className="overlay" id="overlay">
                 <div className="popup" id="popup">
                     <a href id="btnCerrarDiapo" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay','popup')+props.botonClick('btnCerrarDiapo')} ><i class="material-icons">close</i></a>
-                    <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",height: "100%"}} allowFullScreen={true}
+                    <Slide/>
+                    <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",display:'none',height: "100%"}} allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
                     </iframe>
+                    
                     <div id="btnBack" className="btn-back"  onClick={()=>props.backtPpt()+props.botonClick('btnBack')}><i class="material-icons">navigate_before</i></div>
                     <div id="btnNext" className="btn-next" onClick={()=>props.nextPpt()+props.botonClick('btnNext')}><i class="material-icons">navigate_next</i></div>
                 </div>

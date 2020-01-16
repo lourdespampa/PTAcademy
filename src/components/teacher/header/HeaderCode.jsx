@@ -22,12 +22,9 @@ function BotonSalir(props) {
             <Link to='/' variant="primary"><Button id="modal-body__button-yes" size="sm" onClick={handleClose}>SI</Button></Link>`      `
             <Link><Button id="modal-body__button-no" size="sm" onClick={handleClose}>NO</Button></Link>`      `
             {/* falta cambiar esta id_teacher estatica */}
-            {/* <Link to={`/CoursesTeacher/${user._id}`}>
-            <Button variant="primary" size="sm" onClick={handleClose}>Regresar a cursos</Button>
-            </Link> */}
-            <Link to='/CoursesTeacher/5db74edbae96433b08911b38'>
-                <Button id="modal-body__button-cursos" onClick={handleClose}>REGRESAR A CURSOS</Button>
-             </Link>
+            <Link to={`/CoursesTeacher/${user._id}`}>
+            <Button id="modal-body__button-cursos" onClick={handleClose}>Regresar a cursos</Button>
+            </Link>
           </ButtonToolbar>
           </Modal.Body>
         </Modal>
