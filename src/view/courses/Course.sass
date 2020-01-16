@@ -37,10 +37,15 @@
     padding: 1rem
     cursor: pointer
     &:hover
-        background-color: #52BE7F
+        background-color: #ffffff
+    &:hover .teacherCourses__main-menu__addCourse
+        color: #000000
+    &:hover .teacherCourses__main-menu__LogOut
+        color: #000000
+
 .teacherCourses__main-menu__addCourse,
 .teacherCourses__main-menu__LogOut
-    color: #CCC
+    color: #ffffff
     margin-left: 1rem
     text-decoration: none
     
@@ -104,6 +109,8 @@
         &:hover
             background-color: #FB9600
             color: white
+    // .teacherCourses__main-menu__item:hover .teacherCourses__main-menu__LogOut
+    //     color: #ffffff;
 
     .teacherCourses__main-menu__LogOut
         color: #53575A
@@ -127,7 +134,13 @@
         --padding: 5rem 1rem 6rem
         --logo-height: 5rem 
     .teacherCourses__main-menu__item:hover
-        background: none
+        background-color: transparent
+        & .teacherCourses__main-menu__LogOut
+            color: white
+            background-color: #E91E63
+        & .teacherCourses__main-menu__addCourse
+            background-color: #FB9600
+            color: white
 
 .courseTeacher-container
     display: flex
@@ -283,6 +296,41 @@
             transform: scale(1.25)
             font-size: 20px
 
+
+
+.classTeacher__buttonEntry
+    width: 100%
+    border: 0
+    height: 20%
+    display: block
+    margin: .2em
+    border-radius: 5px
+    vertical-align: middle
+    position: relative
+    z-index: 1
+    cursor: pointer
+    text-decoration: none
+    padding: .5rem
+    background-color: #E74C3C
+    color: #FFFFFF
+    & .courseTeacher__buttonEntry-label 
+        width: 150px
+        transition: transform 0.3s ease-in-out;
+        -webkit-transition: all .4s ease;
+        -moz-transition: all .4s ease;
+        -o-transition: all .4s ease;
+        -ms-transition: all .4s ease;
+        cursor: pointer
+        &:hover
+            -webkit-transform: scale(1.25);
+            -moz-transform: scale(1.25);
+            -ms-transform: scale(1.25);
+            -o-transform: scale(1.25);
+            transform: scale(1.25)
+            font-size: 20px
+    
+
+
 .courseTeacher-title
     background-color: #51bd7e;
     height: 50px;
@@ -291,7 +339,7 @@
     text-align: center;
     color: white
 .courseTeacher-title--class
-    background-color: #c72aa0;
+    background-color: #e74c3c;
     height: 50px;
     margin: 0;
     padding: 1rem;
@@ -314,3 +362,9 @@
 .CourseTeacher-main
     height: 55rem
     background-color: #51bd7e
+
+
+    // css para clases     #e74c3c
+.courseTeacher-cards__nullCourses
+    color: #ffffff
+    padding: 0 1rem

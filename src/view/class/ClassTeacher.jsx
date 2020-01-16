@@ -67,7 +67,7 @@ export default class ClassTeacher extends Component {
       <NavCourse apiUrl={this.props.apiUrl} idteacher={this.state.idteacher} idcourse={this.state.idcourse} agregarX={'clase'}
        nombreProfesor={this.state.nombreProfesor} getdata={this.getClass}></NavCourse>
         <div className="ClassTeacher-main">
-          <h1 className="courseTeacher-title">SECCION DE CLASES</h1>
+          <h1 className="courseTeacher-title--class">SECCION DE CLASES</h1>
           <ul className="courseTeacher-container class">
             {
               this.state.classes.length>0
@@ -81,7 +81,7 @@ export default class ClassTeacher extends Component {
                   id={clase._id}/>
               </li>
             ))
-          :<h3>Cargando cursos... Si no tiene, puede crear uno.</h3>
+          :<h3 className="courseTeacher-cards__nullCourses">Cargando cursos... Si no tiene, puede crear uno.</h3>
           }
           </ul>
         </div>

@@ -32,7 +32,7 @@ export default class AllCourses extends Component {
                 onClick={()=>this.props.onClick(this.props.id)}
                 to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
              className="courseTeacher__buttonEntry">
-                      <label className="courseTeacher__buttonEntry-label">ver clases</label>
+                      <label className="courseTeacher__buttonEntry-label">VER CLASES</label>
                     </Link>
               </div>
             </div>

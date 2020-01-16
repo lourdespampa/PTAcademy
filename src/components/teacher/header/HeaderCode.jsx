@@ -13,11 +13,11 @@ function BotonSalir(props) {
     return (
       <>
         <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />           
-        <Modal show={show} onHide={handleClose} animation={false}>
+        <Modal id="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
             <Modal.Title id="modal-header__title-question">¿Desea cerrar sesión?</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body id="modal-body__exit">
           <ButtonToolbar>
             <Link to='/' variant="primary"><Button id="modal-body__button-yes" size="sm" onClick={handleClose}>SI</Button></Link>`      `
             <Link><Button id="modal-body__button-no" size="sm" onClick={handleClose}>NO</Button></Link>`      `
@@ -25,6 +25,9 @@ function BotonSalir(props) {
             {/* <Link to={`/CoursesTeacher/${user._id}`}>
             <Button variant="primary" size="sm" onClick={handleClose}>Regresar a cursos</Button>
             </Link> */}
+            <Link to='/CoursesTeacher/5db74edbae96433b08911b38'>
+                <Button id="modal-body__button-cursos" onClick={handleClose}>REGRESAR A CURSOS</Button>
+             </Link>
           </ButtonToolbar>
           </Modal.Body>
         </Modal>
@@ -34,7 +37,7 @@ function BotonSalir(props) {
 
 
 function HeaderCode(props){
-    const [showcod, setShowcod] = useState(true);
+    const [showcod, setShowcod] = useState(false);
     const handleClose = () => setShowcod(false);
     const handleShow = () => setShowcod(true);
     const codigo = () => {
@@ -46,32 +49,13 @@ function HeaderCode(props){
     return(
         <div className="Header-code__header" id="Header-code__header">
 
-            <div class="logo">
+            <div className="logo">
                 <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" />        
                 <img className="logo-img" src={require("../../../img/index/logo.svg")} alt="" />        
             </div>
             
             <div className="class-name">
-                Clase de ksksks{props.nombre_clase}
-            </div>
-
-            <div className="options">
-                <BotonSalir/>
-                <Modal show={showcod} onHide={handleClose}>
-                    <Modal.Header>
-                        <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <h1>{props.id_access}</h1>
-                    </Modal.Body>
-                </Modal>
-            </div>
-
-            <div className="code-detail" onClick={handleShow}>
-                <span className="code">Código:</span>
-                <div className="codigo-generado" >
-                    {props.id_access}
-                </div>
+                {props.nombre_clase}
             </div>
 
             <div id="menuToggle">
@@ -91,6 +75,29 @@ function HeaderCode(props){
                         <li className="menu-header__item"><Link onClick={()=>props.redirect('trivia')+closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
                     </ul>
                 </nav>
+            </div>
+            <div className="content-headercode">
+                <div className="code-detail" onClick={handleShow}>
+                    <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
+                        <class className="code">Código:</class>
+                        <div className="codigo-generado" onClick={handleShow}>
+                        {props.id_access}
+                        </div>
+                    </a>
+                </div>
+                <div className="code-menu-detail">
+                    
+                    <BotonSalir/>
+                    
+                </div>
+                <Modal id="modal-teacher__general" show={showcod} onHide={handleClose}>
+                    <Modal.Header id="modal-general__header" closeButton>
+                        <h4 className="modal-title"><strong>CODIGO DE LA CLASE:</strong></h4>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <h1 id="modal-content__codigogenerado">{props.id_access}</h1>
+                    </Modal.Body>
+                </Modal>
             </div>
         </div>
     )

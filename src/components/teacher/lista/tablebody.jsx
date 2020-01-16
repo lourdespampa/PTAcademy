@@ -5,25 +5,25 @@ export const TableBody = (props) => {
         <>
             {props.students.map(student=>(
                 <tr key={student._id}>
-                    <td className="nom" style={{width:"20%"}}>
+                    <td className="nom" style={{width:"80px"}}>
                     {student.name_stu}
                     </td>
-                    <td className="ape" style={{width:"20%"}}>
+                    <td className="ape" style={{width:"80px"}}>
                     {student.lastName_stu}
                     </td>
-                    <td className="nota" style={{textAlign:"center",width:'130px'}}>
+                    <td className="nota" style={{textAlign:"center",width:'80px'}}>
                         {student.score}
                         <button onClick={()=>props.onClickNote(student._id,student.score)+ props.setShow('shownota',true)} className="button pull-right btnMyM material-icons">
                     edit
                     </button>
                     </td>
-                    <td className="compo"style={{textAlign:"center",width:'150px'}}>
+                    <td className="compo"style={{textAlign:"center",width:'50px'}}>
                     {student.conduct}
                     <button onClick={()=>props.onClick(student._id)+ props.setShow('showcomportamiento',true)} className="button pull-right btnMyM material-icons">
                     edit
                     </button>
                     </td>
-                    <td style={{textAlign:"center",width:"160px"}}>
+                    <td style={{textAlign:"center",width:"80px"}}>
                     <button className="button btnMyM material-icons" onClick={()=>props.onClickPoint(student._id,student.point)+ props.setShow('showpuntosmas',true)} >
                     add_circle_outline
                     </button>
@@ -32,7 +32,7 @@ export const TableBody = (props) => {
                     remove_circle_outline
                     </button> 
                     </td>
-                    <td style={{width:"80px"}}>
+                    <td style={{width:"50px"}}>
                     <button className="button btnMyM material-icons" onClick={()=>props.onClick(student._id)+ props.setShow('showdelete',true)}>
                     delete
                     </button> 
