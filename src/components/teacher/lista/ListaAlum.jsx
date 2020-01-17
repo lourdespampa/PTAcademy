@@ -248,13 +248,13 @@ export default class ListaAlum extends Component {
                                             <tr>
                                                 <th style={{textAlign:"center"}}>Nombres</th>
                                                 <th style={{textAlign:"center"}}>Apellidos</th>
-                                                <th style={{textAlign:"center"}}>Nota(0-20)</th>
-                                                <th style={{textAlign:"center"}}>Comportamiento</th>
-                                                <th style={{textAlign:"center"}}>puntos</th>
-                                                <th style={{textAlign:"center"}}>...</th>
+                                                <th style={{textAlign:"center",width:"15%"}}>Nota(0-20)</th>
+                                                <th style={{textAlign:"center",width:"20%"}}>Comportamiento</th>
+                                                <th style={{textAlign:"center",width:"15%"}}>puntos</th>
+                                                <th style={{textAlign:"center",width:"5%"}}>...</th>
                                             </tr>
                                         </thead>
-                                        <tbody style={{'height': '350px', 'overflow':'overlay'}}>
+                                        <tbody style={{'height': '350px'}}>
                                             { this.state.students ?
                                        <TableBody students={this.state.students} onClickNote={this.onClickNote} onClick={this.onClick}
                                         onClickPoint={this.onClickPoint} deleteStudents={this.deleteStudents} setShow={this.setShow} />
