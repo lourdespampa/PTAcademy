@@ -62,6 +62,7 @@ export default class ListaAlum extends Component {
     
 //rellenar state
     getStudents = async () => {
+        console.log(this.state.students)
         console.log(this.props.id_access)
         var varToken = localStorage.getItem('token');
      const res = await axios({
@@ -265,56 +266,56 @@ export default class ListaAlum extends Component {
                         </div>
                     </div>
                 </div>
-            <Modal size={'lg'} show={this.state.modals.showpuntosmas} onHide={() => this.setShow('showpuntosmas',false)}>
+            <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showpuntosmas} onHide={() => this.setShow('showpuntosmas',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">Positivo ssddsd</h3>
+                        <span className="punto-text">POSITIVO</span>
                     </div>
                 </Modal.Header>
                 <Modal.Body>
                         <BtnPuntos data={this.state.datapoint.pocitivo} funcion={this.onClickPointAdd} />
                 </Modal.Body>
             </Modal> 
-            <Modal size={'lg'} show={this.state.modals.showpuntosmenos} onHide={() => this.setShow('showpuntosmenos',false)}>
+            <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showpuntosmenos} onHide={() => this.setShow('showpuntosmenos',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">Necesitas Mejorar</h3>            
+                        <span className="punto-text">NECESITAS MEJORAR</span>            
                     </div>
                 </Modal.Header>
                 <Modal.Body>
                         <BtnPuntos data={this.state.datapoint.negativo} funcion={this.onClickPointRemove} />
                 </Modal.Body>
             </Modal> 
-            <Modal size={'lg'} show={this.state.modals.shownota} onHide={() => this.setShow('shownota',false)}>
+            <Modal className="modal-teacher__general" show={this.state.modals.shownota} onHide={() => this.setShow('shownota',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">Nota</h3>          
+                        <span className="punto-text">NOTA</span>          
                     </div>
                 </Modal.Header>
                 <Modal.Body style={{justifyContent: 'center',display: 'flex'}}>
                     <input type="text"  value={this.state.note} onChange={this.onChangeInput} />
-                    <button id="btnnotas" class="button btnMyM" onClick={()=>this.onSubmitNote() + this.setShow('shownota',false)} type="button" >modificar</button> 
+                    <button id="btnnotas" class="button btnMyM" onClick={()=>this.onSubmitNote() + this.setShow('shownota',false)} type="button" >MODIFICAR</button> 
                 </Modal.Body>
             </Modal> 
-            <Modal size={'lg'} show={this.state.modals.showcomportamiento} onHide={() => this.setShow('showcomportamiento',false)}>
+            <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showcomportamiento} onHide={() => this.setShow('showcomportamiento',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">Comportamiento</h3>          
+                        <span className="punto-text">COMPORTAMIENTO</span>          
                     </div>
                 </Modal.Header>
                 <Modal.Body>
                     <BtnPuntos data={this.state.datapoint.camportamiento} funcion={this.onClickConductAdd}/>
                 </Modal.Body>
             </Modal> 
-            <Modal size={'lg'} show={this.state.modals.showdelete} onHide={() => this.setShow('showdelete',false)}>
+            <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showdelete} onHide={() => this.setShow('showdelete',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">¿Desea eliminar al alumno?</h3>          
+                        <span className="punto-text">¿DESEA ELIMINAR AL ALUMNO?</span>          
                     </div>
                 </Modal.Header>
                 <Modal.Body>
-                    <button class="button btnMyM" onClick={() => this.setShow('showdelete',false)} type="button">No</button> 
-                    <button class="button btnMyM" onClick={() => this.deleteStudents()+this.setShow('showdelete',false)} type="button">si</button> 
+                    <button id="modal-body__button-yes" className="btn" onClick={() => this.deleteStudents()+this.setShow('showdelete',false)} type="button">SI</button> 
+                    <button id="modal-body__button-no" className="btn" onClick={() => this.setShow('showdelete',false)} type="button">NO</button> 
                 </Modal.Body>
             </Modal> 
                 </>

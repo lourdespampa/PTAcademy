@@ -69,17 +69,7 @@ class Header extends React.Component {
   render() {
     return (
       <>
-      <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnVisibilityChange
-          draggable
-          pauseOnHover
-        />
+      
         <HeaderCode
           socketUrl={this.props.socketUrl}
           ExitSocket={this.ExitSocket}
@@ -93,7 +83,17 @@ class Header extends React.Component {
           id_access={this.props.id_access}
           id_class={this.props.id_class}
         />
-        
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover
+        />
       </>
     );
   }
