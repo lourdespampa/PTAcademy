@@ -414,7 +414,7 @@ template {
 }
 
 .modal-title{
-    letter-spacing: .02em}
+    letter-spacing: .01em}
 
 .modal-teacher__general .close{
     position: absolute;
@@ -433,7 +433,7 @@ template {
 
 .modal-teacher__general-controlname{
     height: 48px;
-    width: 300px;
+    width: 100%;
     left: 80px;
     right: 364px;
     top: 28px;
@@ -455,7 +455,7 @@ template {
     letter-spacing: .02em;}
 .modal-teacher__general-controldescription{
     height: 120px;
-    width: 300px;
+    width: 100%;
     left: 80px;
     right: 364px;
     top: 109px;
@@ -510,10 +510,12 @@ template {
   background: #00aae388;
 }
 
-@media screen and (max-width:600px){
+@media screen and (max-width:800px){
 .modal-content {
-  width: 360px;
-  margin: 50px}
+  width: 360px
+}
+.modal-body .punto-marco {
+  margin: 0px 1px 25px;} 
 
 .modal-body{
   padding: 2.25rem 0.5rem;}
@@ -522,15 +524,16 @@ template {
   font-size: 95px;}
 }
 
-@media screen and (max-width:350px){
+@media screen and (max-width:500px){
   .modal-content {
-    width: 300px;
-    margin:40px}
+    width: 300px;}
 
   .modal-header{
     font-size: 18px;}
 
   .modal-body{
     padding: 2.25rem 0.5rem;}
-  
+
+  .punto-marco {
+    margin: 0px 1px 10px;}  
 }
