@@ -5,9 +5,6 @@ import io from 'socket.io-client';
 //import {MediaPresenter} from 'sfmediastream';
 const {MediaPresenter} = require('sfmediastream');
 
-const socketUrl="http://3.16.110.136:4000/teacher";
-const socket = io(socketUrl)
-
 export default class Audio extends Component{
     constructor(props) {
         super(props);
@@ -16,6 +13,9 @@ export default class Audio extends Component{
         }
       }
     componentDidMount(){
+        console.log(this.props.socketUrl)
+        console.log(this.props.id_access)
+        
     var presenterMedia = false;
     var micon = document.getElementById('btn');
     var btn = document.getElementById('btn');
@@ -25,6 +25,10 @@ export default class Audio extends Component{
 //EMISOR
     const controller = []
     micon.addEventListener('click', () => {
+        const socket = io(this.props.socketUrl, {
+            query:
+                { pin: this.props.id_access }
+          })
         if(controller.length%2===0){
             micro.style.animation ='ripple 1000ms infinite' ;
             socket.emit('onPlay', {

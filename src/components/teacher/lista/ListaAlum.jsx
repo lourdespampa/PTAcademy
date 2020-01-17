@@ -62,6 +62,7 @@ export default class ListaAlum extends Component {
     
 //rellenar state
     getStudents = async () => {
+        console.log(this.state.students)
         console.log(this.props.id_access)
         var varToken = localStorage.getItem('token');
      const res = await axios({
