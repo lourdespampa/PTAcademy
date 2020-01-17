@@ -45,7 +45,7 @@ export default class FormPostCourse extends Component {
     const { class_name, desc } = this.state;
     return (
       <>
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label className="modal-title__controlname">Nombre de la Clase</Form.Label>
             <Form.Control className="modal-teacher__general-controlname"
