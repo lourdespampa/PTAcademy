@@ -101,6 +101,7 @@ export default function HeaderContainer(props) {
           Exit
           ? <Redirect to={`/`} /> : null
           }
+          
           <header className="alumnoH-header">
             <div className="alumnoHeader-logo">
               <Link onClick={reinicio} to={`/student/${props.id_student}/${props.id_access}`} style={{textDecoration:"none"}}>
@@ -143,7 +144,8 @@ export default function HeaderContainer(props) {
               </li>
             </ul>
             </header>
-          <Audio  id_access={props.id_access} id_student={props.id_student} socketUrl={props.socketUrl}/>
+            <div className="alumnoH-header-base"></div>
+          {/* <Audio  id_access={props.id_access} id_student={props.id_student} socketUrl={props.socketUrl}/> */}
         </div>
     )
 }

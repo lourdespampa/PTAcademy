@@ -137,7 +137,7 @@ export default class Trivia extends React.Component {
         }
         
         {/* contenido */}
-        <div className="contenedorPrincipal" style={{marginTop: "55px"}}>
+        <div className="contenedorPrincipal">
           <div className="header2">
             <h1 id="question">{this.state.pregunta ? this.state.pregunta : "¿Es esta una pregunta?"}</h1>
           </div>
@@ -146,9 +146,9 @@ export default class Trivia extends React.Component {
               {
                 this.state.time > 9
                 ?
-                <nav className="contador"> {this.state.time} </nav>
+                <nav className="contador"> <h1>{this.state.time}</h1> </nav>
                 :
-                <nav className="contador"> 0{this.state.time} </nav>
+                <nav className="contador"> <h1>0{this.state.time}</h1> </nav>
               }
             </div>
             <div className="trivia-student-center" id="center">
