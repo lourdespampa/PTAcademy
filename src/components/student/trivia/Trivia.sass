@@ -2,6 +2,8 @@
 // body
 //     background: #E5E8E8
 //     font-family: Opal
+.fixed-footer
+    display: none
 
 .codigo
     border-top: 1px solid white
@@ -204,6 +206,8 @@ td
     width: 100vw
     transition: all .5s
 
+#btn_play
+    display: none
 
 @media screen and (max-width: 500px)
     .trivia-student-button
@@ -212,8 +216,14 @@ td
         img
             display: none
     .left
-        height: 200px
+        height: 150px
     .right
         height: 200px
     .trivia-student-button img
         width: 40px
+
+@media screen and (max-width: 600px)
+    .trivia-student-center
+        width: 100%
+    .right
+        display: none

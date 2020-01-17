@@ -155,7 +155,7 @@ export default class Trivia extends React.Component {
               <img
                 id="pre-imagen"
                 src={require("./playvr.webp")}
-                width="420"
+                width="220"
               />
             </div>
             <div className="right">
