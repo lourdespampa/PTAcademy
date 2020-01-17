@@ -69,7 +69,7 @@ export default class FormPostCourse extends Component {
               required
             />
           </Form.Group>
-          <Button id="modal-body__button-cursos2" type="submit"  >CREAR CURSO</Button>
+          <Button id="modal-body__button-cursos" type="submit"  >CREAR CURSO</Button>
         </Form>
       </>
     );

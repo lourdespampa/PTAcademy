@@ -132,32 +132,32 @@ export default class CoursesTeacher extends Component {
             )}
           </ul>
         </div>
-        <Modal
+        <Modal className="modal-teacher__general"
           size={"lg"}
           show={this.state.showdelete}
           onHide={() => this.setShow("showdelete", false)}
         >
           <Modal.Header closeButton>
             <div className="punto-posi">
-              <h3 className="punto-text">¿Desea eliminar al Curso?</h3>
+              <span className="punto-text">¿DESEA ELIMINAR EL CURSO?</span>
             </div>
           </Modal.Header>
           <Modal.Body>
             <button
-              className="button btnMyM"
+              id="modal-body__button-yes" className="btn"
               onClick={() =>
                 this.deleteCurso() + this.setShow("showdelete", false)
               }
               type="button"
             >
-              si
+              SI
             </button>
             <button
-              className="button btnMyM"
+              id="modal-body__button-no" className="btn"
               onClick={() => this.setShow("showdelete", false)}
               type="button"
             >
-              No
+              NO
             </button>
           </Modal.Body>
         </Modal>
