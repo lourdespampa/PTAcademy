@@ -291,7 +291,7 @@ export default class ListaAlum extends Component {
                         <span className="punto-text">NOTA</span>          
                     </div>
                 </Modal.Header>
-                <Modal.Body style={{justifyContent: 'center',display: 'flex'}}>
+                <Modal.Body style={{justifyContent: 'center'}}>
                     <input type="text"  value={this.state.note} onChange={this.onChangeInput} />
                     <button id="btnnotas" class="button btnMyM" onClick={()=>this.onSubmitNote() + this.setShow('shownota',false)} type="button" >MODIFICAR</button> 
                 </Modal.Body>

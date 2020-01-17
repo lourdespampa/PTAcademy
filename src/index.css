@@ -510,10 +510,12 @@ template {
   background: #00aae388;
 }
 
-@media screen and (max-width:600px){
+@media screen and (max-width:800px){
 .modal-content {
   width: 360px
 }
+.modal-body .punto-marco {
+  margin: 0px 1px 25px;} 
 
 .modal-body{
   padding: 2.25rem 0.5rem;}
@@ -522,15 +524,16 @@ template {
   font-size: 95px;}
 }
 
-@media screen and (max-width:350px){
+@media screen and (max-width:500px){
   .modal-content {
-    width: 300px;
-    margin:40px}
+    width: 300px;}
 
   .modal-header{
     font-size: 18px;}
 
   .modal-body{
     padding: 2.25rem 0.5rem;}
-  
+
+  .punto-marco {
+    margin: 0px 1px 10px;}  
 }
