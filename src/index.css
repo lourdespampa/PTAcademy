@@ -433,7 +433,7 @@ template {
 
 .modal-teacher__general-controlname{
     height: 48px;
-    width: 300px;
+    width: 100%;
     left: 80px;
     right: 364px;
     top: 28px;
@@ -455,7 +455,7 @@ template {
     letter-spacing: .02em;}
 .modal-teacher__general-controldescription{
     height: 120px;
-    width: 300px;
+    width: 100%;
     left: 80px;
     right: 364px;
     top: 109px;
