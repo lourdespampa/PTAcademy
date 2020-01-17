@@ -28,11 +28,6 @@ export default function footercontainer(props) {
 
 
 
-
-
-
-
-
         <div class="container-fluid text-center text-md-left">
           <div class="row">
            
