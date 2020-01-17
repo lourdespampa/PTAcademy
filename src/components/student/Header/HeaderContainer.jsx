@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import {Link, Redirect} from 'react-router-dom'
-import './headerStyles.sass'
+import './HeaderContainer.css'
 import Audio from './audio'
 import axios from 'axios'
 import io from 'socket.io-client';
@@ -36,6 +36,7 @@ const onFocus = () => {
   return <></>;
 };
 export default function HeaderContainer(props) {
+    const [showResponsive, setShowResponsive] = useState(false)
     const [redirect,setredirect]=useState(false);
     const [trivia,settrivia]=useState(false);
     const [temporizador,settemporizador]=useState(false);
@@ -81,6 +82,10 @@ export default function HeaderContainer(props) {
         })
         //END LISTA
     })
+    const handleNavbarResponsive = () => {
+        setShowResponsive(!showResponsive)
+    }
+
     return (
         <div>
           <WindowFocusHandler id_access={props.id_access} fullname={props.name+' '+props.lastName} id_student={props.id_student} socketUrl={props.socketUrl} ></WindowFocusHandler>
@@ -96,39 +101,48 @@ export default function HeaderContainer(props) {
           Exit
           ? <Redirect to={`/`} /> : null
           }
-          <nav id="header" className="mb-1 navbar navbar-expand-lg navbar-dark primary-color lighten-1 fixed">
-            <div className="navbar-brand">Bienvenido {props.name} {props.lastName} </div>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555" aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent-555">
-                <ul className="navbar-nav mr-auto">
-                    <li className="nav-item">
-                        <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}`}>Inicio</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}/temporizador`}>Temporizador</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}/trivia`}>Trivia</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link onClick={reinicio} className="nav-link" to={`/student/${props.id_student}/${props.id_access}/trivia`}>Trivia2</Link>
-                    </li>
-                </ul>
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <div className="btn nav-link" onClick={() => deleteStudent()+setredirect(true)}>salir</div>
-                        {
-                            redirect
-                            ? <Redirect to = '/' /> : null
-                        }
-                        {/* <Link className="nav-link" to="/" id="btnsalirclase">Salir</Link> */}
-
-                    </li>
-                </ul>
+          <header className="alumnoH-header">
+            <div className="alumnoHeader-logo">
+              <Link onClick={reinicio} to={`/student/${props.id_student}/${props.id_access}`} style={{textDecoration:"none"}}>
+                <h1 className="alumnoHeader-image">PlayTec Academy</h1>
+              </Link>
             </div>
-          </nav>
+            <i className="fas fa-bars alumnoHeader-menu-toggle" onClick={handleNavbarResponsive}></i>
+            <ul className={showResponsive ? "alumnoHeader-nav showResponsive" : "alumnoHeader-nav"}>
+              <li className="alumnoHeader-li">
+                <Link onClick={reinicio} className="alumnoHeader-a" to={`/student/${props.id_student}/${props.id_access}/trivia`}>
+                  <i class="fa fa-list-ol"></i>
+                  Trivia
+                </Link>
+              </li>
+              <li className="alumnoHeader-li">
+                <Link onClick={reinicio} className="alumnoHeader-a" to={`/student/${props.id_student}/${props.id_access}/temporizador`}>
+                  <i class="fas fa-hourglass" style={{fontSize:"22px", padding:"0 10px"}}></i>
+                  Temporizador
+                </Link>
+              </li>
+              {/* <li className="alumnoHeader-"><a className="alumnoHeader-"></a></li> */}
+              <li className="alumnoHeader-li"> 
+                <a className="alumnoHeader-a">
+                  <i className="fa fa-user"></i>
+                  {props.name} {props.lastName}
+                  <i className="fa fa-chevron-down"></i>
+                </a>
+                <ul className={showResponsive ? "alumnoHeader-nav showResponsive" : "alumnoHeader-nav"} style={{zIndex:"5000"}}>
+                  <li className="alumnoHeader-li"  onClick={() => deleteStudent()+setredirect(true)}>
+                    <a className="alumnoHeader-a alumnoHeader-salir">
+                      <i class="fas fa-sign-out-alt" style={{fontSize:"22px", padding:"0 10px"}}></i>
+                      Salir
+                      {
+                        redirect
+                        ? <Redirect to = '/' /> : null
+                      }
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            </header>
           <Audio  id_access={props.id_access} id_student={props.id_student} socketUrl={props.socketUrl}/>
         </div>
     )
