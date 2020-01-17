@@ -414,7 +414,7 @@ template {
 }
 
 .modal-title{
-    letter-spacing: .02em}
+    letter-spacing: .01em}
 
 .modal-teacher__general .close{
     position: absolute;
@@ -512,8 +512,8 @@ template {
 
 @media screen and (max-width:600px){
 .modal-content {
-  width: 360px;
-  margin: 50px}
+  width: 360px
+}
 
 .modal-body{
   padding: 2.25rem 0.5rem;}
