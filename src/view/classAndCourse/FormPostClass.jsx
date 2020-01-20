@@ -45,7 +45,8 @@ export default class FormPostCourse extends Component {
     const { class_name, desc } = this.state;
     return (
       <>
-        <Form onSubmit={this.handleSubmit}>
+        {/* <Form onSubmit={this.handleSubmit}> */}
+        < >
           <Form.Group>
             <Form.Label className="modal-title__controlname">Nombre de la Clase</Form.Label>
             <Form.Control className="modal-teacher__general-controlname"
@@ -67,10 +68,10 @@ export default class FormPostCourse extends Component {
               rows="2"
               required
             />
-            {/* <Upload handleClose={this.props.handleClose} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc}    ></Upload> */}
+            <Upload handleClose={this.props.handleClose} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc}    ></Upload>
           </Form.Group>
-          <Button id="modal-body__button-cursos" className="btn" type="submit"  >CREAR CLASE</Button>
-        </Form>
+          {/* <Button id="modal-body__button-cursos" className="btn" type="submit"  >CREAR CLASE</Button> */}
+        </>
       </>
     );
   }
