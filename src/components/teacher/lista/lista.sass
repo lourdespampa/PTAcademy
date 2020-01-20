@@ -174,18 +174,16 @@
     text-align: center
 
 .table 
-    width:  100%
+    width: 100%
     border-spacing: 0
     border-collapse: collapse
-    margin-left: 10px !important
-    margin-top: 5px
 
 .table
     >tbody
         >tr
             >td,
             >th,
-                padding: 8px
+                padding: 8px 0 8px 2px
                 line-height: 1.42857143
                 vertical-align: top
                 border-top: 1px solid #ddd
@@ -532,8 +530,8 @@ table th[class*=col-]
 
 
 .table-responsive 
+    overflow: auto
     min-height: .01%
-    overflow-x: auto
 
 @media screen and (max-width:767px) 
     .card
@@ -541,9 +539,7 @@ table th[class*=col-]
     .table-responsive 
         width: 100%
         margin-bottom: 15px
-        overflow-y: hidden
         -ms-overflow-style: -ms-autohiding-scrollbar
-        border: 1px solid #ddd
         >.table 
             margin-bottom: 0
             >tbody

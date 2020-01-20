@@ -27,7 +27,8 @@ export default class LoginStu extends Component {
     }
   };
 
-  ValidateCode() {
+  ValidateCode = (e) => {
+    e.preventDefault()
     console.log("fddfsd");
     const codigo = this.state.value.toUpperCase();
     const data = {
@@ -77,7 +78,7 @@ export default class LoginStu extends Component {
             <h1 className="enter-code__tittle-body">
               Ingresa el PIN para unirte a una clase como ALUMNO
             </h1>
-            <div className="enter-code__body-body">
+            <form className="enter-code__body-body" onSubmit={this.ValidateCode}>
               <span className="enter-code__input input--kozakura">
                 <input
                   className="input__field input__field--kozakura"
@@ -100,7 +101,8 @@ export default class LoginStu extends Component {
                     className="input__label-content input__label-content--kozakura"
                     data-content="Código"
                   >
-                    CÓDIGO...
+                    {this.state.value || "CÓDIGO..."}
+                    {/* {existeCodigo ? this.state.value : "CÓDIGO..."} */}
                   </span>
                 </label>
                 <svg
@@ -114,12 +116,11 @@ export default class LoginStu extends Component {
                 </svg>
               </span>
               <button
-                onClick={() => this.ValidateCode()}
                 className="enter-code__button"
               >
                 INGRESAR
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

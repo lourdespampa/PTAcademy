@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import Upload from "./upload/Upload";
 export default class FormPostCourse extends Component {
   constructor(props) {
     super(props);
@@ -66,6 +67,7 @@ export default class FormPostCourse extends Component {
               rows="2"
               required
             />
+            {/* <Upload handleClose={this.props.handleClose} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc}    ></Upload> */}
           </Form.Group>
           <Button id="modal-body__button-cursos" className="btn" type="submit"  >CREAR CLASE</Button>
         </Form>

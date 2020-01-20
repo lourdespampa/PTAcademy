@@ -16,7 +16,7 @@
     text-align: center
   
 .teacherCourses__main-header
-    height: 3rem;
+    height: 3rem
     border-bottom: 1px solid #CCC
   
 .teacherCourses__main-header__block
@@ -104,20 +104,20 @@
         color: #53575A
         text-decoration: none
         font-size: 1em
-        padding: 0.5rem;
-        border-radius: 39px;
+        padding: 0.5rem
+        border-radius: 39px
         &:hover
             background-color: #FB9600
             color: white
     // .teacherCourses__main-menu__item:hover .teacherCourses__main-menu__LogOut
-    //     color: #ffffff;
+    //     color: #ffffff
 
     .teacherCourses__main-menu__LogOut
         color: #53575A
         text-decoration: none
         font-size: 1em
-        padding: 0.5rem;
-        border-radius: 39px;
+        padding: 0.5rem
+        border-radius: 39px
         &:hover
             color: white
             background-color: #E91E63
@@ -187,6 +187,7 @@
         align-items: center
         color: black
         & .courseTeacher-card-intro
+            width: 100%
             font-size: 13px
             height: 30%
 
@@ -230,19 +231,19 @@
     vertical-align: middle
     position: relative
     z-index: 1
-    width: 100%;
+    width: 100%
     cursor: pointer
     & .courseTeacher__img
-        transition: transform 0.3s ease-in-out;
-        -webkit-transition: all .4s ease;
-        -moz-transition: all .4s ease;
-        -o-transition: all .4s ease;
-        -ms-transition: all .4s ease;
+        transition: transform 0.3s ease-in-out
+        -webkit-transition: all .4s ease
+        -moz-transition: all .4s ease
+        -o-transition: all .4s ease
+        -ms-transition: all .4s ease
     &:hover .courseTeacher__img
-        -webkit-transform: scale(1.25);
-        -moz-transform: scale(1.25);
-        -ms-transform: scale(1.25);
-        -o-transform: scale(1.25);
+        -webkit-transform: scale(1.25)
+        -moz-transform: scale(1.25)
+        -ms-transform: scale(1.25)
+        -o-transform: scale(1.25)
         transform: scale(1.3)
 
 .courseTeacher__button-Edit
@@ -256,10 +257,10 @@
     &:hover .courseTeacher__img
         // transform: scale(1.8)
         // -webkit-transform: scale(1.3)
-        -webkit-transform: scale(1.25);
-        -moz-transform: scale(1.25);
-        -ms-transform: scale(1.25);
-        -o-transform: scale(1.25);
+        -webkit-transform: scale(1.25)
+        -moz-transform: scale(1.25)
+        -ms-transform: scale(1.25)
+        -o-transform: scale(1.25)
         transform: scale(1.25)
 .courseTeacher__buttonEntry
     width: 100%
@@ -282,17 +283,17 @@
         padding: .5rem
     & .courseTeacher__buttonEntry-label 
         width: 150px
-        transition: transform 0.3s ease-in-out;
-        -webkit-transition: all .4s ease;
-        -moz-transition: all .4s ease;
-        -o-transition: all .4s ease;
-        -ms-transition: all .4s ease;
+        transition: transform 0.3s ease-in-out
+        -webkit-transition: all .4s ease
+        -moz-transition: all .4s ease
+        -o-transition: all .4s ease
+        -ms-transition: all .4s ease
         cursor: pointer
         &:hover
-            -webkit-transform: scale(1.25);
-            -moz-transform: scale(1.25);
-            -ms-transform: scale(1.25);
-            -o-transform: scale(1.25);
+            -webkit-transform: scale(1.25)
+            -moz-transform: scale(1.25)
+            -ms-transform: scale(1.25)
+            -o-transform: scale(1.25)
             transform: scale(1.25)
             font-size: 20px
 
@@ -315,52 +316,45 @@
     color: #FFFFFF
     & .courseTeacher__buttonEntry-label 
         width: 150px
-        transition: transform 0.3s ease-in-out;
-        -webkit-transition: all .4s ease;
-        -moz-transition: all .4s ease;
-        -o-transition: all .4s ease;
-        -ms-transition: all .4s ease;
+        transition: transform 0.3s ease-in-out
+        -webkit-transition: all .4s ease
+        -moz-transition: all .4s ease
+        -o-transition: all .4s ease
+        -ms-transition: all .4s ease
         cursor: pointer
         &:hover
-            -webkit-transform: scale(1.25);
-            -moz-transform: scale(1.25);
-            -ms-transform: scale(1.25);
-            -o-transform: scale(1.25);
+            -webkit-transform: scale(1.25)
+            -moz-transform: scale(1.25)
+            -ms-transform: scale(1.25)
+            -o-transform: scale(1.25)
             transform: scale(1.25)
             font-size: 20px
     
 
 
 .courseTeacher-title
-    background-color: #51bd7e;
-    height: 50px;
-    margin: 0;
-    padding: 1rem;
-    text-align: center;
+    background-color: #51bd7e
+    height: 50px
+    margin: 0
+    padding: 1rem
+    text-align: center
     color: white
 .courseTeacher-title--class
-    background-color: #e74c3c;
-    height: 50px;
-    margin: 0;
-    padding: 1rem;
-    text-align: center;
+    background-color: #e74c3c
+    height: 50px
+    margin: 0
+    padding: 1rem
+    text-align: center
     color: white
-// @supports (display: grid) 
-// 	.courseTeacher-cards
-// 		display: grid;
-// 		grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
-// 		grid-gap: 2rem;
-
-// 	.courseTeacher-container,
-// 	.courseTeacher-cards 
-// 		margin: 0;
 .courseTeacher-container .class
     background-color: #e74c3c
 .ClassTeacher-main
-    height: 55rem
+    min-height: 96vh
+    height: 100%
     background-color: #e74c3c
 .CourseTeacher-main
-    height: 55rem
+    min-height: 96vh
+    height: 100%
     background-color: #51bd7e
 
 
