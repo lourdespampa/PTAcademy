@@ -6,7 +6,7 @@ import CoursesTeacher from './view/courses/CoursesTeacher';
 import ClassTeacher from './view/class/ClassTeacher';
 import ClassDetailTeacher from './view/class/ClassDetailTeacher';
 import Login from './view//login/login'
-import NotFound from './view/NotFound'
+import NotFound from './view/404/NotFound'
 import LoginStu from './view/login.Stud/login.stu'
 import FormLoginStu from './view/login.Stud/login.dataForm'
 import Index from './view/index/Inicio'
