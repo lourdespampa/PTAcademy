@@ -7,7 +7,8 @@ class Footer extends Component {
     state = {
         // variable para mostrar u ocultar los 3 botones que aparecen al hacer hover en la diapositiva del footer
         diapositivaHover: false,
-        src: "https://docs.google.com/presentation/d/e/2PACX-1vQNDqsVLggLYCO546Knez7Ecbs0SCErBbtTfAOn74iEHVtHoUKKECnzcsD6btExAMfn9VnHjsrf867m/pub?start=false&loop=false&delayms=3000",
+        // src: "https://docs.google.com/presentation/d/e/2PACX-1vQNDqsVLggLYCO546Knez7Ecbs0SCErBbtTfAOn74iEHVtHoUKKECnzcsD6btExAMfn9VnHjsrf867m/pub?start=false&loop=false&delayms=3000",
+        src: "https://docs.google.com/presentation/d/e/2PACX-1vR6f2MX5Cm_Knp3sStzbrRaxK4yNfZuc_j2R_e8LXolAFNsW2mujaXXYnevwWFVOA/pub?start=false&loop=false&delayms=3000",
         srcForm: "https://docs.google.com/forms/d/e/1FAIpQLSftlA2JivBhsQ0mhdyJ4LQczijxvyjN-SClloK6-9gNIyK2Eg/viewform?usp=sf_link"
     }
 

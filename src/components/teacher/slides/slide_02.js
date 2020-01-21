@@ -18,7 +18,7 @@ class App extends Component {
     componentDidMount(){
         axios({
             
-            url : 'http://192.168.1.51:4200/v1/api/teacher/presentations/1SaqPXgSyAEPcqxdM7VE7HLWTlzIQWA-QLeEZjNSao2s',
+            url : 'http://192.168.1.29:4200/v1/api/teacher/presentations/1SaqPXgSyAEPcqxdM7VE7HLWTlzIQWA-QLeEZjNSao2s',
             
             //CUANDO SE IMPLEMENTE  url : "localhost:4200/v1/api/teacher/presentations/"+this.props.id_present+"'",
             method : 'GET',

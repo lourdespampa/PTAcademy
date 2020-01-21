@@ -73,19 +73,30 @@ class Upload extends Component {
 
       const formData = new FormData();
       formData.append("file", file, file.name);
+      formData.append("class_name",this.props.class_name)
+      formData.append("desc",this.props.desc)
       console.log(file)
 
       var varToken = localStorage.getItem('token');
-    const data = {
-      class_name: this.props.class_name,
-      desc: this.props.desc,
-      presentation:true
-    };
+        
+      req.open("POST", `http://192.168.1.29:4200/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
+      req.setRequestHeader('x-access-token', `${varToken}`)
+      req.send(formData);
+      console.log('asdmasd')
+      req.onload=()=>{
+        if(req.readyState===req.DONE){
+          if(req.status===200){
+            console.log(req.response)
+            console.log('bien')
+            this.props.handleClose()
+          }
+          else if(req.status===500){
+            console.log(req.response)
+            console.log('mal')
 
-      req.setRequestHeader('Content-Type', 'multipart/form-data')
-
-      req.open("POST", `http://192.168.1.51:4200/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
-      req.send({formData,hola:"hola"});
+          }
+        }
+      }
         
 
 
@@ -123,23 +134,24 @@ class Upload extends Component {
   }
 
   renderActions() {
-    if (this.state.successfullUploaded) {
-      return (
-        <button
-          onClick={() =>
-            this.setState({ files: [], successfullUploaded: false })
-          }
-        >
-          Clear
-        </button>
-      );
+    if (this.state.successfullUploaded==true){
+        // this.props.handleClose()
+        return (
+          <button
+            onClick={() =>
+              this.setState({ files: [], successfullUploaded: false })
+            }
+          >
+            Clear
+          </button>
+        );
     } else {
       return (
         <button
           disabled={this.state.files.length < 0 || this.state.uploading}
           onClick={this.uploadFiles}
         >
-          Upload
+          crear curso
         </button>
       );
     }
