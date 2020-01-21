@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Link,Redirect } from "react-router-dom";
-import cursoImg from '../../img/courses/cursos.jpg'
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 export default class AllClass extends Component {
   constructor(props) {
