@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Dropzone from "./Dropzone";
 import Progress from "./Progress";
-import axios from 'axios';
 import "./Upload.sass";
 
 class Upload extends Component {
@@ -11,7 +10,8 @@ class Upload extends Component {
       files: [],
       uploading: false,
       uploadProgress: {},
-      successfullUploaded: false
+      successfullUploaded: false,
+      errorUploaded:false
     };
 
     this.onFilesAdded = this.onFilesAdded.bind(this);
@@ -37,13 +37,11 @@ class Upload extends Component {
 
       this.setState({ successfullUploaded: true, uploading: false });
     } catch (e) {
-      // Not Production ready! Do some error handling here instead...
       this.setState({ successfullUploaded: true, uploading: false });
     }
   }
 
   sendRequest(file) {
-    // e.preventDefault();
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
 
@@ -80,8 +78,7 @@ class Upload extends Component {
 
       var varToken = localStorage.getItem('token');
         
-       req.open("POST", `http://192.168.1.29:4200/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
-      // req.open("POST", `http://192.168.1.29:8000/upload`);
+      req.open("POST", `http://192.168.1.29:4200/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
       req.setRequestHeader('x-access-token', `${varToken}`)
       req.send(formData);
       console.log('asdmasd')
@@ -95,23 +92,10 @@ class Upload extends Component {
           else if(req.status===500){
             console.log(req.response)
             console.log('mal')
-
+            this.setState({ errorUploaded: true});
           }
         }
       }
-        
-
-
-        // axios({
-        //   // url: `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`,
-        //   url: `http://192.168.1.51:4200/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`,
-        //   data,
-        //   method: 'post',
-        //   headers: {
-        //     'x-access-token': `${varToken}`
-        //   }
-        // }).then(res => console.log(res))
-        //   .catch(err => console.log(err));
     });
   }
 
@@ -136,22 +120,26 @@ class Upload extends Component {
   }
 
   renderActions() {
-    if (this.state.successfullUploaded==true){
-        // this.props.handleClose()
+    if (this.state.errorUploaded==true){
         return (
           <button
             onClick={() =>
-              this.setState({ files: [], successfullUploaded: false })
+              this.setState({ files: [], errorUploaded: false })
             }
           >
             Clear
           </button>
         );
-    } else {
+    } else  if (this.state.successfullUploaded==true){
+      return (
+        <>
+        </>
+      );
+    }else {
       return (
         <button
-          // disabled={this.state.files.length < 0 || this.state.uploading}
-          // onClick={this.uploadFiles}
+           disabled={this.state.files.length < 0 || this.state.uploading}
+           onClick={this.uploadFiles}
         >
           crear curso
         </button>
