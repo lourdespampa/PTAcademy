@@ -18,12 +18,12 @@ class App extends Component {
     componentDidMount(){
         axios({
             
-            url : 'http://192.168.1.29:4200/v1/api/teacher/presentations/1SaqPXgSyAEPcqxdM7VE7HLWTlzIQWA-QLeEZjNSao2s',
+            url : 'http://192.168.1.29:4200/v1/api/teacher/presentations/5e2735d0c6b5041300ab869d',
             
             //CUANDO SE IMPLEMENTE  url : "localhost:4200/v1/api/teacher/presentations/"+this.props.id_present+"'",
             method : 'GET',
             headers:{                
-      "x-access-token" :"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMjA3ZTgzMDAwMzQwMTA2NzdmNjBjNiIsImlhdCI6MTU3OTE4Nzg0MywiZXhwIjoxNTc5NzkyNjQzfQ.kZ_mnr5rK5VKzCTdXZDZOq7xGgf_GNcnHhZTYrFv5bs"
+      "x-access-token" :"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTVmZmQxOTQ0YmZjNThkYjkyYWQ1NCIsImlhdCI6MTU3OTYxNzkxNywiZXhwIjoxNTgwMjIyNzE3fQ.L-L4sX5cTgtDFMTxF_rob7OK2ygYriRqbS9sogl0epU"
     
             }
         }).then((response) => {

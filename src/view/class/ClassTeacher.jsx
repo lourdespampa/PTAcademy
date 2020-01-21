@@ -6,13 +6,14 @@ import AllClass from './AllClass'
 export default class ClassTeacher extends Component {
   constructor(props){
     super(props)
-  this.state = {
-    nombreProfesor: "",
-    _id: "",
-    idcourse:"",
-    idteacher:"",
-    classes: []
-  };}
+      this.state = {
+        nombreProfesor: "",
+        _id: "",
+        idcourse:"",
+        idteacher:"",
+        classes: []
+      };
+    }
   componentDidMount() {
     var varToken = localStorage.getItem('token');
    const { match: { params } } = this.props;
@@ -72,21 +73,20 @@ export default class ClassTeacher extends Component {
             {
               this.state.classes.length>0
               ?
-            this.state.classes.map((clase,_id) => (
-              <li className="courseTeacher-cards" key={_id}>
-                <AllClass
-                  apiUrl={this.props.apiUrl}
-                  name_class={clase.class_name}
-                  desc={clase.desc} 
-                  id={clase._id}/>
-              </li>
-            ))
-          :<h3 className="courseTeacher-cards__nullCourses">Cargando cursos... Si no tiene, puede crear uno.</h3>
-          }
+              this.state.classes.map((clase,_id) => (
+                <li className="courseTeacher-cards" key={_id}>
+                  <AllClass
+                    apiUrl={this.props.apiUrl}
+                    name_class={clase.class_name}
+                    desc={clase.desc} 
+                    id={clase._id}/>
+                </li>
+              ))
+              :<h3 className="courseTeacher-cards__nullCourses">Cargando cursos... Si no tiene, puede crear uno.</h3>
+            }
           </ul>
         </div>
         {/* <Link to="ClassDetailTeacher">Ir a una clase detallada</Link> */}
-
       </>
     )
   }
