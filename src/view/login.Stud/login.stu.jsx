@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import "./ingresarCodigo.sass";
-import logo from './logiAcademy.svg'
+import logo from './images/Logo.svg'
 
 export default class LoginStu extends Component {
   constructor(props) {
@@ -27,7 +27,8 @@ export default class LoginStu extends Component {
     }
   };
 
-  ValidateCode() {
+  ValidateCode = (e) => {
+    e.preventDefault()
     console.log("fddfsd");
     const codigo = this.state.value.toUpperCase();
     const data = {
@@ -63,6 +64,9 @@ export default class LoginStu extends Component {
           <li className="enter-code__academy">
             <img className="enter-code__academy-a" src={logo} alt="este logo es academy"/>
           </li>
+          <li className="">
+            
+          </li>
           <li className="enter-code__changeStudent">
             <Link className="enter-code__academy-a" to={"/loginTeacher"}>
               CAMBIAR A PROFESOR
@@ -74,7 +78,7 @@ export default class LoginStu extends Component {
             <h1 className="enter-code__tittle-body">
               Ingresa el PIN para unirte a una clase como ALUMNO
             </h1>
-            <div className="col-md-6 ml-auto mr-auto text-center enter-code__body-body">
+            <form className="enter-code__body-body" onSubmit={this.ValidateCode}>
               <span className="enter-code__input input--kozakura">
                 <input
                   className="input__field input__field--kozakura"
@@ -97,7 +101,8 @@ export default class LoginStu extends Component {
                     className="input__label-content input__label-content--kozakura"
                     data-content="Código"
                   >
-                    CÓDIGO...
+                    {this.state.value || "CÓDIGO..."}
+                    {/* {existeCodigo ? this.state.value : "CÓDIGO..."} */}
                   </span>
                 </label>
                 <svg
@@ -111,14 +116,11 @@ export default class LoginStu extends Component {
                 </svg>
               </span>
               <button
-                onClick={() => this.ValidateCode()}
-                className="btn btn-block btn-lg btn-info enter-code__button"
-                style={{backgroundColor : "#FB7800",
-              border: 'none'}}
+                className="enter-code__button"
               >
                 INGRESAR
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

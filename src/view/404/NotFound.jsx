@@ -4,7 +4,6 @@ import cuatrocientoscuatro from './404.jpg';
 import './notFound.css'
 import { Link } from 'react-router-dom';
 
-
 export default class NotFound extends Component {
     render() {
         return (

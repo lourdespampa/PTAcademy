@@ -1,7 +1,8 @@
 #header
-    z-index: 3000
+    z-index: 300
     height: 65px
-
+.Toastify
+    position: fixed
 .primary-color
     background: -webkit-linear-gradient(left, #007bff, #5D00FF)!important
 
@@ -48,30 +49,32 @@
     &-dark .navbar-toggler
         color: rgba(255,255,255,.5)
         border-color: rgba(255,255,255,.1)
+.modal-xl
+    width: 800px
 
 @media (min-width: 992px)
         &-expand-lg .navbar-toggler
             display: none
 
-[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled)
-    cursor: pointer
+// [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled)
+//     cursor: pointer
 
-    &-toggler
-        padding: .25rem .75rem
-        font-size: 1.25rem
-        line-height: 1
-        background-color: transparent
-        border: 1px solid transparent
-        border-radius: .25rem
+//     &-toggler
+//         padding: .25rem .75rem
+//         font-size: 1.25rem
+//         line-height: 1
+//         background-color: transparent
+//         border: 1px solid transparent
+//         border-radius: .25rem
 
-    &-toggler-icon
-        display: inline-block
-        width: 1.5em
-        height: 1.5em
-        vertical-align: middle
-        content: ""
-        background: no-repeat center center
-        background-size: 100% 100%
+//     &-toggler-icon
+//         display: inline-block
+//         width: 1.5em
+//         height: 1.5em
+//         vertical-align: middle
+//         content: ""
+//         background: no-repeat center center
+//         background-size: 100% 100%
 
-    &-dark .navbar-nav.nav-link:hover
-        color: #fff
+//     &-dark .navbar-nav.nav-link:hover
+//         color: #fff

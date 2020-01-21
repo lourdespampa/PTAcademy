@@ -3,7 +3,7 @@ import './test_2.css';
 // import $ from 'jquery';
 //import mCustomScrollbar from 'malihu-custom-scrollbar-plugin';
 import io from 'socket.io-client';
-const socketUrl="http://localhost:4000";
+const socketUrl="http://3.16.110.136:4000/teacher";
 export default class Test extends Component
 {
     constructor(props) {
@@ -26,7 +26,7 @@ export default class Test extends Component
         var nav = document.getElementById('nav');
         var icono = document.getElementById('icono');
         var div = document.getElementById('div_chat');
-        var div_head = document.getElementById('div_head');
+        // var div_head = document.getElementById('div_head');
         var div_foot = document.getElementById('div_foot');
         // var div_tab = document.getElementById('div_tab');
         var div_child = document.getElementById('div_children');
@@ -39,7 +39,7 @@ export default class Test extends Component
             nav.style.width = '350px';
             div.style.display = 'block';            
             div_child.style.marginRight = "350px";
-            div_head.style.marginRight = "350px";
+            // div_head.style.marginRight = "350px";
             div_foot.style.marginRight = "350px";
           //  div_tab.style.display = 'block';
             arr.push("hola");
@@ -50,7 +50,7 @@ export default class Test extends Component
             nav.style.width = '50px';
             div.style.display = 'none';
             div_child.style.marginRight = "0px";
-            div_head.style.marginRight = "0px";
+            // div_head.style.marginRight = "0px";
             div_foot.style.marginRight = "0px";
            // div_tab.style.display = 'none'
             arr.push("hola");    

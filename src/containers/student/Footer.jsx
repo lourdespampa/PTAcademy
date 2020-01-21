@@ -36,7 +36,7 @@ export default class Footer extends Component {
             var enlace = casi.replace("delayms=3000", "delayms=3000&rm=minimal&slide=id.p1");
             console.log('get URL: ' + enlace)
             document.getElementById("diapo-frame").src = enlace;
-            document.getElementById("diminute").src = enlace;
+            // document.getElementById("diminute").src = enlace;
         }
         getUrlForm=()=> {
             document.getElementById("diapo-formulario").src = this.state.srcForm;
@@ -57,7 +57,7 @@ export default class Footer extends Component {
             cambiado += slide;
             var final = url.origin + url.pathname + cambiado;
             document.getElementById("diapo-frame").src = final;
-            document.getElementById("diminute").src = final;
+            // document.getElementById("diminute").src = final;
         }
     
     backtPpt=()=> {
@@ -75,7 +75,7 @@ export default class Footer extends Component {
             cambiado += slide;
             var final = url.origin + url.pathname + cambiado;
             document.getElementById("diapo-frame").src = final;
-            document.getElementById("diminute").src = final;
+            // document.getElementById("diminute").src = final;
         }
 
     async componentDidMount(){
@@ -86,7 +86,7 @@ export default class Footer extends Component {
     render(){
     return (
         <>
-        <FooterContainer socket={this.props.socket} id_access={this.props.id_access}
+        <FooterContainer socketUrl={this.props.socketUrl} id_access={this.props.id_access}
         diapositivaHover={this.state.diapositivaHover} toggleHoverSlide={this.toggleHoverSlide} 
         closePopup={this.closePopup} openPopup={this.openPopup} nextPpt={this.nextPpt} 
         backtPpt={this.backtPpt}

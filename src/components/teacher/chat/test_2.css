@@ -3,9 +3,9 @@
 	 display: none;
 }
 #div_children {
-	transition: margin-Right .7s;
-	margin-bottom: 200px;
-  /*  padding: 16px;*/
+	background: #F1F0F9;
+	max-height: calc(100vh - 140px);
+	overflow-y: auto;
 }
 
 #div_head{
@@ -439,12 +439,12 @@
  * Sass/SCSS source: https://goo.gl/1r6UDT
  * PSD by Aaron Sananes: https://goo.gl/AlBLzO
  */
-
+/* 
 body {
 	font: 12px/20px 'Lucida Grande', Verdana, sans-serif;
 	color: #404040;
 	background: #eee;
-  }
+  } */
   
   .widget {
 	position: relative;

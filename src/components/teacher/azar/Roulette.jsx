@@ -8,9 +8,11 @@ class Roulette extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      intervalId: "",
       spinAngleStart: 0,
       startAngle: 0,
       spinTime: 0,
+      responsiveSize: 0,
       arc: Math.PI / (props.options.length / 2),
     }
     this.spinTimer = null;
@@ -71,11 +73,13 @@ class Roulette extends React.Component {
     // const spinTimeTotal = 0;
 
     let ctx;
+    let outsideRadius, textRadius;
 
     const canvas = this.refs.canvas;
     if (canvas.getContext) {
-      const outsideRadius = baseSize - 25;
-      const textRadius = baseSize - 45;
+      if(window.screen.width <= 360){}
+      outsideRadius = baseSize - 25;
+      textRadius = baseSize - 45;
       //tamaño de tringulitos
       const insideRadius = baseSize - 210;
 
@@ -125,7 +129,7 @@ class Roulette extends React.Component {
 
   rotate(){
     const { spinAngleStart, spinTimeTotal } = this.props;
-    if(this.state.spinTime > 2800) {
+    if(this.state.spinTime > 3800) {
       clearTimeout(this.spinTimer);
       this.stopRotateWheel();
     } else {
@@ -176,8 +180,12 @@ class Roulette extends React.Component {
     return b+c*(tc + -3*ts + 3*t);
   }
 
-  handleOnClick() {
-    this.spin();
+  handleOnClick = () => {
+    let pulsadas = Math.round(Math.random()*10)
+    console.log(pulsadas)
+    let intervalId = setInterval(() => this.spin(), 100)
+    this.setState({intervalId: intervalId})
+    setTimeout( () => clearInterval(this.state.intervalId), pulsadas*1000)
   }
 
   render() {
@@ -186,10 +194,10 @@ class Roulette extends React.Component {
     return (
       <div className="roulette">
         <div className="roulette-container">
-          <canvas ref="canvas" className="roulette-canvas"></canvas>
+          <canvas ref="canvas" className="roulette-canvas" width={baseSize*2} height={baseSize*2}></canvas>
         </div>
-        <div className="roulette-container2">
-          <input type="button" value="spin" onClick={this.handleOnClick} className="button" id="spin" />
+        <div className="roulette-container">
+          <input type="button" value="Girar" onClick={this.handleOnClick} className="button" id="spin" style={{color:"black"}}/>
         </div>
       </div>
     );

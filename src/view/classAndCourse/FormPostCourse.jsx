@@ -29,7 +29,7 @@ export default class FormPostCourse extends Component {
       course_name: this.state.course_name,
       desc: this.state.desc
     };
-
+    console.log(data)
     axios({
       url: `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course`,
       data,
@@ -37,9 +37,10 @@ export default class FormPostCourse extends Component {
       headers: {
         'x-access-token': `${varToken}`
       }
-    }).then(res => console.log(res))
+    }).then(res => console.log(res)+
+    this.props.handleClose())
       .catch(err => console.log(err));
-      this.props.handleClose()
+      
   };
   render() {
     const { course_name, desc } = this.state;
@@ -47,26 +48,28 @@ export default class FormPostCourse extends Component {
       <>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label>Nombre del curso</Form.Label>
-            <Form.Control
+            <Form.Label className="modal-title__controlname">Nombre del curso</Form.Label>
+            <Form.Control className="modal-teacher__general-controlname"
               type="text"
               name="course_name"
               onChange={this.handleChange}
               value={course_name}
               placeholder="Ingresar nombre del curso"
+              required
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Descipcion del curso</Form.Label>
-            <Form.Control
+            <Form.Label className="modal-title__controldescription">Descripcion del curso</Form.Label>
+            <Form.Control className="modal-teacher__general-controldescription"
               name="desc"
               onChange={this.handleChange}
               value={desc}
               as="textarea"
               rows="2"
+              required
             />
           </Form.Group>
-          <Button type="submit"  >Crear curso</Button>
+          <Button id="modal-body__button-cursos" type="submit"  >CREAR CURSO</Button>
         </Form>
       </>
     );

@@ -53,15 +53,12 @@ export default class ClassTeacher extends Component {
         'x-access-token': `${varToken}`
       }
     }).then( ({ data }) => {
-       console.log(data)
-      
         if(data == []){
           this.setState({classes: []})
         }else{
           this.setState({classes: data})
         }
-      
-    })
+})
     .catch( e => console.log(e))
   }
   render() {
@@ -69,14 +66,14 @@ export default class ClassTeacher extends Component {
       <>
       <NavCourse apiUrl={this.props.apiUrl} idteacher={this.state.idteacher} idcourse={this.state.idcourse} agregarX={'clase'}
        nombreProfesor={this.state.nombreProfesor} getdata={this.getClass}></NavCourse>
-        <div className="main">
-          <h1>SECCION DE CLASES</h1>
-          <ul className="cards">
+        <div className="ClassTeacher-main">
+          <h1 className="courseTeacher-title--class">SECCION DE CLASES</h1>
+          <ul className="courseTeacher-container class">
             {
               this.state.classes.length>0
               ?
             this.state.classes.map((clase,_id) => (
-              <li className="cards_item" key={_id}>
+              <li className="courseTeacher-cards" key={_id}>
                 <AllClass
                   apiUrl={this.props.apiUrl}
                   name_class={clase.class_name}
@@ -84,7 +81,7 @@ export default class ClassTeacher extends Component {
                   id={clase._id}/>
               </li>
             ))
-          :<h3>Cargando cursos... Si no tiene, puede crear uno.</h3>
+          :<h3 className="courseTeacher-cards__nullCourses">Cargando cursos... Si no tiene, puede crear uno.</h3>
           }
           </ul>
         </div>

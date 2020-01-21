@@ -48,12 +48,21 @@ export default class ListaAlum extends Component {
       }
         
     async componentDidMount() {
-        
         this.getStudents();
+        const socket = io(this.props.socketUrl, {
+            query:
+                { pin: this.props.id_access }
+          })
+          socket.on('newAlum',(data)=>{
+            if(data.pin == (this.props.id_access).toUpperCase()) {
+                this.getStudents()
+            }
+          })
     }
     
 //rellenar state
     getStudents = async () => {
+        console.log(this.state.students)
         console.log(this.props.id_access)
         var varToken = localStorage.getItem('token');
      const res = await axios({
@@ -114,13 +123,13 @@ export default class ListaAlum extends Component {
 //funciones cambiar nota,puto y comportamiento
     onSubmitNote=async ()=>{
         
-           const note={
+           const data={
                score : this.state.note
             }
             var varToken = localStorage.getItem('token');
     await axios({
       url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
-      note,
+      data,
       method: 'put',
       headers: {
         'x-access-token': `${varToken}`
@@ -128,7 +137,7 @@ export default class ListaAlum extends Component {
     })
         this.getStudents();
     }
-    onClickPointAdd=async(valor)=>{
+    onClickPointAdd=async (valor)=>{
         const point=this.state.point + valor
         const data={
             point : point
@@ -163,13 +172,13 @@ export default class ListaAlum extends Component {
         this.setShow('showpuntosmenos',false)
     }
     onClickConductAdd=async(valor)=>{
-        const conduct={
+        const data={
             conduct:valor
         }
         var varToken = localStorage.getItem('token');
     await axios({
       url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
-      conduct,
+      data,
       method: 'put',
       headers: {
         'x-access-token': `${varToken}`
@@ -181,34 +190,38 @@ export default class ListaAlum extends Component {
     onClickEnviar=async(e)=>{
         e.preventDefault();
         
-        // const a=this.state.students
-        // const text=a.map(student=>(
-        //         <tr>
-        //         <td className="nom">{student.nombres}</td>
-        //         <td className="ape">{student.apodo}</td>
-        //         <td style={{textAlign: "center"}}className="nota">{student.nota}</td>
-        //         <td style={{textAlign: "center"}}className="compo">{student.comportamiento}</td>
-        //         <td style={{textAlign: "center"}}>{student.puntos}</td>
-        //     </tr>))
-        //     const html=(<table>
-        //         <thead>
-        //             <tr>
-        //                 <th>Nombres</th>
-        //                 <th>Apellidos</th>
-        //                 <th>Nota(0-20)</th>
-        //                 <th>Comportamiento</th>
-        //                 <th>puntos</th>
-        //             </tr>
-        //         </thead>
-        //         <tbody>
-        //             {text}
-        //         </tbody>
-        //     </table>)
-        //     const params={
-        //         hml:html,
-        //         data:a
-        //     }
-        //     await axios.post('/sendNotes',params)
+         const a=this.state.students
+         const text=a.map(student=>(
+                 `<tr>
+                 <td>${student.nombres}</td>
+                 <td>${student.apodo}</td>
+                 <td>${student.nota}</td>
+                 <td>${student.comportamiento}</td>
+                 <td>${student.puntos}</td>
+             </tr>`))
+             const html=(`<table>
+                 <thead>
+                     <tr>
+                         <th>Nombres</th>
+                         <th>Apellidos</th>
+                         <th>Nota(0-20)</th>
+                         <th>Comportamiento</th>
+                         <th>puntos</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     ${text}
+                 </tbody>
+             </table>`)
+             var user = JSON.parse(localStorage.getItem('user'));
+             
+             const params={
+                 hml:html,
+                 data:a,
+                 name:'playtecAcademy Clase prueba',
+                 email:user.email
+             }
+             await axios.post('http://email-service-playtec.herokuapp.com/',params)
         
     }
     setShow=(nom,val)=>{
@@ -221,7 +234,7 @@ export default class ListaAlum extends Component {
     render() {
         return(
             <>
-            <div className="row center" >
+            <div className="mt-2 row text-center" >
                 <button id='enviar' onClick={this.onClickEnviar} className="button btnMyM">Enviar</button>
                 <ExportCSV csvData={this.state.students} fileName={this.state.fileName} />
             </div>
@@ -235,13 +248,13 @@ export default class ListaAlum extends Component {
                                             <tr>
                                                 <th style={{textAlign:"center"}}>Nombres</th>
                                                 <th style={{textAlign:"center"}}>Apellidos</th>
-                                                <th style={{textAlign:"center"}}>Nota(0-20)</th>
-                                                <th style={{textAlign:"center"}}>Comportamiento</th>
-                                                <th style={{textAlign:"center"}}>puntos</th>
-                                                <th style={{textAlign:"center"}}>...</th>
+                                                <th style={{textAlign:"center",width:"15%"}}>Nota(0-20)</th>
+                                                <th style={{textAlign:"center",width:"20%"}}>Comportamiento</th>
+                                                <th style={{textAlign:"center",width:"15%"}}>puntos</th>
+                                                <th style={{textAlign:"center",width:"5%"}}>...</th>
                                             </tr>
                                         </thead>
-                                        <tbody style={{'height': '350px', 'overflow':'overlay'}}>
+                                        <tbody style={{'height': '350px'}}>
                                             { this.state.students ?
                                        <TableBody students={this.state.students} onClickNote={this.onClickNote} onClick={this.onClick}
                                         onClickPoint={this.onClickPoint} deleteStudents={this.deleteStudents} setShow={this.setShow} />
@@ -253,56 +266,56 @@ export default class ListaAlum extends Component {
                         </div>
                     </div>
                 </div>
-            <Modal size={'SM'} show={this.state.modals.showpuntosmas} onHide={() => this.setShow('showpuntosmas',false)}>
+            <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showpuntosmas} onHide={() => this.setShow('showpuntosmas',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">Positivo ssddsd</h3>
+                        <span className="punto-text">POSITIVO</span>
                     </div>
                 </Modal.Header>
                 <Modal.Body>
                         <BtnPuntos data={this.state.datapoint.pocitivo} funcion={this.onClickPointAdd} />
                 </Modal.Body>
             </Modal> 
-            <Modal size={'SM'} show={this.state.modals.showpuntosmenos} onHide={() => this.setShow('showpuntosmenos',false)}>
+            <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showpuntosmenos} onHide={() => this.setShow('showpuntosmenos',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">Necesitas Mejorar</h3>            
+                        <span className="punto-text">NECESITAS MEJORAR</span>            
                     </div>
                 </Modal.Header>
                 <Modal.Body>
                         <BtnPuntos data={this.state.datapoint.negativo} funcion={this.onClickPointRemove} />
                 </Modal.Body>
             </Modal> 
-            <Modal size={'SM'} show={this.state.modals.shownota} onHide={() => this.setShow('shownota',false)}>
+            <Modal className="modal-teacher__general" show={this.state.modals.shownota} onHide={() => this.setShow('shownota',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">Nota</h3>          
+                        <span className="punto-text">NOTA</span>          
                     </div>
                 </Modal.Header>
-                <Modal.Body style={{justifyContent: 'center',display: 'flex'}}>
+                <Modal.Body style={{justifyContent: 'center'}}>
                     <input type="text"  value={this.state.note} onChange={this.onChangeInput} />
-                    <button id="btnnotas" class="button btnMyM" onClick={()=>this.onSubmitNote() + this.setShow('shownota',false)} type="button" >modificar</button> 
+                    <button id="btnnotas" class="button btnMyM" onClick={()=>this.onSubmitNote() + this.setShow('shownota',false)} type="button" >MODIFICAR</button> 
                 </Modal.Body>
             </Modal> 
-            <Modal size={'SM'} show={this.state.modals.showcomportamiento} onHide={() => this.setShow('showcomportamiento',false)}>
+            <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showcomportamiento} onHide={() => this.setShow('showcomportamiento',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">Comportamiento</h3>          
+                        <span className="punto-text">COMPORTAMIENTO</span>          
                     </div>
                 </Modal.Header>
                 <Modal.Body>
                     <BtnPuntos data={this.state.datapoint.camportamiento} funcion={this.onClickConductAdd}/>
                 </Modal.Body>
             </Modal> 
-            <Modal size={'SM'} show={this.state.modals.showdelete} onHide={() => this.setShow('showdelete',false)}>
+            <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showdelete} onHide={() => this.setShow('showdelete',false)}>
                 <Modal.Header closeButton>
                     <div className="punto-posi">
-                        <h3 className="punto-text">¿Desea eliminar al alumno?</h3>          
+                        <span className="punto-text">¿DESEA ELIMINAR AL ALUMNO?</span>          
                     </div>
                 </Modal.Header>
                 <Modal.Body>
-                    <button class="button btnMyM" onClick={() => this.setShow('showdelete',false)} type="button">No</button> 
-                    <button class="button btnMyM" onClick={() => this.deleteStudents()+this.setShow('showdelete',false)} type="button">si</button> 
+                    <button id="modal-body__button-yes" className="btn" onClick={() => this.deleteStudents()+this.setShow('showdelete',false)} type="button">SI</button> 
+                    <button id="modal-body__button-no" className="btn" onClick={() => this.setShow('showdelete',false)} type="button">NO</button> 
                 </Modal.Body>
             </Modal> 
                 </>

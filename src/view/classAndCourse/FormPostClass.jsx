@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import Upload from "./upload/Upload";
 export default class FormPostCourse extends Component {
   constructor(props) {
     super(props);
@@ -37,9 +38,8 @@ export default class FormPostCourse extends Component {
       headers: {
         'x-access-token': `${varToken}`
       }
-    }).then(res => console.log(res))
+    }).then(res => console.log(res)+this.props.handleClose())
       .catch(err => console.log(err));
-      this.props.handleClose()
   };
   render() {
     const { class_name, desc } = this.state;
@@ -47,26 +47,29 @@ export default class FormPostCourse extends Component {
       <>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label>Nombre de la Clase</Form.Label>
-            <Form.Control
+            <Form.Label className="modal-title__controlname">Nombre de la Clase</Form.Label>
+            <Form.Control className="modal-teacher__general-controlname"
               type="text"
               name="class_name"
               onChange={this.handleChange}
               value={class_name}
               placeholder="Ingresar nombre de la clase"
+              required
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Descipcion de la Clase</Form.Label>
-            <Form.Control
+            <Form.Label className="modal-title__controldescription">Descipcion de la Clase</Form.Label>
+            <Form.Control className="modal-teacher__general-controldescription"
               name="desc"
               onChange={this.handleChange}
               value={desc}
               as="textarea"
               rows="2"
+              required
             />
+            {/* <Upload handleClose={this.props.handleClose} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc}    ></Upload> */}
           </Form.Group>
-          <Button type="submit"  >Crear Clase</Button>
+          <Button id="modal-body__button-cursos" className="btn" type="submit"  >CREAR CLASE</Button>
         </Form>
       </>
     );

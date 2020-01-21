@@ -1,68 +1,25 @@
 .footer-distributed 
-    background-color: #3087A4
-    box-sizing: border-box
-    width: 100%
-    text-align: left
-    padding: 5px 5px 5px 5px
-    height: 20%
-    position: fixed
-    bottom: 0
-    left: 0
-
-.footer-distributed .footer-left,
-.footer-distributed .footer-center,
-.footer-distributed .footer-right 
-    display: inline-block
-    vertical-align: top
-
-
-
-/* Footer left */
-
-.footer-distributed .footer-left 
-    width: 23%
-
-
-
+    background: #1C59AA
+    color: white
+    display: flex
+    text-align: center
+    div
+        flex-grow: 1
+        display: flex
+        cursor: pointer
+        &:hover
+            background: #ffffff33
+        img 
+            margin: auto 3px auto auto
+        span 
+            margin: auto auto auto 3px
 iframe 
     width: -webkit-fill-available
     height: -webkit-fill-available
-
-/* Footer Center */
-
 .footer-center 
     width: 45%
-
-
-
-
-.pres 
-    width: 100%
-    height: 34%
-    background-color: rgb(48, 135, 164)
-    border: solid 2px rgb(255, 255, 255)
-    color: rgb(236, 232, 232)
-    border-left-width: 10px
-    border-right-width: 10px
-
-
-.pres:hover 
-    background-color: rgb(69, 157, 176)
-
-
-
-/* Footer Right */
-
-.footer-distributed .footer-right 
-    width: auto
-    background: blue
-    position: absolute
-    right: 0
-    
-
-
-
-
+#micro
+    border-radius: 50%
 .overlay 
     background: rgba(0, 0, 0, .3)
     position: fixed
@@ -74,12 +31,8 @@ iframe
     justify-content: center
     display: flex
     visibility: hidden
-
-
 .overlay.active 
     visibility: visible
-
-
 .popup 
     background: #F8F8F8
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3)
@@ -91,47 +44,18 @@ iframe
     transform: scale(0.7)
     opacity: 0
     height: 70%
-
-
-/* ------------------------- */
-
-
-/* ANIMACIONES */
-
-
-/* ------------------------- */
-
 .btn-abrir-popup 
     cursor: pointer
-
 .popup.active 
     transform: scale(1)
     opacity: 1
-
-
-//.popup.active h3 
-//    animation: entradaTitulo .8s ease .5s forwards
-
-
-//.popup.active h4 
-//    animation: entradaSubtitulo .8s ease .5s forwards
-
-
-//.popup.active .contenedor-inputs 
-//    animation: entradaInputs 1s linear 1s forwards
-
-
 @keyframes entradaTitulo 
     from 
         opacity: 0
         transform: translateY(-25px)
-    
     to 
         transform: translateY(0)
         opacity: 
-    
-
-
 @keyframes entradaSubtitulo 
     from 
         opacity: 0
@@ -140,18 +64,12 @@ iframe
     to 
         transform: translateY(0)
         opacity: 1
-    
-
-
 @keyframes entradaInputs 
     from 
         opacity: 0
     
     to 
         opacity: 1
-    
-
-
 .btn-back,
 .btn-next 
     width: 40px
@@ -161,8 +79,6 @@ iframe
     position: absolute
     right: -50px
     cursor: pointer
-
-
 .btn-back,
 .btn-next 
     position: absolute
@@ -178,25 +94,11 @@ iframe
     width: 90px
     height: 90px
     top: 49%
-
-
-
-
-//.diapo-content.active 
-//    width: 100%
-//    top: 70px
-//    transform: none
-//    left: 0
-
-
 .btn-back i,
 .btn-next i 
     font-size: 100px
-
-
 .btn-back 
     left: -50px
-
 .popup .btn-cerrar-popup 
     line-height: 16px
     text-align: right
@@ -206,7 +108,6 @@ iframe
     position: absolute
     right: 0
     top: 0
-
 .popup .btn-cerrar-popup .material-icons 
     color: #F8F8F8
     background-color: #00a8ff
@@ -216,94 +117,17 @@ iframe
     color: #000
     background-color: rgb(104, 104, 104)
     border-radius: 5px
-
-.modal-content
-   min-height:100% !important
-
-
-.modal-body
-     text-align: center
-
-
-.footer-distributed .footer-right .div_audio
-   background: yellow
-
-
-.footer-distributed .footer-right .div_audio .div_btn
-    border-radius: 50%
-    width: 100px
-    border: solid 3px
-    height: 100px
-    background: #ffffff
-    margin: 0 auto
-    cursor: pointer
-    /*top : 0;*/
-   /* animation: ripple 1000ms infinite;
-    animation-play-state: paused;*/  
-
-/*envoltura*/
-.envoltura
-    width: 100%
-    height: 100%
-    position: absolute
-    background:red
-   
-.footer-left
-    position: fixed
-    width: 20%
-    height: 17%
-    border: solid 5px white 
-    zIndex: 0.1
-    display: block
-
-
-
-
-
-
-
-
-
+#urlid
+    margin-bottom: 15px
+.fc-formulario
+    width: 100% !important
+    height: 335px
 @media (min-width: 320px) and (max-width: 680px) 
     .footer-distributed 
-        box-sizing: border-box
-        width: 100%
-        text-align: left
-        padding: 5px 5px 5px 5px
-        height: 20%
-        position: fixed
-        bottom: 0
-        left: 0 
-
-    .envoltura
-        width: 100%
-        height: 100%
-        position: absolute
-   
-    .footer-left
-        position: flex
-        width: 95%
-        height: 17%
-        border: solid 5px white 
-        zIndex: 0.1
-    
-        
-    .footer-distributed .footer-right .div_audio .div_btn 
-        border-radius: 50%
-        max-width: 100px
-        border: solid 3px blacks
-        background: #ffffff
-        cursor: pointer
-        top: -12px
-
-    .footer-distributed .footer-right .div_audio 
-        width: auto
-        max-width: 50px
-
-    
-    .footer-distributed .footer-left 
-        width: 53%
-
+        span
+            display: none
+        img
+            margin: auto !important
     .btn-back,
     .btn-next 
         position: absolute
@@ -324,9 +148,5 @@ iframe
         padding: 10px
         width: 70%
         min-height: 85%
-
-
-    /*.popup.active transform: scale(1) opacity: 1 width: 60% height: 50%*/
-
-
-    
+    .fc-formulario
+        height: 520px 

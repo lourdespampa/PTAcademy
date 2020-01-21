@@ -5,7 +5,16 @@
     background-position: center
     background-repeat: no-repeat
     height: 100vh
-
+.login-cabecera
+    display: flex
+    flex-direction: column
+    width: 100%
+    height: 30%
+.login-iniciar-sesion
+    align-items: center
+    text-align: center
+    justify-content: center
+    width: 100%
 .login-general
     position: absolute
     width: 80%
@@ -16,25 +25,27 @@
     margin: 40px auto
     box-sizing: border-box
     border-radius: 15px
+    display: flex
+    flex-wrap: wrap
 
 .login-imagen-robot
-    position: absolute
-    width: 99%
-    display: flex
-    justify-content: center
-    align-items: center
+    position: absolute;
+    width: 99%;
+    display: flex;
+    justify-content: center;
+    height: 20%;
 
 .login-robot
     position: absolute
     width: 125px
     height: 118px
-    top: -25px
+    // top: -25px
+    // top: 56px
 
 .login-iniciar
     text-align: center
-    margin-block-start: 2.8em
+    margin-block-start: 3.5em;
     margin-block-end: 0.8em
-    font-family: sans-serif !important
     font-size: 2em
     font-weight: bold
     color: #ffffff
@@ -100,6 +111,10 @@
     box-shadow: 10px 10px 25px 0px rgba(0,0,0,0.6)
     transition: all 300ms
     padding-top: 25px
+    &:hover
+        transform: scale(1.1)
+        box-shadow: 10px 10px 25px 2px rgba(0,0,0,0.75)
+
 
 .login-alumno
     width: 149px
@@ -118,23 +133,18 @@
 
 .login-students
     margin-block-start: 0.57em
-    font-family: Rounded Mplus 1c Bold
     font-weight: bold
     font-size: 35px
     color: #FFFFFF
 
 .login-profesora
     margin-block-start: 0.67em
-    font-family: Rounded Mplus 1c Bold
     font-weight: bold
-    font-size: 35px
     color: #FFFFFF
 
 .login-parents
     margin-block-start: 0.77em
-    font-family: Rounded Mplus 1c Bold
     font-weight: bold
-    font-size: 30px
     color: #ffff
 
 
@@ -195,8 +205,12 @@
     .login-derecha
         height: 85px
     .login-students
-        margin-block-end: 0.4em
+        margin: 0
     .login-profesora
-        margin-block-end: 0.4em
-    login-parents
-        margin-block-end: 0.4em
+        margin: 0
+    .login-parents
+        margin: 0
+    .login-robot
+        position: absolute;
+        width: 100px;
+        height: 100px;

@@ -51,22 +51,22 @@ export default class AllClass extends Component {
   render() {
     return (
       <>
-        <div className="card_playtec">
-          <div className="card_image">
-            <img src={cursoImg} alt="some value" />
+        <div className="courseTeacher-card-item">
+          <div className="courseTeacher-card-image">
+            {/* <img src={cursoImg} alt="some value" /> */}
           </div>
-          <div className="card_content">
-            <h2 className="card_title">{this.props.name_class}</h2>
-            <p className="card_text">{this.props.desc}</p>
+          <div className="courseTeacher-card-info">
+            <h2 className="courseTeacher-card-title">{this.props.name_class}</h2>
+            <p className="courseTeacher-card-intro">{this.props.desc}</p>
             {/* <Link to="/ClassTeacher" className="btn card_btn">
               Entrar a detalle de la clase
             </Link> */}
             <div >
             </div>
             {this.renderRedirect()}
-            <button className="btn card_btn" onClick={this.obtenerCodigo}>
-              ACTIVAR CLASE
-            </button>
+            <div className="classTeacher__buttonEntry courseTeacher__button" onClick={this.obtenerCodigo}>
+              <label className="courseTeacher__buttonEntry-label ">ACTIVAR CLASE</label>
+            </div>
           </div>
         </div>
       </>

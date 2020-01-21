@@ -1,42 +1,61 @@
-* {
-    margin: 0;
-    padding: 0;
+/* cabecera */
+
+.triviaT-topnav {
+    overflow: hidden;
+    background-color: #333;
+    margin-bottom: 10px;
+  }
+  
+.triviaT-topnav .titulo{
+    float: left;
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    padding: 5px 22px;
 }
-*, ::after, ::before {
-    box-sizing: border-box;
+.triviaT-topnav .titulo-responsive{
+    display: none;
+    font-size: 12px;
+    padding: 5px 16px;
+}
+  
+.triviaT-topnav a {
+    float: right;
+    display: block;
+    color: white !important;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+}
+  
+.triviaT-topnav .triviaT-icon {
+    display: none;
+    font-size: 22px;
+    padding: 14px 16px;
 }
 
-/* cabecera */
-.cabeza {
-    margin-top: -16px;
+
+.triviaT-cabecera {
+    margin-top: -15px;
     background: #333;
     color: #fff;
     display: flex;
     height: 60px;
     box-shadow: rgba(150, 150, 150, 0.5) 0px 2px 2px;
     position: static;
-    /* Hacemos que la cabecera tenga una posición fija */
+    margin-bottom: 8px;
 }
 
-.cuerpo {
-    width: 100%;
-    height: 65%;
-}
-
-.cabeza .titulo {
-    margin: 10px auto auto auto;
-}
-
-.cont-btn-resp {
-    margin: auto 0 auto 15px;
-}
-
-.cont-btn-resp2 {
-    margin: auto 15px auto 0;
+.triviaT-cabecera .triviaT-cabecera-titulo {
+    margin: 10px auto 1px;
 }
 
 /* botones cabecera */
-.enviar,.restaurar,.respuestas {
+.contenedor-btn-enviar{
+    margin: 7px;
+}
+
+.triviaT-enviar, .triviaT-restaurar, .triviaT-respuestas {
     width: 130px;
     background: #26890c;
     color: #fff;
@@ -51,109 +70,140 @@
     outline: none !important;
 }
 
-.respuestas {
+.triviaT-respuestas {
     background: #45a3e5;
 }
 
-.respuestas:hover {
+.triviaT-respuestas:hover {
     background: #3086c4;
     box-shadow: inset 0 -1px rgba(0, 0, 0, .25);
-    margin: 9px 10px 10px 10px;
     outline:none;
 }
 
-
-.restaurar {
+.triviaT-restaurar {
     background: #F11D0B;
 }
 
-.enviar:hover {
+.triviaT-enviar:hover {
     background: #1e7209;
     box-shadow: inset 0 -1px rgba(0, 0, 0, .25);
-    margin: 9px 10px 10px 10px;
 }
 
-.restaurar:hover {
+.triviaT-restaurar:hover {
     background: rgb(197, 20, 4);
     box-shadow: inset 0 -1px rgba(0, 0, 0, .25);
-    margin: 9px 10px 10px 10px;
+}
+
+/* media querie sin hamburguesa */
+@media only screen and (max-width: 575px) {
+    
+  .triviaT-topnav a {display: none;}
+  .triviaT-topnav a.triviaT-icon {
+    float: right;
+    display: block;
+  }
+  .triviaT-topnav .titulo{
+    float: left;
+    display: block;
+    text-align: center;
+  }
+
+}
+/* media querie con hamburguesa */
+@media only screen and (max-width: 575px) {
+    
+  .triviaT-topnav.responsive {position: relative;}
+  .triviaT-topnav.responsive .triviaT-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .triviaT-topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: center;
+  }
+  .triviaT-topnav.responsive .titulo{
+    display: none;
+  }
+  .contenedor-btn-enviar{
+    margin: 0;    
+    }
+
 }
 
 
-/* Contenido */
-.label{
-    margin-bottom: 0;
+/* Contenido o cuerpo */
+
+/* estilos grid de row and column */
+.triviaT-row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  [class*="triviaT-col-"] {
+    float: left;
+    padding: 0 15px;
+    width: 100%;
+  }
+  .triviaT-imgSalida{display: none}
+
+@media only screen and (min-width: 700px) {
+    /* For desktop: */
+    .triviaT-col-6 {width: 50%;}
+    .triviaT-imgSalida{display: initial}
 }
 
-.pregunta:focus {
+.triviaT-input-pregunta:focus, .triviaT-input-respuestas:focus {
     border: 2px solid #000;
 }
 
-.pregunta {
-    width: 100%;
-    /* Full width */
-    padding: 9px;
-    /* Some padding */
-    font-size: 20px;
-    border: 2px solid gray;
-    /* Gray border */
-    box-sizing: border-box;
-    /* Make sure that padding and width stays in place */
-    margin-top: 6px;
-    /* Add a top margin */
-    margin-bottom: 5px;
-    /* Bottom margin */
-    resize: vertical;
-    /* Allow the user to vertically resize the textarea (not horizontally) */
-    outline: none;
-}
-
-.resp-grp{
-    display: flex;
-}
-
-.input-tiempo{
-    margin-bottom: 18px;
-}
-
-.image-container {
+.triviaT-image-container {
     display: flex;
     height: 142px;
     width: 99%;
     padding: 12px;
     border: 3px dotted #B2BABB;
     background: #F2F4F4;
-    /* Add a top margin */
     margin-bottom: 18px;
-    /* Bottom margin */
 }
 
 .imagen {
     margin: auto;
 }
 
-.input-respuestas {
-    width: 91%;
-    padding: 10px;
-    /* Some padding */
+.triviaT-input-pregunta {
+    width: 100%;
+    padding: 9px;
     font-size: 20px;
     border: 2px solid gray;
-    /* Gray border */
     box-sizing: border-box;
-    /* Make sure that padding and width stays in place */
     margin-top: 6px;
-    /* Add a top margin */
-    margin-bottom: 6px;
-    /* Bottom margin */
-    margin-right: 8px;
+    margin-bottom: 5px;
     resize: vertical;
-    /* Allow the user to vertically resize the textarea (not horizontally) */
     outline: none;
 }
 
-.respuesta:focus,
-.respuesta2:focus {
-    border: 2px solid #000;
+.triviaT-contenedor-respuesta{
+    display: flex;
+}
+
+.triviaT-input-tiempo{
+    margin-bottom: 18px;
+}
+
+.triviaT-input-respuestas {
+    width: 91%;
+    padding: 10px;
+    font-size: 20px;
+    border: 2px solid gray;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-right: 8px;
+    resize: vertical;
+    outline: none;
 }
 
 /* The Modal (background) */
@@ -176,12 +226,8 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
-    min-height: 410px;
-}
-
-.modal-body-respuestas {
-    margin: 25px;
+    width: 55%;
+    min-height: 85%;
 }
 
 
@@ -208,15 +254,16 @@
 }
 
 .rolldown-list li {
-    padding: 12px;
+    box-sizing: content-box;
+    /* padding: 2.5%; */
+    height: 17%;
     margin-bottom: .125em;
     display: block;
     list-style: none;
     font-weight: bold;
-    font-size: 20px;
     text-transform: uppercase;
     overflow: hidden;
-    margin-top: 10px;
+    margin-top: 5px;
     visibility: hidden;
     animation: rolldown .7s 1;
     transform-origin: 50% 0;
@@ -253,8 +300,10 @@
 }
 
 #myList {
+    margin-top: 1%;
     position: absolute;
     width: 50%;
+    height: 60%;
     left: 50%;
     margin-left: -25%;
 }

@@ -1,15 +1,21 @@
 
 @keyframes bgcolor
     0%
-        background-color: #e8d1ff
+        // background-color: #e8d1ff
+        background-color: #45a3e5
+
     30%
-        background-color: #D7E8FF
+        // background-color: #D7E8FF
+        background-color: #66bf39
     60%
-        background-color: #F0FFE2
+        // background-color: #F0FFE2
+        background-color: #b8cf37
     90%
-        background-color: #FFF8D2
+        // background-color: #FFF8D2
+        background-color: #fff133
     100%
-        background-color: #FBECEE
+        // background-color: #FBECEE
+        background-color: #864cbf
     //contenedor principal
 .enter-code__contenedor
     -webkit-animation: bgcolor 20s infinite
@@ -21,40 +27,54 @@
 .enter-code__header
     list-style-type: none
     margin: 0
-    padding: 5px 30px
+    padding: 5px 10px
     overflow: hidden
 
 .enter-code__academy
     float: left
+    padding: 3px
+    background-color: transparent
 
 .enter-code__changeStudent
     float: right
-
+    padding: 15px 0;
 .enter-code__academy-a
     display: block
     color: white
     text-align: center
-    padding: 44px 66px
-    font-size: 21px
+    padding: 10px 6px
+    margin: 15px 15px
+    font-size: 18px
     text-decoration: none !important
     //se tiene que eliminar el text decoration
     &:hover
         color: white
+        background-color: #333333
+        border-radius: 5px
     .enter-code__changeStudent &
-        color: #2B4F95
+        // color: #2B4F95
+        color: #ffffff
+        width: 198px
+        float: right
 
 .enter-code__body
     width: 100%
-    height: 70%
-    display: flex
+    height: 78%
     justify-content: center
     align-items: center
+    display: flex
 
 .enter-code__formulario
     text-align: center
+    font-family: Opal
+    padding: 15px
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    width: 405px
 
 .enter-code__tittle-body
-    color: #3CA69B
+    color: #ffffff
     font-weight: 700
     font-size: 2em
 
@@ -65,6 +85,22 @@
     width: 100%
     vertical-align: top
 
+.enter-code__body-body
+    margin-top: 5px
+
+.enter-code__button
+    background: #333333
+    border-style: none
+    width: 100%
+    height: 50px
+    padding: 5px
+    color: white
+    border-radius: 5px
+    font-family: Opal
+    font-size: 1.5em
+    &:hover
+        background: #202020
+        cursor: pointer
 .input__field
     position: relative
     text-align: center
@@ -75,9 +111,9 @@
     border: none
     border-radius: 0
     background: #f0f0f0
-    color: #aaa
+    // color: #aaa
+    color: black
     font-weight: 400
-    font-family: Opal
     -webkit-appearance: none
     &:focus
         outline: 0
@@ -157,8 +193,8 @@
     pointer-events: none
     overflow: hidden
     padding: 0 .25em
-    -webkit-transform: translate3d(1em, 1.75em, 0)
-    transform: translate3d(1em, 1.75em, 0)
+    -webkit-transform: translate3d(0em, 1.7em, 0);
+    transform: translate3d(0em, 1.7em, 0);
     -webkit-transition: -webkit-transform .3s
     transition: transform .3s
 
@@ -194,28 +230,44 @@
     -webkit-transition-timing-function: cubic-bezier(0, .25, .5, 1)
     transition-timing-function: cubic-bezier(0, .25, .5, 1)
 
-.enter-code__body-body
-    margin-top: 5px
 
-.enter-code_button
-    background: #333333
-    border-style: none
-    &:hover
-        background: #202020
 
 @media screen and (max-width: 700px)
+    .enter-code__header
+        list-style-type: none
+        margin: 0
+        padding: 5px 10px
+        overflow: hidden
+        display: grid
+        grid-template-columns: 1fr 0fr 1fr
+
     .enter-code__academy-a
         padding: 15px 0 0 0
         font-size: 17px
+        .enter-code__changeStudent &:hover
+            background-color: #303035
+            border-radius: 5px
+            padding: 3px
+            margin: 0
+            width: fit-content
     .enter-code__body
         height: 80%
 
 @media screen and (max-width: 400px)
     .enter-code__academy-a
-        width: 100px
+        width: 150px
         text-align: center
+        margin: 0
+    .enter-code__changeStudent .enter-code__academy-a 
+        color: #ffffff;
+        float: right;
 
-@media screen and (max-width: 800px)
+
+@media screen and (max-width: 765px)
     .enter-code__input .input--kozakura
         float: right
         font-size: 15px
+    .enter-code__academy-a
+        // padding: 15px 3px
+        margin: 0
+        padding: 3px

@@ -46,6 +46,10 @@ class Footer extends Component {
 
         if (overlay.id == 'overlay' && popup.id == 'popup') {
             socket.emit('closeSlides')
+        }else if (overlay.id == 'overlay2' && popup.id == 'popupvideo') {
+            socket.emit('closeVideo')
+        }else if (overlay.id == 'overlayinframe' && popup.id == 'popupformulario') {
+            socket.emit('closeForm')
         }
 
 
@@ -59,7 +63,7 @@ class Footer extends Component {
         var enlace = casi.replace("delayms=3000", "delayms=3000&rm=minimal&slide=id.p1");
         console.log('get URL: ' + enlace)
         document.getElementById("diapo-frame").src = enlace;
-        document.getElementById("diminute").src = enlace;
+        // document.getElementById("diminute").src = enlace;
     }
     getUrlForm = () => {
         document.getElementById("diapo-formulario").src = this.state.srcForm;
@@ -85,7 +89,7 @@ class Footer extends Component {
         cambiado += slide;
         var final = url.origin + url.pathname + cambiado;
         document.getElementById("diapo-frame").src = final;
-        document.getElementById("diminute").src = final;
+        // document.getElementById("diminute").src = final;
     }
 
 
@@ -109,7 +113,7 @@ class Footer extends Component {
         cambiado += slide;
         var final = url.origin + url.pathname + cambiado;
         document.getElementById("diapo-frame").src = final;
-        document.getElementById("diminute").src = final;
+        // document.getElementById("diminute").src = final;
     }
     async componentDidMount() {
         this.getUrl();
@@ -117,16 +121,14 @@ class Footer extends Component {
     }
     render() {
         return (
-            <div>
-                <FooterContainer
-                    // Envio del esatdo y funcion de mostrar los botones de la diapositiva del footer
-                    diapositivaHover={this.state.diapositivaHover} toggleHoverSlide={this.toggleHoverSlide}
-                    closePopup={this.closePopup} openPopup={this.openPopup} nextPpt={this.nextPpt}
-                    backtPpt={this.backtPpt} enviarvideo={this.enviarvideo} id_access={this.props.id_access}
-                    botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}
-                    changeOn={this.props.changeOn} txt={this.props.txt} socketUrl={this.props.socketUrl}
-                />
-            </div>
+            <FooterContainer
+                // Envio del esatdo y funcion de mostrar los botones de la diapositiva del footer
+                diapositivaHover={this.state.diapositivaHover} toggleHoverSlide={this.toggleHoverSlide}
+                closePopup={this.closePopup} openPopup={this.openPopup} nextPpt={this.nextPpt}
+                backtPpt={this.backtPpt} enviarvideo={this.enviarvideo} id_access={this.props.id_access}
+                botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick}
+                changeOn={this.props.changeOn} txt={this.props.txt} socketUrl={this.props.socketUrl}
+            />
         )
     }
 }
