@@ -8,18 +8,15 @@ export default class NotFound extends Component {
     render() {
         return (
             <>
-                <div className="notFound-image-container">
-                    <img src={cuatrocientoscuatro} className="notFound-image"/>
+                <div className="layout">
+                    <div class="title">404!</div>
+                    <div class="text icon_500">La página que está buscando no se encuentra disponible</div>
+                    <button className="home-notfound">
+                        <Link className="notfound-link" to="/">Volver a la página principal</Link>
+                    </button>
                 </div>
-                <div className="notFound-body">
-                    <h1>Ups! pagina no encontrada</h1>
-                    <br/>
-                </div>
-                <button className="home-notfound" >
-                    <Link className="notFound-link" to="/">Volver a la pagina Principal</Link>
-                </button>
-                
             </>
         )
     }
 }
+
