@@ -347,7 +347,6 @@ export default function App(props) {
             <form
               className="loginTeacher-form-item sign-up"
               onSubmit={handleToRegister}
-              autocomplete="off"
             >
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
