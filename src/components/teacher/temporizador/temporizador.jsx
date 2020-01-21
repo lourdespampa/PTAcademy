@@ -24,7 +24,7 @@ class Temporizador extends React.Component {
 
   }
   closeModal=()=>{
-    this.setState({open:false});
+    $('#modal-temp').css("display", "none");
   }
   
   onChangeInputH (event){
@@ -163,7 +163,7 @@ class Temporizador extends React.Component {
   render() {
     
     return (
-    <div className="temporizador">
+    <div className="temporizador" >
         <div>
             <div className="counter_part" id="hour_wrapper">
                 <div className="unit_value" id="hour">.</div>
@@ -192,18 +192,22 @@ class Temporizador extends React.Component {
             </audio>
         </div>
     
-        <div className="counter-tools">
+        <div className="counter-tools" >
             <button type="button" className="pure-button pure-button-primary" id="button-start-stop">INICIAR</button>
             <button type="button" className="pure-button pure-button-primary" id="button-reset">REINICIAR</button>
             <button type="button" className="pure-button pure-button-success"  onClick={() => this.openModal()} id="button-establecer">ESTABLECER TIEMPO</button>
         </div>
         
-        <div id="modal-temp" role="dialog" aria-modal="true" className="modal" tabIndex="-1" aria-hidden="true" style={{display: 'block'}}>
-            <div role="document" className="modal-dialog modal-SM">
+        <div id="modal-temp" role="dialog" aria-modal="true" className="modal" tabIndex="-1" aria-hidden="true" style={{display: 'block'}} >
+            <div role="document" className="modal-teacher__general">
                 <div className="modal-content">
                     <div className="modal-header">
                         <div className="punto-posi">
-                            <h3>ESTABLECER TIEMPO</h3>
+                            <span>ESTABLECER TIEMPO</span>
+                            <button type="button" className="close" onClick={this.closeModal}>
+                                <span aria-hidden="true">x</span>
+                                <span class="sr-only">Close</span>
+                            </button>
                             </div>
                             </div>
                             <div className="modal-body">

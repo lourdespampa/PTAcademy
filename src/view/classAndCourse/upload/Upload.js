@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Dropzone from "./Dropzone";
 import Progress from "./Progress";
 import axios from 'axios';
+import "./Upload.sass";
 
 class Upload extends Component {
   constructor(props) {
@@ -149,8 +150,8 @@ class Upload extends Component {
     } else {
       return (
         <button
-          disabled={this.state.files.length < 0 || this.state.uploading}
-          onClick={this.uploadFiles}
+          // disabled={this.state.files.length < 0 || this.state.uploading}
+          // onClick={this.uploadFiles}
         >
           crear curso
         </button>
