@@ -9,6 +9,7 @@ import Temporizador from '../pages/teacher/Temporizador';
 import Trivia from '../pages/teacher/Trivia';
 import Pizarra from '../pages/teacher/Pizarra';
 import Access from '../access'
+import NotFound from './404/NotFound';
 //socket initial
 import io from 'socket.io-client';
 //
@@ -125,6 +126,7 @@ render(){
     <Switch>
         <Route exact path="/" component={()=><Access/>} />
         <Route exact path="/CoursesTeacher/:id" component={(props)=><Access {...props} apiUrl={this.props.apiUrl} />} />
+        <Route exact path="/notfound" component={NotFound} />
       <Contenido  
       id_access={this.state.id_access} socket={this.state.socket} id_class={this.state.id_class} 
       socketUrl={this.state.socketUrl} botonClick={this.botonClick} grabar={this.grabar} reproclick={this.reproclick} 
@@ -141,7 +143,6 @@ render(){
           component={()=><Pizarra id_access={this.state.id_access} socketUrl={this.state.socketUrl}/>} />
           <Route exact path="/teacher/:id_class/:id_access/trivia" 
           component={() => <Trivia id_access={this.state.id_access} socketUrl={this.state.socketUrl}/>} />
-          {/* <Route path="/404" component={NotFound} /> */}
           {/* <Redirect from="/" to="/teacher/xxxxx" /> */}
       </Contenido>
       </Switch>

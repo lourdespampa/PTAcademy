@@ -71,6 +71,7 @@ class Header extends React.Component {
       <>
       
         <HeaderCode
+          cerrarSesion={this.props.cerrarSesion}
           socketUrl={this.props.socketUrl}
           ExitSocket={this.ExitSocket}
           redirect={this.redirect}

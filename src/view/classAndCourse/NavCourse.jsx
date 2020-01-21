@@ -60,7 +60,7 @@ export default class NavCourse extends Component {
     token: false
   }
 
-  componentWillMount = async () => {
+  UNSAFE_componentWillMount = async () => {
     let tokenStorage = localStorage.getItem("token")
     await this.setState({token: tokenStorage})
   }
