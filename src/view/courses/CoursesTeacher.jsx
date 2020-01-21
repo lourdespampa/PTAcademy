@@ -1,9 +1,13 @@
 import React, { Component } from "react";
+
 import NavCourse from "../classAndCourse/NavCourse";
 import AllCourses from "./AllCourses";
+
 import axios from "axios";
+
 import "../courses/Course.sass";
 import { Modal } from "react-bootstrap";
+
 export default class CoursesTeacher extends Component {
   constructor(props) {
     super(props);
