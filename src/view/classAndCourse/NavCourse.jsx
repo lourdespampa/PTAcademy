@@ -1,14 +1,16 @@
 import React, { Component, useState } from "react";
-import {Link} from 'react-router-dom'
+import {Link, Redirect } from 'react-router-dom'
 import "../courses/Course.sass";
 import { Modal, Button, ButtonToolbar } from "react-bootstrap";
 import FormularioCourse from './FormPostCourse'
 import FormularioClass from './FormPostClass'
+
 function BotonAgregar(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const AgregarClick=()=>setShow(false)+props.getdata()
+
   return (
     <>
       <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
@@ -29,7 +31,7 @@ function BotonAgregar(props) {
     </>
   );
 }
-function BotonCerrarSesion() {
+function BotonCerrarSesion(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -44,7 +46,7 @@ function BotonCerrarSesion() {
         </Modal.Header>
         <Modal.Body>
           <ButtonToolbar>
-            <Link to='/'><Button id="modal-body__button-yes" className="btn" variant="primary" size="sm">SI</Button></Link>
+            <Link to='/'><Button id="modal-body__button-yes" className="btn" variant="primary" size="sm" onClick={props.cerrarSesion}>SI</Button></Link>
             <Button id="modal-body__button-no" className="btn" variant="secondary" size="sm" onClick={handleClose}>NO</Button>
           </ButtonToolbar>
         </Modal.Body>
@@ -54,17 +56,31 @@ function BotonCerrarSesion() {
 }
 
 export default class NavCourse extends Component {
+  state = {
+    token: false
+  }
+
+  componentWillMount = async () => {
+    let tokenStorage = localStorage.getItem("token")
+    await this.setState({token: tokenStorage})
+  }
+
+  cerrarSesion = () => {
+    localStorage.clear();
+    this.setState({token: null})
+  }
+
   Abrir = () => {
     const nav = document.getElementById("main-nav");
           nav.classList.toggle("show");
   }
   render() {
-    console.log(this.props)
     return (
       <>
+        {this.state.token ? null : <Redirect to="/notfound"></Redirect>}
          <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
-            <h3>Nombre del querido profesor </h3>
+            <h3>Bienvenido(a) {this.props.nombreProfesor.replace(/\w\S*/g, (s) => (s.replace(/^\w/, (c) => c.toUpperCase())))} </h3>
             
             <div
               className="teacherCourses__main-menu-toggle"
@@ -74,13 +90,13 @@ export default class NavCourse extends Component {
             <nav className='teacherCourses__main-nav' id="main-nav">
               <ul className="teacherCourses__main-menu">
                 <li className="teacherCourses__main-menu__item">
-                  <BotonAgregar apiUrl={this.props.apiUrl} idteacher={this.props.idteacher} idcourse={this.props.idcourse} agregarX={this.props.agregarX}
-             getdata={this.props.getdata}>
+                  <BotonAgregar 
+                    apiUrl={this.props.apiUrl} idteacher={this.props.idteacher} idcourse={this.props.idcourse} 
+                    agregarX={this.props.agregarX} getdata={this.props.getdata}>
                   </BotonAgregar>
                 </li>
                 <li className="teacherCourses__main-menu__item">
-                  <BotonCerrarSesion>
-                  </BotonCerrarSesion>
+                  <BotonCerrarSesion cerrarSesion={this.cerrarSesion} />
                 </li>
               </ul> 
             </nav>

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom'
-import { Button, ButtonToolbar, CloseButton } from "react-bootstrap";
+import { Button, ButtonToolbar } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 
 import './HeaderCode.sass'

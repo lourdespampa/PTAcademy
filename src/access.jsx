@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Teacher from './view/teacher'
 import Student from './view/student'
 import CoursesTeacher from './view/courses/CoursesTeacher';
 import ClassTeacher from './view/class/ClassTeacher';
 import ClassDetailTeacher from './view/class/ClassDetailTeacher';
 import Login from './view//login/login'
-import NotFound from './view/NotFound'
+import NotFound from './view/404/NotFound'
 import LoginStu from './view/login.Stud/login.stu'
 import FormLoginStu from './view/login.Stud/login.dataForm'
 import Index from './view/index/Inicio'
@@ -28,6 +28,7 @@ export default class Access extends Component {
                     <Route exact path="/ClassDetailTeacher" component={()=><ClassDetailTeacher apiUrl={this.state.apiUrl} />} />
                     <Route path="/teacher/:id_class/:id_access" component={(props)=><Teacher {...props} apiUrl={this.state.apiUrl} />}  />
                     <Route path="/student/:id_student/:id_access" component={(props) => <Student {...props} apiUrl={this.state.apiUrl}/>}  />
+                    <Route path="/notfound" component={NotFound} />
                     <Route component={NotFound} />
                 </Switch>
             </BrowserRouter>
