@@ -108,7 +108,7 @@ export default function App(props) {
           console.log(error)
         })
         firebase.auth().signOut()
-        axios.post(`${props.apiUrl}/signup`, { email, pass, photoURL, username, lastname })
+        axios.post(`${props.apiUrl}/signup`, { email, pass, photoURL, user_name: username, user_lastName: lastname })
         .then( result => {
           getMessage({message: "Cuenta creada correctamente."});
         }).catch(e => console.log(e))

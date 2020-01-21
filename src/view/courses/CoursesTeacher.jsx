@@ -49,7 +49,7 @@ export default class CoursesTeacher extends Component {
       }
     }).then(({ data }) => {
       console.log(data);
-      this.setState({ nombreProfesor: data.displayName });
+      this.setState({ nombreProfesor: `${data.user_name} ${data.user_lastName}` });
     });
   }
   getCursos=()=>{
