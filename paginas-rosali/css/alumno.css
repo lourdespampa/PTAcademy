@@ -1,0 +1,154 @@
+body{
+    font-family: "Opal";
+    margin: auto;
+    
+
+}
+
+.grid-container {
+    display: grid;
+    grid-template-rows: 50px 470px;
+    grid-column: 100px ;
+}
+  
+.grid-item {
+    background:#087DDC;
+    font-size: 20px;
+    text-align: center;
+}
+
+.jorge{
+    background: white;
+}
+
+.rosali{
+    background:white;
+    height: 100px;
+}
+.box {
+    display: flex;
+    margin:0px;
+    padding:auto;
+
+}
+
+.box2 {
+    display: flex;
+    margin:0px;
+
+
+}
+
+
+
+
+
+.uno{
+    text-align: center;
+    width: 25%;
+    display: flex;
+    padding: 0px;
+    cursor: pointer;
+   
+}
+
+.dos{
+    text-align: center;
+    width: 25%;
+    display: flex;
+    color:white;
+    cursor: pointer;
+    padding: 10px;
+    
+}
+
+.tres{
+    text-align: center;
+    width: 25%;
+    display: flex;
+    color:white;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.cuatro{
+    text-align: center;
+    width: 25%;
+    display: flex;
+    color:white;
+    cursor: pointer;
+    padding: 10px;
+}
+
+img{
+    width:40%;
+}
+
+.imagen{
+    width: 20%;
+}
+
+.letra{
+    color: white;
+    padding: 0px;
+    top: 10px;
+}
+
+.tr{
+    width: 100%;
+}
+
+.footer{
+    background: #FE9505;
+    width: 200px;
+    height: 100px;
+}
+.button{
+    display: none;
+}
+.boton{
+ text-align: right;
+}
+.footer:hover .button{
+    display: block
+}
+/* Solo modificar los estilos de este */
+.footer.open{
+    position: absolute;
+    top: 35%;
+    margin: auto;
+    width: 400px;
+    height: 200px;
+    right: 5%;
+    left: 8%;
+}
+
+@media all and (max-width: 680px) {
+    
+    .dos, .tres, .cuatro{
+        display: none;
+    }
+    .grid-container {
+        display: grid;
+        grid-template-rows: 50px 471px;
+        grid-column: 1 /-1;
+    }
+
+    .grid-item {
+        font-size: 20px;
+        text-align: center;
+    }
+    .footer.open{
+        position: absolute;
+        top: 35%;
+        margin:-1%;
+        padding: 10px;
+        width: 79%;
+        height: 45%;
+        
+    }
+    .button{
+        display: block;
+    }
+    
+}
