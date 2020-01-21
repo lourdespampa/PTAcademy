@@ -54,7 +54,12 @@ export default class AllClass extends Component {
         <div className="courseTeacher-card-item">
           <div className="courseTeacher-card-image">
             {/* <img src={cursoImg} alt="some value" /> */}
-            <button class="courseTeacher__button-delette"><img class="courseTeacher__img" src="/static/media/delete.7089a268.svg" alt="imagen de borrar cursos" /></button>
+            <button onClick={() =>
+                this.props.onClick(this.props.id) +
+                this.props.setShow("showdelete", true)}
+                class="courseTeacher__button-delette">
+              <img class="courseTeacher__img" src="/static/media/delete.7089a268.svg" alt="imagen de borrar cursos" />
+            </button>
           </div>
           <div className="courseTeacher-card-info">
             <h2 className="courseTeacher-card-title">{this.props.name_class}</h2>
