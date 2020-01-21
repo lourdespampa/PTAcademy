@@ -140,10 +140,11 @@ class Upload extends Component {
     }else {
       return (
         <button
+          id='modal-body__button-cursos'
            hidden={this.state.files.length < 0 || this.state.uploading}
            onClick={this.uploadFiles}
         >
-          crear curso
+          CREAR CLASE
         </button>
       );
     }
