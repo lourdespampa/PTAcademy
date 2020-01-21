@@ -35,9 +35,9 @@ class Upload extends Component {
     try {
       await Promise.all(promises);
 
-      this.setState({ successfullUploaded: true, uploading: false });
+      this.setState({ successfullUploaded: true, uploading: true });
     } catch (e) {
-      this.setState({ successfullUploaded: true, uploading: false });
+      this.setState({ successfullUploaded: true, uploading: true });
     }
   }
 
@@ -130,15 +130,16 @@ class Upload extends Component {
             Clear
           </button>
         );
-    } else  if (this.state.successfullUploaded==true){
+    } else  if (this.state.uploading==true){
       return (
         <>
+        Subiendo clase con diapositiva ...
         </>
       );
     }else {
       return (
         <button
-           disabled={this.state.files.length < 0 || this.state.uploading}
+           hidden={this.state.files.length < 0 || this.state.uploading}
            onClick={this.uploadFiles}
         >
           crear curso
