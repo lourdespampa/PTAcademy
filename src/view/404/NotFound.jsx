@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-
-import cuatrocientoscuatro from './404.jpg';
 import './notFound.css'
 import { Link } from 'react-router-dom';
 
