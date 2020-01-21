@@ -19,18 +19,18 @@
     text-align: center;
 }
 
-body {
+.body-404 {
     background: #2f4256 url('http://freelansim.ru/images/service_pattern.png')repeat 0 0;
     text-align: center;
     font-family: Opal;
     margin: 0;
     padding:0;
-  overflow: hidden;
-  display: table;
-  min-width: 100%;
+    overflow: hidden;
+    display: table;
+    min-width: 100%;
 }
 
-.logo{
+/* .logo{
     background: url('http://freelansim.ru/images/logo.png');
     width: 70px;
     height: 70px;
@@ -41,7 +41,7 @@ body {
   position: absolute;
   top: 20px;
   left: 20px;
-}
+} */
 
 
 .icon_user_locked{
@@ -77,15 +77,14 @@ body {
     color: #fff;
     font-weight: normal;
     margin: 0 auto;
-  line-height: 1;
 }
 
-.title{
+.title-404{
   font-size: 120px;
   color: #fff;
   font-weight: 700;
   margin: 0 auto -56px;
-  line-height: 2;
+  line-height: 2.07;
   font-family: Opal;
 }
 
@@ -203,7 +202,7 @@ a.button:hover{
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
-    display: block;
+    /* display: block; */
     text-align: center;
     cursor: pointer;
     width: 300px;
