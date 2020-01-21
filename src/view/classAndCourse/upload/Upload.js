@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Dropzone from "./Dropzone";
 import Progress from "./Progress";
 import "./Upload.sass";
+import check from "./baseline-check_circle_outline-24px.svg"
 
 class Upload extends Component {
   constructor(props) {
@@ -108,7 +109,7 @@ class Upload extends Component {
           <img
             className="CheckIcon"
             alt="done"
-            src="baseline-check_circle_outline-24px.svg"
+            src={check}
             style={{
               opacity:
                 uploadProgress && uploadProgress.state === "done" ? 0.5 : 0
