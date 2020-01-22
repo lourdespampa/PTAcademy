@@ -1,6 +1,7 @@
 
 .cuerpo-grupos
     text-align: center
+    margin-top: 25px
 
 .input-text
     border: 2px solid rgba(255,255,255,.5)
@@ -27,16 +28,18 @@
     width: 33.33%
 
 .grupos-card
-    background-color: white
+    background: white
     border-radius: 0.25rem
     box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25)
     width: 100%
     flex-direction: column
     overflow: hidden
     text-align: center
+    border: solid #6EA3A8
     &:hover .grupos-card__image
         -webkit-filter: contrast(100%)
         filter: contrast(100%)
+    
 
 .grupos-card__content
     display: flex
@@ -60,18 +63,17 @@
 @media (max-width: 56rem)
     .grupos-cards__item
         width: 50%
-
 @media (max-width: 36rem)
     .grupos-cards__item
         width: 100%
 
 .contenedor-grupos
     color: #999999
-    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif
+    font-family: "Opal"
     font-style: normal
     font-weight: 400
     letter-spacing: 0
-    padding: 1rem
+    margin-left: 6% 
     text-rendering: optimizeLegibility
     -webkit-font-smoothing: antialiased
     -moz-osx-font-smoothing: grayscale
