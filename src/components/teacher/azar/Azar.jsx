@@ -3,14 +3,15 @@ import Roulette from './Roulette';
 import io from 'socket.io-client';
 import axios from 'axios'
 
-const handleOnComplete = (value) => {
-    console.log(value);
+const handleOnComplete = (alumno) => {
+    console.log(alumno);
   };
 class Azar extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            alumnos: []
+            alumnos: [],
+            showModal: false
         }
     }
 
@@ -52,12 +53,23 @@ class Azar extends React.Component {
         return array;
       }
 
+    mostrarModal = () => {
+        // this.setState({showModal: true})
+        console.log("hola lourdes")
+    }
+
 
     render(){
         if(this.state.alumnos.length > 0){
             return(
                 <div>
-                    <Roulette options={this.state.alumnos} baseSize={220} onComplete={handleOnComplete} socketUrl={this.props.socketUrl} id_access={this.props.id_access}/>
+                    <Roulette 
+                        options={this.state.alumnos} 
+                        baseSize={220} onComplete={handleOnComplete} 
+                        socketUrl={this.props.socketUrl} 
+                        id_access={this.props.id_access}
+                        mostrarModal={this.mostrarModal}
+                    />
                 </div>
             )
         } else {
