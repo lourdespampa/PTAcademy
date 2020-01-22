@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import deleteClass from '../courses/assets/delete.svg'
 export default class AllClass extends Component {
   constructor(props) {
     super(props);
@@ -57,7 +58,7 @@ export default class AllClass extends Component {
                 this.props.onClick(this.props.id) +
                 this.props.setShow("showdelete", true)}
                 class="courseTeacher__button-delette">
-              <img class="courseTeacher__img" src="/static/media/delete.7089a268.svg" alt="imagen de borrar cursos" />
+              <img class="courseTeacher__img" src={deleteClass} alt="imagen de borrar cursos" />
             </button>
           </div>
           <div className="courseTeacher-card-info">
