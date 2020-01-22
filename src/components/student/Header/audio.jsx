@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
-import {Link,Redirect}  from 'react-router-dom';
+// import {Link,Redirect}  from 'react-router-dom';
 import io from 'socket.io-client';
-import {Modal,Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 const { AudioStreamer } = require('sfmediastream');
 
 
@@ -98,24 +98,24 @@ export default class Audio extends Component {
         //SLIDES
 
         socket.on('sendSlidesS', (data) => {
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
             const overlayDiapo = document.getElementById('overlay')
             const popupDiapo = document.getElementById('popup')
             this.openPopup(overlayDiapo.id, popupDiapo.id)}
         })
 
         socket.on('nextPptS', (data) => {
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
             this.nextPpt()}
         })
 
         socket.on('backtPptS', (data) => {
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
             this.backtPpt()}
         })
 
         socket.on('closeSlidesS', (data) => {
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
             const overlayDiapo = document.getElementById('overlay')
             const popupDiapo = document.getElementById('popup')
             this.closePopup(overlayDiapo.id, popupDiapo.id)}
@@ -125,11 +125,11 @@ export default class Audio extends Component {
         //VIDEO
 
         socket.on('Video', (data) => {
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
             this.enviarvideo(data.url)}
         })
         socket.on('closeVideo', (data) => {
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
             this.DisablePopup()
             }
         })
@@ -150,8 +150,8 @@ export default class Audio extends Component {
 
                 // Buffer header must be received first
                 socket.on('bufferHeader',  (packet) =>{
-                    if(packet.pin == (this.props.id_access).toUpperCase()) {
-                    // if (packet.pin == ('<%= pin %>').toUpperCase()) {
+                    if(packet.pin === (this.props.id_access).toUpperCase()) {
+                    // if (packet.pin === ('<%= pin %>').toUpperCase()) {
                     console.log('ejecutando buffer');
                     audioStreamer.setBufferHeader(packet.audio);
                     // console.log('El profesor iniciara una demostracion de audio');
@@ -160,9 +160,9 @@ export default class Audio extends Component {
 
                 // Receive buffer and play it
                 socket.on('stream', (packet) =>{
-                    if(packet.pin == (this.props.id_access).toUpperCase()) {
+                    if(packet.pin === (this.props.id_access).toUpperCase()) {
                     //    console.log("3");
-                    //if (packet.pin == ('<%= pin %>').toUpperCase()) {
+                    //if (packet.pin === ('<%= pin %>').toUpperCase()) {
                     //   debug.value = "Buffer received: " + packet.audio[0].byteLength + "bytes";
                     audioStreamer.receiveBuffer(packet.audio);
                     console.log('recibiendo stream...');
@@ -176,12 +176,12 @@ export default class Audio extends Component {
 
         })
         socket.on('onPlay',  (data)=> {
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
             btn_play.click()}
         })
         //ROULETTE
         socket.on('rouletteWinnerS',  (data) =>{
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
             console.log('escucha el alum')
             this.setState({show:true});
             document.getElementById("modal_luckyStudent").innerHTML = data.data;
@@ -191,7 +191,7 @@ export default class Audio extends Component {
         //ROULETTE END 
         //grupos
         socket.on('enviando grupos',  (data) =>{
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
             console.log(data.data.data)
             this.setState({showGrupo:true});
             document.getElementById("modal_GrupoStudent").innerHTML = data.data.data;
@@ -202,7 +202,7 @@ export default class Audio extends Component {
 
         //FORM
         socket.on('SendFormS', (data) => {
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
             const overlay_popup = document.getElementById('overlayinframe')
             const popup = document.getElementById('popupformulario')
 
@@ -210,7 +210,7 @@ export default class Audio extends Component {
             popup.className = 'popup active'}
         })
         socket.on('closeForm', (data) => {
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
                 this.DisablePopup2()
             }
         })

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { Button, ButtonToolbar } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 

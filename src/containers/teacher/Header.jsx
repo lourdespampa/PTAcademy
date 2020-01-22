@@ -20,13 +20,13 @@ class Header extends React.Component {
       query: { pin: this.props.id_access }
     });
     socket.on("tabBlurred", data => {
-      if (data.pin == this.props.id_access.toUpperCase()) {
+      if (data.pin === this.props.id_access.toUpperCase()) {
         this.notify(data.fullname);
       }
     });
   }
   notify = (nom) => {
-    toast.warn(<><p>⚠ Alumno desatento❗</p><p>{nom}</p></>,{
+    toast.warn(<><p role = "img" aria-label = "warning">⚠ Alumno desatento!</p><p>{nom}</p></>,{
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
