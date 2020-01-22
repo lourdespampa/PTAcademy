@@ -65,10 +65,11 @@ export default class ClassTeacher extends Component {
     .catch( e => console.log(e))
   }
   deleteClass= async () => {
+    console.log('delete clase_ '+this.state.id_class)
     var varToken = localStorage.getItem("token");
 
     await axios({
-      url:`${this.props.apiUrl}/v1/api/teacher/${this.state.id_class }`,
+      url:`${this.props.apiUrl}/v1/api/teacher/lesson/${this.state.id_class}`,
       method:'put',
       headers:{
         'x-access-token': `${varToken}`
