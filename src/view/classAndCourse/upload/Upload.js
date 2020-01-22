@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Dropzone from "./Dropzone";
 import Progress from "./Progress";
-import axios from 'axios';
+import "./Upload.sass";
+import check from "./baseline-check_circle_outline-24px.svg"
 
 class Upload extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class Upload extends Component {
       files: [],
       uploading: false,
       uploadProgress: {},
-      successfullUploaded: false
+      successfullUploaded: false,
+      errorUploaded:false
     };
 
     this.onFilesAdded = this.onFilesAdded.bind(this);
@@ -34,15 +36,13 @@ class Upload extends Component {
     try {
       await Promise.all(promises);
 
-      this.setState({ successfullUploaded: true, uploading: false });
+      this.setState({ successfullUploaded: true, uploading: true });
     } catch (e) {
-      // Not Production ready! Do some error handling here instead...
-      this.setState({ successfullUploaded: true, uploading: false });
+      this.setState({ successfullUploaded: true, uploading: true });
     }
   }
 
   sendRequest(file) {
-    // e.preventDefault();
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
 
@@ -73,32 +73,30 @@ class Upload extends Component {
 
       const formData = new FormData();
       formData.append("file", file, file.name);
+      formData.append("class_name",this.props.class_name)
+      formData.append("desc",this.props.desc)
       console.log(file)
 
       var varToken = localStorage.getItem('token');
-    const data = {
-      class_name: this.props.class_name,
-      desc: this.props.desc,
-      presentation:true
-    };
-
-      req.setRequestHeader('Content-Type', 'multipart/form-data')
-
-      req.open("POST", `http://192.168.1.51:4200/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
-      req.send({formData,hola:"hola"});
         
-
-
-        // axios({
-        //   // url: `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`,
-        //   url: `http://192.168.1.51:4200/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`,
-        //   data,
-        //   method: 'post',
-        //   headers: {
-        //     'x-access-token': `${varToken}`
-        //   }
-        // }).then(res => console.log(res))
-        //   .catch(err => console.log(err));
+      req.open("POST", `http://192.168.1.29:4200/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
+      req.setRequestHeader('x-access-token', `${varToken}`)
+      req.send(formData);
+      console.log('asdmasd')
+      req.onload=()=>{
+        if(req.readyState===req.DONE){
+          if(req.status===200){
+            console.log(req.response)
+            console.log('bien')
+            this.props.handleClose()
+          }
+          else if(req.status===500){
+            console.log(req.response)
+            console.log('mal')
+            this.setState({ errorUploaded: true});
+          }
+        }
+      }
     });
   }
 
@@ -111,7 +109,7 @@ class Upload extends Component {
           <img
             className="CheckIcon"
             alt="done"
-            src="baseline-check_circle_outline-24px.svg"
+            src={check}
             style={{
               opacity:
                 uploadProgress && uploadProgress.state === "done" ? 0.5 : 0
@@ -123,23 +121,30 @@ class Upload extends Component {
   }
 
   renderActions() {
-    if (this.state.successfullUploaded) {
+    if (this.state.errorUploaded==true){
+        return (
+          <button
+            onClick={() =>
+              this.setState({ files: [], errorUploaded: false })
+            }
+          >
+            Clear
+          </button>
+        );
+    } else  if (this.state.uploading==true){
       return (
-        <button
-          onClick={() =>
-            this.setState({ files: [], successfullUploaded: false })
-          }
-        >
-          Clear
-        </button>
+        <>
+        Subiendo clase con diapositiva ...
+        </>
       );
-    } else {
+    }else {
       return (
         <button
-          disabled={this.state.files.length < 0 || this.state.uploading}
-          onClick={this.uploadFiles}
+          id='modal-body__button-cursos'
+           hidden={this.state.files.length < 0 || this.state.uploading}
+           onClick={this.uploadFiles}
         >
-          Upload
+          CREAR CLASE
         </button>
       );
     }
