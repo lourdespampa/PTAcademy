@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {Redirect} from 'react-router-dom'
-import "./login.css";
+import "./login.sass";
 import logo from "./bg-teacher-login.jpg";
 
 import axios from 'axios';
@@ -181,7 +181,7 @@ export default function App(props) {
   // }
   
   return (
-    <div className="loginTeacher" style={{ backgroundImage: `url(${logo})` }}>
+    <div className="loginTeacher">
       {
       userState ? <Redirect to={'/CoursesTeacher/'+userState._id} /> : null
       }
