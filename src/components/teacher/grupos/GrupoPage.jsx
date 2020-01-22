@@ -36,7 +36,7 @@ export default class GrupoPage extends Component {
       }
     }).then(res => {
       res.data.map(alumno => {
-        this.state.alumnos.push(alumno.name_stu + " " + alumno.lastName_stu);
+        this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
       });
       const temp = this.state.alumnos;
       this.setState({
