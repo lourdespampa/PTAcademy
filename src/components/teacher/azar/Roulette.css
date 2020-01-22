@@ -9,3 +9,31 @@
   justify-content: center;
   padding: 10px;
 }
+
+.azar-tab-group {
+  list-style:none;
+  padding:0;
+  margin:0 0 40px 0;}
+.azar-tab-group:after {
+    content: "";
+    display: table;
+    clear: both;}
+  .azar-tab .azar-a {
+    display:block;
+    text-decoration:none;
+    padding:15px;
+    background:rgba(#a0b3b0,.25);
+    color:#a0b3b0;
+    font-size:20px;
+    float:left;
+    width:50%;
+    text-align:center;
+    cursor:pointer;
+    transition:.5s ease;}
+.azar-tab-group .azar-tab .azar-a:hover {
+      background:darken(#1ab188,5%);
+    }
+.azar-tab-group .active .azar-a {
+    background:#1ab188;
+    color:#fff !important;
+  }

@@ -2,17 +2,30 @@ import React from 'react';
 import Roulette from './Roulette';
 import io from 'socket.io-client';
 import axios from 'axios';
+import Modal from 'react-bootstrap/Modal';
+import { BtnPuntos } from '../lista/btnpuntos';
 
-
-const handleOnComplete = (alumno) => {
-    console.log(alumno);
-  };
 class Azar extends React.Component {
     constructor(props){
         super(props)
         this.state = {
             alumnos: [],
-            showModal: false
+            alumnoElegido : "",
+            showModal : false,
+            tipoPuntaje: false,
+            datapoint:{
+                positivo:[
+                    {imgen:require('../../../img/lista/punto1.png'),valor:1,title:'Ayuda a Otros'},
+                    {imgen:require('../../../img/lista/punto2.png'),valor:1,title:'Cumplimiento de Tareas'},
+                    {imgen:require('../../../img/lista/punto3.png'),valor:1,title:'Participacion'},
+                    {imgen:require('../../../img/lista/punto4.png'),valor:1,title:'Persistencia'},
+                    {imgen:require('../../../img/lista/punto5.png'),valor:1,title:'responsabilidad'},
+                    {imgen:require('../../../img/lista/punto6.png'),valor:1,title:'trabajo en equipo'}],
+                negativo:[
+                    {imgen:require('../../../img/lista/punto-1.png'),valor:1,title:'Ayuda a Otros'},
+                    {imgen:require('../../../img/lista/punto-2.png'),valor:1,title:'Cumplimiento de Tareas'},
+                    {imgen:require('../../../img/lista/punto-3.png'),valor:1,title:'Participacion'}]
+            }
         }
     }
 
@@ -28,6 +41,11 @@ class Azar extends React.Component {
             }
           })
     }
+
+    handleOnComplete = (alumno) => {
+        console.log(alumno);
+        this.setState({alumnoElegido : alumno, showModal : true})
+      };
 
     getStudents = () => {
         var varToken = localStorage.getItem('token');
@@ -54,10 +72,8 @@ class Azar extends React.Component {
         return array;
       }
 
-    mostrarModal = () => {
-        // this.setState({showModal: true})
-        console.log("hola lourdes")
-    }
+    handleChangePScore = () => this.setState({tipoPuntaje:true})
+    handleChangeNScore = () => this.setState({tipoPuntaje:false})
 
 
     render(){
@@ -66,11 +82,31 @@ class Azar extends React.Component {
                 <div>
                     <Roulette 
                         options={this.state.alumnos} 
-                        baseSize={220} onComplete={handleOnComplete} 
+                        baseSize={220} 
+                        onComplete={this.handleOnComplete} 
                         socketUrl={this.props.socketUrl} 
                         id_access={this.props.id_access}
-                        mostrarModal={this.mostrarModal}
                     />
+                    <Modal className="modal-teacher__general" size={'lg'} show={this.state.showModal} onHide={() => this.setState({showModal:false})}>
+                        <Modal.Header closeButton>
+                             <div>
+                                Alumno: {this.state.alumnoElegido}
+                             </div>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <ul class="azar-tab-group">
+                                <li class={this.state.tipoPuntaje ? "azar-tab active" : "azar-tab"} onClick={this.handleChangePScore}><a className="azar-a">POSITIVO</a></li>
+                                <li class={this.state.tipoPuntaje ? "azar-tab" : "azar-tab active"} onClick={this.handleChangeNScore}><a className="azar-a">NEGATIVO</a></li>
+                            </ul>
+                            {
+                                this.state.tipoPuntaje
+                                ?
+                                <BtnPuntos data={this.state.datapoint.positivo} funcion={this.onClickPointAdd} />
+                                :
+                                <BtnPuntos data={this.state.datapoint.negativo} funcion={this.onClickPointRemove} />
+                            }
+                        </Modal.Body>
+                    </Modal>
                 </div>
             )
         } else {

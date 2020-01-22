@@ -197,7 +197,7 @@ class Roulette extends React.Component {
           <canvas ref="canvas" className="roulette-canvas" width={baseSize*2} height={baseSize*2}></canvas>
         </div>
         <div className="roulette-container">
-          <input type="button" value="Girar" onClick={this.props.mostrarModal} className="button" id="spin" style={{color:"black"}}/>
+          <input type="button" value="Girar" onClick={this.handleOnClick} className="button" id="spin" style={{color:"black"}}/>
         </div>
       </div>
     );
