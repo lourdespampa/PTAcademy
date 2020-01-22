@@ -79,7 +79,7 @@ class Upload extends Component {
 
       var varToken = localStorage.getItem('token');
         
-      req.open("POST", `http://192.168.1.29:4200/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
+      req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
       req.setRequestHeader('x-access-token', `${varToken}`)
       req.send(formData);
       console.log('asdmasd')
@@ -140,11 +140,11 @@ class Upload extends Component {
     }else {
       return (
         <button
-          id='modal-body__button-cursos'
+          id='modal-body__button-cursos' className="btn btn-primary Opal"
            hidden={this.state.files.length < 0 || this.state.uploading}
            onClick={this.uploadFiles}
         >
-          CREAR CLASE
+          Crear Clase
         </button>
       );
     }
