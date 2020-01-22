@@ -10,12 +10,9 @@ export default class GrupoPage extends Component {
       alumnos: [],
       nro_per_grupo: 1,
       grupos: [],
-      socket:null,
       id_access : ''
     };
   }
-  
-
   handleNumPerGrou = e => {
     this.setState({ nro_per_grupo: e.target.value });
   };
@@ -56,7 +53,7 @@ export default class GrupoPage extends Component {
       cadena += `<li class="grupos-cards__item">
       <div class="grupos-card">
         <div class="grupos-card__content">
-          <div class="grupos-card__title">Grupo ${i + 1}</div><br/>
+          <div class="grupos-card__title"><u>Grupo ${i + 1}</u></div><br/>
        `;
 
       for (let index = 0; index < this.state.nro_per_grupo; index++) {
@@ -90,24 +87,23 @@ export default class GrupoPage extends Component {
     const { nro_per_grupo } = this.state.nro_per_grupo;
     return (
       <>
-        {/* <div className="container"> */}
-          <div className="cuerpo-grupos">
-            {nro_per_grupo}
-            <input
-              min="1"
-              className="input-text"
-              type="number"
-              name="numGrup"
-              placeholder="numero de personas por grupos"
-              value={this.state.nro_per_grupo}
-              onChange={this.handleNumPerGrou}
-            />
-            <button className="button btnMyM" onClick={this.groupGenerator}>FORMAR GRUPOS</button>
-          </div>
-          <div className="contenedor-grupos">
-            <ul className="grupos-cards" id="imprimir"></ul>
-          </div>
-        {/* </div> */}
+        <div className="cuerpo-grupos">
+          {nro_per_grupo}
+          <span> Numero de personas por grupo  </span>
+          <input
+            min="1"
+            className="input-text"
+            type="number"
+            name="numGrup"
+            placeholder="numero de personas por grupos"
+            value={this.state.nro_per_grupo}
+            onChange={this.handleNumPerGrou}
+          />
+          <button className="button Opal btnMyM" onClick={this.groupGenerator}>FORMAR GRUPOS</button>
+        </div>
+        <div className="contenedor-grupos">
+          <ul className="grupos-cards" id="imprimir"></ul>
+        </div>
       </>
     );
   }
