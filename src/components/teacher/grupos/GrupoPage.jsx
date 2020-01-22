@@ -36,7 +36,7 @@ export default class GrupoPage extends Component {
       }
     }).then(res => {
       res.data.map(alumno => {
-        this.state.alumnos.push(alumno.name_stu + " " + alumno.lastName_stu);
+        this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
       });
       const temp = this.state.alumnos;
       this.setState({
@@ -90,7 +90,7 @@ export default class GrupoPage extends Component {
     const { nro_per_grupo } = this.state.nro_per_grupo;
     return (
       <>
-        <div className="container">
+        {/* <div className="container"> */}
           <div className="cuerpo-grupos">
             {nro_per_grupo}
             <input
@@ -102,12 +102,12 @@ export default class GrupoPage extends Component {
               value={this.state.nro_per_grupo}
               onChange={this.handleNumPerGrou}
             />
-            <button onClick={this.groupGenerator}>FORMAR GRUPOS</button>
+            <button className="button btnMyM" onClick={this.groupGenerator}>FORMAR GRUPOS</button>
           </div>
           <div className="contenedor-grupos">
             <ul className="grupos-cards" id="imprimir"></ul>
           </div>
-        </div>
+        {/* </div> */}
       </>
     );
   }
