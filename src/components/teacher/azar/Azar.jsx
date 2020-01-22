@@ -9,10 +9,12 @@ class Azar extends React.Component {
     constructor(props){
         super(props)
         this.state = {
+            todosAlumnos: [],
             alumnos: [],
             alumnoElegido : "",
+            point: 0,
             showModal : false,
-            tipoPuntaje: false,
+            tipoPuntaje: true,
             datapoint:{
                 positivo:[
                     {imgen:require('../../../img/lista/punto1.png'),valor:1,title:'Ayuda a Otros'},
@@ -61,7 +63,7 @@ class Azar extends React.Component {
             res.data.map( alumno => {
                 temp.push(alumno.name_stu)
             })
-            this.setState({ alumnos: this.sortearElementos(temp) })
+            this.setState({ alumnos: this.sortearElementos(temp), todosAlumnos: res.data })
         })
     }
     sortearElementos = (array) => {
@@ -74,6 +76,40 @@ class Azar extends React.Component {
 
     handleChangePScore = () => this.setState({tipoPuntaje:true})
     handleChangeNScore = () => this.setState({tipoPuntaje:false})
+
+    onClickPointAdd= (valor) => {
+        console.log(this.state.todosAlumnos)
+        // let point = this.state.point + valor
+        // const data = { point }
+        // let varToken = localStorage.getItem('token');
+        // axios({
+        //     url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
+        //     data,
+        //     method: 'put',
+        //     headers: {
+        //         'x-access-token': `${varToken}`
+        //     }
+        // })
+        // this.getStudents();
+        // this.setShow('showpuntosmas',false)
+    }
+    onClickPointRemove= (valor) => {
+        // const point=this.state.point - valor
+        // const data={
+        //     point : point
+        //  }
+        //  var varToken = localStorage.getItem('token');
+        // await axios({
+        // url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
+        // data,
+        // method: 'put',
+        // headers: {
+        //     'x-access-token': `${varToken}`
+        // }
+        // })
+        //     this.getStudents();
+        //     this.setShow('showpuntosmenos',false)
+    }
 
 
     render(){
