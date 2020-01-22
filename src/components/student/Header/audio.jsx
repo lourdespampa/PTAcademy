@@ -228,7 +228,7 @@ export default class Audio extends Component {
                 <span className="title">GRUPOS ELEGIDOS SON:</span>
             </Modal.Header>
             <Modal.Body>
-                <div id="modal_GrupoStudent" style={{display: 'flex',flexFlow: 'wrap',maxHeight: '350px',overflow: 'auto'}}>
+                <div id="modal_GrupoStudent" style={{maxHeight: '350px',overflow: 'auto'}}>
                     <ul className="grupos-cards" id="imprimir"></ul>
                 </div>
             </Modal.Body>
