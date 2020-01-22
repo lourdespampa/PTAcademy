@@ -1,7 +1,8 @@
 import React from 'react';
 import Roulette from './Roulette';
 import io from 'socket.io-client';
-import axios from 'axios'
+import axios from 'axios';
+
 
 const handleOnComplete = (value) => {
     console.log(value);
