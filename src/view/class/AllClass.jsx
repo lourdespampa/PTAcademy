@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+// import cursoImg from '../../img/courses/cursos.jpg'
 import axios from "axios";
 import deleteClass from '../courses/assets/delete.svg'
 export default class AllClass extends Component {
@@ -25,10 +26,6 @@ export default class AllClass extends Component {
       id_class: this.props.id
     };
 
-    console.log(this.props.id)
-    console.log(data.id_access)
-    console.log(this.state.id_access)
-
     axios({
       url: this.props.apiUrl+"/v1/api/access/", 
       data,
@@ -44,7 +41,6 @@ export default class AllClass extends Component {
   };
   renderRedirect = () => {
     if (this.state.redirect) {
-      console.log(this.state.id_access)
       return <Redirect  to={`/teacher/${this.props.id}/${this.state.id_access}`}/>
     }
   }

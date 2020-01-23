@@ -244,7 +244,7 @@ export default class ListaAlum extends Component {
                             <div className="body" id="html">
                                 <div className="table-responsive">
                                     <table id="tabla_usuarios" className="table table-bordered table-striped table-hover dataTable js-exportable">
-                                        <thead >
+                                        <thead>
                                             <tr>
                                                 <th style={{textAlign:"center"}}>Nombres</th>
                                                 <th style={{textAlign:"center"}}>Apellidos</th>

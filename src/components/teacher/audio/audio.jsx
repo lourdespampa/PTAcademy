@@ -29,7 +29,7 @@ export default class Audio extends Component{
             query:
                 { pin: this.props.id_access }
           })
-        if(controller.length%2===0){
+        if(controller.length%2 === 0){
             micro.style.animation ='ripple 1000ms infinite' ;
             socket.emit('onPlay', {
                 txt: "Se inicio una nueva emision de voz.Por favor da click en el boton reproducir"
@@ -58,7 +58,7 @@ export default class Audio extends Component{
                 }
             
             } else{
-                if(controller.length%2!==0)
+                if(controller.length%2 !== 0)
                 presenterMedia.stopRecording();
                 presenterMedia = false
                 controller.push("xd")
@@ -71,7 +71,7 @@ export default class Audio extends Component{
         const i = [];
         btn.addEventListener('click',()=>{
         
-            if(i.length%2===0){
+            if(i.length%2 === 0){
         	micro.style.animation ='ripple 1000ms infinite' ;
           i.push("sx");
         }else{

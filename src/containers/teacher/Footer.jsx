@@ -27,7 +27,7 @@ class Footer extends Component {
             popup = document.getElementById(p);
 
         console.log(this.props.socketUrl)
-        if (overlay.id == 'overlay' && popup.id == 'popup') {
+        if (overlay.id === 'overlay' && popup.id === 'popup') {
 
             socket.emit('sendSlides')
         }
@@ -45,11 +45,11 @@ class Footer extends Component {
         var overlay = document.getElementById(o),
             popup = document.getElementById(p);
 
-        if (overlay.id == 'overlay' && popup.id == 'popup') {
+        if (overlay.id === 'overlay' && popup.id === 'popup') {
             socket.emit('closeSlides')
-        }else if (overlay.id == 'overlay2' && popup.id == 'popupvideo') {
+        }else if (overlay.id === 'overlay2' && popup.id === 'popupvideo') {
             socket.emit('closeVideo')
-        }else if (overlay.id == 'overlayinframe' && popup.id == 'popupformulario') {
+        }else if (overlay.id === 'overlayinframe' && popup.id === 'popupformulario') {
             socket.emit('closeForm')
         }
 

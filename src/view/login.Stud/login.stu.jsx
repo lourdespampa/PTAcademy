@@ -22,27 +22,24 @@ export default class LoginStu extends Component {
 
   componentDidMount() {}
   handleKeyPress = event => {
-    if (event.key == "Enter") {
+    if (event.key === "Enter") {
       this.ValidateCode();
     }
   };
 
   ValidateCode = (e) => {
     e.preventDefault()
-    console.log("fddfsd");
     const codigo = this.state.value.toUpperCase();
     const data = {
       id_access: codigo
     };
-    console.log(this.state.value);
     axios
       .post(this.props.apiUrl + "/verify_access", data)
       .then(result => {
-        console.log(result);
-        if (result.data.message == "Code doesn´t exist") {
+        // console.log(result);
+        if (result.data.message === "Code doesn´t exist") {
           alert("codigo incorrecto");
         } else {
-          console.log(this.state.id_access);
           this.setState({ id_access: codigo, acceso: true });
         }
       })
