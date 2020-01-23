@@ -3,6 +3,7 @@ import $ from 'jquery';
 import io from 'socket.io-client';
 import "./temporizador.sass";
 import Modal from 'react-bootstrap/Modal';
+import iconExit from "../../../img/cerrar.png";
 
 class Temporizador extends React.Component {
   constructor(props) {
@@ -201,13 +202,12 @@ class Temporizador extends React.Component {
         <div id="modal-temp" role="dialog" aria-modal="true" className="modal" tabIndex="-1" aria-hidden="true" style={{display: 'block'}} >
             <div role="document" className="modal-teacher__general">
                 <div className="modal-content">
+                    <button  type="button" className="modal-teacher__general-close" onClick={this.closeModal}>
+                        <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                    </button>
                     <div className="modal-header">
                         <div className="punto-posi">
                             <span>ESTABLECER TIEMPO</span>
-                            <button type="button" className="close" onClick={this.closeModal}>
-                                <span aria-hidden="true">x</span>
-                                <span class="sr-only">Close</span>
-                            </button>
                             </div>
                             </div>
                             <div className="modal-body">
