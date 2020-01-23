@@ -11,27 +11,26 @@ export default class FormPostCourse extends Component {
     super(props);
     //2. el estado con sus variables iniciales
     this.state = {
+      level: "",
+      grade: "",
+      section: "",
       course_name: "",
-      desc: "",
+      description: "",
       profesorParticular: false,
       nivelPrimaria: true,
-      niveles: "",
-      grado: ["1er grado","2do grado","3er grado","4to grado","5to grado","6to grado"],
-      seccion: ["A","B","C","D","única"],
-      nombresCursos: ["Matemáticas","Comunicación","Inglés", "Arte"]
+      grados: ["1er grado","2do grado","3er grado","4to grado","5to grado","6to grado"],
+      secciones: ["A","B","C","D","única"],
+      nombresCursos: ["Matemática","Comunicación","Inglés", "Arte"]
     };
   }
   //Métodos del componente clase, esta es la lógica
-  handleSelectedTeacher = (event) => {
-    if(event.target.value === "primaria") this.setState({nivelPrimaria: true, profesorParticular: false})
-    if( event.target.value === "secundaria") this.setState({nivelPrimaria: false, profesorParticular: false})
-    if(event.target.value === "ninguno") this.setState({profesorParticular: true})
-  }
+  handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
 
-  handleChange = e => {
-    const target = e.target;
-    const name = target.name;
-    const value = target.value;
+    if(event.target.value === "primaria") this.setState({nivelPrimaria: true, profesorParticular: false, level: "primaria"})
+    if( event.target.value === "secundaria") this.setState({nivelPrimaria: false, profesorParticular: false, level: "secundaria"})
+    if(event.target.value === "ninguno") this.setState({profesorParticular: true, level: ""})
 
     this.setState({
       [name]: value
@@ -61,16 +60,16 @@ export default class FormPostCourse extends Component {
 
   //Esta es la vista, interfaz
   render() {
-    const { course_name, desc } = this.state;
+    const { course_name, description } = this.state;
     return (
       <>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label className="modal-title__controlname">Detalles del curso</Form.Label>
             <div>
-              <input type="radio" name="nivel" value="primaria" onChange={this.handleSelectedTeacher} /> Primaria
-              <input type="radio" name="nivel" value="secundaria" onChange={this.handleSelectedTeacher} /> Secundaria
-              <input type="radio" name="nivel" value="ninguno" onChange={this.handleSelectedTeacher} /> Ninguno
+              <input type="radio" name="nivel" value="primaria" onChange={this.handleChange} /> Primaria
+              <input type="radio" name="nivel" value="secundaria" onChange={this.handleChange} /> Secundaria
+              <input type="radio" name="nivel" value="ninguno" onChange={this.handleChange} /> Ninguno
             </div>
             {
               this.state.profesorParticular
@@ -78,22 +77,22 @@ export default class FormPostCourse extends Component {
               null
               :
               <div>
-                <select name="grado">
+                <select name="grade">
                   {
                   this.state.nivelPrimaria
                   ?
-                  this.state.grado.map( (grado, id) => (
+                  this.state.grados.map( (grado, id) => (
                     <option key={id} value={grado}>{grado}</option>
                   ))
                   :
-                  this.state.grado.slice(0,5).map( (grado, id) => (
+                  this.state.grados.slice(0,5).map( (grado, id) => (
                     <option key={id} value={grado}>{grado}</option>
                   ))
                   }
                 </select>
                 <select name="seccion">
                   {
-                  this.state.seccion.map( (seccion, id) => (
+                  this.state.secciones.map( (seccion, id) => (
                     <option key={id} value={seccion}>{seccion}</option>
                   ))
                   }
@@ -116,7 +115,7 @@ export default class FormPostCourse extends Component {
               />
               : 
               <div>
-                <select name="cursos">
+                <select name="course_name">
                 {
                 this.state.nombresCursos.map( (curso, id) => (
                   <option key={id} value={curso}>{curso}</option>
@@ -129,9 +128,9 @@ export default class FormPostCourse extends Component {
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label className="modal-title__controldescription">Descripcion del curso</Form.Label>
             <Form.Control className="modal-teacher__general-controldescription"
-              name="desc"
+              name="description"
               onChange={this.handleChange}
-              value={desc}
+              value={description}
               as="textarea"
               rows="2"
               required
