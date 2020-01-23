@@ -7,7 +7,12 @@ import robot from "./images/playtecrobot.gif";
 export default class FormLoginStu extends Component {
   constructor(props) {
     super(props);
-    this.state = { value1: "", value2: "", id_access: "", idStu: "" };
+    this.state = {
+      value1: "",
+      value2: "",
+      id_access: "",
+      idStu: ""
+    };
 
     this.handleChange1 = this.handleChange1.bind(this);
     this.handleChange2 = this.handleChange2.bind(this);
@@ -16,13 +21,10 @@ export default class FormLoginStu extends Component {
   componentDidMount() {
     const data = this.props.match.params.id_access;
     this.setState({ id_access: data });
-    setTimeout(() => {
-      console.log(this.state.id_access);
-    }, 2000);
   }
 
   handleKeyPress = event => {
-    if (event.key == "Enter") {
+    if (event.key === "Enter") {
       this.SaveStudent();
     }
   };
@@ -43,8 +45,8 @@ export default class FormLoginStu extends Component {
     const inputName = document.getElementById("inputName");
     const inputLastName = document.getElementById("inputLastName");
 
-    if (inputName.value == "" || inputLastName.value == "") {
-      alert("Name and Lastname are required");
+    if (inputName.value === "" || inputLastName.value === "") {
+      alert("Nombre y Apellidos son requeridos");
     } else {
       const data = {
         name_stu: inputName.value,
@@ -52,7 +54,7 @@ export default class FormLoginStu extends Component {
         id_access: this.state.id_access
       };
 
-      localStorage.setItem("alumno",JSON.stringify(data))
+      localStorage.setItem("alumno", JSON.stringify(data));
       const VerifyCode = await axios.post(
         this.props.apiUrl + "/signin_student",
         data
@@ -72,12 +74,6 @@ export default class FormLoginStu extends Component {
           id="link_form"
           to={`/student/${this.state.idStu}/${this.state.id_access}`}
         />
-        {/*<div className="container center" >
-        <h1>Student Data Form {} </h1>
-           <input id="inputName"placeholder="Insert names Here" type="text" value={this.state.value1}  onChange={this.handleChange1}/>
-           <input id="inputLastName"placeholder="Insert last names Here" type="text" value={this.state.value2}  onChange={this.handleChange2}/>
-           <button id="btnLoginStu" onClick={()=>this.SaveStudent()}>Signin</button>
-        </div>*/}
 
         <div className="limiter">
           <div className="container-login100">
@@ -85,8 +81,12 @@ export default class FormLoginStu extends Component {
               <span className="login100-form-title p-b-26">
                 INGRESO A LA CLASE
               </span>
-              <span class="login100-form-title">
-                <img src={robot} alt="robot" className="login-imagen-robot-student" />
+              <span className="login100-form-title">
+                <img
+                  src={robot}
+                  alt="robot"
+                  className="login-imagen-robot-student"
+                />
               </span>
               <div className="wrap-input100 validate-input">
                 <input

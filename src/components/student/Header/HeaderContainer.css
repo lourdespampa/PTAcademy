@@ -89,7 +89,7 @@
 
 /* media queries */
 
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 850px){
 
     .alumnoH-header .alumnoHeader-nav{
         width: 100%;

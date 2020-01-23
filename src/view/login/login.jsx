@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {Redirect} from 'react-router-dom'
-import "./login.css";
+import "./login.sass";
 import logo from "./bg-teacher-login.jpg";
 
 import axios from 'axios';
@@ -8,7 +8,7 @@ import Loading from "./Loading";
 //importamos la configuración de firebase
 import firebase from "./firebaseConfig";
 //libreria que cifra el token
-import aesjs from 'aes-js'
+// import aesjs from 'aes-js'
 
 export default function App(props) {
 
@@ -17,7 +17,7 @@ export default function App(props) {
   //hook para obtener valores de los inputs de registro y acceso con google
   const [inputsRegister, setInputsRegister] = useState({ email: "", photoURL: "", username: "", lastname: "", pass: "", rpass: "" });
   //hook para guardar el usuario y token al haberse registrado o logeado
-  const [{ userState, message, token }, getMessage] = useState({ userState: false, message: "" });
+  const [{ userState, message }, getMessage] = useState({ userState: false, message: "" });
   //hook para cambiar efecto entre login o registro
   const [tipoAcceso, setTipoAcceso] = useState(false);
   //hook para efecto si se ha verificado o no la cuenta por correo
@@ -61,16 +61,14 @@ export default function App(props) {
             localStorage.setItem("user", JSON.stringify(user));
             getMessage({
               userState: user,
-              message: `Logeado como ${user.email}`,
-              token: token
+              message: `Logeado como ${user.email}`
             });
             setLoading({ loading: false });
           } catch (err) {
             console.log(err)
             getMessage({
               userState: null,
-              message: "credenciales incorrectas. Si no tiene una cuenta, puede registrarse.",
-              token: null
+              message: "Error de red, vuelva a intentarlo nuevamente o más tarde."
             });
             setLoading({ loading: false });
           }
@@ -155,8 +153,7 @@ export default function App(props) {
       localStorage.setItem("user", JSON.stringify(user));
       getMessage({
         userState: user,
-        message: `Logeado como ${user.email}`,
-        token: token
+        message: `Logeado como ${user.email}`
       });
       setLoading({ loading: false });
       console.log(result)
@@ -181,7 +178,7 @@ export default function App(props) {
   // }
   
   return (
-    <div className="loginTeacher" style={{ backgroundImage: `url(${logo})` }}>
+    <div className="loginTeacher">
       {
       userState ? <Redirect to={'/CoursesTeacher/'+userState._id} /> : null
       }
@@ -217,19 +214,19 @@ export default function App(props) {
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
                   <h2 className="loginTeacher-subtitle">Iniciar Sesión</h2>
-                  <input name="email" placeholder="Correo" type="text" onChange={handleChangeInputsLogin} required/>
-                  <input name="pass" placeholder="Contraseña" type="password" onChange={handleChangeInputsLogin} required/>
+                  <input name="email" placeholder="Correo" type="text" onChange={handleChangeInputsLogin} required autoComplete="true"/>
+                  <input name="pass" placeholder="Contraseña" type="password" onChange={handleChangeInputsLogin} required autoComplete="true"/>
                   <input className="loginTeacher-btn" type="submit" value="sign in"/>
                   <div style={{width:"210px", margin:"10px auto"}}>
                     <div className="linea">&nbsp;</div>
                     <div className="leyenda">&nbsp;&nbsp;o accede con Google&nbsp;&nbsp;</div>
                     <div className="linea">&nbsp;</div>
                   </div>
-                  <a className="loginTeacher-button-google" onClick={signInWithGoogle} >
-                    <img className="loginTeacher-google-icon" src="https://img.icons8.com/color/48/000000/google-logo.png" />
+                  <a className="loginTeacher-button-google" onClick={signInWithGoogle} href="#!">
+                    <img className="loginTeacher-google-icon" src="https://img.icons8.com/color/48/000000/google-logo.png" alt=""/>
                       Sign in with Google
                   </a>
-                  <a className="loginTeacher-login-register" onClick={cambiarTipoAcceso}>registrese ahora</a>
+                  <a className="loginTeacher-login-register" onClick={cambiarTipoAcceso} href="#!">registrese ahora</a>
                 </div>
               </div>
             </form>
@@ -240,10 +237,10 @@ export default function App(props) {
                   <input name="email" placeholder="Correo" type="email" onChange={handleChangeInputsRegister} value={inputsRegister.email} required/>
                   <input name="username" placeholder="Nombres" type="text" onChange={handleChangeInputsRegister} value={inputsRegister.username} required/>
                   <input name="lastname" placeholder="Apellidos" type="text" onChange={handleChangeInputsRegister} value={inputsRegister.lastname} required/>
-                  <input name="pass" placeholder="Contraseña" type="password" value={inputsRegister.pass} onChange={handleChangeInputsRegister} minLength="6" required/>
-                  <input name="rpass" placeholder="Repita su contraseña" type="password" value={inputsRegister.rpass} onChange={handleChangeInputsRegister} minLength="6" required/>
+                  <input name="pass" placeholder="Contraseña" type="password" value={inputsRegister.pass} onChange={handleChangeInputsRegister} minLength="6" required autoComplete="false"/>
+                  <input name="rpass" placeholder="Repita su contraseña" type="password" value={inputsRegister.rpass} onChange={handleChangeInputsRegister} minLength="6" required autoComplete="false"/>
                   <input className="loginTeacher-btn" type="submit" value="Sign up"/>
-                  <a className="loginTeacher-login-register" onClick={cambiarTipoAcceso}>iniciar sesión</a>
+                  <a className="loginTeacher-login-register" onClick={cambiarTipoAcceso} href="#!">iniciar sesión</a>
                 </div>
               </div>
             </form>

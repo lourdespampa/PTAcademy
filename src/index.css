@@ -216,6 +216,7 @@ button,
 [type="reset"],
 [type="submit"] {
   -webkit-appearance: button;
+  border: none;
 }
 
 /**
@@ -504,7 +505,8 @@ template {
   color:#fff;
   font-size:18px;
   background: #00aae3;
-  cursor: pointer
+  cursor: pointer;
+  font-family: opal !important;
 }
 .modal-body .btn:hover{
   background: #00aae388;
@@ -536,4 +538,10 @@ template {
 
   .punto-marco {
     margin: 0px 1px 10px;}  
+}
+@media screen and (max-height:630px){
+  .modal-body{
+    height: 450px;
+    overflow: auto;
+  }
 }

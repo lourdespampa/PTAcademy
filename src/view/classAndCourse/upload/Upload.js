@@ -12,7 +12,9 @@ class Upload extends Component {
       uploading: false,
       uploadProgress: {},
       successfullUploaded: false,
-      errorUploaded:false
+      errorUploaded:false,
+      slideOn:false,
+      NoData:false
     };
 
     this.onFilesAdded = this.onFilesAdded.bind(this);
@@ -22,12 +24,16 @@ class Upload extends Component {
   }
 
   onFilesAdded(files) {
+    this.setState({slideOn:true})
     this.setState(prevState => ({
       files: prevState.files.concat(files)
     }));
   }
 
   async uploadFiles() {
+    if (this.props.className=='' || this.props.desc=='' ||  Object.keys(this.state.files).length === 0){
+      this.setState({NoData:true})
+    }else{
     this.setState({ uploadProgress: {}, uploading: true });
     const promises = [];
     this.state.files.forEach(file => {
@@ -39,7 +45,7 @@ class Upload extends Component {
       this.setState({ successfullUploaded: true, uploading: true });
     } catch (e) {
       this.setState({ successfullUploaded: true, uploading: true });
-    }
+    }}
   }
 
   sendRequest(file) {
@@ -79,7 +85,7 @@ class Upload extends Component {
 
       var varToken = localStorage.getItem('token');
         
-      req.open("POST", `http://192.168.1.29:4200/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
+      req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
       req.setRequestHeader('x-access-token', `${varToken}`)
       req.send(formData);
       console.log('asdmasd')
@@ -125,7 +131,7 @@ class Upload extends Component {
         return (
           <button
             onClick={() =>
-              this.setState({ files: [], errorUploaded: false })
+              this.setState({ files: [], errorUploaded: false ,slideOn:false})
             }
           >
             Clear
@@ -139,13 +145,16 @@ class Upload extends Component {
       );
     }else {
       return (
-        <button
-          id='modal-body__button-cursos'
-           hidden={this.state.files.length < 0 || this.state.uploading}
-           onClick={this.uploadFiles}
-        >
-          CREAR CLASE
-        </button>
+        <>
+          <button id='modal-body__button-cursos' type="submit" className="btn btn-primary Opal"
+                  hidden={this.state.files.length < 0 || this.state.uploading}
+                  onClick={this.uploadFiles}>
+            Crear Clase
+          </button>
+          { this.state.NoData ?
+          <p>rellene todos los campos</p>:null
+          }
+        </>
       );
     }
   }
@@ -156,6 +165,7 @@ class Upload extends Component {
         <div className="Content" style={{display: 'inline-flex'}}>
           <div>
             <Dropzone
+              slideOn={this.state.slideOn}
               onFilesAdded={this.onFilesAdded}
               disabled={this.state.uploading || this.state.successfullUploaded}
             />
