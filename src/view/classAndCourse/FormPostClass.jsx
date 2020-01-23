@@ -45,7 +45,7 @@ export default class FormPostCourse extends Component {
     const { class_name, desc } = this.state;
     return (
       <>
-        < >
+        {/* < Form> */}
           <Form.Group>
             <Form.Label className="modal-title__controlname">Nombre de la Clase</Form.Label>
             <Form.Control className="modal-teacher__general-controlname"
@@ -69,7 +69,7 @@ export default class FormPostCourse extends Component {
             />
             <Upload handleClose={this.props.handleClose} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc} apiUrl={this.props.apiUrl}   ></Upload>
           </Form.Group>
-        </>
+        {/* </Form> */}
       </>
     );
   }
