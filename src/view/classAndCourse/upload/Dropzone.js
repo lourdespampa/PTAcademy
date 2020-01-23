@@ -73,6 +73,7 @@ class Dropzone extends Component {
           className="FileInput"
           type="file"
           //multiple
+          required
           accept="application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.slideshow, application/vnd.openxmlformats-officedocument.presentationml.template, application/vnd.openxmlformats-officedocument.presentationml.presentation"
           onChange={this.onFilesAdded}
         />
@@ -81,7 +82,10 @@ class Dropzone extends Component {
           className="Icon"
           src={imgDiapo}
         />
-        <span>Sube aqui tu diapositiva</span>
+        {this.props.slideOn ?
+        null
+        : <span>Sube aqui tu diapositiva</span>
+        }
       </div>
     );
   }
