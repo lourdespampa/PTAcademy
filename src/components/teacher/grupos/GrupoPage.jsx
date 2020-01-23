@@ -99,7 +99,7 @@ export default class GrupoPage extends Component {
             value={this.state.nro_per_grupo}
             onChange={this.handleNumPerGrou}
           />
-          <button className="button Opal btnMyM" onClick={this.groupGenerator}>FORMAR GRUPOS</button>
+          <button className="button" onClick={this.groupGenerator}><label className="tex">FORMAR GRUPOS</label></button>
         </div>
         <div className="contenedor-grupos">
           <ul className="grupos-cards" id="imprimir"></ul>
