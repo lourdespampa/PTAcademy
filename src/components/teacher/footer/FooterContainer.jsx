@@ -3,6 +3,7 @@ import "./FooterContainer.sass";
 import Modal from "react-bootstrap/Modal";
 import Audio from "../audio/audio";
 import io from "socket.io-client";
+import iconExit from "../../../img/cerrar.png";
 import Slide from '../slides/slide_02';
 function enviarvideo(url, url2, socketUrl, id_access) {
   var urlnombre = url + url2;
@@ -89,7 +90,10 @@ function FooterContainer(props){
 
             <Modal className="modal-teacher__general" id="modalvideo" size={'SM'} show={Show}
             onHide={() => setShow(false)+props.botonClick('modalvideo')} >
-                <Modal.Header closeButton>
+                <button className="modal-teacher__general-close" onClick={() => setShow(false)+props.botonClick('modalvideo')}>
+                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                </button>
+                <Modal.Header>
                     <div class="punto-posi">
                         <span>EMITIR VIDEO</span>
                     </div>
