@@ -99,7 +99,7 @@ export default function App(props) {
           displayName: `${username} ${lastname}`
         })
         const configuracion = {
-          url: 'http://localhost:3000/loginTeacher'
+          url: 'http://www.app.playtecedu.com/loginTeacher'
         }
         result.user.sendEmailVerification(configuracion)
         .catch(error => {
