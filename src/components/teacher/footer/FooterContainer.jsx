@@ -3,6 +3,7 @@ import "./FooterContainer.sass";
 import Modal from "react-bootstrap/Modal";
 import Audio from "../audio/audio";
 import io from "socket.io-client";
+import iconExit from "../../../img/cerrar.png";
 import Slide from '../slides/slide_02';
 function enviarvideo(url, url2, socketUrl, id_access) {
   var urlnombre = url + url2;
@@ -59,7 +60,7 @@ function FooterContainer(props){
             <div className="overlay" id="overlay">
                 <div className="popup" id="popup">
                     <a href id="btnCerrarDiapo" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay','popup')+props.botonClick('btnCerrarDiapo')} ><i class="material-icons">close</i></a>
-                    <Slide/>
+                    <Slide apiUrl={props.apiUrl} id_class={props.id_class} />
                     <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",display:"none",height: "100%"}} allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
                     </iframe>
@@ -83,20 +84,23 @@ function FooterContainer(props){
 
             <Modal className="modal-teacher__general" id="modalvideo" size={'SM'} show={Show}
             onHide={() => setShow(false)+props.botonClick('modalvideo')} >
-                <Modal.Header closeButton>
+                <button className="modal-teacher__general-close" onClick={() => setShow(false)+props.botonClick('modalvideo')}>
+                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                </button>
+                <Modal.Header>
                     <div class="punto-posi">
                         <span>EMITIR VIDEO</span>
                     </div>
                 </Modal.Header>
                 <Modal.Body>
                     <input id="urlid" type="text" className="Opal" placeholder={props.txt} name="urlvideo" onChange={e => seturlnombre(e.target.value)+props.changeOn('urlvideo',e.target.value)} style={{fontSize:"20px",width: "80%"}} required/>
-                    <button id="btnenviarvideo" className="Opal button btnMyM" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} type="button">Enviar</button>
+                    <button id="btnenviarvideo" className="Opal btn" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} type="button">ENVIAR</button>
                 </Modal.Body>
             </Modal>
 
             <div class="overlay" id="overlay2">
                 <div class="popup" id="popupvideo">
-                    <a href id="btn-cerrar-popup2" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay2','popupvideo')+props.botonClick('btn-cerrar-popup2')}><i class="material-icons">close</i></a>
+                    <a href id="btn-cerrar-popup" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay2','popupvideo')+props.botonClick('btn-cerrar-popup')}><i class="material-icons">close</i></a>
                     <iframe  title="iframevideo" id="video-frame" src="" frameborder="0" style={{width: "100% !important",height: "100%"}} 
                     allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </div>

@@ -1,16 +1,34 @@
 import React from 'react';
 import Roulette from './Roulette';
 import io from 'socket.io-client';
-import axios from 'axios'
+import axios from 'axios';
+import Modal from 'react-bootstrap/Modal';
+import { BtnPuntos } from '../lista/btnpuntos';
+import iconExit from "../../../img/cerrar.png";
 
-const handleOnComplete = (value) => {
-    console.log(value);
-  };
 class Azar extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            alumnos: []
+            todosAlumnos: [],
+            alumnos: [],
+            alumnoElegido : "",
+            point: 0,
+            showModal : false,
+            tipoPuntaje: true,
+            datapoint:{
+                positivo:[
+                    {imgen:require('../../../img/lista/punto1.png'),valor:1,title:'Ayuda a Otros'},
+                    {imgen:require('../../../img/lista/punto2.png'),valor:1,title:'Cumplimiento de Tareas'},
+                    {imgen:require('../../../img/lista/punto3.png'),valor:1,title:'Participacion'},
+                    {imgen:require('../../../img/lista/punto4.png'),valor:1,title:'Persistencia'},
+                    {imgen:require('../../../img/lista/punto5.png'),valor:1,title:'responsabilidad'},
+                    {imgen:require('../../../img/lista/punto6.png'),valor:1,title:'trabajo en equipo'}],
+                negativo:[
+                    {imgen:require('../../../img/lista/punto-1.png'),valor:1,title:'Ayuda a Otros'},
+                    {imgen:require('../../../img/lista/punto-2.png'),valor:1,title:'Cumplimiento de Tareas'},
+                    {imgen:require('../../../img/lista/punto-3.png'),valor:1,title:'Participacion'}]
+            }
         }
     }
 
@@ -27,6 +45,11 @@ class Azar extends React.Component {
           })
     }
 
+    handleOnComplete = (alumno) => {
+        console.log(alumno);
+        this.setState({alumnoElegido : alumno, showModal : true})
+      };
+
     getStudents = () => {
         var varToken = localStorage.getItem('token');
         axios({
@@ -41,7 +64,7 @@ class Azar extends React.Component {
             res.data.map( alumno => {
                 temp.push(alumno.name_stu)
             })
-            this.setState({ alumnos: this.sortearElementos(temp) })
+            this.setState({ alumnos: this.sortearElementos(temp), todosAlumnos: res.data })
         })
     }
     sortearElementos = (array) => {
@@ -52,12 +75,78 @@ class Azar extends React.Component {
         return array;
       }
 
+    handleChangePScore = () => this.setState({tipoPuntaje:true})
+    handleChangeNScore = () => this.setState({tipoPuntaje:false})
+
+    onClickPointAdd= (valor) => {
+        console.log(this.state.todosAlumnos)
+        // let point = this.state.point + valor
+        // const data = { point }
+        // let varToken = localStorage.getItem('token');
+        // axios({
+        //     url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
+        //     data,
+        //     method: 'put',
+        //     headers: {
+        //         'x-access-token': `${varToken}`
+        //     }
+        // })
+        // this.getStudents();
+        // this.setShow('showpuntosmas',false)
+    }
+    onClickPointRemove= (valor) => {
+        // const point=this.state.point - valor
+        // const data={
+        //     point : point
+        //  }
+        //  var varToken = localStorage.getItem('token');
+        // await axios({
+        // url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
+        // data,
+        // method: 'put',
+        // headers: {
+        //     'x-access-token': `${varToken}`
+        // }
+        // })
+        //     this.getStudents();
+        //     this.setShow('showpuntosmenos',false)
+    }
+
 
     render(){
         if(this.state.alumnos.length > 0){
             return(
                 <div>
-                    <Roulette options={this.state.alumnos} baseSize={220} onComplete={handleOnComplete} socketUrl={this.props.socketUrl} id_access={this.props.id_access}/>
+                    <Roulette 
+                        options={this.state.alumnos} 
+                        baseSize={220} 
+                        onComplete={this.handleOnComplete} 
+                        socketUrl={this.props.socketUrl} 
+                        id_access={this.props.id_access}
+                    />
+                    <Modal className="modal-teacher__general" size={'lg'} show={this.state.showModal} onHide={() => this.setState({showModal:false})}>
+                        <button className="modal-teacher__general-close" onClick={() => this.setState({showModal:false})}>
+                            <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                        </button>
+                        <Modal.Header>
+                             <div>
+                                Alumno: {this.state.alumnoElegido}
+                             </div>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <ul class="azar-tab-group">
+                                <li class={this.state.tipoPuntaje ? "azar-tab active" : "azar-tab"} onClick={this.handleChangePScore}><a className="azar-a">POSITIVO</a></li>
+                                <li class={this.state.tipoPuntaje ? "azar-tab" : "azar-tab active"} onClick={this.handleChangeNScore}><a className="azar-a">NEGATIVO</a></li>
+                            </ul>
+                            {
+                                this.state.tipoPuntaje
+                                ?
+                                <BtnPuntos data={this.state.datapoint.positivo} funcion={this.onClickPointAdd} />
+                                :
+                                <BtnPuntos data={this.state.datapoint.negativo} funcion={this.onClickPointRemove} />
+                            }
+                        </Modal.Body>
+                    </Modal>
                 </div>
             )
         } else {

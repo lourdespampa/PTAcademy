@@ -1,8 +1,8 @@
-import React,{useState,useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom'
 import { Button, ButtonToolbar } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
-
+import iconExit from "../../../img/cerrar.png";
 import './HeaderCode.sass'
 function BotonSalir(props) {
     var user = JSON.parse(localStorage.getItem('user'));
@@ -14,15 +14,24 @@ function BotonSalir(props) {
       <>
         <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />           
         <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
-          <Modal.Header closeButton>
+            <button className="modal-teacher__general-close" onClick={handleClose}>
+                <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+            </button>
+          <Modal.Header >
             <Modal.Title id="modal-header__title-question">¿DESEA CERRAR SESIÓN?</Modal.Title>
           </Modal.Header>
           <Modal.Body id="modal-body__exit">
           <ButtonToolbar>
-            <Link id="modal-body__button-yes" className="btn" onClick={handleClose} to='/' variant="primary">SI</Link>`      `
-            <Link id="modal-body__button-no" className="btn" onClick={handleClose}>NO</Link>`      `
+            <button id="modal-body__button-yes" className="btn" onClick={props.cerrarSesion} variant="primary">
+                <Link style={{textDecoration:"none"}} to="/"><div className="button-yes__text">SI</div></Link>
+            </button>
+            <button id="modal-body__button-no" className="btn" onClick={handleClose}>
+                <div className="button-no__text">NO</div>
+            </button>
             <Link to={`/CoursesTeacher/${user._id}`}>
-            <Button id="modal-body__button-cursos" onClick={handleClose}>Regresar a cursos</Button>
+            <Button id="modal-body__button-cursos" onClick={handleClose}>
+                <div className="button-cursos__text">REGRESAR A CURSOS</div>
+            </Button>
             </Link>
           </ButtonToolbar>
           </Modal.Body>
@@ -32,26 +41,29 @@ function BotonSalir(props) {
   }
 
 
-function HeaderCode(props){
-    const [showcod, setShowcod] = useState(false);
-    const handleClose = () => setShowcod(false);
-    const handleShow = () => setShowcod(true);
-    const codigo = () => {
-        // alert('codigo')
+class HeaderCode extends React.Component {
+    state = {
+        codigoModal: false
     }
-    const closeMenu = () => {
-        document.getElementById('checked').click()
-    }       
-    return(
-        <div className="Header-code__header" id="Header-code__header">
 
+    handleClose = () => this.setState({codigoModal: false});
+    handleShow = () => this.setState({codigoModal: true});
+
+    closeMenu = () => {
+        document.getElementById('checked').click()
+    }
+
+    render(){
+    return(
+        <>
+        <div className="Header-code__header" id="Header-code__header">
             <div className="logo">
                 <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" />        
                 <img className="logo-img" src={require("../../../img/index/logo.svg")} alt="" />        
             </div>
             
             <div className="class-name">
-                {props.nombre_clase}
+                {this.props.nombre_clase}
             </div>
 
             <div id="menuToggle">
@@ -64,39 +76,43 @@ function HeaderCode(props){
                 <label className="close-menu" for="checked"></label>
                 <nav className="menuToggle__drawer-menu">
                     <ul className="menu-header" > 
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}`}>LISTA DE ALUMNOS</Link></li> 
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/azar`}>AL AZAR</Link></li>
-                        <li className="menu-header__item"><Link onClick={closeMenu} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/grupos`}>GRUPOS</Link></li>
-                        <li className="menu-header__item"><Link onClick={()=>props.redirect('temporizador')+closeMenu()} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
-                        <li className="menu-header__item"><Link onClick={()=>props.redirect('trivia')+closeMenu()} className="menu-header__item-link" to={`/teacher/${props.id_class}/${props.id_access}/trivia`}>TRIVIA</Link></li>
+                        <li className="menu-header__item"><Link onClick={this.closeMenu} className="menu-header__item-link" to={`/teacher/${this.props.id_class}/${this.props.id_access}`}>LISTA DE ALUMNOS</Link></li> 
+                        <li className="menu-header__item"><Link onClick={this.closeMenu} className="menu-header__item-link" to={`/teacher/${this.props.id_class}/${this.props.id_access}/azar`}>AL AZAR</Link></li>
+                        <li className="menu-header__item"><Link onClick={this.closeMenu} className="menu-header__item-link" to={`/teacher/${this.props.id_class}/${this.props.id_access}/grupos`}>GRUPOS</Link></li>
+                        <li className="menu-header__item"><Link onClick={()=>this.props.redirect('temporizador')+this.closeMenu} className="menu-header__item-link" to={`/teacher/${this.props.id_class}/${this.props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
+                        <li className="menu-header__item"><Link onClick={()=>this.props.redirect('trivia')+this.closeMenu} className="menu-header__item-link" to={`/teacher/${this.props.id_class}/${this.props.id_access}/trivia`}>TRIVIA</Link></li>
                     </ul>
                 </nav>
             </div>
             <div className="content-headercode">
-                <div className="code-detail" onClick={handleShow}>
+                <div className="code-detail" onClick={this.handleShow}>
                     <a href className="code-a" data-toggle="modal" data-target="#miCodigo" id="btnVerAlumnos">
                         <class className="code">Código:</class>
-                        <div className="codigo-generado" onClick={handleShow}>
-                        {props.id_access}
+                        <div className="codigo-generado" onClick={this.handleShow}>
+                        {this.props.id_access}
                         </div>
                     </a>
                 </div>
                 <div className="code-menu-detail">
                     
-                    <BotonSalir/>
+                    {localStorage.getItem("token") ? <BotonSalir cerrarSesion={this.props.cerrarSesion} /> : null}
                     
                 </div>
-                <Modal className="modal-teacher__general" show={showcod} onHide={handleClose}>
-                    <Modal.Header id="modal-general__header" closeButton>
+                <Modal className="modal-teacher__general" show={this.state.codigoModal} onHide={this.handleClose}>
+                    <button className="modal-teacher__general-close" onClick={this.handleClose}>
+                        <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                    </button>
+                    <Modal.Header id="modal-general__header">
                         <span className="modal-title"><strong>CODIGO DE LA CLASE:</strong></span>
                     </Modal.Header>
                     <Modal.Body>
-                        <span id="modal-content__codigogenerado">{props.id_access}</span>
+                        <span id="modal-content__codigogenerado">{this.props.id_access}</span>
                     </Modal.Body>
                 </Modal>
             </div>
         </div>
-    )
+        </>
+    )}
 }
 
 export default HeaderCode;

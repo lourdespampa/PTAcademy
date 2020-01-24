@@ -168,7 +168,7 @@ class Roulette extends React.Component {
     socket.emit('azarprofe',text)
     console.log('emite el profe')
     //Roulette END
-    ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize / 3);
+    // ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize / 3);
     ctx.restore();
     this.props.onComplete(text);
   }

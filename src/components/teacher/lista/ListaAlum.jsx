@@ -6,6 +6,7 @@ import{BtnPuntos}from './btnpuntos'
 import io from 'socket.io-client';
 import{TableBody}from './tablebody'
 import Modal from 'react-bootstrap/Modal';
+import iconExit from "../../../img/cerrar.png";
 // import {alumnos} from '../../data/alumnos.json';
 export default class ListaAlum extends Component {
     constructor(props) {
@@ -244,7 +245,7 @@ export default class ListaAlum extends Component {
                             <div className="body" id="html">
                                 <div className="table-responsive">
                                     <table id="tabla_usuarios" className="table table-bordered table-striped table-hover dataTable js-exportable">
-                                        <thead >
+                                        <thead>
                                             <tr>
                                                 <th style={{textAlign:"center"}}>Nombres</th>
                                                 <th style={{textAlign:"center"}}>Apellidos</th>
@@ -267,7 +268,10 @@ export default class ListaAlum extends Component {
                     </div>
                 </div>
             <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showpuntosmas} onHide={() => this.setShow('showpuntosmas',false)}>
-                <Modal.Header closeButton>
+                <button className="modal-teacher__general-close" onClick={() => this.setShow('showpuntosmas',false)}>
+                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                </button>
+                <Modal.Header>
                     <div className="punto-posi">
                         <span className="punto-text">POSITIVO</span>
                     </div>
@@ -277,7 +281,10 @@ export default class ListaAlum extends Component {
                 </Modal.Body>
             </Modal> 
             <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showpuntosmenos} onHide={() => this.setShow('showpuntosmenos',false)}>
-                <Modal.Header closeButton>
+                <button className="modal-teacher__general-close" onClick={() => this.setShow('showpuntosmenos',false)}>
+                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                </button>
+                <Modal.Header>
                     <div className="punto-posi">
                         <span className="punto-text">NECESITAS MEJORAR</span>            
                     </div>
@@ -287,7 +294,10 @@ export default class ListaAlum extends Component {
                 </Modal.Body>
             </Modal> 
             <Modal className="modal-teacher__general" show={this.state.modals.shownota} onHide={() => this.setShow('shownota',false)}>
-                <Modal.Header closeButton>
+                <button className="modal-teacher__general-close" onClick={() => this.setShow('shownota',false)}>
+                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                </button>
+                <Modal.Header>
                     <div className="punto-posi">
                         <span className="punto-text">NOTA</span>          
                     </div>
@@ -298,7 +308,10 @@ export default class ListaAlum extends Component {
                 </Modal.Body>
             </Modal> 
             <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showcomportamiento} onHide={() => this.setShow('showcomportamiento',false)}>
-                <Modal.Header closeButton>
+                <button className="modal-teacher__general-close" onClick={() => this.setShow('showcomportamiento',false)}>
+                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                </button>
+                <Modal.Header>
                     <div className="punto-posi">
                         <span className="punto-text">COMPORTAMIENTO</span>          
                     </div>
@@ -308,14 +321,21 @@ export default class ListaAlum extends Component {
                 </Modal.Body>
             </Modal> 
             <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showdelete} onHide={() => this.setShow('showdelete',false)}>
-                <Modal.Header closeButton>
+                <button className="modal-teacher__general-close" onClick={() => this.setShow('showdelete',false)}>
+                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                </button>
+                <Modal.Header>
                     <div className="punto-posi">
                         <span className="punto-text">¿DESEA ELIMINAR AL ALUMNO?</span>          
                     </div>
                 </Modal.Header>
                 <Modal.Body>
-                    <button id="modal-body__button-yes" className="btn" onClick={() => this.deleteStudents()+this.setShow('showdelete',false)} type="button">SI</button> 
-                    <button id="modal-body__button-no" className="btn" onClick={() => this.setShow('showdelete',false)} type="button">NO</button> 
+                    <button id="modal-body__button-yes" className="btn" onClick={() => this.deleteStudents()+this.setShow('showdelete',false)} type="button">
+                        <div className="button-yes__text">SI</div>
+                    </button> 
+                    <button id="modal-body__button-no" className="btn" onClick={() => this.setShow('showdelete',false)} type="button">
+                        <div className="button-no__text">NO</div>
+                    </button> 
                 </Modal.Body>
             </Modal> 
                 </>

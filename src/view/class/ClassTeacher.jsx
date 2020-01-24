@@ -27,8 +27,7 @@ export default class ClassTeacher extends Component {
         'x-access-token': `${varToken}`
       }
     }).then( ({ data }) => {
-       console.log(data)
-        if(data == []){
+        if(data === []){
           this.setState({classes: []})
         }else{
           this.setState({classes: data})
@@ -42,7 +41,6 @@ export default class ClassTeacher extends Component {
         'x-access-token': `${varToken}`
       }
     }).then(({data})=>{
-      console.log(data)
       this.setState({nombreProfesor:data.user_name+" "+data.user_lastName})
     })
   }
@@ -56,7 +54,7 @@ export default class ClassTeacher extends Component {
         'x-access-token': `${varToken}`
       }
     }).then( ({ data }) => {
-        if(data == []){
+        if(data === []){
           this.setState({classes: []})
         }else{
           this.setState({classes: data})
@@ -69,8 +67,8 @@ export default class ClassTeacher extends Component {
     var varToken = localStorage.getItem("token");
 
     await axios({
-      url:`${this.props.apiUrl}/v1/api/teacher/lesson/${this.state.id_class}`,
-      method:'put',
+      url:`${this.props.apiUrl}/v1/api/teacher/change_lesson_state/${this.state.id_class}`,
+      method:'get',
       headers:{
         'x-access-token': `${varToken}`
       }});

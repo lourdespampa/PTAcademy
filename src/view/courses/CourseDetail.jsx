@@ -4,7 +4,7 @@ export default class CourseDetail extends Component {
     render() {
         return (
             <div>
-                Hola Mundo
+                Hola
             </div>
         )
     }

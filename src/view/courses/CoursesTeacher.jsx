@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+
 import NavCourse from "../classAndCourse/NavCourse";
 import AllCourses from "./AllCourses";
+
 import axios from "axios";
+
 import "../courses/Course.sass";
 import { Modal } from "react-bootstrap";
+import iconExit from "../../img/cerrar.png";
+
 export default class CoursesTeacher extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +20,6 @@ export default class CoursesTeacher extends Component {
       courses: []
     };
   }
-
   componentDidMount() {
     // en varToken se guarda la variable almacenada del localstorage
     var varToken = localStorage.getItem('token');
@@ -136,8 +140,11 @@ export default class CoursesTeacher extends Component {
           size={"lg"}
           show={this.state.showdelete}
           onHide={() => this.setShow("showdelete", false)}
-        >
-          <Modal.Header closeButton>
+        > 
+          <button className="modal-teacher__general-close" onClick={() => this.setShow("showdelete", false)}>
+              <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+          </button>
+          <Modal.Header>
             <div className="punto-posi">
               <span className="punto-text">¿DESEA ELIMINAR EL CURSO?</span>
             </div>
@@ -150,14 +157,14 @@ export default class CoursesTeacher extends Component {
               }
               type="button"
             >
-              SI
+              <div className="button-yes__text">SI</div>
             </button>
             <button
               id="modal-body__button-no" className="btn"
               onClick={() => this.setShow("showdelete", false)}
               type="button"
             >
-              NO
+              <div className="button-no__text">NO</div>
             </button>
           </Modal.Body>
         </Modal>

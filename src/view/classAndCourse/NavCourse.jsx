@@ -21,7 +21,7 @@ function BotonAgregar(props) {
           <Modal.Title >Agregando {props.agregarX}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          { (props.agregarX=='course')?
+          { (props.agregarX === 'course')?
           <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} />
           :
           <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
@@ -60,7 +60,7 @@ export default class NavCourse extends Component {
     token: false
   }
 
-  componentWillMount = async () => {
+  UNSAFE_componentWillMount = async () => {
     let tokenStorage = localStorage.getItem("token")
     await this.setState({token: tokenStorage})
   }
