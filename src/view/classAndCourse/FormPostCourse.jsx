@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 //estilos
 import { Form, Button } from "react-bootstrap";
-
+import './FormPostCourse.sass'
 //componente clase
 export default class FormPostCourse extends Component {
   //1. inializa las propiedades recibidas del componente padre
@@ -30,7 +30,7 @@ export default class FormPostCourse extends Component {
 
     if(event.target.value === "primaria") this.setState({nivelPrimaria: true, profesorParticular: false, level: "primaria"})
     if( event.target.value === "secundaria") this.setState({nivelPrimaria: false, profesorParticular: false, level: "secundaria"})
-    if(event.target.value === "ninguno") this.setState({profesorParticular: true, level: ""})
+    if(event.target.value === "") this.setState({profesorParticular: true, level: ""})
 
     this.setState({
       [name]: value
@@ -66,18 +66,22 @@ export default class FormPostCourse extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label className="modal-title__controlname">Detalles del curso</Form.Label>
-            <div>
-              <input type="radio" name="nivel" value="primaria" onChange={this.handleChange} /> Primaria
-              <input type="radio" name="nivel" value="secundaria" onChange={this.handleChange} /> Secundaria
-              <input type="radio" name="nivel" value="ninguno" onChange={this.handleChange} /> Ninguno
+            <div className="CT-contenedorNivel">
+              <input className="CT-opcionNivel" type="radio" name="level" value="primaria" id="option-one" onChange={this.handleChange} required/> 
+                <label className="CT-labelNivel" htmlFor="option-one">Primaria</label>
+              <input className="CT-opcionNivel" type="radio" name="level" value="secundaria" id="option-two" onChange={this.handleChange} /> 
+                <label className="CT-labelNivel" htmlFor="option-two">Secundaria</label>
+              <input className="CT-opcionNivel" type="radio" name="level" value="" id="option-three" onChange={this.handleChange} />
+                <label className="CT-labelNivel" htmlFor="option-three">Ninguno</label>
             </div>
             {
               this.state.profesorParticular
               ?
               null
               :
-              <div>
-                <select name="grade">
+              <div className="CT-detallesCurso">
+                <label className="listDetalleTitle">Grado: </label>
+                <select name="grade" className="list-grade">
                   {
                   this.state.nivelPrimaria
                   ?
@@ -90,7 +94,8 @@ export default class FormPostCourse extends Component {
                   ))
                   }
                 </select>
-                <select name="seccion">
+                <label className="listDetalleTitle">Sección: </label>
+                <select name="seccion" className="list-seccion">
                   {
                   this.state.secciones.map( (seccion, id) => (
                     <option key={id} value={seccion}>{seccion}</option>
@@ -115,7 +120,7 @@ export default class FormPostCourse extends Component {
               />
               : 
               <div>
-                <select name="course_name">
+                <select name="course_name" className="list-course">
                 {
                 this.state.nombresCursos.map( (curso, id) => (
                   <option key={id} value={curso}>{curso}</option>
@@ -136,7 +141,9 @@ export default class FormPostCourse extends Component {
               required
             />
           </Form.Group>
-          <Button id="modal-body__button-cursos" type="submit"  >CREAR CURSO</Button>
+          <Button className="modal-body__button-cursos" type="submit"  >
+            <div className="button-cursos__text">CREAR CURSO</div>
+          </Button>
         </Form>
       </>
     );

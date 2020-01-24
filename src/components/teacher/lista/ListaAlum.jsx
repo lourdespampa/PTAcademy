@@ -29,10 +29,10 @@ export default class ListaAlum extends Component {
             fileName: 'Nota de alumnos',
             datapoint:{
                 pocitivo:[{imgen:require('../../../img/lista/punto1.png'),valor:1,title:'Ayuda a Otros'},
-                    {imgen:require('../../../img/lista/punto2.png'),valor:1,title:'Cumplimiento de Tareas'},
                     {imgen:require('../../../img/lista/punto3.png'),valor:1,title:'Participacion'},
                     {imgen:require('../../../img/lista/punto4.png'),valor:1,title:'Persistencia'},
                     {imgen:require('../../../img/lista/punto5.png'),valor:1,title:'responsabilidad'},
+                    {imgen:require('../../../img/lista/punto2.png'),valor:1,title:'Cumplimiento de Tareas'},
                     {imgen:require('../../../img/lista/punto6.png'),valor:1,title:'trabajo en equipo'}],
                 negativo:[{imgen:require('../../../img/lista/punto-1.png'),valor:1,title:'Ayuda a Otros'},
                     {imgen:require('../../../img/lista/punto-2.png'),valor:1,title:'Cumplimiento de Tareas'},

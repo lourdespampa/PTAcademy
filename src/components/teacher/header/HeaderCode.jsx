@@ -29,7 +29,7 @@ function BotonSalir(props) {
                 <div className="button-no__text">NO</div>
             </button>
             <Link to={`/CoursesTeacher/${user._id}`}>
-            <Button id="modal-body__button-cursos" onClick={handleClose}>
+            <Button className="modal-body__button-backCursos" onClick={handleClose}>
                 <div className="button-cursos__text">REGRESAR A CURSOS</div>
             </Button>
             </Link>

@@ -404,7 +404,7 @@ template {
 .modal-content {
   position: relative;
   width: 500px;
-  margin: 50px auto;
+  margin: 35px auto;
   background-color: #ffffff;
   background-clip: padding-box;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
@@ -471,7 +471,7 @@ template {
     line-height: 1.4;
     letter-spacing: .02em;}
 .modal-teacher__general-controldescription{
-    height: 120px;
+    height: 60px;
     width: 100%;
     left: 80px;
     right: 364px;
@@ -530,17 +530,27 @@ template {
   -webkit-transform: scale(1.25);
   transform: scale(1.25);
 }  
-#modal-body__button-cursos {
+.modal-body__button-backCursos {
     background: #FB9600}
 
-#modal-body__button-cursos .button-cursos__text{
+.modal-body__button-cursos {
+    background: #52BE7F}
+
+#modal-body__button-no:hover .button-cursos__text{
+  -webkit-transform: scale(1.25);
+  transform: scale(1.25);
+}  
+
+.modal-body__button-cursos .button-cursos__text,
+.modal-body__button-backCursos .button-cursos__text{
   transition: transform 0.3s ease-in-out;
   -webkit-transition: all .4s ease;
   -moz-transition: all .4s ease;
   -o-transition: all .4s ease;
   -ms-transition: all .4s ease
 }
-#modal-body__button-cursos:hover .button-cursos__text{
+.modal-body__button-backCursos:hover .button-cursos__text,
+.modal-body__button-cursos:hover .button-cursos__text{
   -webkit-transform: scale(1.08);
   transform: scale(1.07);
 }  
@@ -549,7 +559,7 @@ template {
     padding: 2.25rem 1.5rem;
     text-align: center;
     position: relative;
-    padding-top:20px}
+    padding-top: 12px}
 
 .modal-body .btn{
   padding: 5px 10px;
@@ -558,13 +568,43 @@ template {
   border: 0;
   color:#fff;
   font-size:20px;
-  background: #00aae3;
   cursor: pointer;
   margin: auto 10px;
   font-family: "Opal"
 }
-.modal-body .btn:hover{
-  background: #00aae388;
+
+.modal-body .punto-marco{
+  margin: 0 10px 25px;
+}
+
+.list-seccion, .list-grade{
+  background-color:#FF9191;
+  width: 25%;
+  padding: 2px;
+  text-align-last:center;
+}
+
+.list-course{
+  background-color: rgb(247, 166, 45);
+  width: 90%;
+  padding: 2px;
+  text-align-last:center;
+}
+
+.list-grade,.list-seccion,.list-course{
+  border: 0;
+  font-family: "Opal";
+  color: #fff;
+  margin: auto 10px
+}
+
+.listDetalleTitle{
+  font-family: "Opal";
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.4;
+  letter-spacing: .02em;
+  width: 25%
 }
 
 @media screen and (max-width:800px){
