@@ -403,7 +403,7 @@ template {
 .modal-content {
   position: relative;
   width: 500px;
-  margin: auto;
+  margin: 50px auto;
   background-color: #ffffff;
   background-clip: padding-box;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
