@@ -13,9 +13,11 @@
             margin: auto 3px auto auto
         span 
             margin: auto auto auto 3px
+            
 iframe 
     width: -webkit-fill-available
     height: -webkit-fill-available
+    border-radius: 10px
 .footer-center 
     width: 45%
 #micro
@@ -37,7 +39,6 @@ iframe
     background: #F8F8F8
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3)
     border-radius: 10px
-    padding: 20px
     text-align: center
     width: 70%
     transition: .3s ease all
@@ -91,34 +92,46 @@ iframe
     line-height: 120px
     margin: 0%
     transform: translateY(-50%)
-    width: 90px
-    height: 90px
+    width: 77px
+    height: 78px
     top: 49%
+    display: none
+
 .btn-back i,
 .btn-next i 
-    font-size: 100px
+    font-size: 80px
+
 .btn-back 
-    left: -50px
+    left: -27px
+
+.btn-next
+    right: -37px
+
 .popup .btn-cerrar-popup 
-    line-height: 16px
-    text-align: right
+    line-height: 10px
+    text-align: center
     transition: .3s ease all
     color: rgb(56, 56, 56)
     font-size: 25px
     position: absolute
     right: 0
     top: 0
+
 .popup .btn-cerrar-popup .material-icons 
     color: #F8F8F8
-    background-color: #00a8ff
+    background: #E91E63
+    width: 42px
+    height: 35px
+    margin-top: 0px
     border-radius: 5px   
+    padding: 5px
 
 .popup .btn-cerrar-popup .material-icons:hover 
-    color: #000
-    background-color: rgb(104, 104, 104)
+    color: #ffffff
     border-radius: 5px
 #urlid
     margin-bottom: 15px
+
 .fc-formulario
     width: 100% !important
     height: 335px
@@ -145,7 +158,6 @@ iframe
         display: none
     .popup
         background: #F8F8F8
-        padding: 10px
         width: 70%
         min-height: 85%
     .fc-formulario

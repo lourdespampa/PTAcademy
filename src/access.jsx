@@ -10,10 +10,12 @@ import NotFound from './view/404/NotFound'
 import LoginStu from './view/login.Stud/login.stu'
 import FormLoginStu from './view/login.Stud/login.dataForm'
 import Index from './view/index/Inicio'
+import CourseDetailTeacher from './view/courses/CourseDetail'
 
 export default class Access extends Component {
     state={
     apiUrl:'http://3.16.110.136:4200',
+    // apiUrl:'http://192.168.1.29:4200',
     }
     render() {
         return (
@@ -21,6 +23,7 @@ export default class Access extends Component {
                 <Switch>
                     <Route exact path="/" component={Index} />
                     <Route exact path="/Login" component={()=><LoginStu apiUrl={this.state.apiUrl} />} />
+                    <Route exact path="/:id/course_detail" component={()=><CourseDetailTeacher apiUrl={this.state.apiUrl} />} />
                     <Route exact path="/loginStudent/:id_access" component={(props)=><FormLoginStu {...props} apiUrl={this.state.apiUrl} />} />
                     <Route exact path="/loginTeacher" component={()=><Login apiUrl={this.state.apiUrl}/>}  />
                     <Route exact path="/CoursesTeacher/:id" component={(props)=><CoursesTeacher {...props} apiUrl={this.state.apiUrl} />} />

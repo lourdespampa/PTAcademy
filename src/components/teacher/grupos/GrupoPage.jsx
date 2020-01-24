@@ -10,12 +10,9 @@ export default class GrupoPage extends Component {
       alumnos: [],
       nro_per_grupo: 1,
       grupos: [],
-      socket:null,
       id_access : ''
     };
   }
-  
-
   handleNumPerGrou = e => {
     this.setState({ nro_per_grupo: e.target.value });
   };
@@ -36,7 +33,7 @@ export default class GrupoPage extends Component {
       }
     }).then(res => {
       res.data.map(alumno => {
-        this.state.alumnos.push(alumno.name_stu + " " + alumno.lastName_stu);
+        this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
       });
       const temp = this.state.alumnos;
       this.setState({
@@ -56,7 +53,7 @@ export default class GrupoPage extends Component {
       cadena += `<li class="grupos-cards__item">
       <div class="grupos-card">
         <div class="grupos-card__content">
-          <div class="grupos-card__title">Grupo ${i + 1}</div><br/>
+          <div class="grupos-card__title"><u>Grupo ${i + 1}</u></div><br/>
        `;
 
       for (let index = 0; index < this.state.nro_per_grupo; index++) {
@@ -90,7 +87,7 @@ export default class GrupoPage extends Component {
     const { nro_per_grupo } = this.state.nro_per_grupo;
     return (
       <>
-        <div className="container">
+        {/* <div className="container"> */}
           <div className="cuerpo-grupos">
             {nro_per_grupo}
             <input
@@ -102,12 +99,17 @@ export default class GrupoPage extends Component {
               value={this.state.nro_per_grupo}
               onChange={this.handleNumPerGrou}
             />
-            <button onClick={this.groupGenerator}>FORMAR GRUPOS</button>
+            <button className="button" onClick={this.groupGenerator}>
+              <label className="tex">
+                Formar Grupos
+              </label>
+
+            </button>
           </div>
           <div className="contenedor-grupos">
             <ul className="grupos-cards" id="imprimir"></ul>
           </div>
-        </div>
+        {/* </div> */}
       </>
     );
   }

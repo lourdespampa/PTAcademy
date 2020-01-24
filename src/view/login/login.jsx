@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {Redirect} from 'react-router-dom'
-import "./login.css";
+import "./login.sass";
 import logo from "./bg-teacher-login.jpg";
 
 import axios from 'axios';
@@ -99,7 +99,7 @@ export default function App(props) {
           displayName: `${username} ${lastname}`
         })
         const configuracion = {
-          url: 'http://localhost:3000/loginTeacher'
+          url: 'http://www.app.playtecedu.com/loginTeacher'
         }
         result.user.sendEmailVerification(configuracion)
         .catch(error => {
@@ -178,7 +178,7 @@ export default function App(props) {
   // }
   
   return (
-    <div className="loginTeacher" style={{ backgroundImage: `url(${logo})` }}>
+    <div className="loginTeacher">
       {
       userState ? <Redirect to={'/CoursesTeacher/'+userState._id} /> : null
       }

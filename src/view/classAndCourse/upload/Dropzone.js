@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Dropzone.css";
+import imgDiapo from "./baseline-cloud_upload-24px.svg";
 
 class Dropzone extends Component {
   constructor(props) {
@@ -72,15 +73,19 @@ class Dropzone extends Component {
           className="FileInput"
           type="file"
           //multiple
+          required
           accept="application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.slideshow, application/vnd.openxmlformats-officedocument.presentationml.template, application/vnd.openxmlformats-officedocument.presentationml.presentation"
           onChange={this.onFilesAdded}
         />
         <img
           alt="diapositiva"
           className="Icon"
-          src="baseline-cloud_upload-24px.svg"
+          src={imgDiapo}
         />
-        <span>Sube aqui tu diapositiva</span>
+        {this.props.slideOn ?
+        null
+        : <span>Sube aqui tu diapositiva</span>
+        }
       </div>
     );
   }
