@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import { BtnPuntos } from '../lista/btnpuntos';
+import iconExit from "../../../img/cerrar.png";
 
 class Azar extends React.Component {
     constructor(props){
@@ -124,7 +125,10 @@ class Azar extends React.Component {
                         id_access={this.props.id_access}
                     />
                     <Modal className="modal-teacher__general" size={'lg'} show={this.state.showModal} onHide={() => this.setState({showModal:false})}>
-                        <Modal.Header closeButton>
+                        <button className="modal-teacher__general-close" onClick={() => this.setState({showModal:false})}>
+                            <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                        </button>
+                        <Modal.Header>
                              <div>
                                 Alumno: {this.state.alumnoElegido}
                              </div>
