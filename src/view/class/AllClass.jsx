@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 // import cursoImg from '../../img/courses/cursos.jpg'
 import axios from "axios";
+import deleteClass from '../courses/assets/delete.svg'
 export default class AllClass extends Component {
   constructor(props) {
     super(props);
@@ -49,6 +50,12 @@ export default class AllClass extends Component {
         <div className="courseTeacher-card-item">
           <div className="courseTeacher-card-image">
             {/* <img src={cursoImg} alt="some value" /> */}
+            <button onClick={() =>
+                this.props.onClick(this.props.id) +
+                this.props.setShow("showdelete", true)}
+                class="courseTeacher__button-delette">
+              <img class="courseTeacher__img" src={deleteClass} alt="imagen de borrar cursos" />
+            </button>
           </div>
           <div className="courseTeacher-card-info">
             <h2 className="courseTeacher-card-title">{this.props.name_class}</h2>

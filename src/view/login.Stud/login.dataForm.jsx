@@ -7,7 +7,12 @@ import robot from "./images/playtecrobot.gif";
 export default class FormLoginStu extends Component {
   constructor(props) {
     super(props);
-    this.state = { value1: "", value2: "", id_access: "", idStu: "" };
+    this.state = {
+      value1: "",
+      value2: "",
+      id_access: "",
+      idStu: ""
+    };
 
     this.handleChange1 = this.handleChange1.bind(this);
     this.handleChange2 = this.handleChange2.bind(this);
@@ -49,7 +54,7 @@ export default class FormLoginStu extends Component {
         id_access: this.state.id_access
       };
 
-      localStorage.setItem("alumno",JSON.stringify(data))
+      localStorage.setItem("alumno", JSON.stringify(data));
       const VerifyCode = await axios.post(
         this.props.apiUrl + "/signin_student",
         data
@@ -77,7 +82,11 @@ export default class FormLoginStu extends Component {
                 INGRESO A LA CLASE
               </span>
               <span className="login100-form-title">
-                <img src={robot} alt="robot" className="login-imagen-robot-student" />
+                <img
+                  src={robot}
+                  alt="robot"
+                  className="login-imagen-robot-student"
+                />
               </span>
               <div className="wrap-input100 validate-input">
                 <input

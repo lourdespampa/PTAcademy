@@ -1,3 +1,4 @@
+
 .body-404 {
     background: #2f4256 url('http://freelansim.ru/images/service_pattern.png')repeat 0 0;
     text-align: center;
@@ -26,17 +27,18 @@
 }
 
 .icon_404:after, .icon_500:after{
-  content: '';
-  display: block;
-  width: 202px;
-  height: 202px;
-  margin: 40px auto;
-  background-repeat: no-repeat;
-  background-position: 0 0;
+content: '';
+display: block;
+width: 202px;
+height: 202px;
+margin: 40px auto;
+background-repeat: no-repeat;
+background-position: 0 0;
 }
 
+
 .icon_500:after{
-  background-image: url('http://freelansim.ru/images/500_icon.png');
+background-image: url('http://freelansim.ru/images/500_icon.png');
 }
 
 .home-notfound {
@@ -61,10 +63,10 @@
 }
 
 .home-notfound:hover {
-    box-shadow: inset -340px 0 0 0 #999;
+  box-shadow: inset -340px 0 0 0 #999;
 }
 
 .notfound-link{
-    text-decoration: none;
-    color: #fff
+  text-decoration: none;
+  color: #fff
 }

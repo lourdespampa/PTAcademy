@@ -57,18 +57,12 @@ function FooterContainer(props){
                     <img id="btn-chat" width="30px" height="30px" src={require("../../../img/footer/chat.svg")} />
                     <span>Chat</span>
                 </div>
-                {/* <button className="col-6 " onClick={()=>props.grabar()}>
-                        grabar
-                    </button>
-                    <button className="col-6 " onClick={()=>props.reproclick()}>
-                        reproducir
-                    </button> */}
             </div>
             <div className="overlay" id="overlay">
                 <div className="popup" id="popup">
                     <a href id="btnCerrarDiapo" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay','popup')+props.botonClick('btnCerrarDiapo')} ><i class="material-icons">close</i></a>
-                    {/* <Slide/> */}
-                    <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",height: "100%"}} allowFullScreen={true}
+                    <Slide/>
+                    <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",display:"none",height: "100%"}} allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
                     </iframe>
                     
@@ -103,8 +97,8 @@ function FooterContainer(props){
                     </div>
                 </Modal.Header>
                 <Modal.Body>
-                    <input id="urlid" type="text" placeholder={props.txt} name="urlvideo" onChange={e => seturlnombre(e.target.value)+props.changeOn('urlvideo',e.target.value)} style={{fontSize:"20px",width: "80%"}} required/>
-                    <button id="btnenviarvideo" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} class="button btnMyM" type="button">ENVIAR</button>
+                    <input id="urlid" type="text" className="Opal" placeholder={props.txt} name="urlvideo" onChange={e => seturlnombre(e.target.value)+props.changeOn('urlvideo',e.target.value)} style={{fontSize:"20px",width: "80%"}} required/>
+                    <button id="btnenviarvideo" className="Opal button btnMyM" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} type="button">Enviar</button>
                 </Modal.Body>
             </Modal>
 

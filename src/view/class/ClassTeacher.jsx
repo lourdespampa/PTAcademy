@@ -1,18 +1,21 @@
 import React, { Component } from 'react'
-
+import { Modal } from "react-bootstrap";
 import NavCourse from "../classAndCourse/NavCourse";
 import axios from 'axios'
 import AllClass from './AllClass'
 export default class ClassTeacher extends Component {
   constructor(props){
     super(props)
-  this.state = {
-    nombreProfesor: "",
-    _id: "",
-    idcourse:"",
-    idteacher:"",
-    classes: []
-  };}
+      this.state = {
+        nombreProfesor: "",
+        _id: "",
+        idcourse:"",
+        idteacher:"",
+        id_class:"",
+        classes: [],
+        showdelete: false,
+      };
+    }
   componentDidMount() {
     var varToken = localStorage.getItem('token');
    const { match: { params } } = this.props;
@@ -59,6 +62,29 @@ export default class ClassTeacher extends Component {
 })
     .catch( e => console.log(e))
   }
+  deleteClass= async () => {
+    console.log('delete clase_ '+this.state.id_class)
+    var varToken = localStorage.getItem("token");
+
+    await axios({
+      url:`${this.props.apiUrl}/v1/api/teacher/lesson/${this.state.id_class}`,
+      method:'put',
+      headers:{
+        'x-access-token': `${varToken}`
+      }});
+    this.getClass();
+  };
+  onClick = id => {
+    this.setState({
+      id_class: id
+    });
+    console.log(id);
+  };
+  setShow = (nom, val) => {
+    this.setState({
+      [nom]: val
+    });
+  };
   render() {
     return (
       <>
@@ -70,21 +96,52 @@ export default class ClassTeacher extends Component {
             {
               this.state.classes.length>0
               ?
-            this.state.classes.map((clase,_id) => (
-              <li className="courseTeacher-cards" key={_id}>
-                <AllClass
-                  apiUrl={this.props.apiUrl}
-                  name_class={clase.class_name}
-                  desc={clase.desc} 
-                  id={clase._id}/>
-              </li>
-            ))
-          :<h3 className="courseTeacher-cards__nullCourses">Cargando cursos... Si no tiene, puede crear uno.</h3>
-          }
+              this.state.classes.map((clase,_id) => (
+                <li className="courseTeacher-cards" key={_id}>
+                  <AllClass
+                    apiUrl={this.props.apiUrl}
+                    name_class={clase.class_name}
+                    desc={clase.desc} 
+                    id={clase._id}
+                    onClick={this.onClick}
+                    setShow={this.setShow}
+                    />
+                </li>
+              ))
+              :<h3 className="courseTeacher-cards__nullCourses">Cargando cursos... Si no tiene, puede crear uno.</h3>
+            }
           </ul>
         </div>
+        <Modal className="modal-teacher__general"
+          size={"lg"}
+          show={this.state.showdelete}
+          onHide={() => this.setShow("showdelete", false)}
+        >
+          <Modal.Header closeButton>
+            <div className="punto-posi">
+              <span className="punto-text">¿DESEA ELIMINAR LA CLASE?</span>
+            </div>
+          </Modal.Header>
+          <Modal.Body>
+            <button
+              id="modal-body__button-yes" className="btn"
+              onClick={() =>
+                this.deleteClass() + this.setShow("showdelete", false)
+              }
+              type="button"
+            >
+              SI
+            </button>
+            <button
+              id="modal-body__button-no" className="btn"
+              onClick={() => this.setShow("showdelete", false)}
+              type="button"
+            >
+              NO
+            </button>
+          </Modal.Body>
+        </Modal>
         {/* <Link to="ClassDetailTeacher">Ir a una clase detallada</Link> */}
-
       </>
     )
   }

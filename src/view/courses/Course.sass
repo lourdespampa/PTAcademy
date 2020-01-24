@@ -97,6 +97,7 @@
 .teacherCourses__small
     font-size: .75rem
 
+
 @media screen and (min-width: 960px)
     .teacherCourses__main-menu
         display: flex
@@ -295,7 +296,6 @@
             -ms-transform: scale(1.25)
             -o-transform: scale(1.25)
             transform: scale(1.25)
-            font-size: 20px
 
 
 
@@ -328,7 +328,6 @@
             -ms-transform: scale(1.25)
             -o-transform: scale(1.25)
             transform: scale(1.25)
-            font-size: 20px
     
 
 
@@ -349,15 +348,21 @@
 .courseTeacher-container .class
     background-color: #e74c3c
 .ClassTeacher-main
-    min-height: 96vh
-    height: 100%
+    position: absolute
     background-color: #e74c3c
+    top: 48px
+    bottom: 0
+    right: 0
+    left: 0
+    overflow: auto
 .CourseTeacher-main
-    min-height: 96vh
-    height: 100%
+    position: absolute
     background-color: #51bd7e
-
-
+    top: 48px
+    bottom: 0
+    right: 0
+    left: 0
+    overflow: auto
     // css para clases     #e74c3c
 .courseTeacher-cards__nullCourses
     color: #ffffff

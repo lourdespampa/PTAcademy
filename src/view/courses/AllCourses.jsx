@@ -20,9 +20,9 @@ export default class AllCourses extends Component {
                       alt="imagen de borrar cursos"
                     />
                   </button>
-                  <button className="courseTeacher__button-Edit">
+                  <Link to={`/${this.props.idteacher}/course_detail`} className="courseTeacher__button-Edit">
                     <img className="courseTeacher__img" src={iconEdit} alt="imagen de borrar cursos" />
-                  </button>
+                  </Link>
               </div>
               <div className="courseTeacher-card-info">
                 <h2 className="courseTeacher-card-title">{this.props.name_course}</h2>
