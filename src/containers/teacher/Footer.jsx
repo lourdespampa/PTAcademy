@@ -8,7 +8,7 @@ class Footer extends Component {
         // variable para mostrar u ocultar los 3 botones que aparecen al hacer hover en la diapositiva del footer
         diapositivaHover: false,
         // src: "https://docs.google.com/presentation/d/e/2PACX-1vQNDqsVLggLYCO546Knez7Ecbs0SCErBbtTfAOn74iEHVtHoUKKECnzcsD6btExAMfn9VnHjsrf867m/pub?start=false&loop=false&delayms=3000",
-        src: "https://docs.google.com/presentation/d/e/2PACX-1vR6f2MX5Cm_Knp3sStzbrRaxK4yNfZuc_j2R_e8LXolAFNsW2mujaXXYnevwWFVOA/pub?start=false&loop=false&delayms=3000",
+        // src: "https://docs.google.com/presentation/d/e/2PACX-1vR6f2MX5Cm_Knp3sStzbrRaxK4yNfZuc_j2R_e8LXolAFNsW2mujaXXYnevwWFVOA/pub?start=false&loop=false&delayms=3000",
         srcForm: "https://docs.google.com/forms/d/e/1FAIpQLSftlA2JivBhsQ0mhdyJ4LQczijxvyjN-SClloK6-9gNIyK2Eg/viewform?usp=sf_link"
     }
 
@@ -58,14 +58,14 @@ class Footer extends Component {
         popup.classList.remove('active');
         document.getElementById('video-frame').src = "";
     }
-    getUrl = () => {
-        var old = this.state.src;
-        var casi = old.replace("pub", "embed");
-        var enlace = casi.replace("delayms=3000", "delayms=3000&rm=minimal&slide=id.p1");
-        console.log('get URL: ' + enlace)
-        document.getElementById("diapo-frame").src = enlace;
-        // document.getElementById("diminute").src = enlace;
-    }
+    // getUrl = () => {
+    //     var old = this.state.src;
+    //     var casi = old.replace("pub", "embed");
+    //     var enlace = casi.replace("delayms=3000", "delayms=3000&rm=minimal&slide=id.p1");
+    //     console.log('get URL: ' + enlace)
+    //     document.getElementById("diapo-frame").src = enlace;
+    //     // document.getElementById("diminute").src = enlace;
+    // }
     getUrlForm = () => {
         document.getElementById("diapo-formulario").src = this.state.srcForm;
     }
@@ -117,13 +117,14 @@ class Footer extends Component {
         // document.getElementById("diminute").src = final;
     }
     async componentDidMount() {
-        this.getUrl();
+        // this.getUrl();
         this.getUrlForm();
     }
     render() {
         return (
             <FooterContainer
                 // Envio del esatdo y funcion de mostrar los botones de la diapositiva del footer
+                apiUrl={this.props.apiUrl} id_class={this.props.id_class} 
                 diapositivaHover={this.state.diapositivaHover} toggleHoverSlide={this.toggleHoverSlide}
                 closePopup={this.closePopup} openPopup={this.openPopup} nextPpt={this.nextPpt}
                 backtPpt={this.backtPpt} enviarvideo={this.enviarvideo} id_access={this.props.id_access}

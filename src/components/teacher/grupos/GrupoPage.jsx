@@ -44,7 +44,7 @@ export default class GrupoPage extends Component {
   groupGenerator = () => {
     let cadena = ``;
     this.getAlumnos();
-    console.log("Numero de personas en total:" + this.state.alumnos.length);
+    console.log("numero de personas en total:" + this.state.alumnos.length);
     let npg = this.state.nro_per_grupo;
     let n_grupos = Math.ceil(this.state.alumnos.length / npg);
     let grupo2 = this.state.alumnos;
@@ -95,7 +95,7 @@ export default class GrupoPage extends Component {
               className="input-text"
               type="number"
               name="numGrup"
-              placeholder="numero de personas por grupos"
+              placeholder="Nùmero de personas por grupos"
               value={this.state.nro_per_grupo}
               onChange={this.handleNumPerGrou}
             />
