@@ -157,14 +157,14 @@ export default class CoursesTeacher extends Component {
               }
               type="button"
             >
-              SI
+              <div className="button-yes__text">SI</div>
             </button>
             <button
               id="modal-body__button-no" className="btn"
               onClick={() => this.setShow("showdelete", false)}
               type="button"
             >
-              NO
+              <div className="button-no__text">NO</div>
             </button>
           </Modal.Body>
         </Modal>

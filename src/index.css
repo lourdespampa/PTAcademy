@@ -430,6 +430,7 @@ template {
   width: 100%;
   cursor: pointer;
 }
+
 .modal-teacher__general-close .modal-teacher__general-cross{
   transition: transform 0.3s ease-in-out;
   -webkit-transition: all .4s ease;
@@ -500,19 +501,48 @@ template {
     -ms-transition: all .4s ease;
     cursor: pointer
   }
-   #modal-body__button-yes:hover{
-    padding: 5px 10px;
-    font-size: 22px}
+#modal-body__button-yes .button-yes__text{
+  transition: transform 0.3s ease-in-out;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  color: #fff
+}
+#modal-body__button-yes:hover .button-yes__text{
+  -webkit-transform: scale(1.25);
+  transform: scale(1.25);
+}  
 
 #modal-body__button-no{
-    background: #E91E63}
-    #modal-body__button-no:hover{
-      background: #E91E6388}
+    background: #E91E63
+  }
 
+#modal-body__button-no .button-no__text{
+  transition: transform 0.3s ease-in-out;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease
+}
+#modal-body__button-no:hover .button-no__text{
+  -webkit-transform: scale(1.25);
+  transform: scale(1.25);
+}  
 #modal-body__button-cursos {
     background: #FB9600}
-#modal-body__button-cursos:hover {
-      background: #FB960088}
+
+#modal-body__button-cursos .button-cursos__text{
+  transition: transform 0.3s ease-in-out;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease
+}
+#modal-body__button-cursos:hover .button-cursos__text{
+  -webkit-transform: scale(1.08);
+  transform: scale(1.07);
+}  
 
 .modal-body{
     padding: 2.25rem 1.5rem;
@@ -528,7 +558,9 @@ template {
   color:#fff;
   font-size:20px;
   background: #00aae3;
-  cursor: pointer
+  cursor: pointer;
+  margin: auto 10px;
+  font-family: "Opal"
 }
 .modal-body .btn:hover{
   background: #00aae388;

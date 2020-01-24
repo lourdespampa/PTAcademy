@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom'
 import { Button, ButtonToolbar } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
-
+import iconExit from "../../../img/cerrar.png";
 import './HeaderCode.sass'
 function BotonSalir(props) {
     var user = JSON.parse(localStorage.getItem('user'));
@@ -14,15 +14,24 @@ function BotonSalir(props) {
       <>
         <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />           
         <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
-          <Modal.Header closeButton>
+            <button className="modal-teacher__general-close" onClick={handleClose}>
+                <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+            </button>
+          <Modal.Header >
             <Modal.Title id="modal-header__title-question">¿DESEA CERRAR SESIÓN?</Modal.Title>
           </Modal.Header>
           <Modal.Body id="modal-body__exit">
           <ButtonToolbar>
-            <Link id="modal-body__button-yes" className="btn" onClick={props.cerrarSesion} to='/' variant="primary">SI</Link>`      `
-            <Link id="modal-body__button-no" className="btn" onClick={handleClose}>NO</Link>`      `
+            <button id="modal-body__button-yes" className="btn" onClick={props.cerrarSesion} variant="primary">
+                <Link style={{textDecoration:"none"}} to="/"><div className="button-yes__text">SI</div></Link>
+            </button>
+            <button id="modal-body__button-no" className="btn" onClick={handleClose}>
+                <div className="button-no__text">NO</div>
+            </button>
             <Link to={`/CoursesTeacher/${user._id}`}>
-            <Button id="modal-body__button-cursos" onClick={handleClose}>Regresar a cursos</Button>
+            <Button id="modal-body__button-cursos" onClick={handleClose}>
+                <div className="button-cursos__text">REGRESAR A CURSOS</div>
+            </Button>
             </Link>
           </ButtonToolbar>
           </Modal.Body>
@@ -90,7 +99,10 @@ class HeaderCode extends React.Component {
                     
                 </div>
                 <Modal className="modal-teacher__general" show={this.state.codigoModal} onHide={this.handleClose}>
-                    <Modal.Header id="modal-general__header" closeButton>
+                    <button className="modal-teacher__general-close" onClick={this.handleClose}>
+                        <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                    </button>
+                    <Modal.Header id="modal-general__header">
                         <span className="modal-title"><strong>CODIGO DE LA CLASE:</strong></span>
                     </Modal.Header>
                     <Modal.Body>
