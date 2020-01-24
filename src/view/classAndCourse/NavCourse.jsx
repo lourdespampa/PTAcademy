@@ -4,6 +4,8 @@ import "../courses/Course.sass";
 import { Modal, Button, ButtonToolbar } from "react-bootstrap";
 import FormularioCourse from './FormPostCourse'
 import FormularioClass from './FormPostClass'
+import iconExit from "../../img/cerrar.png";
+
 
 function BotonAgregar(props) {
   const [show, setShow] = useState(false);
@@ -17,7 +19,10 @@ function BotonAgregar(props) {
         Agregar {props.agregarX}
       </div>
       <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
-        <Modal.Header closeButton>
+        <button className="modal-teacher__general-close" onClick={() => setShow(false)+props.botonClick('modalvideo')}>
+          <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+        </button>
+        <Modal.Header>
           <Modal.Title >Agregando {props.agregarX}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
