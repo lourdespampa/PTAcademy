@@ -87,23 +87,29 @@ export default class GrupoPage extends Component {
     const { nro_per_grupo } = this.state.nro_per_grupo;
     return (
       <>
-        <div className="cuerpo-grupos">
-          {nro_per_grupo}
-          <span> Numero de personas por grupo  </span>
-          <input
-            min="1"
-            className="input-text"
-            type="number"
-            name="numGrup"
-            placeholder="numero de personas por grupos"
-            value={this.state.nro_per_grupo}
-            onChange={this.handleNumPerGrou}
-          />
-          <button className="button Opal btnMyM" onClick={this.groupGenerator}>FORMAR GRUPOS</button>
-        </div>
-        <div className="contenedor-grupos">
-          <ul className="grupos-cards" id="imprimir"></ul>
-        </div>
+        {/* <div className="container"> */}
+          <div className="cuerpo-grupos">
+            {nro_per_grupo}
+            <input
+              min="1"
+              className="input-text"
+              type="number"
+              name="numGrup"
+              placeholder="numero de personas por grupos"
+              value={this.state.nro_per_grupo}
+              onChange={this.handleNumPerGrou}
+            />
+            <button className="button" onClick={this.groupGenerator}>
+              <label className="tex">
+                Formar Grupos
+              </label>
+
+            </button>
+          </div>
+          <div className="contenedor-grupos">
+            <ul className="grupos-cards" id="imprimir"></ul>
+          </div>
+        {/* </div> */}
       </>
     );
   }
