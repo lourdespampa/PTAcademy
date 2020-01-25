@@ -78,7 +78,9 @@ function FooterContainer(props){
                     <a href id="btnCerrarFormu" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} ><i class="material-icons">close</i></a>
                     <iframe title="diapo-iframe" id="diapo-formulario" className="fc-formulario" frameBorder="0"  allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
-                    <button class="button btnMyM" onClick={()=>SendForm(props.socketUrl,props.id_access)}>EMITIR</button>
+                    <button class="button btnMyM" onClick={()=>SendForm(props.socketUrl,props.id_access)}>
+                        <div className="button-zoom">EMITIR</div>
+                    </button>
                 </div>
             </div>        
 
@@ -95,7 +97,7 @@ function FooterContainer(props){
                 <Modal.Body>
                     <input id="urlid" type="text" className="Opal" placeholder={props.txt} name="urlvideo" onChange={e => seturlnombre(e.target.value)+props.changeOn('urlvideo',e.target.value)} style={{fontSize:"20px",width: "80%"}} required/>
                     <button id="btnenviarvideo" className="Opal btn" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} type="button">
-                        <div className="button-cursos__text">ENVIAR</div>
+                        <div className="button-zoom">ENVIAR</div>
                     </button>
                 </Modal.Body>
             </Modal>
