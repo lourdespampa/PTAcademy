@@ -74,7 +74,7 @@ function FooterContainer(props){
                 <div className="popup" id="popupformulario">
                     <div class="punto-posi">
                         <button className="modal-teacher__general-close" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} >
-                            <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                         </button>
                         <span className="formulario-title">EMITIR FORMULARIO</span>
                     </div>
@@ -89,7 +89,7 @@ function FooterContainer(props){
             <Modal className="modal-teacher__general" id="modalvideo" size={'SM'} show={Show}
             onHide={() => setShow(false)+props.botonClick('modalvideo')} >
                 <button className="modal-teacher__general-close" onClick={() => setShow(false)+props.botonClick('modalvideo')}>
-                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                    <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                 </button>
                 <Modal.Header>
                     <div class="punto-posi">

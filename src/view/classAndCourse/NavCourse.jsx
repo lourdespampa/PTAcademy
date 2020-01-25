@@ -19,7 +19,7 @@ function BotonAgregar(props) {
       </div>
       <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
           <button className="modal-teacher__general-close" onClick={handleClose}>
-            <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
           </button>
         <Modal.Header>
           <Modal.Title >Agregando {props.agregarX}</Modal.Title>
@@ -46,18 +46,20 @@ function BotonCerrarSesion(props) {
       </div>
       <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
           <button className="modal-teacher__general-close" onClick={handleClose}>
-            <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
           </button>
         <Modal.Header>
           <Modal.Title id="modal-header__title-question">¿DESEA CERRAR SESIÓN?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ButtonToolbar>
-            <button id="modal-body__button-yes" className="btn" onClick={props.cerrarSesion} variant="primary">
-                <Link style={{textDecoration:"none"}} to="/"><div className="button-yes__text">SI</div></Link>
+            <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
+                <Link style={{textDecoration:"none"}} to="/">
+                  <div className="button-zoom">SI</div>
+                </Link>
             </button>
-            <button id="modal-body__button-no" className="btn" onClick={handleClose}>
-                <div className="button-no__text">NO</div>
+            <button className="modal-body__button no" onClick={handleClose}>
+                <div className="button-zoom">NO</div>
             </button>
           </ButtonToolbar>
         </Modal.Body>

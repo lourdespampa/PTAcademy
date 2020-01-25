@@ -141,8 +141,8 @@ export default class FormPostCourse extends Component {
               required
             />
           </Form.Group>
-          <Button className="modal-body__button-cursos" type="submit"  >
-            <div className="button-cursos__text">CREAR CURSO</div>
+          <Button className="modal-body__button cursos" type="submit"  >
+            <div className="button-zoom">CREAR CURSO</div>
           </Button>
         </Form>
       </>

@@ -142,7 +142,7 @@ export default class CoursesTeacher extends Component {
           onHide={() => this.setShow("showdelete", false)}
         > 
           <button className="modal-teacher__general-close" onClick={() => this.setShow("showdelete", false)}>
-              <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+              <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
           </button>
           <Modal.Header>
             <div className="punto-posi">
@@ -151,20 +151,20 @@ export default class CoursesTeacher extends Component {
           </Modal.Header>
           <Modal.Body>
             <button
-              id="modal-body__button-yes" className="btn"
+              className="modal-body__button yes"
               onClick={() =>
                 this.deleteCurso() + this.setShow("showdelete", false)
               }
               type="button"
             >
-              <div className="button-yes__text">SI</div>
+              <div className="button-zoom">SI</div>
             </button>
             <button
-              id="modal-body__button-no" className="btn"
+              className="modal-body__button no"
               onClick={() => this.setShow("showdelete", false)}
               type="button"
             >
-              <div className="button-no__text">NO</div>
+              <div className="button-zoom">NO</div>
             </button>
           </Modal.Body>
         </Modal>

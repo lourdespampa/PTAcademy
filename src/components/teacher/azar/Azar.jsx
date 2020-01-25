@@ -140,7 +140,7 @@ class Azar extends React.Component {
                     />
                     <Modal className="modal-teacher__general" size={'lg'} show={this.state.showModal} onHide={() => this.setState({showModal:false})}>
                         <button className="modal-teacher__general-close" onClick={() => this.setState({showModal:false})}>
-                            <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                         </button>
                         <Modal.Header>
                              <div>

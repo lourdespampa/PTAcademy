@@ -1,15 +1,26 @@
 .roulette {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
+  justify-content: center;}
 
-.roulette-container {
+.roulette-container,
+.roulette-container-button{
   display: flex;
   justify-content: center;
   padding: 10px;
 }
 
+.roulette-container-button.button-zoom{
+  transition: transform 0.3s ease-in-out;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  color: #fff
+}
+.roulette-container:hover .button-zoom{
+  -webkit-transform: scale(1.20);
+  transform: scale(1.20)} 
 .azar-tab-group {
   list-style:none;
   padding:0;
