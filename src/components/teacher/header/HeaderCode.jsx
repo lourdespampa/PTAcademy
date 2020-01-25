@@ -36,9 +36,9 @@ function HeaderCode(props){
     const [showcod, setShowcod] = useState(false);
     const handleClose = () => setShowcod(false);
     const handleShow = () => setShowcod(true);
-    const codigo = () => {
+    /*const codigo = () => {
         // alert('codigo')
-    }
+    }*/
     const closeMenu = () => {
         document.getElementById('checked').click()
     }       

@@ -35,7 +35,7 @@ export default class Trivia extends React.Component {
           { pin: this.props.id_access }
     })
     socket.on('pregunta recibida', data => {
-      if(data.pin == (this.props.id_access).toUpperCase()) {
+      if(data.pin === (this.props.id_access).toUpperCase()) {
       console.log(data)
       this.setState({
         pregunta: data.data.pregunta, 
@@ -56,7 +56,7 @@ export default class Trivia extends React.Component {
     })
 
     socket.on('datos restaurados', data => {
-      if(data.pin == (this.props.id_access).toUpperCase()) {
+      if(data.pin === (this.props.id_access).toUpperCase()) {
       this.setState({
         preguntaElegida: '',
         puntaje: 1000,
@@ -156,6 +156,7 @@ export default class Trivia extends React.Component {
                 id="pre-imagen"
                 src={require("./playvr.webp")}
                 width="220"
+                alt='trivia'
               />
             </div>
             <div className="right">
@@ -173,7 +174,7 @@ export default class Trivia extends React.Component {
                           : 
                           this.handleSelectAnswer
                           }>
-                    <img src={require("./rombo-blanco.webp")} />
+                    <img src={require("./rombo-blanco.webp")}  alt='rombo-blanco'/>
                     <span id="answerTriangulo">{this.state.respuesta1 ? this.state.respuesta1 : "Respuesta 1"}</span>
                   </button>
                 </td>
@@ -195,7 +196,7 @@ export default class Trivia extends React.Component {
                               socket.emit('enviando elegida', {alumno: this.props.fullname, puntaje: this.state.puntaje})
                             }
                           }}>
-                    <img src={require("./equis-blanco.webp")} />
+                    <img src={require("./equis-blanco.webp")} alt='equis-blanco'  />
                     <span id="answerEquis">{this.state.respuesta2 ? this.state.respuesta2 : "Respuesta 2"}</span>
                   </button>
                 </td>
@@ -219,7 +220,7 @@ export default class Trivia extends React.Component {
                               socket.emit('enviando elegida', {alumno: this.props.fullname, puntaje: this.state.puntaje})
                             }
                           }}>
-                    <img src={require("./circulo-blanco.webp")} />
+                    <img src={require("./circulo-blanco.webp")} alt='circulo-blanco' />
                     <span id="answerCirculo">{this.state.respuesta3 ? this.state.respuesta3 : "Respuesta 3"}</span>
                   </button>
                 </td>
@@ -241,7 +242,7 @@ export default class Trivia extends React.Component {
                               socket.emit('enviando elegida', {alumno: this.props.fullname, puntaje: this.state.puntaje})
                             }  
                           }}>
-                    <img src={require("./cuadrado-blanco.webp")} />
+                    <img src={require("./cuadrado-blanco.webp")} alt='cuadrado-blanco'  />
                     <span id="answerCuadrado">{this.state.respuesta4 ? this.state.respuesta4 : "Respuesta 4"}</span>
                   </button>
                 </td>

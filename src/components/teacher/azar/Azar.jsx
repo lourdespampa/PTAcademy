@@ -21,7 +21,7 @@ class Azar extends React.Component {
                 { pin: this.props.id_access }
           })
           socket.on('newAlum',(data)=>{
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
                 this.getStudents()
             }
           })
@@ -38,7 +38,7 @@ class Azar extends React.Component {
         })
         .then( (res) => {
             const temp = [];
-            res.data.map( alumno => {
+            res.data.forEach( (alumno)=> {
                 temp.push(alumno.name_stu)
             })
             this.setState({ alumnos: this.sortearElementos(temp) })

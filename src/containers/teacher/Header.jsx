@@ -20,7 +20,7 @@ class Header extends React.Component {
       query: { pin: this.props.id_access }
     });
     socket.on("tabBlurred", data => {
-      if (data.pin == this.props.id_access.toUpperCase()) {
+      if (data.pin === this.props.id_access.toUpperCase()) {
         this.notify(data.fullname);
       }
     });

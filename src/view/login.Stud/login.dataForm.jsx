@@ -22,7 +22,7 @@ export default class FormLoginStu extends Component {
   }
 
   handleKeyPress = event => {
-    if (event.key == "Enter") {
+    if (event.key === "Enter") {
       this.SaveStudent();
     }
   };
@@ -43,7 +43,7 @@ export default class FormLoginStu extends Component {
     const inputName = document.getElementById("inputName");
     const inputLastName = document.getElementById("inputLastName");
 
-    if (inputName.value == "" || inputLastName.value == "") {
+    if (inputName.value === "" || inputLastName.value === "") {
       alert("Name and Lastname are required");
     } else {
       const data = {

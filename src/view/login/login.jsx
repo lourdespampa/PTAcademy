@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import {Redirect} from 'react-router-dom'
 import "./login.sass";
-import logo from "./bg-teacher-login.jpg";
+//import logo from "./bg-teacher-login.jpg";
 
 import axios from 'axios';
 import Loading from "./Loading";
 //importamos la configuración de firebase
 import firebase from "./firebaseConfig";
 //libreria que cifra el token
-import aesjs from 'aes-js'
+//import aesjs from 'aes-js'
 
 export default function App(props) {
 
@@ -226,7 +226,7 @@ export default function App(props) {
                     <div className="linea">&nbsp;</div>
                   </div>
                   <a className="loginTeacher-button-google" onClick={signInWithGoogle} >
-                    <img className="loginTeacher-google-icon" src="https://img.icons8.com/color/48/000000/google-logo.png" />
+                    <img className="loginTeacher-google-icon" src="https://img.icons8.com/color/48/000000/google-logo.png" alt='logo-google'/>
                       Sign in with Google
                   </a>
                   <a className="loginTeacher-login-register" onClick={cambiarTipoAcceso}>registrese ahora</a>
