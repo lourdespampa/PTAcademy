@@ -75,7 +75,7 @@ class Temporizador extends React.Component {
                         b = b % d.value,
                         f = 10 > f ? "0" + f : f;
                     d.element.html("&#8201;" + f + "&#8201;");
-                    a += f
+                    //a += f
                 }
                 // q.length !== a.length;
                 //es una variable que no se usa
