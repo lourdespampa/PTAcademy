@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Dropzone.css";
+import "./Dropzone.sass";
 import imgDiapo from "./baseline-cloud_upload-24px.svg";
 
 class Dropzone extends Component {

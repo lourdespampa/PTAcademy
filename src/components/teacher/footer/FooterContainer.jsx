@@ -61,7 +61,7 @@ function FooterContainer(props){
             <div className="overlay" id="overlay">
                 <div className="popup" id="popup">
                     <a href id="btnCerrarDiapo" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay','popup')+props.botonClick('btnCerrarDiapo')} ><i class="material-icons">close</i></a>
-                    <Slide/>
+                    <Slide apiUrl={props.apiUrl} id_class={props.id_class} />
                     <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",display:"none",height: "100%"}} allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
                     </iframe>
@@ -82,7 +82,9 @@ function FooterContainer(props){
                     {/* <a href id="btnCerrarFormu" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} ><i class="material-icons">close</i></a> */}
                     <iframe title="diapo-iframe" id="diapo-formulario" className="fc-formulario" frameBorder="0"  allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
-                    <button class="button btnMyM" onClick={()=>SendForm(props.socketUrl,props.id_access)}>EMITIR</button>
+                    <button class="button btnMyM" onClick={()=>SendForm(props.socketUrl,props.id_access)}>
+                        <div className="button-zoom">EMITIR</div>
+                    </button>
                 </div>
             </div>        
 
@@ -98,7 +100,9 @@ function FooterContainer(props){
                 </Modal.Header>
                 <Modal.Body>
                     <input id="urlid" type="text" className="Opal" placeholder={props.txt} name="urlvideo" onChange={e => seturlnombre(e.target.value)+props.changeOn('urlvideo',e.target.value)} style={{fontSize:"20px",width: "80%"}} required/>
-                    <button id="btnenviarvideo" className="Opal btn" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} type="button">ENVIAR</button>
+                    <button id="btnenviarvideo" className="Opal btn" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} type="button">
+                        <div className="button-zoom">ENVIAR</div>
+                    </button>
                 </Modal.Body>
             </Modal>
 
