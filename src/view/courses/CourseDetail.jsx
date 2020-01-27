@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
+import save_pic from './assets/save.svg';
+import discard_pic from './assets/discard.svg';
+import edit_pic from './assets/edit.svg';
 import axios from 'axios'
+
 
 
 
@@ -39,13 +43,141 @@ class TablaCompetnecias extends Component {
         return (
             <div className='CourseDetail-table' >
                 <table>
-                    {competencias.map((com, id) => this.renderCompetencia(com, id))}
+                    <tbody>
+                        {competencias.map((com, id) => this.renderCompetencia(com, id))}
+                    </tbody>
+
                 </table>
             </div>
         )
     }
 }
 
+
+class TablaInfoAlumnos extends Component {    
+
+    constructor(props) {
+        super(props) 
+        this.state = {
+            competencias: props.competencias,
+            studens: props.studens,
+            option: props.option
+        }
+    }
+
+
+ 
+    showEstudents(student) {
+        return (
+            <tr key={student.name + student.lastname + 'fullname'}>
+                <th >
+                    {student.name}
+                </th>
+                <th >
+                    {student.lastname}
+                </th>
+            </tr>
+        )
+    }
+ 
+    showEstudentsCompentencia(student) {
+        let selected = this.state.selected
+        let id = selected[0]
+        let competencia = student.competencias[id]
+        return (
+            <tr key={student.name + student.lastname + 'fullnameCompentecias'}>
+                <th>
+                    {student.name} 
+                </th>
+                <th> 
+                    {student.lastname}  
+                </th> 
+                {competencia.subCompetencia.map( 
+                    (ele) => (<th key={student.name + student.lastname + 'Nota' + ele.value} >
+                        {this.renderEditing(ele.value, () => { })} 
+                    </th>) 
+                )} 
+            </tr> 
+        )
+
+    }
+    showEstudentsSubCompetencia(student) {
+
+        let selected = this.state.selected
+        let id = selected[0]
+        let sub_id = selected[1]
+        let subCompetencia = student.competencias[id].subCompetencia[sub_id]
+        return (
+            <tr key={student.name + student.lastname + 'fullnameSubCompentecias'}>
+                <th>
+                    {student.name}
+                </th>
+                <th>
+                    {student.lastname}
+                </th>
+                <th>
+
+                    {this.renderEditing(subCompetencia.value, () => { })}
+                </th>
+                <th>
+                    {this.renderEditing(subCompetencia.descripcion, () => { })}
+                </th>
+            </tr>
+        )
+    }
+
+    renderBodyTable() {
+
+        let students = this.state.studens
+        let show = (student) => this.showEstudents(student)
+        let option = this.state.option
+        let tipo = option.length
+        if (tipo === 1)
+            show = (student) => this.showEstudentsCompentencia(student)
+        if (tipo === 2)
+            show = (student) => this.showEstudentsSubCompetencia(student)
+        return (
+            <tbody>
+                {students.map(show)}
+            </tbody>
+        )
+    }   
+
+
+
+    renderHeadTable() {
+        let option = this.state.option
+        let tipo = option.length    
+        let heads = ['Nombre', 'Apellido']  
+        let heads2 = []   
+        if (tipo === 1) {  
+            let subCompetencias = this.state.competencias[option[0]].subCompetencia; 
+            heads2 = subCompetencias.map(ele => ele.title) 
+        } 
+        if (tipo === 2) 
+            heads2 = ['Notas', 'Descripcion'] 
+        heads = heads.concat(heads2) 
+        return ( 
+            <thead> 
+                <tr> 
+                    {heads.map( 
+                        (ele) => <th key={ele + 'headas'} > {ele} </th> 
+                    )} 
+                </tr> 
+            </thead> 
+        )
+    }
+
+
+
+
+    render() {
+        return (<table>
+            {this.renderHeadTable()}
+
+        </table>)
+    }
+}
 
 
 
@@ -146,9 +278,9 @@ export default class CourseDetail extends Component {
                     { title: '', valor: 'A' },
                     { title: '', valor: 'B' },
                     { title: '', valor: 'C' },
-                    { title: '', valor: 'D' },
-                    { title: '', valor: 'E' },
-                    { title: '', valor: 'F' }
+                    { title: '', valor: 'D' }, 
+                    { title: '', valor: 'E' }, 
+                    { title: '', valor: 'F' } 
                 ]
         }
         console.log(datapoint)
@@ -159,14 +291,8 @@ export default class CourseDetail extends Component {
             editing: false
 
         }
-        console.log(props.id_access, 'id acceses')
+        console.log(props.id_access, 'id acceses') 
     }
-
-
-
-
-
-
 
 
     // get studens 
@@ -177,9 +303,9 @@ export default class CourseDetail extends Component {
         const res = await axios({
             url: `${this.props.apiUrl + '/v1/api/lesson'}/${this.props.id_access}/students`,
             //pendiente que se haga peticion de estuantes por curso 
-            method: 'GET',
-            headers: {
-                'x-access-token': `${varToken}`
+            method: 'GET', 
+            headers: { 
+                'x-access-token': `${varToken}` 
             }
         })
         this.setState({
@@ -192,17 +318,14 @@ export default class CourseDetail extends Component {
         if (this.state.editing) {
             return (
                 <React.Fragment>
-                    <input type="text" value={value} />
+                    <input type="text" defaultValue={value} />
 
                 </React.Fragment>
-
-
-
             )
         } else {
-            return <React.Fragment>
-                {value}
-            </React.Fragment>
+            return <React.Fragment> 
+                {value} 
+            </React.Fragment> 
         }
     }
 
@@ -228,7 +351,7 @@ export default class CourseDetail extends Component {
                         Apellido
                     </th>
                     {heads.map(
-                        (ele) => <th> {ele} </th>
+                        (ele) => <th key={ele + 'headas'} > {ele} </th>
                     )}
                 </tr>
             </thead>
@@ -239,21 +362,23 @@ export default class CourseDetail extends Component {
 
     showEstudents(student) {
         return (
-            <tr>
-                <th>
+            <tr key={student.name + student.lastname + 'fullname'}>
+                <th >
                     {student.name}
                 </th>
-                <th>
+                <th >
                     {student.lastname}
                 </th>
             </tr>
         )
     }
 
-    showEstudentsCompentencia(student, id) {
+    showEstudentsCompentencia(student) {
+        let selected = this.state.selected
+        let id = selected[0]
         let competencia = student.competencias[id]
         return (
-            <tr>
+            <tr key={student.name + student.lastname + 'fullnameCompentecias'}>
                 <th>
                     {student.name}
                 </th>
@@ -261,16 +386,20 @@ export default class CourseDetail extends Component {
                     {student.lastname}
                 </th>
                 {competencia.subCompetencia.map(
-                    (ele) => <th>{this.renderEditing(ele.value, () => { })}</th>
+                    (ele) => <th key={student.name + student.lastname + 'Nota' + ele.value} >{this.renderEditing(ele.value, () => { })}</th>
                 )}
             </tr>
         )
 
     }
-    showEstudentsSubCompetencia(student, id, sub_id) {
+    showEstudentsSubCompetencia(student) {
+
+        let selected = this.state.selected
+        let id = selected[0]
+        let sub_id = selected[1]
         let subCompetencia = student.competencias[id].subCompetencia[sub_id]
         return (
-            <tr>
+            <tr key={student.name + student.lastname + 'fullnameSubCompentecias'}>
                 <th>
                     {student.name}
                 </th>
@@ -295,9 +424,9 @@ export default class CourseDetail extends Component {
         let selected = this.state.selected
         let tipo = selected.length
         if (tipo === 1)
-            show = (student) => this.showEstudentsCompentencia(student, selected[0])
+            show = (student) => this.showEstudentsCompentencia(student)
         if (tipo === 2)
-            show = (student) => this.showEstudentsSubCompetencia(student, selected[0], selected[1])
+            show = (student) => this.showEstudentsSubCompetencia(student)
         return (
             <tbody>
                 {students.map(show)}
@@ -305,6 +434,7 @@ export default class CourseDetail extends Component {
         )
     }
     setSelected(x, y) {
+        console.log('selecting' + Number(new Date()) % 1000)
         let selected = y !== undefined ? [x, y] : [x]
         this.setState({ selected: selected })
     }
@@ -321,7 +451,7 @@ export default class CourseDetail extends Component {
     rendersave() {
         if (this.state.editing)
             return (
-                <img src='https://upload.wikimedia.org/wikipedia/commons/6/6a/High-contrast-document-save.svg'
+                <img src={save_pic}
                     onClick={() => this.saveData()}
                     alt="save"
                     title='guardar'
@@ -334,13 +464,13 @@ export default class CourseDetail extends Component {
     renderEditingDiscart() {
         if (!this.state.editing)
             return (
-                <img src="/static/media/edit.29504818.svg" alt="edit"
+                <img src={edit_pic} alt="edit"
                     onClick={() => this.editButtonHandler()}
                     title='editar'
                 />)
         else
             return (
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Toicon-icon-lines-and-angles-discard.svg"
+                <img src={discard_pic}
                     alt="discart"
                     title='descartar'
                     onClick={() => this.editButtonHandler()}
