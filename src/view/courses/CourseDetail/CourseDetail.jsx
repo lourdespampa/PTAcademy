@@ -1,15 +1,83 @@
 import React, { Component, useState } from "react";
 import "./CourseDetail.sass";
-import NavCourse from './NavCourse'
+import NavCourse from "./NavCourse";
+import axios from 'axios'
 export default class CourseDetail extends Component {
-    state = {
-        token: false
+  state = {
+    token: false
+  };
+
+  UNSAFE_componentWillMount = async () => {
+    let tokenStorage = localStorage.getItem("token");
+    await this.setState({ token: tokenStorage });
+  };
+  componentDidMount() {
+    // en varToken se guarda la variable almacenada del localstorage
+    var varToken = localStorage.getItem('token');
+    //obtenemos el id de la url pasada a través de las propiedades
+    const {
+      match: { params }
+    } = this.props;
+    this.setState({ _id: params.id });
+    //luego, obtenemos la lista de cursos del profesor por petición a la API
+    axios({
+      url: `${this.props.apiUrl}/v1/api/teacher/${params.id}/course_detail`,
+      method: "GET",
+      headers: {
+        "x-access-token": `${varToken}`
       }
-    
-      UNSAFE_componentWillMount = async () => {
-        let tokenStorage = localStorage.getItem("token")
-        await this.setState({token: tokenStorage})
+    })
+      .then(({ data }) => {
+        // console.log(data)
+        if (data == []) {
+          this.setState({ courses: [] });
+        } else {
+          this.setState({ courses: data });
+        }
+      })
+      .catch(e => console.log(e));
+    axios({
+      url: `${this.props.apiUrl}/v1/api/admin/user/${params.id}`,
+      method: "GET",
+      headers: {
+        "x-access-token": `${varToken}`
       }
+    }).then(({ data }) => {
+      console.log(data);
+      this.setState({ nombreProfesor: `${data.user_name} ${data.user_lastName}` });
+    });
+  }
+  getAlumnos = () => {
+    console.log("listar cursos");
+    const {
+      match: { params }
+    } = this.props;
+    var varToken = localStorage.getItem("token");
+    axios({
+      url: `http://192.168.1.29:4200//v1/api/student/${this.props.idteacher}/${this.props.idcourse}`,
+      method: "GET",
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    })
+      .then(({ data }) => {
+        console.log(data);
+        if (data == []) {
+          this.setState({ courses: [] });
+        } else {
+          this.setState({ courses: data });
+        }
+      })
+      .then(({ data }) => {
+        // console.log(data)
+        if (data == []) {
+          this.setState({ courses: [] });
+        } else {
+          this.setState({ courses: data });
+        }
+      })
+      .catch(e => console.log(e));
+  };
   Abrir = () => {
     const nav = document.getElementById("main-nav");
     nav.classList.toggle("show");
@@ -17,9 +85,14 @@ export default class CourseDetail extends Component {
   render() {
     return (
       <>
-       <NavCourse apiUrl={this.props.apiUrl} idcourse={this.state.id_curso} idteacher={this.state._id}
-         agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos}></NavCourse>
-        
+        <NavCourse
+          apiUrl={this.props.apiUrl}
+          idcourse={this.state.id_curso}
+          idteacher={this.state._id}
+          agregarX={"course"}
+          nombreProfesor={this.state.nombreProfesor}
+          getdata={this.getCursos}
+        ></NavCourse>
 
         <div className="CourseDetail__Container">
           <div>

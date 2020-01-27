@@ -8,34 +8,50 @@ export default class AllCourses extends Component {
   render() {
     return (
       <>
-            <div className="courseTeacher-card-item">
-              <div className="courseTeacher-card-image">
-              <button onClick={() =>
+        <div className="courseTeacher-card-item">
+          <div className="courseTeacher-card-image">
+            <button
+              onClick={() =>
                 this.props.onClick(this.props.id) +
                 this.props.setShow("showdelete", true)
-              } className="courseTeacher__button-delette">
-                    <img
-                      className="courseTeacher__img"
-                      src={iconDelete}
-                      alt="imagen de borrar cursos"
-                    />
-                  </button>
-                  <Link to={`/${this.props.idteacher}/course_detail`} className="courseTeacher__button-Edit">
-                    <img className="courseTeacher__img" src={iconEdit} alt="imagen de borrar cursos" />
-                  </Link>
-              </div>
-              <div className="courseTeacher-card-info">
-                <h2 className="courseTeacher-card-title">{this.props.name_course}</h2>
-                <p className="courseTeacher-card-intro">
-                {this.props.description}</p>
-                <Link 
-                onClick={()=>this.props.onClick(this.props.id)}
-                to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
-             className="courseTeacher__buttonEntry">
-                      <label className="courseTeacher__buttonEntry-label">VER CLASES</label>
-                    </Link>
-              </div>
-            </div>
+              }
+              className="courseTeacher__button-delette"
+            >
+              <img
+                className="courseTeacher__img"
+                src={iconDelete}
+                alt="imagen de borrar cursos"
+              />
+            </button>
+            <Link
+              to={`/${this.props.idteacher}/course_detail`}
+              className="courseTeacher__button-Edit"
+              idteacher = {this.props.idteacher}
+              idCourse = {this.props.idCourse}
+            >
+              <img
+                className="courseTeacher__img"
+                src={iconEdit}
+                alt="imagen de borrar cursos"
+              />
+            </Link>
+          </div>
+          <div className="courseTeacher-card-info">
+            <h2 className="courseTeacher-card-title">
+              {this.props.name_course}
+            </h2>
+            <p className="courseTeacher-card-intro">{this.props.description}</p>
+            <Link
+              onClick={() => this.props.onClick(this.props.id)}
+              to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
+              className="courseTeacher__buttonEntry"
+            >
+              <label className="courseTeacher__buttonEntry-label">
+                VER CLASES
+              </label>
+            </Link>
+          </div>
+        </div>
       </>
     );
   }

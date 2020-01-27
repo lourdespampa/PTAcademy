@@ -74,14 +74,6 @@ export default class CoursesTeacher extends Component {
           this.setState({courses: data})
       }
     })
-      .then(({ data }) => {
-        // console.log(data)
-          if (data == []) {
-            this.setState({ courses: [] });
-          } else {
-            this.setState({ courses: data });
-          }
-      })
       .catch(e => console.log(e));
   }
 
