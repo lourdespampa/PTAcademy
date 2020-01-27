@@ -3,6 +3,7 @@ import "./FooterContainer.sass";
 import Modal from "react-bootstrap/Modal";
 import Audio from "../audio/audio";
 import io from "socket.io-client";
+import iconExit from "../../../img/cerrar.png";
 import Slide from '../slides/slide_02';
 function enviarvideo(url, url2, socketUrl, id_access) {
   var urlnombre = url + url2;
@@ -83,14 +84,19 @@ function FooterContainer(props){
 
             <Modal className="modal-teacher__general" id="modalvideo" size={'SM'} show={Show}
             onHide={() => setShow(false)+props.botonClick('modalvideo')} >
-                <Modal.Header closeButton>
+                <button className="modal-teacher__general-close" onClick={() => setShow(false)+props.botonClick('modalvideo')}>
+                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                </button>
+                <Modal.Header>
                     <div class="punto-posi">
                         <span>EMITIR VIDEO</span>
                     </div>
                 </Modal.Header>
                 <Modal.Body>
                     <input id="urlid" type="text" className="Opal" placeholder={props.txt} name="urlvideo" onChange={e => seturlnombre(e.target.value)+props.changeOn('urlvideo',e.target.value)} style={{fontSize:"20px",width: "80%"}} required/>
-                    <button id="btnenviarvideo" className="Opal btn" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} type="button">ENVIAR</button>
+                    <button id="btnenviarvideo" className="Opal btn" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} type="button">
+                        <div className="button-cursos__text">ENVIAR</div>
+                    </button>
                 </Modal.Body>
             </Modal>
 

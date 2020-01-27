@@ -1,5 +1,5 @@
 @font-face {
-  font-family: Opal;
+  font-family: Opal !important;
   src: url("./plugins/Opal.ttf") format("truetype");
 }
 
@@ -399,7 +399,6 @@ template {
     position: relative;
     top: 17px;
     padding: 1.25rem 1.5rem;
-
   }
 
 .modal-content {
@@ -417,19 +416,35 @@ template {
 .modal-title{
     letter-spacing: .01em}
 
-.modal-teacher__general .close{
-    position: absolute;
-    width: 42px;
-    height: 35px;
-    top: 0;
-    right: 15px;
-    cursor: pointer;
-    background: #E91E63;
-    color: #fff;
-    border-radius: 9px;
-    font-weight:bold}
-.modal-teacher__general .close:hover{
-  color: #eee
+.modal-teacher__general-close{
+  float: right;
+  background-color: #E91E63;
+  min-width: 30px;
+  max-width: 40px;
+  border: 0;
+  height: 30px;
+  display: block;
+  margin: .7em;
+  border-radius: 5px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  cursor: pointer;
+}
+.modal-teacher__general-close .modal-teacher__general-cross{
+  transition: transform 0.3s ease-in-out;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  width: 12px
+}
+.modal-teacher__general-close:hover .modal-teacher__general-cross{
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  -o-transform: scale(1.25);
+  transform: scale(1.3)
 }
 
 .modal-teacher__general-controlname{
@@ -464,7 +479,9 @@ template {
     border: 1px solid #FFFFFF;
     box-sizing: border-box;
     border-radius: 8px;
-    bottom: -28px}
+    bottom: -28px;
+    resize: none;
+    }
 
 #modal-content__codigogenerado{
     font-size: 112px;
@@ -478,19 +495,56 @@ template {
 
 
 #modal-body__button-yes{
-    background: #52BE7F}
-   #modal-body__button-yes:hover{
-      background: #52BE7F88}
+    background: #52BE7F;
+    transition: transform 0.3s ease-in-out;
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    -ms-transition: all .4s ease;
+    cursor: pointer
+  }
+#modal-body__button-yes .button-yes__text{
+  transition: transform 0.3s ease-in-out;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  color: #fff
+}
+#modal-body__button-yes:hover .button-yes__text{
+  -webkit-transform: scale(1.25);
+  transform: scale(1.25);
+}  
 
 #modal-body__button-no{
-    background: #E91E63}
-    #modal-body__button-no:hover{
-      background: #E91E6388}
+    background: #E91E63
+  }
 
+#modal-body__button-no .button-no__text{
+  transition: transform 0.3s ease-in-out;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease
+}
+#modal-body__button-no:hover .button-no__text{
+  -webkit-transform: scale(1.25);
+  transform: scale(1.25);
+}  
 #modal-body__button-cursos {
     background: #FB9600}
-#modal-body__button-cursos:hover {
-      background: #FB960088}
+
+#modal-body__button-cursos .button-cursos__text{
+  transition: transform 0.3s ease-in-out;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease
+}
+#modal-body__button-cursos:hover .button-cursos__text{
+  -webkit-transform: scale(1.08);
+  transform: scale(1.08);
+}  
 
 .modal-body{
     padding: 2.25rem 1.5rem;
@@ -501,12 +555,14 @@ template {
 .modal-body .btn{
   padding: 5px 10px;
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 5px;
+  border: 0;
   color:#fff;
-  font-size:18px;
+  font-size:20px;
   background: #00aae3;
   cursor: pointer;
   font-family: opal !important;
+  margin: auto 10px
 }
 .modal-body .btn:hover{
   background: #00aae388;
@@ -541,7 +597,7 @@ template {
 }
 @media screen and (max-height:630px){
   .modal-body{
-    height: 450px;
+    /*height: 450px;*/
     overflow: auto;
   }
 }

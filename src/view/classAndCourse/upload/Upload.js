@@ -152,7 +152,7 @@ class Upload extends Component {
             Crear Clase
           </button>
           { this.state.NoData ?
-          <p>rellene todos los campos</p>:null
+          <p className="rellena">RELLENA TODOS LOS CAMPOS</p>:null
           }
         </>
       );

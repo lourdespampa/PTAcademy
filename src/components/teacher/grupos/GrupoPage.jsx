@@ -44,7 +44,7 @@ export default class GrupoPage extends Component {
   groupGenerator = () => {
     let cadena = ``;
     this.getAlumnos();
-    console.log("Numero de personas en total:" + this.state.alumnos.length);
+    console.log("numero de personas en total:" + this.state.alumnos.length);
     let npg = this.state.nro_per_grupo;
     let n_grupos = Math.ceil(this.state.alumnos.length / npg);
     let grupo2 = this.state.alumnos;
@@ -87,23 +87,29 @@ export default class GrupoPage extends Component {
     const { nro_per_grupo } = this.state.nro_per_grupo;
     return (
       <>
-        <div className="cuerpo-grupos">
-          {nro_per_grupo}
-          <span> Numero de personas por grupo  </span>
-          <input
-            min="1"
-            className="input-text"
-            type="number"
-            name="numGrup"
-            placeholder="numero de personas por grupos"
-            value={this.state.nro_per_grupo}
-            onChange={this.handleNumPerGrou}
-          />
-          <button className="button" onClick={this.groupGenerator}><label className="tex">FORMAR GRUPOS</label></button>
-        </div>
-        <div className="contenedor-grupos">
-          <ul className="grupos-cards" id="imprimir"></ul>
-        </div>
+          
+          <div className="cuerpo-grupos">
+            {nro_per_grupo}
+            <span>Número de personas por grupo </span>
+            <input
+              min="1"
+              className="input-text"
+              type="number"
+              name="numGrup"
+              placeholder="Nùmero de personas por grupos"
+              value={this.state.nro_per_grupo}
+              onChange={this.handleNumPerGrou}
+            />
+            <button className="button" onClick={this.groupGenerator}>
+              <label className="tex">
+                FORMAR GRUPOS
+              </label>
+
+            </button>
+          </div>
+          <div className="contenedor-grupos">
+            <ul className="grupos-cards" id="imprimir"></ul>
+          </div>
       </>
     );
   }
