@@ -127,7 +127,7 @@ class Upload extends Component {
   }
 
   renderActions() {
-    if (this.state.errorUploaded==true){
+    if (this.state.errorUploaded===true){
         return (
           <button
             onClick={() =>
@@ -137,7 +137,7 @@ class Upload extends Component {
             Clear
           </button>
         );
-    } else  if (this.state.uploading==true){
+    } else  if (this.state.uploading===true){
       return (
         <>
         Subiendo clase con diapositiva ...

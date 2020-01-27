@@ -32,7 +32,7 @@ export default class GrupoPage extends Component {
         'x-access-token': `${varToken}`
       }
     }).then(res => {
-      res.data.map(alumno => {
+      res.data.forEach(alumno => {
         this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
       });
       const temp = this.state.alumnos;

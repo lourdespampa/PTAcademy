@@ -46,7 +46,7 @@ export default class FormLoginStu extends Component {
     const inputLastName = document.getElementById("inputLastName");
 
     if (inputName.value === "" || inputLastName.value === "") {
-      alert("Nombre y Apellidos son requeridos");
+      alert("Name and Lastname are required");
     } else {
       const data = {
         name_stu: inputName.value,

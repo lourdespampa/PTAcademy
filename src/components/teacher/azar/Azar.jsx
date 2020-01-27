@@ -39,7 +39,7 @@ class Azar extends React.Component {
                 { pin: this.props.id_access }
           })
           socket.on('newAlum',(data)=>{
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
                 this.getStudents()
             }
           })

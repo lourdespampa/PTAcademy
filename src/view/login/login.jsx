@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import {Redirect} from 'react-router-dom'
 import "./login.sass";
-import logo from "./bg-teacher-login.jpg";
+//import logo from "./bg-teacher-login.jpg";
 
 import axios from 'axios';
 import Loading from "./Loading";
 //importamos la configuración de firebase
 import firebase from "./firebaseConfig";
 //libreria que cifra el token
-// import aesjs from 'aes-js'
+//import aesjs from 'aes-js'
 
 export default function App(props) {
 
