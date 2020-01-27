@@ -404,7 +404,7 @@ template {
 .modal-content {
   position: relative;
   width: 500px;
-  margin: auto;
+  margin: 50px auto;
   background-color: #ffffff;
   background-clip: padding-box;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
@@ -431,6 +431,7 @@ template {
   width: 100%;
   cursor: pointer;
 }
+
 .modal-teacher__general-close .modal-teacher__general-cross{
   transition: transform 0.3s ease-in-out;
   -webkit-transition: all .4s ease;
@@ -543,7 +544,7 @@ template {
 }
 #modal-body__button-cursos:hover .button-cursos__text{
   -webkit-transform: scale(1.08);
-  transform: scale(1.08);
+  transform: scale(1.07);
 }  
 
 .modal-body{
@@ -561,8 +562,8 @@ template {
   font-size:20px;
   background: #00aae3;
   cursor: pointer;
-  font-family: opal !important;
-  margin: auto 10px
+  margin: auto 10px;
+  font-family: "Opal"
 }
 .modal-body .btn:hover{
   background: #00aae388;
