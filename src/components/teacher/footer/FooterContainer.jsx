@@ -60,7 +60,9 @@ function FooterContainer(props){
             </div>
             <div className="overlay" id="overlay">
                 <div className="popup" id="popup">
-                    <a href id="btnCerrarDiapo" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay','popup')+props.botonClick('btnCerrarDiapo')} ><i class="material-icons">close</i></a>
+                    <button id="btnCerrarDiapo" className="modal-teacher__general-close" onClick={()=>props.closePopup('overlay','popup')+props.botonClick('btnCerrarDiapo')}>
+                        <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                    </button>
                     <Slide apiUrl={props.apiUrl} id_class={props.id_class} />
                     <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",display:"none",height: "100%"}} allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
@@ -72,10 +74,10 @@ function FooterContainer(props){
             </div>
             <div className="overlay" id="overlayinframe">
                 <div className="popup" id="popupformulario">
-                    <div class="punto-posi">
                         <button className="modal-teacher__general-close" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} >
-                            <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                         </button>
+                    <div class="punto-posi">
                         <span className="formulario-title">EMITIR FORMULARIO</span>
                     </div>
                     <br/>
@@ -91,7 +93,7 @@ function FooterContainer(props){
             <Modal className="modal-teacher__general" id="modalvideo" size={'SM'} show={Show}
             onHide={() => setShow(false)+props.botonClick('modalvideo')} >
                 <button className="modal-teacher__general-close" onClick={() => setShow(false)+props.botonClick('modalvideo')}>
-                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                    <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                 </button>
                 <Modal.Header>
                     <div class="punto-posi">
@@ -100,7 +102,7 @@ function FooterContainer(props){
                 </Modal.Header>
                 <Modal.Body>
                     <input id="urlid" type="text" className="Opal" placeholder={props.txt} name="urlvideo" onChange={e => seturlnombre(e.target.value)+props.changeOn('urlvideo',e.target.value)} style={{fontSize:"20px",width: "80%"}} required/>
-                    <button id="btnenviarvideo" className="Opal btn" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} type="button">
+                    <button className="btnenviarvideo" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} type="button">
                         <div className="button-zoom">ENVIAR</div>
                     </button>
                 </Modal.Body>

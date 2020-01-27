@@ -6,7 +6,6 @@ import FormularioCourse from './FormPostCourse'
 import FormularioClass from './FormPostClass'
 import iconExit from "../../img/cerrar.png";
 
-
 function BotonAgregar(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -19,14 +18,14 @@ function BotonAgregar(props) {
         Agregar {props.agregarX}
       </div>
       <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
-        <button className="modal-teacher__general-close" onClick={() => setShow(false)+props.botonClick('modalvideo')}>
-          <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
-        </button>
+          <button className="modal-teacher__general-close" onClick={handleClose}>
+            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+          </button>
         <Modal.Header>
           <Modal.Title >Agregando {props.agregarX}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          { (props.agregarX === 'course')?
+          { (props.agregarX === 'curso')?
           <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} />
           :
           <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
@@ -46,13 +45,22 @@ function BotonCerrarSesion(props) {
         Cerrar sesion
       </div>
       <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
-        <Modal.Header closeButton>
+          <button className="modal-teacher__general-close" onClick={handleClose}>
+            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+          </button>
+        <Modal.Header>
           <Modal.Title id="modal-header__title-question">¿DESEA CERRAR SESIÓN?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ButtonToolbar>
-            <Link to='/'><Button id="modal-body__button-yes" className="btn" variant="primary" size="sm" onClick={props.cerrarSesion}>SI</Button></Link>
-            <Button id="modal-body__button-no" className="btn" variant="secondary" size="sm" onClick={handleClose}>NO</Button>
+            <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
+                <Link style={{textDecoration:"none"}} to="/">
+                  <div className="button-zoom">SI</div>
+                </Link>
+            </button>
+            <button className="modal-body__button no" onClick={handleClose}>
+                <div className="button-zoom">NO</div>
+            </button>
           </ButtonToolbar>
         </Modal.Body>
       </Modal>
