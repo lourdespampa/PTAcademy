@@ -74,14 +74,6 @@ export default class CoursesTeacher extends Component {
           this.setState({courses: data})
       }
     })
-      .then(({ data }) => {
-        // console.log(data)
-          if (data == []) {
-            this.setState({ courses: [] });
-          } else {
-            this.setState({ courses: data });
-          }
-      })
       .catch(e => console.log(e));
   }
 
@@ -120,8 +112,11 @@ export default class CoursesTeacher extends Component {
               this.state.courses.map((cursos, id) => (
                 <li className="courseTeacher-cards" key={id}>
                   <AllCourses
+                    level={cursos.level}
+                    grade={cursos.grade}
+                    section={cursos.section}
                     name_course={cursos.course_name}
-                    description={cursos.desc}
+                    description={cursos.description}
                     img={cursos.img}
                     id={cursos._id}
                     idteacher={this.state._id}
