@@ -53,18 +53,18 @@ export default function HeaderContainer(props) {
           })
         socket.on('redirectAlum', (data) => {
             console.log('llega redirectAlum')
-            if(data.pin === (props.id_access).toUpperCase()){
-                if(data.page === 'trivia'){
+            if(data.pin == (props.id_access).toUpperCase()){
+                if(data.page == 'trivia'){
                     settrivia(true)
                     settemporizador(false)
-                }else if(data.page === 'temporizador'){
+                }else if(data.page == 'temporizador'){
                     settemporizador(true)
                     settrivia(false)
                 }
             }
         })
         socket.on('ExitSocket',(data)=>{
-            if(data.pin===(props.id_access).toUpperCase()){
+            if(data.pin==(props.id_access).toUpperCase()){
                 setExit(true)
             }
         })
@@ -72,9 +72,9 @@ export default function HeaderContainer(props) {
         //liSTA
         socket.on('RemoveStudS',(data)=>{
             console.log(data)
-            if(data.pin === (props.id_access).toUpperCase()) {
+            if(data.pin == (props.id_access).toUpperCase()) {
                 console.log('REcibe salida')
-                if(data.id===props.id_student){
+                if(data.id==props.id_student){
                     console.log('REcibe  salida fase 2')
                     setExit(true)
                 }

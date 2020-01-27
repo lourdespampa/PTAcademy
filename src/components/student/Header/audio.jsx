@@ -151,9 +151,13 @@ export default class Audio extends Component {
                 // Buffer header must be received first
                 socket.on('bufferHeader',  (packet) =>{
                     if(packet.pin === (this.props.id_access).toUpperCase()) {
+                    // if (packet.pin === ('<%= pin %>').toUpperCase()) {
                     console.log('ejecutando buffer');
-                };
-            })
+                    audioStreamer.setBufferHeader(packet.audio);
+                    // console.log('El profesor iniciara una demostracion de audio');
+                    }
+                });
+
                 // Receive buffer and play it
                 socket.on('stream', (packet) =>{
                     if(packet.pin === (this.props.id_access).toUpperCase()) {

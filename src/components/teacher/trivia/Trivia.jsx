@@ -4,7 +4,7 @@ import "./botones.scss";
 
 import io from 'socket.io-client';
 
-//import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 class Trivia extends React.Component {
   constructor(props){
@@ -224,7 +224,7 @@ class Trivia extends React.Component {
               <label for="input-img">Medio de Comunicación</label>
               <div className="triviaT-image-container">
                 <input type="file" id="input-img" className="imagen"/>
-                <img className="triviaT-imgSalida" width="120px" height="100px" src="" alt='trivia-salida' />
+                <img className="triviaT-imgSalida" width="120px" height="100px" src="" />
               </div>
             </div>
           </div>

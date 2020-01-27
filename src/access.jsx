@@ -10,7 +10,7 @@ import NotFound from './view/404/NotFound'
 import LoginStu from './view/login.Stud/login.stu'
 import FormLoginStu from './view/login.Stud/login.dataForm'
 import Index from './view/index/Inicio'
-import CourseDetailTeacher from './view/courses/CourseDetail'
+import CourseDetailTeacher from './view/courses/CourseDetail/CourseDetail'
 
 export default class Access extends Component {
     state={

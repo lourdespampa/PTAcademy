@@ -127,7 +127,7 @@ class Upload extends Component {
   }
 
   renderActions() {
-    if (this.state.errorUploaded===true){
+    if (this.state.errorUploaded==true){
         return (
           <button
             onClick={() =>
@@ -137,7 +137,7 @@ class Upload extends Component {
             Clear
           </button>
         );
-    } else  if (this.state.uploading===true){
+    } else  if (this.state.uploading==true){
       return (
         <>
         Subiendo clase con diapositiva ...
@@ -146,10 +146,10 @@ class Upload extends Component {
     }else {
       return (
         <>
-          <button className='modal-body__button cursos' type="submit" 
+          <button id='modal-body__button-cursos' type="submit" className="btn btn-primary Opal"
                   hidden={this.state.files.length < 0 || this.state.uploading}
                   onClick={this.uploadFiles}>
-            <div className="button-zoom">CREAR CLASE</div>
+            Crear Clase
           </button>
           { this.state.NoData ?
           <p className="rellena">RELLENA TODOS LOS CAMPOS</p>:null

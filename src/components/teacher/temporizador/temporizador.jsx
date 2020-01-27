@@ -46,7 +46,7 @@ class Temporizador extends React.Component {
             { pin: this.props.id_access }
       })
 
-      //let _this = this;
+      let _this = this;
         
         var g, c, l, d = "",
         e = [{
@@ -69,16 +69,16 @@ class Temporizador extends React.Component {
             et = $('#button-establecer'),
             m = $(".unit_value:visible"),
             n = function() {
-                for (var /*a = "",*/ b = g, c = 0; c < e.length; ++c) {
+                for (var a = "", b = g, c = 0; c < e.length; ++c) {
                     var d = e[c],
-                    f = Math.abs(Math.floor(b / d.value))
-                    b = b % d.value
+                    f = Math.abs(Math.floor(b / d.value)),
+                    b = b % d.value,
                     f = 10 > f ? "0" + f : f;
                     d.element.html("&#8201;" + f + "&#8201;");
-                    //a += f
+                    a += f
                 }
                 // q.length !== a.length;
-                //const q = a;
+                const q = a;
             },
             v = function() {
                 g = l - Date.now();
@@ -203,7 +203,7 @@ class Temporizador extends React.Component {
             <div role="document" className="modal-teacher__general">
                 <div className="modal-content">
                     <button  type="button" className="modal-teacher__general-close" onClick={this.closeModal}>
-                        <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                        <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
                     </button>
                     <div className="modal-header">
                         <div className="punto-posi">

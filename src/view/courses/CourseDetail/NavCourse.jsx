@@ -1,36 +1,27 @@
 import React, { Component, useState } from "react";
 import {Link, Redirect } from 'react-router-dom'
-import "../courses/Course.sass";
 import { Modal, Button, ButtonToolbar } from "react-bootstrap";
-import FormularioCourse from './FormPostCourse'
-import FormularioClass from './FormPostClass'
-import iconExit from "../../img/cerrar.png";
-
+import iconExit from "../../../img/cerrar.png";
 
 function BotonAgregar(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const AgregarClick=()=>setShow(false)+props.getdata()
-
   return (
     <>
       <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
-        Agregar {props.agregarX}
+        Agregar Alumno
       </div>
       <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
         <button className="modal-teacher__general-close" onClick={() => setShow(false)+props.botonClick('modalvideo')}>
           <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
         </button>
         <Modal.Header>
-          <Modal.Title >Agregando {props.agregarX}</Modal.Title>
+          <Modal.Title >Agregando Alumno</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          { (props.agregarX === 'course')?
-          <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} />
-          :
-          <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
-          }
+          formulario de agregar alumno
         </Modal.Body>
       </Modal>
     </>
@@ -85,7 +76,7 @@ export default class NavCourse extends Component {
         {this.state.token ? null : <Redirect to="/notfound"></Redirect>}
          <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
-            <h3>Bienvenido(a) {this.props.nombreProfesor.replace(/\w\S*/g, (s) => (s.replace(/^\w/, (c) => c.toUpperCase())))} </h3>
+            <h3>Bienvenido(a)  </h3>
             
             <div
               className="teacherCourses__main-menu-toggle"

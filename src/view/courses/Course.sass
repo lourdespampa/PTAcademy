@@ -7,26 +7,26 @@
     margin-right: auto
     margin-left: auto
     // flex-wrap: wrap
-
+  
 .teacherCourses__center-block
     margin-left: auto
     margin-right: auto
-
+  
 .teacherCourses__center-content
     text-align: center
-
+  
 .teacherCourses__main-header
     height: 3rem
     border-bottom: 1px solid #CCC
-
+  
 .teacherCourses__main-header__block
     justify-content: space-between
     align-items: center
     height: 100%
-
+  
 .teacherCourses__main-logo
     height: 2rem
-
+  
 .teacherCourses__main-menu
     margin-top: 0
     margin-bottom: 0
@@ -48,7 +48,7 @@
     color: #ffffff
     margin-left: 1rem
     text-decoration: none
-
+    
 .teacherCourses__main-nav
     position: fixed
     height: calc(100vh - 3rem)
@@ -59,16 +59,16 @@
     transition: right .3s
     padding-top: 1rem
     z-index: 100
-
+    
 .teacherCourses__main-nav.show
     right: 0
-
+  
 .teacherCourses__main-menu-toggle
     width: 2.2rem
     height: 1.6rem
     background: linear-gradient(#141618 20%, transparent 20%, transparent 40%, #141618 40%, #141618 60%, transparent 60%, transparent 80%, #141618 80%)
     cursor: pointer
-
+  
 .teacherCourses__main-banner
     --padding: 2rem 1rem 3rem
     --logo-height: 3rem
@@ -96,6 +96,7 @@
     opacity: .1
 .teacherCourses__small
     font-size: .75rem
+
 
 @media screen and (min-width: 960px)
     .teacherCourses__main-menu
@@ -127,12 +128,12 @@
         padding-top: 0
         height: auto
         width: auto
-
+        
     .teacherCourses__main-menu-toggle
         display: none
     .teacherCourses__main-banner
         --padding: 5rem 1rem 6rem
-        --logo-height: 5rem
+        --logo-height: 5rem 
     .teacherCourses__main-menu__item:hover
         background-color: transparent
         & .teacherCourses__main-menu__LogOut
@@ -152,7 +153,7 @@
     padding: 0
     margin: 0
     // background-color: #52BE7F
-
+  
 .courseTeacher-cards
     display: flex
     margin: 1rem
@@ -191,6 +192,7 @@
             font-size: 13px
             height: 30%
 
+
     & .courseTeacher-card-title
         font-size: 20px
         color: #000000
@@ -206,13 +208,14 @@
         background-image: url('https://www.petdarling.com/articulos/wp-content/uploads/2016/04/nombres-de-gatos.jpg')
 
 @media (min-width: 640px)
-    .courseTeacher-cards
+    .courseTeacher-cards 
         width: 45%
     // .CourseTeacher-main
     //     height: 100% !important
-
+ 
+  
 @media (min-width: 896px)
-    .courseTeacher-cards
+    .courseTeacher-cards 
         width: 21%
         height: 384px
 // se va a poner los estilos para los botones de los cards xd -- by:Miryan
@@ -247,7 +250,8 @@
 .courseTeacher__button-Edit
     float: left
     background-color: #FB9600
-
+    
+        
 .courseTeacher__button-delette
     float: right
     background-color: #E91E63
@@ -278,7 +282,7 @@
         background-color: #52BE7F
         color: #ffffff
         padding: .5rem
-    & .courseTeacher__buttonEntry-label
+    & .courseTeacher__buttonEntry-label 
         width: 150px
         transition: transform 0.3s ease-in-out
         -webkit-transition: all .4s ease
@@ -292,6 +296,8 @@
             -ms-transform: scale(1.25)
             -o-transform: scale(1.25)
             transform: scale(1.25)
+
+
 
 .classTeacher__buttonEntry
     width: 100%
@@ -308,7 +314,7 @@
     padding: .5rem
     background-color: #E74C3C
     color: #FFFFFF
-    & .courseTeacher__buttonEntry-label
+    & .courseTeacher__buttonEntry-label 
         width: 150px
         transition: transform 0.3s ease-in-out
         -webkit-transition: all .4s ease
@@ -322,7 +328,8 @@
             -ms-transform: scale(1.25)
             -o-transform: scale(1.25)
             transform: scale(1.25)
-            font-size: 20px
+    
+
 
 .courseTeacher-title
     background-color: #51bd7e
@@ -351,31 +358,12 @@
 .CourseTeacher-main
     position: absolute
     background-color: #51bd7e
+    top: 48px
+    bottom: 0
+    right: 0
+    left: 0
+    overflow: auto
     // css para clases     #e74c3c
 .courseTeacher-cards__nullCourses
     color: #ffffff
     padding: 0 1rem
-    // css para tabla de compentecias 
-
-.CourseDetail-table
-
-    border-radius: 16px
-    -moz-border-radius: 6px
-    margin: 3px
-    padding: 10px
-    background-color: #c6c5d4
-    >table
-        border-radius: 16px
-        -moz-border-radius: 6px
-        background-color: #ebebf1
-        border-collapse: collapse
-        border: 0px
-        >thead
-
-        >tbody
-
-            >th
-                padding: 16px
-                >tr:nth-child(even)
-                    background-color: #f2f2f2
-                    

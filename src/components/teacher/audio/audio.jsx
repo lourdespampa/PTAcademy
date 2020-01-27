@@ -82,7 +82,7 @@ export default class Audio extends Component{
     }
     render(){  
         return  <div id="btn" >
-                    <img id="micro" width="30px" height="30px" src={require("../../../img/footer/micro.svg")} alt='micro' />
+                    <img id="micro" width="30px" height="30px" src={require("../../../img/footer/micro.svg")} />
                     <span>Audio</span>                
                 </div>
                 

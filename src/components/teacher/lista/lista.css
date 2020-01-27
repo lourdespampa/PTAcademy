@@ -131,6 +131,8 @@
 }
 
 .btnMyM:hover {
+    background-color: white;
+    color: black;
     border: 2px solid #008CBA;
 }
 
