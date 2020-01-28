@@ -1,6 +1,6 @@
 @font-face {
   font-family: Opal;
-  src: url(/static/media/Opal.316f3775.ttf) format("truetype");
+  src: url("./plugins/Opal.ttf") format("truetype");
 }
 
 *, *::before, *::after {
@@ -183,6 +183,7 @@ textarea {
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
+  font-family: opal;
 }
 
 /**
