@@ -140,7 +140,9 @@ class Upload extends Component {
     } else  if (this.state.uploading==true){
       return (
         <>
+        <p>
         Subiendo clase con diapositiva ...
+        </p>
         </>
       );
     }else {
@@ -173,10 +175,13 @@ class Upload extends Component {
           <div className="Files">
             {this.state.files.map(file => {
               return (
+                <>
                 <div key={file.name} className="Row">
                   <span className="Filename">{file.name}</span>
-                  {this.renderProgress(file)}
+                  
                 </div>
+                {this.renderProgress(file)}
+                </>
               );
             })}
           </div>

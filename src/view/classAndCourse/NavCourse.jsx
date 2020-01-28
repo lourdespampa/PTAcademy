@@ -19,7 +19,7 @@ function BotonAgregar(props) {
         Agregar {props.agregarX}
       </div>
       <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
-        <button className="modal-teacher__general-close" onClick={() => setShow(false)+props.botonClick('modalvideo')}>
+        <button className="modal-teacher__general-close" onClick={handleClose}>
           <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
         </button>
         <Modal.Header>
