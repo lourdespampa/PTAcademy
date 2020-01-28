@@ -147,7 +147,7 @@ class Roulette extends React.Component {
 
   stopRotateWheel() {
     let { startAngle, arc } = this.state;
-    const { options, baseSize } = this.props;
+    const { options } = this.props;
 
     const canvas = this.refs.canvas;
     const ctx = canvas.getContext('2d');

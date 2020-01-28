@@ -39,14 +39,14 @@ class Azar extends React.Component {
                 { pin: this.props.id_access }
           })
           socket.on('newAlum',(data)=>{
-            if(data.pin == (this.props.id_access).toUpperCase()) {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
                 this.getStudents()
             }
           })
     }
 
     handleOnComplete = async (alumnoElegido) => {
-        for(let alumno of this.state.todosAlumnos){
+        for(var alumno of this.state.todosAlumnos){
             if(`${alumno.name_stu} ${alumno.lastName_stu}` === alumnoElegido){
                 await this.setState({point: alumno.point})
             }
@@ -68,6 +68,7 @@ class Azar extends React.Component {
             const temp = [];
             res.data.map( alumno => {
                 temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`)
+                return null
             })
             this.setState({ alumnos: this.sortearElementos(temp), todosAlumnos: res.data })
         })
@@ -86,7 +87,7 @@ class Azar extends React.Component {
     onClickPointAdd= async (valor) => {
 
         let varToken = localStorage.getItem('token');
-        for(let alumno of this.state.todosAlumnos){
+        for(var alumno of this.state.todosAlumnos){
             if(`${alumno.name_stu} ${alumno.lastName_stu}` === this.state.alumnoElegido){
                 await this.setState({point: alumno.point})
                 let point = this.state.point + valor
@@ -107,7 +108,7 @@ class Azar extends React.Component {
     onClickPointRemove= async (valor) => {
         
         let varToken = localStorage.getItem('token');
-        for(let alumno of this.state.todosAlumnos){
+        for(var alumno of this.state.todosAlumnos){
             if(`${alumno.name_stu} ${alumno.lastName_stu}` === this.state.alumnoElegido){
                 await this.setState({point: alumno.point})
                 let point = this.state.point - valor
@@ -149,8 +150,8 @@ class Azar extends React.Component {
                         </Modal.Header>
                         <Modal.Body>
                             <ul class="azar-tab-group">
-                                <li class={this.state.tipoPuntaje ? "azar-tab active" : "azar-tab"} onClick={this.handleChangePScore}><a className="azar-a">POSITIVO</a></li>
-                                <li class={this.state.tipoPuntaje ? "azar-tab" : "azar-tab active"} onClick={this.handleChangeNScore}><a className="azar-a">NEGATIVO</a></li>
+                                <li class={this.state.tipoPuntaje ? "azar-tab active" : "azar-tab"} onClick={this.handleChangePScore}><p className="azar-a">POSITIVO</p></li>
+                                <li class={this.state.tipoPuntaje ? "azar-tab" : "azar-tab active"} onClick={this.handleChangeNScore}><p className="azar-a">NEGATIVO</p></li>
                             </ul>
                             {
                                 this.state.tipoPuntaje

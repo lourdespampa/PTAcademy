@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {Redirect} from 'react-router-dom'
 import "./login.sass";
-import logo from "./bg-teacher-login.jpg";
+// import logo from "./bg-teacher-login.jpg";
 
 import axios from 'axios';
 import Loading from "./Loading";

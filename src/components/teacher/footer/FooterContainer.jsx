@@ -35,26 +35,26 @@ function FooterContainer(props){
         <>           
             <div className="footer-distributed">
                 <div id="btndiapo" onClick={()=>props.openPopup('overlay','popup')+props.botonClick('btndiapo')}>
-                    <img width="30px" height="30px" src={require("../../../img/footer/slide.svg")} />
+                    <img alt="" width="30px" height="30px" src={require("../../../img/footer/slide.svg")} />
                     <span>Diapositivas</span>
                 </div>
                 <div id="btnform" onClick={()=>props.openPopup('overlayinframe','popupformulario')+props.botonClick('btnform')}>
-                    <img width="30px" height="30px" src={require("../../../img/footer/form.svg")} />
+                    <img alt="" width="30px" height="30px" src={require("../../../img/footer/form.svg")} />
                     <span>Formulario</span>
                 </div>
                 <div id="btnvideo" onClick={() => setShow(true)+props.botonClick('btnvideo')}>
-                    <img width="30px" height="30px" src={require("../../../img/footer/video.svg")} />
+                    <img alt="" width="30px" height="30px" src={require("../../../img/footer/video.svg")} />
                     <span>Youtube</span>
                 </div>
                 <div>
-                    <img width="30px" height="30px" src={require("../../../img/footer/share.svg")} />
+                    <img alt="" width="30px" height="30px" src={require("../../../img/footer/share.svg")} />
                     <span>Compartir Pantalla</span>
                 </div>
                 <div>
                     <Audio socketUrl={props.socketUrl} id_access={props.id_access}/>
                 </div>
                 <div>
-                    <img id="btn-chat" width="30px" height="30px" src={require("../../../img/footer/chat.svg")} />
+                    <img alt="" id="btn-chat" width="30px" height="30px" src={require("../../../img/footer/chat.svg")} />
                     <span>Chat</span>
                 </div>
             </div>

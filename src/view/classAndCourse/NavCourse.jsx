@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import {Link, Redirect } from 'react-router-dom'
 import "../courses/Course.sass";
-import { Modal, Button, ButtonToolbar } from "react-bootstrap";
+import { Modal, ButtonToolbar } from "react-bootstrap";
 import FormularioCourse from './FormPostCourse'
 import FormularioClass from './FormPostClass'
 import iconExit from "../../img/cerrar.png";

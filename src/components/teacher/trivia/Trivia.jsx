@@ -4,8 +4,6 @@ import "./botones.scss";
 
 import io from 'socket.io-client';
 
-import { Container, Row, Col } from 'reactstrap';
-
 class Trivia extends React.Component {
   constructor(props){
     super(props)
@@ -145,8 +143,8 @@ class Trivia extends React.Component {
     return (
       <>
       <div className={this.state.navbarResponsive ? "triviaT-topnav responsive" : "triviaT-topnav"}>
-        <a className="titulo-responsive"><h1>PLAYTEC Trivia</h1></a>
-        <a>
+        {/* <label className="titulo-responsive"><h1>PLAYTEC Trivia</h1></label> */}
+        <a href style={{pointerEvents:"none"}} >
           <div className="contenedor-btn-enviar">
               { this.state.preguntaEnviada
               ?
@@ -163,10 +161,10 @@ class Trivia extends React.Component {
               </button>
           </div>
         </a>
-        <a className="titulo"><h1>PLAYTEC Trivia</h1></a>
-        <a className="triviaT-icon" onClick={this.handleNavbarResponsive}>
+        <a  href style={{pointerEvents:"none"}} className="titulo"><h1>PLAYTEC Trivia</h1></a>
+        {/* <a  href="none" style={{pointerEvents:"none"}} className="triviaT-icon" onClick={this.handleNavbarResponsive}>
           <i className="fa fa-bars"></i>
-        </a>
+        </a> */}
         {
         this.state.modal
         ?
@@ -224,7 +222,7 @@ class Trivia extends React.Component {
               <label for="input-img">Medio de Comunicación</label>
               <div className="triviaT-image-container">
                 <input type="file" id="input-img" className="imagen"/>
-                <img className="triviaT-imgSalida" width="120px" height="100px" src="" />
+                <img alt="" className="triviaT-imgSalida" width="120px" height="100px" src="" />
               </div>
             </div>
           </div>

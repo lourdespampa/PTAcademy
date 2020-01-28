@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Dropzone from "./Dropzone";
-import Progress from "./Progress";
 import "./Upload.sass";
-import check from "./baseline-check_circle_outline-24px.svg"
 
 class Upload extends Component {
   constructor(props) {
@@ -32,7 +30,7 @@ class Upload extends Component {
   }
 
   async uploadFiles() {
-    if (this.props.className=='' || this.props.desc=='' ||  Object.keys(this.state.files).length === 0){
+    if (this.props.className==='' || this.props.desc==='' ||  Object.keys(this.state.files).length === 0){
       this.setState({NoData:true})
     }else{
     this.props.handleDisableX()
@@ -114,7 +112,7 @@ class Upload extends Component {
   }
 
   renderActions() {
-    if (this.state.errorUploaded==true){
+    if (this.state.errorUploaded===true){
         return (
           <>
           <p className="rellena">
@@ -129,7 +127,7 @@ class Upload extends Component {
           </button>
           </>
         );
-    } else  if (this.state.uploading==true & this.state.UploadDone==false){
+    } else  if (this.state.uploading===true & this.state.UploadDone===false){
       return (
         <>
         <p>
@@ -137,7 +135,7 @@ class Upload extends Component {
         </p>
         </>
       );
-    }else  if (this.state.uploading==true & this.state.UploadDone==true){
+    }else  if (this.state.uploading===true & this.state.UploadDone===true){
       return (
         <>
         <p>

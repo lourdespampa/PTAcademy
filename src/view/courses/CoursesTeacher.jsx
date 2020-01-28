@@ -38,7 +38,7 @@ export default class CoursesTeacher extends Component {
     })
       .then(({ data }) => {
         // console.log(data)
-        if (data == []) {
+        if (data === []) {
           this.setState({ courses: [] });
         } else {
           this.setState({ courses: data });
@@ -68,7 +68,7 @@ export default class CoursesTeacher extends Component {
       }
     }).then( ({ data }) => {
        console.log(data)
-        if(data == []){
+        if(data === []){
           this.setState({courses: []})
         }else{
           this.setState({courses: data})
@@ -76,7 +76,7 @@ export default class CoursesTeacher extends Component {
     })
       .then(({ data }) => {
         // console.log(data)
-          if (data == []) {
+          if (data === []) {
             this.setState({ courses: [] });
           } else {
             this.setState({ courses: data });
