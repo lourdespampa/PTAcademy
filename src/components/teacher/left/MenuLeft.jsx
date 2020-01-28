@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 // images
 import board from '../../../img/menuLeft/board.png';
 import puzzle from '../../../img/menuLeft/puzzle.png';
+//import Bloques from '../blocky/App';
+
 // import cat from '../../img/menuLeft/cat.png';
 
 // style
@@ -28,12 +30,10 @@ function MenuLeft(props){
               >
                 <ul> 
                     <li>
-                      <Link className="icon-facebook" to={props.view}> <img src={board} width="40px" alt="board"></img> <p className="text-menu-left">PIZARRA</p></Link>
+                        <Link className="icon-facebook" to={props.view}> <img src={board} width="40px" alt="board"></img> <p className="text-menu-left">PIZARRA</p></Link>
                     </li>
                     <li>
-                        <a href="xD" className="icon-twitter" ><img src={puzzle} width="40" alt="blocks"/>
-                            <p className="text-menu-left">BLOCKY</p>
-                        </a>
+                        <Link className="icon-twitter" to={'/teacher/:id_class/:id_access/bloque'}> <img src={puzzle} width="40px" alt="blocks"></img> <p className="text-menu-left">BLOCKY</p></Link>
                     </li>
                     <li>
                         <a href="xD" className="icon-googleplus"><img src={require('../../../img/menuLeft/cat.png')} width="40" alt="cat"/>

@@ -37,9 +37,9 @@ const btn_undo = document.getElementById('btn_undo')
 const btn_redo = document.getElementById('btn_redo')
 const data = []
 const data2= []
-// const data3= []
+// const data3= [] 
 btn_redo.setAttribute('enable',false)
-
+ 
 c.addEventListener('mousedown',()=>{
   var imageData = ctx.getImageData(0,0,c.width,c.height);
   data.push(imageData)
