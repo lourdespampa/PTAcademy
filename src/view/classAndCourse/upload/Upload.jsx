@@ -14,7 +14,8 @@ class Upload extends Component {
       successfullUploaded: false,
       errorUploaded:false,
       slideOn:false,
-      NoData:false
+      NoData:false,
+      UploadDone:false
     };
 
     this.onFilesAdded = this.onFilesAdded.bind(this);
@@ -71,7 +72,7 @@ class Upload extends Component {
       req.upload.addEventListener("load", event => {
         const copy = { ...this.state.uploadProgress };
         copy[file.name] = { state: "done", percentage: 100 };
-        this.setState({ uploadProgress: copy });
+        this.setState({ uploadProgress: copy,UploadDone:true,uploading:false });
         resolve(req.response);
       });
 
@@ -91,6 +92,7 @@ class Upload extends Component {
       var varToken = localStorage.getItem('token');
         
       req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
+      // req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/falllaApropocito`);
       req.setRequestHeader('x-access-token', `${varToken}`)
       req.send(formData);
       console.log('asdmasd')
@@ -101,7 +103,7 @@ class Upload extends Component {
             console.log('bien')
             this.props.handleClose()
           }
-          else if(req.status===500){
+          else{
             console.log(req.response)
             console.log('mal')
             this.setState({ errorUploaded: true});
@@ -111,42 +113,35 @@ class Upload extends Component {
     });
   }
 
-  renderProgress(file) {
-    const uploadProgress = this.state.uploadProgress[file.name];
-    if (this.state.uploading || this.state.successfullUploaded) {
-      return (
-        <div className="ProgressWrapper">
-          <Progress progress={uploadProgress ? uploadProgress.percentage : 0} />
-          <img
-            className="CheckIcon"
-            alt="done"
-            src={check}
-            style={{
-              opacity:
-                uploadProgress && uploadProgress.state === "done" ? 0.5 : 0
-            }}
-          />
-        </div>
-      );
-    }
-  }
-
   renderActions() {
     if (this.state.errorUploaded==true){
         return (
-          <button
+          <>
+          <p className="rellena">
+        OCURRIO UN ERROR, LIMPIE Y SUBA OTRA DIAPOSITIVA
+        </p>
+          <button className='modal-body__button cursos'
             onClick={() =>
-              this.setState({ files: [], errorUploaded: false ,slideOn:false})
+              this.setState({ files: [],uploading: false, errorUploaded: false,slideOn:false })
             }
           >
-            Clear
+            LIMPIAR
           </button>
+          </>
         );
-    } else  if (this.state.uploading==true){
+    } else  if (this.state.uploading==true & this.state.UploadDone==false){
       return (
         <>
         <p>
-        Subiendo clase con diapositiva ...
+        Procesando diapositiva...
+        </p>
+        </>
+      );
+    }else  if (this.state.uploading==true & this.state.UploadDone==true){
+      return (
+        <>
+        <p>
+        Subiendo diapositiva...
         </p>
         </>
       );
@@ -169,23 +164,19 @@ class Upload extends Component {
   render() {
     return (
       <div className="Upload">
-        <div className="Content" style={{display: 'inline-flex'}}>
+        <div className="Content" style={{display: 'inline-block'}}>
           <div>
             <Dropzone
               slideOn={this.state.slideOn}
               onFilesAdded={this.onFilesAdded}
-              disabled={this.state.uploading || this.state.successfullUploaded}
+              disabled={this.state.uploading}
             />
           </div>
           <div className="Files">
             {this.state.files.map(file => {
               return (
                 <>
-                <div key={file.name} className="Row">
                   <span className="Filename">{file.name}</span>
-                  
-                </div>
-                {this.renderProgress(file)}
                 </>
               );
             })}
