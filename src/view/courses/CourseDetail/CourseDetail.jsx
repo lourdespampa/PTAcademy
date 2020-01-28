@@ -3,50 +3,24 @@ import "./CourseDetail.sass";
 import NavCourse from "./NavCourse";
 import axios from 'axios'
 export default class CourseDetail extends Component {
-  state = {
-    token: false
-  };
-
+  constructor(props){
+    super(props)
+    this.state = {
+      token: false,
+      id_course : "",
+      id_teacher : ""
+    }
+  }
+  
+  componentDidMount(){
+    const { match: { params } } = this.props;
+    this.setState({ id_course: params.id_course, id_teacher: params.id });
+    setTimeout(() => console.log(this.state.id_course, this.state.id_teacher), 2000)
+  }
   UNSAFE_componentWillMount = async () => {
     let tokenStorage = localStorage.getItem("token");
     await this.setState({ token: tokenStorage });
   };
-  componentDidMount() {
-    // en varToken se guarda la variable almacenada del localstorage
-    var varToken = localStorage.getItem('token');
-    //obtenemos el id de la url pasada a través de las propiedades
-    const {
-      match: { params }
-    } = this.props;
-    this.setState({ _id: params.id });
-    //luego, obtenemos la lista de cursos del profesor por petición a la API
-    axios({
-      url: `${this.props.apiUrl}/v1/api/teacher/${params.id}/course_detail`,
-      method: "GET",
-      headers: {
-        "x-access-token": `${varToken}`
-      }
-    })
-      .then(({ data }) => {
-        // console.log(data)
-        if (data == []) {
-          this.setState({ courses: [] });
-        } else {
-          this.setState({ courses: data });
-        }
-      })
-      .catch(e => console.log(e));
-    axios({
-      url: `${this.props.apiUrl}/v1/api/admin/user/${params.id}`,
-      method: "GET",
-      headers: {
-        "x-access-token": `${varToken}`
-      }
-    }).then(({ data }) => {
-      console.log(data);
-      this.setState({ nombreProfesor: `${data.user_name} ${data.user_lastName}` });
-    });
-  }
   getAlumnos = () => {
     console.log("listar cursos");
     const {
@@ -54,7 +28,7 @@ export default class CourseDetail extends Component {
     } = this.props;
     var varToken = localStorage.getItem("token");
     axios({
-      url: `http://192.168.1.29:4200//v1/api/student/${this.props.idteacher}/${this.props.idcourse}`,
+      url: `http://192.168.1.29:4200/v1/api/student/${this.state.id_teacher}/${this.state.id_course}`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
@@ -62,14 +36,6 @@ export default class CourseDetail extends Component {
     })
       .then(({ data }) => {
         console.log(data);
-        if (data == []) {
-          this.setState({ courses: [] });
-        } else {
-          this.setState({ courses: data });
-        }
-      })
-      .then(({ data }) => {
-        // console.log(data)
         if (data == []) {
           this.setState({ courses: [] });
         } else {
@@ -87,11 +53,10 @@ export default class CourseDetail extends Component {
       <>
         <NavCourse
           apiUrl={this.props.apiUrl}
-          idcourse={this.state.id_curso}
-          idteacher={this.state._id}
-          agregarX={"course"}
+          idcourse={this.state.id_course}
+          idteacher={this.state.id_teacher}
           nombreProfesor={this.state.nombreProfesor}
-          getdata={this.getCursos}
+          getdata={this.getAlumnos}
         ></NavCourse>
 
         <div className="CourseDetail__Container">

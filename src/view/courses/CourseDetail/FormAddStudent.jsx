@@ -7,10 +7,15 @@ export default class FormAddStudent extends Component {
 
     this.state = {
       name_stu: "",
-      lastName_stu: ""
+      lastName_stu: "",
+      id_course : "",
+      id_teacher : ""
     };
   }
-
+  componentDidMount(){
+    console.log(this.props.idteacher)
+    console.log(this.props.idcourse)
+  }
   handleChange = e => {
     const target = e.target;
     const name = target.name;
@@ -30,9 +35,9 @@ export default class FormAddStudent extends Component {
         name_stu: this.state.name_stu,
         lastName_stu: this.state.lastName_stu,
         id_teach: this.props.idteacher,
-        id_course: this.props.idCourse
+        id_course: this.props.idcourse
     };
-
+    
     axios({
       url: `http://192.168.1.29:4200/v1/api/student`,
       data,
@@ -58,7 +63,7 @@ export default class FormAddStudent extends Component {
             name="name_stu"
             onChange={this.handleChange}
             value={name_stu}
-            placeholder="Ingresar nombre de la clase"
+            placeholder="Ingresar nombres completos de los estudiantes"
             required
           />
           <Form.Label className="modal-title__controlname">
@@ -70,7 +75,7 @@ export default class FormAddStudent extends Component {
             name="lastName_stu"
             onChange={this.handleChange}
             value={lastName_stu}
-            placeholder="Ingresar nombre de la clase"
+            placeholder="Ingresar apellidos completos de los estudiantes"
             required
           />
           <Button id="modal-body__button-cursos" type="submit">

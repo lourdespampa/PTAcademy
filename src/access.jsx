@@ -23,7 +23,7 @@ export default class Access extends Component {
                 <Switch>
                     <Route exact path="/" component={Index} />
                     <Route exact path="/Login" component={()=><LoginStu apiUrl={this.state.apiUrl} />} />
-                    <Route exact path="/:id/course_detail" component={()=><CourseDetailTeacher apiUrl={this.state.apiUrl} />} />
+                    <Route exact path="/:id/course_detail/:id_course" component={(props)=><CourseDetailTeacher {...props} apiUrl={this.state.apiUrl} />} />
                     <Route exact path="/loginStudent/:id_access" component={(props)=><FormLoginStu {...props} apiUrl={this.state.apiUrl} />} />
                     <Route exact path="/loginTeacher" component={()=><Login apiUrl={this.state.apiUrl}/>}  />
                     <Route exact path="/CoursesTeacher/:id" component={(props)=><CoursesTeacher {...props} apiUrl={this.state.apiUrl} />} />
