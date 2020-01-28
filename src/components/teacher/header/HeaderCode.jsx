@@ -15,22 +15,24 @@ function BotonSalir(props) {
         <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />           
         <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
             <button className="modal-teacher__general-close" onClick={handleClose}>
-                <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
             </button>
           <Modal.Header >
             <Modal.Title id="modal-header__title-question">¿DESEA CERRAR SESIÓN?</Modal.Title>
           </Modal.Header>
           <Modal.Body id="modal-body__exit">
           <ButtonToolbar>
-            <button id="modal-body__button-yes" className="btn" onClick={props.cerrarSesion} variant="primary">
-                <Link style={{textDecoration:"none"}} to="/"><div className="button-yes__text">SI</div></Link>
+            <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
+                <Link style={{textDecoration:"none"}} to="/">
+                    <div className="button-zoom">SI</div>
+                </Link>
             </button>
-            <button id="modal-body__button-no" className="btn" onClick={handleClose}>
-                <div className="button-no__text">NO</div>
+            <button className="modal-body__button no" onClick={handleClose}>
+                <div className="button-zoom">NO</div>
             </button>
             <Link to={`/CoursesTeacher/${user._id}`}>
-            <Button id="modal-body__button-cursos" onClick={handleClose}>
-                <div className="button-cursos__text">REGRESAR A CURSOS</div>
+            <Button className="modal-body__button  backCursos" onClick={handleClose}>
+                <div className="button-zoom">REGRESAR A CURSOS</div>
             </Button>
             </Link>
           </ButtonToolbar>
@@ -100,7 +102,7 @@ class HeaderCode extends React.Component {
                 </div>
                 <Modal className="modal-teacher__general" show={this.state.codigoModal} onHide={this.handleClose}>
                     <button className="modal-teacher__general-close" onClick={this.handleClose}>
-                        <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                        <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                     </button>
                     <Modal.Header id="modal-general__header">
                         <span className="modal-title"><strong>CODIGO DE LA CLASE:</strong></span>
