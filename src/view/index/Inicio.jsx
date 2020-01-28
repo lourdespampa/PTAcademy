@@ -7,6 +7,15 @@ function Inicio() {
 
   return (
     <div className="login-contenedor">
+      <div className="loginTeacherHeader">
+      
+      <Link  to="/">
+        <div className="logoAcademy">
+
+        </div>
+      </Link>
+  
+  </div>
       <div className="login-general">
         <div className="login-cabecera">
           <div className="login-imagen-robot">
