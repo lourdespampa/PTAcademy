@@ -292,7 +292,7 @@ class Trivia extends React.Component {
                 </span>
               </label>
             </div>
-            </div>
+          </div>
 
           </div>
         </form>

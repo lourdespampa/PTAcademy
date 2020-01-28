@@ -399,7 +399,7 @@ template {
     justify-content: space-between;
     position: relative;
     top: 17px;
-    padding: 1.25rem 1.5rem;
+    padding: 1.25rem 1.5rem 0;
   }
 
 .modal-content {
@@ -524,10 +524,10 @@ template {
     font-family: "Opal"}
 
 .modal-body{
-    padding: 2.25rem 1.5rem;
+    padding: 0.5rem 1.5rem 1.5rem;
     text-align: center;
     position: relative;
-    padding-top: 12px}
+    padding-top: 15 px}
 
 .modal-body .punto-marco{
   margin: 0 10px 25px;
