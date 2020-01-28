@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Redirect} from 'react-router-dom'
 import "./login.sass";
 import logo from "./bg-teacher-login.jpg";
-
+import {Link} from 'react-router-dom'
 import logoAcademy from '../login.Stud/images/Logo.svg'
 import axios from 'axios';
 import Loading from "./Loading";
@@ -185,8 +185,11 @@ export default function App(props) {
       }
       <div className="loginTeacherHeader">
       
-          <div className="logoAcademy">
-          </div>
+          <Link  to="/">
+            <div className="logoAcademy">
+
+            </div>
+          </Link>
       
       </div>
       <div className={ tipoAcceso ? "loginTeacher-container log-in" : "loginTeacher-container" }>

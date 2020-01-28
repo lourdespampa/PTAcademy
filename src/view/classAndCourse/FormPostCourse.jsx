@@ -56,13 +56,11 @@ export default class FormPostCourse extends Component {
 
     if(event.target.value === "primaria") this.setState({nivelPrimaria: true, profesorParticular: false, level: "primaria"})
     if( event.target.value === "secundaria") this.setState({nivelPrimaria: false, profesorParticular: false, level: "secundaria"})
-    if(event.target.value === "") this.setState({profesorParticular: true, level: ""})
+    if(event.target.value === "") this.setState({profesorParticular: true, level: "", grade: "", section: ""})
 
     await this.setState({
       [name]: value
     });
-
-    console.log(this.state)
 
   };
 
@@ -88,7 +86,7 @@ export default class FormPostCourse extends Component {
       // return console.log(res.data)
       this.props.handleClose()
     })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err.message));
       
   };
 
@@ -115,7 +113,7 @@ export default class FormPostCourse extends Component {
               :
               <div className="CT-detallesCurso">
                 <label className="listDetalleTitle">Grado: </label>
-                <select name="grade" className="list-grade">
+                <select name="grade" className="list-grade" onChange={this.handleChange}>
                   {
                   this.state.nivelPrimaria
                   ?
@@ -129,7 +127,7 @@ export default class FormPostCourse extends Component {
                   }
                 </select>
                 <label className="listDetalleTitle">Sección: </label>
-                <select name="seccion" className="list-seccion">
+                <select name="section" className="list-seccion" onChange={this.handleChange}>
                   {
                   this.state.secciones.map( (seccion, id) => (
                     <option key={id} value={seccion}>{seccion}</option>
@@ -154,7 +152,7 @@ export default class FormPostCourse extends Component {
               />
               : 
               <div>
-                <select name="course_name" className="list-course">
+                <select name="course_name" className="list-course" onChange={this.handleChange}>
                 {
                 this.state.nivelPrimaria
                 ?
