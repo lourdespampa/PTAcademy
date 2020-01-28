@@ -34,6 +34,11 @@ class Upload extends Component {
     if (this.props.className=='' || this.props.desc=='' ||  Object.keys(this.state.files).length === 0){
       this.setState({NoData:true})
     }else{
+    this.props.handleDisableX()
+    // document.addEventListener("keydown", function(e){
+    //   if (e.which == 27){
+    //       return false
+    //   }})
     this.setState({ uploadProgress: {}, uploading: true });
     const promises = [];
     this.state.files.forEach(file => {
@@ -148,10 +153,10 @@ class Upload extends Component {
     }else {
       return (
         <>
-          <button id='modal-body__button-cursos' type="submit" className="btn btn-primary Opal"
+          <button className='modal-body__button cursos' type="submit" 
                   hidden={this.state.files.length < 0 || this.state.uploading}
                   onClick={this.uploadFiles}>
-            Crear Clase
+            <div className="button-zoom">CREAR CLASE</div>
           </button>
           { this.state.NoData ?
           <p className="rellena">RELLENA TODOS LOS CAMPOS</p>:null

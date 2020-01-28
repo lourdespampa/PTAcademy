@@ -106,7 +106,7 @@ class Roulette extends React.Component {
         ctx.translate(baseSize + Math.cos(angle + arc / 2) * textRadius,
                       baseSize + Math.sin(angle + arc / 2) * textRadius);
         ctx.rotate(angle + arc / 2 + Math.PI / 2);
-        const text = options[i];
+        const text = `${options[i].toUpperCase().split(" ")[0].split("")[0]}.${options[i].toUpperCase().split(" ")[1].split("")[0]}`;
         ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
         ctx.restore();
       }
@@ -180,12 +180,16 @@ class Roulette extends React.Component {
     return b+c*(tc + -3*ts + 3*t);
   }
 
-  handleOnClick = () => {
+  handleOnClick = (e) => {
+    document.getElementById("btnRuleta").setAttribute("disabled", "")
     let pulsadas = Math.round(Math.random()*10)
     console.log(pulsadas)
     let intervalId = setInterval(() => this.spin(), 100)
     this.setState({intervalId: intervalId})
-    setTimeout( () => clearInterval(this.state.intervalId), pulsadas*1000)
+    setTimeout( () => {
+      clearInterval(this.state.intervalId)
+      document.getElementById("btnRuleta").removeAttribute("disabled")
+    }, pulsadas*1000)
   }
 
   render() {
@@ -197,7 +201,9 @@ class Roulette extends React.Component {
           <canvas ref="canvas" className="roulette-canvas" width={baseSize*2} height={baseSize*2}></canvas>
         </div>
         <div className="roulette-container">
-          <input type="button" value="Girar" onClick={this.handleOnClick} className="button" id="spin" style={{color:"black"}}/>
+          <button className="roulette-container-button" onClick={this.handleOnClick} id="btnRuleta">
+            <div className="button-zoom">GIRAR</div>
+          </button>
         </div>
       </div>
     );

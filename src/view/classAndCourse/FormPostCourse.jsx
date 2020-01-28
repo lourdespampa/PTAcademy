@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 //estilos
 import { Form, Button } from "react-bootstrap";
-
+import './FormPostCourse.sass'
 //componente clase
 export default class FormPostCourse extends Component {
   //1. inializa las propiedades recibidas del componente padre
@@ -11,27 +11,26 @@ export default class FormPostCourse extends Component {
     super(props);
     //2. el estado con sus variables iniciales
     this.state = {
+      level: "",
+      grade: "",
+      section: "",
       course_name: "",
-      desc: "",
+      description: "",
       profesorParticular: false,
       nivelPrimaria: true,
-      niveles: "",
-      grado: ["1er grado","2do grado","3er grado","4to grado","5to grado","6to grado"],
-      seccion: ["A","B","C","D","única"],
-      nombresCursos: ["Matemáticas","Comunicación","Inglés", "Arte"]
+      grados: ["1er grado","2do grado","3er grado","4to grado","5to grado","6to grado"],
+      secciones: ["A","B","C","D","única"],
+      nombresCursos: ["Matemática","Comunicación","Inglés", "Arte"]
     };
   }
   //Métodos del componente clase, esta es la lógica
-  handleSelectedTeacher = (event) => {
-    if(event.target.value === "primaria") this.setState({nivelPrimaria: true, profesorParticular: false})
-    if( event.target.value === "secundaria") this.setState({nivelPrimaria: false, profesorParticular: false})
-    if(event.target.value === "ninguno") this.setState({profesorParticular: true})
-  }
+  handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
 
-  handleChange = e => {
-    const target = e.target;
-    const name = target.name;
-    const value = target.value;
+    if(event.target.value === "primaria") this.setState({nivelPrimaria: true, profesorParticular: false, level: "primaria"})
+    if( event.target.value === "secundaria") this.setState({nivelPrimaria: false, profesorParticular: false, level: "secundaria"})
+    if(event.target.value === "") this.setState({profesorParticular: true, level: ""})
 
     this.setState({
       [name]: value
@@ -61,39 +60,44 @@ export default class FormPostCourse extends Component {
 
   //Esta es la vista, interfaz
   render() {
-    const { course_name, desc } = this.state;
+    const { course_name, description } = this.state;
     return (
       <>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label className="modal-title__controlname">Detalles del curso</Form.Label>
-            <div>
-              <input type="radio" name="nivel" value="primaria" onChange={this.handleSelectedTeacher} /> Primaria
-              <input type="radio" name="nivel" value="secundaria" onChange={this.handleSelectedTeacher} /> Secundaria
-              <input type="radio" name="nivel" value="ninguno" onChange={this.handleSelectedTeacher} /> Ninguno
+            <div className="CT-contenedorNivel">
+              <input className="CT-opcionNivel" type="radio" name="level" value="primaria" id="option-one" onChange={this.handleChange} required/> 
+                <label className="CT-labelNivel" htmlFor="option-one">Primaria</label>
+              <input className="CT-opcionNivel" type="radio" name="level" value="secundaria" id="option-two" onChange={this.handleChange} /> 
+                <label className="CT-labelNivel" htmlFor="option-two">Secundaria</label>
+              <input className="CT-opcionNivel" type="radio" name="level" value="" id="option-three" onChange={this.handleChange} />
+                <label className="CT-labelNivel" htmlFor="option-three">Ninguno</label>
             </div>
             {
               this.state.profesorParticular
               ?
               null
               :
-              <div>
-                <select name="grado">
+              <div className="CT-detallesCurso">
+                <label className="listDetalleTitle">Grado: </label>
+                <select name="grade" className="list-grade">
                   {
                   this.state.nivelPrimaria
                   ?
-                  this.state.grado.map( (grado, id) => (
+                  this.state.grados.map( (grado, id) => (
                     <option key={id} value={grado}>{grado}</option>
                   ))
                   :
-                  this.state.grado.slice(0,5).map( (grado, id) => (
+                  this.state.grados.slice(0,5).map( (grado, id) => (
                     <option key={id} value={grado}>{grado}</option>
                   ))
                   }
                 </select>
-                <select name="seccion">
+                <label className="listDetalleTitle">Sección: </label>
+                <select name="seccion" className="list-seccion">
                   {
-                  this.state.seccion.map( (seccion, id) => (
+                  this.state.secciones.map( (seccion, id) => (
                     <option key={id} value={seccion}>{seccion}</option>
                   ))
                   }
@@ -116,7 +120,7 @@ export default class FormPostCourse extends Component {
               />
               : 
               <div>
-                <select name="cursos">
+                <select name="course_name" className="list-course">
                 {
                 this.state.nombresCursos.map( (curso, id) => (
                   <option key={id} value={curso}>{curso}</option>
@@ -129,15 +133,17 @@ export default class FormPostCourse extends Component {
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label className="modal-title__controldescription">Descripcion del curso</Form.Label>
             <Form.Control className="modal-teacher__general-controldescription"
-              name="desc"
+              name="description"
               onChange={this.handleChange}
-              value={desc}
+              value={description}
               as="textarea"
               rows="2"
               required
             />
           </Form.Group>
-          <Button id="modal-body__button-cursos" type="submit"  >CREAR CURSO</Button>
+          <Button className="modal-body__button cursos" type="submit"  >
+            <div className="button-zoom">CREAR CURSO</div>
+          </Button>
         </Form>
       </>
     );

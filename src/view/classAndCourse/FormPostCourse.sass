@@ -1,0 +1,28 @@
+.CT-opcionNivel
+  position: absolute
+  visibility: hidden
+  display: none
+
+.CT-labelNivel
+  color: #4747D5
+  display: inline-block
+  width: 33.3%
+  cursor: pointer
+  padding: 5px 20px
+  font-family: "Opal"
+
+.CT-opcionNivel:checked + .CT-labelNivel
+  color: lighten(#ffffff,60%)
+  background: #4747D5
+
+.CT-labelNivel + .CT-opcionNivel + .CT-labelNivel
+  border-left: solid 1px #4747D5
+
+.CT-contenedorNivel
+  border: solid 1px #4747D5
+  margin: 20px
+  border-radius: 0px
+  overflow: hidden
+
+.CT-detallesCurso
+  margin: 20px
