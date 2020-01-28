@@ -8,14 +8,32 @@ export default class CourseDetail extends Component {
     this.state = {
       token: false,
       id_course : "",
-      id_teacher : ""
+      id_teacher : "",
+      students : []
     }
   }
   
   componentDidMount(){
+    var varToken = localStorage.getItem('token');
     const { match: { params } } = this.props;
     this.setState({ id_course: params.id_course, id_teacher: params.id });
     setTimeout(() => console.log(this.state.id_course, this.state.id_teacher), 2000)
+    axios({
+      url: `http://192.168.1.29:4200/v1/api/student/${params.id}/${params.id_course}/students`,
+      method: "GET",
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    })
+      .then(({ data }) => {
+        console.log(data)
+        if (data == []) {
+          this.setState({ students: [] });
+        } else {
+          this.setState({ students: data });
+        }
+      })
+      .catch(e => console.log(e));
   }
   UNSAFE_componentWillMount = async () => {
     let tokenStorage = localStorage.getItem("token");
@@ -28,18 +46,18 @@ export default class CourseDetail extends Component {
     } = this.props;
     var varToken = localStorage.getItem("token");
     axios({
-      url: `http://192.168.1.29:4200/v1/api/student/${this.state.id_teacher}/${this.state.id_course}`,
+      url: `http://192.168.1.29:4200/v1/api/student/${params.id}/${params.id_course}/students`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
       }
     })
       .then(({ data }) => {
-        console.log(data);
+        console.log(data)
         if (data == []) {
-          this.setState({ courses: [] });
+          this.setState({ students: [] });
         } else {
-          this.setState({ courses: data });
+          this.setState({ students: data });
         }
       })
       .catch(e => console.log(e));
@@ -74,9 +92,12 @@ export default class CourseDetail extends Component {
                 <th className="CourseDetail__table-th">Competencia 3</th>
                 <th className="CourseDetail__table-th">Competencia 4</th>
               </tr>
+              {/* {this.state.students.length > 0 ? (
+              this.state.students.map((alumnos, id) => (
+                */}
               <tr className="CourseDetail__table-tr">
-                <td className="CourseDetail__table-td" data-th="Apellidos">
-                  UPS5005
+               <td className="CourseDetail__table-td" data-th="Apellidos">
+                  {/* <h1>{alumnos.id_stud}</h1> */}
                 </td>
                 <td className="CourseDetail__table-td" data-th="Nombres">
                   UPS
@@ -94,6 +115,10 @@ export default class CourseDetail extends Component {
                   $8,322.12
                 </td>
               </tr>
+              {/* // ) : (
+              //   // <div>false</div>
+              //   <h3 className="courseTeacher-cards__nullCourses">Cargando cursos... Si no tiene, puede crear uno.</h3>
+              // )} */}
               <tr className="CourseDetail__table-tr">
                 <td className="CourseDetail__table-td" data-th="Apellidos">
                   UPS3449
