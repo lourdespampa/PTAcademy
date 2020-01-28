@@ -145,21 +145,26 @@
 
 .courseTeacher-container
     display: flex
+    align-items: center;
+    justify-content: center;
     -webkit-display: box
     -moz-display: box
     -ms-display: flexbox
     -webkit-display: flex
     flex-wrap: wrap
     padding: 0
-    margin: 0
+    margin: 10px auto
     // background-color: #52BE7F
   
 .courseTeacher-cards
     display: flex
+    align-items: center;
+    justify-content: center;
     margin: 1rem
     width: 100%
     list-style: none
-    height: 371px
+    height: 410px
+    text-align: justify
     & .courseTeacher-card-item
         display: flex
         flex-direction: column
@@ -191,7 +196,9 @@
             width: 100%
             font-size: 13px
             height: 30%
-
+    
+    & .courseTeacher-card-subtitle
+        display: inline
 
     & .courseTeacher-card-title
         font-size: 20px
@@ -207,17 +214,16 @@
         opacity: 0.91
         background-image: url('https://www.petdarling.com/articulos/wp-content/uploads/2016/04/nombres-de-gatos.jpg')
 
-@media (min-width: 640px)
-    .courseTeacher-cards 
-        width: 45%
+// @media (min-width: 640px)
+//     .courseTeacher-cards 
+//         width: 45%
     // .CourseTeacher-main
     //     height: 100% !important
  
   
 @media (min-width: 896px)
     .courseTeacher-cards 
-        width: 21%
-        height: 384px
+        width: 290px
 // se va a poner los estilos para los botones de los cards xd -- by:Miryan
 
 .courseTeacher__button-delette,
@@ -248,7 +254,9 @@
         transform: scale(1.3)
 
 .courseTeacher__button-Edit
-    float: left
+    // float: left
+    position: absolute
+    text-align: center
     background-color: #FB9600
     
         
@@ -264,38 +272,32 @@
         -o-transform: scale(1.25)
         transform: scale(1.25)
 .courseTeacher__buttonEntry
-    width: 100%
+    width: 89%
     border: 0
-    height: 20%
     display: block
     margin: .2em
     border-radius: 5px
     vertical-align: middle
-    position: relative
-    z-index: 1
+    text-align: center
+    position: absolute
+    bottom: 10px
+    right: 11px
     cursor: pointer
     text-decoration: none
     padding: .5rem
     background-color: #52BE7F
     color: #FFFFFF
+    transition: transform 0.3s ease-in-out
+    -webkit-transition: all .4s ease
     &:hover
         background-color: #52BE7F
         color: #ffffff
         padding: .5rem
+        -webkit-transform: scale(1.05)
+        transform: scale(1.05)
     & .courseTeacher__buttonEntry-label 
         width: 150px
-        transition: transform 0.3s ease-in-out
-        -webkit-transition: all .4s ease
-        -moz-transition: all .4s ease
-        -o-transition: all .4s ease
-        -ms-transition: all .4s ease
         cursor: pointer
-        &:hover
-            -webkit-transform: scale(1.25)
-            -moz-transform: scale(1.25)
-            -ms-transform: scale(1.25)
-            -o-transform: scale(1.25)
-            transform: scale(1.25)
 
 
 

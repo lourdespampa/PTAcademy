@@ -13,7 +13,7 @@ class Azar extends React.Component {
             todosAlumnos: [],
             alumnos: [],
             alumnoElegido : "",
-            point: 0,
+            point: 10,
             showModal : false,
             tipoPuntaje: true,
             datapoint:{
@@ -45,9 +45,13 @@ class Azar extends React.Component {
           })
     }
 
-    handleOnComplete = (alumno) => {
-        console.log(alumno);
-        this.setState({alumnoElegido : alumno, showModal : true})
+    handleOnComplete = async (alumnoElegido) => {
+        for(let alumno of this.state.todosAlumnos){
+            if(`${alumno.name_stu} ${alumno.lastName_stu}` === alumnoElegido){
+                await this.setState({point: alumno.point})
+            }
+        }
+        this.setState({alumnoElegido, showModal : true})
       };
 
     getStudents = () => {
@@ -60,9 +64,10 @@ class Azar extends React.Component {
             }
         })
         .then( (res) => {
+            // console.log(res.data)
             const temp = [];
             res.data.map( alumno => {
-                temp.push(alumno.name_stu)
+                temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`)
             })
             this.setState({ alumnos: this.sortearElementos(temp), todosAlumnos: res.data })
         })
@@ -78,38 +83,47 @@ class Azar extends React.Component {
     handleChangePScore = () => this.setState({tipoPuntaje:true})
     handleChangeNScore = () => this.setState({tipoPuntaje:false})
 
-    onClickPointAdd= (valor) => {
-        console.log(this.state.todosAlumnos)
-        // let point = this.state.point + valor
-        // const data = { point }
-        // let varToken = localStorage.getItem('token');
-        // axios({
-        //     url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
-        //     data,
-        //     method: 'put',
-        //     headers: {
-        //         'x-access-token': `${varToken}`
-        //     }
-        // })
-        // this.getStudents();
-        // this.setShow('showpuntosmas',false)
+    onClickPointAdd= async (valor) => {
+
+        let varToken = localStorage.getItem('token');
+        for(let alumno of this.state.todosAlumnos){
+            if(`${alumno.name_stu} ${alumno.lastName_stu}` === this.state.alumnoElegido){
+                await this.setState({point: alumno.point})
+                let point = this.state.point + valor
+                const data = { point }
+                axios({
+                    url: this.props.apiUrl+'/v1/api/student/update_score/'+alumno._id,
+                    data,
+                    method: 'put',
+                    headers: {
+                        'x-access-token': `${varToken}`
+                    }
+                })
+            }
+        }
+        this.getStudents();
+        this.setState({showModal: false})
     }
-    onClickPointRemove= (valor) => {
-        // const point=this.state.point - valor
-        // const data={
-        //     point : point
-        //  }
-        //  var varToken = localStorage.getItem('token');
-        // await axios({
-        // url: this.props.apiUrl+'/v1/api/student/update_score/'+ this.state._id,
-        // data,
-        // method: 'put',
-        // headers: {
-        //     'x-access-token': `${varToken}`
-        // }
-        // })
-        //     this.getStudents();
-        //     this.setShow('showpuntosmenos',false)
+    onClickPointRemove= async (valor) => {
+        
+        let varToken = localStorage.getItem('token');
+        for(let alumno of this.state.todosAlumnos){
+            if(`${alumno.name_stu} ${alumno.lastName_stu}` === this.state.alumnoElegido){
+                await this.setState({point: alumno.point})
+                let point = this.state.point - valor
+                const data = { point }
+                axios({
+                    url: this.props.apiUrl+'/v1/api/student/update_score/'+alumno._id,
+                    data,
+                    method: 'put',
+                    headers: {
+                        'x-access-token': `${varToken}`
+                    }
+                })
+            }
+        }
+        this.getStudents();
+        this.setState({showModal: false})
     }
 
 
@@ -130,7 +144,7 @@ class Azar extends React.Component {
                         </button>
                         <Modal.Header>
                              <div>
-                                Alumno: {this.state.alumnoElegido}
+                                ALUMNO: {this.state.alumnoElegido}<br/>PUNTOS: {this.state.point}
                              </div>
                         </Modal.Header>
                         <Modal.Body>

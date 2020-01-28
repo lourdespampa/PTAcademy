@@ -3,8 +3,9 @@ import "./FooterContainer.sass";
 import Modal from "react-bootstrap/Modal";
 import Audio from "../audio/audio";
 import io from "socket.io-client";
-import iconExit from "../../../img/cerrar.png";
+
 import Slide from '../slides/slide_02';
+import iconExit from "../../../img/cerrar.png";
 function enviarvideo(url, url2, socketUrl, id_access) {
   var urlnombre = url + url2;
   const socket = io(socketUrl, {
@@ -72,10 +73,13 @@ function FooterContainer(props){
             <div className="overlay" id="overlayinframe">
                 <div className="popup" id="popupformulario">
                     <div class="punto-posi">
-                        <span>EMITIR FORMULARIO</span>
+                        <button className="modal-teacher__general-close" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} >
+                            <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                        </button>
+                        <span className="formulario-title">EMITIR FORMULARIO</span>
                     </div>
                     <br/>
-                    <a href id="btnCerrarFormu" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} ><i class="material-icons">close</i></a>
+                    {/* <a href id="btnCerrarFormu" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} ><i class="material-icons">close</i></a> */}
                     <iframe title="diapo-iframe" id="diapo-formulario" className="fc-formulario" frameBorder="0"  allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
                     <button class="button btnMyM" onClick={()=>SendForm(props.socketUrl,props.id_access)}>EMITIR</button>
