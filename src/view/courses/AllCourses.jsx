@@ -35,15 +35,18 @@ export default class AllCourses extends Component {
               </svg>
             
             <div class="classTeacher-card__content">
+              <p class="classTeacher-card__level">{this.props.level}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <p class="classTeacher-card__grade">{this.props.grade}</p>&nbsp;&nbsp;
+              <p class="classTeacher-card__section">{this.props.section}</p>
               <h1 class="classTeacher-card__title">{this.props.name_course}</h1>
               <p>{this.props.description}</p>
-              <Link 
+            </div>
+            <Link 
                 onClick={()=>this.props.onClick(this.props.id)}
                 to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
                 className="courseTeacher__buttonEntry">
                   <label className="courseTeacher__buttonEntry-label">VER CLASES</label>
             </Link>
-            </div>
           </div>
         </div>
             {/* <div className="courseTeacher-card-item">
