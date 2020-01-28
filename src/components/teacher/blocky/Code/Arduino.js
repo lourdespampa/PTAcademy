@@ -1,10 +1,10 @@
 import * as Blockly from "blockly/core";
 import "blockly/javascript";
 
-Blockly.Ja["test_react_field"] = function(block) {
+Blockly.JavaScript["test_react_field"] = function(block) {
   return "console.log('custom block');\n";
 };
 
-Blockly.Arduino["test_react_date_field"] = function(block) {
+Blockly.JavaScript["test_react_date_field"] = function(block) {
   return "setup()\n console.log(" + block.getField("DATE").getText() + ");\n";
 };
