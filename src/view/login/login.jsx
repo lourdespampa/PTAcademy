@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom'
 import "./login.sass";
 import logo from "./bg-teacher-login.jpg";
 
+import logoAcademy from '../login.Stud/images/Logo.svg'
 import axios from 'axios';
 import Loading from "./Loading";
 //importamos la configuración de firebase
@@ -182,6 +183,12 @@ export default function App(props) {
       {
       userState ? <Redirect to={'/CoursesTeacher/'+userState._id} /> : null
       }
+      <div className="loginTeacherHeader">
+      
+          <div className="logoAcademy">
+          </div>
+      
+      </div>
       <div className={ tipoAcceso ? "loginTeacher-container log-in" : "loginTeacher-container" }>
         <div className="loginTeacher-box"></div>
         <div className="loginTeacher-container-forms">
