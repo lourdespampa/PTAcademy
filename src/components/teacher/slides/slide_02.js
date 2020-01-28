@@ -15,10 +15,12 @@ class App extends Component {
         }
     }
 
-    componentDidMount(){
-        axios({
+     componentDidMount(){
+      console.log('api url: '+this.props.apiUrl)
+      console.log('cod class : '+this.props.id_class)
+        setTimeout(axios({
             
-            url : 'http://192.168.1.29:4200/v1/api/teacher/presentations/5e2a0332f956e51094a23624',
+            url : `${this.props.apiUrl}/v1/api/teacher/presentations/5e2a1128e566ce00e4d947bc`,
             
             //CUANDO SE IMPLEMENTE  url : "localhost:4200/v1/api/teacher/presentations/"+this.props.id_present+"'",
             method : 'GET',
@@ -32,7 +34,7 @@ class App extends Component {
             
           }).catch((err)=>{
               console.log(err)
-          })
+          }),3000)
     }
 
   render() {

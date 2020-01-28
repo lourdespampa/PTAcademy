@@ -1,15 +1,38 @@
 .roulette {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
+  justify-content: center;}
 
-.roulette-container {
+.roulette-container,
+.roulette-container-button{
   display: flex;
   justify-content: center;
   padding: 10px;
 }
+.roulette-container-button{
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 0;
+  color:#fff;
+  font-size:20px;
+  cursor: pointer;
+  margin: auto 10px;
+  font-family: "Opal";
+  background-color: #FB9600
+}
 
+.roulette-container-button.button-zoom{
+  transition: transform 0.3s ease-in-out;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  color: #fff
+}
+.roulette-container:hover .button-zoom{
+  -webkit-transform: scale(1.18);
+  transform: scale(1.18)} 
 .azar-tab-group {
   list-style:none;
   padding:0;
