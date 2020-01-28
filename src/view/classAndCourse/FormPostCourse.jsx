@@ -11,6 +11,7 @@ export default class FormPostCourse extends Component {
     super(props);
     //2. el estado con sus variables iniciales
     this.state = {
+      bloquearBoton: false,
       level: "primaria",
       grade: "primero",
       section: "A",
@@ -65,6 +66,8 @@ export default class FormPostCourse extends Component {
   };
 
   handleSubmit = event => {
+    //bloqueamos el boton para que no se hagan multiples peticiones
+    this.setState({bloquearBoton: true})
     //obtengo el token del localStorage
     var varToken = localStorage.getItem('token');
     //evita recargas innecesarias
@@ -84,6 +87,7 @@ export default class FormPostCourse extends Component {
       }
     }).then((res) => {
       // return console.log(res.data)
+      this.setState({bloquearBoton: false})
       this.props.handleClose()
     })
       .catch(err => console.log(err.message));
@@ -178,9 +182,17 @@ export default class FormPostCourse extends Component {
               required
             />
           </Form.Group>
-          <Button className="modal-body__button cursos" type="submit"  >
+          {
+            this.state.bloquearBoton
+            ? 
+            <Button className="modal-body__button cursos" type="submit" disabled>
+              <div className="button-zoom">CREAR CURSO</div>
+            </Button>
+            :
+            <Button className="modal-body__button cursos" type="submit"  >
             <div className="button-zoom">CREAR CURSO</div>
-          </Button>
+            </Button>
+          }
         </Form>
       </>
     );
