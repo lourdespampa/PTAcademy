@@ -34,6 +34,11 @@ class Upload extends Component {
     if (this.props.className=='' || this.props.desc=='' ||  Object.keys(this.state.files).length === 0){
       this.setState({NoData:true})
     }else{
+    this.props.handleDisableX()
+    // document.addEventListener("keydown", function(e){
+    //   if (e.which == 27){
+    //       return false
+    //   }})
     this.setState({ uploadProgress: {}, uploading: true });
     const promises = [];
     this.state.files.forEach(file => {

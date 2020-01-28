@@ -64,7 +64,7 @@ function FooterContainer(props){
                         <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                     </button>
                     <Slide apiUrl={props.apiUrl} id_class={props.id_class} />
-                    <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",display:"none",height: "100%"}} allowFullScreen={true}
+                    <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="760" height="569" style={{width: "100% !important",display:"none",height: "100%"}} allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
                     </iframe>
                     
@@ -78,13 +78,13 @@ function FooterContainer(props){
                             <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                         </button>
                     <div class="punto-posi">
-                        <span className="formulario-title">EMITIR FORMULARIO</span>
+                        <span className="letra">EMITIR FORMULARIO</span>
                     </div>
                     <br/>
                     {/* <a href id="btnCerrarFormu" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} ><i class="material-icons">close</i></a> */}
                     <iframe title="diapo-iframe" id="diapo-formulario" className="fc-formulario" frameBorder="0"  allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
-                    <button class="button btnMyM" onClick={()=>SendForm(props.socketUrl,props.id_access)}>
+                    <button class="Myni" onClick={()=>SendForm(props.socketUrl,props.id_access)}>
                         <div className="button-zoom">EMITIR</div>
                     </button>
                 </div>

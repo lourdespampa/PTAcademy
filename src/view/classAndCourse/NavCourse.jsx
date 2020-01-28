@@ -8,7 +8,12 @@ import iconExit from "../../img/cerrar.png";
 
 function BotonAgregar(props) {
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const [activarX, setActivarX] = useState(true);
+  const handleDisableX = () => setActivarX(false)
+  const handleClose = () => {
+          setActivarX(true)
+          setShow(false)
+          }
   const handleShow = () => setShow(true);
   const AgregarClick=()=>setShow(false)+props.getdata()
 
@@ -18,9 +23,17 @@ function BotonAgregar(props) {
         Agregar {props.agregarX}
       </div>
       <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
-          <button className="modal-teacher__general-close" onClick={handleClose}>
+          {
+            activarX
+            ?
+            <button className="modal-teacher__general-close" onClick={handleClose}>
             <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-          </button>
+            </button>
+            :
+            <button className="modal-teacher__general-close" onClick={handleClose} disabled>
+            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+            </button>
+          }
         <Modal.Header>
           <Modal.Title >Agregando {props.agregarX}</Modal.Title>
         </Modal.Header>
@@ -28,7 +41,7 @@ function BotonAgregar(props) {
           { (props.agregarX === 'curso')?
           <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} />
           :
-          <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
+          <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} handleDisableX={handleDisableX} idteacher={props.idteacher} idcourse={props.idcourse}/>
           }
         </Modal.Body>
       </Modal>
