@@ -16,7 +16,7 @@
 
 .header2
     top: 0
-    width: 99.5%
+    width: 100%
     display: flex
     flex-direction: column
     justify-content: center 
@@ -25,6 +25,7 @@
     height: 65px
     padding: 15px
     box-shadow: rgba(150, 150, 150, 0.5) 0px 2px 2px
+    text-align: center
 
 .footer
     width: 100%
@@ -66,14 +67,6 @@
     height: 300px
     margin: 12px auto auto auto
 
-.triangulo-equilatero-bottom-left
-    width: 0
-    height: 0
-    border-right: 50px solid #000
-    border-top: 50px solid #fff
-    border-left: 50px solid #fff
-    border-bottom: 50px solid #000
-
 .ho
     margin-left: -20px
     margin-top: -5px
@@ -87,29 +80,38 @@ td
 
 .trivia-student-button
     color: #fff
-    display: inline-block
     font-size: 1.25em
     margin: 4px
     padding: 10px
     text-align: left
     min-width: 99%
-    height: 5em
     text-decoration: none
     border: none
+    word-wrap: break-word
+    vertical-align: middle
     box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 2px
-    img
-        display: inline-block
-        vertical-align: middle
-        width: 50px
-        margin-left: 0.5em
-    span
-        margin-left: 20px
-        font-size: 25px
-        display: inline-block
-        vertical-align: middle
+    .triviaStudentText
+        width: 70%
+        p
+            display: inline
+            margin-left: 20px
+            font-size: 25px
+            word-wrap: break-word
+            vertical-align: middle
+    .triviaStudentSimbol
+        width: 25%
+        img
+            display: inline-block
+            vertical-align: middle
+            width: 50px
+            margin: 0.6em 0
     &:hover
         box-shadow: 0px 0px 0px
         padding-top: 9px
+
+    // p
+    //     margin-left: 2.5em
+    //     margin: -60px 0 0
 
 .rojo
     background: #F01A2D
@@ -122,7 +124,12 @@ td
 
 .verde
     background: #1FAD18
+    
+.triviaT-botones
+    padding: 1px
 
+.pruebaTrivia 
+    margin: 5px 2px
 
 .loader
     font-size: 30px
