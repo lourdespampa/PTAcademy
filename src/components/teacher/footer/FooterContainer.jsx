@@ -77,7 +77,7 @@ function FooterContainer(props){
                         <button className="modal-teacher__general-close" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} >
                             <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                         </button>
-                    <div class="punto-posi">
+                    <div class="punto-posif">
                         <span className="formulario-title">EMITIR FORMULARIO</span>
                     </div>
                     <br/>
