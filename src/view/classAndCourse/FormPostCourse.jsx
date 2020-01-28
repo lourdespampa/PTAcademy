@@ -90,7 +90,10 @@ export default class FormPostCourse extends Component {
       this.setState({bloquearBoton: false})
       this.props.handleClose()
     })
-      .catch(err => console.log(err.message));
+      .catch(err => {
+      this.setState({bloquearBoton: false})
+      console.log(err.message)});
+
       
   };
 
@@ -186,7 +189,7 @@ export default class FormPostCourse extends Component {
             this.state.bloquearBoton
             ? 
             <Button className="modal-body__button cursos" type="submit" disabled>
-              <div className="button-zoom">CREAR CURSO</div>
+              <div className="button-zoom">cargando</div>
             </Button>
             :
             <Button className="modal-body__button cursos" type="submit"  >
