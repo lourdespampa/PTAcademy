@@ -51,7 +51,7 @@ background-image: url('http://freelansim.ru/images/500_icon.png');
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
-    /* display: block; */
+    border: 1px solid white;
     text-align: center;
     cursor: pointer;
     width: 300px;
@@ -69,4 +69,10 @@ background-image: url('http://freelansim.ru/images/500_icon.png');
 .notfound-link{
   text-decoration: none;
   color: #fff
+}
+
+@media (max-width: 900px) {
+  .home-notfound {
+    display: block;
+  }
 }

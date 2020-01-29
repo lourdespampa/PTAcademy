@@ -139,7 +139,7 @@ export default class Trivia extends React.Component {
         {/* contenido */}
         <div className="contenedorPrincipal">
           <div className="header2">
-            <h1 id="question">{this.state.pregunta ? this.state.pregunta : "¿Es esta una pregunta?"}</h1>
+            <h1 className="triviaStudent-title" id="question">{this.state.pregunta ? this.state.pregunta : "¿Es esta una pregunta?"}</h1>
           </div>
           <div className="contenedores" style={{ textAlign: "center", width: "99.5%" }}>
             <div className="left">
@@ -163,193 +163,115 @@ export default class Trivia extends React.Component {
 
             </div>
 
-            {/* <table className="footer">
-              <tr>
-                <td>
+            <div className="triviaT-row">
+
+              <div className=" triviaT-col-6 contendorDeBotonesRespuesta">
+
+                <div>
                   <div style={pe === 'azul' || pe === 'naranja' || pe === 'verde' ? styles.botonInactivo : {}}
                     id="triangulo" className="trivia-student-button rojo"
                     onClick={this.state.eligio
-                      ?
-                      () => { }
-                      :
-                      this.handleSelectAnswer
-                    }>
-                    <img src={require("./rombo-blanco.webp")} alt="" />
-                    <span id="answerTriangulo">{this.state.respuesta1 ? this.state.respuesta1 : "Respuesta 1"}</span>
-                  </div>
-                </td>
-                <td>
-                  <div style={pe === 'rojo' || pe === 'naranja' || pe === 'verde' ? styles.botonInactivo : {}}
-                    id="equis" className="trivia-student-button azul"
-                    onClick={this.state.eligio
-                      ?
-                      () => { }
-                      :
-                      async () => {
-                        const socket = io(this.props.socketUrl, {
-                          query:
-                            { pin: this.props.id_access }
-                        })
-                        clearInterval(this.interval2);
-                        await this.setState({ preguntaElegida: 'azul', eligio: true })
-                        if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
-                          socket.emit('enviando elegida', { alumno: this.props.fullname, puntaje: this.state.puntaje })
-                        }
-                      }}>
-                    <img src={require("./equis-blanco.webp")} alt="" />
-                    <span id="answerEquis">{this.state.respuesta2 ? this.state.respuesta2 : "Respuesta 2"}</span>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <button style={pe === 'rojo' || pe === 'azul' || pe === 'verde' ? styles.botonInactivo : {}}
-                    id="circulo" className="trivia-student-button naranja"
-                    onClick={this.state.eligio
-                      ?
-                      () => { }
-                      :
-                      async () => {
-                        const socket = io(this.props.socketUrl, {
-                          query:
-                            { pin: this.props.id_access }
-                        })
-                        clearInterval(this.interval2);
-                        await this.setState({ preguntaElegida: 'naranja', eligio: true })
-                        if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
-                          socket.emit('enviando elegida', { alumno: this.props.fullname, puntaje: this.state.puntaje })
-                        }
-                      }}>
-                    <img src={require("./circulo-blanco.webp")} alt="" />
-                    <span id="answerCirculo">{this.state.respuesta3 ? this.state.respuesta3 : "Respuesta 3"}</span>
-                  </button>
-                </td>
-                <td>
-                  <button style={pe === 'rojo' || pe === 'azul' || pe === 'naranja' ? styles.botonInactivo : {}}
-                    id="cuadrado" className="trivia-student-button verde"
-                    onClick={this.state.eligio
-                      ?
-                      () => { }
-                      :
-                      async () => {
-                        const socket = io(this.props.socketUrl, {
-                          query:
-                            { pin: this.props.id_access }
-                        })
-                        clearInterval(this.interval2);
-                        await this.setState({ preguntaElegida: 'verde', eligio: true })
-                        if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
-                          socket.emit('enviando elegida', { alumno: this.props.fullname, puntaje: this.state.puntaje })
-                        }
-                      }}>
-                    <img src={require("./cuadrado-blanco.webp")} alt="" />
-                    <span id="answerCuadrado">{this.state.respuesta4 ? this.state.respuesta4 : "Respuesta 4"}</span>
-                  </button>
-                </td>
-              </tr>
-            </table> */}
-
-
-            <div className="triviaT-row">
-            <div className=" triviaT-col-6">  
-              <div className="pruebaTrivia">
-                <div style={pe === 'azul' || pe === 'naranja' || pe === 'verde' ? styles.botonInactivo : {}}
-                    id="triangulo" className="trivia-student-button rojo"
-                    onClick={this.state.eligio
-                      ?
-                      () => { }
-                      :
-                      this.handleSelectAnswer
+                    ?
+                    () => { }
+                    :
+                    this.handleSelectAnswer
                     }>
                     <div className="triviaStudentSimbol">
                       <img src={require("./rombo-blanco.webp")} alt="" />
                     </div>
                     <div className="triviaStudentText">
-                      <p id="answerTriangulo">{this.state.respuesta1 ? this.state.respuesta1 : " 888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888"}</p>
+                      <p id="answerTriangulo">{this.state.respuesta1 ? this.state.respuesta1 : "Respuesta 1"}</p>
                     </div>
                   </div>
-              </div>
-              <div className="pruebaTrivia">
-                <div style={pe === 'rojo' || pe === 'naranja' || pe === 'verde' ? styles.botonInactivo : {}}
+                </div>
+
+                <div>
+                  <div style={pe === 'rojo' || pe === 'naranja' || pe === 'verde' ? styles.botonInactivo : {}}
                     id="equis" className="trivia-student-button azul"
                     onClick={this.state.eligio
-                      ?
-                      () => { }
-                      :
-                      async () => {
-                        const socket = io(this.props.socketUrl, {
-                          query:
-                            { pin: this.props.id_access }
-                        })
-                        clearInterval(this.interval2);
-                        await this.setState({ preguntaElegida: 'azul', eligio: true })
-                        if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
-                          socket.emit('enviando elegida', { alumno: this.props.fullname, puntaje: this.state.puntaje })
-                        }
-                      }}>
+                    ?
+                    () => { }
+                    :
+                    async () => {
+                      const socket = io(this.props.socketUrl, {
+                        query:
+                          { pin: this.props.id_access }
+                      })
+                      clearInterval(this.interval2);
+                      await this.setState({ preguntaElegida: 'azul', eligio: true })
+                      if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
+                        socket.emit('enviando elegida', { alumno: this.props.fullname, puntaje: this.state.puntaje })
+                      }
+                    }}>
                     <div className="triviaStudentSimbol">
                       <img src={require("./equis-blanco.webp")} alt="" />
                     </div>
                     <div className="triviaStudentText">
-                    <p id="answerEquis">{this.state.respuesta2 ? this.state.respuesta2 : "Respuesta 2"}</p>
+                      <p id="answerEquis">{this.state.respuesta2 ? this.state.respuesta2 : "Respuesta 2"}</p>
                     </div>
                   </div>
+                </div>
+
               </div>
-            </div>
-            <div className="triviaT-col-6">
-              <div className="pruebaTrivia ">
-                <div style={pe === 'rojo' || pe === 'azul' || pe === 'verde' ? styles.botonInactivo : {}}
+
+              <div className="triviaT-col-6 contendorDeBotonesRespuesta">
+                
+                <div>
+                  <div style={pe === 'rojo' || pe === 'azul' || pe === 'verde' ? styles.botonInactivo : {}}
                     id="circulo" className="trivia-student-button naranja"
                     onClick={this.state.eligio
-                      ?
-                      () => { }
-                      :
-                      async () => {
-                        const socket = io(this.props.socketUrl, {
-                          query:
-                            { pin: this.props.id_access }
-                        })
-                        clearInterval(this.interval2);
-                        await this.setState({ preguntaElegida: 'naranja', eligio: true })
-                        if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
-                          socket.emit('enviando elegida', { alumno: this.props.fullname, puntaje: this.state.puntaje })
-                        }
-                      }}>
+                    ?
+                    () => { }
+                    :
+                    async () => {
+                      const socket = io(this.props.socketUrl, {
+                        query:
+                          { pin: this.props.id_access }
+                      })
+                      clearInterval(this.interval2);
+                      await this.setState({ preguntaElegida: 'naranja', eligio: true })
+                      if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
+                        socket.emit('enviando elegida', { alumno: this.props.fullname, puntaje: this.state.puntaje })
+                      }
+                    }}>
                     <div className="triviaStudentSimbol">
                       <img src={require("./circulo-blanco.webp")} alt="" />
                     </div>
                     <div className="triviaStudentText">
                       <p id="answerCirculo">{this.state.respuesta3 ? this.state.respuesta3 : "Respuesta 3"}</p>
                     </div>
+                  </div>
                 </div>
-              </div>
-              <div className="pruebaTrivia">
-              <div style={pe === 'rojo' || pe === 'azul' || pe === 'naranja' ? styles.botonInactivo : {}}
+
+                <div>
+                  <div style={pe === 'rojo' || pe === 'azul' || pe === 'naranja' ? styles.botonInactivo : {}}
                     id="cuadrado" className="trivia-student-button verde"
                     onClick={this.state.eligio
-                      ?
-                      () => { }
-                      :
-                      async () => {
-                        const socket = io(this.props.socketUrl, {
-                          query:
-                            { pin: this.props.id_access }
-                        })
-                        clearInterval(this.interval2);
-                        await this.setState({ preguntaElegida: 'verde', eligio: true })
-                        if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
-                          socket.emit('enviando elegida', { alumno: this.props.fullname, puntaje: this.state.puntaje })
-                        }
-                      }}>
+                    ?
+                    () => { }
+                    :
+                    async () => {
+                      const socket = io(this.props.socketUrl, {
+                        query:
+                          { pin: this.props.id_access }
+                      })
+                      clearInterval(this.interval2);
+                      await this.setState({ preguntaElegida: 'verde', eligio: true })
+                      if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
+                        socket.emit('enviando elegida', { alumno: this.props.fullname, puntaje: this.state.puntaje })
+                      }
+                    }}>
                     <div className="triviaStudentSimbol">
                       <img src={require("./cuadrado-blanco.webp")} alt="" />
                     </div>
                     <div className="triviaStudentText">
                       <p id="answerCuadrado">{this.state.respuesta4 ? this.state.respuesta4 : "Respuesta 4"}</p>
                     </div>
-                    </div>
+                  </div>
+                </div>
+
               </div>
-            </div>
+
             </div>
           </div>
         </div>
