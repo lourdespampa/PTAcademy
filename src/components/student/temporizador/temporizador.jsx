@@ -29,7 +29,7 @@ class Temporizador extends React.Component {
 
   componentDidMount = () =>{
     
-      let _this = this;
+    //   let _this = this;
 
     //   $('#button-set').on('click', function(){
     //     // alert('Puercos')
@@ -96,9 +96,9 @@ class Temporizador extends React.Component {
                     var b = e[a];
                     c += b.value * parseInt(b.input_element.val())
                 }
-                var hour = $('#id_dt_1').val();
-                var min = $('#id_dt_2').val();
-                var sec = $('#id_dt_3').val();
+                // var hour = $('#id_dt_1').val();
+                // var min = $('#id_dt_2').val();
+                // var sec = $('#id_dt_3').val();
                 // $('#establecer_tiempo').modal('hide');
                 g = c;
                 n();
@@ -140,7 +140,7 @@ class Temporizador extends React.Component {
             window.timer(false);  // autostart
             // $('#button-establecer').click()    
             
-            var cod = "ABCDE";
+            // var cod = "ABCDE";
             // var socket = io('/presentation/temp');
             const socket = io(this.props.socketUrl, {
                 query:
@@ -149,7 +149,7 @@ class Temporizador extends React.Component {
         console.log(this.props.id_access)
             socket.on('set', (data)=> {
                 console.log("Se asigna")
-                if(data.pin == (this.props.id_access).toUpperCase()) {
+                if(data.pin === (this.props.id_access).toUpperCase()) {
                     var time = data.data.time;
                     $("#id_dt_1").val(time[0]);
                     $("#id_dt_2").val(time[1])
@@ -158,12 +158,12 @@ class Temporizador extends React.Component {
                }
             });
             socket.on('temp', (data) =>{
-                if(data.pin == (this.props.id_access).toUpperCase()) {
+                if(data.pin === (this.props.id_access).toUpperCase()) {
                     k.click();
                  }
             });
             socket.on('stop', (data) =>{
-                if(data.pin == (this.props.id_access).toUpperCase()) {
+                if(data.pin === (this.props.id_access).toUpperCase()) {
                     k.click();
                  }
             });

@@ -1,8 +1,10 @@
 .Files
-    position: absolute
-    margin-top: 130px
+    position: relative
+    margin-top: -100px
     max-width: 200px
     width: 200px
+    height: 100px
+    pointer-events: none
 
 .Actions
     position: relative
@@ -10,3 +12,16 @@
     button
         cursor: pointer
 
+.mensageAction
+    font-family: "Opal"
+    font-size: 17px
+    &.pocitive
+        color: #52BE7F
+    &.negative
+        color:  #ff0000
+    
+.ProgressWrapper
+    bottom: 0
+    position: absolute
+    width: 100%
+    

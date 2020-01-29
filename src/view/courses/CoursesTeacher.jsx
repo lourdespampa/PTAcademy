@@ -38,7 +38,7 @@ export default class CoursesTeacher extends Component {
     })
       .then(({ data }) => {
         // console.log(data)
-        if (data == []) {
+        if (data === []) {
           this.setState({ courses: [] });
         } else {
           this.setState({ courses: data });
@@ -68,20 +68,12 @@ export default class CoursesTeacher extends Component {
       }
     }).then( ({ data }) => {
        console.log(data)
-        if(data == []){
+        if(data === []){
           this.setState({courses: []})
         }else{
           this.setState({courses: data})
       }
     })
-      .then(({ data }) => {
-        // console.log(data)
-          if (data == []) {
-            this.setState({ courses: [] });
-          } else {
-            this.setState({ courses: data });
-          }
-      })
       .catch(e => console.log(e));
   }
 
@@ -111,7 +103,7 @@ export default class CoursesTeacher extends Component {
     return (
       <>
         <NavCourse apiUrl={this.props.apiUrl} idcourse={this.state.id_curso} idteacher={this.state._id}
-         agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos}></NavCourse>
+         agregarX={'curso'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos}></NavCourse>
         <div className="CourseTeacher-main">
           <h1 className="courseTeacher-title">SECCION DE CURSOS</h1>
           <ul className="courseTeacher-container">
@@ -120,8 +112,11 @@ export default class CoursesTeacher extends Component {
               this.state.courses.map((cursos, id) => (
                 <li className="courseTeacher-cards" key={id}>
                   <AllCourses
+                    level={cursos.level}
+                    grade={cursos.grade}
+                    section={cursos.section}
                     name_course={cursos.course_name}
-                    description={cursos.desc}
+                    description={cursos.description}
                     img={cursos.img}
                     id={cursos._id}
                     idteacher={this.state._id}
@@ -142,7 +137,7 @@ export default class CoursesTeacher extends Component {
           onHide={() => this.setShow("showdelete", false)}
         > 
           <button className="modal-teacher__general-close" onClick={() => this.setShow("showdelete", false)}>
-              <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+              <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
           </button>
           <Modal.Header>
             <div className="punto-posi">
@@ -151,20 +146,20 @@ export default class CoursesTeacher extends Component {
           </Modal.Header>
           <Modal.Body>
             <button
-              id="modal-body__button-yes" className="btn"
+              className="modal-body__button yes"
               onClick={() =>
                 this.deleteCurso() + this.setShow("showdelete", false)
               }
               type="button"
             >
-              <div className="button-yes__text">SI</div>
+              <div className="button-zoom">SI</div>
             </button>
             <button
-              id="modal-body__button-no" className="btn"
+              className="modal-body__button no"
               onClick={() => this.setShow("showdelete", false)}
               type="button"
             >
-              <div className="button-no__text">NO</div>
+              <div className="button-zoom">NO</div>
             </button>
           </Modal.Body>
         </Modal>

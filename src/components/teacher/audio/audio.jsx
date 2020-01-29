@@ -3,7 +3,7 @@ import './audio.sass'
 import io from 'socket.io-client';
 //import ScarletsMediaPresenter from './SFMediaStream.min.js'
 //import {MediaPresenter} from 'sfmediastream';
-const {MediaPresenter} = require('sfmediastream');
+const {MediaPresenter} = require('sfmediastream/dist/SFMediaStream');
 
 export default class Audio extends Component{
     constructor(props) {
@@ -29,8 +29,6 @@ export default class Audio extends Component{
             query:
                 { pin: this.props.id_access }
           })
-        if(controller.length%2 === 0){
-            micro.style.animation ='ripple 1000ms infinite' ;
             socket.emit('onPlay', {
                 txt: "Se inicio una nueva emision de voz.Por favor da click en el boton reproducir"
             });
@@ -55,10 +53,7 @@ export default class Audio extends Component{
                 }
                 presenterMedia.startRecording();
                 controller.push("xd")
-                }
-            
-            } else{
-                if(controller.length%2 !== 0)
+                } else{
                 presenterMedia.stopRecording();
                 presenterMedia = false
                 controller.push("xd")
@@ -82,7 +77,7 @@ export default class Audio extends Component{
     }
     render(){  
         return  <div id="btn" >
-                    <img id="micro" width="30px" height="30px" src={require("../../../img/footer/micro.svg")} />
+                    <img id="micro" alt="" width="30px" height="30px" src={require("../../../img/footer/micro.svg")} />
                     <span>Audio</span>                
                 </div>
                 
