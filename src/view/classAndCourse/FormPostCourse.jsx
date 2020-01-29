@@ -12,7 +12,7 @@ export default class FormPostCourse extends Component {
     //2. el estado con sus variables iniciales
     this.state = {
       bloquearBoton: false,
-      message: "",
+      message: "elija una opción",
       level: "primaria",
       grade: "primero",
       section: "A",
@@ -55,7 +55,7 @@ export default class FormPostCourse extends Component {
     const name = event.target.name;
     const value = event.target.value;
     // console.log(event.target.name, event.target.value)
-
+    this.setState({message: ""})
     if(event.target.value === "primaria") this.setState({nivelPrimaria: true, escogerNivelAcademico: 1, level: "primaria"})
     if( event.target.value === "secundaria") this.setState({nivelPrimaria: false, escogerNivelAcademico: 1, level: "secundaria"})
     if(event.target.value === "") this.setState({escogerNivelAcademico: 2, level: "", grade: "", section: ""})
@@ -196,8 +196,7 @@ export default class FormPostCourse extends Component {
                     type="text"
                     name="course_name"
                     onChange={this.handleChangeInputsText}
-                    value={course_name}
-                    placeholder="Ingresar nombre del curso"
+                    placeholder="Ingrese nombre del curso"
                     required
                   />
                   :
@@ -209,6 +208,7 @@ export default class FormPostCourse extends Component {
               <Form.Control className="modal-teacher__general-controldescription"
                 name="description"
                 onChange={this.handleChangeInputsText}
+                placeholder="Ingrese la descripción del curso"
                 as="textarea"
                 rows="2"
                 required
