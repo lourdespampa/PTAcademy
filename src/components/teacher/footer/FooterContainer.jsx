@@ -68,8 +68,10 @@ function FooterContainer(props){
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
                     </iframe>
                     
-                    <div id="btnBack" className="btn-back"  onClick={()=>props.backtPpt()+props.botonClick('btnBack')}><i className="material-icons">navigate_before</i></div>
-                    <div id="btnNext" className="btn-next" onClick={()=>props.nextPpt()+props.botonClick('btnNext')}><i className="material-icons">navigate_next</i></div>
+                    <div id="btnBack" className="btn-back"  onClick={()=>props.backtPpt()+props.botonClick('btnBack')}>
+                    <span>Siguiente</span>
+                    </div>
+                    <div id="btnNext" className="btn-next" onClick={()=>props.nextPpt()+props.botonClick('btnNext')}><i class="material-icons">navigate_next</i></div>
                 </div>
             </div>
             <div className="overlay" id="overlayinframe">
