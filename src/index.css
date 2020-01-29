@@ -551,9 +551,12 @@ template {
 
 .list-grade,.list-seccion,.list-course{
   border: 0;
-  font-family: "Opal";
-  color: #fff;
-  margin: auto 10px
+  color:#fff;
+  font-size:20px;
+  background: #00aae3;
+  cursor: pointer;
+  margin: auto 10px;
+  font-family: "Opal"
 }
 
 .listDetalleTitle{
