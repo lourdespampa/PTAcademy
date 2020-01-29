@@ -76,8 +76,8 @@ function FooterContainer(props){
                     <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="760" height="569" style={{width: "100% !important",display:"none",height: "100%"}} allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
                     </iframe>
-                    <div id="btnBack" className="btn-back"  onClick={()=>props.backtPpt()+props.botonClick('btnBack')}><i className="material-icons">navigate_before</i></div>
-                    <div id="btnNext" className="btn-next" onClick={()=>props.nextPpt()+props.botonClick('btnNext')}><i className="material-icons">navigate_next</i></div>
+                    {/* <div id="btnBack" className="btn-back"  onClick={()=>props.backtPpt()+props.botonClick('btnBack')}><i className="material-icons">navigate_before</i></div>
+                    <div id="btnNext" className="btn-next" onClick={()=>props.nextPpt()+props.botonClick('btnNext')}><i className="material-icons">navigate_next</i></div> */}
                 </div>
             </div>
             <div className="overlay" id="overlayinframe">

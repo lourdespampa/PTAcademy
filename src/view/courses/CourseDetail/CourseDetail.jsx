@@ -19,7 +19,7 @@ export default class CourseDetail extends Component {
     this.setState({ id_course: params.id_course, id_teacher: params.id });
     setTimeout(() => console.log(this.state.id_course, this.state.id_teacher), 2000)
     axios({
-      url: `http://192.168.1.29:4200/v1/api/student/${params.id}/${params.id_course}/students`,
+      url: `${this.props.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
@@ -46,7 +46,7 @@ export default class CourseDetail extends Component {
     } = this.props;
     var varToken = localStorage.getItem("token");
     axios({
-      url: `http://192.168.1.29:4200/v1/api/student/${params.id}/${params.id_course}/students`,
+      url: `${this.props.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
