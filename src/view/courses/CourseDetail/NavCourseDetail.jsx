@@ -89,6 +89,10 @@ export default class NavCourse extends Component {
     const nav = document.getElementById("main-nav");
     nav.classList.toggle("show");
   };
+  SegundaFuncion = () => {
+    const nav = document.getElementById("main-nav");
+    console.log('se esta presionando')
+  }
   render() {
     return (
       <>
@@ -103,7 +107,7 @@ export default class NavCourse extends Component {
               onClick={this.Abrir}
             > 
             </div>
-            <div className="teacherCourseNav" onClick={this.Abrir}></div>
+            {/* <div className="teacherCourseNav" onClick={this.SegundaFuncion}></div> */}
             
             <nav className="teacherCourses__main-nav" id="main-nav">
               <ul className="teacherCourses__main-menu">
