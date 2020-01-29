@@ -457,13 +457,11 @@ template {
 .modal-teacher__general-controldescription{
     height: 60px;
     width: 95%;
-    left: 80px;
-    right: 364px;
-    top: 109px;
+    padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #4747D5;
     box-sizing: border-box;
-    bottom: -28px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     resize: none;
     }
 
