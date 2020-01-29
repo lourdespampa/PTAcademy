@@ -396,7 +396,7 @@ template {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    position: relative;
+    position: initial;
     top: 17px;
     padding: 1.25rem 1.5rem 0;
   }
@@ -528,7 +528,7 @@ template {
     padding: 0.5rem 1.5rem 1.5rem;
     text-align: center;
     position: relative;
-    padding-top: 15 px}
+    padding-top: 15px}
 
 .modal-body .punto-marco{
   margin: 0 10px 25px;
@@ -594,6 +594,6 @@ template {
 @media screen and (max-height:630px){
   .modal-body{
     /*height: 450px;*/
-    overflow: auto;
+    /* overflow: auto; */
   }
 }
