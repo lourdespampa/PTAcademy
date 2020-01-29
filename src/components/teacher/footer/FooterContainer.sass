@@ -146,33 +146,78 @@ iframe
     position: absolute
     right: -50px
     cursor: pointer
-.btn-back,
-.btn-next 
-    position: absolute
-    background: #00a8ff no-repeat center left
-    border: 1px solid #fff
-    border-radius: 50%
-    box-shadow: none
-    color: transparent
-    cursor: pointer
-    line-height: 120px
-    margin: 0%
-    //transform: translateY(-50%)
-    width: 77px
-    height: 78px
-    top: 49%
+// .btn-back,
+// .btn-next 
+//     position: absolute
+//     background: #00a8ff no-repeat center left
+//     border: 1px solid #fff
+//     border-radius: 50%
+//     box-shadow: none
+//     color: transparent
+//     cursor: pointer
+//     line-height: 120px
+//     margin: 0%
+//     //transform: translateY(-50%)
+//     width: 77px
+//     height: 78px
+//     top: 49%
 
 
 
-.btn-back i,
-.btn-next i 
-    font-size: 30px
-    cursor: pointer
-    display: inline-block
-    position: relative
+// .btn-back i,
+// .btn-next i 
+//     font-size: 30px
+//     cursor: pointer
+//     display: inline-block
+//     position: relative
 
 
-.btn-next i:after 
+// .btn-next i:after 
+//   content: '»'
+//   position: absolute
+//   opacity: 0
+//   top: 0
+//   right: -20px
+//   transition: 0.5s
+
+
+// .btn-next:hover i 
+//   padding-right: 25px
+
+
+// .btn-next:hover i:after
+//   opacity: 1
+//   right: 0
+
+
+
+
+
+
+// .btn-back 
+//     left: -27px
+
+// .btn-next
+//     right: -37px
+
+.btn-back
+  border-radius: 4px
+  background-color:#d35400
+  border: none
+  padding: 20px
+  width: 200px
+  transition: all 0.5s
+
+
+
+.btn-back span 
+  cursor: pointer
+  display: inline-block
+  position: relative
+  transition: 0.5s
+
+
+.btn-back span:after 
   content: '»'
   position: absolute
   opacity: 0
@@ -181,24 +226,16 @@ iframe
   transition: 0.5s
 
 
-.btn-next:hover i 
+.btn-back:hover span 
   padding-right: 25px
 
 
-.btn-next:hover i:after
+.btn-back:hover span:after 
   opacity: 1
   right: 0
 
 
 
-
-
-
-.btn-back 
-    left: -27px
-
-.btn-next
-    right: -37px
 
 .letra
     font-size: 22px
