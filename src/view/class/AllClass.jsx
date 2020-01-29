@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import iconDelete from '../courses/assets/delete.svg'
-import iconEdit from "../courses/assets/edit.svg";
+// import iconEdit from "../courses/assets/edit.svg";
 import "../courses/cardCourses.sass";
 export default class AllClass extends Component {
   constructor(props) {

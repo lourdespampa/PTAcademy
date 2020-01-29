@@ -6,18 +6,26 @@ import io from "socket.io-client";
 
 import Slide from '../slides/slide_02';
 import iconExit from "../../../img/cerrar.png";
-function enviarvideo(url, url2, socketUrl, id_access) {
+function enviarvideo(url, url2, socketUrl, id_access,setShow,setNoData) {
+
   var urlnombre = url + url2;
   const socket = io(socketUrl, {
     query: { pin: id_access }
   });
   socket.emit("VideoEmit", urlnombre);
-  document.getElementById("overlay2").classList.add("active");
-  document.getElementById("popupvideo").classList.add("active");
+  
   var expresionRegular = "https://www.youtube.com/watch?v=";
   var urlembed = urlnombre.split(expresionRegular);
   document.getElementById("video-frame").src =
     "https://www.youtube.com/embed/" + urlembed[1] + "?autoplay=1&controls=0";
+  if(url===''){
+    setNoData(true)
+  }else{
+  document.getElementById("overlay2").classList.add("active");
+  document.getElementById("popupvideo").classList.add("active");
+  setShow()
+  setNoData(false)
+}
 }
 function SendForm(socketUrl, id_access) {
   //SEND FORM
@@ -31,6 +39,7 @@ function SendForm(socketUrl, id_access) {
 function FooterContainer(props){
     const [urlnombre,seturlnombre]=useState('');
     const [Show, setShow] = useState(false);
+    const [NoData, setNoData] = useState(false);
         return(
         <>           
             <div className="footer-distributed">
@@ -42,7 +51,7 @@ function FooterContainer(props){
                     <img alt="" width="30px" height="30px" src={require("../../../img/footer/form.svg")} />
                     <span>Formulario</span>
                 </div>
-                <div id="btnvideo" onClick={() => setShow(true)+props.botonClick('btnvideo')}>
+                <div id="btnvideo" onClick={() => setShow(true)+props.botonClick('btnvideo')+seturlnombre('')}>
                     <img alt="" width="30px" height="30px" src={require("../../../img/footer/video.svg")} />
                     <span>Youtube</span>
                 </div>
@@ -90,8 +99,8 @@ function FooterContainer(props){
             </div>        
 
             <Modal className="modal-teacher__general" id="modalvideo" size={'SM'} show={Show}
-            onHide={() => setShow(false)+props.botonClick('modalvideo')} >
-                <button className="modal-teacher__general-close" onClick={() => setShow(false)+props.botonClick('modalvideo')}>
+            onHide={() => setShow(false)+props.botonClick('modalvideo')+setNoData(false)} >
+                <button className="modal-teacher__general-close" onClick={() => setShow(false)+props.botonClick('modalvideo')+setNoData(false)}>
                     <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                 </button>
                 <Modal.Header>
@@ -101,9 +110,12 @@ function FooterContainer(props){
                 </Modal.Header>
                 <Modal.Body>
                     <input id="urlid" type="text" className="Opal" placeholder={props.txt} name="urlvideo" onChange={e => seturlnombre(e.target.value)+props.changeOn('urlvideo',e.target.value)} style={{fontSize:"20px",width: "80%"}} required/>
-                    <button className="btnenviarvideo" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow(false))+props.botonClick('btnenviarvideo')} type="button">
+                    <button className="btnenviarvideo" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow,setNoData)+props.botonClick('btnenviarvideo')} type="button">
                         <div className="button-zoom">ENVIAR</div>
                     </button>
+                    { NoData?
+                        <p className="mensageAction negative">AGREGE UNA URL DE VIDEO</p>:null
+                    }
                 </Modal.Body>
             </Modal>
 
