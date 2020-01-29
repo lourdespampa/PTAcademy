@@ -36,7 +36,7 @@ export default class AllCourses extends Component {
               </svg>
             
             <div className="classTeacher-card__content">
-              <p className="classTeacher-card__level">{this.props.level}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <p className="classTeacher-card__level">{this.props.level ? this.props.level : "particular"}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <p className="classTeacher-card__grade">{this.props.grade}</p>&nbsp;&nbsp;
               <p className="classTeacher-card__section">{this.props.section}</p>
               <h1 className="classTeacher-card__title">{this.props.name_course}</h1>
