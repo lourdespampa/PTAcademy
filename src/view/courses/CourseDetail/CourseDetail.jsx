@@ -19,7 +19,7 @@ export default class CourseDetail extends Component {
     this.setState({ id_course: params.id_course, id_teacher: params.id });
     setTimeout(() => console.log(this.state.id_course, this.state.id_teacher), 2000)
     axios({
-      url: `http://192.168.1.29:4200/v1/api/student/${params.id}/${params.id_course}/students`,
+      url: `${this.props.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
@@ -46,7 +46,7 @@ export default class CourseDetail extends Component {
     } = this.props;
     var varToken = localStorage.getItem("token");
     axios({
-      url: `http://192.168.1.29:4200/v1/api/student/${params.id}/${params.id_course}/students`,
+      url: `${this.props.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
@@ -66,6 +66,11 @@ export default class CourseDetail extends Component {
     const nav = document.getElementById("main-nav");
     nav.classList.toggle("show");
   };
+  Cerrar = () => {
+    console.log('se tiene que cerrar')
+    const nav = document.getElementById("main-nav");
+    nav.classList.remove('show')
+  }
   render() {
     return (
       <>
@@ -77,13 +82,13 @@ export default class CourseDetail extends Component {
           getdata={this.getAlumnos}
         ></NavCourse>
 
-        <div className="CourseDetail__Container">
+        <div className="CourseDetail__Container" onClick={this.Cerrar}>
           <div>
             <h1 className="CourseDetail__title">Lista de alumnos</h1>
           </div>
 
-          <table class="CourseDetail__table">
-            <tbody className="CourseDetail__table-body">
+          {/* <table class="CourseDetail__table">
+            {/* <tbody className="CourseDetail__table-body">
               <tr className="CourseDetail__table-tr">
                 <th className="CourseDetail__table-th">Apellidos</th>
                 <th className="CourseDetail__table-th">Nombres</th>
@@ -91,13 +96,12 @@ export default class CourseDetail extends Component {
                 <th className="CourseDetail__table-th">Competencia 2</th>
                 <th className="CourseDetail__table-th">Competencia 3</th>
                 <th className="CourseDetail__table-th">Competencia 4</th>
-              </tr>
-              {/* {this.state.students.length > 0 ? (
-              this.state.students.map((alumnos, id) => (
-                */}
-              <tr className="CourseDetail__table-tr">
+              </tr> */}
+              
+              {/* {this.state.students.map((alumnos, id) => {
+              <tr className="CourseDetail__table-tr" key={id}>
                <td className="CourseDetail__table-td" data-th="Apellidos">
-                  {/* <h1>{alumnos.id_stud}</h1> */}
+                  <h1>{alumnos._id}</h1>
                 </td>
                 <td className="CourseDetail__table-td" data-th="Nombres">
                   UPS
@@ -115,72 +119,9 @@ export default class CourseDetail extends Component {
                   $8,322.12
                 </td>
               </tr>
-              {/* // ) : (
-              //   // <div>false</div>
-              //   <h3 className="courseTeacher-cards__nullCourses">Cargando cursos... Si no tiene, puede crear uno.</h3>
-              // )} */}
-              <tr className="CourseDetail__table-tr">
-                <td className="CourseDetail__table-td" data-th="Apellidos">
-                  UPS3449
-                </td>
-                <td className="CourseDetail__table-td" data-th="Nombres">
-                  UPS South Inc.
-                </td>
-                <td className="CourseDetail__table-td" data-th="Compentencia 1">
-                  ASDF29301
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 2">
-                  6/24/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 3">
-                  12/25/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 4">
-                  $3,255.49
-                </td>
-              </tr>
-              <tr className="CourseDetail__table-tr">
-                <td className="CourseDetail__table-td" data-th="Apellidos">
-                  BOX5599
-                </td>
-                <td className="CourseDetail__table-td" data-th="Nombres">
-                  BOX Pro West
-                </td>
-                <td className="CourseDetail__table-td" data-th="Compentencia 1">
-                  ASDF43000
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 2">
-                  6/27/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 3">
-                  12/25/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 4">
-                  $45,255.49
-                </td>
-              </tr>
-              <tr className="CourseDetail__table-tr">
-                <td className="CourseDetail__table-td" data-th="Apellidos">
-                  PAN9999
-                </td>
-                <td className="CourseDetail__table-td" data-th="Nombres">
-                  Pan Providers and Co.
-                </td>
-                <td className="CourseDetail__table-td" data-th="Compentencia 1">
-                  ASDF33433
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 2">
-                  6/29/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 3">
-                  12/25/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 4">
-                  $12,335.69
-                </td>
-              </tr>
+  })}
             </tbody>
-          </table>
+          </table> */}
         </div>
       </>
     );
