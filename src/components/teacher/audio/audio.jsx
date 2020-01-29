@@ -29,8 +29,6 @@ export default class Audio extends Component{
             query:
                 { pin: this.props.id_access }
           })
-        if(controller.length%2 === 0){
-            micro.style.animation ='ripple 1000ms infinite' ;
             socket.emit('onPlay', {
                 txt: "Se inicio una nueva emision de voz.Por favor da click en el boton reproducir"
             });
@@ -55,10 +53,7 @@ export default class Audio extends Component{
                 }
                 presenterMedia.startRecording();
                 controller.push("xd")
-                }
-            
-            } else{
-                if(controller.length%2 !== 0)
+                } else{
                 presenterMedia.stopRecording();
                 presenterMedia = false
                 controller.push("xd")
