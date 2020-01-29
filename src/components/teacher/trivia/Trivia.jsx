@@ -67,6 +67,20 @@ class Trivia extends React.Component {
       tiempo: e.target.value
     })
   }
+  handleChangeImage = e => {
+    console.log("hola")
+    console.log(e.target.files[0])
+    let file = e.target.files[0]
+    if (file.type.substr(0,6) !== "image/"){
+      return alert("Ingrese una imagen.")
+    }
+    var reader = new FileReader();
+    reader.onload = function(e){
+      var result = e.target.result;
+      document.getElementById("imgSalida").setAttribute("src", result)
+    }
+    reader.readAsDataURL(file);
+  }
   changeAnswer1 = e => {
     this.setState({
       respuestaOne: e.target.value
@@ -186,7 +200,7 @@ class Trivia extends React.Component {
                       <div style={{display: "inline-block"}}></div>
                       {/* <img className="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
                       <h3 style={{display: "inline-block", marginLeft: "20px", marginTop: "25px"}}>
-                        {alumno.data.alumno}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puntaje:&nbsp;&nbsp;{alumno.data.puntaje}
+                        {alumno.data.alumno}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puntaje:&nbsp;&nbsp;{alumno.data.puntaje}
                       </h3>
                     </li>
                   ))
@@ -207,9 +221,9 @@ class Trivia extends React.Component {
         <form>
           <div className="triviaT-row">
             <div className="triviaT-col-6">
-              <label for="pregunta">Pregunta</label>
+              <label htmlFor="pregunta">Pregunta</label>
               <input type="text" id="pregunta" className="triviaT-input-pregunta" value={this.state.pregunta} onChange={this.changeQuestion}/>
-              <label for="time">Tiempo</label>
+              <label htmlFor="time">Tiempo</label>
               <select id="time" name="tiempo" className="triviaT-input-pregunta triviaT-input-tiempo" value={this.state.value} onChange={this.handleChangeTime}>
                   <option value="5">5 segundos</option>
                   <option value="10">10 segundos</option>
@@ -219,17 +233,17 @@ class Trivia extends React.Component {
               </select>
             </div>
             <div className="triviaT-col-6">
-              <label for="input-img">Medio de Comunicación</label>
+              <label htmlFor="input-img">Medio de Comunicación (opcional)</label>
               <div className="triviaT-image-container">
-                <input type="file" id="input-img" className="imagen"/>
-                <img alt="" className="triviaT-imgSalida" width="120px" height="100px" src="" />
+                <input type="file" id="input-img" className="imagen" onChange={this.handleChangeImage} />
+                <img className="triviaT-imgSalida" id="imgSalida" width="120px" height="100px" src="" />
               </div>
             </div>
           </div>
 
           <div className="triviaT-row">
             <div className="triviaT-col-6">
-            <label for="res1">Respuesta 1</label>
+            <label htmlFor="res1">Respuesta 1</label>
             <br/>
             <div className="triviaT-contenedor-respuesta custom-radios">
               <input type="text" id="res1" className="triviaT-input-respuestas" value={this.state.respuestaOne} onChange={this.changeAnswer1} />
@@ -237,31 +251,14 @@ class Trivia extends React.Component {
                       checked={this.state.selectedCorrectAnswer === 'rojo'}
                       onChange={this.handleCorrectAnswer}
                       />
-              <label for="color-1">
+              <label htmlFor="color-1">
                 <span>
                   <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
                 </span>
               </label>
             </div>
 
-            <label for="res1">Respuesta 2</label>
-            <br/>
-            <div className="triviaT-contenedor-respuesta custom-radios">
-              <input type="text" id="res2" className="triviaT-input-respuestas" value={this.state.respuestaTwo} onChange={this.changeAnswer2}/>
-              <input type="radio" id="color-3" name="color" value="azul" 
-                      checked={this.state.selectedCorrectAnswer === 'azul'}
-                      onChange={this.handleCorrectAnswer}
-                      />
-              <label for="color-3">
-                <span>
-                  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                </span>
-              </label>
-            </div>
-            </div>
-
-            <div className="triviaT-col-6">
-            <label for="res2">Respuesta 3</label>
+            <label htmlFor="res3">Respuesta 2</label>
             <br/>
             <div className="triviaT-contenedor-respuesta custom-radios">
               <input type="text" id="res3" className="triviaT-input-respuestas" value={this.state.respuestaTree} onChange={this.changeAnswer3}/>
@@ -269,14 +266,32 @@ class Trivia extends React.Component {
                       checked={this.state.selectedCorrectAnswer === 'naranja'}
                       onChange={this.handleCorrectAnswer}
                       />
-              <label for="color-2">
+              <label htmlFor="color-2">
                 <span>
                   <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
                 </span>
               </label>
             </div>
             
-            <label for="res2">Respuesta 4</label>
+            </div>
+
+            <div className="triviaT-col-6">
+              <label htmlFor="res2">Respuesta 3</label>
+              <br/>
+              <div className="triviaT-contenedor-respuesta custom-radios">
+                <input type="text" id="res2" className="triviaT-input-respuestas" value={this.state.respuestaTwo} onChange={this.changeAnswer2}/>
+                <input type="radio" id="color-3" name="color" value="azul" 
+                        checked={this.state.selectedCorrectAnswer === 'azul'}
+                        onChange={this.handleCorrectAnswer}
+                        />
+                <label htmlFor="color-3">
+                  <span>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                  </span>
+                </label>
+              </div>
+            
+            <label htmlFor="res4">Respuesta 4</label>
             <br/>
             <div className="triviaT-contenedor-respuesta custom-radios">
               <input type="text" id="res4" className="triviaT-input-respuestas" value={this.state.respuestaFour} onChange={this.changeAnswer4}/>
@@ -284,13 +299,13 @@ class Trivia extends React.Component {
                       checked={this.state.selectedCorrectAnswer === 'verde'}
                       onChange={this.handleCorrectAnswer}
                       />
-              <label for="color-4">
+              <label htmlFor="color-4">
                 <span>
                   <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
                 </span>
               </label>
             </div>
-            </div>
+          </div>
 
           </div>
         </form>

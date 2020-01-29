@@ -67,11 +67,8 @@ function FooterContainer(props){
                     <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="760" height="569" style={{width: "100% !important",display:"none",height: "100%"}} allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
                     </iframe>
-                    
-                    <div id="btnBack" className="btn-back"  onClick={()=>props.backtPpt()+props.botonClick('btnBack')}>
-                    <span>Siguiente</span>
-                    </div>
-                    <div id="btnNext" className="btn-next" onClick={()=>props.nextPpt()+props.botonClick('btnNext')}><i class="material-icons">navigate_next</i></div>
+                    <div id="btnBack" className="btn-back"  onClick={()=>props.backtPpt()+props.botonClick('btnBack')}><i className="material-icons">navigate_before</i></div>
+                    <div id="btnNext" className="btn-next" onClick={()=>props.nextPpt()+props.botonClick('btnNext')}><i className="material-icons">navigate_next</i></div>
                 </div>
             </div>
             <div className="overlay" id="overlayinframe">
@@ -79,14 +76,14 @@ function FooterContainer(props){
                         <button className="modal-teacher__general-close" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} >
                             <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                         </button>
-                    <div class="punto-posi">
-                        <span className="letra">EMITIR FORMULARIO</span>
+                    <div className="punto-posi">
+                        <span className="formulario-title">EMITIR FORMULARIO</span>
                     </div>
                     <br/>
-                    {/* <a href id="btnCerrarFormu" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} ><i class="material-icons">close</i></a> */}
+                    {/* <a href id="btnCerrarFormu" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} ><i className="material-icons">close</i></a> */}
                     <iframe title="diapo-iframe" id="diapo-formulario" className="fc-formulario" frameBorder="0"  allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
-                    <button class="Myni" onClick={()=>SendForm(props.socketUrl,props.id_access)}>
+                    <button className="button btnMyM" onClick={()=>SendForm(props.socketUrl,props.id_access)}>
                         <div className="button-zoom">EMITIR</div>
                     </button>
                 </div>
@@ -98,7 +95,7 @@ function FooterContainer(props){
                     <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                 </button>
                 <Modal.Header>
-                    <div class="punto-posi">
+                    <div className="punto-posi">
                         <span>EMITIR VIDEO</span>
                     </div>
                 </Modal.Header>
@@ -110,9 +107,9 @@ function FooterContainer(props){
                 </Modal.Body>
             </Modal>
 
-            <div class="overlay" id="overlay2">
-                <div class="popup" id="popupvideo">
-                    <a href id="btn-cerrar-popup" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay2','popupvideo')+props.botonClick('btn-cerrar-popup')}><i class="material-icons">close</i></a>
+            <div className="overlay" id="overlay2">
+                <div className="popup" id="popupvideo">
+                    <a href id="btn-cerrar-popup" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay2','popupvideo')+props.botonClick('btn-cerrar-popup')}><i className="material-icons">close</i></a>
                     <iframe  title="iframevideo" id="video-frame" src="" frameborder="0" style={{width: "100% !important",height: "100%"}} 
                     allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </div>
