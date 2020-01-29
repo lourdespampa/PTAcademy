@@ -89,8 +89,8 @@ class Upload extends Component {
 
       var varToken = localStorage.getItem('token');
         
-      // req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
-      req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/falllaApropocito`);
+      req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
+      // req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/falllaApropocito`);
       req.setRequestHeader('x-access-token', `${varToken}`)
       req.send(formData);
       console.log('asdmasd')
@@ -100,11 +100,13 @@ class Upload extends Component {
             console.log(req.response)
             console.log('bien')
             this.props.handleClose()
+            this.props.handleEnableX()
           }
           else{
             console.log(req.response)
             console.log('mal')
             this.setState({ errorUploaded: true});
+            this.props.handleEnableX()
           }
         }
       }
