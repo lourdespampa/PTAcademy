@@ -183,6 +183,7 @@ textarea {
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
+  font-family: opal;
 }
 
 /**
@@ -398,7 +399,7 @@ template {
     justify-content: space-between;
     position: relative;
     top: 17px;
-    padding: 1.25rem 1.5rem 0;
+    padding: 1.25rem 1.5rem;
   }
 
 .modal-content {
@@ -424,7 +425,7 @@ template {
   border: 0;
   height: 30px;
   display: block;
-  margin: .7em;
+  margin: 0;
   border-radius: 5px;
   position: relative;
   z-index: 1;
@@ -506,7 +507,8 @@ template {
 .modal-body__button.no:hover .button-zoom,
 .modal-body__button.cursos:hover .button-zoom,
 .modal-teacher__general-close:hover .button-zoom{
-  transform: scale(1.20)} 
+  transform: scale(1.20);
+} 
 
 .modal-body__button.backCursos:hover .button-zoom{
   transform: scale(1.08)} 
@@ -526,7 +528,7 @@ template {
     padding: 0.5rem 1.5rem 1.5rem;
     text-align: center;
     position: relative;
-    padding-top: 15 px}
+    padding-top: 15px}
 
 .modal-body .punto-marco{
   margin: 0 10px 25px;
