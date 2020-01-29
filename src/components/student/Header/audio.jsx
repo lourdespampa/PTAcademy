@@ -164,7 +164,7 @@ export default class Audio extends Component {
                     //    console.log("3");
                     //if (packet.pin === ('<%= pin %>').toUpperCase()) {
                     //   debug.value = "Buffer received: " + packet.audio[0].byteLength + "bytes";
-                    audioStreamer.receiveBuffer(packet.audio);
+                    audioStreamer.receiveBuffer(packet.audio)
                     console.log('recibiendo stream...');
                      }
                     // audioStreamer.realtimeBufferPlay(packet);

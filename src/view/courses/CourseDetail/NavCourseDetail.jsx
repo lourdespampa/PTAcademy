@@ -96,12 +96,15 @@ export default class NavCourse extends Component {
         <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
             <h3>Bienvenido(a) </h3>
-
-            <div
+           
+              <div
               className="teacherCourses__main-menu-toggle"
               id="main-menu-toggle"
               onClick={this.Abrir}
-            ></div>
+            > 
+            </div>
+            <div className="teacherCourseNav" onClick={this.Abrir}></div>
+            
             <nav className="teacherCourses__main-nav" id="main-nav">
               <ul className="teacherCourses__main-menu">
                 <li className="teacherCourses__main-menu__item">
