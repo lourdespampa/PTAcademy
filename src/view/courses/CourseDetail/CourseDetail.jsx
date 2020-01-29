@@ -87,8 +87,8 @@ export default class CourseDetail extends Component {
             <h1 className="CourseDetail__title">Lista de alumnos</h1>
           </div>
 
-          <table class="CourseDetail__table">
-            <tbody className="CourseDetail__table-body">
+          {/* <table class="CourseDetail__table">
+            {/* <tbody className="CourseDetail__table-body">
               <tr className="CourseDetail__table-tr">
                 <th className="CourseDetail__table-th">Apellidos</th>
                 <th className="CourseDetail__table-th">Nombres</th>
@@ -96,13 +96,12 @@ export default class CourseDetail extends Component {
                 <th className="CourseDetail__table-th">Competencia 2</th>
                 <th className="CourseDetail__table-th">Competencia 3</th>
                 <th className="CourseDetail__table-th">Competencia 4</th>
-              </tr>
-              {/* {this.state.students.length > 0 ? (
-              this.state.students.map((alumnos, id) => (
-                */}
-              <tr className="CourseDetail__table-tr">
+              </tr> */}
+              
+              {/* {this.state.students.map((alumnos, id) => {
+              <tr className="CourseDetail__table-tr" key={id}>
                <td className="CourseDetail__table-td" data-th="Apellidos">
-                  {/* <h1>{alumnos.id_stud}</h1> */}
+                  <h1>{alumnos._id}</h1>
                 </td>
                 <td className="CourseDetail__table-td" data-th="Nombres">
                   UPS
@@ -120,72 +119,9 @@ export default class CourseDetail extends Component {
                   $8,322.12
                 </td>
               </tr>
-              {/* // ) : (
-              //   // <div>false</div>
-              //   <h3 className="courseTeacher-cards__nullCourses">Cargando cursos... Si no tiene, puede crear uno.</h3>
-              // )} */}
-              <tr className="CourseDetail__table-tr">
-                <td className="CourseDetail__table-td" data-th="Apellidos">
-                  UPS3449
-                </td>
-                <td className="CourseDetail__table-td" data-th="Nombres">
-                  UPS South Inc.
-                </td>
-                <td className="CourseDetail__table-td" data-th="Compentencia 1">
-                  ASDF29301
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 2">
-                  6/24/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 3">
-                  12/25/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 4">
-                  $3,255.49
-                </td>
-              </tr>
-              <tr className="CourseDetail__table-tr">
-                <td className="CourseDetail__table-td" data-th="Apellidos">
-                  BOX5599
-                </td>
-                <td className="CourseDetail__table-td" data-th="Nombres">
-                  BOX Pro West
-                </td>
-                <td className="CourseDetail__table-td" data-th="Compentencia 1">
-                  ASDF43000
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 2">
-                  6/27/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 3">
-                  12/25/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 4">
-                  $45,255.49
-                </td>
-              </tr>
-              <tr className="CourseDetail__table-tr">
-                <td className="CourseDetail__table-td" data-th="Apellidos">
-                  PAN9999
-                </td>
-                <td className="CourseDetail__table-td" data-th="Nombres">
-                  Pan Providers and Co.
-                </td>
-                <td className="CourseDetail__table-td" data-th="Compentencia 1">
-                  ASDF33433
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 2">
-                  6/29/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 3">
-                  12/25/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 4">
-                  $12,335.69
-                </td>
-              </tr>
+  })}
             </tbody>
-          </table>
+          </table> */}
         </div>
       </>
     );
