@@ -66,6 +66,11 @@ export default class CourseDetail extends Component {
     const nav = document.getElementById("main-nav");
     nav.classList.toggle("show");
   };
+  Cerrar = () => {
+    console.log('se tiene que cerrar')
+    const nav = document.getElementById("main-nav");
+    nav.classList.remove('show')
+  }
   render() {
     return (
       <>
@@ -77,7 +82,7 @@ export default class CourseDetail extends Component {
           getdata={this.getAlumnos}
         ></NavCourse>
 
-        <div className="CourseDetail__Container">
+        <div className="CourseDetail__Container" onClick={this.Cerrar}>
           <div>
             <h1 className="CourseDetail__title">Lista de alumnos</h1>
           </div>
