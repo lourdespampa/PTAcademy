@@ -415,7 +415,9 @@ template {
 }
 
 .modal-title{
-    letter-spacing: .01em}
+    letter-spacing: .01em;
+    text-decoration: underline;
+  }
 
 .modal-teacher__general-close{
   float: right;
