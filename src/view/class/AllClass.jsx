@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-// import cursoImg from '../../img/courses/cursos.jpg'
 import axios from "axios";
-import deleteClass from '../courses/assets/delete.svg'
+import iconDelete from '../courses/assets/delete.svg'
+import iconEdit from "../courses/assets/edit.svg";
+import "../courses/cardCourses.sass";
 export default class AllClass extends Component {
   constructor(props) {
     super(props);
@@ -47,27 +48,39 @@ export default class AllClass extends Component {
   render() {
     return (
       <>
-        <div className="courseTeacher-card-item">
-          <div className="courseTeacher-card-image">
-            {/* <img src={cursoImg} alt="some value" /> */}
+        <div className="classTeacher-container">
+          <div className="classTeacher-card">
+          <div className="classTeacher-card__image-container">
             <button onClick={() =>
                 this.props.onClick(this.props.id) +
                 this.props.setShow("showdelete", true)}
-                class="courseTeacher__button-delette">
-              <img class="courseTeacher__img" src={deleteClass} alt="imagen de borrar cursos" />
+                className="courseTeacher__button-delette">
+              <img 
+                className="courseTeacher__img" 
+                src={iconDelete} 
+                alt="imagen de borrar cursos" 
+                />
             </button>
+            <img className="classTeacher-card__image" src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80" alt="" />
+
           </div>
-          <div className="courseTeacher-card-info">
-            <h2 className="courseTeacher-card-title">{this.props.name_class}</h2>
+          <svg className="classTeacher-card__svg" viewBox="0 0 800 500">
+
+                <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333"/>
+                <path className="classTeacher-card__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" strokeWidth="3" fill="transparent"/>
+              </svg>
+          <div className="classTeacher-card__content">
+            <h1 className="classTeacher-card__title">{this.props.name_class}</h1>
             <p className="courseTeacher-card-intro">{this.props.desc}</p>
             {/* <Link to="/ClassTeacher" className="btn card_btn">
               Entrar a detalle de la clase
             </Link> */}
-            <div >
             </div>
             {this.renderRedirect()}
-            <div className="classTeacher__buttonEntry courseTeacher__button" onClick={this.obtenerCodigo}>
-              <label className="courseTeacher__buttonEntry-label ">ACTIVAR CLASE</label>
+            <div className="courseTeacher__buttonEntry" onClick={this.obtenerCodigo}>
+              <label className="courseTeacher__buttonEntry-label">
+                ACTIVAR CLASE
+              </label>
             </div>
           </div>
         </div>
