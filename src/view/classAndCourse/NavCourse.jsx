@@ -41,7 +41,7 @@ function BotonAgregar(props) {
           { (props.agregarX === 'curso')?
           <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} />
           :
-          <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} handleDisableX={handleDisableX} idteacher={props.idteacher} idcourse={props.idcourse}/>
+          <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} handleEnableX={()=>setActivarX(true)} handleDisableX={handleDisableX} idteacher={props.idteacher} idcourse={props.idcourse}/>
           }
         </Modal.Body>
       </Modal>
@@ -121,6 +121,15 @@ export default class NavCourse extends Component {
                     agregarX={this.props.agregarX} getdata={this.props.getdata}>
                   </BotonAgregar>
                 </li>
+                {this.props.agregarX==='clase'?
+                <li className="teacherCourses__main-menu__item">
+                  <Link to={`/CoursesTeacher/${this.props.idteacher}`} style={{textDecoration: 'none'}}>
+                    <div className="teacherCourses__main-menu__LogOut">
+                      Regresar a cursos
+                    </div>
+                  </Link>
+                </li>
+                :null}
                 <li className="teacherCourses__main-menu__item">
                   <BotonCerrarSesion cerrarSesion={this.cerrarSesion} />
                 </li>

@@ -100,11 +100,13 @@ class Upload extends Component {
             console.log(req.response)
             console.log('bien')
             this.props.handleClose()
+            this.props.handleEnableX()
           }
           else{
             console.log(req.response)
             console.log('mal')
             this.setState({ errorUploaded: true});
+            this.props.handleEnableX()
           }
         }
       }
@@ -115,22 +117,22 @@ class Upload extends Component {
     if (this.state.errorUploaded===true){
         return (
           <>
-          <p className="rellena">
-        OCURRIO UN ERROR, LIMPIE Y SUBA OTRA DIAPOSITIVA
-        </p>
-          <button className='modal-body__button cursos'
+          <button className='modal-body__button backCursos'
             onClick={() =>
-              this.setState({ files: [],uploading: false, errorUploaded: false,slideOn:false })
+              this.setState({ files: [], uploading: false, errorUploaded: false,slideOn:false })
             }
           >
-            LIMPIAR
+            <div className="button-zoom">LIMPIAR</div>
           </button>
+          <p className="mensageAction negative">
+            OCURRIO UN ERROR, LIMPIE Y SUBA OTRA DIAPOSITIVA
+          </p>
           </>
         );
     } else  if (this.state.uploading===true & this.state.UploadDone===false){
       return (
         <>
-        <p>
+        <p className="mensageAction pocitive">
         Procesando diapositiva...
         </p>
         </>
@@ -138,7 +140,7 @@ class Upload extends Component {
     }else  if (this.state.uploading===true & this.state.UploadDone===true){
       return (
         <>
-        <p>
+        <p className="mensageAction pocitive"> 
         Subiendo diapositiva...
         </p>
         </>
@@ -151,9 +153,23 @@ class Upload extends Component {
                   onClick={this.uploadFiles}>
             <div className="button-zoom">CREAR CLASE</div>
           </button>
-          { this.state.NoData ?
-          <p className="rellena">RELLENA TODOS LOS CAMPOS</p>:null
+          {this.state.files.length>0 ?
+            <button className='modal-body__button backCursos'
+            onClick={() =>
+              this.setState({ files: [], uploading: false, errorUploaded: false,slideOn:false })
+            }
+          >
+            <div className="button-zoom">LIMPIAR</div>
+          </button>
+          :
+            null
           }
+          { this.state.NoData?
+          this.props.className==='' || this.props.desc==='' ||  Object.keys(this.state.files).length === 0?
+          <p className="mensageAction negative">RELLENA TODOS LOS CAMPOS</p>:null:null
+          }
+          
+
         </>
       );
     }

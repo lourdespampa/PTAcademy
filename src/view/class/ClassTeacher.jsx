@@ -122,8 +122,8 @@ export default class ClassTeacher extends Component {
                 <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
             </button>
           <Modal.Header>
-            <div className="punto-posi">
-              <span className="punto-text">¿DESEA ELIMINAR LA CLASE?</span>
+            <div className="modal-title h4">
+              ¿DESEA ELIMINAR LA CLASE?
             </div>
           </Modal.Header>
           <Modal.Body>
