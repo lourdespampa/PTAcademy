@@ -128,20 +128,20 @@ export default class ClassTeacher extends Component {
           </Modal.Header>
           <Modal.Body>
             <button
-              id="modal-body__button-yes" className="btn"
+              className="modal-body__button yes"
               onClick={() =>
                 this.deleteClass() + this.setShow("showdelete", false)
               }
               type="button"
             >
-              SI
+              <div className="button-zoom">SI</div>
             </button>
             <button
-              id="modal-body__button-no" className="btn"
+              className="modal-body__button no"
               onClick={() => this.setShow("showdelete", false)}
               type="button"
             >
-              NO
+              <div className="button-zoom">NO</div>
             </button>
           </Modal.Body>
         </Modal>
