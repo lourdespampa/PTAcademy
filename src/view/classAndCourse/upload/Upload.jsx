@@ -23,10 +23,14 @@ class Upload extends Component {
   }
 
   onFilesAdded(files) {
+    this.setState({
+      files: []
+    });
     this.setState({slideOn:true})
     this.setState(prevState => ({
       files: prevState.files.concat(files)
     }));
+    console.log(files)
   }
 
   async uploadFiles() {
