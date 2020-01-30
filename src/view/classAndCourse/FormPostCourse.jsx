@@ -97,6 +97,7 @@ export default class FormPostCourse extends Component {
     }).then((res) => {
       // return console.log(res.data)
       this.setState({bloquearBoton: false})
+      this.props.menuToggleNavbar()
       this.props.handleClose()
     })
       .catch(err => {

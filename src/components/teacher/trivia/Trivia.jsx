@@ -167,7 +167,7 @@ class Trivia extends React.Component {
               </button>
               :
               <button className="triviaT-enviar" onClick={this.handleSendQuestion}>
-                Enviar
+                ENVIAR
               </button>
               }
               <button className="triviaT-respuestas" onClick={this.showModal}>
