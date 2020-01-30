@@ -28,7 +28,7 @@ export default class FormAddStudent extends Component {
   };
 
   handleSubmit = event => {
-    console.log(this.props);
+    console.log(this.props.apiUrl);
     var varToken = localStorage.getItem("token");
     event.preventDefault();
     const data = {

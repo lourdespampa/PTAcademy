@@ -148,10 +148,10 @@ class Upload extends Component {
     }else {
       return (
         <>
-          <button className='modal-body__button cursos' type="submit" 
+          <button id='modal-body__button-cursos' type="submit" className="btn btn-primary Opal"
                   hidden={this.state.files.length < 0 || this.state.uploading}
                   onClick={this.uploadFiles}>
-            <div className="button-zoom">CREAR CLASE</div>
+            Crear Clase
           </button>
           {this.state.files.length>0 ?
             <button className='modal-body__button backCursos'

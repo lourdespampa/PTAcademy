@@ -103,7 +103,7 @@ export default class CoursesTeacher extends Component {
     return (
       <>
         <NavCourse apiUrl={this.props.apiUrl} idcourse={this.state.id_curso} idteacher={this.state._id}
-         agregarX={'curso'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos}></NavCourse>
+         agregarX={'course'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos}></NavCourse>
         <div className="CourseTeacher-main">
           <h1 className="courseTeacher-title">SECCION DE CURSOS</h1>
           <ul className="courseTeacher-container">
@@ -137,7 +137,7 @@ export default class CoursesTeacher extends Component {
           onHide={() => this.setShow("showdelete", false)}
         > 
           <button className="modal-teacher__general-close" onClick={() => this.setShow("showdelete", false)}>
-              <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+              <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
           </button>
           <Modal.Header>
             <div className="punto-posi">
@@ -146,20 +146,20 @@ export default class CoursesTeacher extends Component {
           </Modal.Header>
           <Modal.Body>
             <button
-              className="modal-body__button yes"
+              id="modal-body__button-yes" className="btn"
               onClick={() =>
                 this.deleteCurso() + this.setShow("showdelete", false)
               }
               type="button"
             >
-              <div className="button-zoom">SI</div>
+              <div className="button-yes__text">SI</div>
             </button>
             <button
-              className="modal-body__button no"
+              id="modal-body__button-no" className="btn"
               onClick={() => this.setShow("showdelete", false)}
               type="button"
             >
-              <div className="button-zoom">NO</div>
+              <div className="button-no__text">NO</div>
             </button>
           </Modal.Body>
         </Modal>

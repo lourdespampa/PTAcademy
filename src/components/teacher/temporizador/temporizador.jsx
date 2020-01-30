@@ -202,7 +202,7 @@ class Temporizador extends React.Component {
             <div role="document" className="modal-teacher__general">
                 <div className="modal-content">
                     <button  type="button" className="modal-teacher__general-close" onClick={this.closeModal}>
-                        <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                        <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
                     </button>
                     <div className="modal-header">
                         <div className="punto-posi">

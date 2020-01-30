@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import "./CourseDetail.sass";
 import NavCourse from "./NavCourseDetail";
 import axios from 'axios'
@@ -27,7 +27,7 @@ export default class CourseDetail extends Component {
     })
       .then(({ data }) => {
         console.log(data)
-        if (data == []) {
+        if (data === []) {
           this.setState({ students: [] });
         } else {
           this.setState({ students: data });
@@ -54,7 +54,7 @@ export default class CourseDetail extends Component {
     })
       .then(({ data }) => {
         console.log(data)
-        if (data == []) {
+        if (data === []) {
           this.setState({ students: [] });
         } else {
           this.setState({ students: data });
@@ -87,21 +87,21 @@ export default class CourseDetail extends Component {
             <h1 className="CourseDetail__title">Lista de alumnos</h1>
           </div>
 
-          {/* <table class="CourseDetail__table">
-            {/* <tbody className="CourseDetail__table-body">
-              <tr className="CourseDetail__table-tr">
+          <table class="CourseDetail__table">
+          <tbody className="CourseDetail__table-body">
+              {/* <tr className="CourseDetail__table-tr">
                 <th className="CourseDetail__table-th">Apellidos</th>
                 <th className="CourseDetail__table-th">Nombres</th>
                 <th className="CourseDetail__table-th">Competencia 1</th>
                 <th className="CourseDetail__table-th">Competencia 2</th>
                 <th className="CourseDetail__table-th">Competencia 3</th>
                 <th className="CourseDetail__table-th">Competencia 4</th>
-              </tr> */}
-              
-              {/* {this.state.students.map((alumnos, id) => {
-              <tr className="CourseDetail__table-tr" key={id}>
+              </tr> 
+               */}
+              {this.state.students.map(alumno => (
+              <tr className="CourseDetail__table-tr" key={alumno._id}>
                <td className="CourseDetail__table-td" data-th="Apellidos">
-                  <h1>{alumnos._id}</h1>
+                  <h1>{alumno.name_stu}</h1>
                 </td>
                 <td className="CourseDetail__table-td" data-th="Nombres">
                   UPS
@@ -119,9 +119,9 @@ export default class CourseDetail extends Component {
                   $8,322.12
                 </td>
               </tr>
-  })}
+            ))}
             </tbody>
-          </table> */}
+          </table>
         </div>
       </>
     );

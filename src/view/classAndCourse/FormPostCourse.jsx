@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 //estilos
 import { Form, Button } from "react-bootstrap";
-import './FormPostCourse.sass'
+
 //componente clase
 export default class FormPostCourse extends Component {
   //1. inializa las propiedades recibidas del componente padre
@@ -97,6 +97,7 @@ export default class FormPostCourse extends Component {
     }).then((res) => {
       // return console.log(res.data)
       this.setState({bloquearBoton: false})
+      this.props.menuToggleNavbar()
       this.props.handleClose()
     })
       .catch(err => {
@@ -114,7 +115,6 @@ export default class FormPostCourse extends Component {
 
   //Esta es la vista, interfaz
   render() {
-    const { course_name } = this.state;
     return (
       <>
         <Form onSubmit={this.handleSubmit}>

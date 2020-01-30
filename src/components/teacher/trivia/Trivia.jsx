@@ -4,6 +4,8 @@ import "./botones.scss";
 
 import io from 'socket.io-client';
 
+import { Container, Row, Col } from 'reactstrap';
+
 class Trivia extends React.Component {
   constructor(props){
     super(props)
@@ -157,8 +159,8 @@ class Trivia extends React.Component {
     return (
       <>
       <div className={this.state.navbarResponsive ? "triviaT-topnav responsive" : "triviaT-topnav"}>
-        {/* <label className="titulo-responsive"><h1>PLAYTEC Trivia</h1></label> */}
-        <a href style={{pointerEvents:"none"}} >
+        <a className="titulo-responsive"><h1>PLAYTEC Trivia</h1></a>
+        <a>
           <div className="contenedor-btn-enviar">
               { this.state.preguntaEnviada
               ?
@@ -167,7 +169,7 @@ class Trivia extends React.Component {
               </button>
               :
               <button className="triviaT-enviar" onClick={this.handleSendQuestion}>
-                Enviar
+                ENVIAR
               </button>
               }
               <button className="triviaT-respuestas" onClick={this.showModal}>
@@ -175,10 +177,10 @@ class Trivia extends React.Component {
               </button>
           </div>
         </a>
-        <a  href style={{pointerEvents:"none"}} className="titulo"><h1>PLAYTEC Trivia</h1></a>
-        {/* <a  href="none" style={{pointerEvents:"none"}} className="triviaT-icon" onClick={this.handleNavbarResponsive}>
+        <a className="titulo"><h1>PLAYTEC Trivia</h1></a>
+        <a className="triviaT-icon" onClick={this.handleNavbarResponsive}>
           <i className="fa fa-bars"></i>
-        </a> */}
+        </a>
         {
         this.state.modal
         ?

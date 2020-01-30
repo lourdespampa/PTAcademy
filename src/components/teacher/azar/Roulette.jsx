@@ -107,7 +107,7 @@ class Roulette extends React.Component {
         ctx.translate(baseSize + Math.cos(angle + arc / 2) * textRadius,
                       baseSize + Math.sin(angle + arc / 2) * textRadius);
         ctx.rotate(angle + arc / 2 + Math.PI / 2);
-        const text = `${options[i].toUpperCase().split(" ")[0].split("")[0]}.${options[i].toUpperCase().split(" ")[1].split("")[0]}`;
+        const text = options[i];
         ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
         ctx.restore();
       }

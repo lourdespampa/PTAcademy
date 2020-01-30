@@ -1,9 +1,8 @@
 import React, { Component, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { Modal, ButtonToolbar } from "react-bootstrap";
+import { Modal, Button, ButtonToolbar } from "react-bootstrap";
 import iconExit from "../../../img/cerrar.png";
 import FormAddStudent from './FormAddStudent'
-import iconBack from '../../../img/back_button.svg'
 function BotonAgregar(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -33,7 +32,7 @@ function BotonAgregar(props) {
         <Modal.Header>
           <Modal.Title>Agregando Alumno</Modal.Title>
         </Modal.Header>
-        <Modal.Body><FormAddStudent idcourse={props.idcourse} idteacher={props.idteacher}/></Modal.Body>
+        <Modal.Body><FormAddStudent apiUrl={props.apiUrl} idcourse={props.idcourse} idteacher={props.idteacher}/></Modal.Body>
       </Modal>
     </>
   );
@@ -90,29 +89,19 @@ export default class NavCourse extends Component {
     const nav = document.getElementById("main-nav");
     nav.classList.toggle("show");
   };
-  SegundaFuncion = () => {
-    const nav = document.getElementById("main-nav");
-    console.log('se esta presionando')
-  }
   render() {
     return (
       <>
         {this.state.token ? null : <Redirect to="/notfound"></Redirect>}
         <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
-          <Link to={`/CoursesTeacher/${this.props.idteacher}`} style={{textDecoration: 'none'}}>
-                    <img src={iconBack} alt="imgagen de volver atras"/>
-            </Link>
             <h3>Bienvenido(a) </h3>
-           
-              <div
+
+            <div
               className="teacherCourses__main-menu-toggle"
               id="main-menu-toggle"
               onClick={this.Abrir}
-            > 
-            </div>
-            {/* <div className="teacherCourseNav" onClick={this.SegundaFuncion}></div> */}
-            
+            ></div>
             <nav className="teacherCourses__main-nav" id="main-nav">
               <ul className="teacherCourses__main-menu">
                 <li className="teacherCourses__main-menu__item">

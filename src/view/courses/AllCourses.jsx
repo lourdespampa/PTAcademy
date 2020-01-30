@@ -6,6 +6,7 @@ import "./cardCourses.sass";
 export default class AllCourses extends Component {
 
   render() {
+
     return (
       <>
         <div className="classTeacher-container">
