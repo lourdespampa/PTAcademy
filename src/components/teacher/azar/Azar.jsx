@@ -14,7 +14,7 @@ class Azar extends React.Component {
             alumnos: [],
             alumnoElegido : "",
             point: 10,
-            showModal : false,
+            showModal : true,
             tipoPuntaje: true,
             datapoint:{
                 positivo:[

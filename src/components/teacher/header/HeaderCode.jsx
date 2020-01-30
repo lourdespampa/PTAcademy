@@ -46,7 +46,7 @@ function BotonSalir(props) {
                     </button>
                     <div className="modal-general_container">
                         <div className="modal-general_container_header">
-                            <span>¿DESEA CERRAR SESIÓN?</span>
+                            <span id="modal-header__title-question">¿DESEA CERRAR SESIÓN?</span>
                         </div>
                         <div className="modal-general_container_body">
                             <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
@@ -149,9 +149,9 @@ class HeaderCode extends React.Component {
                                     </button>
                                     <div className="modal-general_container">
                                         <div className="modal-general_container_header">
-                                            <span>CODIGO DE LA CLASE:</span>
+                                            <span className="modal-title">CODIGO DE LA CLASE:</span>
                                         </div>
-                                        <div className="modal-general_container_body">
+                                        <div className="modal-general_container_body codigogenerado">
                                             <span id="modal-content__codigogenerado">{this.props.id_access}</span>
                                         </div>
                                     </div>
