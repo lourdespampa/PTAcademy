@@ -2,7 +2,6 @@ import React from "react";
 import $ from 'jquery';
 import io from 'socket.io-client';
 import "./temporizador.sass";
-import Modal from 'react-bootstrap/Modal';
 import iconExit from "../../../img/cerrar.png";
 
 class Temporizador extends React.Component {
@@ -46,7 +45,7 @@ class Temporizador extends React.Component {
             { pin: this.props.id_access }
       })
 
-      let _this = this;
+    //   let _this = this;
         
         var g, c, l, d = "",
         e = [{

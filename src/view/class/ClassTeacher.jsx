@@ -3,6 +3,7 @@ import { Modal } from "react-bootstrap";
 import NavCourse from "../classAndCourse/NavCourse";
 import axios from 'axios'
 import AllClass from './AllClass'
+import iconExit from "../../img/cerrar.png";
 export default class ClassTeacher extends Component {
   constructor(props){
     super(props)
@@ -117,9 +118,12 @@ export default class ClassTeacher extends Component {
           show={this.state.showdelete}
           onHide={() => this.setShow("showdelete", false)}
         >
-          <Modal.Header closeButton>
-            <div className="punto-posi">
-              <span className="punto-text">¿DESEA ELIMINAR LA CLASE?</span>
+          <button className="modal-teacher__general-close" onClick={() => this.setShow("showdelete", false)}>
+                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+            </button>
+          <Modal.Header>
+            <div className="modal-title h4">
+              ¿DESEA ELIMINAR LA CLASE?
             </div>
           </Modal.Header>
           <Modal.Body>
