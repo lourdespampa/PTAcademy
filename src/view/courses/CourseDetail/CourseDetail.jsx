@@ -87,7 +87,7 @@ export default class CourseDetail extends Component {
             <h1 className="CourseDetail__title">Lista de alumnos</h1>
           </div>
 
-          <table class="CourseDetail__table">
+          <table className="CourseDetail__table">
           <tbody className="CourseDetail__table-body">
               {/* <tr className="CourseDetail__table-tr">
                 <th className="CourseDetail__table-th">Apellidos</th>
