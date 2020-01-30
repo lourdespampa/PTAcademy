@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import {Redirect} from 'react-router-dom'
 import "./login.sass";
-import logo from "./bg-teacher-login.jpg";
 import {Link} from 'react-router-dom'
-import logoAcademy from '../login.Stud/images/Logo.svg'
 import axios from 'axios';
 import Loading from "./Loading";
 //importamos la configuración de firebase

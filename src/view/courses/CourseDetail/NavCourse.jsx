@@ -32,7 +32,7 @@ function BotonAgregar(props) {
         <Modal.Header>
           <Modal.Title>Agregando Alumno</Modal.Title>
         </Modal.Header>
-        <Modal.Body><FormAddStudent idcourse={props.idcourse} idteacher={props.idteacher}/></Modal.Body>
+        <Modal.Body><FormAddStudent apiUrl={props.apiUrl} idcourse={props.idcourse} idteacher={props.idteacher}/></Modal.Body>
       </Modal>
     </>
   );

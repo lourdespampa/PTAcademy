@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { Modal, Button, ButtonToolbar } from "react-bootstrap";
+import { Modal, ButtonToolbar } from "react-bootstrap";
 import iconExit from "../../../img/cerrar.png";
 import FormAddStudent from './FormAddStudent'
 import iconBack from '../../../img/back_button.svg'

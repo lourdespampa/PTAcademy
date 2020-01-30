@@ -236,7 +236,7 @@ class Trivia extends React.Component {
               <label htmlFor="input-img">Medio de Comunicación (opcional)</label>
               <div className="triviaT-image-container">
                 <input type="file" id="input-img" className="imagen" onChange={this.handleChangeImage} />
-                <img className="triviaT-imgSalida" id="imgSalida" width="120px" height="100px" src="" />
+                <img className="triviaT-imgSalida" alt="imagen de salida de trivia" id="imgSalida" width="120px" height="100px" src="" />
               </div>
             </div>
           </div>
