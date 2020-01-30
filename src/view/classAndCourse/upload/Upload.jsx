@@ -168,13 +168,10 @@ class Upload extends Component {
           this.props.className==='' || this.props.desc==='' ||  Object.keys(this.state.files).length === 0?
           <p className="mensageAction negative">RELLENA TODOS LOS CAMPOS</p>:null:null
           }
-          
-
         </>
       );
     }
   }
-
   render() {
     return (
       <div className="Upload">
