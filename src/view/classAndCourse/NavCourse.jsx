@@ -7,15 +7,10 @@ import FormularioClass from './FormPostClass'
 import iconExit from "../../img/cerrar.png";
 
 function BotonAgregar(props) {
-  const [show, setShow] = useState(false);
-  const [activarX, setActivarX] = useState(true);
-  const handleDisableX = () => setActivarX(false)
-  const handleClose = () => {
-          setActivarX(true)
-          setShow(false)
-          }
-  const handleShow = () => setShow(true);
-  const AgregarClick=()=>setShow(false)+props.getdata()
+  const [show, setShow] = useState(0);
+  const handleClose = () => setShow(2);
+  const handleShow = () => setShow(1);
+  const AgregarClick=()=>setShow(2)+props.getdata()
 
   return (
     <>
@@ -37,9 +32,9 @@ function BotonAgregar(props) {
           }
         </Modal.Body>
       </Modal> */}
-      <div id="modal-general_container" class={show ? "six" : "six out"}>
-        <div class="modal-general_background">
-          <div class="modal-general_bg_content">
+      <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
+        <div className="modal-general_background">
+          <div className="modal-general_bg_content">
             <button className="modal-general_close" onClick={handleClose}>
               <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
             </button>
@@ -50,7 +45,7 @@ function BotonAgregar(props) {
             <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
             }
             </div>
-            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
               <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
             </svg>
           </div>
@@ -60,9 +55,9 @@ function BotonAgregar(props) {
   );
 }
 function BotonCerrarSesion(props) {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(0);
+  const handleClose = () => setShow(2);
+  const handleShow = () => setShow(1);
 
   return (
     <>
@@ -89,9 +84,9 @@ function BotonCerrarSesion(props) {
           </ButtonToolbar>
         </Modal.Body>
       </Modal> */}
-      <div id="modal-general_container" class={show ? "six" : "six out"}>
-        <div class="modal-general_background">
-          <div class="modal-general_bg_content">
+      <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
+        <div className="modal-general_background">
+          <div className="modal-general_bg_content">
             <button className="modal-general_close" onClick={handleClose}>
               <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
             </button>
@@ -110,7 +105,7 @@ function BotonCerrarSesion(props) {
                 </button>
               </div>
             </div>
-            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
               <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
             </svg>
           </div>
