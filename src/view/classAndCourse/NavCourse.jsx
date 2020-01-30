@@ -26,9 +26,9 @@ function BotonAgregar(props) {
         </Modal.Header>
         <Modal.Body>
           { (props.agregarX === 'curso')?
-          <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} />
+          <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
           :
-          <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
+          <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
           }
         </Modal.Body>
       </Modal>
@@ -83,9 +83,9 @@ export default class NavCourse extends Component {
     this.setState({token: null})
   }
 
-  Abrir = () => {
+  AbriryCerrar = () => {
     const nav = document.getElementById("main-nav");
-          nav.classList.toggle("show");
+    nav.classList.toggle("show");
   }
   render() {
     return (
@@ -98,14 +98,14 @@ export default class NavCourse extends Component {
             <div
               className="teacherCourses__main-menu-toggle"
               id="main-menu-toggle"
-              onClick={this.Abrir}
+              onClick={this.AbriryCerrar}
             ></div>
             <nav className='teacherCourses__main-nav' id="main-nav">
               <ul className="teacherCourses__main-menu">
                 <li className="teacherCourses__main-menu__item">
                   <BotonAgregar 
                     apiUrl={this.props.apiUrl} idteacher={this.props.idteacher} idcourse={this.props.idcourse} 
-                    agregarX={this.props.agregarX} getdata={this.props.getdata}>
+                    agregarX={this.props.agregarX} getdata={this.props.getdata} menuToggleNavbar={this.AbriryCerrar}>
                   </BotonAgregar>
                 </li>
                 <li className="teacherCourses__main-menu__item">
