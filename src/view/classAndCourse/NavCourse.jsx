@@ -10,7 +10,7 @@ function BotonAgregar(props) {
   const [show, setShow] = useState(false);
   const [activarX, setActivarX] = useState(true);
   //no se esta usando esta variable
-  // const handleDisableX = () => setActivarX(false)
+  const handleDisableX = () => setActivarX(false)
   const handleClose = () => {
           setActivarX(true)
           setShow(false)
@@ -42,7 +42,7 @@ function BotonAgregar(props) {
           { (props.agregarX === 'curso')?
           <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
           :
-          <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
+          <FormularioClass handleEnableX={()=>setActivarX(true)} handleDisableX={handleDisableX}  apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
           }
         </Modal.Body>
       </Modal>
