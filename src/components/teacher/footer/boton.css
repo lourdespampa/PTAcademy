@@ -1,0 +1,117 @@
+
+.btnNextPrev
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.prev{
+    transform: translate(-229px, 0%)
+}
+
+
+.btnNextPrev li 
+{
+    list-style: none;
+    width: 80px;
+    height: 80px;
+    background: #262626;
+    margin: 0 10px;
+    border-radius: 50%;
+    transition: .5s;
+    cursor: pointer;
+}
+.btnNextPrev li:hover
+{
+    background: #0070ff;
+}
+.btnNextPrev li span 
+{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 4px solid #fff;
+    transition: .5s;
+}
+.btnNextPrev li.next span
+{
+    top: 50%;
+    right: 32%;
+    transform: translateY(-45%) rotate(-45deg);
+    border-left: none;
+    border-top: none;
+}
+.btnNextPrev li.next:hover span
+{
+    right: 16%;
+}
+.btnNextPrev li.next span:before 
+{
+    content:'';
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    top: -2px;
+    background: #fff;
+    transform-origin: right;
+    transform: rotate(45deg) translate(0px,25px) scale(0);
+    transition: .5s;
+    right: -20px;
+}
+
+.btnNextPrev li.next:hover span:before 
+{
+    transform: rotate(44deg) translate(0px,25px) scaleX(1);
+
+}
+
+
+/* OTRO BOTON*/
+.btnNextPrev li.prev span
+{
+    top: 50%;
+    /*left: 20%;*/
+    transform: translateY(-50%) rotate(-45deg);
+    border-right: none;
+    border-bottom: none;
+    left: 39%;
+}
+
+.prev{
+    transform: translate(-407px, 0%);
+
+}
+
+.next{
+    transform: translate(413px, 0%);
+}
+
+
+.btnNextPrev li.prev:hover span
+{
+    left: 16%;
+}
+.btnNextPrev li.prev span:before 
+{
+    content:'';
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background: #fff;
+    top: 0px;
+    transform-origin: left;
+    transform: rotate(45deg) translate(-2px,-1px) scaleX(0);
+    transition: .5s;
+    left: 7%;
+}
+
+.btnNextPrev li.prev:hover span:before 
+{
+    transform: rotate(45deg) translate(-2px,-1px) scaleX(1);
+
+}
