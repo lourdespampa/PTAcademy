@@ -3,7 +3,9 @@ import React, { Component } from "react";
 import axios from "axios";
 //estilos
 import { Form, Button } from "react-bootstrap";
-import './FormPostCourse.sass'
+import './FormPostCourse.sass';
+
+
 //componente clase
 export default class FormPostCourse extends Component {
   //1. inializa las propiedades recibidas del componente padre
