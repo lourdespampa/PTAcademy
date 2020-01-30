@@ -17,10 +17,10 @@ function BotonAgregar(props) {
       <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
         Agregar {props.agregarX}
       </div>
-      <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
-          <button className="modal-teacher__general-close" onClick={handleClose}>
-            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-          </button>
+      {/* <Modal className="modal-teacher__general" show={show} onHide={handleClose}>
+        <button className="modal-teacher__general-close" onClick={handleClose}>
+          <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+        </button>
         <Modal.Header>
           <Modal.Title >Agregando {props.agregarX}</Modal.Title>
         </Modal.Header>
@@ -31,7 +31,26 @@ function BotonAgregar(props) {
           <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
           }
         </Modal.Body>
-      </Modal>
+      </Modal> */}
+      <div id="modal-general_container" class={show ? "six" : "six out"}>
+        <div class="modal-general_background">
+          <div class="modal-general_bg_content">
+            <button className="modal-general_close" onClick={handleClose}>
+              <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+            </button>
+            <div className="modal-general_container">
+              { (props.agregarX === 'curso')?
+            <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} />
+            :
+            <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
+            }
+            </div>
+            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+            </svg>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
@@ -39,12 +58,13 @@ function BotonCerrarSesion(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   return (
     <>
       <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
         Cerrar sesion
       </div>
-      <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
+      {/* <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
           <button className="modal-teacher__general-close" onClick={handleClose}>
             <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
           </button>
@@ -63,7 +83,34 @@ function BotonCerrarSesion(props) {
             </button>
           </ButtonToolbar>
         </Modal.Body>
-      </Modal>
+      </Modal> */}
+      <div id="modal-general_container" class={show ? "six" : "six out"}>
+        <div class="modal-general_background">
+          <div class="modal-general_bg_content">
+            <button className="modal-general_close" onClick={handleClose}>
+              <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+            </button>
+            <div className="modal-general_container">
+              <div className="modal-general_container_header">
+                <span>¿DESEA CERRAR SESIÓN?</span>
+              </div>
+              <div className="modal-general_container_body">
+                <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
+                    <Link style={{textDecoration:"none"}} to="/">
+                      <div className="button-zoom">SI</div>
+                    </Link>
+                </button>
+                <button className="modal-body__button no" onClick={handleClose}>
+                    <div className="button-zoom">NO</div>
+                </button>
+              </div>
+            </div>
+            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+            </svg>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
