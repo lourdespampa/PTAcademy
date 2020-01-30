@@ -69,7 +69,9 @@ function FooterContainer(props){
             </div>
             <div className="overlay" id="overlay">
                 <div className="popup" id="popup">
-                    <a href id="btnCerrarDiapo" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay','popup')+props.botonClick('btnCerrarDiapo')} ><i class="material-icons">close</i></a>
+                    <button id="btnCerrarDiapo" className="modal-teacher__general-close" onClick={()=>props.closePopup('overlay','popup')+props.botonClick('btnCerrarDiapo')}>
+                        <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                    </button>
                     <Slide apiUrl={props.apiUrl} id_class={props.id_class} />
                     <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="760" height="569" style={{width: "100% !important",display:"none",height: "100%"}} allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
@@ -80,6 +82,9 @@ function FooterContainer(props){
             </div>
             <div className="overlay" id="overlayinframe">
                 <div className="popup" id="popupformulario">
+                        <button className="modal-teacher__general-close" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} >
+                            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                        </button>
                     <div class="punto-posi">
                         <span className="letra">EMITIR FORMULARIO</span>
                     </div>
