@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { Modal, Button, ButtonToolbar } from "react-bootstrap";
 import iconExit from "../../../img/cerrar.png";
 import FormAddStudent from './FormAddStudent'
+import iconBack from '../../../img/back_button.svg'
 function BotonAgregar(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -99,6 +100,9 @@ export default class NavCourse extends Component {
         {this.state.token ? null : <Redirect to="/notfound"></Redirect>}
         <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
+          <Link to={`/CoursesTeacher/${this.props.idteacher}`} style={{textDecoration: 'none'}}>
+                    <img src={iconBack} alt="imgagen de volver atras"/>
+            </Link>
             <h3>Bienvenido(a) </h3>
            
               <div
