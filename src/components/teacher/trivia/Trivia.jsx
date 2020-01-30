@@ -3,9 +3,6 @@ import "./trivia.css";
 import "./botones.scss";
 
 import io from 'socket.io-client';
-
-import { Container, Row, Col } from 'reactstrap';
-
 class Trivia extends React.Component {
   constructor(props){
     super(props)
