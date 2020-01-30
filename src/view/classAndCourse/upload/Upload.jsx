@@ -148,10 +148,10 @@ class Upload extends Component {
     }else {
       return (
         <>
-          <button id='modal-body__button-cursos' type="submit" className="btn btn-primary Opal"
+          <button className='modal-body__button cursos' type="submit" 
                   hidden={this.state.files.length < 0 || this.state.uploading}
                   onClick={this.uploadFiles}>
-            Crear Clase
+            <div className="button-zoom">CREAR CLASE</div>
           </button>
           {this.state.files.length>0 ?
             <button className='modal-body__button backCursos'
@@ -168,10 +168,13 @@ class Upload extends Component {
           this.props.className==='' || this.props.desc==='' ||  Object.keys(this.state.files).length === 0?
           <p className="mensageAction negative">RELLENA TODOS LOS CAMPOS</p>:null:null
           }
+          
+
         </>
       );
     }
   }
+
   render() {
     return (
       <div className="Upload">
