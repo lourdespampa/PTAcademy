@@ -6,9 +6,9 @@ import iconExit from "../../../img/cerrar.png";
 import './HeaderCode.sass'
 function BotonSalir(props) {
     var user = JSON.parse(localStorage.getItem('user'));
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [show, setShow] = useState(0);
+    const handleClose = () => setShow(2);
+    const handleShow = () => setShow(1);
     useEffect(() => console.log(user._id));
     return (
         <>
@@ -38,7 +38,7 @@ function BotonSalir(props) {
                     </ButtonToolbar>
                 </Modal.Body>
             </Modal> */}
-        <div id="modal-general_container" class={show ? "six" : "six out"}>
+        <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
             <div class="modal-general_background">
                 <div class="modal-general_bg_content">
                     <button className="modal-general_close" onClick={handleClose}>
@@ -75,11 +75,11 @@ function BotonSalir(props) {
 
 class HeaderCode extends React.Component {
     state = {
-        codigoModal: false
+        codigoModal: 0
     }
 
-    handleClose = () => this.setState({ codigoModal: false });
-    handleShow = () => this.setState({ codigoModal: true });
+    handleClose = () => this.setState({ codigoModal: 2 });
+    handleShow = () => this.setState({ codigoModal: 1});
 
     closeMenu = () => {
         document.getElementById('checked').click()
@@ -141,7 +141,7 @@ class HeaderCode extends React.Component {
                         <span id="modal-content__codigogenerado">{this.props.id_access}</span>
                     </Modal.Body>
                 </Modal> */}
-                        <div id="modal-general_container" show={this.state.codigoModal} onHide={this.handleClose}   >
+                        <div id="modal-general_container" className={this.state.codigoModal === 0 ? "" : this.state.codigoModal === 1 ? "six" :this.state.codigoModal === 2 ? "six out" : ""}>
                             <div class="modal-general_background">
                                 <div class="modal-general_bg_content">
                                     <button className="modal-general_close" onClick={this.handleClose}>
