@@ -115,7 +115,6 @@ export default class FormPostCourse extends Component {
 
   //Esta es la vista, interfaz
   render() {
-    const { course_name } = this.state;
     return (
       <>
         <Form onSubmit={this.handleSubmit}>

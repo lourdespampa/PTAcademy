@@ -9,7 +9,8 @@ import iconExit from "../../img/cerrar.png";
 function BotonAgregar(props) {
   const [show, setShow] = useState(false);
   const [activarX, setActivarX] = useState(true);
-  const handleDisableX = () => setActivarX(false)
+  //no se esta usando esta variable
+  // const handleDisableX = () => setActivarX(false)
   const handleClose = () => {
           setActivarX(true)
           setShow(false)

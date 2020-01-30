@@ -5,29 +5,32 @@ import Modal from "react-bootstrap/Modal";
 import Audio from "../audio/audio";
 import io from "socket.io-client";
 
+<<<<<<< HEAD
 
 import Slide from '../slides/slide_02';
+=======
+import Slide from "../slides/slide_02";
+>>>>>>> d52e4a6ebad324ae57baae9609b0aae711836e49
 import iconExit from "../../../img/cerrar.png";
-function enviarvideo(url, url2, socketUrl, id_access,setShow,setNoData) {
-
+function enviarvideo(url, url2, socketUrl, id_access, setShow, setNoData) {
   var urlnombre = url + url2;
   const socket = io(socketUrl, {
     query: { pin: id_access }
   });
   socket.emit("VideoEmit", urlnombre);
-  
+
   var expresionRegular = "https://www.youtube.com/watch?v=";
   var urlembed = urlnombre.split(expresionRegular);
   document.getElementById("video-frame").src =
     "https://www.youtube.com/embed/" + urlembed[1] + "?autoplay=1&controls=0";
-  if(url===''){
-    setNoData(true)
-  }else{
-  document.getElementById("overlay2").classList.add("active");
-  document.getElementById("popupvideo").classList.add("active");
-  setShow()
-  setNoData(false)
-}
+  if (url === "") {
+    setNoData(true);
+  } else {
+    document.getElementById("overlay2").classList.add("active");
+    document.getElementById("popupvideo").classList.add("active");
+    setShow();
+    setNoData(false);
+  }
 }
 function SendForm(socketUrl, id_access) {
   //SEND FORM
@@ -104,36 +107,95 @@ function FooterContainer(props){
                 </div>
             </div>        
 
-            <Modal className="modal-teacher__general" id="modalvideo" size={'SM'} show={Show}
-            onHide={() => setShow(false)+props.botonClick('modalvideo')+setNoData(false)} >
-                <button className="modal-teacher__general-close" onClick={() => setShow(false)+props.botonClick('modalvideo')+setNoData(false)}>
-                    <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-                </button>
-                <Modal.Header>
-                    <div className="punto-posi">
-                        <span>EMITIR VIDEO</span>
-                    </div>
-                </Modal.Header>
-                <Modal.Body>
-                    <input id="urlid" type="text" className="Opal" placeholder={props.txt} name="urlvideo" onChange={e => seturlnombre(e.target.value)+props.changeOn('urlvideo',e.target.value)} style={{fontSize:"20px",width: "80%"}} required/>
-                    <button className="btnenviarvideo" onClick={()=>enviarvideo(urlnombre,props.txt,props.socketUrl,props.id_access,setShow,setNoData)+props.botonClick('btnenviarvideo')} type="button">
-                        <div className="button-zoom">ENVIAR</div>
-                    </button>
-                    { NoData?
-                        <p className="mensageAction negative">AGREGE UNA URL DE VIDEO</p>:null
-                    }
-                </Modal.Body>
-            </Modal>
+      <Modal
+        className="modal-teacher__general"
+        id="modalvideo"
+        size={"SM"}
+        show={Show}
+        onHide={() =>
+          setShow(false) + props.botonClick("modalvideo") + setNoData(false)
+        }
+      >
+        <button
+          className="modal-teacher__general-close"
+          onClick={() =>
+            setShow(false) + props.botonClick("modalvideo") + setNoData(false)
+          }
+        >
+          <img
+            className="button-zoom"
+            src={iconExit}
+            alt="imagen de cerrar modal"
+          />
+        </button>
+        <Modal.Header>
+          <div className="punto-posi">
+            <span>EMITIR VIDEO</span>
+          </div>
+        </Modal.Header>
+        <Modal.Body>
+          <input
+            id="urlid"
+            type="text"
+            className="Opal"
+            placeholder={props.txt}
+            name="urlvideo"
+            onChange={e =>
+              seturlnombre(e.target.value) +
+              props.changeOn("urlvideo", e.target.value)
+            }
+            style={{ fontSize: "20px", width: "80%" }}
+            required
+          />
+          <button
+            className="btnenviarvideo"
+            onClick={() =>
+              enviarvideo(
+                urlnombre,
+                props.txt,
+                props.socketUrl,
+                props.id_access,
+                setShow,
+                setNoData
+              ) + props.botonClick("btnenviarvideo")
+            }
+            type="button"
+          >
+            <div className="button-zoom">ENVIAR</div>
+          </button>
+          {NoData ? (
+            <p className="mensageAction negative">AGREGE UNA URL DE VIDEO</p>
+          ) : null}
+        </Modal.Body>
+      </Modal>
 
-            <div className="overlay" id="overlay2">
-                <div className="popup" id="popupvideo">
-                    <a href id="btn-cerrar-popup" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlay2','popupvideo')+props.botonClick('btn-cerrar-popup')}><i className="material-icons">close</i></a>
-                    <iframe  title="iframevideo" id="video-frame" src="" frameborder="0" style={{width: "100% !important",height: "100%"}} 
-                    allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
-                </div>
-            </div>
-        </>
-    )
+      <div className="overlay" id="overlay2">
+        <div className="popup" id="popupvideo">
+          <div
+            id="btn-cerrar-popup"
+            className="btn-cerrar-popup"
+            onClick={() =>
+              props.closePopup("overlay2", "popupvideo") +
+              props.botonClick("btn-cerrar-popup")
+            }
+          >
+            <i className="material-icons">close</i>
+          </div>
+          <iframe
+            title="iframevideo"
+            id="video-frame"
+            src=""
+            frameBorder="0"
+            style={{ width: "100% !important", height: "100%" }}
+            allowFullScreen={true}
+            mozallowfullscreen="true"
+            webkitallowfullscreen="true"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          ></iframe>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default FooterContainer;

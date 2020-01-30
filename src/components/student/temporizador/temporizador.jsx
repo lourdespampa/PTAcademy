@@ -36,7 +36,8 @@ class Temporizador extends React.Component {
     //   })
       
       // $(function() {
-        var g, c, l, d, q = "",
+          //la variable q no se esta usando
+        var g, c, l, d = "",
         e = [{
             element: $("#hour"),
             input_element: $("#id_dt_1"),
@@ -66,7 +67,8 @@ class Temporizador extends React.Component {
                     a += f
                 }
                 // q.length !== a.length;
-                q = a;
+                //no se esta usando la variable q
+                // q = a;
             },
             v = function() {
                 g = l - Date.now();
