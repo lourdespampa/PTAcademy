@@ -5,6 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import Audio from "../audio/audio";
 import io from "socket.io-client";
 
+
 import Slide from '../slides/slide_02';
 import iconExit from "../../../img/cerrar.png";
 function enviarvideo(url, url2, socketUrl, id_access) {
