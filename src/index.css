@@ -398,13 +398,13 @@ template {
     justify-content: space-between;
     position: initial;
     top: 17px;
-    padding: 1.25rem 1.5rem;
+    padding: 1.25rem 1.5rem 0;
   }
 
 .modal-content {
   position: relative;
   width: 500px;
-  margin: auto;
+  margin: 35px auto;
   background-color: #ffffff;
   background-clip: padding-box;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
@@ -414,9 +414,7 @@ template {
 }
 
 .modal-title{
-    letter-spacing: .01em;
-    text-decoration: underline;
-  }
+    letter-spacing: .01em}
 
 .modal-teacher__general-close{
   float: right;
@@ -426,27 +424,12 @@ template {
   border: 0;
   height: 30px;
   display: block;
-  margin: 0;
+  margin: .7em;
   border-radius: 5px;
   position: relative;
   z-index: 1;
   width: 100%;
   cursor: pointer;
-}
-.modal-teacher__general-close .modal-teacher__general-cross{
-  transition: transform 0.3s ease-in-out;
-  -webkit-transition: all .4s ease;
-  -moz-transition: all .4s ease;
-  -o-transition: all .4s ease;
-  -ms-transition: all .4s ease;
-  width: 12px
-}
-.modal-teacher__general-close:hover .modal-teacher__general-cross{
-  -webkit-transform: scale(1.25);
-  -moz-transform: scale(1.25);
-  -ms-transform: scale(1.25);
-  -o-transform: scale(1.25);
-  transform: scale(1.3)
 }
 
 .modal-teacher__general-controlname{
@@ -492,17 +475,23 @@ template {
     margin-block-start: 0;
     margin-block-end: 0}
 
+.modal-body__button.no{
+  background: #E91E63;
+  cursor: pointer}
 
-#modal-body__button-yes{
-    background: #52BE7F;
-    transition: transform 0.3s ease-in-out;
-    -webkit-transition: all .4s ease;
-    -moz-transition: all .4s ease;
-    -o-transition: all .4s ease;
-    -ms-transition: all .4s ease;
-    cursor: pointer
-  }
-#modal-body__button-yes .button-yes__text{
+.modal-body__button.backCursos{
+  background: #FB9600;
+  cursor: pointer}
+
+.modal-body__button.cursos,
+.modal-body__button.yes {
+  background: #52BE7F;
+  cursor: pointer}
+
+.modal-body__button.yes .button-zoom,
+.modal-body__button.no .button-zoom,
+.modal-body__button.cursos .button-zoom,
+.modal-body__button.backCursos .button-zoom{
   transition: transform 0.3s ease-in-out;
   -webkit-transition: all .4s ease;
   -moz-transition: all .4s ease;
@@ -514,10 +503,11 @@ template {
 .modal-body__button.no:hover .button-zoom,
 .modal-body__button.cursos:hover .button-zoom,
 .modal-teacher__general-close:hover .button-zoom{
-  transform: scale(1.08);
-} 
+  -webkit-transform: scale(1.20);
+  transform: scale(1.20)} 
 
 .modal-body__button.backCursos:hover .button-zoom{
+  -webkit-transform: scale(1.08);
   transform: scale(1.08)} 
 
 .modal-body__button{
@@ -597,9 +587,9 @@ template {
   .punto-marco {
     margin: 0px 1px 10px;}  
 }
-/* @media screen and (max-height:630px){
+@media screen and (max-height:630px){
   .modal-body{
-    /*height: 450px;
-    /* overflow: auto; 
+    /*height: 450px;*/
+    /* overflow: auto; */
   }
-} */
+}
