@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./FooterContainer.sass";
+import "./boton.css";
 import Modal from "react-bootstrap/Modal";
 import Audio from "../audio/audio";
 import io from "socket.io-client";
@@ -68,10 +69,11 @@ function FooterContainer(props){
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
                     </iframe>
                     
-                    <div id="btnBack" className="btn-back"  onClick={()=>props.backtPpt()+props.botonClick('btnBack')}>
-                    <span>Siguiente</span>
-                    </div>
-                    <div id="btnNext" className="btn-next" onClick={()=>props.nextPpt()+props.botonClick('btnNext')}><i class="material-icons">navigate_next</i></div>
+                    <ul className="btnNextPrev">
+                        <li class="prev"><span></span></li>
+                        <li class="next "><span></span></li>
+                    </ul>
+                    
                 </div>
             </div>
             <div className="overlay" id="overlayinframe">
