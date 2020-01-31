@@ -11,7 +11,7 @@
 }
 
 .prev{
-    transform: translate(-229px, 0%)
+    transform: translate(-473px, 0%)
 }
 
 
@@ -82,13 +82,8 @@
     left: 39%;
 }
 
-.prev{
-    transform: translate(-407px, 0%);
-
-}
-
 .next{
-    transform: translate(413px, 0%);
+    transform: translate(475px, 0%);
 }
 
 

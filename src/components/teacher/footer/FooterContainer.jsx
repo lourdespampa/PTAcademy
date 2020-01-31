@@ -4,8 +4,7 @@ import "./boton.css";
 import Modal from "react-bootstrap/Modal";
 import Audio from "../audio/audio";
 import io from "socket.io-client";
-
-import Slide from "../slides/slide_02";
+import Slide from '../slides/slide_02';
 import iconExit from "../../../img/cerrar.png";
 function enviarvideo(url, url2, socketUrl, id_access, setShow, setNoData) {
   var urlnombre = url + url2;
@@ -64,6 +63,7 @@ function FooterContainer(props){
                 </div>
                 <div>
                     <img alt="" id="btn-chat" width="30px" height="30px" src={require("../../../img/footer/chat.svg")} />
+                    <img id="btn-chat" width="30px" height="30px" src={require("../../../img/footer/chat.svg")} />
                     <span>Chat</span>
                 </div>
             </div>
@@ -93,15 +93,13 @@ function FooterContainer(props){
                         <span className="letra">EMITIR FORMULARIO</span>
                     </div>
                     <br/>
-                    {/* <a href id="btnCerrarFormu" className="btn-cerrar-popup" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} ><i className="material-icons">close</i></a> */}
                     <iframe title="diapo-iframe" id="diapo-formulario" className="fc-formulario" frameBorder="0"  allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
                     <button class="Myni" onClick={()=>SendForm(props.socketUrl,props.id_access)}>
                         <div className="button-zoom">EMITIR</div>
                     </button>
                 </div>
-            </div>        
-
+            </div>
       <Modal
         className="modal-teacher__general"
         id="modalvideo"
