@@ -1,8 +1,9 @@
 
 .btnNextPrev
 {
-    position: absolute;
-    top: 93%;
+    position: relative;
+    width: 100%;
+    top: calc(50% - 80px);
     left: 50%;
     transform:translate(-50%, -50%);
     margin: 0;
@@ -10,9 +11,11 @@
     display: flex;
 }
 
-/* .prev{
-    transform: translate(-473px, 0%)
-} */
+.prev{
+    position: absolute;
+    left:-50px;
+    transform: translate(0px, 0%);
+}
 
 
 .btnNextPrev li 
@@ -41,7 +44,7 @@
 .btnNextPrev li.next span
 {
     top: 50%;
-    right: 20%;
+    right: 32%;
     transform: translateY(-45%) rotate(-45deg);
     border-left: none;
     border-top: none;
@@ -75,15 +78,18 @@
 .btnNextPrev li.prev span
 {
     top: 50%;
-    left: 23%;
+    /*left: 20%;*/
     transform: translateY(-50%) rotate(-45deg);
     border-right: none;
     border-bottom: none;
+    left: 39%;
 }
 
-/* .next{
-    transform: translate(475px, 0%);
-} */
+.next{
+    position: absolute;
+    right:-50px;
+    transform: translate(0px, 0%);
+}
 
 
 .btnNextPrev li.prev:hover span
@@ -109,9 +115,4 @@
     transform: rotate(45deg) translate(-2px,-1px) scaleX(1);
 
 }
-
-@media (max-width: 880px){
-   
-    }
-
 
