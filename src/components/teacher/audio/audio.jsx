@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import './audio.sass'
 import io from 'socket.io-client';
+
+import iconExit from "../../../img/cerrar.png";
 //import ScarletsMediaPresenter from './SFMediaStream.min.js'
 //import {MediaPresenter} from 'sfmediastream';
 const {MediaPresenter} = require('sfmediastream/dist/SFMediaStream');
 
 export default class Audio extends Component{
+   
     constructor(props) {
         super(props);
         this.state = {
-          socket:null
+          socket:null,
+          show:0
         }
       }
+    handleClose = () => this.setState({show:2});
+    handleShow = () => this.setState({show:1});
     componentDidMount(){
         console.log(this.props.socketUrl)
         console.log(this.props.id_access)
@@ -76,10 +82,42 @@ export default class Audio extends Component{
         })
     }
     render(){  
-        return  <div id="btn" >
-                    <img id="micro" alt="" width="30px" height="30px" src={require("../../../img/footer/micro.svg")} />
-                    <span>Audio</span>                
+        return  (
+        <>
+        
+        <div className="" onClick={this.handleShow}>
+            <div id="btn" >
+                <img id="micro" alt="" width="30px" height="30px" src={require("../../../img/footer/micro.svg")} />
+                <span>Audio</span>
+            </div>
+            
+        </div>
+        <div id="modal-general_container" className={this.state.show === 0 ? "" : this.state.show === 1 ? "six" : this.state.show === 2 ? "six out" : ""}>
+          <div className="modal-general_background">
+            <div className="modal-general_bg_content">
+              <button className="modal-general_close" onClick={this.handleClose}>
+                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+              </button>
+              <div className="modal-general_container">
+                <div className="modal-general_container_header">
+                  <span className="modal-title__controlname">¿DESEA CERRAR SESIÓN?</span>
                 </div>
-                
+                <div className="modal-general_container_body">
+                  <button className="modal-body__button yes" variant="primary">
+                        <div className="button-zoom">SI</div>
+                  </button>
+                  <button className="modal-body__button no" >
+                      <div className="button-zoom">NO</div>
+                  </button>
+                </div>
+              </div>
+              <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+              </svg>
+            </div>
+          </div>
+        </div>
+        </>
+        )
     }
 }
