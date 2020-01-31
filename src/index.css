@@ -183,6 +183,7 @@ textarea {
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
+  font-family: opal !important;
 }
 
 /**
@@ -367,8 +368,6 @@ template {
 [hidden] {
   display: none;
 }
-
-
 /* en esta seccion van a estar los estilos del modal */
 
 /* .modal-teacher__container */
@@ -377,19 +376,13 @@ template {
   .modal-teacher__container-header-close
   .modal-teacher__container-body-input-text1
   .modal-teacher__container-body-input-text1
-
   .modal-teacher__container-body-input-text1
-
-
-
 */
-
 .modal-teacher__general{
-    position: relative;
-    pointer-events: auto;
-    border-radius: 20px;
-    transform: none !important;
-  }
+  position: relative;
+  pointer-events: auto;
+  border-radius: 20px;
+  transform: none !important}
 
 .modal-header{
     font-size: 26px;
@@ -435,13 +428,9 @@ template {
 .modal-teacher__general-controlname{
     height: 48px;
     width: 95%;
-    left: 80px;
-    right: 364px;
-    top: 28px;
-    margin-bottom: 10px;
     padding: 0 10px;
-    border: 1px solid #4747D5;
-    box-sizing: border-box;}
+    margin: auto auto 10px;
+    border: 1px solid #4747D5}
 
 .modal-title__controlname{
     font-size: 1.25rem;
@@ -457,12 +446,11 @@ template {
 .modal-teacher__general-controldescription{
     height: 60px;
     width: 95%;
-    padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid #4747D5;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: auto auto 10px;
     resize: none;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 
     }
 
 #modal-content__codigogenerado{
@@ -560,18 +548,76 @@ template {
   letter-spacing: .02em
 }
 
+@keyframes fadeIn {
+  0% {
+    background:rgba(0,0,0,.0);
+  }
+  100% {
+    background:rgba(0,0,0,.7);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    background:rgba(0,0,0,.7);
+  }
+  100% {
+    background:rgba(0,0,0,.0);
+  }
+}
+@keyframes modalFadeIn {
+  0% {
+    background-color:transparent;
+  }
+  100% {
+    background-color:white;
+  }
+}
+
+@keyframes modalFadeOut {
+  0% {
+    background-color:white;
+  }
+  100% {
+    background-color:transparent;
+  }
+}
+
+@keyframes sketchOut {
+	0% {
+		stroke-dashoffset: 0;
+	}
+	100% {
+		stroke-dashoffset: 778;
+	}
+}
+
+@keyframes quickScaleDown {
+  0% {
+    transform:scale(1);
+  }
+  99.9% {
+    transform:scale(1);
+  }
+  100% {
+    transform:scale(0);
+  }
+}
 @media screen and (max-width:800px){
 .modal-content {
   width: 360px
 }
 .modal-body .punto-marco {
-  margin: 0px 1px 25px;} 
+  margin: 0 1px 25px;} 
 
 .modal-body{
   padding: 1rem 0.5rem 2.25rem;}
 
 #modal-content__codigogenerado{
   font-size: 80px;}
+}
+.list-grade{
+  width: 50%
 }
 
 @media screen and (max-width:500px){
@@ -582,14 +628,8 @@ template {
     font-size: 18px;}
 
   .modal-body{
-    padding: 1rem 0.5rem 2.25rem;}
+    padding: 2.25rem 0.5rem;}
 
   .punto-marco {
     margin: 0px 1px 10px;}  
-}
-@media screen and (max-height:630px){
-  .modal-body{
-    /*height: 450px;*/
-    /* overflow: auto; */
-  }
 }

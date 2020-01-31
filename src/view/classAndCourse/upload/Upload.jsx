@@ -13,7 +13,8 @@ class Upload extends Component {
       errorUploaded:false,
       slideOn:false,
       NoData:false,
-      UploadDone:false
+      UploadDone:false,
+      limpiarInputFile:false
     };
 
     this.onFilesAdded = this.onFilesAdded.bind(this);
@@ -23,10 +24,14 @@ class Upload extends Component {
   }
 
   onFilesAdded(files) {
+    this.setState({
+      files: []
+    });
     this.setState({slideOn:true})
     this.setState(prevState => ({
       files: prevState.files.concat(files)
     }));
+    console.log(files)
   }
 
   async uploadFiles() {
@@ -34,10 +39,10 @@ class Upload extends Component {
       this.setState({NoData:true})
     }else{
     this.props.handleDisableX()
-    // document.addEventListener("keydown", function(e){
-    //   if (e.which == 27){
-    //       return false
-    //   }})
+     document.addEventListener("keydown", function(e){
+       if (e.which === 27){
+           return false
+       }})
     this.setState({ uploadProgress: {}, uploading: true });
     const promises = [];
     this.state.files.forEach(file => {
@@ -46,7 +51,7 @@ class Upload extends Component {
     try {
       await Promise.all(promises);
 
-      this.setState({ successfullUploaded: true, uploading: true });
+      this.setState({ successfullUploaded: true, uploading: true, limpiarInputFile: true });
     } catch (e) {
       this.setState({ successfullUploaded: true, uploading: true });
     }}
@@ -100,13 +105,37 @@ class Upload extends Component {
             console.log(req.response)
             console.log('bien')
             this.props.handleClose()
+            this.props.cleanInputs()
             this.props.handleEnableX()
+            this.setState({
+              files: [],
+              uploading: false,
+              uploadProgress: {},
+              successfullUploaded: false,
+              errorUploaded:false,
+              slideOn:false,
+              NoData:false,
+              UploadDone:false,
+              limpiarInputFile:false
+            })
           }
           else{
             console.log(req.response)
             console.log('mal')
             this.setState({ errorUploaded: true});
             this.props.handleEnableX()
+            this.props.cleanInputs()
+            this.setState({
+              files: [],
+              uploading: false,
+              uploadProgress: {},
+              successfullUploaded: false,
+              errorUploaded:false,
+              slideOn:false,
+              NoData:false,
+              UploadDone:false,
+              limpiarInputFile:false
+            })
           }
         }
       }
@@ -148,16 +177,17 @@ class Upload extends Component {
     }else {
       return (
         <>
-          <button id='modal-body__button-cursos' type="submit" className="modal-body__button backCursos"
+          <button id='modal-body__button-cursos' type="submit" className="modal-body__button yes"
                   hidden={this.state.files.length < 0 || this.state.uploading}
                   onClick={this.uploadFiles}>
-            Crear Clase
+            <div className="button-zoom">CREAR CLASE</div>
           </button>
           {this.state.files.length>0 ?
             <button className='modal-body__button backCursos'
-            onClick={() =>
+            onClick={() => {
+              this.props.cleanInputs()
               this.setState({ files: [], uploading: false, errorUploaded: false,slideOn:false })
-            }
+            }}
           >
             <div className="button-zoom">LIMPIAR</div>
           </button>
@@ -181,16 +211,17 @@ class Upload extends Component {
         <div className="Content" style={{display: 'inline-block'}}>
           <div>
             <Dropzone
+              limpiarInputFile={this.state.limpiarInputFile}
               slideOn={this.state.slideOn}
               onFilesAdded={this.onFilesAdded}
               disabled={this.state.uploading}
             />
           </div>
           <div className="Files">
-            {this.state.files.map(file => {
+            {this.state.files.map((file, id) => {
               return (
                 <>
-                  <span className="Filename">{file.name}</span>
+                  <span key={id} className="Filename">{file.name}</span>
                 </>
               );
             })}

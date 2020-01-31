@@ -367,3 +367,175 @@
 .courseTeacher-cards__nullCourses
     color: #ffffff
     padding: 0 1rem
+
+//todo el contido del modal, incluyendo bg de fondo
+#modal-general_container 
+  position: fixed
+  display: table
+  height: 100%
+  width: 100%
+  top: 0
+  left: 0
+  transform: scale(0)
+  z-index: 1
+  //solo animaciones de entrada del modal  
+  &.six 
+    transform: scale(1)
+    .modal-general_background 
+      background: rgba(0,0,0,.0)
+      animation:  fadeIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+      .modal-general_bg_content 
+        background-color: transparent
+        animation:  modalFadeIn .5s .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+        .modal-general_close
+          opacity: 0
+          animation:  modalContentFadeIn .5s 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+        .modal-general_container 
+          opacity: 0
+          position: relative
+          animation:  modalContentFadeIn .5s 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+        .modal-general_svg 
+          rect 
+            animation:  sketchIn .5s .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+    //solo animaciones de salida del modal 
+    &.out 
+      animation:  quickScaleDown 0s .5s linear forwards
+      .modal-general_background 
+        animation:  fadeOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+        .modal-general_bg_content
+          animation:  modalFadeOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+          .modal-general_container, .modal-general_close
+            animation:  modalContentFadeOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+          .modal-general_svg 
+            rect 
+              animation:  sketchOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+  
+  //estilos del modal (no animaciones)
+  .modal-general_background 
+    display: table-cell
+    background: rgba(0,0,0,.8)
+    text-align: center
+    vertical-align: middle
+    .modal-general_bg_content
+      background: white
+      padding: 30px
+      width: 500px
+      display: inline-block
+      position: relative
+      .modal-general_close
+          position: absolute
+          right: 0
+          background-color: #E91E63
+          max-width: 40px
+          border: 0
+          height: 30px
+          margin: .7em
+          border-radius: 5px
+          z-index: 3
+          width: 100%
+          cursor: pointer
+          &:hover .button-zoom
+              -webkit-transform: scale(1.20)
+              transform: scale(1.20)
+      .modal-general_container
+        z-index: 2
+        line-height: 25px
+        .modal-general_container_body
+            margin-top: 20px
+        .codigogenerado
+            margin-top: 65px
+      
+      .modal-general_svg 
+        position: absolute
+        top: 0
+        left: 0
+        height: 100%
+        width: 100%
+        border-radius: 3px
+        z-index: 1
+        rect 
+          stroke: white
+          width: 100%
+          height: 100%
+          stroke-width:  2px
+          stroke-dasharray:  2000
+          stroke-dashoffset: 2000
+    
+@keyframes fadeIn 
+  0% 
+    background: rgba(0,0,0,.0)
+  
+  100% 
+    background: rgba(0,0,0,.7)
+
+@keyframes fadeOut 
+  0% 
+    background: rgba(0,0,0,.7)
+  
+  100% 
+    background: rgba(0,0,0,.0)
+  
+
+@keyframes quickScaleDown 
+  0% 
+    transform: scale(1)
+  
+  99.9% 
+    transform: scale(1)
+  
+  100% 
+    transform: scale(0) 
+
+@keyframes sketchIn 
+	0% 
+		stroke-dashoffset:  2000
+	
+	100% 
+		stroke-dashoffset:  0
+
+@keyframes sketchOut 
+	0% 
+		stroke-dashoffset:  0
+	
+	100% 
+		stroke-dashoffset:  2000
+
+@keyframes modalFadeIn 
+  0% 
+    background-color: transparent
+  
+  100% 
+    background-color: white
+  
+
+
+@keyframes modalFadeOut 
+  0% 
+    background-color: white
+  
+  100% 
+    background-color: transparent
+  
+
+
+@keyframes modalContentFadeIn 
+  0% 
+    opacity: 0
+    top: -20px
+  
+  100% 
+    opacity: 1
+    top: 0
+  
+
+
+@keyframes modalContentFadeOut 
+  0% 
+    opacity: 1
+    top: 0px
+  
+  100% 
+    opacity: 0
+    top: -20px
+  
+

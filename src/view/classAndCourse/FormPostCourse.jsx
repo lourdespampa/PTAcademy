@@ -89,8 +89,8 @@ export default class FormPostCourse extends Component {
     const data = { level, grade, section, course_name, description}
     //esta es la peticion al servidor, un post
     axios({
-      // url: `${this.props.apiUrl}/v1/api/siagie/${this.props.idteacher}/new-course`,
-      url: `http://192.168.1.29:4200/v1/api/siagie/${this.props.idteacher}/new-course`,
+      url: `${this.props.apiUrl}/v1/api/siagie/${this.props.idteacher}/new-course`,
+      // url: `http://192.168.1.29:4200/v1/api/siagie/${this.props.idteacher}/new-course`,
       data,
       method: 'post',
       headers: {
@@ -206,7 +206,7 @@ export default class FormPostCourse extends Component {
               }
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Label className="modal-title__controldescription">Descripcion del curso</Form.Label>
+              <Form.Label className="modal-title__controlname">Descripcion del curso</Form.Label>
               <Form.Control className="modal-teacher__general-controldescription"
                 name="description"
                 onChange={this.handleChangeInputsText}
