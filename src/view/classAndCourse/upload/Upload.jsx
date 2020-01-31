@@ -23,10 +23,14 @@ class Upload extends Component {
   }
 
   onFilesAdded(files) {
+    this.setState({
+      files: []
+    });
     this.setState({slideOn:true})
     this.setState(prevState => ({
       files: prevState.files.concat(files)
     }));
+    console.log(files)
   }
 
   async uploadFiles() {
@@ -148,10 +152,10 @@ class Upload extends Component {
     }else {
       return (
         <>
-          <button id='modal-body__button-cursos' type="submit" className="modal-body__button cursos"
+          <button id='modal-body__button-cursos' type="submit" className="modal-body__button yes"
                   hidden={this.state.files.length < 0 || this.state.uploading}
                   onClick={this.uploadFiles}>
-            <div className="button-zoom">Crear Clase</div>
+            <div className="button-zoom">CREAR CLASE</div>
           </button>
           {this.state.files.length>0 ?
             <button className='modal-body__button backCursos'

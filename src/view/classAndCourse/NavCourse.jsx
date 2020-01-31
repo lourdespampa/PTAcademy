@@ -5,13 +5,17 @@ import { Modal, ButtonToolbar } from "react-bootstrap";
 import FormularioCourse from './FormPostCourse'
 import FormularioClass from './FormPostClass'
 import iconExit from "../../img/cerrar.png";
-
 function BotonAgregar(props) {
-  const [show, setShow] = useState(0);
-  const handleClose = () => setShow(2);
-  const handleShow = () => setShow(1);
-  const AgregarClick=()=>setShow(2)+props.getdata()
-
+  const [show, setShow] = useState(false);
+  const [activarX, setActivarX] = useState(true);
+  //no se esta usando esta variable
+  const handleDisableX = () => setActivarX(false)
+  const handleClose = () => {
+          setActivarX(true)
+          setShow(false)
+          }
+  const handleShow = () => setShow(true);
+  const AgregarClick=()=>setShow(false)+props.getdata()
   return (
     <>
       <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
@@ -40,10 +44,9 @@ function BotonAgregar(props) {
   );
 }
 function BotonCerrarSesion(props) {
-  const [show, setShow] = useState(0);
-  const handleClose = () => setShow(2);
-  const handleShow = () => setShow(1);
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <>
       <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
@@ -105,8 +108,7 @@ export default class NavCourse extends Component {
         {this.state.token ? null : <Redirect to="/notfound"></Redirect>}
          <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
-            <h3>Bienvenido(a) {this.props.nombreProfesor.replace(/\w\S*/g, (s) => (s.replace(/^\w/, (c) => c.toUpperCase())))} </h3>
-            
+            <h3>Bienvenido(a) {this.props.nombreProfesor.replace(/\w\S*/g, (s) => (s.replace(/^\w/, (c) => c.toUpperCase())))} </h3>            
             <div
               className="teacherCourses__main-menu-toggle"
               id="main-menu-toggle"

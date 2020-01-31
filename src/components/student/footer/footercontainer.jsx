@@ -5,10 +5,11 @@ export default function footercontainer(props) {
   return (
     <>
       <footer id="footer" className="fixed-footer">
-        <div class="slide-container">
-              <a id="btn-abrir-popup"href style={{right :"auto",left:"10px",position: "absolute"}} class="btn-abrir-popup">
-                <div class="envoltura" onClick={()=>props.openPopup('overlay','popup')} style={{width: "100%" ,height: "100%", position: "absolute", pointerEvents:"none"}}></div>
-                <iframe title="iframe" id="diminute" class="miniatura" src=""  style={{background: "url(https://s3-us-west-2.amazonaws.com/joinnus.com/user/308917/avatar.jpg) no-repeat",backgroundsize: "cover", pointerEvents:"none"}}>
+        {/* se esta poniendo el class name */}
+        <div className="slide-container">
+              <a id="btn-abrir-popup"href style={{right :"auto",left:"10px",position: "absolute"}} className="btn-abrir-popup">
+                <div className="envoltura" onClick={()=>props.openPopup('overlay','popup')} style={{width: "100%" ,height: "100%", position: "absolute", pointerEvents:"none"}}></div>
+                <iframe title="iframe" id="diminute" className="miniatura" src=""  style={{background: "url(https://s3-us-west-2.amazonaws.com/joinnus.com/user/308917/avatar.jpg) no-repeat",backgroundsize: "cover", pointerEvents:"none"}}>
                 </iframe>
               </a>
         </div>

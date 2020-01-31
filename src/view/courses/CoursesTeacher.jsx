@@ -17,7 +17,6 @@ export default class CoursesTeacher extends Component {
       _id: "",
       show: 0,
       id_curso: "",
-      showdelete: false,
       courses: []
     };
   }
