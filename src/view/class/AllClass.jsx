@@ -53,7 +53,7 @@ export default class AllClass extends Component {
           <div className="classTeacher-card__image-container">
             <button onClick={() =>
                 this.props.onClick(this.props.id) +
-                this.props.setShow("showdelete", true)}
+                this.props.setShow("show", 1)}
                 className="courseTeacher__button-delette">
               <img 
                 className="courseTeacher__img" 

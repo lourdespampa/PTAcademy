@@ -5,7 +5,7 @@ import imgDiapo from "./baseline-cloud_upload-24px.svg";
 class Dropzone extends Component {
   constructor(props) {
     super(props);
-    this.state = { hightlight: false };
+    this.state = { hightlight: false, inputValue: "" };
     this.fileInputRef = React.createRef();
 
     this.openFileDialog = this.openFileDialog.bind(this);
@@ -21,6 +21,9 @@ class Dropzone extends Component {
   }
 
   onFilesAdded(evt) {
+    if(this.props.limpiarInputFile ){
+      return this.setState({inputValue: ""})
+    }
     if (this.props.disabled) return;
     const files = evt.target.files;
     if (this.props.onFilesAdded) {
@@ -74,6 +77,7 @@ class Dropzone extends Component {
           type="file"
           accept="application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.slideshow, application/vnd.openxmlformats-officedocument.presentationml.template, application/vnd.openxmlformats-officedocument.presentationml.presentation"
           onChange={this.onFilesAdded}
+          value={this.state.inputValue}
         />
         <img
           alt="diapositiva"

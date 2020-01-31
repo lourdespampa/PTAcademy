@@ -106,7 +106,7 @@ class HeaderCode extends React.Component {
                     <Modal.Body>
                         <span id="modal-content__codigogenerado">{this.props.id_access}</span>
                     </Modal.Body>
-                </Modal> */}
+                </Modal>
                         <div id="modal-general_container" className={this.state.codigoModal === 0 ? "" : this.state.codigoModal === 1 ? "six" :this.state.codigoModal === 2 ? "six out" : ""}>
                             <div class="modal-general_background">
                                 <div class="modal-general_bg_content">

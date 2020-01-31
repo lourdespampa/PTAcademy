@@ -63,7 +63,6 @@ function FooterContainer(props){
                 </div>
                 <div>
                     <img alt="" id="btn-chat" width="30px" height="30px" src={require("../../../img/footer/chat.svg")} />
-                    <img id="btn-chat" width="30px" height="30px" src={require("../../../img/footer/chat.svg")} />
                     <span>Chat</span>
                 </div>
             </div>

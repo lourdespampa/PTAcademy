@@ -1,81 +1,45 @@
 import React, { Component, useState } from "react";
 import {Link, Redirect } from 'react-router-dom'
 import "../courses/Course.sass";
-import { Modal, ButtonToolbar } from "react-bootstrap";
-import FormularioCourse from './FormPostCourse'
-import FormularioClass from './FormPostClass'
 import iconExit from "../../img/cerrar.png";
-function BotonAgregar(props) {
-  const [show, setShow] = useState(false);
-  const [activarX, setActivarX] = useState(true);
-  //no se esta usando esta variable
-  const handleDisableX = () => setActivarX(false)
-  const handleClose = () => {
-          setActivarX(true)
-          setShow(false)
-          }
-  const handleShow = () => setShow(true);
-  const AgregarClick=()=>setShow(false)+props.getdata()
-  return (
-    <>
-      <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
-        Agregar {props.agregarX}
-      </div>
-      <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
-          {
-            activarX
-            ?
-            <button className="modal-teacher__general-close" onClick={handleClose}>
-            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-            </button>
-            :
-            <button className="modal-teacher__general-close" onClick={handleClose} disabled>
-            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-            </button>
-          }
-        <Modal.Header>
-          <Modal.Title >Agregando {props.agregarX}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          { (props.agregarX === 'curso')?
-          <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
-          :
-          <FormularioClass handleEnableX={()=>setActivarX(true)} handleDisableX={handleDisableX}  apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
-          }
-        </Modal.Body>
-      </Modal>
-    </>
-  );
-}
+import BotonAgregar from "./ModalAgregar.jsx"
+
 function BotonCerrarSesion(props) {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(0);
+  const handleClose = () => setShow(2);
+  const handleShow = () => setShow(1);
   return (
     <>
       <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
         Cerrar sesion
       </div>
-      <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
-          <button className="modal-teacher__general-close" onClick={handleClose}>
-            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-          </button>
-        <Modal.Header>
-          <Modal.Title id="modal-header__title-question">¿DESEA CERRAR SESIÓN?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <ButtonToolbar>
-            <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
-                <Link style={{textDecoration:"none"}} to="/">
-                  <div className="button-zoom">SI</div>
-                </Link>
+      <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
+        <div className="modal-general_background">
+          <div className="modal-general_bg_content">
+            <button className="modal-general_close" onClick={handleClose}>
+              <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
             </button>
-            <button className="modal-body__button no" onClick={handleClose}>
-                <div className="button-zoom">NO</div>
-            </button>
-          </ButtonToolbar>
-        </Modal.Body>
-      </Modal>
+            <div className="modal-general_container">
+              <div className="modal-general_container_header">
+                <span className="modal-title__controlname">¿DESEA CERRAR SESIÓN?</span>
+              </div>
+              <div className="modal-general_container_body">
+                <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
+                    <Link style={{textDecoration:"none"}} to="/">
+                      <div className="button-zoom">SI</div>
+                    </Link>
+                </button>
+                <button className="modal-body__button no" onClick={handleClose}>
+                    <div className="button-zoom">NO</div>
+                </button>
+              </div>
+            </div>
+            <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+            </svg>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
