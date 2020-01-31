@@ -20,7 +20,7 @@
     list-style: none;
     width: 80px;
     height: 80px;
-    background: #262626;
+    background: #633ed4;
     margin: 0 10px;
     border-radius: 50%;
     transition: .5s;
@@ -28,7 +28,7 @@
 }
 .btnNextPrev li:hover
 {
-    background: #0070ff;
+    background: #57b57d;
 }
 .btnNextPrev li span 
 {
