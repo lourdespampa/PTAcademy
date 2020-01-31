@@ -1,52 +1,13 @@
 import React, { Component, useState } from "react";
 import {Link, Redirect } from 'react-router-dom'
 import "../courses/Course.sass";
-import { Modal, ButtonToolbar } from "react-bootstrap";
-import FormularioCourse from './FormPostCourse'
-import FormularioClass from './FormPostClass'
 import iconExit from "../../img/cerrar.png";
-function BotonAgregar(props) {
-  const [show, setShow] = useState(false);
-  const [activarX, setActivarX] = useState(true);
-  //no se esta usando esta variable
-  const handleDisableX = () => setActivarX(false)
-  const handleClose = () => {
-          setActivarX(true)
-          setShow(false)
-          }
-  const handleShow = () => setShow(true);
-  const AgregarClick=()=>setShow(false)+props.getdata()
-  return (
-    <>
-      <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
-        Agregar {props.agregarX}
-      </div>
-      <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
-        <div className="modal-general_background">
-          <div className="modal-general_bg_content">
-            <button className="modal-general_close" onClick={handleClose}>
-              <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-            </button>
-            <div className="modal-general_container">
-              { (props.agregarX === 'curso')?
-            <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
-            :
-            <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
-            }
-            </div>
-            <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-              <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
+import BotonAgregar from "./ModalAgregar.jsx"
+
 function BotonCerrarSesion(props) {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(0);
+  const handleClose = () => setShow(2);
+  const handleShow = () => setShow(1);
   return (
     <>
       <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>

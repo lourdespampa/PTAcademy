@@ -21,6 +21,10 @@ export default class FormPostCourse extends Component {
       [name]: value
     });
   };
+  handleCleanInput = () => {
+    this.setState({class_name: "", desc: ""})
+  }
+
   render() {
     const { class_name, desc } = this.state;
     return (
@@ -46,7 +50,7 @@ export default class FormPostCourse extends Component {
               rows="2"
               required
             />
-            <Upload handleClose={this.props.handleClose} handleEnableX={this.props.handleEnableX} handleDisableX={this.props.handleDisableX} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc} apiUrl={this.props.apiUrl}   ></Upload>
+            <Upload handleClose={this.props.handleClose} handleEnableX={this.props.handleEnableX} handleDisableX={this.props.handleDisableX} cleanInputs={this.handleCleanInput} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc} apiUrl={this.props.apiUrl}   ></Upload>
           </Form.Group>
       </>
     );
