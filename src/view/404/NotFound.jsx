@@ -10,9 +10,11 @@ export default class NotFound extends Component {
                 <div className="layout">
                     <div className="title-404">404!</div>
                     <div className="text icon_500">La página que está buscando no se encuentra disponible</div>
-                    <button className="home-notfound">
-                        <Link className="notfound-link" to="/">Volver a la página principal</Link>
-                    </button>
+                    <Link className="notfound-link" to="/">
+                        <button className="home-notfound">
+                            Volver a la página principal
+                        </button>
+                    </Link>
                 </div>
             </div>
             </>

@@ -134,7 +134,7 @@ class HeaderCode extends React.Component {
                         </div>
                         {/* <Modal className="modal-teacher__general" show={this.state.codigoModal} onHide={this.handleClose}>
                     <button className="modal-teacher__general-close" onClick={this.handleClose}>
-                        <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                        <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
                     </button>
                     <Modal.Header id="modal-general__header">
                         <span className="modal-title">CODIGO DE LA CLASE:</span>

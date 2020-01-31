@@ -15,6 +15,7 @@ export default class CoursesTeacher extends Component {
     this.state = {
       nombreProfesor: "",
       _id: "",
+      show: 0,
       id_curso: "",
       showdelete: false,
       courses: []
@@ -131,59 +132,27 @@ export default class CoursesTeacher extends Component {
             )}
           </ul>
         </div>
-        {/* <Modal className="modal-teacher__general"
-          size={"lg"}
-          show={this.state.showdelete}
-          onHide={() => this.setShow("showdelete", false)}
-        > 
-          <button className="modal-teacher__general-close" onClick={() => this.setShow("showdelete", false)}>
-              <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-          </button>
-          <Modal.Header>
-            <div className="punto-posi">
-              <span className="punto-text">¿DESEA ELIMINAR EL CURSO?</span>
-            </div>
-          </Modal.Header>
-          <Modal.Body>
-            <button
-              className="modal-body__button yes"
-              onClick={() =>
-                this.deleteCurso() + this.setShow("showdelete", false)
-              }
-              type="button"
-            >
-              <div className="button-zoom">SI</div>
-            </button>
-            <button
-              className="modal-body__button no"
-              onClick={() => this.setShow("showdelete", false)}
-              type="button"
-            >
-              <div className="button-zoom">NO</div>
-            </button>
-          </Modal.Body>
-        </Modal> */}
-        {/* <div id="modal-general_container" class={show ? "six" : "six out"}>
+        <div id="modal-general_container" class={this.state.show === 0 ? "" : this.state.show=== 1 ? "six" : this.state.show===2 ?"six out" : ""}>
         <div class="modal-general_background">
           <div class="modal-general_bg_content">
-            <button className="modal-general_close" onClick={() => this.setShow("showdelete", false)}>
+            <button className="modal-general_close" onClick={() => this.setShow("show", 2)}>
               <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
             </button>
             <div className="modal-general_container">
               <div className="modal-general_container_header">
-                <span>¿DESEA ELIMINAR EL CURSO?</span>
+                <span className="modal-title__controlname">¿DESEA ELIMINAR EL CURSO?</span>
               </div>
               <div className="modal-general_container_body">
                 <button 
                   className="modal-body__button yes"
                   onClick={() =>
-                  this.deleteCurso() + this.setShow("showdelete", false)}
+                  this.deleteCurso() + this.setShow("show", 2)}
                   type="button">
                     <div className="button-zoom">SI</div>
                 </button>
                 <button 
                   className="modal-body__button no"
-                  onClick={() => this.setShow("showdelete", false)}
+                  onClick={() => this.setShow("show", 2)}
                   type="button">
                     <div className="button-zoom">NO</div>
                 </button>
@@ -194,7 +163,7 @@ export default class CoursesTeacher extends Component {
             </svg>
           </div>
         </div>
-      </div> */}
+      </div>
       </>
     );
   }

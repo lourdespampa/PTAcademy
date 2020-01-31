@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import {Link, Redirect } from 'react-router-dom'
 import "../courses/Course.sass";
-import { Modal, Button, ButtonToolbar } from "react-bootstrap";
+import { Modal, ButtonToolbar } from "react-bootstrap";
 import FormularioCourse from './FormPostCourse'
 import FormularioClass from './FormPostClass'
 import iconExit from "../../img/cerrar.png";
@@ -17,21 +17,6 @@ function BotonAgregar(props) {
       <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
         Agregar {props.agregarX}
       </div>
-      {/* <Modal className="modal-teacher__general" show={show} onHide={handleClose}>
-        <button className="modal-teacher__general-close" onClick={handleClose}>
-          <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-        </button>
-        <Modal.Header>
-          <Modal.Title >Agregando {props.agregarX}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          { (props.agregarX === 'curso')?
-          <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} />
-          :
-          <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
-          }
-        </Modal.Body>
-      </Modal> */}
       <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
         <div className="modal-general_background">
           <div className="modal-general_bg_content">
@@ -40,9 +25,9 @@ function BotonAgregar(props) {
             </button>
             <div className="modal-general_container">
               { (props.agregarX === 'curso')?
-            <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} />
+            <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
             :
-            <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse}/>
+            <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
             }
             </div>
             <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -64,26 +49,6 @@ function BotonCerrarSesion(props) {
       <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
         Cerrar sesion
       </div>
-      {/* <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
-          <button className="modal-teacher__general-close" onClick={handleClose}>
-            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-          </button>
-        <Modal.Header>
-          <Modal.Title id="modal-header__title-question">¿DESEA CERRAR SESIÓN?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <ButtonToolbar>
-            <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
-                <Link style={{textDecoration:"none"}} to="/">
-                  <div className="button-zoom">SI</div>
-                </Link>
-            </button>
-            <button className="modal-body__button no" onClick={handleClose}>
-                <div className="button-zoom">NO</div>
-            </button>
-          </ButtonToolbar>
-        </Modal.Body>
-      </Modal> */}
       <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
         <div className="modal-general_background">
           <div className="modal-general_bg_content">
@@ -92,7 +57,7 @@ function BotonCerrarSesion(props) {
             </button>
             <div className="modal-general_container">
               <div className="modal-general_container_header">
-                <span>¿DESEA CERRAR SESIÓN?</span>
+                <span className="modal-title__controlname">¿DESEA CERRAR SESIÓN?</span>
               </div>
               <div className="modal-general_container_body">
                 <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
@@ -130,9 +95,9 @@ export default class NavCourse extends Component {
     this.setState({token: null})
   }
 
-  Abrir = () => {
+  AbriryCerrar = () => {
     const nav = document.getElementById("main-nav");
-          nav.classList.toggle("show");
+    nav.classList.toggle("show");
   }
   render() {
     return (
@@ -145,16 +110,25 @@ export default class NavCourse extends Component {
             <div
               className="teacherCourses__main-menu-toggle"
               id="main-menu-toggle"
-              onClick={this.Abrir}
+              onClick={this.AbriryCerrar}
             ></div>
             <nav className='teacherCourses__main-nav' id="main-nav">
               <ul className="teacherCourses__main-menu">
                 <li className="teacherCourses__main-menu__item">
                   <BotonAgregar 
                     apiUrl={this.props.apiUrl} idteacher={this.props.idteacher} idcourse={this.props.idcourse} 
-                    agregarX={this.props.agregarX} getdata={this.props.getdata}>
+                    agregarX={this.props.agregarX} getdata={this.props.getdata} menuToggleNavbar={this.AbriryCerrar}>
                   </BotonAgregar>
                 </li>
+                {this.props.agregarX==='clase'?
+                <li className="teacherCourses__main-menu__item">
+                  <Link to={`/CoursesTeacher/${this.props.idteacher}`} style={{textDecoration: 'none'}}>
+                    <div className="teacherCourses__main-menu__LogOut">
+                      Regresar a cursos
+                    </div>
+                  </Link>
+                </li>
+                :null}
                 <li className="teacherCourses__main-menu__item">
                   <BotonCerrarSesion cerrarSesion={this.cerrarSesion} />
                 </li>

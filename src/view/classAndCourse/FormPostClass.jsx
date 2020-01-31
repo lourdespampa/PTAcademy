@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Form } from "react-bootstrap";
-import axios from "axios";
 import Upload from "./upload/Upload";
 export default class FormPostCourse extends Component {
   constructor(props) {
@@ -21,26 +20,6 @@ export default class FormPostCourse extends Component {
       [name]: value
     });
   };
-
-  handleSubmit = event => {
-    console.log(this.props)
-    var varToken = localStorage.getItem('token');
-    event.preventDefault();
-    const data = {
-      class_name: this.state.class_name,
-      desc: this.state.desc
-    };
-
-    axios({
-      url: `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`,
-      data,
-      method: 'post',
-      headers: {
-        'x-access-token': `${varToken}`
-      }
-    }).then(res => console.log(res)+this.props.handleClose())
-      .catch(err => console.log(err));
-  };
   render() {
     const { class_name, desc } = this.state;
     return (
@@ -57,7 +36,7 @@ export default class FormPostCourse extends Component {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label className="modal-title__controlname">Descipcion de la Clase</Form.Label>
+            <Form.Label className="modal-title__controlname">Descripcion de la Clase</Form.Label>
             <Form.Control className="modal-teacher__general-controldescription"
               name="desc"
               onChange={this.handleChange}
@@ -66,7 +45,7 @@ export default class FormPostCourse extends Component {
               rows="2"
               required
             />
-            <Upload handleClose={this.props.handleClose} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc} apiUrl={this.props.apiUrl}   ></Upload>
+            <Upload handleClose={this.props.handleClose} handleEnableX={this.props.handleEnableX} handleDisableX={this.props.handleDisableX} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc} apiUrl={this.props.apiUrl}   ></Upload>
           </Form.Group>
       </>
     );

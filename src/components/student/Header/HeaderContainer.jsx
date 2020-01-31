@@ -53,18 +53,18 @@ export default function HeaderContainer(props) {
           })
         socket.on('redirectAlum', (data) => {
             console.log('llega redirectAlum')
-            if(data.pin == (props.id_access).toUpperCase()){
-                if(data.page == 'trivia'){
+            if(data.pin === (props.id_access).toUpperCase()){
+                if(data.page === 'trivia'){
                     settrivia(true)
                     settemporizador(false)
-                }else if(data.page == 'temporizador'){
+                }else if(data.page === 'temporizador'){
                     settemporizador(true)
                     settrivia(false)
                 }
             }
         })
         socket.on('ExitSocket',(data)=>{
-            if(data.pin==(props.id_access).toUpperCase()){
+            if(data.pin===(props.id_access).toUpperCase()){
                 setExit(true)
             }
         })
@@ -72,9 +72,9 @@ export default function HeaderContainer(props) {
         //liSTA
         socket.on('RemoveStudS',(data)=>{
             console.log(data)
-            if(data.pin == (props.id_access).toUpperCase()) {
+            if(data.pin === (props.id_access).toUpperCase()) {
                 console.log('REcibe salida')
-                if(data.id==props.id_student){
+                if(data.id===props.id_student){
                     console.log('REcibe  salida fase 2')
                     setExit(true)
                 }
@@ -124,14 +124,14 @@ export default function HeaderContainer(props) {
               </li>
               {/* <li className="alumnoHeader-"><a className="alumnoHeader-"></a></li> */}
               <li className="alumnoHeader-li"> 
-                <a className="alumnoHeader-a">
+                <a href className="alumnoHeader-a">
                   <i className="fa fa-user"></i>
                   {props.name} {props.lastName}
                   <i className="fa fa-chevron-down"></i>
                 </a>
                 <ul className={showResponsive ? "alumnoHeader-nav showResponsive" : "alumnoHeader-nav"} style={{zIndex:"5000"}}>
                   <li className="alumnoHeader-li"  onClick={() => deleteStudent()+setredirect(true)}>
-                    <a className="alumnoHeader-a alumnoHeader-salir">
+                    <a href className="alumnoHeader-a alumnoHeader-salir">
                       <i class="fas fa-sign-out-alt" style={{fontSize:"22px", padding:"0 10px"}}></i>
                       Salir
                       {

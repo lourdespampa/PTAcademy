@@ -2,7 +2,6 @@ import React from "react";
 import $ from 'jquery';
 import io from 'socket.io-client';
 import "./temporizador.sass";
-import Modal from 'react-bootstrap/Modal';
 import iconExit from "../../../img/cerrar.png";
 
 class Temporizador extends React.Component {
@@ -116,9 +115,6 @@ class Temporizador extends React.Component {
                 socket.emit('set', {
                     time: [hour, min, sec]
                 });
-                console.log("hola")
-                // this.setState({showModal: 2})
-                // $('#modal-general_container').addClass("six out");
                 // $('#establecer_tiempo').modal('hide');
                 g = c;
                 n();
@@ -236,7 +232,7 @@ class Temporizador extends React.Component {
                             <button className="modal-general_close" onClick={this.closeModal}>
                                 <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                             </button>
-                            <div className="modal-general_container">
+                            <div className="modal-general_container modal-temporizador">
                                 <div className="modal-general_container_header">
                                     <span className="modal-title">ESTABLECER TIEMPO</span>
                                 </div>
@@ -251,7 +247,7 @@ class Temporizador extends React.Component {
                                             <input className="pure-input-1" type="number" id="id_dt_3" value={this.state.valS} min="0" onChange={this.onChangeInputS} />
                                         </div>
                                     </form>
-                                    <button type="button" id="button-set" className="pure-button pure-button-primary">Establecer Tiempo</button>
+                                    <button type="button" id="button-set" className="pure-button pure-button-primary" onClick={this.closeModal} >Establecer Tiempo</button>
                                 </div>
                             </div>
                             <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
