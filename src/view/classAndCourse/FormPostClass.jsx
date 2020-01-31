@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Form } from "react-bootstrap";
 import Upload from "./upload/Upload";
+<<<<<<< HEAD
+=======
+import Spinner from "../../components/teacher/footer/spinner"
+
+>>>>>>> 28d4b64688161cc65a4c31d3cf316dca069ccd5a
 //import spinner from "../../components/teacher/footer/spinner";
 export default class FormPostCourse extends Component {
   constructor(props) {
@@ -50,7 +55,13 @@ export default class FormPostCourse extends Component {
               rows="2"
               required
             />
+<<<<<<< HEAD
             <Upload handleClose={this.props.handleClose} handleEnableX={this.props.handleEnableX} handleDisableX={this.props.handleDisableX} cleanInputs={this.handleCleanInput} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc} apiUrl={this.props.apiUrl}   ></Upload>
+=======
+            <Spinner></Spinner>
+            <Upload handleClose={this.props.handleClose} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc} apiUrl={this.props.apiUrl}   ></Upload>
+
+>>>>>>> 28d4b64688161cc65a4c31d3cf316dca069ccd5a
           </Form.Group>
       </>
     );
