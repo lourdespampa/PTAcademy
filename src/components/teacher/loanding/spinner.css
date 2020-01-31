@@ -1,5 +1,15 @@
+.padre{
+    background: #00000096;
+    position:fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index:10;
+}
+
 .spinner {
-    margin: 100px auto 0;
+    margin: 25% 50% ;
     width: 70px;
     text-align: center;
   }
@@ -7,7 +17,7 @@
   .spinner > div {
     width: 18px;
     height: 18px;
-    background-color: #333;
+    background-color:#41D8F2;
   
     border-radius: 100%;
     display: inline-block;
