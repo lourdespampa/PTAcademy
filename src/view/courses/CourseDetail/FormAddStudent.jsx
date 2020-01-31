@@ -39,7 +39,7 @@ export default class FormAddStudent extends Component {
     };
     
     axios({
-      url: `${this.props.apiUrl}:4200/v1/api/student`,
+      url: `${this.props.apiUrl}/v1/api/student`,
       data,
       method: "post",
       headers: {
