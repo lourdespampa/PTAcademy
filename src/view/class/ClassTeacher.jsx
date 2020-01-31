@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Modal } from "react-bootstrap";
 import NavCourse from "../classAndCourse/NavCourse";
 import axios from 'axios'
 import AllClass from './AllClass'

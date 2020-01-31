@@ -40,7 +40,7 @@ class Upload extends Component {
     }else{
     this.props.handleDisableX()
      document.addEventListener("keydown", function(e){
-       if (e.which == 27){
+       if (e.which === 27){
            return false
        }})
     this.setState({ uploadProgress: {}, uploading: true });
