@@ -78,7 +78,8 @@ class Temporizador extends React.Component {
                     a += f
                 }
                 // q.length !== a.length;
-                const q = a;
+                //es una variable que no se usa
+                // const q = a;
             },
             v = function () {
                 g = l - Date.now();
@@ -211,7 +212,7 @@ class Temporizador extends React.Component {
                             </div>
                             <div className="modal-body">
                                 <div className="temporizador_modal_body">
-                                    <form class="temporizador_form">
+                                    <form className="temporizador_form">
                                         <div><label>Horas</label>
                                             <input className="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />
                                         </div><div><label>Minutos</label>
