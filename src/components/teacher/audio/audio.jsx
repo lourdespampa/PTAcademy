@@ -13,7 +13,8 @@ export default class Audio extends Component{
         super(props);
         this.state = {
           socket:null,
-          show:0
+          show:0,
+          txtTransmision:"DESEA TRANSMITIR AUDIO"
         }
       }
     handleClose = () => this.setState({show:2});
@@ -59,6 +60,10 @@ export default class Audio extends Component{
                 }
                 presenterMedia.startRecording();
                 controller.push("xd")
+                this.setState({
+                    txtTransmision:'DESEA DEJAR DE TRANSMITIR AUDIO'
+                })
+                this.handleClose()
                 } else{
                 presenterMedia.stopRecording();
                 presenterMedia = false
@@ -67,6 +72,10 @@ export default class Audio extends Component{
                 socket.emit('msj_stop', {
                     txt: "La transmicion de voz ha finalizado"
                 });
+                this.handleClose()
+                this.setState({
+                    txtTransmision:'DESEA TRANSMITIR AUDIO'
+                })
             }       
         })
         const i = [];
@@ -85,12 +94,9 @@ export default class Audio extends Component{
         return  (
         <>
         
-        <div className="" onClick={this.handleShow}>
-            <div id="btn" >
-                <img id="micro" alt="" width="30px" height="30px" src={require("../../../img/footer/micro.svg")} />
-                <span>Audio</span>
-            </div>
-            
+        <div className="footer-div" onClick={this.handleShow}>
+            <img id="micro" alt="" width="30px" height="30px" src={require("../../../img/footer/micro.svg")} />
+            <span>Audio</span>
         </div>
         <div id="modal-general_container" className={this.state.show === 0 ? "" : this.state.show === 1 ? "six" : this.state.show === 2 ? "six out" : ""}>
           <div className="modal-general_background">
@@ -99,14 +105,14 @@ export default class Audio extends Component{
                 <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
               </button>
               <div className="modal-general_container">
-                <div className="modal-general_container_header">
-                  <span className="modal-title__controlname">¿DESEA CERRAR SESIÓN?</span>
+                <div className="modal-general_container_header" style={{color:'#000000'}}>
+                  <span className="modal-title__controlname">¿{this.state.txtTransmision}?</span>
                 </div>
                 <div className="modal-general_container_body">
-                  <button className="modal-body__button yes" variant="primary">
+                  <button  id="btn" className="modal-body__button yes" variant="primary">
                         <div className="button-zoom">SI</div>
                   </button>
-                  <button className="modal-body__button no" >
+                  <button className="modal-body__button no"  onClick={this.handleClose} >
                       <div className="button-zoom">NO</div>
                   </button>
                 </div>
