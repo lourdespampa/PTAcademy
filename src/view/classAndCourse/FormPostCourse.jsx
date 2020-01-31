@@ -3,7 +3,9 @@ import React, { Component } from "react";
 import axios from "axios";
 //estilos
 import { Form, Button } from "react-bootstrap";
-import './FormPostCourse.sass'
+import './FormPostCourse.sass';
+
+
 //componente clase
 export default class FormPostCourse extends Component {
   //1. inializa las propiedades recibidas del componente padre
@@ -87,8 +89,8 @@ export default class FormPostCourse extends Component {
     const data = { level, grade, section, course_name, description}
     //esta es la peticion al servidor, un post
     axios({
-      // url: `${this.props.apiUrl}/v1/api/siagie/${this.props.idteacher}/new-course`,
-      url: `http://192.168.1.29:4200/v1/api/siagie/${this.props.idteacher}/new-course`,
+      url: `${this.props.apiUrl}/v1/api/siagie/${this.props.idteacher}/new-course`,
+      // url: `http://192.168.1.29:4200/v1/api/siagie/${this.props.idteacher}/new-course`,
       data,
       method: 'post',
       headers: {

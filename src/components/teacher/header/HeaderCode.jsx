@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'
 import { Button, ButtonToolbar } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 import iconExit from "../../../img/cerrar.png";
 import './HeaderCode.sass'
 function BotonSalir(props) {
     var user = JSON.parse(localStorage.getItem('user'));
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-     useEffect(() => console.log(user._id) );
+    const [show, setShow] = useState(0);
+    const handleClose = () => setShow(2);
+    const handleShow = () => setShow(1);
+    useEffect(() => console.log(user._id));
     return (
       <>
         <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />           
@@ -40,33 +40,29 @@ function BotonSalir(props) {
         </Modal>
       </>
     );
-  }
+}
 
 
 class HeaderCode extends React.Component {
     state = {
-        codigoModal: false
+        codigoModal: 0
     }
 
-    handleClose = () => this.setState({codigoModal: false});
-    handleShow = () => this.setState({codigoModal: true});
+    handleClose = () => this.setState({ codigoModal: 2 });
+    handleShow = () => this.setState({ codigoModal: 1});
 
     closeMenu = () => {
         document.getElementById('checked').click()
     }
 
-    render(){
-    return(
-        <>
-        <div className="Header-code__header" id="Header-code__header">
-            <div className="logo">
-                <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" />        
-                <img className="logo-img" src={require("../../../img/index/logo.svg")} alt="" />        
-            </div>
-            
-            <div className="class-name">
-                {this.props.nombre_clase}
-            </div>
+    render() {
+        return (
+            <>
+                <div className="Header-code__header" id="Header-code__header">
+                    <div className="logo">
+                        <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" />
+                        <img className="logo-img" src={require("../../../img/index/logo.svg")} alt="" />
+                    </div>
 
             <div id="menuToggle">
                 <input id="checked" type="checkbox" className="check"/>
@@ -110,11 +106,32 @@ class HeaderCode extends React.Component {
                     <Modal.Body>
                         <span id="modal-content__codigogenerado">{this.props.id_access}</span>
                     </Modal.Body>
-                </Modal>
-            </div>
-        </div>
-        </>
-    )}
+                </Modal> */}
+                        <div id="modal-general_container" className={this.state.codigoModal === 0 ? "" : this.state.codigoModal === 1 ? "six" :this.state.codigoModal === 2 ? "six out" : ""}>
+                            <div class="modal-general_background">
+                                <div class="modal-general_bg_content">
+                                    <button className="modal-general_close" onClick={this.handleClose}>
+                                        <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                                    </button>
+                                    <div className="modal-general_container">
+                                        <div className="modal-general_container_header">
+                                            <span className="modal-title">CODIGO DE LA CLASE:</span>
+                                        </div>
+                                        <div className="modal-general_container_body codigogenerado">
+                                            <span id="modal-content__codigogenerado">{this.props.id_access}</span>
+                                        </div>
+                                    </div>
+                                    <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                                        <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </>
+        )
+    }
 }
 
 export default HeaderCode;

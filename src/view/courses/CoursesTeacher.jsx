@@ -131,7 +131,7 @@ export default class CoursesTeacher extends Component {
             )}
           </ul>
         </div>
-        <Modal className="modal-teacher__general"
+        {/* <Modal className="modal-teacher__general"
           size={"lg"}
           show={this.state.showdelete}
           onHide={() => this.setShow("showdelete", false)}
@@ -162,7 +162,39 @@ export default class CoursesTeacher extends Component {
               <div className="button-zoom">NO</div>
             </button>
           </Modal.Body>
-        </Modal>
+        </Modal> */}
+        {/* <div id="modal-general_container" class={show ? "six" : "six out"}>
+        <div class="modal-general_background">
+          <div class="modal-general_bg_content">
+            <button className="modal-general_close" onClick={() => this.setShow("showdelete", false)}>
+              <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+            </button>
+            <div className="modal-general_container">
+              <div className="modal-general_container_header">
+                <span>¿DESEA ELIMINAR EL CURSO?</span>
+              </div>
+              <div className="modal-general_container_body">
+                <button 
+                  className="modal-body__button yes"
+                  onClick={() =>
+                  this.deleteCurso() + this.setShow("showdelete", false)}
+                  type="button">
+                    <div className="button-zoom">SI</div>
+                </button>
+                <button 
+                  className="modal-body__button no"
+                  onClick={() => this.setShow("showdelete", false)}
+                  type="button">
+                    <div className="button-zoom">NO</div>
+                </button>
+              </div>
+            </div>
+            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+            </svg>
+          </div>
+        </div>
+      </div> */}
       </>
     );
   }
