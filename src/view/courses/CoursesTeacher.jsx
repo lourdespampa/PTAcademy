@@ -131,7 +131,7 @@ export default class CoursesTeacher extends Component {
             )}
           </ul>
         </div>
-        {/* <Modal className="modal-teacher__general"
+        <Modal className="modal-teacher__general"
           size={"lg"}
           show={this.state.showdelete}
           onHide={() => this.setShow("showdelete", false)}
@@ -162,7 +162,7 @@ export default class CoursesTeacher extends Component {
               <div className="button-zoom">NO</div>
             </button>
           </Modal.Body>
-        </Modal> */}
+        </Modal>
         {/* <div id="modal-general_container" class={show ? "six" : "six out"}>
         <div class="modal-general_background">
           <div class="modal-general_bg_content">
