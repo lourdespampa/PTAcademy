@@ -6,6 +6,7 @@ class spinner extends Component {
 
         return (
             <div className="padre">
+            
                 <div className="spinner">
                     <div className="bounce1"></div>
                     <div className="bounce2"></div>

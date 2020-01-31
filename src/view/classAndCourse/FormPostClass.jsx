@@ -3,6 +3,7 @@ import { Form } from "react-bootstrap";
 import axios from "axios";
 import Upload from "./upload/Upload";
 import Spinner from "../../components/teacher/footer/spinner"
+
 //import spinner from "../../components/teacher/footer/spinner";
 export default class FormPostCourse extends Component {
   constructor(props) {
@@ -68,13 +69,9 @@ export default class FormPostCourse extends Component {
               rows="2"
               required
             />
-<<<<<<< HEAD
             <Spinner></Spinner>
-            <Upload handleClose={this.props.handleClose} handleDisableX={this.props.handleDisableX} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc} apiUrl={this.props.apiUrl}   ></Upload>
-          
-=======
             <Upload handleClose={this.props.handleClose} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc} apiUrl={this.props.apiUrl}   ></Upload>
->>>>>>> ab86155daedcd44325a759c5ef394a6faba982d5
+
           </Form.Group>
       </>
     );
