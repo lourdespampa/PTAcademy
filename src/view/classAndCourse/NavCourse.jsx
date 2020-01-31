@@ -5,19 +5,23 @@ import { Modal, ButtonToolbar } from "react-bootstrap";
 import FormularioCourse from './FormPostCourse'
 import FormularioClass from './FormPostClass'
 import iconExit from "../../img/cerrar.png";
+import Loanding from "../../components/teacher/loanding/spinner"
 function BotonAgregar(props) {
   const [show, setShow] = useState(false);
   const [activarX, setActivarX] = useState(true);
+  const [loanding, setLoanding] = useState(false);
   //no se esta usando esta variable
-  const handleDisableX = () => setActivarX(false)
-  const handleClose = () => {
-          setActivarX(true)
-          setShow(false)
-          }
+  const handleDisableX = () => setActivarX(false)+setLoanding(true)
+  const handleClose = () => setActivarX(true)+setShow(false)
+  const handleEnableX=()=>setActivarX(true)+setLoanding(false)
   const handleShow = () => setShow(true);
   const AgregarClick=()=>setShow(false)+props.getdata()
   return (
     <>
+    {loanding?
+    <Loanding/>:null
+
+    }
       <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
         Agregar {props.agregarX}
       </div>
@@ -40,7 +44,7 @@ function BotonAgregar(props) {
           { (props.agregarX === 'curso')?
           <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
           :
-          <FormularioClass handleEnableX={()=>setActivarX(true)} handleDisableX={handleDisableX}  apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
+          <FormularioClass handleEnableX={handleEnableX} handleDisableX={handleDisableX}  apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
           }
         </Modal.Body>
       </Modal>
