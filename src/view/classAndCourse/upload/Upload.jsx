@@ -124,13 +124,12 @@ class Upload extends Component {
             console.log('mal')
             this.setState({ errorUploaded: true});
             this.props.handleEnableX()
-            this.props.cleanInputs()
+            // this.props.cleanInputs()
             this.setState({
-              files: [],
+              successfullUploaded: false,
+              errorUploaded:true,
               uploading: false,
               uploadProgress: {},
-              successfullUploaded: false,
-              errorUploaded:false,
               slideOn:false,
               NoData:false,
               UploadDone:false,
@@ -147,9 +146,10 @@ class Upload extends Component {
         return (
           <>
           <button className='modal-body__button backCursos'
-            onClick={() =>
+            onClick={() =>{
+              this.props.cleanInputs()
               this.setState({ files: [], uploading: false, errorUploaded: false,slideOn:false })
-            }
+            }}
           >
             <div className="button-zoom">LIMPIAR</div>
           </button>
