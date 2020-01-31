@@ -57,9 +57,11 @@ function BotonSalir(props) {
                             <button className="modal-body__button no" onClick={handleClose}>
                                 <div className="button-zoom">NO</div>
                             </button>
-                            <button className="modal-body__button  backCursos" onClick={handleClose}>
-                                <div className="button-zoom">REGRESAR A CURSOS</div>
-                            </button>
+                            <Link to={`/CoursesTeacher/${user._id}`}>
+                                <button className="modal-body__button  backCursos" onClick={handleClose}>
+                                    <div className="button-zoom">REGRESAR A CURSOS</div>
+                                </button>
+                            </Link>
                         </div>
                     </div>
                     <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">

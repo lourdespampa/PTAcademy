@@ -57,7 +57,7 @@ export default class FormPostCourse extends Component {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label className="modal-title__controldescription">Descipcion de la Clase</Form.Label>
+            <Form.Label className="modal-title__controlname">Descipcion de la Clase</Form.Label>
             <Form.Control className="modal-teacher__general-controldescription"
               name="desc"
               onChange={this.handleChange}

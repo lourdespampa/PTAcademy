@@ -265,6 +265,4 @@ class Temporizador extends React.Component {
         );
     }
 }
-
-
 export default Temporizador;
