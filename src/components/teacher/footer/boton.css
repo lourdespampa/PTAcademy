@@ -44,14 +44,14 @@
 .btnNextPrev li.next span
 {
     top: 50%;
-    right: 32%;
+    right: 40%;
     transform: translateY(-45%) rotate(-45deg);
     border-left: none;
     border-top: none;
 }
 .btnNextPrev li.next:hover span
 {
-    right: 16%;
+    right: 28%;
 }
 .btnNextPrev li.next span:before 
 {
@@ -82,7 +82,7 @@
     transform: translateY(-50%) rotate(-45deg);
     border-right: none;
     border-bottom: none;
-    left: 39%;
+    left: 43%;
 }
 
 .next{
@@ -94,7 +94,7 @@
 
 .btnNextPrev li.prev:hover span
 {
-    left: 16%;
+    left: 28%;
 }
 .btnNextPrev li.prev span:before 
 {
