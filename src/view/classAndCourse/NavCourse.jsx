@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import {Link, Redirect } from 'react-router-dom'
 import "../courses/Course.sass";
-import { Modal, Button, ButtonToolbar } from "react-bootstrap";
+import { Modal, ButtonToolbar } from "react-bootstrap";
 import FormularioCourse from './FormPostCourse'
 import FormularioClass from './FormPostClass'
 import iconExit from "../../img/cerrar.png";
@@ -9,7 +9,8 @@ import iconExit from "../../img/cerrar.png";
 function BotonAgregar(props) {
   const [show, setShow] = useState(false);
   const [activarX, setActivarX] = useState(true);
-  const handleDisableX = () => setActivarX(false)
+  //no se esta usando esta variable
+  // const handleDisableX = () => setActivarX(false)
   const handleClose = () => {
           setActivarX(true)
           setShow(false)
@@ -39,9 +40,9 @@ function BotonAgregar(props) {
         </Modal.Header>
         <Modal.Body>
           { (props.agregarX === 'curso')?
-          <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} />
+          <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
           :
-          <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} handleDisableX={handleDisableX} idteacher={props.idteacher} idcourse={props.idcourse}/>
+          <FormularioClass apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
           }
         </Modal.Body>
       </Modal>
@@ -96,9 +97,9 @@ export default class NavCourse extends Component {
     this.setState({token: null})
   }
 
-  Abrir = () => {
+  AbriryCerrar = () => {
     const nav = document.getElementById("main-nav");
-          nav.classList.toggle("show");
+    nav.classList.toggle("show");
   }
   render() {
     return (
@@ -111,16 +112,25 @@ export default class NavCourse extends Component {
             <div
               className="teacherCourses__main-menu-toggle"
               id="main-menu-toggle"
-              onClick={this.Abrir}
+              onClick={this.AbriryCerrar}
             ></div>
             <nav className='teacherCourses__main-nav' id="main-nav">
               <ul className="teacherCourses__main-menu">
                 <li className="teacherCourses__main-menu__item">
                   <BotonAgregar 
                     apiUrl={this.props.apiUrl} idteacher={this.props.idteacher} idcourse={this.props.idcourse} 
-                    agregarX={this.props.agregarX} getdata={this.props.getdata}>
+                    agregarX={this.props.agregarX} getdata={this.props.getdata} menuToggleNavbar={this.AbriryCerrar}>
                   </BotonAgregar>
                 </li>
+                {this.props.agregarX==='clase'?
+                <li className="teacherCourses__main-menu__item">
+                  <Link to={`/CoursesTeacher/${this.props.idteacher}`} style={{textDecoration: 'none'}}>
+                    <div className="teacherCourses__main-menu__LogOut">
+                      Regresar a cursos
+                    </div>
+                  </Link>
+                </li>
+                :null}
                 <li className="teacherCourses__main-menu__item">
                   <BotonCerrarSesion cerrarSesion={this.cerrarSesion} />
                 </li>

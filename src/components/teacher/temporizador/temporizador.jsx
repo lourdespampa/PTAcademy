@@ -2,7 +2,6 @@ import React from "react";
 import $ from 'jquery';
 import io from 'socket.io-client';
 import "./temporizador.sass";
-import Modal from 'react-bootstrap/Modal';
 import iconExit from "../../../img/cerrar.png";
 
 class Temporizador extends React.Component {
@@ -46,7 +45,7 @@ class Temporizador extends React.Component {
             { pin: this.props.id_access }
       })
 
-      let _this = this;
+    //   let _this = this;
         
         var g, c, l, d = "",
         e = [{
@@ -78,7 +77,8 @@ class Temporizador extends React.Component {
                     a += f
                 }
                 // q.length !== a.length;
-                const q = a;
+                //es una variable que no se usa
+                // const q = a;
             },
             v = function() {
                 g = l - Date.now();
@@ -203,7 +203,7 @@ class Temporizador extends React.Component {
             <div role="document" className="modal-teacher__general">
                 <div className="modal-content">
                     <button  type="button" className="modal-teacher__general-close" onClick={this.closeModal}>
-                        <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                        <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
                     </button>
                     <div className="modal-header">
                         <div className="punto-posi">
@@ -212,7 +212,7 @@ class Temporizador extends React.Component {
                             </div>
                             <div className="modal-body">
                                 <div className="temporizador_modal_body">
-                                    <form class="temporizador_form">
+                                    <form className="temporizador_form">
                                         <div><label>Horas</label>
                             <input className="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />
                                             </div><div><label>Minutos</label>
