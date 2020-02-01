@@ -86,7 +86,7 @@ export default class NavCourse extends Component {
                 {this.props.agregarX==='clase'?
                 <li className="teacherCourses__main-menu__item">
                   <Link to={`/CoursesTeacher/${this.props.idteacher}`} style={{textDecoration: 'none'}}>
-                    <div className="teacherCourses__main-menu__LogOut">
+                    <div className="teacherCourses__main-menu__addCourse">
                       Regresar a cursos
                     </div>
                   </Link>
