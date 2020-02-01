@@ -40,7 +40,8 @@ function FooterContainer(props){
     const [Show, setShow] = useState(false);
     const [NoData, setNoData] = useState(false);
         return(
-        <>           
+        <> 
+        {/* Caja Principal de diapositiva ;formulario ;video ;comnpartir pantalla */}
             <div className="footer-distributed">
                 <div id="btndiapo" onClick={()=>props.openPopup('overlay','popup')+props.botonClick('btndiapo')}>
                     <img alt="" width="30px" height="30px" src={require("../../../img/footer/slide.svg")} />
@@ -66,15 +67,17 @@ function FooterContainer(props){
                     <span>Chat</span>
                 </div>
             </div>
+            {/*  */}
+            {/* popup diapositiva */}
             <div className="overlay" id="overlay">
                 <div className="popup" id="popup">
                     <button id="btnCerrarDiapo" className="modal-teacher__general-close" onClick={()=>props.closePopup('overlay','popup')+props.botonClick('btnCerrarDiapo')}>
                         <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                     </button>
                     <Slide apiUrl={props.apiUrl} id_class={props.id_class} />
-                    <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="760" height="569" style={{width: "100% !important",display:"none",height: "100%"}} allowFullScreen={true}
+                    {/* <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="760" height="569" style={{width: "100% !important",display:"none",height: "100%"}} allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
-                    </iframe>
+                    </iframe> */}
                     
                     <ul className="btnNextPrev">
                         <li class="prev"><span></span></li>
@@ -83,6 +86,8 @@ function FooterContainer(props){
                     
                 </div>
             </div>
+            {/*  */}
+            {/* popup Formulario */}
             <div className="overlay" id="overlayinframe">
                 <div className="popup" id="popupformulario">
                         <button className="modal-teacher__general-close" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} >
@@ -99,6 +104,8 @@ function FooterContainer(props){
                     </button>
                 </div>
             </div>
+            {/*  */}
+      {/* Modal Teacher */}
       <Modal
         className="modal-teacher__general"
         id="modalvideo"
@@ -120,6 +127,8 @@ function FooterContainer(props){
             alt="imagen de cerrar modal"
           />
         </button>
+    {/*  */}
+    {/* Modal Video */}
         <Modal.Header>
           <div className="punto-posi">
             <span>EMITIR VIDEO</span>
@@ -160,11 +169,12 @@ function FooterContainer(props){
           ) : null}
         </Modal.Body>
       </Modal>
-
+    {/*  */}
+    {/* Popup Video */}
       <div className="overlay" id="overlay2">
         <div className="popup" id="popupvideo">
           <div
-            id="btn-cerrar-popup"
+            id="cerrar-popup"
             className="btn-cerrar-popup"
             onClick={() =>
               props.closePopup("overlay2", "popupvideo") +
@@ -186,6 +196,7 @@ function FooterContainer(props){
           ></iframe>
         </div>
       </div>
+    {/*  */}
     </>
   );
 }
