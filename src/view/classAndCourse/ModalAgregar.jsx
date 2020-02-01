@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import iconExit from "../../img/cerrar.png";
 import FormularioCourse from './FormPostCourse'
 import FormularioClass from './FormPostClass'
@@ -8,7 +7,6 @@ import Loanding from "../../components/teacher/loanding/spinner"
 export default function BotonAgregar(props) {
     const [show, setShow] = useState(0);
     const [loanding, setLoanding] = useState(false);
-    //no se esta usando esta variable
     const handleDisableX = () => setLoanding(true)
     const handleClose = () => setShow(2)
     const handleEnableX=()=>setLoanding(false)
@@ -16,10 +14,10 @@ export default function BotonAgregar(props) {
     const AgregarClick=()=>setShow(2)+props.getdata()
     return (
       <>
-      {loanding?
-      <Loanding/>:null
-  
-      }
+        {loanding?
+          <Loanding/>
+          :null
+        }
         <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
           Agregar {props.agregarX}
         </div>

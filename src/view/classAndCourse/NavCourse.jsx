@@ -53,7 +53,7 @@ export default class NavCourse extends Component {
     let tokenStorage = localStorage.getItem("token")
     await this.setState({token: tokenStorage})
   }
-
+  
   cerrarSesion = () => {
     localStorage.clear();
     this.setState({token: null})

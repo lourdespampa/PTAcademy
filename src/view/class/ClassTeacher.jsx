@@ -13,28 +13,14 @@ export default class ClassTeacher extends Component {
         idteacher:"",
         id_class:"",
         show: 0,
-        classes: [],
-        showdelete: false,
+        classes: []
       };
     }
   componentDidMount() {
     var varToken = localStorage.getItem('token');
-   const { match: { params } } = this.props;
-   this.setState({idteacher: params.id_teacher,idcourse:params._id})
-    axios({
-      url: `${this.props.apiUrl}/v1/api/teacher/${params.id_teacher}/course_detail/${params._id}`,
-      method: 'GET',
-      headers: {
-        'x-access-token': `${varToken}`
-      }
-    }).then( ({ data }) => {
-        if(data === []){
-          this.setState({classes: []})
-        }else{
-          this.setState({classes: data})
-        }
-    })
-    .catch( e => console.log(e))
+    const { match: { params } } = this.props;
+    this.setState({idteacher: params.id_teacher,idcourse:params._id})
+    this.getClass()
     axios({
       url: `${this.props.apiUrl}/v1/api/admin/user/${params.id_teacher}`,
       method: 'GET',
@@ -45,6 +31,7 @@ export default class ClassTeacher extends Component {
       this.setState({nombreProfesor:data.user_name+" "+data.user_lastName})
     })
   }
+  // funcion para obtener clases
   getClass=()=>{
     var varToken = localStorage.getItem('token');
     const { match: { params } } = this.props;
@@ -60,13 +47,13 @@ export default class ClassTeacher extends Component {
         }else{
           this.setState({classes: data})
         }
-})
+    })
     .catch( e => console.log(e))
   }
+  //funcion para eliminar clase
   deleteClass= async () => {
     console.log('delete clase_ '+this.state.id_class)
     var varToken = localStorage.getItem("token");
-
     await axios({
       url:`${this.props.apiUrl}/v1/api/teacher/change_lesson_state/${this.state.id_class}`,
       method:'get',
@@ -75,12 +62,14 @@ export default class ClassTeacher extends Component {
       }});
     this.getClass();
   };
+  // obtener id de clase
   onClick = id => {
     this.setState({
       id_class: id
     });
     console.log(id);
   };
+  // cabiar estado de modal
   setShow = (nom, val) => {
     this.setState({
       [nom]: val
@@ -89,8 +78,11 @@ export default class ClassTeacher extends Component {
   render() {
     return (
       <>
-      <NavCourse apiUrl={this.props.apiUrl} idteacher={this.state.idteacher} idcourse={this.state.idcourse} agregarX={'clase'}
-       nombreProfesor={this.state.nombreProfesor} getdata={this.getClass}></NavCourse>
+        {/* Menu  */}
+        <NavCourse apiUrl={this.props.apiUrl} idteacher={this.state.idteacher} idcourse={this.state.idcourse} agregarX={'clase'}
+        nombreProfesor={this.state.nombreProfesor} getdata={this.getClass}></NavCourse>
+        {/* end Menu */}
+        {/* Listado de Clases */}
         <div className="ClassTeacher-main">
           <h1 className="courseTeacher-title--class">SECCION DE CLASES</h1>
           <ul className="courseTeacher-container class">
@@ -113,71 +105,41 @@ export default class ClassTeacher extends Component {
             }
           </ul>
         </div>
-        {/* <Modal className="modal-teacher__general"
-          size={"lg"}
-          show={this.state.showdelete}
-          onHide={() => this.setShow("showdelete", false)}
-        >
-          <button className="modal-teacher__general-close" onClick={() => this.setShow("showdelete", false)}>
-                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-            </button>
-          <Modal.Header>
-            <div className="modal-title h4">
-              ¿DESEA ELIMINAR LA CLASE?
-            </div>
-          </Modal.Header>
-          <Modal.Body>
-            <button
-              className="modal-body__button yes"
-              onClick={() =>
-                this.deleteClass() + this.setShow("showdelete", false)
-              }
-              type="button"
-            >
-              <div className="button-zoom">SI</div>
-            </button>
-            <button
-              className="modal-body__button no"
-              onClick={() => this.setShow("showdelete", false)}
-              type="button"
-            >
-              <div className="button-zoom">NO</div>
-            </button>
-          </Modal.Body>
-        </Modal> */}
+        {/* end Listado */}
+        {/* Modal Elimiar Clase */}
         <div id="modal-general_container" className={this.state.show === 0 ? "" : this.state.show=== 1 ? "six" : this.state.show===2 ?"six out" : ""}>
-        <div className="modal-general_background">
-          <div className="modal-general_bg_content">
-            <button className="modal-general_close" onClick={() => this.setShow("show", 2)}>
-              <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-            </button>
-            <div className="modal-general_container">
-              <div className="modal-general_container_header">
-                <span className="modal-title__controlname">¿DESEA ELIMINAR LA CLASE?</span>
+          <div className="modal-general_background">
+            <div className="modal-general_bg_content">
+              <button className="modal-general_close" onClick={() => this.setShow("show", 2)}>
+                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+              </button>
+              <div className="modal-general_container">
+                <div className="modal-general_container_header">
+                  <span className="modal-title__controlname">¿DESEA ELIMINAR LA CLASE?</span>
+                </div>
+                <div className="modal-general_container_body">
+                  <button 
+                    className="modal-body__button yes"
+                    onClick={() =>
+                    this.deleteClass() + this.setShow("show", 2)}
+                    type="button">
+                      <div className="button-zoom">SI</div>
+                  </button>
+                  <button 
+                    className="modal-body__button no"
+                    onClick={() => this.setShow("show", 2)}
+                    type="button">
+                      <div className="button-zoom">NO</div>
+                  </button>
+                </div>
               </div>
-              <div className="modal-general_container_body">
-                <button 
-                  className="modal-body__button yes"
-                  onClick={() =>
-                  this.deleteClass() + this.setShow("show", 2)}
-                  type="button">
-                    <div className="button-zoom">SI</div>
-                </button>
-                <button 
-                  className="modal-body__button no"
-                  onClick={() => this.setShow("show", 2)}
-                  type="button">
-                    <div className="button-zoom">NO</div>
-                </button>
-              </div>
+              <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+              </svg>
             </div>
-            <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-              <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
-            </svg>
           </div>
         </div>
-      </div>
-        {/* <Link to="ClassDetailTeacher">Ir a una clase detallada</Link> */}
+        {/* end Modal */}
       </>
     )
   }
