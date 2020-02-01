@@ -1,4 +1,4 @@
-
+/*  Clase Principal */
 .btnNextPrev
 {
     position: relative;
@@ -10,14 +10,6 @@
     padding: 0;
     display: flex;
 }
-
-.prev{
-    position: absolute;
-    left:-50px;
-    transform: translate(0px, 0%);
-}
-
-
 .btnNextPrev li 
 {
     list-style: none;
@@ -41,10 +33,57 @@
     border: 4px solid #fff;
     transition: .5s;
 }
+
+/* Boton Prev */
+.prev{
+    position: absolute;
+    left:-50px;
+    transform: translate(0px, 0%);
+}
+
+.btnNextPrev li.prev span
+{
+    top: 50%;
+    /*left: 20%;*/
+    transform: translateY(-50%) rotate(-45deg);
+    border-right: none;
+    border-bottom: none;
+    left: 43%;
+}
+.btnNextPrev li.prev:hover span
+{
+    left: 29%;
+}
+.btnNextPrev li.prev span:before 
+{
+    content:'';
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background: #fff;
+    top: 0px;
+    transform-origin: left;
+    transform: rotate(45deg) translate(-2px,-1px) scaleX(0);
+    transition: .5s;
+    left: 7%;
+}
+.btnNextPrev li.prev:hover span:before 
+{
+    transform: rotate(45deg) translate(-2px,-1px) scaleX(1);
+
+}
+
+/* Boton Next */
+.next{
+    position: absolute;
+    right:-50px;
+    transform: translate(0px, 0%);
+}
+
 .btnNextPrev li.next span
 {
     top: 50%;
-    right: 40%;
+    right: 38%;
     transform: translateY(-45%) rotate(-45deg);
     border-left: none;
     border-top: none;
@@ -72,47 +111,3 @@
     transform: rotate(44deg) translate(0px,25px) scaleX(1);
 
 }
-
-
-/* OTRO BOTON*/
-.btnNextPrev li.prev span
-{
-    top: 50%;
-    /*left: 20%;*/
-    transform: translateY(-50%) rotate(-45deg);
-    border-right: none;
-    border-bottom: none;
-    left: 43%;
-}
-
-.next{
-    position: absolute;
-    right:-50px;
-    transform: translate(0px, 0%);
-}
-
-
-.btnNextPrev li.prev:hover span
-{
-    left: 28%;
-}
-.btnNextPrev li.prev span:before 
-{
-    content:'';
-    position: absolute;
-    width: 38px;
-    height: 4px;
-    background: #fff;
-    top: 0px;
-    transform-origin: left;
-    transform: rotate(45deg) translate(-2px,-1px) scaleX(0);
-    transition: .5s;
-    left: 7%;
-}
-
-.btnNextPrev li.prev:hover span:before 
-{
-    transform: rotate(45deg) translate(-2px,-1px) scaleX(1);
-
-}
-
