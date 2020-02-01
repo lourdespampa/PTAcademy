@@ -89,22 +89,22 @@ export default class CourseDetail extends Component {
 
           <table className="CourseDetail__table">
           <tbody className="CourseDetail__table-body">
-              {/* <tr className="CourseDetail__table-tr">
+              <tr className="CourseDetail__table-tr">
                 <th className="CourseDetail__table-th">Apellidos</th>
                 <th className="CourseDetail__table-th">Nombres</th>
-                <th className="CourseDetail__table-th">Competencia 1</th>
+                <th className="CourseDetail__table-th">Código</th>
                 <th className="CourseDetail__table-th">Competencia 2</th>
                 <th className="CourseDetail__table-th">Competencia 3</th>
                 <th className="CourseDetail__table-th">Competencia 4</th>
               </tr> 
-               */}
+              
               {this.state.students.map(alumno => (
               <tr className="CourseDetail__table-tr" key={alumno._id}>
                <td className="CourseDetail__table-td" data-th="Apellidos">
                   <h1>{alumno.name_stu}</h1>
                 </td>
                 <td className="CourseDetail__table-td" data-th="Nombres">
-                  UPS
+                <h1>{alumno.lastName_stu}</h1>
                 </td>
                 <td className="CourseDetail__table-td" data-th="Compentencia 1">
                   ASDF19218
