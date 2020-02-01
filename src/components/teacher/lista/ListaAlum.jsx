@@ -14,7 +14,7 @@ export default class ListaAlum extends Component {
         this.state = {
             id_access: '',
             modals: {
-                showpuntosmas: true,
+                showpuntosmas: false,
                 showpuntosmenos: false,
                 showcomportamiento: false,
                 shownota: false,
