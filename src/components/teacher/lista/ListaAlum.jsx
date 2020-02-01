@@ -14,11 +14,11 @@ export default class ListaAlum extends Component {
         this.state = {
             id_access: '',
             modals: {
-                showpuntosmas: true,
-                showpuntosmenos: false,
-                showcomportamiento: false,
-                shownota: false,
-                showdelete: false
+                showpuntosmas: 0,
+                showpuntosmenos: 0,
+                showcomportamiento: 0,
+                shownota: 0,
+                showdelete: 0
             },
             pin: 'pin',
             point: '',
@@ -27,24 +27,24 @@ export default class ListaAlum extends Component {
             _id: '',
             students: [],
             fileName: 'Nota de alumnos',
-            datapoint:{
-                pocitivo:[{imgen:require('../../../img/lista/punto1.png'),valor:1,title:'Ayuda a Otros'},
-                    {imgen:require('../../../img/lista/punto2.png'),valor:1,title:'Cumplimiento de Tareas'},
-                    {imgen:require('../../../img/lista/punto3.png'),valor:1,title:'Participacion'},
-                    {imgen:require('../../../img/lista/punto4.png'),valor:1,title:'Persistencia'},
-                    {imgen:require('../../../img/lista/punto5.png'),valor:1,title:'responsabilidad'},
-                    {imgen:require('../../../img/lista/punto6.png'),valor:1,title:'trabajo en equipo'}],
-                negativo:[{imgen:require('../../../img/lista/punto-1.png'),valor:1,title:'Ayuda a Otros'},
-                    {imgen:require('../../../img/lista/punto-2.png'),valor:1,title:'Cumplimiento de Tareas'},
-                    {imgen:require('../../../img/lista/punto-3.png'),valor:1,title:'Participacion'}],
-                camportamiento:[{imgen:require('../../../img/lista/a.jpg'),title:'',valor:'A'},
-                    {imgen:require('../../../img/lista/b.jpg'),title:'',valor:'B'},
-                    {imgen:require('../../../img/lista/c.jpg'),title:'',valor:'C'},
-                    {imgen:require('../../../img/lista/d.jpg'),title:'',valor:'D'},
-                    {imgen:require('../../../img/lista/e.jpg'),title:'',valor:'E'},
-                    {imgen:require('../../../img/lista/f.jpg'),title:'',valor:'F'}]
-                    }
-                };
+            datapoint: {
+                pocitivo: [{ imgen: require('../../../img/lista/punto1.png'), valor: 1, title: 'Ayuda a Otros' },
+                { imgen: require('../../../img/lista/punto3.png'), valor: 1, title: 'Participacion' },
+                { imgen: require('../../../img/lista/punto4.png'), valor: 1, title: 'Persistencia' },
+                { imgen: require('../../../img/lista/punto5.png'), valor: 1, title: 'responsabilidad' },
+                { imgen: require('../../../img/lista/punto2.png'), valor: 1, title: 'Cumplimiento de Tareas' },
+                { imgen: require('../../../img/lista/punto6.png'), valor: 1, title: 'trabajo en equipo' }],
+                negativo: [{ imgen: require('../../../img/lista/punto-1.png'), valor: 1, title: 'Ayuda a Otros' },
+                { imgen: require('../../../img/lista/punto-2.png'), valor: 1, title: 'Cumplimiento de Tareas' },
+                { imgen: require('../../../img/lista/punto-3.png'), valor: 1, title: 'Participacion' }],
+                camportamiento: [{ imgen: require('../../../img/lista/a.jpg'), title: '', valor: 'A' },
+                { imgen: require('../../../img/lista/b.jpg'), title: '', valor: 'B' },
+                { imgen: require('../../../img/lista/c.jpg'), title: '', valor: 'C' },
+                { imgen: require('../../../img/lista/d.jpg'), title: '', valor: 'D' },
+                { imgen: require('../../../img/lista/e.jpg'), title: '', valor: 'E' },
+                { imgen: require('../../../img/lista/f.jpg'), title: '', valor: 'F' }]
+            }
+        };
         this.onChangeInput = this.onChangeInput.bind(this);
     }
 
@@ -53,9 +53,9 @@ export default class ListaAlum extends Component {
         const socket = io(this.props.socketUrl, {
             query:
                 { pin: this.props.id_access }
-          })
-          socket.on('newAlum',(data)=>{
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+        })
+        socket.on('newAlum', (data) => {
+            if (data.pin === (this.props.id_access).toUpperCase()) {
                 this.getStudents()
             }
         })
@@ -153,7 +153,7 @@ export default class ListaAlum extends Component {
             }
         })
         this.getStudents();
-        this.setShow('showpuntosmas', false)
+        this.setShow('showpuntosmas', 2)
     }
     onClickPointRemove = async (valor) => {
         const point = this.state.point - valor
@@ -170,7 +170,7 @@ export default class ListaAlum extends Component {
             }
         })
         this.getStudents();
-        this.setShow('showpuntosmenos', false)
+        this.setShow('showpuntosmenos', 2)
     }
     onClickConductAdd = async (valor) => {
         const data = {
@@ -186,7 +186,7 @@ export default class ListaAlum extends Component {
             }
         })
         this.getStudents();
-        this.setShow('showcomportamiento', false)
+        this.setShow('showcomportamiento', 2)
     }
     onClickEnviar = async (e) => {
         e.preventDefault();
@@ -267,87 +267,145 @@ export default class ListaAlum extends Component {
                         </div>
                     </div>
                 </div>
-                {/* <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showpuntosmas} onHide={() => this.setShow('showpuntosmas',false)}>
-                <button className="modal-teacher__general-close" onClick={() => this.setShow('showpuntosmas',false)}>
-                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
-                </button>
-                <Modal.Header>
-                    <div className="punto-posi">
-                        <span className="punto-text">POSITIVO</span>
-                    </div>
-                </Modal.Header>
-                <Modal.Body>
-                        <BtnPuntos data={this.state.datapoint.pocitivo} funcion={this.onClickPointAdd} />
-                </Modal.Body>
-            </Modal> 
-            <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showpuntosmenos} onHide={() => this.setShow('showpuntosmenos',false)}>
-                <button className="modal-teacher__general-close" onClick={() => this.setShow('showpuntosmenos',false)}>
-                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
-                </button>
-                <Modal.Header>
-                    <div className="punto-posi">
-                        <span className="punto-text">NECESITAS MEJORAR</span>            
+                <div id="modal-general_container" className={this.state.modals.showpuntosmas === 0 ? "" : this.state.modals.showpuntosmas === 1 ? "six" : this.state.modals.showpuntosmas === 2 ? "six out" : ""}>
+                    <div class="modal-general_background">
+                        <div class="modal-general_bg_content">
+                            <button className="modal-general_close" onClick={() => this.setShow('showpuntosmas', 2)}>
+                                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                            </button>
+                            <div className="modal-general_container">
+                                <div className="modal-general_container_header">
+                                    <span className="modal-title">POSITIVO:</span>
+                                </div>
+                                <div className="modal-general_container_body">
+                                    <BtnPuntos data={this.state.datapoint.pocitivo} funcion={this.onClickPointAdd} />
+                                </div>
+                            </div>
+                            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+                            </svg>
+                        </div>
                     </div>
                 </div>
-                {/* <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showpuntosmenos} onHide={() => this.setShow('showpuntosmenos', false)}>
-                    <button className="modal-teacher__general-close" onClick={() => this.setShow('showpuntosmenos', false)}>
-                        <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                <div id="modal-general_container" className={this.state.modals.showpuntosmenos === 0 ? "" : this.state.modals.showpuntosmenos === 1 ? "six" : this.state.modals.showpuntosmenos === 2 ? "six out" : ""}>
+                    <div class="modal-general_background">
+                        <div class="modal-general_bg_content">
+                            <button className="modal-general_close" onClick={() => this.setShow('showpuntosmenos', 2)}>
+                                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                            </button>
+                            <div className="modal-general_container">
+                                <div className="modal-general_container_header">
+                                    <span className="modal-title">NECESITAS MEJORAR:</span>
+                                </div>
+                                <div className="modal-general_container_body">
+                                    <BtnPuntos data={this.state.datapoint.negativo} funcion={this.onClickPointRemove} />
+                                </div>
+                            </div>
+                            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                {/* <Modal className="modal-teacher__general" show={this.state.modals.shownota} onHide={() => this.setShow('shownota', false)}>
+                    <button className="modal-teacher__general-close" onClick={() => this.setShow('shownota', false)}>
+                        <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
                     </button>
                     <Modal.Header>
                         <div className="punto-posi">
-                            <span className="punto-text">NECESITAS MEJORAR</span>
+                            <span className="punto-text">NOTA</span>
+                        </div>
+                    </Modal.Header>
+                    <Modal.Body style={{ justifyContent: 'center' }}>
+                        <input type="text" value={this.state.note} onChange={this.onChangeInput} />
+                        <button id="btnnotas" class="button btnMyM" onClick={() => this.onSubmitNote() + this.setShow('shownota', false)} type="button" >MODIFICAR</button>
+                    </Modal.Body>
+                </Modal> */}
+                <div id="modal-general_container" className={this.state.modals.shownota === 0 ? "" : this.state.modals.shownota === 1 ? "six" : this.state.modals.shownota === 2 ? "six out" : ""}>
+                    <div class="modal-general_background">
+                        <div class="modal-general_bg_content">
+                            <button className="modal-general_close" onClick={() => this.setShow('shownota', 2)}>
+                                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                            </button>
+                            <div className="modal-general_container">
+                                <div className="modal-general_container_header">
+                                    <span className="modal-title">NOTA:</span>
+                                </div>
+                                <div className="modal-general_container_body">
+                                    <input type="text" value={this.state.note} onChange={this.onChangeInput} />
+                                    <button id="btnnotas" class="button btnMyM" onClick={() => this.onSubmitNote() + this.setShow('shownota', 2)} type="button" >MODIFICAR</button>
+                                </div>
+                            </div>
+                            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div id="modal-general_container" className={this.state.modals.showcomportamiento === 0 ? "" : this.state.modals.showcomportamiento === 1 ? "six" : this.state.modals.showcomportamiento === 2 ? "six out" : ""}>
+                    <div class="modal-general_background">
+                        <div class="modal-general_bg_content">
+                            <button className="modal-general_close" onClick={() => this.setShow('showcomportamiento', 2)}>
+                                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                            </button>
+                            <div className="modal-general_container">
+                                <div className="modal-general_container_header">
+                                    <span className="modal-title">COMPORTAMIENTO:</span>
+                                </div>
+                                <div className="modal-general_container_body">
+                                    <BtnPuntos data={this.state.datapoint.camportamiento} funcion={this.onClickConductAdd} />
+                                </div>
+                            </div>
+                            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                {/* <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showdelete} onHide={() => this.setShow('showdelete', false)}>
+                    <button className="modal-teacher__general-close" onClick={() => this.setShow('showdelete', false)}>
+                        <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
+                    </button>
+                    <Modal.Header>
+                        <div className="punto-posi">
+                            <span className="punto-text">¿DESEA ELIMINAR AL ALUMNO?</span>
                         </div>
                     </Modal.Header>
                     <Modal.Body>
-                        <BtnPuntos data={this.state.datapoint.negativo} funcion={this.onClickPointRemove} />
-                </Modal.Body>
-            </Modal> 
-            <Modal className="modal-teacher__general" show={this.state.modals.shownota} onHide={() => this.setShow('shownota',false)}>
-                <button className="modal-teacher__general-close" onClick={() => this.setShow('shownota',false)}>
-                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
-                </button>
-                <Modal.Header>
-                    <div className="punto-posi">
-                        <span className="punto-text">NOTA</span>          
+                        <button id="modal-body__button-yes" className="btn" onClick={() => this.deleteStudents() + this.setShow('showdelete', false)} type="button">
+                            <div className="button-yes__text">SI</div>
+                        </button>
+                        <button id="modal-body__button-no" className="btn" onClick={() => this.setShow('showdelete', false)} type="button">
+                            <div className="button-no__text">NO</div>
+                        </button>
+                    </Modal.Body>
+                </Modal> */}
+                <div id="modal-general_container" className={this.state.modals.showdelete === 0 ? "" : this.state.modals.showdelete === 1 ? "six" : this.state.modals.showdelete === 2 ? "six out" : ""}>
+                    <div class="modal-general_background">
+                        <div class="modal-general_bg_content">
+                            <button className="modal-general_close" onClick={() => this.setShow('showdelete', 2)}>
+                                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                            </button>
+                            <div className="modal-general_container">
+                                <div className="modal-general_container_header">
+                                    <span className="modal-title">¿DESEA ELIMINAR AL ALUMNO?</span>
+                                </div>
+                                <div className="modal-general_container_body">
+                                <button className="modal-body__button yes" onClick={() => this.deleteStudents() + this.setShow('showdelete', 2)} type="button">
+                                    <div className="button-zoom">SI</div>
+                                </button>
+                                <button className="modal-body__button no" onClick={() => this.setShow('showdelete', 2)} type="button">
+                                    <div className="button-zoom">NO</div>
+                                </button>
+                                </div>
+                            </div>
+                            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+                            </svg>
+                        </div>
                     </div>
-                </Modal.Header>
-                <Modal.Body style={{justifyContent: 'center'}}>
-                    <input type="text"  value={this.state.note} onChange={this.onChangeInput} />
-                    <button id="btnnotas" class="button btnMyM" onClick={()=>this.onSubmitNote() + this.setShow('shownota',false)} type="button" >MODIFICAR</button> 
-                </Modal.Body>
-            </Modal> 
-            <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showcomportamiento} onHide={() => this.setShow('showcomportamiento',false)}>
-                <button className="modal-teacher__general-close" onClick={() => this.setShow('showcomportamiento',false)}>
-                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
-                </button>
-                <Modal.Header>
-                    <div className="punto-posi">
-                        <span className="punto-text">COMPORTAMIENTO</span>          
-                    </div>
-                </Modal.Header>
-                <Modal.Body>
-                    <BtnPuntos data={this.state.datapoint.camportamiento} funcion={this.onClickConductAdd}/>
-                </Modal.Body>
-            </Modal> 
-            <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showdelete} onHide={() => this.setShow('showdelete',false)}>
-                <button className="modal-teacher__general-close" onClick={() => this.setShow('showdelete',false)}>
-                    <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
-                </button>
-                <Modal.Header>
-                    <div className="punto-posi">
-                        <span className="punto-text">¿DESEA ELIMINAR AL ALUMNO?</span>          
-                    </div>
-                </Modal.Header>
-                <Modal.Body>
-                    <button id="modal-body__button-yes" className="btn" onClick={() => this.deleteStudents()+this.setShow('showdelete',false)} type="button">
-                        <div className="button-yes__text">SI</div>
-                    </button> 
-                    <button id="modal-body__button-no" className="btn" onClick={() => this.setShow('showdelete',false)} type="button">
-                        <div className="button-no__text">NO</div>
-                    </button> 
-                </Modal.Body>
-                                            </Modal> */}
-                </>
-                )
+                </div>
+            </>
+        )
     }
 }
