@@ -11,7 +11,7 @@ function BotonCerrarSesion(props) {
   return (
     <>
       <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
-        Cerrar sesion
+          Cerrar sesion
       </div>
       <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
         <div className="modal-general_background">
