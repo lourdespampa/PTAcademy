@@ -52,7 +52,7 @@ export default class CoursesTeacher extends Component {
         "x-access-token": `${varToken}`
       }
     }).then(({ data }) => {
-      console.log(data);
+      // console.log(data);
       this.setState({ nombreProfesor: `${data.user_name} ${data.user_lastName}` });
     });
   }
@@ -67,7 +67,7 @@ export default class CoursesTeacher extends Component {
         'x-access-token': `${varToken}`
       }
     }).then( ({ data }) => {
-       console.log(data)
+      //  console.log(data)
         if(data == []){
           this.setState({courses: []})
         }else{
