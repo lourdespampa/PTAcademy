@@ -77,8 +77,8 @@ function FooterContainer(props){
                     </iframe>
                     
                     <ul className="btnNextPrev">
-                        <li class="prev"><span></span></li>
-                        <li class="next "><span></span></li>
+                        <li className="prev"><span></span></li>
+                        <li className="next "><span></span></li>
                     </ul>
                     
                 </div>
@@ -88,13 +88,13 @@ function FooterContainer(props){
                         <button className="modal-teacher__general-close" onClick={()=>props.closePopup('overlayinframe','popupformulario')+props.botonClick('btnCerrarFormu')} >
                             <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                         </button>
-                    <div class="punto-posi">
+                    <div className="punto-posi">
                         <span className="letra">EMITIR FORMULARIO</span>
                     </div>
                     <br/>
                     <iframe title="diapo-iframe" id="diapo-formulario" className="fc-formulario" frameBorder="0"  allowFullScreen={true}
                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
-                    <button class="Myni" onClick={()=>SendForm(props.socketUrl,props.id_access)}>
+                    <button className="Myni" onClick={()=>SendForm(props.socketUrl,props.id_access)}>
                         <div className="button-zoom">EMITIR</div>
                     </button>
                 </div>

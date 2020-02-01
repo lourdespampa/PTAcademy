@@ -145,9 +145,9 @@ export default class ClassTeacher extends Component {
             </button>
           </Modal.Body>
         </Modal> */}
-        <div id="modal-general_container" class={this.state.show === 0 ? "" : this.state.show=== 1 ? "six" : this.state.show===2 ?"six out" : ""}>
-        <div class="modal-general_background">
-          <div class="modal-general_bg_content">
+        <div id="modal-general_container" className={this.state.show === 0 ? "" : this.state.show=== 1 ? "six" : this.state.show===2 ?"six out" : ""}>
+        <div className="modal-general_background">
+          <div className="modal-general_bg_content">
             <button className="modal-general_close" onClick={() => this.setShow("show", 2)}>
               <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
             </button>
@@ -171,7 +171,7 @@ export default class ClassTeacher extends Component {
                 </button>
               </div>
             </div>
-            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
               <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
             </svg>
           </div>

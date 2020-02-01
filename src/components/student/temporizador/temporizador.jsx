@@ -202,9 +202,9 @@ class Temporizador extends React.Component {
                 </audio>
             </div>
             <div hidden>
-                <input class="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />
-                <input class="pure-input-1" type="number" id="id_dt_2" value={this.state.valM} min="0" onChange={this.onChangeInputM} />
-                <input class="pure-input-1" type="number" id="id_dt_3" value={this.state.valS} min="0" onChange={this.onChangeInputS} />
+                <input className="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />
+                <input className="pure-input-1" type="number" id="id_dt_2" value={this.state.valM} min="0" onChange={this.onChangeInputM} />
+                <input className="pure-input-1" type="number" id="id_dt_3" value={this.state.valS} min="0" onChange={this.onChangeInputS} />
                 <button type="button" id="button-set">Establecer Tiempo</button>
                 <button type="button" id="button-start-stop">INICIAR</button>
                 <button type="button" id="button-reset">REINICIAR</button>

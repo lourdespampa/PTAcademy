@@ -112,13 +112,13 @@ export default function HeaderContainer(props) {
             <ul className={showResponsive ? "alumnoHeader-nav showResponsive" : "alumnoHeader-nav"}>
               <li className="alumnoHeader-li">
                 <Link onClick={reinicio} className="alumnoHeader-a" to={`/student/${props.id_student}/${props.id_access}/trivia`}>
-                  <i class="fa fa-list-ol"></i>
+                  <i className="fa fa-list-ol"></i>
                   Trivia
                 </Link>
               </li>
               <li className="alumnoHeader-li">
                 <Link onClick={reinicio} className="alumnoHeader-a" to={`/student/${props.id_student}/${props.id_access}/temporizador`}>
-                  <i class="fas fa-hourglass" style={{fontSize:"22px", padding:"0 10px"}}></i>
+                  <i className="fas fa-hourglass" style={{fontSize:"22px", padding:"0 10px"}}></i>
                   Temporizador
                 </Link>
               </li>
@@ -132,7 +132,7 @@ export default function HeaderContainer(props) {
                 <ul className={showResponsive ? "alumnoHeader-nav showResponsive" : "alumnoHeader-nav"} style={{zIndex:"5000"}}>
                   <li className="alumnoHeader-li"  onClick={() => deleteStudent()+setredirect(true)}>
                     <a href className="alumnoHeader-a alumnoHeader-salir">
-                      <i class="fas fa-sign-out-alt" style={{fontSize:"22px", padding:"0 10px"}}></i>
+                      <i className="fas fa-sign-out-alt" style={{fontSize:"22px", padding:"0 10px"}}></i>
                       Salir
                       {
                         redirect
