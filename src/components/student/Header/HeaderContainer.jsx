@@ -1,18 +1,15 @@
 import React, {useState,useEffect} from 'react'
 import {Link, Redirect} from 'react-router-dom'
 import './HeaderContainer.css'
-import Audio from './audio'
+import SocketStream from '../socket/socketStream'
 import axios from 'axios'
 import io from 'socket.io-client';
-
-
 
 const WindowFocusHandler = (props) => {
     // User has switched back to the tab
 const onFocus = () => {
     console.log('Tab is in focus');
-  };
-  
+  };  
   // User has switched away from the tab (AKA tab is hidden)
   const onBlur = () => {
       const socket = io(props.socketUrl, {
@@ -32,7 +29,6 @@ const onFocus = () => {
       window.removeEventListener('blur',onBlur);
     };
   });
-
   return <></>;
 };
 export default function HeaderContainer(props) {
@@ -67,8 +63,7 @@ export default function HeaderContainer(props) {
             if(data.pin===(props.id_access).toUpperCase()){
                 setExit(true)
             }
-        })
-        
+        })       
         //liSTA
         socket.on('RemoveStudS',(data)=>{
             console.log(data)
@@ -85,7 +80,6 @@ export default function HeaderContainer(props) {
     const handleNavbarResponsive = () => {
         setShowResponsive(!showResponsive)
     }
-
     return (
         <div>
           <WindowFocusHandler id_access={props.id_access} fullname={props.name+' '+props.lastName} id_student={props.id_student} socketUrl={props.socketUrl} ></WindowFocusHandler>
@@ -100,8 +94,7 @@ export default function HeaderContainer(props) {
           {
           Exit
           ? <Redirect to={`/`} /> : null
-          }
-          
+          }         
           <header className="alumnoH-header">
             <div className="alumnoHeader-logo">
               <Link onClick={reinicio} to={`/student/${props.id_student}/${props.id_access}`} style={{textDecoration:"none"}}>
@@ -145,7 +138,7 @@ export default function HeaderContainer(props) {
             </ul>
             </header>
             <div className="alumnoH-header-base"></div>
-          <Audio  id_access={props.id_access} id_student={props.id_student} socketUrl={props.socketUrl}/>
+          <SocketStream id_access={props.id_access} id_student={props.id_student} socketUrl={props.socketUrl}/>
         </div>
     )
 }
