@@ -21,7 +21,7 @@ export default function BotonAgregar(props) {
       <Loanding/>:null
   
       }
-        <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
+        <div className="teacherCourses__main-menu__returnCourse" onClick={handleShow}>
           Agregar {props.agregarX}
         </div>
         <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
