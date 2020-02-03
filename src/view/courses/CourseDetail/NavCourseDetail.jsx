@@ -2,13 +2,13 @@ import React, { Component, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Modal, ButtonToolbar } from "react-bootstrap";
 import iconExit from "../../../img/cerrar.png";
-import FormAddStudent from './FormAddStudent'
-import iconBack from '../../../img/back_button.svg'
+import FormAddStudent from "./FormAddStudent";
+import iconBack from "../../../img/back_button.svg";
 function BotonAgregar(props) {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const AgregarClick = () => setShow(false) + props.getdata();
+  const [show, setShow] = useState(0);
+  const handleClose = () => setShow(2);
+  const handleShow = () => setShow(1);
+  const AgregarClick = () => setShow(2) + props.getdata();
   return (
     <>
       <div
@@ -16,6 +16,51 @@ function BotonAgregar(props) {
         onClick={handleShow}
       >
         Agregar Alumno
+      </div>
+      <div
+        id="modal-general_container"
+        className={
+          show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""
+        }
+      >
+        <div className="modal-general_background">
+          <div className="modal-general_bg_content">
+            <button className="modal-general_close" onClick={handleClose}>
+              <img
+                className="button-zoom"
+                src={iconExit}
+                alt="imagen de cerrar modal"
+              />
+            </button>
+            <div className="modal-general_container">
+              <FormAddStudent
+                handleClose={AgregarClick}
+                apiUrl={props.apiUrl}
+                idcourse={props.idcourse}
+                idteacher={props.idteacher}
+              />
+          </div>
+          <svg
+            className="modal-general_svg"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+          >
+            <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+          </svg>
+        </div>
+      </div>
+      </div>
+    </>
+  );
+}
+function BotonCerrarSesion(props) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  return (
+    <>
+      <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
+        Cerrar sesion
       </div>
       <Modal
         className="modal-teacher__general"
@@ -31,38 +76,23 @@ function BotonAgregar(props) {
           />
         </button>
         <Modal.Header>
-          <Modal.Title>Agregando Alumno</Modal.Title>
-        </Modal.Header>
-        <Modal.Body><FormAddStudent apiUrl={props.apiUrl} idcourse={props.idcourse} idteacher={props.idteacher}/></Modal.Body>
-      </Modal>
-    </>
-  );
-}
-function BotonCerrarSesion(props) {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  return (
-    <>
-      <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
-        Cerrar sesion
-      </div>
-      <Modal className="modal-teacher__general" show={show} onHide={handleClose} animation={false}>
-          <button className="modal-teacher__general-close" onClick={handleClose}>
-            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-          </button>
-        <Modal.Header>
-          <Modal.Title id="modal-header__title-question">¿DESEA CERRAR SESIÓN?</Modal.Title>
+          <Modal.Title id="modal-header__title-question">
+            ¿DESEA CERRAR SESIÓN?
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ButtonToolbar>
-            <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
-                <Link style={{textDecoration:"none"}} to="/">
-                  <div className="button-zoom">SI</div>
-                </Link>
+            <button
+              className="modal-body__button yes"
+              onClick={props.cerrarSesion}
+              variant="primary"
+            >
+              <Link style={{ textDecoration: "none" }} to="/">
+                <div className="button-zoom">SI</div>
+              </Link>
             </button>
             <button className="modal-body__button no" onClick={handleClose}>
-                <div className="button-zoom">NO</div>
+              <div className="button-zoom">NO</div>
             </button>
           </ButtonToolbar>
         </Modal.Body>
@@ -92,27 +122,30 @@ export default class NavCourse extends Component {
   };
   SegundaFuncion = () => {
     const nav = document.getElementById("main-nav");
-    console.log('se esta presionando')
-  }
+    console.log("se esta presionando");
+  };
+
   render() {
     return (
       <>
         {this.state.token ? null : <Redirect to="/notfound"></Redirect>}
         <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
-          <Link to={`/CoursesTeacher/${this.props.idteacher}`} style={{textDecoration: 'none'}}>
-                    <img src={iconBack} alt="imgagen de volver atras"/>
+            <Link
+              to={`/CoursesTeacher/${this.props.idteacher}`}
+              style={{ textDecoration: "none" }}
+            >
+              <img src={iconBack} alt="imgagen de volver atras" />
             </Link>
             <h3>Bienvenido(a) </h3>
-           
-              <div
+
+            <div
               className="teacherCourses__main-menu-toggle"
               id="main-menu-toggle"
               onClick={this.Abrir}
-            > 
-            </div>
+            ></div>
             {/* <div className="teacherCourseNav" onClick={this.SegundaFuncion}></div> */}
-            
+
             <nav className="teacherCourses__main-nav" id="main-nav">
               <ul className="teacherCourses__main-menu">
                 <li className="teacherCourses__main-menu__item">

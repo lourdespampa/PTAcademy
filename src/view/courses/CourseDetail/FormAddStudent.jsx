@@ -55,7 +55,7 @@ export default class FormAddStudent extends Component {
       <>
       <Form onSubmit={this.handleSubmit}>
           <Form.Label className="modal-title__controlname">
-            Apellidos del alumno
+            Nombres del alumno
           </Form.Label>
           <Form.Control
             className="modal-teacher__general-controlname"
@@ -67,7 +67,7 @@ export default class FormAddStudent extends Component {
             required
           />
           <Form.Label className="modal-title__controlname">
-            Nombres del alumno
+            Apellidos del alumno
           </Form.Label>
           <Form.Control
             className="modal-teacher__general-controlname"
@@ -78,7 +78,7 @@ export default class FormAddStudent extends Component {
             placeholder="Ingresar apellidos completos de los estudiantes"
             required
           />
-          <Button id="modal-body__button-cursos" type="submit">
+          <Button className="modal-body__button cursos" id="modal-body__button-cursos" type="submit">
             Agregar Alumno
           </Button>
       </Form>
