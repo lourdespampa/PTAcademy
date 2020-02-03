@@ -13,27 +13,27 @@ export const TableBody = (props) => {
                     </td>
                     <td className="nota" style={{textAlign:"center",width:'80px'}}>
                         {student.score}
-                        <button onClick={()=>props.onClickNote(student._id,student.score)+ props.setShow('shownota',true)} className="button pull-right btnMyM material-icons">
+                        <button onClick={()=>props.onClickNote(student._id,student.score)+ props.setShow('shownota',1)} className="button pull-right btnMyM material-icons">
                     edit
                     </button>
                     </td>
                     <td className="compo"style={{textAlign:"center",width:'50px'}}>
                     {student.conduct}
-                    <button onClick={()=>props.onClick(student._id)+ props.setShow('showcomportamiento',true)} className="button pull-right btnMyM material-icons">
+                    <button onClick={()=>props.onClick(student._id)+ props.setShow('showcomportamiento',1)} className="button pull-right btnMyM material-icons">
                     edit
                     </button>
                     </td>
                     <td style={{textAlign:"center",width:"80px"}}>
-                    <button className="button btnMyM material-icons" onClick={()=>props.onClickPoint(student._id,student.point)+ props.setShow('showpuntosmas',true)} >
+                    <button className="button btnMyM material-icons" onClick={()=>props.onClickPoint(student._id,student.point)+ props.setShow('showpuntosmas',1)} >
                     add_circle_outline
                     </button>
                     {student.point}
-                    <button className="button btnMyM material-icons" onClick={()=>props.onClickPoint(student._id,student.point)+ props.setShow('showpuntosmenos',true)}>
+                    <button className="button btnMyM material-icons" onClick={()=>props.onClickPoint(student._id,student.point)+ props.setShow('showpuntosmenos',1)}>
                     remove_circle_outline
                     </button> 
                     </td>
                     <td style={{width:"50px"}}>
-                    <button className="button btnMyM material-icons" onClick={()=>props.onClick(student._id)+ props.setShow('showdelete',true)}>
+                    <button className="button btnMyM material-icons" onClick={()=>props.onClick(student._id)+ props.setShow('showdelete',1)}>
                     delete
                     </button> 
                     </td>

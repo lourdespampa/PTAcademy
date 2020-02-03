@@ -98,7 +98,17 @@ export default class FormPostCourse extends Component {
       }
     }).then((res) => {
       // return console.log(res.data)
-      this.setState({bloquearBoton: false})
+      this.setState({
+        bloquearBoton: false,
+        message: "elija una opción",
+        level: "primaria",
+        grade: "primero",
+        section: "A",
+        course_name: "Arte y cultura",
+        description: "???",
+        escogerNivelAcademico: 0,
+        nivelPrimaria: true
+      })
       this.props.menuToggleNavbar()
       this.props.handleClose()
     })
