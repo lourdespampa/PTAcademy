@@ -95,7 +95,7 @@ class Upload extends Component {
       var varToken = localStorage.getItem('token');
         
       req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
-      // req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/falllaApropocito`);
+      // req.open("POST", `192.168.1.29/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
       req.setRequestHeader('x-access-token', `${varToken}`)
       req.send(formData);
       console.log('asdmasd')

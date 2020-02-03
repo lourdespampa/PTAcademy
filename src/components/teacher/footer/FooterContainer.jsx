@@ -6,7 +6,7 @@ import Audio from "../audio/audio";
 import io from "socket.io-client";
 import Slide from '../slides/slide_02';
 import iconExit from "../../../img/cerrar.png";
-function enviarvideo(url, url2, socketUrl, id_access, setShow, setNoData) {
+function enviarvideo(url, url2, socketUrl, id_access, setShow,seturlnombre, setNoData) {
   var urlnombre = url + url2;
   const socket = io(socketUrl, {
     query: { pin: id_access }
@@ -22,7 +22,8 @@ function enviarvideo(url, url2, socketUrl, id_access, setShow, setNoData) {
   } else {
     document.getElementById("overlay2").classList.add("active");
     document.getElementById("popupvideo").classList.add("active");
-    setShow();
+    setShow(2);
+    seturlnombre("");
     setNoData(false);
   }
 }
