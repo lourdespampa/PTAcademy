@@ -51,7 +51,7 @@ function FooterContainer(props) {
             <img alt="" width="30px" height="30px" src={require("../../../img/footer/form.svg")} />
             <span className="footer-span">Formulario</span>
         </div>
-        <div className="footer-div" id="btnvideo" onClick={() => setShow(true)+props.botonClick('btnvideo')+seturlnombre('')}>
+        <div className="footer-div" id="btnvideo" onClick={() => setShow(1)+props.botonClick('btnvideo')+seturlnombre('')}>
             <img alt="" width="30px" height="30px" src={require("../../../img/footer/video.svg")} />
             <span className="footer-span">Youtube</span>
         </div>
@@ -170,7 +170,7 @@ function FooterContainer(props) {
             </button>
             <div className="modal-general_container">
               <div className="modal-general_container_header">
-                <span>EMITIR VIDEO</span>
+                <span className="modal-title__controlname">EMITIR VIDEO</span>
               </div>
               <div className="modal-general_container_body">
                 <input
