@@ -183,9 +183,11 @@ textarea {
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
-  font-family: opal !important;
+  font-family: opal;
 }
-
+.inputPass{
+  font-family:none;
+}
 /**
  * Show the overflow in IE.
  * 1. Show the overflow in Edge.

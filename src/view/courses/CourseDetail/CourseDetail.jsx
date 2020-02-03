@@ -93,7 +93,7 @@ export default class CourseDetail extends Component {
             <tr className="CourseDetail__table-tr">
                 <th className="CourseDetail__table-th">Apellidos</th>
                 <th className="CourseDetail__table-th">Nombres</th>
-                <th className="CourseDetail__table-th">Competencia 1</th>
+                <th className="CourseDetail__table-th">Código</th>
                 <th className="CourseDetail__table-th">Competencia 2</th>
                 <th className="CourseDetail__table-th">Competencia 3</th>
                 <th className="CourseDetail__table-th">Competencia 4</th>
@@ -106,7 +106,7 @@ export default class CourseDetail extends Component {
                   <h1>{alumno.name_stu}</h1>
                 </td>
                 <td className="CourseDetail__table-td" data-th="Nombres">
-                  UPS
+                <h1>{alumno.lastName_stu}</h1>
                 </td>
                 <td className="CourseDetail__table-td" data-th="Compentencia 1">
                   ASDF19218

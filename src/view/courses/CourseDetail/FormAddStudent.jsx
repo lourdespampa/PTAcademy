@@ -46,7 +46,7 @@ export default class FormAddStudent extends Component {
         "x-access-token": `${varToken}`
       }
     })
-      .then(res => console.log(res) + this.props.handleClose())
+      .then(res => console.log(res) + this.props.handleClose() + this.props.getdata())
       .catch(err => console.log(err));
   };
   render() {
