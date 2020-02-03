@@ -6,7 +6,6 @@ import AllCourses from "./AllCourses";
 import axios from "axios";
 
 import "../courses/Course.sass";
-import { Modal } from "react-bootstrap";
 import iconExit from "../../img/cerrar.png";
 
 export default class CoursesTeacher extends Component {
