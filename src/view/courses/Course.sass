@@ -53,7 +53,7 @@
     text-decoration: none
     
 .teacherCourses__main-nav
-    position: fixed
+    position: absolute
     height: calc(100vh - 3rem)
     width: 50vw
     background: #141618
@@ -239,7 +239,7 @@
 // se va a poner los estilos para los botones de los cards xd -- by:Miryan
 .courseTeacher__containerButton-Edit
     position: absolute
-    z-index: 100
+    z-index: 1
     border-radius: 100px
     height: 20px
     width: 40px
@@ -322,6 +322,9 @@
     & .courseTeacher__buttonEntry-label 
         width: 150px
         cursor: pointer
+.courseTeacherDisabled
+    background-color: #777777 !important
+    color: black !important
 
 .classTeacher__buttonEntry
     width: 100%

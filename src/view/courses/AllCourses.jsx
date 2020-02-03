@@ -16,7 +16,7 @@ export default class AllCourses extends Component {
                 this.props.onClick(this.props.id) +
                 this.props.setShow("show", 1)}
                 className="courseTeacher__button-delette">
-                    <i class="courseTeacher__img fas fa-trash"></i>
+                    <i className="courseTeacher__img fas fa-trash"></i>
                 </button>
                 <div className="courseTeacher__containerButton-Edit">
                 <Link to={`/${this.props.idteacher}/course_detail/${this.props.id}`} className="courseTeacher__button-Edit">
@@ -38,7 +38,7 @@ export default class AllCourses extends Component {
               <h1 className="classTeacher-card__title">{this.props.name_course}</h1>
               <p>{this.props.description}</p>
             </div>
-            <Link
+            {/* <Link
               onClick={() => this.props.onClick(this.props.id)}
               to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
               className="courseTeacher__buttonEntry"
@@ -46,7 +46,16 @@ export default class AllCourses extends Component {
               <label className="courseTeacher__buttonEntry-label">
                 VER CLASES
               </label>
-            </Link>
+            </Link> */}
+            <nav
+              // to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
+              className="courseTeacher__buttonEntry courseTeacherDisabled"
+              disabled
+            >
+              <label className="courseTeacher__buttonEntry-label">
+                VER CLASES
+              </label>
+            </nav>
           </div>
         </div>       
       </>
