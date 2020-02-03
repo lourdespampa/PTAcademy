@@ -106,10 +106,9 @@
         display: flex
     .teacherCourses__main-menu__item
         padding: 0
-        transition: transform .3s
+        // transition: transform .3s
     .teacherCourses__main-menu__addCourse
         // color: #53575A
-        transition: transform .3s
         text-decoration: none
         font-size: 1em
         padding: 0.5rem
@@ -119,7 +118,6 @@
         
     .teacherCourses__main-menu__LogOut
         // color: #53575A
-        transition: transform .3s
         text-decoration: none
         font-size: 1em
         padding: 0.5rem
@@ -127,7 +125,6 @@
         background-color: #E91E63
         color: white
     .teacherCourses__main-menu__returnCourse
-        transition: transform .3s
         text-decoration: none
         font-size: 1em
         padding: 0.5rem
@@ -148,21 +145,17 @@
         --logo-height: 5rem 
     .teacherCourses__main-menu__item:hover
         background-color: transparent
+        // -webkit-transform: scale(1.1)
+        // transform: scale(1.1)
         & .teacherCourses__main-menu__LogOut
             color: white
-            -webkit-transform: scale(1.1)
-            transform: scale(1.1)
             background-color: #ff0055
         & .teacherCourses__main-menu__addCourse
             background-color: #ff9900
-            -webkit-transform: scale(1.1)
-            transform: scale(1.1)
             color: white
         & .teacherCourses__main-menu__returnCourse
             background-color: #0cd660
             color: white
-            -webkit-transform: scale(1.1)
-            transform: scale(1.1)
 
 .courseTeacher-container
     display: flex
@@ -277,7 +270,6 @@
     position: absolute
     text-align: center
     background-color: #FB9600
-    
         
 .courseTeacher__button-delette
     float: right
@@ -317,8 +309,6 @@
     & .courseTeacher__buttonEntry-label 
         width: 150px
         cursor: pointer
-
-
 
 .classTeacher__buttonEntry
     width: 100%

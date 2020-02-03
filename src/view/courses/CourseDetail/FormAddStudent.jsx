@@ -78,8 +78,8 @@ export default class FormAddStudent extends Component {
             placeholder="Ingresar apellidos completos de los estudiantes"
             required
           />
-          <Button id="modal-body__button-cursos" type="submit">
-            Agregar Alumno
+          <Button className="modal-body__button cursos" type="submit">
+            <div className="button-zoom">Agregar Alumno</div>
           </Button>
       </Form>
         
