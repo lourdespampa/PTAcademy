@@ -14,8 +14,8 @@ import CourseDetailTeacher from './view/courses/CourseDetail/CourseDetail'
 
 export default class Access extends Component {
     state={
-    apiUrl:'http://3.16.110.136:4200',
-    // apiUrl:'http://192.168.1.29:4200',
+    apiUrl:'http://3.16.110.136:4200'
+    // apiUrl:'http://192.168.1.29:4200'
     }
     render() {
         return (

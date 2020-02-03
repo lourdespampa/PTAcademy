@@ -43,26 +43,26 @@ function FooterContainer(props) {
   return (
     <>
       <div className="footer-distributed">
-        <div id="btndiapo" onClick={() => props.openPopup('overlay', 'popup') + props.botonClick('btndiapo')}>
+        <div className="footer-div" id="btndiapo" onClick={() => props.openPopup('overlay', 'popup') + props.botonClick('btndiapo')}>
           <img alt="" width="30px" height="30px" src={require("../../../img/footer/slide.svg")} />
           <span>Diapositivas</span>
         </div>
-        <div id="btnform" onClick={() => props.openPopup('overlayinframe', 'popupformulario') + props.botonClick('btnform')}>
+        <div className="footer-div" id="btnform" onClick={() => props.openPopup('overlayinframe', 'popupformulario') + props.botonClick('btnform')}>
           <img alt="" width="30px" height="30px" src={require("../../../img/footer/form.svg")} />
           <span>Formulario</span>
         </div>
-        <div id="btnvideo" onClick={() => setShow(1) + props.botonClick('btnvideo') + seturlnombre('')}>
+        <div className="footer-div" id="btnvideo" onClick={() => setShow(1) + props.botonClick('btnvideo') + seturlnombre('')}>
           <img alt="" width="30px" height="30px" src={require("../../../img/footer/video.svg")} />
           <span>Youtube</span>
         </div>
-        <div>
+        <div className="footer-div">
           <img alt="" width="30px" height="30px" src={require("../../../img/footer/share.svg")} />
           <span>Compartir Pantalla</span>
         </div>
-        <div>
+        <div className="footer-div">
           <Audio socketUrl={props.socketUrl} id_access={props.id_access} />
         </div>
-        <div>
+        <div className="footer-div">
           <img alt="" id="btn-chat" width="30px" height="30px" src={require("../../../img/footer/chat.svg")} />
           {/* <img id="btn-chat" width="30px" height="30px" src={require("../../../img/footer/chat.svg")} /> */}
           <span>Chat</span>
@@ -221,7 +221,7 @@ function FooterContainer(props) {
       <div className="overlay" id="overlay2">
         <div className="popup" id="popupvideo">
           <div
-            id="btn-cerrar-popup"
+            id="cerrar-popup"
             className="btn-cerrar-popup"
             onClick={() =>
               props.closePopup("overlay2", "popupvideo") +
@@ -243,6 +243,7 @@ function FooterContainer(props) {
           ></iframe>
         </div>
       </div>
+    {/*  */}
     </>
   );
 }

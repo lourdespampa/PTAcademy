@@ -51,10 +51,10 @@ export default class GrupoPage extends Component {
     let grupo2 = this.state.alumnos;
     for (let i = 0; i < n_grupos; i++) {
       console.log("grupo n" + (i + 1));
-      cadena += `<li class="grupos-cards__item">
-      <div class="grupos-card">
-        <div class="grupos-card__content">
-          <div class="grupos-card__title"><u>Grupo ${i + 1}</u></div><br/>
+      cadena += `<li className="grupos-cards__item">
+      <div className="grupos-card">
+        <div className="grupos-card__content">
+          <div className="grupos-card__title"><u>Grupo ${i + 1}</u></div><br/>
        `;
 
       for (let index = 0; index < this.state.nro_per_grupo; index++) {
@@ -62,7 +62,7 @@ export default class GrupoPage extends Component {
         if (grupo2[randname]) {
           let f = grupo2[randname];
           console.log(f);
-          cadena += `<div class="grupos-card__text"> ${grupo2[randname]}</div>
+          cadena += `<div className="grupos-card__text"> ${grupo2[randname]}</div>
            `;
         }
 
@@ -88,7 +88,7 @@ export default class GrupoPage extends Component {
     const { nro_per_grupo } = this.state.nro_per_grupo;
     return (
       <>
-          
+        {/* Cuerpos de Grupo */}
           <div className="cuerpo-grupos">
             {nro_per_grupo}
             <span>Número de personas por grupo </span>
@@ -101,6 +101,7 @@ export default class GrupoPage extends Component {
               value={this.state.nro_per_grupo}
               onChange={this.handleNumPerGrou}
             />
+            {/* Boton de Formar Grupos */}
             <button className="button" onClick={this.groupGenerator}>
               <label className="tex">
                 FORMAR GRUPOS
@@ -108,6 +109,7 @@ export default class GrupoPage extends Component {
 
             </button>
           </div>
+          {/* Contenedor De  Grupos */}
           <div className="contenedor-grupos">
             <ul className="grupos-cards" id="imprimir"></ul>
           </div>

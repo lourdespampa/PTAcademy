@@ -121,7 +121,7 @@ class HeaderCode extends React.Component {
                                             <span id="modal-content__codigogenerado">{this.props.id_access}</span>
                                         </div>
                                     </div>
-                                    <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                                    <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                                         <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
                                     </svg>
                                 </div>

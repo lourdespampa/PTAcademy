@@ -157,8 +157,8 @@ btn_redo.addEventListener('click',()=>{
                   <input type="color" value={fillColor} onChange={(e) => this.setState({fillColor: e.target.value})} ></input>
                 </span> : ' '}
             </div> : ' '}</li>
-            <li title="Redo"><button id='btn_redo'><i class="fas fa-redo-alt"></i></button></li>
-            <li title="Undo"><button id='btn_undo'><i class="fas fa-undo-alt"></i></button></li>
+            <li title="Redo"><button id='btn_redo'><i className="fas fa-redo-alt"></i></button></li>
+            <li title="Undo"><button id='btn_undo'><i className="fas fa-undo-alt"></i></button></li>
             
 </ul>
         </div>
@@ -190,7 +190,7 @@ btn_redo.addEventListener('click',()=>{
               onClick={() => this.setState({tool:TOOL_ERASER})}
             >Eraser</button>*/}
             {/*<button onClick={()=>this.limpiando()}>
-            <i class="far fa-trash-alt"></i>
+            <i className="far fa-trash-alt"></i>
           </button>*/}
             
 
@@ -208,7 +208,7 @@ btn_redo.addEventListener('click',()=>{
               style={tool == TOOL_RECTANGLE ? {fontWeight:'bold'} : undefined}
               className={tool == TOOL_RECTANGLE  ? 'item-active' : 'item'}
               onClick={() => this.setState({tool:TOOL_RECTANGLE})}
-            ><i class="far fa-square"></i></button>*/}
+            ><i className="far fa-square"></i></button>*/}
           </div>
           {/*<div className="options" style={{marginBottom:20 ,border:"solid"} }>
             <label htmlFor="">size: </label>

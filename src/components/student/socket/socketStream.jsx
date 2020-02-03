@@ -247,9 +247,9 @@ export default class Audio extends Component {
           </Modal>
 
             {/*VIDEO*/}
-            <div class="overlay" id="overlay2">
-                <div class="popup" id="popupvideo">
-                    {/* <a href id="btn-cerrar-popup2" className="btn-cerrar-popup" onClick={() => this.DisablePopup()}><i class="material-icons">close</i></a> */}
+            <div className="overlay" id="overlay2">
+                <div className="popup" id="popupvideo">
+                    {/* <a href id="btn-cerrar-popup2" className="btn-cerrar-popup" onClick={() => this.DisablePopup()}><i className="material-icons">close</i></a> */}
                     <iframe title="iframevideo" id="video-frame" src="" frameborder="0" style={{ width: "100% !important", height: "100%" }}
                         allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </div>
@@ -257,11 +257,11 @@ export default class Audio extends Component {
             {/*VIDEO FIN*/}
             <div className="overlay" id="overlayinframe">
                 <div className="popup" id="popupformulario">
-                    <div class="punto-posi">
+                    <div className="punto-posi">
                         <h1>Formulario</h1>
                     </div>
                     <br />
-                    {/* <a href id="btnCerrarFormu" className="btn-cerrar-popup"><i class="material-icons" onClick={() => this.DisablePopup2()}>close</i></a> */}
+                    {/* <a href id="btnCerrarFormu" className="btn-cerrar-popup"><i className="material-icons" onClick={() => this.DisablePopup2()}>close</i></a> */}
                     <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{ width: "100% !important", height: "450px" }} allowFullScreen={true}
                         mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
 
