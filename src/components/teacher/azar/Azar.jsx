@@ -148,9 +148,9 @@ class Azar extends React.Component {
                              </div>
                         </Modal.Header>
                         <Modal.Body>
-                            <ul class="azar-tab-group">
-                                <li class={this.state.tipoPuntaje ? "azar-tab active" : "azar-tab"} onClick={this.handleChangePScore}><p className="azar-a">POSITIVO</p></li>
-                                <li class={this.state.tipoPuntaje ? "azar-tab" : "azar-tab active"} onClick={this.handleChangeNScore}><p className="azar-a">NEGATIVO</p></li>
+                            <ul className="azar-tab-group">
+                                <li className={this.state.tipoPuntaje ? "azar-tab active" : "azar-tab"} onClick={this.handleChangePScore}><p className="azar-a">POSITIVO</p></li>
+                                <li className={this.state.tipoPuntaje ? "azar-tab" : "azar-tab active"} onClick={this.handleChangeNScore}><p className="azar-a">NEGATIVO</p></li>
                             </ul>
                             {
                                 this.state.tipoPuntaje

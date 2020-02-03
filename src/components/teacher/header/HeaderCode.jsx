@@ -108,8 +108,8 @@ class HeaderCode extends React.Component {
                     </Modal.Body>
                 </Modal>
                         <div id="modal-general_container" className={this.state.codigoModal === 0 ? "" : this.state.codigoModal === 1 ? "six" :this.state.codigoModal === 2 ? "six out" : ""}>
-                            <div class="modal-general_background">
-                                <div class="modal-general_bg_content">
+                            <div className="modal-general_background">
+                                <div className="modal-general_bg_content">
                                     <button className="modal-general_close" onClick={this.handleClose}>
                                         <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                                     </button>
@@ -121,7 +121,7 @@ class HeaderCode extends React.Component {
                                             <span id="modal-content__codigogenerado">{this.props.id_access}</span>
                                         </div>
                                     </div>
-                                    <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                                    <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                                         <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
                                     </svg>
                                 </div>

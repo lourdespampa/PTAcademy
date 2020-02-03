@@ -313,7 +313,7 @@ export default class ListaAlum extends Component {
                 </Modal.Header>
                 <Modal.Body style={{justifyContent: 'center'}}>
                     <input type="text"  value={this.state.note} onChange={this.onChangeInput} />
-                    <button id="btnnotas" class="button btnMyM" onClick={()=>this.onSubmitNote() + this.setShow('shownota',false)} type="button" >MODIFICAR</button> 
+                    <button id="btnnotas" className="button btnMyM" onClick={()=>this.onSubmitNote() + this.setShow('shownota',false)} type="button" >MODIFICAR</button> 
                 </Modal.Body>
             </Modal> 
             <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showcomportamiento} onHide={() => this.setShow('showcomportamiento',false)}>

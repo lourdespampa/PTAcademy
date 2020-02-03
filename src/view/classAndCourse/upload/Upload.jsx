@@ -35,7 +35,7 @@ class Upload extends Component {
   }
 
   async uploadFiles() {
-    if (this.props.className==='' || this.props.desc==='' ||  Object.keys(this.state.files).length === 0){
+    if (this.props.class_name==='' || this.props.desc==='' ||  Object.keys(this.state.files).length === 0){
       this.setState({NoData:true})
     }else{
     this.props.handleDisableX()
@@ -124,13 +124,12 @@ class Upload extends Component {
             console.log('mal')
             this.setState({ errorUploaded: true});
             this.props.handleEnableX()
-            this.props.cleanInputs()
+            // this.props.cleanInputs()
             this.setState({
-              files: [],
+              successfullUploaded: false,
+              errorUploaded:true,
               uploading: false,
               uploadProgress: {},
-              successfullUploaded: false,
-              errorUploaded:false,
               slideOn:false,
               NoData:false,
               UploadDone:false,
@@ -147,9 +146,10 @@ class Upload extends Component {
         return (
           <>
           <button className='modal-body__button backCursos'
-            onClick={() =>
+            onClick={() =>{
+              this.props.cleanInputs()
               this.setState({ files: [], uploading: false, errorUploaded: false,slideOn:false })
-            }
+            }}
           >
             <div className="button-zoom">LIMPIAR</div>
           </button>
@@ -186,7 +186,7 @@ class Upload extends Component {
             <button className='modal-body__button backCursos'
             onClick={() => {
               this.props.cleanInputs()
-              this.setState({ files: [], uploading: false, errorUploaded: false,slideOn:false })
+              this.setState({ files: [], uploading: false, errorUploaded: false,slideOn:false,NoData:false })
             }}
           >
             <div className="button-zoom">LIMPIAR</div>
@@ -195,7 +195,7 @@ class Upload extends Component {
             null
           }
           { this.state.NoData?
-          this.props.className==='' || this.props.desc==='' ||  Object.keys(this.state.files).length === 0?
+          this.props.class_name==='' || this.props.desc==='' ||  Object.keys(this.state.files).length === 0?
           <p className="mensageAction negative">RELLENA TODOS LOS CAMPOS</p>:null:null
           }
           
@@ -208,7 +208,7 @@ class Upload extends Component {
   render() {
     return (
       <div className="Upload">
-        <div className="Content" style={{display: 'inline-block'}}>
+        <div className="Content">
           <div>
             <Dropzone
               limpiarInputFile={this.state.limpiarInputFile}
@@ -221,7 +221,7 @@ class Upload extends Component {
             {this.state.files.map((file, id) => {
               return (
                 <>
-                  <span key={id} className="Filename">{file.name}</span>
+                  <span key={id}>{file.name}</span>
                 </>
               );
             })}

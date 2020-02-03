@@ -228,8 +228,8 @@ class Temporizador extends React.Component {
                     </div></div> */}
 
                 <div id="modal-general_container" className={this.state.showModal === 0 ? "" : this.state.showModal === 1 ? "six" : this.state.showModal === 2 ? "six out" : ""}>
-                    <div class="modal-general_background">
-                        <div class="modal-general_bg_content">
+                    <div className="modal-general_background">
+                        <div className="modal-general_bg_content">
                             <button className="modal-general_close" onClick={this.closeModal}>
                                 <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                             </button>
@@ -238,7 +238,7 @@ class Temporizador extends React.Component {
                                     <span className="modal-title">ESTABLECER TIEMPO</span>
                                 </div>
                                 <div className="modal-general_container_body codigogenerado">
-                                    <form class="temporizador_form">
+                                    <form className="temporizador_form">
                                         <div><label>Horas</label>
                                             <input className="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />
                                         </div><div><label>Minutos</label>
@@ -251,7 +251,7 @@ class Temporizador extends React.Component {
                                     <button type="button" id="button-set" className="pure-button pure-button-primary" onClick={this.closeModal} >Establecer Tiempo</button>
                                 </div>
                             </div>
-                            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                                 <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
                             </svg>
                         </div>
