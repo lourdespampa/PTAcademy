@@ -159,8 +159,8 @@ class Trivia extends React.Component {
     return (
       <>
       <div className={this.state.navbarResponsive ? "triviaT-topnav responsive" : "triviaT-topnav"}>
-        <div className="titulo-responsive"><h1>PLAYTEC Trivia</h1></div>
-        <div>
+        <a className="titulo-responsive"><h1>PLAYTEC Trivia</h1></a>
+        <a>
           <div className="contenedor-btn-enviar">
               { this.state.preguntaEnviada
               ?
@@ -176,7 +176,7 @@ class Trivia extends React.Component {
                 Respuestas
               </button>
           </div>
-        </div>
+        </a>
         <a className="titulo"><h1>PLAYTEC Trivia</h1></a>
         <a className="triviaT-icon" onClick={this.handleNavbarResponsive}>
           <i className="fa fa-bars"></i>
