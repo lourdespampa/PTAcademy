@@ -16,15 +16,14 @@ export default class AllCourses extends Component {
                 this.props.onClick(this.props.id) +
                 this.props.setShow("show", 1)}
                 className="courseTeacher__button-delette">
-                    <img
-                      className="courseTeacher__img"
-                      src={iconDelete}
-                      alt="imagen de borrar cursos"
-                    />
+                    <i class="courseTeacher__img fas fa-trash"></i>
                 </button>
+                <div className="courseTeacher__containerButton-Edit">
                 <Link to={`/${this.props.idteacher}/course_detail/${this.props.id}`} className="courseTeacher__button-Edit">
-                    <img className="courseTeacher__img" src={iconEdit} alt="imagen de borrar cursos" />
+                    {/* <img className="courseTeacher__img" src={iconEdit} alt="imagen de borrar cursos" /> */}
+                    <i className="algodemargin courseTeacher__img fas fa-user-plus"></i>
                 </Link>
+                </div>
               <img className="classTeacher-card__image" src={this.props.imageURL || "https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80"} alt="" />
             </div>              
               <svg className="classTeacher-card__svg" viewBox="0 0 800 500">
