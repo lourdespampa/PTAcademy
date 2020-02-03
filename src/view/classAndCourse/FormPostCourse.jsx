@@ -105,7 +105,7 @@ export default class FormPostCourse extends Component {
         grade: "primero",
         section: "A",
         course_name: "Arte y cultura",
-        description: "???",
+        description: "",
         escogerNivelAcademico: 0,
         nivelPrimaria: true
       })
@@ -224,6 +224,7 @@ export default class FormPostCourse extends Component {
                 as="textarea"
                 rows="2"
                 required
+                value={this.state.description}
               />
             </Form.Group>
             {
