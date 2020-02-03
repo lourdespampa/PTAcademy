@@ -237,6 +237,15 @@
     .courseTeacher-cards 
         width: 290px
 // se va a poner los estilos para los botones de los cards xd -- by:Miryan
+.courseTeacher__containerButton-Edit
+    position: absolute
+    z-index: 100
+    border-radius: 100px
+    height: 20px
+    width: 40px
+    top: 8px
+    left: 5px
+    animation: 1000ms ease 0s infinite normal none running ripple
 
 .courseTeacher__button-delette,
 .courseTeacher__button-Edit
@@ -253,21 +262,25 @@
     width: 100%
     cursor: pointer
     & .courseTeacher__img
+        color: #fff
         transition: transform 0.3s ease-in-out
         -webkit-transition: all .4s ease
         -moz-transition: all .4s ease
         -o-transition: all .4s ease
         -ms-transition: all .4s ease
+    & .algodemargin
+        margin-top: 5px
     &:hover .courseTeacher__img
         -webkit-transform: scale(1.25)
         -moz-transform: scale(1.25)
         -ms-transform: scale(1.25)
         -o-transform: scale(1.25)
         transform: scale(1.3)
-
 .courseTeacher__button-Edit
     // float: left
     position: absolute
+    left: -3px
+    top: -8px
     text-align: center
     background-color: #FB9600
         
