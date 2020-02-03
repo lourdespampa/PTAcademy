@@ -44,6 +44,12 @@ class Trivia extends React.Component {
         this.setState({alumnosRecibidos: temp})
       })
   }
+  //por buenas practicas, se deberia finalizar toda accion que pueda afectar el rendimiento del componente al morir
+  //por lo que toda accion por tiempo se finaliza en este metodo, por ejemplo en la función handleSendQuestion() al final
+  //hay un TimeOut
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  }
 
   showModal = () => {
     this.setState(state => ({
@@ -148,14 +154,16 @@ class Trivia extends React.Component {
         respuestaCorrecta: this.state.selectedCorrectAnswer
       }
       socket.emit('enviando pregunta', contenido)
+      this.timeout = setTimeout(() => this.setState({modal: true}), parseInt(`${this.state.tiempo}000`,10)+2000)
     }
+    //finalmente cambia el estado del boton a restaurar.
     this.setState(state => ({
       preguntaEnviada: !state.preguntaEnviada
     }));
   }
 
   render() {
-    console.log(this.state.alumnosRecibidos)
+    // console.log(this.state.alumnosRecibidos)
     return (
       <>
       <div className={this.state.navbarResponsive ? "triviaT-topnav responsive" : "triviaT-topnav"}>
