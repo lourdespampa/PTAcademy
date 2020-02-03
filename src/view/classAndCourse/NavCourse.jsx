@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import {Link, Redirect } from 'react-router-dom'
 import "../courses/Course.sass";
 import iconExit from "../../img/cerrar.png";
-import BotonAgregar from "./ModalAgregar.jsx"
+import ModalAddCourseAndClass from "./ModalAgregar.jsx"
 
 function BotonCerrarSesion(props) {
   const [show, setShow] = useState(0);
@@ -78,10 +78,10 @@ export default class NavCourse extends Component {
             <nav className='teacherCourses__main-nav' id="main-nav">
               <ul className="teacherCourses__main-menu">
                 <li className="teacherCourses__main-menu__item">
-                  <BotonAgregar 
+                  <ModalAddCourseAndClass 
                     apiUrl={this.props.apiUrl} idteacher={this.props.idteacher} idcourse={this.props.idcourse} 
                     agregarX={this.props.agregarX} getdata={this.props.getdata} menuToggleNavbar={this.AbriryCerrar}>
-                  </BotonAgregar>
+                  </ModalAddCourseAndClass>
                 </li>
                 {this.props.agregarX==='clase'?
                 <li className="teacherCourses__main-menu__item">
