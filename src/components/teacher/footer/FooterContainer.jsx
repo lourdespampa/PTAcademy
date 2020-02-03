@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./FooterContainer.sass";
 import "./boton.css";
-import Modal from "react-bootstrap/Modal";
 import Audio from "../audio/audio";
 import io from "socket.io-client";
 import Slide from '../slides/slide_02';

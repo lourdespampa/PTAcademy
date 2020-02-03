@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
-import { Button, ButtonToolbar } from "react-bootstrap";
-import Modal from 'react-bootstrap/Modal';
 import iconExit from "../../../img/cerrar.png";
 import './HeaderCode.sass'
 function BotonSalir(props) {

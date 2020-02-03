@@ -2,7 +2,6 @@ import React from 'react';
 import Roulette from './Roulette';
 import io from 'socket.io-client';
 import axios from 'axios';
-import Modal from 'react-bootstrap/Modal';
 import { BtnPuntos } from '../lista/btnpuntos';
 import iconExit from "../../../img/cerrar.png";
 

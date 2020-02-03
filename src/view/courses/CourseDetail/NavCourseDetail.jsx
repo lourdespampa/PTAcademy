@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { Modal, ButtonToolbar } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import iconExit from "../../../img/cerrar.png";
 import FormAddStudent from './FormAddStudent'
 import iconBack from '../../../img/back_button.svg'
@@ -97,10 +97,6 @@ export default class NavCourse extends Component {
     const nav = document.getElementById("main-nav");
     nav.classList.toggle("show");
   };
-  SegundaFuncion = () => {
-    const nav = document.getElementById("main-nav");
-    console.log('se esta presionando')
-  }
   render() {
     return (
       <>
