@@ -243,6 +243,10 @@ button:-moz-focusring,
   outline: 1px dotted ButtonText;
 }
 
+/* solo para contraseñas */
+input[type="password"] {
+  font-family: monospace !important;
+}
 /**
  * Correct the padding in Firefox.
  */
