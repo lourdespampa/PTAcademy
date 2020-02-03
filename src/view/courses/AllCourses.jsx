@@ -1,9 +1,31 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import iconDelete from "./assets/delete.svg";
-import iconEdit from "./assets/edit.svg";
 import "./cardCourses.sass";
+import axios from 'axios';
 export default class AllCourses extends Component {
+  constructor(props){
+    super(props)
+  }
+
+  componentDidMount = () => {
+    var varToken = localStorage.getItem("token");
+    axios({
+      url: `${this.props.apiUrl}/v1/api/student/${this.props.idteacher}/${this.props.idCurso}/students`,
+      method: "GET",
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    })
+      .then((data) => {
+        console.log(data)
+        // if (data === []) {
+        //   this.setState({ students: [] });
+        // } else {
+        //   this.setState({ students: data });
+        // }
+      })
+      .catch(e => console.log(e));
+  }
 
   render() {
 
