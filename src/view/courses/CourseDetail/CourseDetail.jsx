@@ -98,7 +98,7 @@ export default class CourseDetail extends Component {
               <tr className="CourseDetail__table-tr">
                 <th className="CourseDetail__table-th">Apellidos</th>
                 <th className="CourseDetail__table-th">Nombres</th>
-                <th className="CourseDetail__table-th">Competencia 1</th>
+                <th className="CourseDetail__table-th">Código</th>
                 <th className="CourseDetail__table-th">Competencia 2</th>
                 <th className="CourseDetail__table-th">Codigo estudiante</th>
                 <th className="CourseDetail__table-th">Eliminar</th>

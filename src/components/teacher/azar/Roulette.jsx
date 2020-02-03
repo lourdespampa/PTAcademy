@@ -205,7 +205,7 @@ class Roulette extends React.Component {
           {
             this.state.desactivarBoton
             ?
-            <button className="roulette-container-button" onClick={this.handleOnClick} style={{background: "#a5a5a5"}} id="btnRuleta" disabled>
+            <button className="roulette-container-button" onClick={this.handleOnClick} id="btnRuleta" disabled>
               <div className="button-zoom">GIRAR</div>
             </button>
             :

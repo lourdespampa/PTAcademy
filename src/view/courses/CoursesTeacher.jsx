@@ -36,7 +36,7 @@ export default class CoursesTeacher extends Component {
       }
     })
       .then(({ data }) => {
-        // console.log(data)
+        console.log(data)
         if (data === []) {
           this.setState({ courses: [] });
         } else {
@@ -51,7 +51,7 @@ export default class CoursesTeacher extends Component {
         "x-access-token": `${varToken}`
       }
     }).then(({ data }) => {
-      console.log(data);
+      // console.log(data);
       this.setState({ nombreProfesor: `${data.user_name} ${data.user_lastName}` });
     });
   }
@@ -116,7 +116,7 @@ export default class CoursesTeacher extends Component {
                     section={cursos.section}
                     name_course={cursos.course_name}
                     description={cursos.description}
-                    img={cursos.img}
+                    imageURL={cursos.imageURL}
                     id={cursos._id}
                     idteacher={this.state._id}
                     onClick={this.onClick}
