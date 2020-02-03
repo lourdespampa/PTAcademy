@@ -3,7 +3,9 @@ import React, { Component } from "react";
 import axios from "axios";
 //estilos
 import { Form, Button } from "react-bootstrap";
-import './FormPostCourse.sass'
+import './FormPostCourse.sass';
+
+
 //componente clase
 export default class FormPostCourse extends Component {
   //1. inializa las propiedades recibidas del componente padre
@@ -17,7 +19,7 @@ export default class FormPostCourse extends Component {
       grade: "primero",
       section: "A",
       course_name: "Arte y cultura",
-      description: "???",
+      description: "",
       escogerNivelAcademico: 0,
       nivelPrimaria: true,
       grados: [{name:"1er grado", value: "primero"},
@@ -87,8 +89,8 @@ export default class FormPostCourse extends Component {
     const data = { level, grade, section, course_name, description}
     //esta es la peticion al servidor, un post
     axios({
-      // url: `${this.props.apiUrl}/v1/api/siagie/${this.props.idteacher}/new-course`,
-      url: `http://192.168.1.29:4200/v1/api/siagie/${this.props.idteacher}/new-course`,
+      url: `${this.props.apiUrl}/v1/api/siagie/${this.props.idteacher}/new-course`,
+      // url: `http://192.168.1.29:4200/v1/api/siagie/${this.props.idteacher}/new-course`,
       data,
       method: 'post',
       headers: {
@@ -96,7 +98,17 @@ export default class FormPostCourse extends Component {
       }
     }).then((res) => {
       // return console.log(res.data)
-      this.setState({bloquearBoton: false})
+      this.setState({
+        bloquearBoton: false,
+        message: "elija una opción",
+        level: "primaria",
+        grade: "primero",
+        section: "A",
+        course_name: "Arte y cultura",
+        description: "",
+        escogerNivelAcademico: 0,
+        nivelPrimaria: true
+      })
       this.props.menuToggleNavbar()
       this.props.handleClose()
     })
@@ -115,7 +127,6 @@ export default class FormPostCourse extends Component {
 
   //Esta es la vista, interfaz
   render() {
-    const { course_name } = this.state;
     return (
       <>
         <Form onSubmit={this.handleSubmit}>
@@ -205,7 +216,7 @@ export default class FormPostCourse extends Component {
               }
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Label className="modal-title__controldescription">Descripcion del curso</Form.Label>
+              <Form.Label className="modal-title__controlname">Descripcion del curso</Form.Label>
               <Form.Control className="modal-teacher__general-controldescription"
                 name="description"
                 onChange={this.handleChangeInputsText}
@@ -213,6 +224,7 @@ export default class FormPostCourse extends Component {
                 as="textarea"
                 rows="2"
                 required
+                value={this.state.description}
               />
             </Form.Group>
             {

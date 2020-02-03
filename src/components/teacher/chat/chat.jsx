@@ -178,7 +178,7 @@ const chil = document.getElementById('div_children')
 
             </div>
 
-            <button class="openbtn" id="btn_open" onClick={()=>this.openNav()}> texto </button>
+            <button className="openbtn" id="btn_open" onClick={()=>this.openNav()}> texto </button>
       </div>
       
     )

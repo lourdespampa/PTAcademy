@@ -39,14 +39,14 @@ export default class FormAddStudent extends Component {
     };
     
     axios({
-      url: `${this.props.apiUrl}:4200/v1/api/student`,
+      url: `${this.props.apiUrl}/v1/api/student`,
       data,
       method: "post",
       headers: {
         "x-access-token": `${varToken}`
       }
     })
-      .then(res => console.log(res) + this.props.handleClose())
+      .then(res => console.log(res) + this.props.handleClose() + this.props.getdata())
       .catch(err => console.log(err));
   };
   render() {
@@ -78,8 +78,8 @@ export default class FormAddStudent extends Component {
             placeholder="Ingresar apellidos completos de los estudiantes"
             required
           />
-          <Button id="modal-body__button-cursos" type="submit">
-            Agregar Alumno
+          <Button className="modal-body__button cursos" type="submit">
+            <div className="button-zoom">Agregar Alumno</div>
           </Button>
       </Form>
         
