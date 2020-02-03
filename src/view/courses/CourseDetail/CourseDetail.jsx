@@ -9,7 +9,8 @@ export default class CourseDetail extends Component {
       token: false,
       id_course : "",
       id_teacher : "",
-      students : []
+      students : [],
+      apiUrl : 'http://3.16.110.136:4200'
     }
   }
   
@@ -19,7 +20,7 @@ export default class CourseDetail extends Component {
     this.setState({ id_course: params.id_course, id_teacher: params.id });
     setTimeout(() => console.log(this.state.id_course, this.state.id_teacher), 2000)
     axios({
-      url: `${this.props.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
+      url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
@@ -46,7 +47,7 @@ export default class CourseDetail extends Component {
     } = this.props;
     var varToken = localStorage.getItem("token");
     axios({
-      url: `${this.props.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
+      url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
@@ -75,7 +76,7 @@ export default class CourseDetail extends Component {
     return (
       <>
         <NavCourse
-          apiUrl={this.props.apiUrl}
+          apiUrl={this.state.apiUrl}
           idcourse={this.state.id_course}
           idteacher={this.state.id_teacher}
           nombreProfesor={this.state.nombreProfesor}
@@ -88,16 +89,17 @@ export default class CourseDetail extends Component {
           </div>
 
           <table className="CourseDetail__table">
-          <tbody className="CourseDetail__table-body">
-              <tr className="CourseDetail__table-tr">
+            <thead>
+            <tr className="CourseDetail__table-tr">
                 <th className="CourseDetail__table-th">Apellidos</th>
                 <th className="CourseDetail__table-th">Nombres</th>
                 <th className="CourseDetail__table-th">Código</th>
                 <th className="CourseDetail__table-th">Competencia 2</th>
                 <th className="CourseDetail__table-th">Competencia 3</th>
                 <th className="CourseDetail__table-th">Competencia 4</th>
-              </tr> 
-              
+              </tr>
+            </thead>
+          <tbody className="CourseDetail__table-body">
               {this.state.students.map(alumno => (
               <tr className="CourseDetail__table-tr" key={alumno._id}>
                <td className="CourseDetail__table-td" data-th="Apellidos">

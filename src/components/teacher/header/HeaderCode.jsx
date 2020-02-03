@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
-import { Button, ButtonToolbar } from "react-bootstrap";
-import Modal from 'react-bootstrap/Modal';
 import iconExit from "../../../img/cerrar.png";
 import './HeaderCode.sass'
 function BotonSalir(props) {
@@ -25,7 +23,7 @@ function BotonSalir(props) {
                             </div>
                         <div className="modal-general_container_body">
                             <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
-                            <Link style={{ textDecoration: "none" }} to="/">
+                            <Link style={{ textDecoration: "none" }} to="">
                                 <div className="button-zoom">SI</div>
                             </Link>
                             </button>
@@ -121,7 +119,7 @@ class HeaderCode extends React.Component {
                                             <span id="modal-content__codigogenerado">{this.props.id_access}</span>
                                         </div>
                                     </div>
-                                    <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                                    <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                                         <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
                                     </svg>
                                 </div>

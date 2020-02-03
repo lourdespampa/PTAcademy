@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Form } from "react-bootstrap";
 import Upload from "./upload/Upload";
-//import spinner from "../../components/teacher/footer/spinner";
 export default class FormPostCourse extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +10,7 @@ export default class FormPostCourse extends Component {
       desc: ""
     };
   }
-
+  
   handleChange = e => {
     const target = e.target;
     const name = target.name;

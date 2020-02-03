@@ -19,7 +19,7 @@ export default class FormPostCourse extends Component {
       grade: "primero",
       section: "A",
       course_name: "Arte y cultura",
-      description: "???",
+      description: "",
       escogerNivelAcademico: 0,
       nivelPrimaria: true,
       grados: [{name:"1er grado", value: "primero"},
@@ -98,7 +98,17 @@ export default class FormPostCourse extends Component {
       }
     }).then((res) => {
       // return console.log(res.data)
-      this.setState({bloquearBoton: false})
+      this.setState({
+        bloquearBoton: false,
+        message: "elija una opción",
+        level: "primaria",
+        grade: "primero",
+        section: "A",
+        course_name: "Arte y cultura",
+        description: "",
+        escogerNivelAcademico: 0,
+        nivelPrimaria: true
+      })
       this.props.menuToggleNavbar()
       this.props.handleClose()
     })
@@ -214,6 +224,7 @@ export default class FormPostCourse extends Component {
                 as="textarea"
                 rows="2"
                 required
+                value={this.state.description}
               />
             </Form.Group>
             {

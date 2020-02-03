@@ -1,4 +1,4 @@
-
+// Cuerpos de Grupos
 .cuerpo-grupos
     text-align: center
     margin-top: 25px
@@ -7,89 +7,31 @@
         background: #008CBA
         border-radius: 5px
         margin-left: 10px
-
         .tex
             margin-top: 9% 
             font-family: "Opal"
             color: #ffffff
             cursor: pointer
-
     .button 
         .tex:hover
             font-size: 21px
             transform: scale(1.5)
-
     .input-text
         text-align: center
         width: 80px
+        border: 2px solid rgb(0, 140, 186)
+        font-size: 1.75em
+        padding: .25em .5em .3125em
+        color: rgba(2, 2, 2, 0.5)
+        border-radius: .25em
+        background: transparent
+        transition: all .100s
+        &:focus
+            outline: none
+            color: black
     span
         font-size: 23px
-
-
-.input-text
-    border: 2px solid rgb(0, 140, 186)
-    font-size: 1.75em
-    padding: .25em .5em .3125em
-    color: rgba(2, 2, 2, 0.5)
-    border-radius: .25em
-    background: transparent
-    transition: all .100s
-    &:focus
-        outline: none
-        color: black
-
-.grupos-cards
-    display: flex
-    flex-wrap: wrap
-    list-style: none
-    margin: 0
-    padding: 0
-    
-.grupos-cards__item
-    display: flex
-    padding: 1rem
-    width: 33.33%
-
-.grupos-card
-    background: white
-    border-radius: 0.25rem
-    box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25)
-    width: 100%
-    flex-direction: column
-    overflow: hidden
-    text-align: center
-    border: solid #008cba
-    &:hover .grupos-card__image
-        -webkit-filter: contrast(100%)
-        filter: contrast(100%)
-    
-
-.grupos-card__content
-    display: flex
-    flex: 1 1 auto
-    flex-direction: column
-    padding: 1rem
-
-.grupos-card__title
-    color: #696969
-    font-size: 1.25rem
-    font-weight: 300
-    letter-spacing: 2px
-    text-transform: uppercase
-
-.grupos-card__text
-    flex: 1 1 auto
-    font-size: 0.875rem
-    line-height: 1.5
-    margin-bottom: 1.25rem
-
-@media (max-width: 56rem)
-    .grupos-cards__item
-        width: 50%
-@media (max-width: 36rem)
-    .grupos-cards__item
-        width: 100%
-
+// Contenedores Grupos 
 .contenedor-grupos
     color: #999999
     font-family: "Opal"
@@ -101,3 +43,49 @@
     -webkit-font-smoothing: antialiased
     -moz-osx-font-smoothing: grayscale
     -moz-font-feature-settings: "liga" on
+.grupos-cards
+    display: flex
+    flex-wrap: wrap
+    list-style: none
+    margin: 0
+    padding: 0
+    .grupos-cards__item
+        display: flex
+        padding: 1rem
+        width: 33.33%
+        .grupos-card
+            background: white
+            border-radius: 0.25rem
+            box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25)
+            width: 100%
+            flex-direction: column
+            overflow: hidden
+            text-align: center
+            border: solid #008cba
+            &:hover .grupos-card__image
+                -webkit-filter: contrast(100%)
+                filter: contrast(100%)
+            .grupos-card__content
+                display: flex
+                flex: 1 1 auto
+                flex-direction: column
+                padding: 1rem
+                .grupos-card__title
+                    color: #696969
+                    font-size: 1.25rem
+                    font-weight: 300
+                    letter-spacing: 2px
+                    text-transform: uppercase
+                .grupos-card__text
+                    flex: 1 1 auto
+                    font-size: 0.875rem
+                    line-height: 1.5
+                    margin-bottom: 1.25rem
+
+// Responsive 
+@media (max-width: 56rem)
+    .grupos-cards__item
+        width: 50%
+@media (max-width: 36rem)
+    .grupos-cards__item
+        width: 100%

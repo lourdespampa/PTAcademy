@@ -11,7 +11,7 @@ function BotonCerrarSesion(props) {
   return (
     <>
       <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
-        Cerrar sesion
+          Cerrar sesion
       </div>
       <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
         <div className="modal-general_background">
@@ -53,7 +53,7 @@ export default class NavCourse extends Component {
     let tokenStorage = localStorage.getItem("token")
     await this.setState({token: tokenStorage})
   }
-
+  
   cerrarSesion = () => {
     localStorage.clear();
     this.setState({token: null})

@@ -183,8 +183,11 @@ textarea {
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
+  font-family: opal;
 }
-
+.inputPass{
+  font-family:none;
+}
 /**
  * Show the overflow in IE.
  * 1. Show the overflow in Edge.
@@ -242,6 +245,10 @@ button:-moz-focusring,
   outline: 1px dotted ButtonText;
 }
 
+/* solo para contraseñas */
+input[type="password"] {
+  font-family: monospace !important;
+}
 /**
  * Correct the padding in Firefox.
  */

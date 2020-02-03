@@ -5,7 +5,6 @@ import { ExportCSV } from './exportbtn'
 import { BtnPuntos } from './btnpuntos'
 import io from 'socket.io-client';
 import { TableBody } from './tablebody'
-import Modal from 'react-bootstrap/Modal';
 import iconExit from "../../../img/cerrar.png";
 // import {alumnos} from '../../data/alumnos.json';
 export default class ListaAlum extends Component {

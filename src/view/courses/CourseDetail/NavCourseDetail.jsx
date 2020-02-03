@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { Modal, ButtonToolbar } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import iconExit from "../../../img/cerrar.png";
 import FormAddStudent from './FormAddStudent'
 import iconBack from '../../../img/back_button.svg'
@@ -17,26 +17,24 @@ function BotonAgregar(props) {
       >
         Agregar Alumno
       </div>
-      <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
-        <div class="modal-general_background">
-          <div class="modal-general_bg_content">
-            <button className="modal-general_close" onClick={handleClose}>
-              <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-            </button>
-            <div className="modal-general_container">
-              <div className="modal-general_container_header">
-                <span className="modal-title__controlname">Agregar Alumno</span>
-              </div>
-              <div className="modal-general_container_body">
-                <FormAddStudent apiUrl={props.apiUrl} getdata={props.getdata} idcourse={props.idcourse} idteacher={props.idteacher} handleClose={handleClose} />
-              </div>
-            </div>
-            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-              <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
-            </svg>
-          </div>
-        </div>
-      </div>
+      <Modal
+        className="modal-teacher__general"
+        show={show}
+        onHide={handleClose}
+        animation={false}
+      >
+        <button className="modal-teacher__general-close" onClick={handleClose}>
+          <img
+            className="button-zoom"
+            src={iconExit}
+            alt="imagen de cerrar modal"
+          />
+        </button>
+        <Modal.Header>
+          <Modal.Title>Agregando Alumno</Modal.Title>
+        </Modal.Header>
+        <Modal.Body><FormAddStudent apiUrl={props.apiUrl} idcourse={props.idcourse} idteacher={props.idteacher}/></Modal.Body>
+      </Modal>
     </>
   );
 }
@@ -99,10 +97,6 @@ export default class NavCourse extends Component {
     const nav = document.getElementById("main-nav");
     nav.classList.toggle("show");
   };
-  SegundaFuncion = () => {
-    const nav = document.getElementById("main-nav");
-    console.log('se esta presionando')
-  }
   render() {
     return (
       <>

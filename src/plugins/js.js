@@ -39,7 +39,7 @@ function Mensaje() {
     var SegmentoSeleccionado = miRuleta.getIndicatedSegment();
     nombresCompletos.forEach(nombre => {
             if (SegmentoSeleccionado.text == nombre.split("  ")[0]) {
-                text = `<h2 class="alumnoEscoger">ALUMNO SUERTUDO</2> <br> <h1>${nombre}</h1>`;
+                text = `<h2 className="alumnoEscoger">ALUMNO SUERTUDO</2> <br> <h1>${nombre}</h1>`;
 
             }
         })

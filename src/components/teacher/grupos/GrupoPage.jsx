@@ -32,7 +32,7 @@ export default class GrupoPage extends Component {
         'x-access-token': `${varToken}`
       }
     }).then(res => {
-      res.data.map(alumno => {
+      res.data.forEach(alumno => {
         this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
         return null
       });
@@ -88,7 +88,7 @@ export default class GrupoPage extends Component {
     const { nro_per_grupo } = this.state.nro_per_grupo;
     return (
       <>
-          
+        {/* Cuerpos de Grupo */}
           <div className="cuerpo-grupos">
             {nro_per_grupo}
             <span>Número de personas por grupo </span>
@@ -101,6 +101,7 @@ export default class GrupoPage extends Component {
               value={this.state.nro_per_grupo}
               onChange={this.handleNumPerGrou}
             />
+            {/* Boton de Formar Grupos */}
             <button className="button" onClick={this.groupGenerator}>
               <label className="tex">
                 FORMAR GRUPOS
@@ -108,6 +109,7 @@ export default class GrupoPage extends Component {
 
             </button>
           </div>
+          {/* Contenedor De  Grupos */}
           <div className="contenedor-grupos">
             <ul className="grupos-cards" id="imprimir"></ul>
           </div>
