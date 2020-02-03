@@ -36,7 +36,6 @@ export default class CoursesTeacher extends Component {
       }
     })
       .then(({ data }) => {
-        console.log(data)
         if (data === []) {
           this.setState({ courses: [] });
         } else {
@@ -118,7 +117,7 @@ export default class CoursesTeacher extends Component {
                     name_course={cursos.course_name}
                     description={cursos.description}
                     imageURL={cursos.imageURL}
-                    idCurso={cursos._id}
+                    id={cursos._id}
                     idteacher={this.state._id}
                     onClick={this.onClick}
                     setShow={this.setShow}

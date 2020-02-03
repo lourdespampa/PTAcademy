@@ -13,14 +13,13 @@ export default class AllCourses extends Component {
   componentDidMount = () => {
     var varToken = localStorage.getItem("token");
     axios({
-      url: `${this.props.apiUrl}/v1/api/student/${this.props.idteacher}/${this.props.idCurso}/students`,
+      url: `${this.props.apiUrl}/v1/api/student/${this.props.idteacher}/${this.props.id}/students`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
       }
     })
       .then(({data}) => {
-        console.log(data)
         if (data.length) {
           this.setState({ cursoConAlumnos: true });
         } else {
@@ -74,11 +73,13 @@ export default class AllCourses extends Component {
               </label>
             </Link>
             :
-            <nav className="courseTeacher__buttonEntry courseTeacherDisabled">
+            <Link 
+            to={`/${this.props.idteacher}/course_detail/${this.props.id}`}
+            className="courseTeacher__buttonEntry courseTeacherDisabled">
               <label className="courseTeacher__buttonEntry-label">
-                VER CLASES
+                AGREGAR ALUMNOS
               </label>
-            </nav>
+            </Link>
             }
           </div>
         </div>       
