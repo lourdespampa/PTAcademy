@@ -111,13 +111,14 @@ export default class CoursesTeacher extends Component {
               this.state.courses.map((cursos, id) => (
                 <li className="courseTeacher-cards" key={id}>
                   <AllCourses
+                    apiUrl={this.props.apiUrl}
                     level={cursos.level}
                     grade={cursos.grade}
                     section={cursos.section}
                     name_course={cursos.course_name}
                     description={cursos.description}
                     imageURL={cursos.imageURL}
-                    id={cursos._id}
+                    idCurso={cursos._id}
                     idteacher={this.state._id}
                     onClick={this.onClick}
                     setShow={this.setShow}
