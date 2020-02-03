@@ -25,7 +25,7 @@ export default class AllCourses extends Component {
                 <Link to={`/${this.props.idteacher}/course_detail/${this.props.id}`} className="courseTeacher__button-Edit">
                     <img className="courseTeacher__img" src={iconEdit} alt="imagen de borrar cursos" />
                 </Link>
-              <img className="classTeacher-card__image" src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80" alt="" />
+              <img className="classTeacher-card__image" src={this.props.imageURL || "https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80"} alt="" />
             </div>              
               <svg className="classTeacher-card__svg" viewBox="0 0 800 500">
 

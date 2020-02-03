@@ -39,14 +39,14 @@ export default class FormAddStudent extends Component {
     };
     
     axios({
-      url: `${this.props.apiUrl}:4200/v1/api/student`,
+      url: `${this.props.apiUrl}/v1/api/student`,
       data,
       method: "post",
       headers: {
         "x-access-token": `${varToken}`
       }
     })
-      .then(res => console.log(res) + this.props.handleClose())
+      .then(res => console.log(res) + this.props.handleClose() + this.props.getdata())
       .catch(err => console.log(err));
   };
   render() {

@@ -14,11 +14,11 @@ export default function BotonAgregar(props) {
     const AgregarClick=()=>setShow(2)+props.getdata()
     return (
       <>
-        {loanding?
-          <Loanding/>
-          :null
-        }
-        <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
+      {loanding?
+      <Loanding/>:null
+  
+      }
+        <div className="teacherCourses__main-menu__returnCourse" onClick={handleShow}>
           Agregar {props.agregarX}
         </div>
         <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
