@@ -5,6 +5,9 @@ import axios from 'axios';
 export default class AllCourses extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      cursoConAlumnos: true
+    }
   }
 
   componentDidMount = () => {
@@ -16,13 +19,13 @@ export default class AllCourses extends Component {
         "x-access-token": `${varToken}`
       }
     })
-      .then((data) => {
+      .then(({data}) => {
         console.log(data)
-        // if (data === []) {
-        //   this.setState({ students: [] });
-        // } else {
-        //   this.setState({ students: data });
-        // }
+        if (data.length) {
+          this.setState({ cursoConAlumnos: true });
+        } else {
+          this.setState({ cursoConAlumnos: false });
+        }
       })
       .catch(e => console.log(e));
   }
@@ -40,9 +43,8 @@ export default class AllCourses extends Component {
                 className="courseTeacher__button-delette">
                     <i className="courseTeacher__img fas fa-trash"></i>
                 </button>
-                <div className="courseTeacher__containerButton-Edit">
+                <div className={this.state.cursoConAlumnos ? "courseTeacher__containerButton-Edit" : "courseTeacher__containerButton-Edit courseTeacher__animationEdit"}>
                 <Link to={`/${this.props.idteacher}/course_detail/${this.props.id}`} className="courseTeacher__button-Edit">
-                    {/* <img className="courseTeacher__img" src={iconEdit} alt="imagen de borrar cursos" /> */}
                     <i className="algodemargin courseTeacher__img fas fa-user-plus"></i>
                 </Link>
                 </div>
@@ -60,7 +62,9 @@ export default class AllCourses extends Component {
               <h1 className="classTeacher-card__title">{this.props.name_course}</h1>
               <p>{this.props.description}</p>
             </div>
-            {/* <Link
+            { this.state.cursoConAlumnos
+            ?
+            <Link
               onClick={() => this.props.onClick(this.props.id)}
               to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
               className="courseTeacher__buttonEntry"
@@ -68,16 +72,14 @@ export default class AllCourses extends Component {
               <label className="courseTeacher__buttonEntry-label">
                 VER CLASES
               </label>
-            </Link> */}
-            <nav
-              // to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
-              className="courseTeacher__buttonEntry courseTeacherDisabled"
-              disabled
-            >
+            </Link>
+            :
+            <nav className="courseTeacher__buttonEntry courseTeacherDisabled">
               <label className="courseTeacher__buttonEntry-label">
                 VER CLASES
               </label>
             </nav>
+            }
           </div>
         </div>       
       </>
