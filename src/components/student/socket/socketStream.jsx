@@ -126,6 +126,18 @@ export default class Audio extends Component {
             const popupDiapo = document.getElementById('popup')
             this.closePopup(overlayDiapo.id, popupDiapo.id)}
         })
+        socket.on('PositionPpt', (data) => {
+            if(data.pin === (this.props.id_access).toUpperCase()) {
+                this.setState({
+                    positionPpt:data.position
+                })
+                if(this.state.iframeon) {
+                    this.getUrl()
+                }else{
+
+                }
+            }
+        })
 
         //SLIDES END
         //VIDEO
