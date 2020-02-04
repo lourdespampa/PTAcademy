@@ -1,5 +1,5 @@
 @font-face {
-  font-family: Opal;
+  font-family: Opal,"monoscape";
   src: url("./plugins/Opal.ttf") format("truetype");
 }
 
@@ -182,10 +182,7 @@ textarea {
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
-  font-family: Opal;
-}
-.inputPass{
-  font-family:none;
+  font-family: monospace;
 }
 /**
  * Show the overflow in IE.
@@ -456,7 +453,7 @@ template {
     border: 1px solid #4747D5;
     margin: auto auto 10px;
     resize: none;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: monospace;
     padding: 10px 
     }
 
