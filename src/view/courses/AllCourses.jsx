@@ -1,9 +1,33 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import iconDelete from "./assets/delete.svg";
-import iconEdit from "./assets/edit.svg";
 import "./cardCourses.sass";
+import axios from 'axios';
 export default class AllCourses extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      cursoConAlumnos: true
+    }
+  }
+
+  componentDidMount = () => {
+    var varToken = localStorage.getItem("token");
+    axios({
+      url: `${this.props.apiUrl}/v1/api/student/${this.props.idteacher}/${this.props.id}/students`,
+      method: "GET",
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    })
+      .then(({data}) => {
+        if (data.length) {
+          this.setState({ cursoConAlumnos: true });
+        } else {
+          this.setState({ cursoConAlumnos: false });
+        }
+      })
+      .catch(e => console.log(e));
+  }
 
   render() {
 
@@ -16,15 +40,13 @@ export default class AllCourses extends Component {
                 this.props.onClick(this.props.id) +
                 this.props.setShow("show", 1)}
                 className="courseTeacher__button-delette">
-                    <img
-                      className="courseTeacher__img"
-                      src={iconDelete}
-                      alt="imagen de borrar cursos"
-                    />
+                    <i className="courseTeacher__img fas fa-trash"></i>
                 </button>
+                <div className={this.state.cursoConAlumnos ? "courseTeacher__containerButton-Edit" : "courseTeacher__containerButton-Edit courseTeacher__animationEdit"}>
                 <Link to={`/${this.props.idteacher}/course_detail/${this.props.id}`} className="courseTeacher__button-Edit">
-                    <img className="courseTeacher__img" src={iconEdit} alt="imagen de borrar cursos" />
+                    <i className="algodemargin courseTeacher__img fas fa-user-plus"></i>
                 </Link>
+                </div>
               <img className="classTeacher-card__image" src={this.props.imageURL || "https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80"} alt="" />
             </div>              
               <svg className="classTeacher-card__svg" viewBox="0 0 800 500">
@@ -39,6 +61,8 @@ export default class AllCourses extends Component {
               <h1 className="classTeacher-card__title">{this.props.name_course}</h1>
               <p>{this.props.description}</p>
             </div>
+            { this.state.cursoConAlumnos
+            ?
             <Link
               onClick={() => this.props.onClick(this.props.id)}
               to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
@@ -48,6 +72,15 @@ export default class AllCourses extends Component {
                 VER CLASES
               </label>
             </Link>
+            :
+            <Link 
+            to={`/${this.props.idteacher}/course_detail/${this.props.id}`}
+            className="courseTeacher__buttonEntry courseTeacherDisabled">
+              <label className="courseTeacher__buttonEntry-label">
+                DEBE AGREGAR ALUMNOS
+              </label>
+            </Link>
+            }
           </div>
         </div>       
       </>

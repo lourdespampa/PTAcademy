@@ -20,8 +20,8 @@ export default class Views extends Component {
    this.state={
       socket:null,
       class:'clase3',
-      // socketUrl:"http://localhost:4000/teacher",
-      socketUrl:"http://3.16.110.136:4000/teacher",
+      socketUrl:"http://localhost:4000/teacher",
+      // socketUrl:"http://3.16.110.136:4000/teacher",
       user:null,
       id:'',
       grabar:false,
@@ -36,7 +36,7 @@ export default class Views extends Component {
     componentWillMount(){
     this.initSocket()
   }
-    componentDidMount() {
+    componentWillMount() {
       this.getRecord();
       const {
         match: { params }

@@ -36,7 +36,6 @@ export default class CoursesTeacher extends Component {
       }
     })
       .then(({ data }) => {
-        console.log(data)
         if (data === []) {
           this.setState({ courses: [] });
         } else {
@@ -111,6 +110,7 @@ export default class CoursesTeacher extends Component {
               this.state.courses.map((cursos, id) => (
                 <li className="courseTeacher-cards" key={id}>
                   <AllCourses
+                    apiUrl={this.props.apiUrl}
                     level={cursos.level}
                     grade={cursos.grade}
                     section={cursos.section}

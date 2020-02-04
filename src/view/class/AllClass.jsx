@@ -58,11 +58,7 @@ export default class AllClass extends Component {
                 this.props.onClick(this.props.id) +
                 this.props.setShow("show", 1)}
                 className="courseTeacher__button-delette">
-              <img 
-                className="courseTeacher__img" 
-                src={iconDelete} 
-                alt="imagen de borrar cursos" 
-                />
+              <i className="courseTeacher__img fas fa-trash"></i>
             </button>
             <img className="classTeacher-card__image" src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80" alt="" />
 

@@ -44,6 +44,12 @@ class Trivia extends React.Component {
         this.setState({alumnosRecibidos: temp})
       })
   }
+  //por buenas practicas, se deberia finalizar toda accion que pueda afectar el rendimiento del componente al morir
+  //por lo que toda accion por tiempo se finaliza en este metodo, por ejemplo en la función handleSendQuestion() al final
+  //hay un TimeOut
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  }
 
   showModal = () => {
     this.setState(state => ({
@@ -148,14 +154,16 @@ class Trivia extends React.Component {
         respuestaCorrecta: this.state.selectedCorrectAnswer
       }
       socket.emit('enviando pregunta', contenido)
+      this.timeout = setTimeout(() => this.setState({modal: true}), parseInt(`${this.state.tiempo}000`,10)+2000)
     }
+    //finalmente cambia el estado del boton a restaurar.
     this.setState(state => ({
       preguntaEnviada: !state.preguntaEnviada
     }));
   }
 
   render() {
-    console.log(this.state.alumnosRecibidos)
+    // console.log(this.state.alumnosRecibidos)
     return (
       <>
       <div className={this.state.navbarResponsive ? "triviaT-topnav responsive" : "triviaT-topnav"}>
@@ -188,8 +196,7 @@ class Trivia extends React.Component {
         {/* Modal content */}
           <div className="modal-content-respuestas">
             <span id="cerrar" className="close" onClick={this.showModal}>x</span>
-            <h2>Clasificación</h2>
-            
+            <h2>Clasificación</h2>  
               <ul className="rolldown-list" id="myList">
                 {this.state.alumnosRecibidos.length > 0 
                   ?
@@ -199,11 +206,20 @@ class Trivia extends React.Component {
                     null
                     :
                     <li className="lista-contenedora" key={index}>
-                      <div style={{display: "inline-block"}}></div>
                       {/* <img className="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
-                      <h3 style={{display: "inline-block", marginLeft: "20px", marginTop: "25px"}}>
-                        {alumno.data.alumno}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puntaje:&nbsp;&nbsp;{alumno.data.puntaje}
-                      </h3>
+                      <div className="trivia-respuestas">
+                        <span>{alumno.data.alumno}&nbsp;&nbsp;</span>
+                        <span>puntaje:&nbsp;&nbsp;{alumno.data.puntaje}&nbsp;&nbsp;</span>
+                        <span>
+                          puntos:&nbsp;&nbsp;
+                          <button className="button btnMyM material-icons" >
+                            add_circle_outline
+                          </button>&nbsp;&nbsp;
+                          <button className="button btnMyM material-icons">
+                            remove_circle_outline
+                          </button>
+                        </span>
+                      </div>
                     </li>
                   ))
                   :
