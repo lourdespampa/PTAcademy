@@ -188,8 +188,7 @@ class Trivia extends React.Component {
         {/* Modal content */}
           <div className="modal-content-respuestas">
             <span id="cerrar" className="close" onClick={this.showModal}>x</span>
-            <h2>Clasificación</h2>
-            
+            <h2>Clasificación</h2>  
               <ul className="rolldown-list" id="myList">
                 {this.state.alumnosRecibidos.length > 0 
                   ?

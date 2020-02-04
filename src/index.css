@@ -175,7 +175,6 @@ img {
  */
 
 button,
-input,
 optgroup,
 select,
 textarea {
@@ -246,7 +245,7 @@ button:-moz-focusring,
 }
 
 /* solo para contraseñas */
-input[type="password"] {
+input {
   font-family: monospace !important;
 }
 /**
