@@ -82,7 +82,9 @@ backtPpt=async()=> {
     position: this.state.positionPpt
   });
 }
+statusFormatter=()=>{
 
+}
   render() {
     return (
       this.state.iframeon ?
@@ -99,7 +101,7 @@ backtPpt=async()=> {
         </>
           :
       <div style={styles}> 
-        <Carousel showArrows={true} useKeyboardArrows={true} swipeable={true}	 emulateTouch={true}	 showIndicators={false} showThumbs={false} >
+        <Carousel statusFormatter={this.statusFormatter} showArrows={true} useKeyboardArrows={true} swipeable={true}	 emulateTouch={true}	 showIndicators={false} showThumbs={false} >
             {
                 this.state.Slides.map((slide)=>(
                     <div key={slide.index}>

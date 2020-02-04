@@ -10,7 +10,7 @@ function enviarvideo(url, socketUrl, id_access, setShow,seturlnombre, setNoData)
   const socket = io(socketUrl, {
     query: { pin: id_access }
   });
-  socket.emit("VideoEmit", urlnombre);
+  
 
   var expresionRegular = "https://www.youtube.com/watch?v=";
   var urlembed = urlnombre.split(expresionRegular);
@@ -25,6 +25,7 @@ function enviarvideo(url, socketUrl, id_access, setShow,seturlnombre, setNoData)
     seturlnombre("");
     setNoData(false);
     console.log(urlembed[1])
+    socket.emit("VideoEmit", urlnombre);
   }
 }
 function SendForm(socketUrl, id_access) {
@@ -135,7 +136,7 @@ function FooterContainer(props) {
             <img alt="" width="30px" height="30px" src={require("../../../img/footer/form.svg")} />
             <span className="footer-span">Formulario</span>
         </div>
-        <Video closePopup={props.closePopup} botonClick={props.botonClick}></Video>
+        <Video socketUrl={props.socketUrl} id_access={props.id_access} closePopup={props.closePopup} botonClick={props.botonClick}></Video>
         <div className="footer-div">
             <img alt="" width="30px" height="30px" src={require("../../../img/footer/share.svg")} />
             <span className="footer-span">Compartir Pantalla</span>

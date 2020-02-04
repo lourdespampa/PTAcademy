@@ -30,25 +30,20 @@ export default class Audio extends Component {
         id_class:''
     }
     enviarvideo(url) {
-        const socket = io(this.props.socketUrl, {
-            query:
-                { pin: this.props.id_access }
-          })
         var urlnombre = url
         console.log(urlnombre)
-        socket.emit('VideoEmit', urlnombre)
         document.getElementById('overlay2').classList.add('active');
         document.getElementById('popupvideo').classList.add('active');
         var expresionRegular = 'https://www.youtube.com/watch?v=';
         var urlembed = urlnombre.split(expresionRegular);
-        document.getElementById('video-frame').src = "https://www.youtube.com/embed/" + urlembed[1] + "?autoplay=1&controls=0"
+        document.getElementById('video-frameStu').src = "https://www.youtube.com/embed/" + urlembed[1] + "?autoplay=1&controls=0"
     }
     DisablePopup() {
         const overlay_popup = document.getElementById('overlay2')
         const popup = document.getElementById('popupvideo')
         overlay_popup.className = 'overlay'
         popup.className = 'popup'
-        document.getElementById('video-frame').src = ""
+        document.getElementById('video-frameStu').src = ""
     }
     DisablePopup2() {
         const overlay_popup = document.getElementById('overlayinframe')
@@ -268,7 +263,7 @@ export default class Audio extends Component {
             <div className="overlay" id="overlay2">
                 <div className="popup" id="popupvideo">
                     {/* <a href id="btn-cerrar-popup2" className="btn-cerrar-popup" onClick={() => this.DisablePopup()}><i className="material-icons">close</i></a> */}
-                    <iframe title="iframevideo" id="video-frame" src="" frameborder="0" style={{ width: "100% !important", height: "100%" }}
+                    <iframe title="iframevideo" id="video-frameStu" src="" frameborder="0" style={{ width: "100% !important", height: "100%" }}
                         allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </div>
             </div>
