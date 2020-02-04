@@ -85,7 +85,7 @@ class Azar extends React.Component {
     onClickPointAdd = async (valor) => {
 
         let varToken = localStorage.getItem('token');
-        for (var alumno of this.state.todosAlumnos) {
+        for (let alumno of this.state.todosAlumnos) {
             if (`${alumno.name_stu} ${alumno.lastName_stu}` === this.state.alumnoElegido) {
                 await this.setState({ point: alumno.point })
                 let point = this.state.point + valor
@@ -106,7 +106,7 @@ class Azar extends React.Component {
     onClickPointRemove = async (valor) => {
 
         let varToken = localStorage.getItem('token');
-        for (var alumno of this.state.todosAlumnos) {
+        for (let alumno of this.state.todosAlumnos) {
             if (`${alumno.name_stu} ${alumno.lastName_stu}` === this.state.alumnoElegido) {
                 await this.setState({ point: alumno.point })
                 let point = this.state.point - valor
@@ -146,7 +146,7 @@ class Azar extends React.Component {
                                 <div className="modal-general_container">
                                     <div className="modal-general_container_header">
                                         <div className="modal-title">
-                                            Alumno: {this.state.alumnoElegido}
+                                            ALUMNO: {this.state.alumnoElegido}<br/>PUNTOS: {this.state.point}
                                         </div>
                                     </div>
                                     <div className="modal-general_container_body">

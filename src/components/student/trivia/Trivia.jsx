@@ -138,6 +138,7 @@ export default class Trivia extends React.Component {
 
         {/* contenido */}
         <div className="contenedorPrincipal">
+          <div className="triviaS-preheader"><h1>{this.state.pregunta}</h1></div>
           <div className="header2">
             <h1 className="triviaStudent-title" id="question">{this.state.pregunta ? this.state.pregunta : "¿Es esta una pregunta?"}</h1>
           </div>
