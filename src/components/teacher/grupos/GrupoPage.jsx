@@ -32,19 +32,19 @@ export default class GrupoPage extends Component {
         'x-access-token': `${varToken}`
       }
     }).then(res => {
-      res.data.forEach(alumno => {
+      res.data.map(alumno => {
         this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
         return null
       });
-      const temp = this.state.alumnos;
-      this.setState({
-        alumnos: temp
-      });
+      // const temp = this.state.alumnos;
+      // this.setState({
+      //   alumnos: temp
+      // });
     });
   };
   groupGenerator = () => {
     let cadena = ``;
-    this.getAlumnos();
+    // this.getAlumnos();
     console.log("numero de personas en total:" + this.state.alumnos.length);
     let npg = this.state.nro_per_grupo;
     let n_grupos = Math.ceil(this.state.alumnos.length / npg);
