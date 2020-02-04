@@ -12,8 +12,10 @@ export default class FormAddStudent extends Component {
       id_teacher : ""
     };
   }
-
-  
+  componentDidMount(){
+    console.log(this.props.idteacher)
+    console.log(this.props.idcourse)
+  }
   handleChange = e => {
     const target = e.target;
     const name = target.name;
@@ -51,7 +53,7 @@ export default class FormAddStudent extends Component {
     const { name_stu, lastName_stu } = this.state;
     return (
       <>
-      {/* <Form onSubmit={this.handleSubmit}>
+     <Form onSubmit={this.handleSubmit}>
           <Form.Label className="modal-title__controlname">
             Nombres del alumno
           </Form.Label>
@@ -81,7 +83,7 @@ export default class FormAddStudent extends Component {
           <Button className="modal-body__button cursos" type="submit">
             <div className="button-zoom">Agregar Alumno</div>
           </Button>
-      </Form> */}
+      </Form>
              </>
     );
   }
