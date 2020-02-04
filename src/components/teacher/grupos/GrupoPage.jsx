@@ -10,7 +10,7 @@
 //       alumnos: [],
 //       nro_per_grupo: 1,
 //       grupos: [],
-//       id_access : ''
+//       id_access : ''   
 //     };
 //   }
 //   handleNumPerGrou = e => {
