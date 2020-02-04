@@ -207,11 +207,20 @@ class Trivia extends React.Component {
                     null
                     :
                     <li className="lista-contenedora" key={index}>
-                      <div style={{display: "inline-block"}}></div>
                       {/* <img className="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
-                      <h3 style={{display: "inline-block", marginLeft: "20px", marginTop: "25px"}}>
-                        {alumno.data.alumno}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puntaje:&nbsp;&nbsp;{alumno.data.puntaje}
-                      </h3>
+                      <div className="trivia-respuestas">
+                        <span>{alumno.data.alumno}&nbsp;&nbsp;</span>
+                        <span>puntaje:&nbsp;&nbsp;{alumno.data.puntaje}&nbsp;&nbsp;</span>
+                        <span>
+                          puntos:&nbsp;&nbsp;
+                          <button className="button btnMyM material-icons" >
+                            add_circle_outline
+                          </button>&nbsp;&nbsp;
+                          <button className="button btnMyM material-icons">
+                            remove_circle_outline
+                          </button>
+                        </span>
+                      </div>
                     </li>
                   ))
                   :
