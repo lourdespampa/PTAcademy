@@ -62,8 +62,8 @@ function BotonCerrarSesion(props) {
         Cerrar sesion
       </div>
       <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
-        <div class="modal-general_background">
-          <div class="modal-general_bg_content">
+        <div className="modal-general_background">
+          <div className="modal-general_bg_content">
             <button className="modal-general_close" onClick={handleClose}>
               <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
             </button>
@@ -82,7 +82,7 @@ function BotonCerrarSesion(props) {
                 </button>
               </div>
             </div>
-            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
               <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
             </svg>
           </div>

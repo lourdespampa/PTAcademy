@@ -12,10 +12,8 @@ export default class FormAddStudent extends Component {
       id_teacher : ""
     };
   }
-  componentDidMount(){
-    console.log(this.props.idteacher)
-    console.log(this.props.idcourse)
-  }
+
+  
   handleChange = e => {
     const target = e.target;
     const name = target.name;
