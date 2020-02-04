@@ -182,7 +182,7 @@ textarea {
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
-  font-family: opal;
+  font-family: Opal;
 }
 .inputPass{
   font-family:none;
@@ -219,6 +219,7 @@ button,
 [type="submit"] {
   -webkit-appearance: button;
   border: none;
+  font-family: Opal;
 }
 
 /**
@@ -245,7 +246,7 @@ button:-moz-focusring,
 }
 
 /* solo para contraseñas */
-input {
+input[type="text"], input[type="password"] {
   font-family: monospace !important;
 }
 /**
