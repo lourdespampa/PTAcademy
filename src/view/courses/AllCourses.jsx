@@ -77,7 +77,7 @@ export default class AllCourses extends Component {
             to={`/${this.props.idteacher}/course_detail/${this.props.id}`}
             className="courseTeacher__buttonEntry courseTeacherDisabled">
               <label className="courseTeacher__buttonEntry-label">
-                AGREGAR ALUMNOS
+                DEBE AGREGAR ALUMNOS
               </label>
             </Link>
             }

@@ -285,7 +285,7 @@ export default class CourseDetail extends Component {
             editing: false
 
         }
-        console.log(props.id_access, 'id acceses') 
+        // console.log(props.id_access, 'id acceses') 
     }
 
 
