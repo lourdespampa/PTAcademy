@@ -8,12 +8,12 @@ export default class FormAddStudent extends Component {
     this.state = {
       name_stu: "",
       lastName_stu: "",
-      id_course : "",
-      id_teacher : ""
+      id_course: "",
+      id_teacher: ""
     };
   }
 
-  
+
   handleChange = e => {
     const target = e.target;
     const name = target.name;
@@ -30,12 +30,12 @@ export default class FormAddStudent extends Component {
     var varToken = localStorage.getItem("token");
     event.preventDefault();
     const data = {
-        name_stu: this.state.name_stu,
-        lastName_stu: this.state.lastName_stu,
-        id_teach: this.props.idteacher,
-        id_course: this.props.idcourse
+      name_stu: this.state.name_stu,
+      lastName_stu: this.state.lastName_stu,
+      id_teach: this.props.idteacher,
+      id_course: this.props.idcourse
     };
-    
+
     axios({
       url: `${this.props.apiUrl}/v1/api/student`,
       data,
@@ -51,7 +51,7 @@ export default class FormAddStudent extends Component {
     const { name_stu, lastName_stu } = this.state;
     return (
       <>
-      <Form onSubmit={this.handleSubmit}>
+        {/* <Form onSubmit={this.handleSubmit}>
           <Form.Label className="modal-title__controlname">
             Nombres del alumno
           </Form.Label>
@@ -78,9 +78,33 @@ export default class FormAddStudent extends Component {
           />
           <Button className="modal-body__button cursos" type="submit">
             <div className="button-zoom">Agregar Alumno</div>
-          </Button>
-      </Form>
-        
+          </Button> 
+          </Form> */}
+          <form action="#">
+
+            <table class="u-fixTable">
+              <thead>
+                <tr class="EstructuraLink-inputs">
+                <td>Nombres: <br/>
+                  <input name="nombrelinkEspaniol[]" type="text" class="required-name" autofocus />
+                </td>
+                <td>Apellidos: <br/>
+                  <input name="nombrelinkEspaniol[]" type="text" class="required-lastname" autofocus />
+                </td>
+                </tr>
+              </thead>
+              <tbody id="linksEspa">
+
+              </tbody>
+            </table>
+            <div>
+              <button class="AgregarLinks" rel="linksEspa">
+                <span class="glyphicon glyphicon-plus"></span>Agregar Alumnos
+					    </button>
+              <input type="submit" value="Guardar" />
+            </div>
+          </form>
+
       </>
     );
   }
