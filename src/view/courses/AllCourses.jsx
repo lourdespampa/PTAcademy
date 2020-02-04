@@ -38,13 +38,13 @@ export default class AllCourses extends Component {
           <div className="classTeacher-card">
             <div className="classTeacher-card__image-container">
               <button onClick={() =>
-                this.props.onClick(this.props.id) +
+                this.props.onClick(this.props.idCurso) +
                 this.props.setShow("show", 1)}
                 className="courseTeacher__button-delette">
                     <i className="courseTeacher__img fas fa-trash"></i>
                 </button>
                 <div className={this.state.cursoConAlumnos ? "courseTeacher__containerButton-Edit" : "courseTeacher__containerButton-Edit courseTeacher__animationEdit"}>
-                <Link to={`/${this.props.idteacher}/course_detail/${this.props.id}`} className="courseTeacher__button-Edit">
+                <Link to={`/${this.props.idteacher}/course_detail/${this.props.idCurso}`} className="courseTeacher__button-Edit">
                     <i className="algodemargin courseTeacher__img fas fa-user-plus"></i>
                 </Link>
                 </div>
@@ -65,8 +65,8 @@ export default class AllCourses extends Component {
             { this.state.cursoConAlumnos
             ?
             <Link
-              onClick={() => this.props.onClick(this.props.id)}
-              to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
+              onClick={() => this.props.onClick(this.props.idCurso)}
+              to={`/${this.props.idteacher}/ClassTeacher/${this.props.idCurso}`}
               className="courseTeacher__buttonEntry"
             >
               <label className="courseTeacher__buttonEntry-label">
