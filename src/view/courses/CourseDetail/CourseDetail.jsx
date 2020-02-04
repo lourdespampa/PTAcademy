@@ -88,8 +88,8 @@ export default class CourseDetail extends Component {
           nombreProfesor={this.state.nombreProfesor}
           getdata={this.getAlumnos}
         ></NavCourse>
-        {/* <CardStudent></CardStudent> */}
-        <div className="CourseDetail__Container" onClick={this.Cerrar}>
+        <CardStudent></CardStudent>
+        {/* <div className="CourseDetail__Container" onClick={this.Cerrar}>
           <div>
             <h1 className="CourseDetail__title">Lista de alumnos</h1>
           </div>
@@ -142,7 +142,7 @@ export default class CourseDetail extends Component {
               ))}
             </tbody>
           </table>
-        </div>
+        </div> */}
       </>
     );
   }
