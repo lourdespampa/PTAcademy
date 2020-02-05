@@ -19,9 +19,12 @@ class Header extends React.Component {
     const socket = io(this.props.socketUrl, {
       query: { pin: this.props.id_access }
     });
-    socket.on("tabBlurred", data => {
+    socket.on("tabBlurred", (data) => {
+      console.log(data.pin,this.props.id_access)
       if (data.pin === this.props.id_access.toUpperCase()) {
         this.notify(data.fullname);
+      }else{
+        console.log('error codigo pin')
       }
     });
   }
