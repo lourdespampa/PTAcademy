@@ -49,7 +49,7 @@ export default class CourseDetail extends Component {
       .then(({ data }) => {
         console.log(data);
         if (data === []) {
-          this.setState({ students: [],  });
+          this.setState({ students: [], });
         } else {
           this.setState({ students: data, competenciasAlumnos: data.competences })
           console.log(this.state.competenciasAlumnos);
@@ -88,8 +88,8 @@ export default class CourseDetail extends Component {
                 <th className="CourseDetail__table-th">Codigo</th>
                 <th className="CourseDetail__table-th">Apellidos</th>
                 <th className="CourseDetail__table-th">Nombres</th>
-                {this.state.compentencias.map((compentencia,id) => (
-                <th key={id} className="CourseDetail__table-th">{compentencia}</th>
+                {this.state.compentencias.map((compentencia, id) => (
+                  <th key={id} className="CourseDetail__table-th">{compentencia}</th>
                 ))}
                 <th className="CourseDetail__table-th">Eliminar</th>
               </tr>
@@ -110,25 +110,27 @@ export default class CourseDetail extends Component {
                     {alumno.name_stu}
                   </td>
                   {this.state.compentencias.map((compentencia, id) => (
-                  <td
-                    key={id}
-                    className="CourseDetail__table-td"
-                    data-th="Competencia d"
-                  >
-                    <select>
-                      <option value="AD">AD</option>
-                      <option value="A">A</option>
-                      <option value="B">B</option>
-                      <option value="C">C</option>
-                    </select>
-                    <input type="text" placeholder={compentencia}></input>
-                  </td>
+                    <td
+                      key={id}
+                      className="CourseDetail__table-td"
+                      data-th="Competencia d"
+                    >
+                      <select>
+                        <option value="AD">AD</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                      </select>
+                      <input type="text" placeholder={compentencia}></input>
+                    </td>
                   ))}
                   <td
                     className="CourseDetail__table-td"
                     data-th="Eliminar"
                   >
-                    un
+                    <button className="courseTeacher__button-delette">
+                      <i className="courseTeacher__img fas fa-trash"></i>
+                    </button>
                   </td>
                 </tr>
               ))}
