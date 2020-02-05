@@ -115,6 +115,8 @@ export default class NavCourse extends Component {
     return (
       <>
         {this.state.token ? null : <Redirect to="/notfound"></Redirect>}
+        <div className="teacherCourses__floatingActionButton teacherCourses_editStudent"><i class="fas fa-edit"></i></div>
+        <div className="teacherCourses__floatingActionButton teacherCourses_addStudent"><i class="fas fa-plus"></i></div>
         <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
             <Link to={`/CoursesTeacher/${this.props.idteacher}`} style={{ textDecoration: 'none' }}>
