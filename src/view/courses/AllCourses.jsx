@@ -31,7 +31,6 @@ export default class AllCourses extends Component {
   }
 
   render() {
-    const backurl = 'aaaa'
     return (
       
       <>

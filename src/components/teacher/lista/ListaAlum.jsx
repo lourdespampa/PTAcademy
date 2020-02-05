@@ -239,12 +239,12 @@ export default class ListaAlum extends Component {
              </table>`)
         var user = JSON.parse(localStorage.getItem('user'));
 
-        const params = {
-            hml: html,
-            data: a,
-            name: 'playtecAcademy Clase prueba',
-            email: user.email
-        }
+        // const params = {
+        //     hml: html,
+        //     data: a,
+        //     name: 'playtecAcademy Clase prueba',
+        //     email: user.email
+        // }
         // await axios.post('http://email-service-playtec.herokuapp.com/', params)
 
     }
