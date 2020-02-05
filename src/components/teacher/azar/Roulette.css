@@ -31,10 +31,10 @@
     cursor:pointer;
     transition:.5s ease;}
 .azar-tab-group .azar-tab .azar-a:hover {
-      background:darken(#1ab188,5%);
+      background:darken(#52BE7F,5%);
     }
 .azar-tab-group .active .azar-a {
-    background:#1ab188;
+    background:#52BE7F;
     color:#fff !important;
   }
 .roulette-container-button{

@@ -138,7 +138,7 @@ export default function HeaderContainer(props) {
             </ul>
             </header>
             <div className="alumnoH-header-base"></div>
-          <SocketStream id_access={props.id_access} id_student={props.id_student} socketUrl={props.socketUrl}/>
+          <SocketStream apiUrl={props.apiUrl} id_access={props.id_access} id_student={props.id_student} socketUrl={props.socketUrl}/>
         </div>
     )
 }

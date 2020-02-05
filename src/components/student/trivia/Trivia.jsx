@@ -205,7 +205,8 @@ export default class Trivia extends React.Component {
                       }
                     }}>
                     <div className="triviaStudentSimbol">
-                      <img src={require("./equis-blanco.webp")} alt="" />
+                      {/* <img src={require("./equis-blanco.webp")} alt="" /> */}
+                      <img src={require("./triangle.png")} alt="" />
                     </div>
                     <div className="triviaStudentText">
                       <p id="answerEquis">{this.state.respuesta2 ? this.state.respuesta2 : "Respuesta 2"}</p>
