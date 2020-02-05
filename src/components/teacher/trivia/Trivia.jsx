@@ -209,9 +209,9 @@ class Trivia extends React.Component {
                     <li className="lista-contenedora" key={index}>
                       {/* <img className="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
                       <div className="trivia-respuestas">
-                        <span>{alumno.data.alumno}&nbsp;&nbsp;</span>
-                        <span>puntaje:&nbsp;&nbsp;{alumno.data.puntaje}&nbsp;&nbsp;</span>
-                        <span>
+                        <div>alumno:&nbsp;&nbsp;{alumno.data.alumno}&nbsp;&nbsp;puntaje:&nbsp;&nbsp;{alumno.data.puntaje}&nbsp;&nbsp;
+                        </div>
+                        <div>
                           puntos:&nbsp;&nbsp;
                           <button className="button btnMyM material-icons" >
                             add_circle_outline
@@ -219,7 +219,7 @@ class Trivia extends React.Component {
                           <button className="button btnMyM material-icons">
                             remove_circle_outline
                           </button>
-                        </span>
+                        </div>
                       </div>
                     </li>
                   ))

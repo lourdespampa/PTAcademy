@@ -7,7 +7,7 @@
 .roulette-container {
   display: flex;
   justify-content: center;
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .azar-tab-group {

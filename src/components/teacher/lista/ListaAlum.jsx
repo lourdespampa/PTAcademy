@@ -321,7 +321,7 @@ export default class ListaAlum extends Component {
                     </Modal.Body>
                 </Modal> */}
                 <div id="modal-general_container" className={this.state.modals.shownota === 0 ? "" : this.state.modals.shownota === 1 ? "six" : this.state.modals.shownota === 2 ? "six out" : ""}>
-                    <div class="modal-general_background">
+                    <div class="modal-general_background" >
                         <div class="modal-general_bg_content">
                             <button className="modal-general_close" onClick={() => this.setShow('shownota', 2)}>
                                 <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
@@ -342,7 +342,7 @@ export default class ListaAlum extends Component {
                     </div>
                 </div>
                 <div id="modal-general_container" className={this.state.modals.showcomportamiento === 0 ? "" : this.state.modals.showcomportamiento === 1 ? "six" : this.state.modals.showcomportamiento === 2 ? "six out" : ""}>
-                    <div class="modal-general_background">
+                    <div class="modal-general_background" >
                         <div class="modal-general_bg_content">
                             <button className="modal-general_close" onClick={() => this.setShow('showcomportamiento', 2)}>
                                 <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />

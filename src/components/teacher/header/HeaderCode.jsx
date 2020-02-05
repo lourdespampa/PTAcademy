@@ -12,7 +12,7 @@ function BotonSalir(props) {
         <>
             <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />
             <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
-                <div class="modal-general_background">
+                <div class="modal-general_background" >
                     <div class="modal-general_bg_content">
                         <button className="modal-general_close" onClick={handleClose}>
                             <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
@@ -106,7 +106,7 @@ class HeaderCode extends React.Component {
 
                         </div>
                         <div id="modal-general_container" className={this.state.codigoModal === 0 ? "" : this.state.codigoModal === 1 ? "six" : this.state.codigoModal === 2 ? "six out" : ""}>
-                            <div class="modal-general_background">
+                            <div class="modal-general_background" >
                                 <div class="modal-general_bg_content">
                                     <button className="modal-general_close" onClick={this.handleClose}>
                                         <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />

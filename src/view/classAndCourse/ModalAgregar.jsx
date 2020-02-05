@@ -22,7 +22,7 @@ export default function BotonAgregar(props) {
           Agregar {props.agregarX}
         </div>
         <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
-          <div className="modal-general_background">
+          <div className="modal-general_background" >
             <div className="modal-general_bg_content">
               <button className="modal-general_close" onClick={handleClose}>
                 <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
