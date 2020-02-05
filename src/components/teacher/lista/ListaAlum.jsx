@@ -59,8 +59,32 @@ export default class ListaAlum extends Component {
             }
         })
     }
+    //rellenar alumnos para profesor de colegio
+    getAlumnos = () => {
+        console.log("listar cursos");
+        const {
+          match: { params }
+        } = this.props;
+        var varToken = localStorage.getItem("token");
+        axios({
+          url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
+          method: "GET",
+          headers: {
+            "x-access-token": `${varToken}`
+          }
+        })
+          .then(({ data }) => {
+            console.log(data);
+            if (data === []) {
+              this.setState({ students: [] });
+            } else {
+              this.setState({ students: data });
+            }
+          })
+          .catch(e => console.log(e));
+      };
+    //rellenar state de estudiantes de profesor privado
 
-    //rellenar state
     getStudents = async () => {
         console.log(this.state.students)
         console.log(this.props.id_access)

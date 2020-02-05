@@ -11,43 +11,30 @@ export default class CourseDetail extends Component {
       id_course: "",
       id_teacher: "",
       students: [],
-      apiUrl: "http://3.16.110.136:4200"
+      apiUrl: "http://3.16.110.136:4200",
+      compentencias: []
     };
   }
 
   componentDidMount() {
+    console.log(this.props, this.props.location.state)
     var varToken = localStorage.getItem("token");
     const {
       match: { params }
     } = this.props;
     this.setState({ id_course: params.id_course, id_teacher: params.id });
     setTimeout(
-      () => console.log(this.state.id_course, this.state.id_teacher),
+      () => console.log(this.state.id_course, this.state.id_teacher,this.props.location.state),
       2000
     );
-    axios({
-      url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
-      method: "GET",
-      headers: {
-        "x-access-token": `${varToken}`
-      }
-    })
-      .then(({ data }) => {
-        console.log(data);
-        if (data === []) {
-          this.setState({ students: [] });
-        } else {
-          this.setState({ students: data });
-        }
-      })
-      .catch(e => console.log(e));
+    this.getAlumnos()
   }
   UNSAFE_componentWillMount = async () => {
     let tokenStorage = localStorage.getItem("token");
     await this.setState({ token: tokenStorage });
   };
   getAlumnos = () => {
-    console.log("listar cursos");
+    console.log("listar alumnos ");
     const {
       match: { params }
     } = this.props;
@@ -88,8 +75,8 @@ export default class CourseDetail extends Component {
           nombreProfesor={this.state.nombreProfesor}
           getdata={this.getAlumnos}
         ></NavCourse>
-        <CardStudent></CardStudent>
-        {/* <div className="CourseDetail__Container" onClick={this.Cerrar}>
+        {/* <CardStudent></CardStudent> */}
+        <div className="CourseDetail__Container" onClick={this.Cerrar}>
           <div>
             <h1 className="CourseDetail__title">Lista de alumnos</h1>
           </div>
@@ -97,11 +84,11 @@ export default class CourseDetail extends Component {
           <table className="CourseDetail__table">
             <thead>
               <tr className="CourseDetail__table-tr">
+                <th className="CourseDetail__table-th">Codigo</th>
                 <th className="CourseDetail__table-th">Apellidos</th>
                 <th className="CourseDetail__table-th">Nombres</th>
-                <th className="CourseDetail__table-th">Código</th>
-                <th className="CourseDetail__table-th">Competencia 2</th>
-                <th className="CourseDetail__table-th">Codigo estudiante</th>
+                <th className="CourseDetail__table-th">Competencia 1</th>
+                <th className="CourseDetail__table-th">Competenecia 2</th>
                 <th className="CourseDetail__table-th">Eliminar</th>
               </tr>
             </thead>
@@ -142,7 +129,7 @@ export default class CourseDetail extends Component {
               ))}
             </tbody>
           </table>
-        </div> */}
+        </div>
       </>
     );
   }
