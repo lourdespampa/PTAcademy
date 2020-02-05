@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./CourseDetail.sass";
 import NavCourse from "./NavCourseDetail";
 import axios from "axios";
-import CardStudent from './CardStudent'
+// import CardStudent from './CardStudent'
 export default class CourseDetail extends Component {
   constructor(props) {
     super(props);
@@ -11,43 +11,30 @@ export default class CourseDetail extends Component {
       id_course: "",
       id_teacher: "",
       students: [],
-      apiUrl: "http://3.16.110.136:4200"
+      apiUrl: "http://3.16.110.136:4200",
+      compentencias: [],
+      competenciasAlumnos: []
     };
   }
 
   componentDidMount() {
-    var varToken = localStorage.getItem("token");
+    console.log(this.props, this.props.location.state)
     const {
       match: { params }
     } = this.props;
-    this.setState({ id_course: params.id_course, id_teacher: params.id });
+    this.setState({ id_course: params.id_course, id_teacher: params.id, compentencias: this.props.location.state });
     setTimeout(
-      () => console.log(this.state.id_course, this.state.id_teacher),
+      () => console.log(this.state.id_course, this.state.id_teacher, this.state.compentencias),
       2000
     );
-    axios({
-      url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
-      method: "GET",
-      headers: {
-        "x-access-token": `${varToken}`
-      }
-    })
-      .then(({ data }) => {
-        console.log(data);
-        if (data === []) {
-          this.setState({ students: [] });
-        } else {
-          this.setState({ students: data });
-        }
-      })
-      .catch(e => console.log(e));
+    this.getAlumnos()
   }
   UNSAFE_componentWillMount = async () => {
     let tokenStorage = localStorage.getItem("token");
     await this.setState({ token: tokenStorage });
   };
   getAlumnos = () => {
-    console.log("listar cursos");
+    console.log("listar alumnos ");
     const {
       match: { params }
     } = this.props;
@@ -62,9 +49,10 @@ export default class CourseDetail extends Component {
       .then(({ data }) => {
         console.log(data);
         if (data === []) {
-          this.setState({ students: [] });
+          this.setState({ students: [],  });
         } else {
-          this.setState({ students: data });
+          this.setState({ students: data, competenciasAlumnos: data.competences })
+          console.log(this.state.competenciasAlumnos);
         }
       })
       .catch(e => console.log(e));
@@ -88,8 +76,8 @@ export default class CourseDetail extends Component {
           nombreProfesor={this.state.nombreProfesor}
           getdata={this.getAlumnos}
         ></NavCourse>
-        <CardStudent></CardStudent>
-        {/* <div className="CourseDetail__Container" onClick={this.Cerrar}>
+        {/* <CardStudent></CardStudent> */}
+        <div className="CourseDetail__Container" onClick={this.Cerrar}>
           <div>
             <h1 className="CourseDetail__title">Lista de alumnos</h1>
           </div>
@@ -97,52 +85,55 @@ export default class CourseDetail extends Component {
           <table className="CourseDetail__table">
             <thead>
               <tr className="CourseDetail__table-tr">
+                <th className="CourseDetail__table-th">Codigo</th>
                 <th className="CourseDetail__table-th">Apellidos</th>
                 <th className="CourseDetail__table-th">Nombres</th>
-                <th className="CourseDetail__table-th">Código</th>
-                <th className="CourseDetail__table-th">Competencia 2</th>
-                <th className="CourseDetail__table-th">Codigo estudiante</th>
+                {this.state.compentencias.map(compentencia => (
+                <th className="CourseDetail__table-th">{compentencia}</th>
+                ))}
                 <th className="CourseDetail__table-th">Eliminar</th>
               </tr>
             </thead>
             <tbody className="CourseDetail__table-body">
               {this.state.students.map(alumno => (
                 <tr className="CourseDetail__table-tr" key={alumno._id}>
+                  <td className="CourseDetail__table-td" data-th="Codigo">
+                    {alumno.randonCode}
+                  </td>
                   <td className="CourseDetail__table-td" data-th="Apellidos">
                     {alumno.lastName_stu}
                   </td>
-                  <td className="CourseDetail__table-td" data-th="Nombres">
+                  <td
+                    className="CourseDetail__table-td"
+                    data-th="Nombres"
+                  >
                     {alumno.name_stu}
                   </td>
+                  {this.state.compentencias.map(compentencia => (
                   <td
                     className="CourseDetail__table-td"
-                    data-th="Compentencia 1"
+                    data-th="Competencia d"
                   >
-                    {alumno.competences[0]}
+                    <select>
+                      <option value="AD">AD</option>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                    </select>
+                    <input type="text" placeholder={compentencia}></input>
                   </td>
-                  <td
-                    className="CourseDetail__table-td"
-                    data-th="Competencia 2"
-                  >
-                    {alumno.competences[1]}
-                  </td>
-                  <td
-                    className="CourseDetail__table-td"
-                    data-th="Codigo estudiante"
-                  >
-                    12/25/2016
-                  </td>
+                  ))}
                   <td
                     className="CourseDetail__table-td"
                     data-th="Eliminar"
                   >
-                    $8,322.12
+                    un icono de elimini
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div> */}
+        </div>
       </>
     );
   }

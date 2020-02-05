@@ -6,7 +6,8 @@ export default class AllCourses extends Component {
   constructor(props){
     super(props)
     this.state = {
-      cursoConAlumnos: true
+      cursoConAlumnos: true,
+      hola: "holamunod"
     }
   }
 
@@ -30,8 +31,8 @@ export default class AllCourses extends Component {
   }
 
   render() {
-
     return (
+      
       <>
         <div className="classTeacher-container">
           <div className="classTeacher-card">
@@ -43,7 +44,7 @@ export default class AllCourses extends Component {
                     <i className="courseTeacher__img fas fa-trash"></i>
                 </button>
                 <div className={this.state.cursoConAlumnos ? "courseTeacher__containerButton-Edit" : "courseTeacher__containerButton-Edit courseTeacher__animationEdit"}>
-                <Link to={`/${this.props.idteacher}/course_detail/${this.props.id}`} className="courseTeacher__button-Edit">
+                <Link to={{pathname:`/${this.props.idteacher}/course_detail/${this.props.id}`, state:this.props.competencias}} className="courseTeacher__button-Edit">
                     <i className="algodemargin courseTeacher__img fas fa-user-plus"></i>
                 </Link>
                 </div>
