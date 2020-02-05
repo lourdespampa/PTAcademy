@@ -24,7 +24,7 @@ export default class CourseDetail extends Component {
     } = this.props;
     this.setState({ id_course: params.id_course, id_teacher: params.id });
     setTimeout(
-      () => console.log(this.state.id_course, this.state.id_teacher,this.props.location.state),
+      () => console.log(this.state.id_course, this.state.id_teacher),
       2000
     );
     this.getAlumnos()
