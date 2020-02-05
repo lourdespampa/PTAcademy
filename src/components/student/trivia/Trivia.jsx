@@ -138,6 +138,7 @@ export default class Trivia extends React.Component {
 
         {/* contenido */}
         <div className="contenedorPrincipal">
+          <div className="triviaS-preheader"><h1>{this.state.pregunta}</h1></div>
           <div className="header2">
             <h1 className="triviaStudent-title" id="question">{this.state.pregunta ? this.state.pregunta : "¿Es esta una pregunta?"}</h1>
           </div>
@@ -204,7 +205,8 @@ export default class Trivia extends React.Component {
                       }
                     }}>
                     <div className="triviaStudentSimbol">
-                      <img src={require("./equis-blanco.webp")} alt="" />
+                      {/* <img src={require("./equis-blanco.webp")} alt="" /> */}
+                      <img src={require("./triangle.png")} alt="" />
                     </div>
                     <div className="triviaStudentText">
                       <p id="answerEquis">{this.state.respuesta2 ? this.state.respuesta2 : "Respuesta 2"}</p>

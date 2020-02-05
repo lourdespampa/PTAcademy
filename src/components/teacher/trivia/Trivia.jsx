@@ -4,7 +4,7 @@ import "./botones.scss";
 
 import io from 'socket.io-client';
 
-import { Container, Row, Col } from 'reactstrap';
+//import { Container, Row, Col } from 'reactstrap';
 
 class Trivia extends React.Component {
   constructor(props){
@@ -43,6 +43,12 @@ class Trivia extends React.Component {
         const temp = this.state.alumnosRecibidos
         this.setState({alumnosRecibidos: temp})
       })
+  }
+  //por buenas practicas, se deberia finalizar toda accion que pueda afectar el rendimiento del componente al morir
+  //por lo que toda accion por tiempo se finaliza en este metodo, por ejemplo en la función handleSendQuestion() al final
+  //hay un TimeOut
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
   }
 
   showModal = () => {
@@ -148,14 +154,16 @@ class Trivia extends React.Component {
         respuestaCorrecta: this.state.selectedCorrectAnswer
       }
       socket.emit('enviando pregunta', contenido)
+      this.timeout = setTimeout(() => this.setState({modal: true}), parseInt(`${this.state.tiempo}000`,10)+2000)
     }
+    //finalmente cambia el estado del boton a restaurar.
     this.setState(state => ({
       preguntaEnviada: !state.preguntaEnviada
     }));
   }
 
   render() {
-    console.log(this.state.alumnosRecibidos)
+    // console.log(this.state.alumnosRecibidos)
     return (
       <>
       <div className={this.state.navbarResponsive ? "triviaT-topnav responsive" : "triviaT-topnav"}>
@@ -188,8 +196,7 @@ class Trivia extends React.Component {
         {/* Modal content */}
           <div className="modal-content-respuestas">
             <span id="cerrar" className="close" onClick={this.showModal}>x</span>
-            <h2>Clasificación</h2>
-            
+            <h2>Clasificación</h2>  
               <ul className="rolldown-list" id="myList">
                 {this.state.alumnosRecibidos.length > 0 
                   ?

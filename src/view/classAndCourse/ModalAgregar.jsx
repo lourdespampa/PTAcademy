@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import iconExit from "../../img/cerrar.png";
 import FormularioCourse from './FormPostCourse'
 import FormularioClass from './FormPostClass'
@@ -7,12 +6,10 @@ import Loanding from "../../components/teacher/loanding/spinner"
 
 export default function BotonAgregar(props) {
     const [show, setShow] = useState(0);
-    const [activarX, setActivarX] = useState(true);
     const [loanding, setLoanding] = useState(false);
-    //no se esta usando esta variable
-    const handleDisableX = () => setActivarX(false)+setLoanding(true)
-    const handleClose = () => setActivarX(true)+setShow(2)
-    const handleEnableX=()=>setActivarX(true)+setLoanding(false)
+    const handleDisableX = () => setLoanding(true)
+    const handleClose = () => setShow(2)
+    const handleEnableX=()=>setLoanding(false)
     const handleShow = () => setShow(1);
     const AgregarClick=()=>setShow(2)+props.getdata()
     return (
@@ -21,7 +18,7 @@ export default function BotonAgregar(props) {
       <Loanding/>:null
   
       }
-        <div className="teacherCourses__main-menu__addCourse" onClick={handleShow}>
+        <div className="teacherCourses__main-menu__returnCourse" onClick={handleShow}>
           Agregar {props.agregarX}
         </div>
         <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>

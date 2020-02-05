@@ -1,5 +1,5 @@
 @font-face {
-  font-family: Opal,"monoscape";
+  font-family: Opal;
   src: url("./plugins/Opal.ttf") format("truetype");
 }
 
@@ -175,7 +175,6 @@ img {
  */
 
 button,
-input,
 optgroup,
 select,
 textarea {
@@ -185,7 +184,6 @@ textarea {
   margin: 0; /* 2 */
   font-family: monospace;
 }
-
 /**
  * Show the overflow in IE.
  * 1. Show the overflow in Edge.
@@ -218,6 +216,7 @@ button,
 [type="submit"] {
   -webkit-appearance: button;
   border: none;
+  font-family: Opal;
 }
 
 /**
@@ -243,6 +242,10 @@ button:-moz-focusring,
   outline: 1px dotted ButtonText;
 }
 
+/* solo para contraseñas */
+input[type="text"], input[type="password"] {
+  font-family: monospace !important;
+}
 /**
  * Correct the padding in Firefox.
  */
@@ -407,7 +410,8 @@ template {
 }
 
 .modal-title{
-    letter-spacing: .01em}
+    letter-spacing: .01em;
+    font-size: 1.5rem;}
 
 .modal-teacher__general-close{
   float: right;
@@ -436,7 +440,9 @@ template {
     font-size: 1.25rem;
     margin: 0;
     line-height: 1.4;
-    letter-spacing: .02em;}
+    letter-spacing: .02em;
+    font-family: monospace;
+  }
 
 .modal-body .modal-title__controldescription{
     font-size: 1.25rem;
@@ -505,7 +511,6 @@ template {
     border: 0;
     color:#fff;
     font-size:20px;
-    cursor: pointer;
     margin: auto 10px;
     font-family: "Opal"}
 

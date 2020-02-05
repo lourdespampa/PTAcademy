@@ -42,9 +42,12 @@
         color: #000000
     &:hover .teacherCourses__main-menu__LogOut
         color: #000000
+    &:hover .teacherCourses__main-menu__returnCourse
+        color: #000000
 
 .teacherCourses__main-menu__addCourse,
-.teacherCourses__main-menu__LogOut
+.teacherCourses__main-menu__LogOut,
+.teacherCourses__main-menu__returnCourse
     color: #ffffff
     margin-left: 1rem
     text-decoration: none
@@ -101,27 +104,33 @@
 @media screen and (min-width: 960px)
     .teacherCourses__main-menu
         display: flex
+    .teacherCourses__main-menu__item
+        padding: 0
+        // transition: transform .3s
     .teacherCourses__main-menu__addCourse
-        color: #53575A
+        // color: #53575A
         text-decoration: none
         font-size: 1em
         padding: 0.5rem
         border-radius: 39px
-        &:hover
-            background-color: #FB9600
-            color: white
-    // .teacherCourses__main-menu__item:hover .teacherCourses__main-menu__LogOut
-    //     color: #ffffff
-
+        background-color: #eb8d00
+        color: white
+        
     .teacherCourses__main-menu__LogOut
-        color: #53575A
+        // color: #53575A
         text-decoration: none
         font-size: 1em
         padding: 0.5rem
         border-radius: 39px
-        &:hover
-            color: white
-            background-color: #E91E63
+        background-color: #E91E63
+        color: white
+    .teacherCourses__main-menu__returnCourse
+        text-decoration: none
+        font-size: 1em
+        padding: 0.5rem
+        border-radius: 39px
+        background-color: #3aca76
+        color: white
     .teacherCourses__main-nav
         position: static
         background: transparent
@@ -136,11 +145,16 @@
         --logo-height: 5rem 
     .teacherCourses__main-menu__item:hover
         background-color: transparent
+        // -webkit-transform: scale(1.1)
+        // transform: scale(1.1)
         & .teacherCourses__main-menu__LogOut
             color: white
-            background-color: #E91E63
+            background-color: #ff0055
         & .teacherCourses__main-menu__addCourse
-            background-color: #FB9600
+            background-color: #ff9900
+            color: white
+        & .teacherCourses__main-menu__returnCourse
+            background-color: #0cd660
             color: white
 
 .courseTeacher-container
@@ -223,6 +237,16 @@
     .courseTeacher-cards 
         width: 290px
 // se va a poner los estilos para los botones de los cards xd -- by:Miryan
+.courseTeacher__containerButton-Edit
+    position: absolute
+    z-index: 1
+    border-radius: 100px
+    height: 20px
+    width: 40px
+    top: 8px
+    left: 5px
+.courseTeacher__animationEdit
+    animation: 1000ms ease 0s infinite normal none running ripple
 
 .courseTeacher__button-delette,
 .courseTeacher__button-Edit
@@ -239,24 +263,27 @@
     width: 100%
     cursor: pointer
     & .courseTeacher__img
+        color: #fff
         transition: transform 0.3s ease-in-out
         -webkit-transition: all .4s ease
         -moz-transition: all .4s ease
         -o-transition: all .4s ease
         -ms-transition: all .4s ease
+    & .algodemargin
+        margin-top: 5px
     &:hover .courseTeacher__img
         -webkit-transform: scale(1.25)
         -moz-transform: scale(1.25)
         -ms-transform: scale(1.25)
         -o-transform: scale(1.25)
         transform: scale(1.3)
-
 .courseTeacher__button-Edit
     // float: left
     position: absolute
+    left: -3px
+    top: -8px
     text-align: center
     background-color: #FB9600
-    
         
 .courseTeacher__button-delette
     float: right
@@ -296,8 +323,9 @@
     & .courseTeacher__buttonEntry-label 
         width: 150px
         cursor: pointer
-
-
+.courseTeacherDisabled
+    background-color: #777777 !important
+    color: black !important
 
 .classTeacher__buttonEntry
     width: 100%
@@ -386,6 +414,7 @@
       animation:  fadeIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
       .modal-general_bg_content 
         background-color: transparent
+        border-radius: 10px
         animation:  modalFadeIn .5s .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
         .modal-general_close
           opacity: 0
@@ -397,6 +426,7 @@
         .modal-general_svg 
           rect 
             animation:  sketchIn .5s .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+
     //solo animaciones de salida del modal 
     &.out 
       animation:  quickScaleDown 0s .5s linear forwards
@@ -451,7 +481,7 @@
         left: 0
         height: 100%
         width: 100%
-        border-radius: 3px
+        border-radius: 5%
         z-index: 1
         rect 
           stroke: white

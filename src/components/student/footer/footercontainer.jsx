@@ -13,37 +13,37 @@ export default function footercontainer(props) {
                 </iframe>
               </a>
         </div>
-        {/* <div class="overlay" id="overlay" style={{pointerEvents:"none"}}>
-          <div class="popup" id="popup">
-              <a href onClick={()=>props.closePopup('overlay','popup')} id="btn-cerrar-popup" class="btn-cerrar-popup"><p>X</p></a>
+        {/* <div className="overlay" id="overlay" style={{pointerEvents:"none"}}>
+          <div className="popup" id="popup">
+              <a href onClick={()=>props.closePopup('overlay','popup')} id="btn-cerrar-popup" className="btn-cerrar-popup"><p>X</p></a>
               <div style={{position: "absolute",width: "100%",top: "0",height: "100%",left: "0"}}></div>
             <iframe title="iframe" id="diapo-frame" src="/plugin/images/icon/playtec-icon.png2" frameborder="0" width="960" height="569" style={{width: "100% !important",height: "100% ", pointerEvents:"none"}} allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
           </div>
         </div>
-        <div class="overlay" id="overlay2">
-                <div class="popup" id="popupvideo">
-                  <a href id="btn-cerrar-popup2" class="btn-cerrar-popup"><p>X</p></a>
+        <div className="overlay" id="overlay2">
+                <div className="popup" id="popupvideo">
+                  <a href id="btn-cerrar-popup2" className="btn-cerrar-popup"><p>X</p></a>
                   <iframe title="iframe" id="video-frame" src="" frameborder="0" style={{width: "100% !important",height:"100%"}} allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </div>
               </div> */}
 
 
 
-        {/* <div class="container-fluid text-center text-md-left">
-          <div class="row">
+        {/* <div className="container-fluid text-center text-md-left">
+          <div className="row">
            
-            <div class="col-md-6 mb-md-0 mb-3" >
+            <div className="col-md-6 mb-md-0 mb-3" >
           
               
-              <div class="overlay" id="overlayForm">
-                <div class="popup" id="popupform">
-                  <a href id="btn-cerrar-popup4" class="btn-cerrar-popup"><p>X</p></a>
+              <div className="overlay" id="overlayForm">
+                <div className="popup" id="popupform">
+                  <a href id="btn-cerrar-popup4" className="btn-cerrar-popup"><p>X</p></a>
                   <iframe title="iframe" id="diapo-formulario" src="" frameborder="0" style={{width: "100% !important",height:"100%"}} allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" ></iframe>
                 </div>
               </div>
-              <div class="overlay" id="overlay3">
-                <div class="popup" id="popupalumno">
-                  <a href id="btn-cerrar-popup3" class="btn-cerrar-popup"><p>X</p></a>
+              <div className="overlay" id="overlay3">
+                <div className="popup" id="popupalumno">
+                  <a href id="btn-cerrar-popup3" className="btn-cerrar-popup"><p>X</p></a>
                   <div id="lbResultado"></div>
                 </div>
               </div>

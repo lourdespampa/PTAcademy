@@ -59,7 +59,10 @@ export default class LoginStu extends Component {
           }
         <ul className="enter-code__header">
           <li className="enter-code__academy">
+            <Link to="/">
             <img className="enter-code__academy-a" src={logo} alt="este logo es academy"/>
+
+            </Link>
           </li>
           <li className="">
             

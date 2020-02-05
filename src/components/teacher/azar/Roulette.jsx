@@ -107,7 +107,7 @@ class Roulette extends React.Component {
         ctx.translate(baseSize + Math.cos(angle + arc / 2) * textRadius,
                       baseSize + Math.sin(angle + arc / 2) * textRadius);
         ctx.rotate(angle + arc / 2 + Math.PI / 2);
-        const text = options[i];
+        const text = `${options[i].toUpperCase().split(" ")[0].split("")[0]}.${options[i].toUpperCase().split(" ")[1].split("")[0]}`;
         ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
         ctx.restore();
       }
@@ -182,14 +182,14 @@ class Roulette extends React.Component {
   }
 
   handleOnClick = (e) => {
-    this.setState({desactivarBoton: true})
+    document.getElementById("btnRuleta").setAttribute("disabled", "")
     let pulsadas = Math.round(Math.random()*10)
     console.log(pulsadas)
     let intervalId = setInterval(() => this.spin(), 100)
     this.setState({intervalId: intervalId})
     setTimeout( () => {
       clearInterval(this.state.intervalId)
-      setTimeout(() => this.setState({desactivarBoton: false}), 4000)
+      document.getElementById("btnRuleta").removeAttribute("disabled")
     }, pulsadas*1000)
   }
 
@@ -205,7 +205,7 @@ class Roulette extends React.Component {
           {
             this.state.desactivarBoton
             ?
-            <button className="roulette-container-button" onClick={this.handleOnClick} style={{background: "#a5a5a5"}} id="btnRuleta" disabled>
+            <button className="roulette-container-button" onClick={this.handleOnClick} id="btnRuleta" disabled>
               <div className="button-zoom">GIRAR</div>
             </button>
             :
