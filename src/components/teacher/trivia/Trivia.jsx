@@ -12,6 +12,7 @@ class Trivia extends React.Component {
     this.state = {
       pregunta: '',
       tiempo: '5',
+      imagen64: '',
       respuestaOne: '',
       respuestaTwo: '',
       respuestaTree: '',
@@ -76,15 +77,15 @@ class Trivia extends React.Component {
     })
   }
   handleChangeImage = e => {
-    console.log("hola")
-    console.log(e.target.files[0])
+    // console.log(e.target.files[0])
     let file = e.target.files[0]
     if (file.type.substr(0,6) !== "image/"){
       return alert("Ingrese una imagen.")
     }
     var reader = new FileReader();
-    reader.onload = function(e){
-      var result = e.target.result;
+    reader.onload = eventImg => {
+      var result = eventImg.target.result;
+      this.setState({imagen64: result})
       document.getElementById("imgSalida").setAttribute("src", result)
     }
     reader.readAsDataURL(file);
@@ -125,14 +126,17 @@ class Trivia extends React.Component {
       this.setState({
         pregunta: '',
         tiempo: '5',
+        imagen64: '',
         respuestaOne: '',
         respuestaTwo: '',
         respuestaTree: '',
-        respuestaFour: '',
-        alumnosRecibidos: []
+        respuestaFour: ''
       })
+      document.getElementById("input-img").value = "" 
+      document.getElementById("imgSalida").setAttribute("src", "")
       socket.emit('restaurando datos', '')
     }else{
+      this.setState({alumnosRecibidos: []})
       // preguntaEnviada comienza en false por lo que no existe y a partir de aqui se envian los datos...
       const preg = this.state.pregunta,
             resp1 = this.state.respuestaOne,
@@ -147,6 +151,7 @@ class Trivia extends React.Component {
       const contenido = {
         pregunta: this.state.pregunta,
         tiempo: parseInt(this.state.tiempo,10),
+        imagen: this.state.imagen64,
         respuestaOne: this.state.respuestaOne,
         respuestaTwo: this.state.respuestaTwo,
         respuestaTree: this.state.respuestaTree,
@@ -154,7 +159,7 @@ class Trivia extends React.Component {
         respuestaCorrecta: this.state.selectedCorrectAnswer
       }
       socket.emit('enviando pregunta', contenido)
-      this.timeout = setTimeout(() => this.setState({modal: true}), parseInt(`${this.state.tiempo}000`,10)+2000)
+      this.timeout = setTimeout(() => this.setState({modal: true}), parseInt(`${this.state.tiempo}000`,10)+5000)
     }
     //finalmente cambia el estado del boton a restaurar.
     this.setState(state => ({
@@ -240,7 +245,7 @@ class Trivia extends React.Component {
           <div className="triviaT-row">
             <div className="triviaT-col-6">
               <label htmlFor="pregunta">Pregunta</label>
-              <input type="text" id="pregunta" className="triviaT-input-pregunta" value={this.state.pregunta} onChange={this.changeQuestion}/>
+              <input type="text" id="pregunta" className="triviaT-input-pregunta" value={this.state.pregunta} onChange={this.changeQuestion} autoComplete="off"/>
               <label htmlFor="time">Tiempo</label>
               <select id="time" name="tiempo" className="triviaT-input-pregunta triviaT-input-tiempo" value={this.state.value} onChange={this.handleChangeTime}>
                   <option value="5">5 segundos</option>
@@ -264,7 +269,7 @@ class Trivia extends React.Component {
             <label htmlFor="res1">Respuesta 1</label>
             <br/>
             <div className="triviaT-contenedor-respuesta custom-radios">
-              <input type="text" id="res1" className="triviaT-input-respuestas" value={this.state.respuestaOne} onChange={this.changeAnswer1} />
+              <input type="text" id="res1" className="triviaT-input-respuestas" value={this.state.respuestaOne} onChange={this.changeAnswer1} autoComplete="off" />
               <input type="radio" id="color-1" name="color" value="rojo" 
                       checked={this.state.selectedCorrectAnswer === 'rojo'}
                       onChange={this.handleCorrectAnswer}
@@ -279,7 +284,7 @@ class Trivia extends React.Component {
             <label htmlFor="res3">Respuesta 2</label>
             <br/>
             <div className="triviaT-contenedor-respuesta custom-radios">
-              <input type="text" id="res3" className="triviaT-input-respuestas" value={this.state.respuestaTree} onChange={this.changeAnswer3}/>
+              <input type="text" id="res3" className="triviaT-input-respuestas" value={this.state.respuestaTree} onChange={this.changeAnswer3} autoComplete="off"/>
               <input type="radio" id="color-2" name="color" value="naranja"
                       checked={this.state.selectedCorrectAnswer === 'naranja'}
                       onChange={this.handleCorrectAnswer}
@@ -297,7 +302,7 @@ class Trivia extends React.Component {
               <label htmlFor="res2">Respuesta 3</label>
               <br/>
               <div className="triviaT-contenedor-respuesta custom-radios">
-                <input type="text" id="res2" className="triviaT-input-respuestas" value={this.state.respuestaTwo} onChange={this.changeAnswer2}/>
+                <input type="text" id="res2" className="triviaT-input-respuestas" value={this.state.respuestaTwo} onChange={this.changeAnswer2} autoComplete="off"/>
                 <input type="radio" id="color-3" name="color" value="azul" 
                         checked={this.state.selectedCorrectAnswer === 'azul'}
                         onChange={this.handleCorrectAnswer}
@@ -312,7 +317,7 @@ class Trivia extends React.Component {
             <label htmlFor="res4">Respuesta 4</label>
             <br/>
             <div className="triviaT-contenedor-respuesta custom-radios">
-              <input type="text" id="res4" className="triviaT-input-respuestas" value={this.state.respuestaFour} onChange={this.changeAnswer4}/>
+              <input type="text" id="res4" className="triviaT-input-respuestas" value={this.state.respuestaFour} onChange={this.changeAnswer4} autoComplete="off"/>
               <input type="radio" id="color-4" name="color" value="verde" 
                       checked={this.state.selectedCorrectAnswer === 'verde'}
                       onChange={this.handleCorrectAnswer}
