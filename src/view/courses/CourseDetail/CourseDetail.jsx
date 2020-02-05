@@ -88,8 +88,8 @@ export default class CourseDetail extends Component {
                 <th className="CourseDetail__table-th">Codigo</th>
                 <th className="CourseDetail__table-th">Apellidos</th>
                 <th className="CourseDetail__table-th">Nombres</th>
-                {this.state.compentencias.map(compentencia => (
-                <th className="CourseDetail__table-th">{compentencia}</th>
+                {this.state.compentencias.map((compentencia,id) => (
+                <th key={id} className="CourseDetail__table-th">{compentencia}</th>
                 ))}
                 <th className="CourseDetail__table-th">Eliminar</th>
               </tr>
@@ -109,8 +109,9 @@ export default class CourseDetail extends Component {
                   >
                     {alumno.name_stu}
                   </td>
-                  {this.state.compentencias.map(compentencia => (
+                  {this.state.compentencias.map((compentencia, id) => (
                   <td
+                    key={id}
                     className="CourseDetail__table-td"
                     data-th="Competencia d"
                   >
@@ -127,7 +128,7 @@ export default class CourseDetail extends Component {
                     className="CourseDetail__table-td"
                     data-th="Eliminar"
                   >
-                    un icono de elimini
+                    un
                   </td>
                 </tr>
               ))}
