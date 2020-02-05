@@ -14,9 +14,9 @@ export default class FormPostCourse extends Component {
     //2. el estado con sus variables iniciales
     this.state = {
       bloquearBoton: false,
-      message: "elija una opción",
-      level: "primaria",
-      grade: "primero",
+      message: "Elija una opción",
+      level: " Primaria",
+      grade: "1°",
       section: "A",
       course_name: "Arte y cultura",
       description: "",
@@ -100,7 +100,7 @@ export default class FormPostCourse extends Component {
       // return console.log(res.data)
       this.setState({
         bloquearBoton: false,
-        message: "elija una opción",
+        message: "eslija una opción",
         level: "primaria",
         grade: "primero",
         section: "A",

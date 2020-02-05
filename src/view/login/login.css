@@ -184,6 +184,7 @@
   -o-transition: all 0.5s;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+  border-radius: 5%;
 }
 
 .loginTeacher-container .loginTeacher-container-form .loginTeacher-btn {

@@ -440,7 +440,9 @@ template {
     font-size: 1.25rem;
     margin: 0;
     line-height: 1.4;
-    letter-spacing: .02em;}
+    letter-spacing: .02em;
+    font-family: monospace;
+  }
 
 .modal-body .modal-title__controldescription{
     font-size: 1.25rem;
