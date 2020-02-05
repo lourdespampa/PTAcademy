@@ -43,7 +43,7 @@ export default class AllCourses extends Component {
                     <i className="courseTeacher__img fas fa-trash"></i>
                 </button>
                 <div className={this.state.cursoConAlumnos ? "courseTeacher__containerButton-Edit" : "courseTeacher__containerButton-Edit courseTeacher__animationEdit"}>
-                <Link to={`/${this.props.idteacher}/course_detail/${this.props.idCurso}`} className="courseTeacher__button-Edit">
+                <Link to={`/${this.props.idteacher}/course_detail/${this.props.id}`} className="courseTeacher__button-Edit">
                     <i className="algodemargin courseTeacher__img fas fa-user-plus"></i>
                 </Link>
                 </div>
@@ -61,8 +61,6 @@ export default class AllCourses extends Component {
               <h1 className="classTeacher-card__title">{this.props.name_course}</h1>
               <p>{this.props.description}</p>
             </div>
-            { this.state.cursoConAlumnos
-            ?
             <Link
               onClick={() => this.props.onClick(this.props.id)}
               to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
@@ -72,15 +70,6 @@ export default class AllCourses extends Component {
                 VER CLASES
               </label>
             </Link>
-            :
-            <Link 
-            to={`/${this.props.idteacher}/course_detail/${this.props.id}`}
-            className="courseTeacher__buttonEntry courseTeacherDisabled">
-              <label className="courseTeacher__buttonEntry-label">
-                DEBE AGREGAR ALUMNOS
-              </label>
-            </Link>
-            }
           </div>
         </div>       
       </>

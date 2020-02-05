@@ -223,8 +223,8 @@ export default function App(props) {
                 <div className="loginTeacher-table-cell">
                   <h2 className="loginTeacher-subtitle">Iniciar Sesión</h2>
                   <input name="email" placeholder="Correo" type="text" onChange={handleChangeInputsLogin} required autoComplete="true"/>
-                  <input className="inputPass" name="pass" placeholder="Contraseña" type="password" onChange={handleChangeInputsLogin} required autoComplete="true"/>
-                  <input className="loginTeacher-btn" type="submit" value="sign in"/>
+                  <input name="pass" placeholder="Contraseña" type="password" onChange={handleChangeInputsLogin} required autoComplete="true"/>
+                  <input className="loginTeacher-btn" type="submit" value="Iniciar Sesiòn"/>
                   <div style={{width:"210px", margin:"10px auto"}}>
                     <div className="linea">&nbsp;</div>
                     <div className="leyenda">&nbsp;&nbsp;o accede con Google&nbsp;&nbsp;</div>
@@ -232,7 +232,7 @@ export default function App(props) {
                   </div>
                   <a className="loginTeacher-button-google" onClick={signInWithGoogle} href="#!">
                     <img className="loginTeacher-google-icon" src="https://img.icons8.com/color/48/000000/google-logo.png" alt=""/>
-                      Sign in with Google
+                    Iniciar Sesión con Google
                   </a>
                   <a className="loginTeacher-login-register" onClick={cambiarTipoAcceso} href="#!">registrese ahora</a>
                 </div>
@@ -245,10 +245,10 @@ export default function App(props) {
                   <input name="email" placeholder="Correo" type="email" onChange={handleChangeInputsRegister} value={inputsRegister.email} required/>
                   <input name="username" placeholder="Nombres" type="text" onChange={handleChangeInputsRegister} value={inputsRegister.username} required/>
                   <input name="lastname" placeholder="Apellidos" type="text" onChange={handleChangeInputsRegister} value={inputsRegister.lastname} required/>
-                  <input className="inputPass"  name="pass" placeholder="Contraseña" type="password" value={inputsRegister.pass} onChange={handleChangeInputsRegister} minLength="6" required autoComplete="false"/>
-                  <input className="inputPass" name="rpass" placeholder="Repita su contraseña" type="password" value={inputsRegister.rpass} onChange={handleChangeInputsRegister} minLength="6" required autoComplete="false"/>
-                  <input className="loginTeacher-btn" type="submit" value="Sign up"/>
-                  <a className="loginTeacher-login-register" onClick={cambiarTipoAcceso} href="#!">iniciar sesión</a>
+                  <input name="pass" placeholder="Contraseña" type="password" value={inputsRegister.pass} onChange={handleChangeInputsRegister} minLength="6" required autoComplete="false"/>
+                  <input name="rpass" placeholder="Repita su contraseña" type="password" value={inputsRegister.rpass} onChange={handleChangeInputsRegister} minLength="6" required autoComplete="false"/>
+                  <input className="loginTeacher-btn" type="submit" value="Iniciar Sesiòn"/>
+                  <a className="loginTeacher-login-register" onClick={cambiarTipoAcceso} href="#!">Iniciar sesión</a>
                 </div>
               </div>
             </form>
