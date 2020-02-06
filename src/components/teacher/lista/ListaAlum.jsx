@@ -54,6 +54,7 @@ export default class ListaAlum extends Component {
                 { pin: this.props.id_access }
         })
         socket.on('newAlum', (data) => {
+            console.log("El pin de ese curso es:", data.pin)
             if (data.pin === (this.props.id_access).toUpperCase()) {
                 this.getStudents()
             }

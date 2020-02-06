@@ -37,6 +37,7 @@ export default class Trivia extends React.Component {
         { pin: this.props.id_access }
     })
     socket.on('pregunta recibida', data => {
+      console.log(data.pin)
       if (data.pin === (this.props.id_access).toUpperCase()) {
         console.log(data)
         this.setState({
