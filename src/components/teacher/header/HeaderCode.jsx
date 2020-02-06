@@ -30,11 +30,11 @@ function BotonSalir(props) {
                             <button className="modal-body__button no" onClick={handleClose}>
                                 <div className="button-zoom">NO</div>
                             </button>
-                            <Link to={`/CoursesTeacher/${user._id}`}>
-                                <button className="modal-body__button  backCursos" onClick={handleClose}>
+                            <button className="modal-body__button  backCursos" onClick={props.ExitSocket}>
+                                <Link style={{ textDecoration: "none" }} to={`/CoursesTeacher/${user._id}`}>
                                     <div className="button-zoom">REGRESAR A CURSOS</div>
-                                </button>
-                            </Link>
+                                </Link>
+                            </button>
                         </div>
                         </div>
                         <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -102,7 +102,7 @@ class HeaderCode extends React.Component {
                         </div>
                         <div className="code-menu-detail">
 
-                            {localStorage.getItem("token") ? <BotonSalir cerrarSesion={this.props.cerrarSesion} /> : null}
+                            {localStorage.getItem("token") ? <BotonSalir ExitSocket={this.props.ExitSocket} cerrarSesion={this.props.cerrarSesion} /> : null}
 
                         </div>
                         <div id="modal-general_container" className={this.state.codigoModal === 0 ? "" : this.state.codigoModal === 1 ? "six" : this.state.codigoModal === 2 ? "six out" : ""}>

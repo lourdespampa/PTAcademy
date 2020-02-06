@@ -5,6 +5,7 @@ import HeaderCode from "../../components/teacher/header/HeaderCode";
 import axios from "axios";
 import io from "socket.io-client";
 import "react-toastify/dist/ReactToastify.css";
+import { Redirect } from 'react-router-dom';
 
 class Header extends React.Component {
   /** 
@@ -17,7 +18,9 @@ class Header extends React.Component {
     super( props );
 
     this.state = {
-      nombre_clase: ""
+      nombre_clase: "",
+      token: false
+
     };
   }
   componentDidMount() {
@@ -111,11 +114,20 @@ class Header extends React.Component {
     socket.emit("ExitSocket");
     console.log("ExitSocket");
   };
+UNSAFE_componentWillMount = async () => {
+    let tokenStorage = localStorage.getItem("token")
+    await this.setState({token: tokenStorage})
+  };
 
+cerrarSesion = () => {
+    localStorage.clear();
+    this.setState({token: false})
+    this.ExitSocket()
+}
   render() {
     return (
       <>
-      
+      {this.state.token ? null : <Redirect to="/"></Redirect>}
         <HeaderCode
           cerrarSesion={this.props.cerrarSesion}
           socketUrl={this.props.socketUrl}
