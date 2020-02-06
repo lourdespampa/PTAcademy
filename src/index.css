@@ -3,7 +3,9 @@
   src: url("./plugins/Opal.ttf") format("truetype");
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
@@ -243,7 +245,8 @@ button:-moz-focusring,
 }
 
 /* solo para contraseñas */
-input[type="text"], input[type="password"] {
+input[type="text"],
+input[type="password"] {
   font-family: monospace !important;
 }
 /**
@@ -381,21 +384,22 @@ template {
   .modal-teacher__container-body-input-text1
   .modal-teacher__container-body-input-text1
 */
-.modal-teacher__general{
+.modal-teacher__general {
   position: relative;
   pointer-events: auto;
   border-radius: 20px;
-  transform: none !important}
+  transform: none !important;
+}
 
-.modal-header{
-    font-size: 26px;
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    position: initial;
-    top: 17px;
-    padding: 1.25rem 1.5rem 0;
-  }
+.modal-header {
+  font-size: 26px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  position: initial;
+  top: 17px;
+  padding: 1.25rem 1.5rem 0;
+}
 
 .modal-content {
   position: relative;
@@ -409,19 +413,20 @@ template {
   border-radius: 20px;
 }
 
-.modal-title{
-    letter-spacing: .01em;
-    font-size: 1.5rem;}
+.modal-title {
+  letter-spacing: 0.01em;
+  font-size: 1.5rem;
+}
 
-.modal-teacher__general-close{
+.modal-teacher__general-close {
   float: right;
-  background-color: #E91E63;
+  background-color: #e91e63;
   min-width: 30px;
   max-width: 40px;
   border: 0;
   height: 30px;
   display: block;
-  margin: .7em;
+  margin: 0.7em;
   border-radius: 5px;
   position: relative;
   z-index: 1;
@@ -429,123 +434,136 @@ template {
   cursor: pointer;
 }
 
-.modal-teacher__general-controlname{
-    height: 48px;
-    width: 95%;
-    padding: 0 10px;
-    margin: auto auto 10px;
-    border: 1px solid #4747D5}
+.modal-teacher__general-controlname {
+  height: 48px;
+  width: 95%;
+  padding: 0 10px;
+  margin: auto auto 10px;
+  border: 1px solid #4747d5;
+}
 
-.modal-title__controlname{
-    font-size: 1.25rem;
-    margin: 0;
-    line-height: 1.4;
-    letter-spacing: .02em;
-    font-family: "Opal";
-  }
+.modal-title__controlname {
+  font-size: 1.25rem;
+  margin: 0;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  font-family: "Opal";
+}
 
-.modal-body .modal-title__controldescription{
-    font-size: 1.25rem;
-    margin: 0;
-    line-height: 1.4;
-    letter-spacing: .02em;}
-.modal-teacher__general-controldescription{
-    height: 60px;
-    width: 95%;
-    border: 1px solid #4747D5;
-    margin: auto auto 10px;
-    resize: none;
-    /* font-family: monospace; */
-    padding: 10px 
-    }
+.modal-body .modal-title__controldescription {
+  font-size: 1.25rem;
+  margin: 0;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+.modal-teacher__general-controldescription {
+  height: 60px;
+  width: 95%;
+  border: 1px solid #4747d5;
+  margin: auto auto 10px;
+  resize: none;
+  /* font-family: monospace; */
+  padding: 10px;
+}
 
-#modal-content__codigogenerado{
-    font-size: 112px;
-    position: relative;
-    display: initial;
-    font-weight: bold;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-    margin-block-start: 0;
-    margin-block-end: 0}
+#modal-content__codigogenerado {
+  font-size: 112px;
+  position: relative;
+  display: initial;
+  font-weight: bold;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
 
-.modal-body__button.no{
-  background: #E91E63;
-  cursor: pointer}
+.modal-body__button.no {
+  background: #e91e63;
+  cursor: pointer;
+}
 
-.modal-body__button.backCursos{
-  background: #FB9600;
-  cursor: pointer}
+.modal-body__button.backCursos {
+  background: #fb9600;
+  cursor: pointer;
+}
 
 .modal-body__button.cursos,
 .modal-body__button.yes {
-  background: #52BE7F;
-  cursor: pointer}
+  background: #52be7f;
+  cursor: pointer;
+}
 
 .modal-body__button.yes .button-zoom,
 .modal-body__button.no .button-zoom,
 .modal-body__button.cursos .button-zoom,
-.modal-body__button.backCursos .button-zoom{
+.modal-body__button.backCursos .button-zoom {
   transition: transform 0.3s ease-in-out;
-  -webkit-transition: all .4s ease;
-  -moz-transition: all .4s ease;
-  -o-transition: all .4s ease;
-  -ms-transition: all .4s ease;
-  color: #fff
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  color: #fff;
 }
 .modal-body__button.yes:hover .button-zoom,
 .modal-body__button.no:hover .button-zoom,
 .modal-body__button.cursos:hover .button-zoom,
-.modal-teacher__general-close:hover .button-zoom{
-  -webkit-transform: scale(1.20);
-  transform: scale(1.20)} 
+.modal-teacher__general-close:hover .button-zoom {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
 
-.modal-body__button.backCursos:hover .button-zoom{
+.modal-body__button.backCursos:hover .button-zoom {
   -webkit-transform: scale(1.08);
-  transform: scale(1.08)} 
+  transform: scale(1.08);
+}
 
-.modal-body__button{
-    padding: 5px 10px;
-    text-decoration: none;
-    border-radius: 5px;
-    border: 0;
-    color:#fff;
-    font-size:20px;
-    margin: auto 10px;
-    font-family: "Opal"}
+.modal-body__button {
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 0;
+  color: #fff;
+  font-size: 20px;
+  margin: auto 10px;
+  font-family: "Opal";
+}
 
-.modal-body{
-    padding: 0.5rem 1.5rem 1.5rem;
-    text-align: center;
-    position: relative;
-    padding-top: 15px}
+.modal-body {
+  padding: 0.5rem 1.5rem 1.5rem;
+  text-align: center;
+  position: relative;
+  padding-top: 15px;
+}
 
-.modal-body .punto-marco{
+.modal-body .punto-marco {
   margin: 0 10px 25px;
 }
 
-.list-seccion, .list-grade{
-  background-color:#FF9191;
+.list-seccion,
+.list-grade {
+  background-color: #ff9191;
   width: 30%;
   padding: 2px;
-  text-align-last:center;
+  text-align-last: center;
 }
 
-.list-course{
+.list-course {
   background-color: rgb(247, 166, 45);
   width: 95%;
   padding: 2px;
-  text-align-last:center;
+  text-align-last: center;
 }
 
-.list-grade,.list-seccion,.list-course{
+.list-grade,
+.list-seccion,
+.list-course {
   border: 0;
   font-family: "Opal";
   color: #fff;
-  margin: auto 10px 10px
+  margin: auto 10px 10px;
 }
 
-.listDetalleTitle{
+.listDetalleTitle {
   font-family: "Opal";
   font-size: 1rem;
   margin: 9px;
@@ -558,89 +576,102 @@ template {
 
 @keyframes fadeIn {
   0% {
-    background:rgba(0,0,0,.0);
+    background: rgba(0, 0, 0, 0);
   }
   100% {
-    background:rgba(0,0,0,.7);
+    background: rgba(0, 0, 0, 0.7);
   }
 }
 
 @keyframes fadeOut {
   0% {
-    background:rgba(0,0,0,.7);
+    background: rgba(0, 0, 0, 0.7);
   }
   100% {
-    background:rgba(0,0,0,.0);
+    background: rgba(0, 0, 0, 0);
   }
 }
 @keyframes modalFadeIn {
   0% {
-    background-color:transparent;
+    background-color: transparent;
   }
   100% {
-    background-color:white;
+    background-color: white;
   }
 }
 
 @keyframes modalFadeOut {
   0% {
-    background-color:white;
+    background-color: white;
   }
   100% {
-    background-color:transparent;
+    background-color: transparent;
   }
 }
 
 @keyframes sketchOut {
-	0% {
-		stroke-dashoffset: 0;
-	}
-	100% {
-		stroke-dashoffset: 778;
-	}
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 778;
+  }
 }
 
 @keyframes quickScaleDown {
   0% {
-    transform:scale(1);
+    transform: scale(1);
   }
   99.9% {
-    transform:scale(1);
+    transform: scale(1);
   }
   100% {
-    transform:scale(0);
+    transform: scale(0);
   }
 }
-@media screen and (max-width:800px){
-.modal-content {
-  width: 360px
-}
-.modal-body .punto-marco {
-  margin: 0 1px 25px;} 
-
-.modal-body{
-  padding: 1rem 0.5rem 2.25rem;}
-
-#modal-content__codigogenerado{
-  font-size: 80px;}
-}
-.list-grade{
-  width: 50%
-}
-
-@media screen and (max-width:500px){
+@media screen and (max-width: 800px) {
   .modal-content {
-    width: 300px;}
+    width: 360px;
+  }
+  .modal-body .punto-marco {
+    margin: 0 1px 25px;
+  }
 
-  .modal-header{
-    font-size: 18px;}
+  .modal-body {
+    padding: 1rem 0.5rem 2.25rem;
+  }
 
-  .modal-body{
-    padding: 2.25rem 0.5rem;}
+  #modal-content__codigogenerado {
+    font-size: 80px;
+  }
+}
+.list-grade {
+  width: 50%;
+}
+
+@media screen and (max-width: 500px) {
+  .modal-content {
+    width: 300px;
+  }
+
+  .modal-header {
+    font-size: 18px;
+  }
+
+  .modal-body {
+    padding: 2.25rem 0.5rem;
+  }
 
   .punto-marco {
-    margin: 0px 1px 10px;} 
+    margin: 0px 1px 10px;
+  }
 
-  .modal-body__button.backCursos{
-    margin: 10px} 
+  .modal-body__button.backCursos {
+    margin: 10px;
+  }
+}
+
+::placeholder {
+  color: #b6b6b6;
+  /* color: #E91E63; */
 }
