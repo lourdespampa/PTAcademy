@@ -6,14 +6,6 @@ import { Modal } from "react-bootstrap";
 import { Carousel } from "react-responsive-carousel";
 const { AudioStreamer } = require('sfmediastream');
 let styles = {
-    // background:'black',
-    // margin: "auto",
-    // width: "100%",
-    // position: 'absolute',
-    // top:"0",
-    // left:"0",
-    // bottom:"0",
-    // rigth:"0",
     borderRadius:"10px",
     display: 'table-cell',
     verticalAlign: 'middle'
@@ -129,7 +121,7 @@ export default class Audio extends Component {
                 if(this.state.iframeon) {
                     this.getUrl()
                 }else{
-
+                    
                 }
             }
         })
@@ -293,7 +285,7 @@ export default class Audio extends Component {
                     </>
                         :
                     <div style={styles}> 
-                      <Carousel showArrows={false} useKeyboardArrows={true} swipeable={true} emulateTouch={true} showIndicators={false} showThumbs={false} >
+                      <Carousel selectedItem={this.state.positionPpt-1} showArrows={false} useKeyboardArrows={true} swipeable={true} emulateTouch={true} showIndicators={false} showThumbs={false} >
                           {
                               this.state.Slides.map((slide)=>(
                                   <div key={slide.index}>

@@ -4,13 +4,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import io from 'socket.io-client';
 import axios from "axios";
 let styles = {
-  margin: "auto",
-  width: "100%",
-  position: 'absolute',
-  top:"0",
-  left:"0",
-  bottom:"0",
-  rigth:"0"
+  borderRadius:"10px",
+  display: 'table-cell',
+  verticalAlign: 'middle'
 };
 
 class App extends Component {
@@ -82,8 +78,14 @@ backtPpt=async()=> {
     position: this.state.positionPpt
   });
 }
-statusFormatter=()=>{
-
+changeCarrucel(e){
+  const socket = io(this.props.socketUrl, {
+    query:
+        { pin: this.props.id_access }
+  })
+  socket.emit('PositionPpt', {
+    position: e+ 1
+  });
 }
   render() {
     return (
@@ -93,15 +95,17 @@ statusFormatter=()=>{
         <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="100%" height="100%" style={{ width: "100% !important", height: "100%", pointerEvents: "none" }} allowFullScreen={true}
             mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
           </iframe>
+          </div>
            <ul className="btnNextPrev">
             <li class="prev"  onClick={this.backtPpt}><span></span></li>
             <li class="next " onClick={this.nextPpt}><span></span></li>
           </ul>
-          </div>
+          
         </>
           :
       <div style={styles}> 
-        <Carousel statusFormatter={this.statusFormatter} showArrows={true} useKeyboardArrows={true} swipeable={true}	 emulateTouch={true}	 showIndicators={false} showThumbs={false} >
+        <Carousel showArrows={true} useKeyboardArrows={false} swipeable={true} emulateTouch={false}	 showIndicators={false}
+         showThumbs={false} onChange={(e)=>this.changeCarrucel(e)}>
             {
                 this.state.Slides.map((slide)=>(
                     <div key={slide.index}>

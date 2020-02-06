@@ -150,8 +150,8 @@ function FooterContainer(props) {
         </div>
       </div>
       <div className="overlay" id="overlay">
-        <div className="popup" id="popup">
-          <button id="btnCerrarDiapo" className="modal-teacher__general-close" onClick={() => props.closePopup('overlay', 'popup') + props.botonClick('btnCerrarDiapo')}>
+        <div className="popup" id="popup"style={{display: 'table', background: 'black'}}>
+          <button id="btnCerrarDiapo" className="modal-teacher__general-close"style={{position: 'absolute',right: '0'}} onClick={() => props.closePopup('overlay', 'popup') + props.botonClick('btnCerrarDiapo')}>
             <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
           </button>
           <Slide socketUrl={props.socketUrl} id_access={props.id_access} apiUrl={props.apiUrl} id_class={props.id_class}/>
