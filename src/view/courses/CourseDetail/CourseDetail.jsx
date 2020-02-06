@@ -11,6 +11,10 @@ export default class CourseDetail extends Component {
       id_course: "",
       id_teacher: "",
       students: [],
+      editar: false,
+      idMapAlumno: "",
+      apellidoAlumno: "",
+      nombreAlumno: "",
       apiUrl: "http://3.16.110.136:4200",
       compentencias: [],
       competenciasAlumnos: []
@@ -33,6 +37,22 @@ export default class CourseDetail extends Component {
     let tokenStorage = localStorage.getItem("token");
     await this.setState({ token: tokenStorage });
   };
+
+  handleEditStudent = (idAlumno) => {
+    this.setState({
+      editar: !this.state.editar,
+      idMapAlumno: idAlumno
+    })
+  }
+
+  handleChangeInputs = e => {
+    let name = e.target.name
+    let value = e.target.value
+
+    this.setState({[name]: value})
+    console.log(this.state.apellidoAlumno,this.state.nombreAlumno)
+  }
+
   getAlumnos = () => {
     console.log("listar alumnos ");
     const {
@@ -95,20 +115,41 @@ export default class CourseDetail extends Component {
                 <th className="CourseDetail__table-th">Eliminar</th>
               </tr>
             </thead>
+            {/* cuerpo de la tabla */}
             <tbody className="CourseDetail__table-body">
-              {this.state.students.map(alumno => (
+              {this.state.students.map((alumno,idAlumno) => (
                 <tr className="CourseDetail__table-tr" key={alumno._id}>
                   <td className="CourseDetail__table-td" data-th="Codigo">
                     {alumno.randonCode}
                   </td>
                   <td className="CourseDetail__table-td" data-th="Apellidos">
-                    {alumno.lastName_stu}
+                    {
+                      this.state.editar
+                      ?
+                        this.state.idMapAlumno === idAlumno
+                        ?
+                        <input type="text" name="apellidoAlumno" defaultValue={alumno.lastName_stu} onChange={this.handleChangeInputs} />
+                        :
+                        alumno.lastName_stu
+                      :
+                      alumno.lastName_stu
+                    }
                   </td>
                   <td
                     className="CourseDetail__table-td"
                     data-th="Nombres"
                   >
-                    {alumno.name_stu}
+                    {
+                      this.state.editar
+                      ?
+                        this.state.idMapAlumno === idAlumno
+                        ?
+                        <input type="text" name="nombreAlumno" defaultValue={alumno.name_stu} onChange={this.handleChangeInputs} />
+                        :
+                        alumno.name_stu
+                      :
+                      alumno.name_stu
+                    }
                   </td>
                   {this.state.compentencias.map((compentencia, id) => (
                     <td
@@ -122,14 +163,24 @@ export default class CourseDetail extends Component {
                         <option value="B">B</option>
                         <option value="C">C</option>
                       </select>
-                      <input type="text" placeholder={compentencia}></input>
+                      {
+                      this.state.editar
+                      ?
+                        this.state.idMapAlumno === idAlumno
+                        ?
+                        <input type="text" name="nombreAlumno" defaultValue={compentencia} onChange={this.handleChangeInputs} />
+                        :
+                        "descripción"
+                      :
+                      "descripción"
+                      }
                     </td>
                   ))}
                   <td
                     className="CourseDetail__table-td"
                     data-th="Editar"
                   >
-                    <button className="courseTeacher__button-delette">
+                    <button className="courseTeacher__button-delette" onClick={() => this.handleEditStudent(idAlumno)} >
                       <i className="courseTeacher__img fas fa-edit"></i>
                     </button>
                   </td>
