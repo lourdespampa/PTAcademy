@@ -7,6 +7,12 @@ import io from 'socket.io-client';
 //import { Container, Row, Col } from 'reactstrap';
 
 class Trivia extends React.Component {
+  /** 
+   * Fix pin 
+   *  :: valor inicial de PIN al cargar component
+   * */ 
+  pin = ''
+  /******************* */
   constructor(props){
     super(props)
     this.state = {
@@ -35,14 +41,25 @@ class Trivia extends React.Component {
   }
 
   componentDidMount(){
-    const socket = io(this.props.socketUrl, {
+    const { 
+      id_access, 
+      socketUrl 
+    } = this.props
+    /** Fix pin */
+    this.pin = id_access
+    console.log('valor de pin cuando inicia componente: ' + this.pin)
+    /** **************** */
+    const socket = io(socketUrl, {
       query:
-          { pin: this.props.id_access }
+          { pin: this.pin }
     })
       socket.on('pregunta escogida', (data) => {
+        const pinTeacher = this.pin.toUpperCase();
+        if(data.pin===pinTeacher){
         this.state.alumnosRecibidos.push(data)
         const temp = this.state.alumnosRecibidos
         this.setState({alumnosRecibidos: temp})
+      }
       })
   }
   //por buenas practicas, se deberia finalizar toda accion que pueda afectar el rendimiento del componente al morir
@@ -50,6 +67,7 @@ class Trivia extends React.Component {
   //hay un TimeOut
   componentWillUnmount() {
     clearTimeout(this.timeout);
+    this.pin = ''
   }
 
   showModal = () => {
