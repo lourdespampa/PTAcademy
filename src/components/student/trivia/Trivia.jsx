@@ -13,6 +13,8 @@ const styles = {
 }
 
 export default class Trivia extends React.Component {
+  _isMounted = false
+
   constructor(props) {
     super(props)
     this.state = {
@@ -32,30 +34,32 @@ export default class Trivia extends React.Component {
   }
 
   componentDidMount() {
+    this._isMounted = true
     const socket = io(this.props.socketUrl, {
       query:
         { pin: this.props.id_access }
     })
     socket.on('pregunta recibida', data => {
       console.log(data.pin)
-      if (data.pin === (this.props.id_access).toUpperCase()) {
-        console.log(data)
-        this.setState({
-          pregunta: data.data.pregunta,
-          time: data.data.tiempo,
-          imagen: data.data.imagen,
-          preguntaCorrecta: data.data.respuestaCorrecta,
-          respuesta1: data.data.respuestaOne,
-          respuesta2: data.data.respuestaTwo,
-          respuesta3: data.data.respuestaTree,
-          respuesta4: data.data.respuestaFour
-        })
-        if(data.data.imagen) document.getElementById("pre-imagen").setAttribute("src", data.data.imagen)
-        setTimeout(() => {
-          this.setState({ respuestaRecibida: true })
-          this.interval = setInterval(() => this.cuentaRegresiva(), 1000)
-          this.interval2 = setInterval(() => this.puntaje(), 50)
-        }, 5000);
+      if(this._isMounted){
+        if (data.pin === (this.props.id_access).toUpperCase()) {
+          this.setState({
+            pregunta: data.data.pregunta,
+            time: data.data.tiempo,
+            imagen: data.data.imagen,
+            preguntaCorrecta: data.data.respuestaCorrecta,
+            respuesta1: data.data.respuestaOne,
+            respuesta2: data.data.respuestaTwo,
+            respuesta3: data.data.respuestaTree,
+            respuesta4: data.data.respuestaFour
+          })
+          if(data.data.imagen) document.getElementById("pre-imagen").setAttribute("src", data.data.imagen)
+          this.timeout = setTimeout(() => {
+            this.interval = setInterval(() => this.cuentaRegresiva(), 1000)
+            this.interval2 = setInterval(() => this.puntaje(), 50)
+            this.setState({ respuestaRecibida: true })
+          }, 5000);
+        }
       }
     })
 
@@ -78,6 +82,13 @@ export default class Trivia extends React.Component {
       }
     })
   };
+
+  componentWillUnmount = () => {
+    this._isMounted = false
+    clearTimeout(this.timeOut)
+    clearInterval(this.interval)
+    clearInterval(this.interval2)
+  }
 
   cuentaRegresiva() {
     if (this.state.time > 0) {

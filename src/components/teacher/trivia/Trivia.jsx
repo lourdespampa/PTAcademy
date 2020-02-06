@@ -159,12 +159,12 @@ class Trivia extends React.Component {
         respuestaCorrecta: this.state.selectedCorrectAnswer
       }
       socket.emit('enviando pregunta', contenido)
+      //finalmente cambia el estado del boton a restaurar.
+      this.setState(state => ({
+        preguntaEnviada: !state.preguntaEnviada
+      }));
       this.timeout = setTimeout(() => this.setState({modal: true}), parseInt(`${this.state.tiempo}000`,10)+5000)
     }
-    //finalmente cambia el estado del boton a restaurar.
-    this.setState(state => ({
-      preguntaEnviada: !state.preguntaEnviada
-    }));
   }
 
   render() {
