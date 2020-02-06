@@ -33,10 +33,8 @@ export default class Views extends Component {
       id_access:''
     };
   }
-    componentWillMount(){
-    this.initSocket()
-  }
     componentWillMount() {
+      this.initSocket()
       this.getRecord();
       const {
         match: { params }
