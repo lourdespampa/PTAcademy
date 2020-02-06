@@ -199,10 +199,10 @@ class Trivia extends React.Component {
               ?
               <div className="modal-respuestas">
                 {/* Modal content */}
-                <button className="modal-general_closeTrivia" onClick={this.showModal}>
+                <div className="modal-content-respuestas">
+                  <button className="modal-general_closeTrivia" onClick={this.showModal}>
                     <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                   </button>
-                <div className="modal-content-respuestas">
                   <h2>Clasificación</h2>
                   <ul className="rolldown-list" id="myList">
                     {this.state.alumnosRecibidos.length > 0
