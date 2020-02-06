@@ -12,13 +12,17 @@ const onFocus = () => {
   };  
   // User has switched away from the tab (AKA tab is hidden)
   const onBlur = () => {
+      let pin = props.id_access
       const socket = io(props.socketUrl, {
-          query:
-              { pin: props.id_access }
+        query:
+          { 
+            pin: pin
+          }
         })
         socket.emit('tabBlurred',{fullname:props.fullname})
-    console.log(props.fullname);
-    console.log('Tab is blurred');
+
+        console.log(props.fullname);
+        console.log('Tab is blurred');
   };
   useEffect(() => {
     window.addEventListener('focus',onFocus);
