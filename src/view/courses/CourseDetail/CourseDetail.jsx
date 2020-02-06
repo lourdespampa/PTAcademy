@@ -91,6 +91,7 @@ export default class CourseDetail extends Component {
                 {this.state.compentencias.map((compentencia, id) => (
                   <th key={id} className="CourseDetail__table-th">{compentencia}</th>
                 ))}
+                <th className="CourseDetail__table-th">Editar</th>
                 <th className="CourseDetail__table-th">Eliminar</th>
               </tr>
             </thead>
@@ -124,6 +125,14 @@ export default class CourseDetail extends Component {
                       <input type="text" placeholder={compentencia}></input>
                     </td>
                   ))}
+                  <td
+                    className="CourseDetail__table-td"
+                    data-th="Editar"
+                  >
+                    <button className="courseTeacher__button-delette">
+                      <i className="courseTeacher__img fas fa-edit"></i>
+                    </button>
+                  </td>
                   <td
                     className="CourseDetail__table-td"
                     data-th="Eliminar"
