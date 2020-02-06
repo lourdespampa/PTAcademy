@@ -9,6 +9,7 @@ import puzzle from "../../../img/menuLeft/puzzle.png";
 //import { Link } from "react-router-dom";
 
 // style
+
 import "./MenuLeft.sass";
 
 function MenuLeft(props) {
@@ -42,9 +43,10 @@ function MenuLeft(props) {
             </Link>
           </li>
           <li>
+            {console.log(props.id_access)}
             <Link
               className="icon-twitter"
-              to={"/teacher/:id_class/:id_access/bloque"}
+              to={`/teacher/${props.id_class}/${props.id_access}/bloque`}
             >
               {" "}
               <img src={puzzle} width="40px" alt="blocks"></img>{" "}

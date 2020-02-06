@@ -18,12 +18,8 @@ function App() {
           <Route exact path="/grupos/:user" component={Grupos} />
           <Route exact path="/temporizador/:user" component={Temporizador} />
           <Route exact path="/trivia/:user" component={Trivia} />
-<<<<<<< HEAD
-          <Route exact path="/chat" component={Chat} />
-=======
           <Route exact path="/blockly" component={Bloque} />
 
->>>>>>> 9711e3cf4419017f4700e783408651f4f8a91ce9
           {/* <Route path="/404" component={NotFound} /> */}
           <Redirect from="/" to="/lista" />
         </Switch>
