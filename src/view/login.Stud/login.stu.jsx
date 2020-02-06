@@ -39,6 +39,8 @@ export default class LoginStu extends Component {
         console.log(result);
         if (result.data.school === true) {
           alert("el profesor es de colegio");
+          this.setState({ id_access: codigo, acceso: true });
+
         } else {
           console.log(result)
           this.setState({ id_access: codigo, acceso: true });

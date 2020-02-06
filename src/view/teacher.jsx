@@ -34,7 +34,7 @@ export default class Views extends Component {
     };
   }
     componentWillMount() {
-      this.initSocket()
+      
       this.getRecord();
       const {
         match: { params }
