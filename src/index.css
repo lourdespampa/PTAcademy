@@ -566,9 +566,12 @@ template {
 .listDetalleTitle {
   font-family: "Opal";
   font-size: 1rem;
-  margin: 4px;
+  margin: 9px;
+  margin-left: 30px;
   line-height: 1.4;
-  letter-spacing: 0.02em;
+  letter-spacing: .02em;
+
+  
 }
 
 @keyframes fadeIn {
