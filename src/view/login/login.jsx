@@ -224,7 +224,7 @@ export default function App(props) {
                   <h2 className="loginTeacher-subtitle">Iniciar Sesión</h2>
                   <input name="email" placeholder="Correo" type="text" onChange={handleChangeInputsLogin} required autoComplete="true"/>
                   <input name="pass" placeholder="Contraseña" type="password" onChange={handleChangeInputsLogin} required autoComplete="true"/>
-                  <input className="loginTeacher-btn" type="submit" value="Iniciar Sesiòn"/>
+                  <input className="loginTeacher-btn" type="submit" value="Inicia Sesiòn"/>
                   <div style={{width:"210px", margin:"10px auto"}}>
                     <div className="linea">&nbsp;</div>
                     <div className="leyenda">&nbsp;&nbsp;o accede con Google&nbsp;&nbsp;</div>
