@@ -106,7 +106,7 @@ class HeaderCode extends React.Component {
 
                         </div>
                         <div id="modal-general_container" className={this.state.codigoModal === 0 ? "" : this.state.codigoModal === 1 ? "six" : this.state.codigoModal === 2 ? "six out" : ""}>
-                            <div className="modal-general_background">
+                            <div className="modal-general_background" >
                                 <div className="modal-general_bg_content">
                                     <button className="modal-general_close" onClick={this.handleClose}>
                                         <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />

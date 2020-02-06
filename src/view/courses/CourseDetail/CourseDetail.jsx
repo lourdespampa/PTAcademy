@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./CourseDetail.sass";
 import NavCourse from "./NavCourseDetail";
 import axios from "axios";
+import iconExit from "../../../img/cerrar.png";
 // import CardStudent from './CardStudent'
 export default class CourseDetail extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ export default class CourseDetail extends Component {
       nombreAlumno: "",
       apiUrl: "http://3.16.110.136:4200",
       compentencias: [],
-      competenciasAlumnos: []
+      competenciasAlumnos: [],
+      showdelete: 0
     };
   }
 
@@ -86,6 +88,13 @@ export default class CourseDetail extends Component {
     const nav = document.getElementById("main-nav");
     nav.classList.remove("show");
   };
+  setShow = () => {
+    this.setState({showdelete:1})
+  };
+  setClose = () => {
+    this.setState({showdelete:2})
+  };
+
   render() {
     return (
       <>
@@ -180,7 +189,7 @@ export default class CourseDetail extends Component {
                     className="CourseDetail__table-td"
                     data-th="Editar"
                   >
-                    <button className="courseTeacher__button-delette" onClick={() => this.handleEditStudent(idAlumno)} >
+                    <button className="courseTeacher__button-alumno" onClick={() => this.handleEditStudent(idAlumno)} >
                       <i className="courseTeacher__img fas fa-edit"></i>
                     </button>
                   </td>
@@ -188,7 +197,7 @@ export default class CourseDetail extends Component {
                     className="CourseDetail__table-td"
                     data-th="Eliminar"
                   >
-                    <button className="courseTeacher__button-delette">
+                    <button className="courseTeacher__button-delette" onClick={this.setShow}>
                       <i className="courseTeacher__img fas fa-trash"></i>
                     </button>
                   </td>
@@ -196,6 +205,31 @@ export default class CourseDetail extends Component {
               ))}
             </tbody>
           </table>
+        </div>
+        <div id="modal-general_container" className={this.state.showdelete === 0 ? "" : this.state.showdelete === 1 ? "six" : this.state.showdelete === 2 ? "six out" : ""}>
+          <div className="modal-general_background">
+            <div className="modal-general_bg_content">
+              <button className="modal-general_close" onClick={this.setClose}>
+                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+              </button>
+              <div className="modal-general_container">
+                <div className="modal-general_container_header">
+                  <span className="modal-title">¿DESEA ELIMINAR AL ALUMNO?</span>
+                </div>
+                <div className="modal-general_container_body">
+                  <button className="modal-body__button yes" onClick={this.setClose} type="button">
+                    <div className="button-zoom">SI</div>
+                  </button>
+                  <button className="modal-body__button no" onClick={this.setClose} type="button">
+                    <div className="button-zoom">NO</div>
+                  </button>
+                </div>
+              </div>
+              <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+              </svg>
+            </div>
+          </div>
         </div>
       </>
     );
