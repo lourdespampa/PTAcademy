@@ -237,7 +237,7 @@ class Temporizador extends React.Component {
                                 <div className="modal-general_container_header">
                                     <span className="modal-title">ESTABLECER TIEMPO</span>
                                 </div>
-                                <div className="modal-general_container_body codigogenerado">
+                                <div className="modal-general_container_body">
                                     <form className="temporizador_form">
                                         <div><label>Horas</label>
                                             <input className="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />

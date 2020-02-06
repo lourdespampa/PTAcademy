@@ -1,6 +1,6 @@
 /* cabecera */
 .trivia-respuestas{
-    padding: 10px;
+    padding: 8.5px;
     text-align: center
 }
 .triviaT-topnav {
@@ -307,7 +307,6 @@
     margin-top: 1%;
     position: absolute;
     width: 50%;
-    height: 60%;
     left: 50%;
     margin-left: -25%;
 }
