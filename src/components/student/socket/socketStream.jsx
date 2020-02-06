@@ -12,6 +12,12 @@ let styles = {
   };
 
 export default class Audio extends Component {
+     /** 
+   * Fix notificatión 
+   *  :: valor inicial de PIN al cargar component
+   * */ 
+  pin = ''
+  /******************* */
     state={
         show:false,
         showGrupo:false,
@@ -66,9 +72,18 @@ export default class Audio extends Component {
         // document.getElementById("diminute").src = enlace;
     }
     componentDidMount() {
-        const socket = io(this.props.socketUrl, {
+        const { 
+            id_access, 
+            socketUrl 
+          } = this.props
+
+          this.pin = id_access
+          console.log('valor de pin cuando inicia componente: ' + this.pin)
+
+
+        const socket = io(socketUrl, {
             query:
-                { pin: this.props.id_access }
+                { pin: this.pin }
           })
       let varToken = localStorage.getItem('token')
         //SLIDES
@@ -100,21 +115,23 @@ export default class Audio extends Component {
                   console.log(err)
           })
         })
-        
         socket.on('sendSlidesS', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             const overlayDiapo = document.getElementById('overlay')
             const popupDiapo = document.getElementById('popup')
             this.openPopup(overlayDiapo.id, popupDiapo.id)}
         })
         socket.on('closeSlidesS', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             const overlayDiapo = document.getElementById('overlay')
             const popupDiapo = document.getElementById('popup')
             this.closePopup(overlayDiapo.id, popupDiapo.id)}
         })
         socket.on('PositionPpt', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
                 this.setState({
                     positionPpt:data.position
                 })
@@ -130,11 +147,13 @@ export default class Audio extends Component {
         //VIDEO
 
         socket.on('Video', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             this.enviarvideo(data.url)}
         })
         socket.on('closeVideo', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             this.DisablePopup()
             }
         })
@@ -155,7 +174,8 @@ export default class Audio extends Component {
 
                 // Buffer header must be received first
                 socket.on('bufferHeader',  (packet) =>{
-                    if(packet.pin === (this.props.id_access).toUpperCase()) {
+                    const pinTeacher = this.pin.toUpperCase();
+                    if(packet.pin === (pinTeacher).toUpperCase()) {
                     // if (packet.pin === ('<%= pin %>').toUpperCase()) {
                     console.log('ejecutando buffer');
                     audioStreamer.setBufferHeader(packet.audio);
@@ -165,7 +185,8 @@ export default class Audio extends Component {
 
                 // Receive buffer and play it
                 socket.on('stream', (packet) =>{
-                    if(packet.pin === (this.props.id_access).toUpperCase()) {
+                    const pinTeacher = this.pin.toUpperCase();
+                    if(packet.pin === (pinTeacher).toUpperCase()) {
                     //    console.log("3");
                     //if (packet.pin === ('<%= pin %>').toUpperCase()) {
                     //   debug.value = "Buffer received: " + packet.audio[0].byteLength + "bytes";
@@ -181,12 +202,14 @@ export default class Audio extends Component {
 
         })
         socket.on('onPlay',  (data)=> {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             btn_play.click()}
         })
         //ROULETTE
         socket.on('rouletteWinnerS',  (data) =>{
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             console.log('escucha el alum')
             this.setState({show:true});
             document.getElementById("modal_luckyStudent").innerHTML = data.data;
@@ -196,7 +219,8 @@ export default class Audio extends Component {
         //ROULETTE END 
         //grupos
         socket.on('enviando grupos',  (data) =>{
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             console.log(data.data.data)
             this.setState({showGrupo:true});
             document.getElementById("imprimir").innerHTML = data.data.data;
@@ -207,7 +231,8 @@ export default class Audio extends Component {
 
         //FORM
         socket.on('SendFormS', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             const overlay_popup = document.getElementById('overlayinframe')
             const popup = document.getElementById('popupformulario')
 
@@ -215,12 +240,20 @@ export default class Audio extends Component {
             popup.className = 'popup active'}
         })
         socket.on('closeForm', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
                 this.DisablePopup2()
             }
         })
     }
+/** Fix pin */
+componentWillUnmount() {
+    // valor despues de salir del component
+    this.pin = ''
 
+    console.log('componente desmontado')
+  }
+  /****************** */
    
 
     render() {
