@@ -14,17 +14,26 @@
     font-family: 'Opal'
     text-align: center
 
+.triviaS-preheader
+    width: 100%
+    height: auto
+    min-height: 65px
+
 .header2
-    top: 0
-    width: 99.5%
+    top: 65px
+    width: 100%
     display: flex
     flex-direction: column
     justify-content: center 
     align-items: center
     background: #fff
-    height: 65px
+    height: auto
     padding: 15px
+    position: fixed
     box-shadow: rgba(150, 150, 150, 0.5) 0px 2px 2px
+    text-align: center
+    .triviaStudent-title
+        margin: 0
 
 .footer
     width: 100%
@@ -65,48 +74,40 @@
     align-items: center
     height: 300px
     margin: 12px auto auto auto
-
-.triangulo-equilatero-bottom-left
-    width: 0
-    height: 0
-    border-right: 50px solid #000
-    border-top: 50px solid #fff
-    border-left: 50px solid #fff
-    border-bottom: 50px solid #000
-
-.ho
-    margin-left: -20px
-    margin-top: -5px
-
-.la
-    margin-top: -18px
-    color: #fff
-
-td
-    width: 49%
+    #pre-imagen
+        width: 500px
+        min-width: 200px
 
 .trivia-student-button
     color: #fff
-    display: inline-block
     font-size: 1.25em
     margin: 4px
     padding: 10px
     text-align: left
     min-width: 99%
-    height: 5em
+    position: relative
     text-decoration: none
     border: none
+    word-wrap: break-word
+    vertical-align: middle
     box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 2px
-    img
+    .triviaStudentText
+        width: 98%
         display: inline-block
-        vertical-align: middle
-        width: 50px
-        margin-left: 0.5em
-    span
-        margin-left: 20px
-        font-size: 25px
+        p
+            font-size: 25px
+            margin: 20px 0 20px 80px
+    .triviaStudentSimbol
+        width: 10%
         display: inline-block
-        vertical-align: middle
+        text-align: center
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        img
+            vertical-align: middle
+            width: 50px
+            margin: 0.6em 0
     &:hover
         box-shadow: 0px 0px 0px
         padding-top: 9px
@@ -122,7 +123,9 @@ td
 
 .verde
     background: #1FAD18
-
+    
+.contendorDeBotonesRespuesta
+    padding: 0px
 
 .loader
     font-size: 30px
@@ -203,7 +206,7 @@ td
     top: 0
     left: 0
     height: 100vh
-    width: 100vw
+    width: 100%
     transition: all .5s
 
 #btn_play
@@ -215,6 +218,9 @@ td
         width: 49%
         img
             display: none
+        .triviaStudentText
+            p
+                margin: 20px 0
     .left
         height: 150px
     .right

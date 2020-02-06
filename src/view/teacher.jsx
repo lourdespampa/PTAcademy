@@ -34,10 +34,8 @@ export default class Views extends Component {
       id_access:''
     };
   }
-    componentWillMount(){
-    this.initSocket()
-  }
-    componentDidMount() {
+    componentWillMount() {
+      
       this.getRecord();
       const {
         match: { params }
@@ -46,14 +44,6 @@ export default class Views extends Component {
       console.log("id class: "+params.id_class);
       console.log("codigo generado: "+params.id_access);
     }
-  
-  initSocket=()=>{
-      const socket=io(this.state.socketUrl,{query:{pin:this.state.id_access}})
-      socket.on('connect',()=>{
-          console.log("Teacher Connected")
-      })
-      this.setState({socket:socket})
-  }
  
   getRecord = async () => {
     var varToken = localStorage.getItem('token');

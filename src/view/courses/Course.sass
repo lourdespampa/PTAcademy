@@ -1,4 +1,35 @@
 
+.teacherCourses__floatingActionButton
+    position: fixed
+    border-radius: 50%
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 10px 0 #666
+    transition: all 0.1s ease-in-out
+    &:hover
+        box-shadow: 0 6px 14px 0 #666
+        transform: scale(1.05)
+    .fas
+        color: #ffffff
+        margin-left: 2px
+.teacherCourses_editStudent
+    background: #FB9600
+    bottom: 18%
+    right: 6%
+    height: 60px
+    width: 60px
+    font-size: 22px
+    z-index: 2
+.teacherCourses_addStudent
+    background: #52BE7F
+    bottom: 6%
+    right: 6%
+    height: 60px
+    width: 60px
+    font-size: 24px
+    z-index: 2
+
 .teacherCourses__l-container
     max-width: 100%
     padding-left: 1rem
@@ -42,9 +73,12 @@
         color: #000000
     &:hover .teacherCourses__main-menu__LogOut
         color: #000000
+    &:hover .teacherCourses__main-menu__returnCourse
+        color: #000000
 
 .teacherCourses__main-menu__addCourse,
-.teacherCourses__main-menu__LogOut
+.teacherCourses__main-menu__LogOut,
+.teacherCourses__main-menu__returnCourse
     color: #ffffff
     margin-left: 1rem
     text-decoration: none
@@ -97,31 +131,40 @@
 .teacherCourses__small
     font-size: .75rem
 
+@media (max-width: 525px)
+    .modal-general_bg_content
+        width: 95% !important
 
 @media screen and (min-width: 960px)
     .teacherCourses__main-menu
         display: flex
+    .teacherCourses__main-menu__item
+        padding: 0
+        // transition: transform .3s
     .teacherCourses__main-menu__addCourse
-        color: #53575A
+        // color: #53575A
         text-decoration: none
         font-size: 1em
         padding: 0.5rem
         border-radius: 39px
-        &:hover
-            background-color: #FB9600
-            color: white
-    // .teacherCourses__main-menu__item:hover .teacherCourses__main-menu__LogOut
-    //     color: #ffffff
-
+        background-color: #eb8d00
+        color: white
+        
     .teacherCourses__main-menu__LogOut
-        color: #53575A
+        // color: #53575A
         text-decoration: none
         font-size: 1em
         padding: 0.5rem
         border-radius: 39px
-        &:hover
-            color: white
-            background-color: #E91E63
+        background-color: #E91E63
+        color: white
+    .teacherCourses__main-menu__returnCourse
+        text-decoration: none
+        font-size: 1em
+        padding: 0.5rem
+        border-radius: 39px
+        background-color: #3aca76
+        color: white
     .teacherCourses__main-nav
         position: static
         background: transparent
@@ -136,30 +179,38 @@
         --logo-height: 5rem 
     .teacherCourses__main-menu__item:hover
         background-color: transparent
+        // -webkit-transform: scale(1.1)
+        // transform: scale(1.1)
         & .teacherCourses__main-menu__LogOut
             color: white
-            background-color: #E91E63
+            background-color: #ff0055
         & .teacherCourses__main-menu__addCourse
-            background-color: #FB9600
+            background-color: #ff9900
+            color: white
+        & .teacherCourses__main-menu__returnCourse
+            background-color: #0cd660
             color: white
 
 .courseTeacher-container
     display: flex
+    align-items: center
+    justify-content: center
     -webkit-display: box
     -moz-display: box
     -ms-display: flexbox
     -webkit-display: flex
     flex-wrap: wrap
     padding: 0
-    margin: 0
+    margin: 10px auto
     // background-color: #52BE7F
   
 .courseTeacher-cards
     display: flex
+    align-items: center
+    justify-content: center
     margin: 1rem
-    width: 100%
     list-style: none
-    height: 371px
+    height: 410px
     & .courseTeacher-card-item
         display: flex
         flex-direction: column
@@ -191,7 +242,9 @@
             width: 100%
             font-size: 13px
             height: 30%
-
+    
+    & .courseTeacher-card-subtitle
+        display: inline
 
     & .courseTeacher-card-title
         font-size: 20px
@@ -206,19 +259,21 @@
         border-radius: 6px 6px 0px 0px
         opacity: 0.91
         background-image: url('https://www.petdarling.com/articulos/wp-content/uploads/2016/04/nombres-de-gatos.jpg')
-
-@media (min-width: 640px)
-    .courseTeacher-cards 
-        width: 45%
-    // .CourseTeacher-main
-    //     height: 100% !important
  
-  
 @media (min-width: 896px)
     .courseTeacher-cards 
-        width: 21%
-        height: 384px
+        width: 290px
 // se va a poner los estilos para los botones de los cards xd -- by:Miryan
+.courseTeacher__containerButton-Edit
+    position: absolute
+    z-index: 1
+    border-radius: 100px
+    height: 20px
+    width: 40px
+    top: 8px
+    left: 5px
+.courseTeacher__animationEdit
+    animation: 1000ms ease 0s infinite normal none running ripple
 
 .courseTeacher__button-delette,
 .courseTeacher__button-Edit
@@ -227,7 +282,7 @@
     border: 0
     height: 30px
     display: block
-    margin: .2em
+    margin: .1em
     border-radius: 5px
     vertical-align: middle
     position: relative
@@ -235,22 +290,27 @@
     width: 100%
     cursor: pointer
     & .courseTeacher__img
+        color: #fff
         transition: transform 0.3s ease-in-out
         -webkit-transition: all .4s ease
         -moz-transition: all .4s ease
         -o-transition: all .4s ease
         -ms-transition: all .4s ease
+    & .algodemargin
+        margin-top: 5px
     &:hover .courseTeacher__img
         -webkit-transform: scale(1.25)
         -moz-transform: scale(1.25)
         -ms-transform: scale(1.25)
         -o-transform: scale(1.25)
         transform: scale(1.3)
-
 .courseTeacher__button-Edit
-    float: left
+    // float: left
+    position: absolute
+    left: -3px
+    top: -8px
+    text-align: center
     background-color: #FB9600
-    
         
 .courseTeacher__button-delette
     float: right
@@ -264,40 +324,35 @@
         -o-transform: scale(1.25)
         transform: scale(1.25)
 .courseTeacher__buttonEntry
-    width: 100%
+    width: 89%
     border: 0
-    height: 20%
     display: block
     margin: .2em
     border-radius: 5px
     vertical-align: middle
-    position: relative
-    z-index: 1
+    text-align: center
+    position: absolute
+    bottom: 10px
+    right: 11px
     cursor: pointer
     text-decoration: none
     padding: .5rem
     background-color: #52BE7F
     color: #FFFFFF
+    transition: transform 0.3s ease-in-out
+    -webkit-transition: all .4s ease
     &:hover
         background-color: #52BE7F
         color: #ffffff
         padding: .5rem
+        -webkit-transform: scale(1.05)
+        transform: scale(1.05)
     & .courseTeacher__buttonEntry-label 
         width: 150px
-        transition: transform 0.3s ease-in-out
-        -webkit-transition: all .4s ease
-        -moz-transition: all .4s ease
-        -o-transition: all .4s ease
-        -ms-transition: all .4s ease
         cursor: pointer
-        &:hover
-            -webkit-transform: scale(1.25)
-            -moz-transform: scale(1.25)
-            -ms-transform: scale(1.25)
-            -o-transform: scale(1.25)
-            transform: scale(1.25)
-
-
+.courseTeacherDisabled
+    background-color: #777777 !important
+    color: black !important
 
 .classTeacher__buttonEntry
     width: 100%
@@ -367,3 +422,177 @@
 .courseTeacher-cards__nullCourses
     color: #ffffff
     padding: 0 1rem
+
+//todo el contido del modal, incluyendo bg de fondo
+#modal-general_container 
+  position: fixed
+  display: table
+  height: 100%
+  width: 100%
+  top: 0
+  left: 0
+  transform: scale(0)
+  z-index: 1
+  //solo animaciones de entrada del modal  
+  &.six 
+    transform: scale(1)
+    .modal-general_background 
+      background: rgba(0,0,0,.0)
+      animation:  fadeIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+      .modal-general_bg_content 
+        background-color: transparent
+        border-radius: 10px
+        animation:  modalFadeIn .5s .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+        .modal-general_close
+          opacity: 0
+          animation:  modalContentFadeIn .5s 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+        .modal-general_container 
+          opacity: 0
+          position: relative
+          animation:  modalContentFadeIn .5s 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+        .modal-general_svg 
+          rect 
+            animation:  sketchIn .5s .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+
+    //solo animaciones de salida del modal 
+    &.out 
+      animation:  quickScaleDown 0s .5s linear forwards
+      .modal-general_background 
+        animation:  fadeOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+        .modal-general_bg_content
+          animation:  modalFadeOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+          .modal-general_container, .modal-general_close
+            animation:  modalContentFadeOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+          .modal-general_svg 
+            rect 
+              animation:  sketchOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards
+  
+  //estilos del modal (no animaciones)
+  .modal-general_background 
+    display: table-cell
+    background: rgba(0,0,0,.8)
+    text-align: center
+    vertical-align: middle
+    .modal-general_bg_content
+      background: white
+      padding: 30px
+      min-width: 300px
+      width: 500px
+      display: inline-block
+      position: relative
+      .modal-general_close
+          position: absolute
+          right: 0
+          background-color: #E91E63
+          max-width: 40px
+          border: 0
+          height: 30px
+          margin: .7em
+          border-radius: 5px
+          z-index: 3
+          width: 100%
+          cursor: pointer
+          &:hover .button-zoom
+              -webkit-transform: scale(1.20)
+              transform: scale(1.20)
+      .modal-general_container
+        z-index: 2
+        line-height: 25px
+        .modal-general_container_body
+            margin-top: 20px
+        .codigogenerado
+            margin-top: 65px
+      
+      .modal-general_svg 
+        position: absolute
+        top: 0
+        left: 0
+        height: 100%
+        width: 100%
+        border-radius: 5%
+        z-index: 1
+        rect 
+          stroke: white
+          width: 100%
+          height: 100%
+          stroke-width:  2px
+          stroke-dasharray:  2000
+          stroke-dashoffset: 2000
+    
+@keyframes fadeIn 
+  0% 
+    background: rgba(0,0,0,.0)
+  
+  100% 
+    background: rgba(0,0,0,.7)
+
+@keyframes fadeOut 
+  0% 
+    background: rgba(0,0,0,.7)
+  
+  100% 
+    background: rgba(0,0,0,.0)
+  
+
+@keyframes quickScaleDown 
+  0% 
+    transform: scale(1)
+  
+  99.9% 
+    transform: scale(1)
+  
+  100% 
+    transform: scale(0) 
+
+@keyframes sketchIn 
+	0% 
+		stroke-dashoffset:  2000
+	
+	100% 
+		stroke-dashoffset:  0
+
+@keyframes sketchOut 
+	0% 
+		stroke-dashoffset:  0
+	
+	100% 
+		stroke-dashoffset:  2000
+
+@keyframes modalFadeIn 
+  0% 
+    background-color: transparent
+  
+  100% 
+    background-color: white
+  
+
+
+@keyframes modalFadeOut 
+  0% 
+    background-color: white
+  
+  100% 
+    background-color: transparent
+  
+
+
+@keyframes modalContentFadeIn 
+  0% 
+    opacity: 0
+    top: -20px
+  
+  100% 
+    opacity: 1
+    top: 0
+  
+
+
+@keyframes modalContentFadeOut 
+  0% 
+    opacity: 1
+    top: 0px
+  
+  100% 
+    opacity: 0
+    top: -20px
+

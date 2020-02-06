@@ -1,7 +1,9 @@
 import React from "react";
 import "./Styles/App.css";
-import Arduino from "./Code/generar";
-import Blockly from "blockly";
+import Generar from "./Code/generar";
+import Blockly from "./blockly copy/blockly";
+import BlocklyJS from "./blockly copy/Arduino";
+import Menu from "./Code/Modal";
 import BlocklyComponent, {
   Block,
   Value,
@@ -9,25 +11,13 @@ import BlocklyComponent, {
   Shadow,
   Category
 } from "./Blockly";
-import BlocklyJS from "blockly/javascript";
 import "./blocks/customblocks";
 import "./Code/Arduino";
-import Blockly2 from "blockly/core";
-import en from "blockly/msg/en";
-import es from "blockly/msg/es";
-import fr from "blockly/msg/fr";
+//import Idioma from "./Code/idioma";
+//import '../src/blockly copy/setCategoryCharacter'
 
 class App extends React.Component {
-  changeEs = () => {
-    Blockly2.setLocale(es);
-  };
-  changeEn = () => {
-    Blockly2.setLocale(en);
-  };
-  changeFr = () => {
-    Blockly2.setLocale(fr);
-  };
-  juan = () => {
+  generateXml = () => {
     const newXml = Blockly.Xml.domToText(
       Blockly.Xml.workspaceToDom(this.simpleWorkspace.workspace)
     );
@@ -38,11 +28,10 @@ class App extends React.Component {
     document.getElementById("content_arduino").value = code;
     var arduino = document.getElementById("content_arduino");
     var bloques = document.getElementById("bloques");
-    if (arduino.style.visibility === "hidden") {
-      arduino.style.visibility = "visible";
-      bloques.style.visibility = "hidden";
-    }
+    arduino.style.visibility = "visible"
+    bloques.style.visibility = "hidden"
   };
+
   Bloques = () => {
     var bloques = document.getElementById("bloques");
     var arduino = document.getElementById("content_arduino");
@@ -54,6 +43,7 @@ class App extends React.Component {
       arduino.style.visibility = "hidden";
     }
   };
+
   render() {
     return (
       <div>
@@ -63,24 +53,13 @@ class App extends React.Component {
         <button type="button" onClick={this.generateCode}>
           Arduino
         </button>
-        <button type="button" onClick={this.juan}>
+        <button type="button" onClick={this.generateXml}>
           Xml
         </button>
-
-        <form action="#">
-          <button type="button" onClick={this.changeEs}>
-            Es
-          </button>
-          <button type="button" onClick={this.changeFr}>
-            fr
-          </button>
-          <button type="button" onClick={this.changeEn}>
-            En
-          </button>
-        </form>
-        <div id="bloques" className="App">
+        <Menu />
+        <Generar />
+        <div id="bloques" className="blockly">
           <header className="App-header">
-            <Arduino />
             <BlocklyComponent
               ref={e => (this.simpleWorkspace = e)}
               readOnly={false}
@@ -90,8 +69,9 @@ class App extends React.Component {
                 wheel: true
               }}
             >
-              <Category name="Logica">
+              <Category name="variables" id="variables">
                 <Block type="test_react_field" />
+                <Block type="Juan" />
                 <Block type="test_react_date_field" />
                 <Block type="controls_ifelse" />
                 <Block type="logic_compare" />

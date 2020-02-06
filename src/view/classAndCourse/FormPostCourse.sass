@@ -1,0 +1,42 @@
+//Caja Principal ContenedorNivel
+.CT-contenedorNivel
+  border: solid 1px #4747D5
+  margin: 20px 10px
+  border-radius: 0px
+  overflow: hidden
+  
+// Input de Radio
+.CT-opcionNivel
+  position: absolute
+  visibility: hidden
+  display: none
+
+.CT-labelNivel
+  color: #4747D5
+  display: inline-block
+  width: 33.33%
+  cursor: pointer
+  padding: 5px
+  font-family: "Opal"
+
+.CT-opcionNivel:checked + .CT-labelNivel
+  color: lighten(#ffffff,60%)
+  background: #4747D5
+
+.CT-labelNivel + .CT-opcionNivel + .CT-labelNivel
+  border-left: solid 1px #4747D5
+
+
+//Caja Detalle Curso
+.CT-detallesCurso
+  margin: auto 10px
+
+
+//Caja Message
+.CT-message-error
+  background: #E91E63
+  color: white
+  font-weight: 300
+  padding: 8px 5px 5px 5px
+  margin-block-start: 0.6em
+  margin-block-end: 0.3em

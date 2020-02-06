@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Grupos.sass";
 import axios from "axios";
+import Loanding from '../loanding/spinner'
 import io from 'socket.io-client';
 
 export default class GrupoPage extends Component {
@@ -10,7 +11,9 @@ export default class GrupoPage extends Component {
       alumnos: [],
       nro_per_grupo: 1,
       grupos: [],
-      id_access : ''
+      id_access : '',
+      Refrescar:false,
+      loanding:false
     };
   }
   handleNumPerGrou = e => {
@@ -34,17 +37,26 @@ export default class GrupoPage extends Component {
     }).then(res => {
       res.data.map(alumno => {
         this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
-      });
-      const temp = this.state.alumnos;
-      this.setState({
-        alumnos: temp
-      });
+        return null
+      }); 
+      // const temp = this.state.alumnos;
+      // this.setState({
+      //   alumnos: temp
+      // });
     });
   };
   groupGenerator = () => {
+    this.setState({
+      Refrescar:true,
+      loanding:true
+    })
+    const socket = io(this.props.socketUrl, {
+      query:
+          { pin: this.props.id_access }
+    })
     let cadena = ``;
     this.getAlumnos();
-    console.log("Numero de personas en total:" + this.state.alumnos.length);
+    console.log("numero de personas en total:" + this.state.alumnos.length);
     let npg = this.state.nro_per_grupo;
     let n_grupos = Math.ceil(this.state.alumnos.length / npg);
     let grupo2 = this.state.alumnos;
@@ -72,38 +84,82 @@ export default class GrupoPage extends Component {
       </li>
       `;
     }
-    document.getElementById("imprimir").innerHTML = cadena;
-    const socket = io(this.props.socketUrl, {
-      query:
-          { pin: this.props.id_access }
-    })
-    socket.emit('enviando grupos',{
+    setTimeout(() => {
+      document.getElementById("imprimir").innerHTML = cadena;
+      socket.emit('enviando grupos',{
         data : cadena
-    })
-    console.log(cadena)
+      })
+      this.setState({
+        loanding:false
+      })
+      console.log(cadena)
+    }, 500);
+    
   };
+  limpiar=()=>{
+    this.setState({
+      loanding:true
+    })
+    setTimeout(() => {
+     this.setState({
+      Refrescar:false,
+      loanding:false
+    })
+    document.getElementById("imprimir").innerHTML = '' 
+    }, 500);
+    
+  }
 
   render() {
     const { nro_per_grupo } = this.state.nro_per_grupo;
     return (
       <>
-        <div className="cuerpo-grupos">
-          {nro_per_grupo}
-          <span> Numero de personas por grupo  </span>
-          <input
-            min="1"
-            className="input-text"
-            type="number"
-            name="numGrup"
-            placeholder="numero de personas por grupos"
-            value={this.state.nro_per_grupo}
-            onChange={this.handleNumPerGrou}
-          />
-          <button className="button" onClick={this.groupGenerator}><label className="tex">FORMAR GRUPOS</label></button>
-        </div>
-        <div className="contenedor-grupos">
-          <ul className="grupos-cards" id="imprimir"></ul>
-        </div>
+      {this.state.loanding?
+      <Loanding/>:null
+  
+      }
+        {/* Cuerpos de Grupo */}
+          <div className="cuerpo-grupos">
+            {
+            this.state.Refrescar?
+            
+            
+            
+            
+            /* Boton de Formar Grupos */
+            <>
+            <span>Grupos formados por {this.state.nro_per_grupo} Alumnos </span>
+            <button className="button" onClick={this.limpiar}>
+              <label className="tex">
+                LIMPIAR
+              </label>
+            </button>
+            </>
+            :
+            <>
+            {nro_per_grupo}
+            <span>Número de personas por grupo </span>
+            <input
+              min="1"
+              className="input-text"
+              type="number"
+              name="numGrup"
+              placeholder="Nùmero de personas por grupos"
+              value={this.state.nro_per_grupo}
+              onChange={this.handleNumPerGrou}
+            />
+            <button className="button" onClick={this.groupGenerator}>
+              <label className="tex">
+                FORMAR GRUPOS
+              </label>
+            </button>
+            </>
+            }
+          </div>
+          {/* Contenedor De  Grupos */}
+          <div className="contenedor-grupos">
+            <ul className="grupos-cards" id="imprimir"></ul>
+          </div>
       </>
     );
   }

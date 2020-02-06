@@ -4,7 +4,7 @@
   top: 0
   width: 100%
   height: 100%
-  font-family: Opal
+  font-family: opal
   background-image: url(./bg-teacher-login.jpg)
   background-color: #5356ad
   background-size: cover
@@ -57,7 +57,7 @@
       position: absolute
       left: 152px
       top: 50px
-      background-color: #9297e0
+      background-color: #4f8e79c9
       transform: rotateX(52deg) rotateY(15deg) rotateZ(-38deg)
       width: 300px
       height: 285px
@@ -70,7 +70,7 @@
       position: absolute
       left: 152px
       top: 50px
-      background-color: #9297e0
+      background-color: #4f8e79c9
       transform: rotateX(52deg) rotateY(15deg) rotateZ(-38deg)
       width: 300px
       height: 285px
@@ -78,7 +78,7 @@
       -o-transition: all 0.5s
       -webkit-transition: all 0.5s
       transition: all 0.5s
-      background-color: #a5aae4
+      background-color: #4f8e79c9
       top: -10px
       left: 80px
       width: 320px
@@ -92,7 +92,7 @@
     margin: 0 auto
     width: 130px
     color: #fff
-    background-color: #ff73b3
+    background-color: #52be7f
     opacity: 1
     -moz-transition: all 0.5s
     -o-transition: all 0.5s
@@ -109,6 +109,7 @@
     box-sizing: content-box
     border: none
     display: block
+    font-family: monospace
     width: 220px
     font-size: 14px
     -moz-transition: all 0.3s
@@ -132,7 +133,7 @@
       -webkit-transition: all 0.3s
       transition: all 0.3s
       p
-        font-size: 20px
+        font-size: 32px
         margin: 20px
       .loginTeacher-btn
         background-color: transparent
@@ -155,10 +156,13 @@
     -o-transition: all 0.5s
     -webkit-transition: all 0.5s
     transition: all 0.5s
+    border-radius: 5%
     .loginTeacher-btn
       position: relative
-      box-shadow: 0 0 10px 1px #ff73b3
+      box-shadow: 0 0 10px 1px #52be7f
       margin-top: 30px
+      font-family: Opal
+      font-size: 15px
   .loginTeacher-form-item
     position: absolute
     left: 0
@@ -219,7 +223,7 @@
 
 .loginTeacher-button-google
   float: left
-  font-family: Opal
+  font-family: opal
   color: #ffffff !important
   background: #4285f4
   min-width: 90%
@@ -230,6 +234,7 @@
   font-size: 15px
   font-weight: 500
   line-height: 40px
+  text-decoration: none
   letter-spacing: 0.21px
   border: #4285f4 1px solid
   border-radius: 100px
@@ -315,3 +320,15 @@
       height: 420px
     &.log-in .loginTeacher-container-form
       left: 30px
+.loginTeacherHeader
+  height: 51px
+  padding: 13px 19px 0
+  max-width: 255px
+  .logoAcademy
+    height: 51px
+    margin: 15px
+    background-image: url('../../img/LogoBlancoNegro.svg') 
+    background-repeat: no-repeat
+    &:hover
+      background-image: url('../../img/LogoColor.svg') 
+      background-repeat: no-repeat

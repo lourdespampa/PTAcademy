@@ -2,10 +2,11 @@
   height: 72%;
   width: 100%;
   position: absolute;
-  padding: 10px;
+  padding: 10px; 
   font-size: 14px;
   display: block;
   font-family: monospace;
   line-height: 12px;
   resize: none;
+  visibility: hidden;
 }

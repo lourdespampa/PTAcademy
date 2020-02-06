@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import * as Blockly from 'blockly/core';
+import * as Blockly from '../blockly copy/core';
 
 
 class BlocklyReactField extends Blockly.Field {

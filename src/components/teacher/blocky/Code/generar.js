@@ -4,13 +4,12 @@ import '../App';
 
 
 class Arduino extends React.Component {
-
- render() {
-    return ( <div className="container">
-    <div className="comment">
-    <textarea  id="content_arduino" className="textinput" readOnly="readOnly" ></textarea>
+  render() {
+    return (<div className="container">
+      <div className="comment">
+        <textarea id="content_arduino" className="textinput" readOnly="readOnly" ></textarea>
+      </div>
     </div>
-</div>
     );
   }
 }

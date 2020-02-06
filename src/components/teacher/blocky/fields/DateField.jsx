@@ -1,6 +1,6 @@
 
 import React from 'react';
-import * as Blockly from 'blockly/core';
+import * as Blockly from '../blockly copy';
 
 import BlocklyReactField from './BlocklyReactField';
 
@@ -13,7 +13,7 @@ class ReactDateField extends BlocklyReactField {
   static fromJson(options) {
     return new ReactDateField(new Date(options['date']));
   }
-  
+
   onDateSelected_ = (date) => {
     this.setValue(new Date(date));
     Blockly.DropDownDiv.hideIfOwner(this, true);
@@ -29,9 +29,9 @@ class ReactDateField extends BlocklyReactField {
 
   render() {
     return <DatePicker
-        selected={this.value_}
-        onChange={this.onDateSelected_}
-        inline />
+      selected={this.value_}
+      onChange={this.onDateSelected_}
+      inline />
   }
 }
 
