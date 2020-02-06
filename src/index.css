@@ -441,7 +441,7 @@ template {
     margin: 0;
     line-height: 1.4;
     letter-spacing: .02em;
-    font-family: monospace;
+    /* font-family: monospace; */
   }
 
 .modal-body .modal-title__controldescription{
@@ -455,7 +455,7 @@ template {
     border: 1px solid #4747D5;
     margin: auto auto 10px;
     resize: none;
-    font-family: monospace;
+    /* font-family: monospace; */
     padding: 10px 
     }
 
@@ -636,5 +636,8 @@ template {
     padding: 2.25rem 0.5rem;}
 
   .punto-marco {
-    margin: 0px 1px 10px;}  
+    margin: 0px 1px 10px;} 
+
+  .modal-body__button.backCursos{
+    margin: 10px} 
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./CourseDetail.sass";
 import NavCourse from "./NavCourseDetail";
 import axios from "axios";
+import iconExit from "../../../img/cerrar.png";
 // import CardStudent from './CardStudent'
 export default class CourseDetail extends Component {
   constructor(props) {
@@ -11,9 +12,14 @@ export default class CourseDetail extends Component {
       id_course: "",
       id_teacher: "",
       students: [],
+      editar: false,
+      idMapAlumno: "",
+      apellidoAlumno: "",
+      nombreAlumno: "",
       apiUrl: "http://3.16.110.136:4200",
       compentencias: [],
-      competenciasAlumnos: []
+      competenciasAlumnos: [],
+      showdelete: 0
     };
   }
 
@@ -33,6 +39,22 @@ export default class CourseDetail extends Component {
     let tokenStorage = localStorage.getItem("token");
     await this.setState({ token: tokenStorage });
   };
+
+  handleEditStudent = (idAlumno) => {
+    this.setState({
+      editar: !this.state.editar,
+      idMapAlumno: idAlumno
+    })
+  }
+
+  handleChangeInputs = e => {
+    let name = e.target.name
+    let value = e.target.value
+
+    this.setState({[name]: value})
+    console.log(this.state.apellidoAlumno,this.state.nombreAlumno)
+  }
+
   getAlumnos = () => {
     console.log("listar alumnos ");
     const {
@@ -66,6 +88,13 @@ export default class CourseDetail extends Component {
     const nav = document.getElementById("main-nav");
     nav.classList.remove("show");
   };
+  setShow = () => {
+    this.setState({showdelete:1})
+  };
+  setClose = () => {
+    this.setState({showdelete:2})
+  };
+
   render() {
     return (
       <>
@@ -91,23 +120,45 @@ export default class CourseDetail extends Component {
                 {this.state.compentencias.map((compentencia, id) => (
                   <th key={id} className="CourseDetail__table-th">{compentencia}</th>
                 ))}
+                <th className="CourseDetail__table-th">Editar</th>
                 <th className="CourseDetail__table-th">Eliminar</th>
               </tr>
             </thead>
+            {/* cuerpo de la tabla */}
             <tbody className="CourseDetail__table-body">
-              {this.state.students.map(alumno => (
+              {this.state.students.map((alumno,idAlumno) => (
                 <tr className="CourseDetail__table-tr" key={alumno._id}>
                   <td className="CourseDetail__table-td" data-th="Codigo">
                     {alumno.randonCode}
                   </td>
                   <td className="CourseDetail__table-td" data-th="Apellidos">
-                    {alumno.lastName_stu}
+                    {
+                      this.state.editar
+                      ?
+                        this.state.idMapAlumno === idAlumno
+                        ?
+                        <input type="text" name="apellidoAlumno" defaultValue={alumno.lastName_stu} onChange={this.handleChangeInputs} />
+                        :
+                        alumno.lastName_stu
+                      :
+                      alumno.lastName_stu
+                    }
                   </td>
                   <td
                     className="CourseDetail__table-td"
                     data-th="Nombres"
                   >
-                    {alumno.name_stu}
+                    {
+                      this.state.editar
+                      ?
+                        this.state.idMapAlumno === idAlumno
+                        ?
+                        <input type="text" name="nombreAlumno" defaultValue={alumno.name_stu} onChange={this.handleChangeInputs} />
+                        :
+                        alumno.name_stu
+                      :
+                      alumno.name_stu
+                    }
                   </td>
                   {this.state.compentencias.map((compentencia, id) => (
                     <td
@@ -121,14 +172,32 @@ export default class CourseDetail extends Component {
                         <option value="B">B</option>
                         <option value="C">C</option>
                       </select>
-                      <input type="text" placeholder={compentencia}></input>
+                      {
+                      this.state.editar
+                      ?
+                        this.state.idMapAlumno === idAlumno
+                        ?
+                        <input type="text" name="nombreAlumno" defaultValue={compentencia} onChange={this.handleChangeInputs} />
+                        :
+                        "descripción"
+                      :
+                      "descripción"
+                      }
                     </td>
                   ))}
                   <td
                     className="CourseDetail__table-td"
+                    data-th="Editar"
+                  >
+                    <button className="courseTeacher__button-alumno" onClick={() => this.handleEditStudent(idAlumno)} >
+                      <i className="courseTeacher__img fas fa-edit"></i>
+                    </button>
+                  </td>
+                  <td
+                    className="CourseDetail__table-td"
                     data-th="Eliminar"
                   >
-                    <button className="courseTeacher__button-delette">
+                    <button className="courseTeacher__button-delette" onClick={this.setShow}>
                       <i className="courseTeacher__img fas fa-trash"></i>
                     </button>
                   </td>
@@ -136,6 +205,31 @@ export default class CourseDetail extends Component {
               ))}
             </tbody>
           </table>
+        </div>
+        <div id="modal-general_container" className={this.state.showdelete === 0 ? "" : this.state.showdelete === 1 ? "six" : this.state.showdelete === 2 ? "six out" : ""}>
+          <div className="modal-general_background">
+            <div className="modal-general_bg_content">
+              <button className="modal-general_close" onClick={this.setClose}>
+                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+              </button>
+              <div className="modal-general_container">
+                <div className="modal-general_container_header">
+                  <span className="modal-title">¿DESEA ELIMINAR AL ALUMNO?</span>
+                </div>
+                <div className="modal-general_container_body">
+                  <button className="modal-body__button yes" onClick={this.setClose} type="button">
+                    <div className="button-zoom">SI</div>
+                  </button>
+                  <button className="modal-body__button no" onClick={this.setClose} type="button">
+                    <div className="button-zoom">NO</div>
+                  </button>
+                </div>
+              </div>
+              <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+              </svg>
+            </div>
+          </div>
         </div>
       </>
     );
