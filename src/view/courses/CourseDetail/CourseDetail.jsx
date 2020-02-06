@@ -1,47 +1,40 @@
 import React, { Component } from "react";
 import "./CourseDetail.sass";
 import NavCourse from "./NavCourseDetail";
-import axios from 'axios'
+import axios from "axios";
+// import CardStudent from './CardStudent'
 export default class CourseDetail extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       token: false,
-      id_course : "",
-      id_teacher : "",
-      students : [],
-      apiUrl : 'http://3.16.110.136:4200'
-    }
+      id_course: "",
+      id_teacher: "",
+      students: [],
+      apiUrl: "http://3.16.110.136:4200",
+      compentencias: [],
+      competenciasAlumnos: []
+    };
   }
-  
-  componentDidMount(){
-    var varToken = localStorage.getItem('token');
-    const { match: { params } } = this.props;
-    this.setState({ id_course: params.id_course, id_teacher: params.id });
-    setTimeout(() => console.log(this.state.id_course, this.state.id_teacher), 2000)
-    axios({
-      url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
-      method: "GET",
-      headers: {
-        "x-access-token": `${varToken}`
-      }
-    })
-      .then(({ data }) => {
-        console.log(data)
-        if (data === []) {
-          this.setState({ students: [] });
-        } else {
-          this.setState({ students: data });
-        }
-      })
-      .catch(e => console.log(e));
+
+  componentDidMount() {
+    console.log(this.props, this.props.location.state)
+    const {
+      match: { params }
+    } = this.props;
+    this.setState({ id_course: params.id_course, id_teacher: params.id, compentencias: this.props.location.state });
+    setTimeout(
+      () => console.log(this.state.id_course, this.state.id_teacher, this.state.compentencias),
+      2000
+    );
+    this.getAlumnos()
   }
   UNSAFE_componentWillMount = async () => {
     let tokenStorage = localStorage.getItem("token");
     await this.setState({ token: tokenStorage });
   };
   getAlumnos = () => {
-    console.log("listar cursos");
+    console.log("listar alumnos ");
     const {
       match: { params }
     } = this.props;
@@ -54,11 +47,12 @@ export default class CourseDetail extends Component {
       }
     })
       .then(({ data }) => {
-        console.log(data)
+        console.log(data);
         if (data === []) {
-          this.setState({ students: [] });
+          this.setState({ students: [], });
         } else {
-          this.setState({ students: data });
+          this.setState({ students: data, competenciasAlumnos: data.competences })
+          console.log(this.state.competenciasAlumnos);
         }
       })
       .catch(e => console.log(e));
@@ -68,10 +62,10 @@ export default class CourseDetail extends Component {
     nav.classList.toggle("show");
   };
   Cerrar = () => {
-    console.log('se tiene que cerrar')
+    console.log("se tiene que cerrar");
     const nav = document.getElementById("main-nav");
-    nav.classList.remove('show')
-  }
+    nav.classList.remove("show");
+  };
   render() {
     return (
       <>
@@ -82,7 +76,7 @@ export default class CourseDetail extends Component {
           nombreProfesor={this.state.nombreProfesor}
           getdata={this.getAlumnos}
         ></NavCourse>
-
+        {/* <CardStudent></CardStudent> */}
         <div className="CourseDetail__Container" onClick={this.Cerrar}>
           <div>
             <h1 className="CourseDetail__title">Lista de alumnos</h1>
@@ -90,38 +84,56 @@ export default class CourseDetail extends Component {
 
           <table className="CourseDetail__table">
             <thead>
-            <tr className="CourseDetail__table-tr">
+              <tr className="CourseDetail__table-tr">
+                <th className="CourseDetail__table-th">Codigo</th>
                 <th className="CourseDetail__table-th">Apellidos</th>
                 <th className="CourseDetail__table-th">Nombres</th>
-                <th className="CourseDetail__table-th">Código</th>
-                <th className="CourseDetail__table-th">Competencia 2</th>
-                <th className="CourseDetail__table-th">Competencia 3</th>
-                <th className="CourseDetail__table-th">Competencia 4</th>
+                {this.state.compentencias.map((compentencia, id) => (
+                  <th key={id} className="CourseDetail__table-th">{compentencia}</th>
+                ))}
+                <th className="CourseDetail__table-th">Eliminar</th>
               </tr>
             </thead>
-          <tbody className="CourseDetail__table-body">
+            <tbody className="CourseDetail__table-body">
               {this.state.students.map(alumno => (
-              <tr className="CourseDetail__table-tr" key={alumno._id}>
-               <td className="CourseDetail__table-td" data-th="Apellidos">
-                  <h1>{alumno.name_stu}</h1>
-                </td>
-                <td className="CourseDetail__table-td" data-th="Nombres">
-                <h1>{alumno.lastName_stu}</h1>
-                </td>
-                <td className="CourseDetail__table-td" data-th="Compentencia 1">
-                  ASDF19218
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 2">
-                  06/25/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 3">
-                  12/25/2016
-                </td>
-                <td className="CourseDetail__table-td" data-th="Competencia 4">
-                  $8,322.12
-                </td>
-              </tr>
-            ))}
+                <tr className="CourseDetail__table-tr" key={alumno._id}>
+                  <td className="CourseDetail__table-td" data-th="Codigo">
+                    {alumno.randonCode}
+                  </td>
+                  <td className="CourseDetail__table-td" data-th="Apellidos">
+                    {alumno.lastName_stu}
+                  </td>
+                  <td
+                    className="CourseDetail__table-td"
+                    data-th="Nombres"
+                  >
+                    {alumno.name_stu}
+                  </td>
+                  {this.state.compentencias.map((compentencia, id) => (
+                    <td
+                      key={id}
+                      className="CourseDetail__table-td"
+                      data-th="Competencia d"
+                    >
+                      <select>
+                        <option value="AD">AD</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                      </select>
+                      <input type="text" placeholder={compentencia}></input>
+                    </td>
+                  ))}
+                  <td
+                    className="CourseDetail__table-td"
+                    data-th="Eliminar"
+                  >
+                    <button className="courseTeacher__button-delette">
+                      <i className="courseTeacher__img fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

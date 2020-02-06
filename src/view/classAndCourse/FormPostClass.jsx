@@ -48,6 +48,7 @@ export default class FormPostCourse extends Component {
               as="textarea"
               rows="2"
               required
+              placeholder="Ingrese la descripción de la clase"
             />
             <Upload handleClose={this.props.handleClose} handleEnableX={this.props.handleEnableX} handleDisableX={this.props.handleDisableX} cleanInputs={this.handleCleanInput} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc} apiUrl={this.props.apiUrl}   ></Upload>
           </Form.Group>

@@ -1,5 +1,8 @@
 /* cabecera */
-
+.trivia-respuestas{
+    padding: 8.5px;
+    text-align: center
+}
 .triviaT-topnav {
     overflow: hidden;
     background-color: #333;
@@ -257,9 +260,9 @@
 .rolldown-list li {
     box-sizing: content-box;
     /* padding: 2.5%; */
-    height: 17%;
-    margin-bottom: .125em;
-    display: block;
+    /* height: 17%; */
+    /* margin-bottom: .125em; */
+    /* display: block; */
     list-style: none;
     font-weight: bold;
     text-transform: uppercase;
@@ -304,9 +307,12 @@
     margin-top: 1%;
     position: absolute;
     width: 50%;
-    height: 60%;
     left: 50%;
     margin-left: -25%;
+}
+
+h3.trivia-respuestas{
+    text-align: center;
 }
 
 @keyframes rolldown {
@@ -322,4 +328,10 @@
         visibility: visible;
         transform: rotateX(0deg);
     }
+}
+
+@media screen and (max-width: 600px){
+.modal-respuestas .modal-content-respuestas{
+    width: 80% 
+}
 }

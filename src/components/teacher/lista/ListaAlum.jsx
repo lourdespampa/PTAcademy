@@ -59,8 +59,32 @@ export default class ListaAlum extends Component {
             }
         })
     }
+    //rellenar alumnos para profesor de colegio
+    getAlumnos = () => {
+        console.log("listar cursos");
+        const {
+          match: { params }
+        } = this.props;
+        var varToken = localStorage.getItem("token");
+        axios({
+          url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
+          method: "GET",
+          headers: {
+            "x-access-token": `${varToken}`
+          }
+        })
+          .then(({ data }) => {
+            console.log(data);
+            if (data === []) {
+              this.setState({ students: [] });
+            } else {
+              this.setState({ students: data });
+            }
+          })
+          .catch(e => console.log(e));
+      };
+    //rellenar state de estudiantes de profesor privado
 
-    //rellenar state
     getStudents = async () => {
         console.log(this.state.students)
         console.log(this.props.id_access)
@@ -215,13 +239,13 @@ export default class ListaAlum extends Component {
              </table>`)
         var user = JSON.parse(localStorage.getItem('user'));
 
-        const params = {
-            hml: html,
-            data: a,
-            name: 'playtecAcademy Clase prueba',
-            email: user.email
-        }
-        await axios.post('http://email-service-playtec.herokuapp.com/', params)
+        // const params = {
+        //     hml: html,
+        //     data: a,
+        //     name: 'playtecAcademy Clase prueba',
+        //     email: user.email
+        // }
+        // await axios.post('http://email-service-playtec.herokuapp.com/', params)
 
     }
     setShow = (nom, val) => {
@@ -267,8 +291,8 @@ export default class ListaAlum extends Component {
                     </div>
                 </div>
                 <div id="modal-general_container" className={this.state.modals.showpuntosmas === 0 ? "" : this.state.modals.showpuntosmas === 1 ? "six" : this.state.modals.showpuntosmas === 2 ? "six out" : ""}>
-                    <div class="modal-general_background">
-                        <div class="modal-general_bg_content">
+                    <div className="modal-general_background">
+                        <div className="modal-general_bg_content">
                             <button className="modal-general_close" onClick={() => this.setShow('showpuntosmas', 2)}>
                                 <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                             </button>
@@ -280,15 +304,15 @@ export default class ListaAlum extends Component {
                                     <BtnPuntos data={this.state.datapoint.pocitivo} funcion={this.onClickPointAdd} />
                                 </div>
                             </div>
-                            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                                 <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
                             </svg>
                         </div>
                     </div>
                 </div>
                 <div id="modal-general_container" className={this.state.modals.showpuntosmenos === 0 ? "" : this.state.modals.showpuntosmenos === 1 ? "six" : this.state.modals.showpuntosmenos === 2 ? "six out" : ""}>
-                    <div class="modal-general_background">
-                        <div class="modal-general_bg_content">
+                    <div className="modal-general_background">
+                        <div className="modal-general_bg_content">
                             <button className="modal-general_close" onClick={() => this.setShow('showpuntosmenos', 2)}>
                                 <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                             </button>
@@ -300,7 +324,7 @@ export default class ListaAlum extends Component {
                                     <BtnPuntos data={this.state.datapoint.negativo} funcion={this.onClickPointRemove} />
                                 </div>
                             </div>
-                            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                                 <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
                             </svg>
                         </div>
@@ -321,8 +345,8 @@ export default class ListaAlum extends Component {
                     </Modal.Body>
                 </Modal> */}
                 <div id="modal-general_container" className={this.state.modals.shownota === 0 ? "" : this.state.modals.shownota === 1 ? "six" : this.state.modals.shownota === 2 ? "six out" : ""}>
-                    <div class="modal-general_background">
-                        <div class="modal-general_bg_content">
+                    <div className="modal-general_background">
+                        <div className="modal-general_bg_content">
                             <button className="modal-general_close" onClick={() => this.setShow('shownota', 2)}>
                                 <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                             </button>
@@ -332,18 +356,18 @@ export default class ListaAlum extends Component {
                                 </div>
                                 <div className="modal-general_container_body">
                                     <input type="text" value={this.state.note} onChange={this.onChangeInput} />
-                                    <button id="btnnotas" class="button btnMyM" onClick={() => this.onSubmitNote() + this.setShow('shownota', 2)} type="button" >MODIFICAR</button>
+                                    <button id="btnnotas" className="button btnMyM" onClick={() => this.onSubmitNote() + this.setShow('shownota', 2)} type="button" >MODIFICAR</button>
                                 </div>
                             </div>
-                            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                                 <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
                             </svg>
                         </div>
                     </div>
                 </div>
                 <div id="modal-general_container" className={this.state.modals.showcomportamiento === 0 ? "" : this.state.modals.showcomportamiento === 1 ? "six" : this.state.modals.showcomportamiento === 2 ? "six out" : ""}>
-                    <div class="modal-general_background">
-                        <div class="modal-general_bg_content">
+                    <div className="modal-general_background">
+                        <div className="modal-general_bg_content">
                             <button className="modal-general_close" onClick={() => this.setShow('showcomportamiento', 2)}>
                                 <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                             </button>
@@ -355,7 +379,7 @@ export default class ListaAlum extends Component {
                                     <BtnPuntos data={this.state.datapoint.camportamiento} funcion={this.onClickConductAdd} />
                                 </div>
                             </div>
-                            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                                 <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
                             </svg>
                         </div>
@@ -380,8 +404,8 @@ export default class ListaAlum extends Component {
                     </Modal.Body>
                 </Modal> */}
                 <div id="modal-general_container" className={this.state.modals.showdelete === 0 ? "" : this.state.modals.showdelete === 1 ? "six" : this.state.modals.showdelete === 2 ? "six out" : ""}>
-                    <div class="modal-general_background">
-                        <div class="modal-general_bg_content">
+                    <div className="modal-general_background">
+                        <div className="modal-general_bg_content">
                             <button className="modal-general_close" onClick={() => this.setShow('showdelete', 2)}>
                                 <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                             </button>
@@ -398,7 +422,7 @@ export default class ListaAlum extends Component {
                                 </button>
                                 </div>
                             </div>
-                            <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                                 <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
                             </svg>
                         </div>

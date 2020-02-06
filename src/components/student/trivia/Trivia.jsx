@@ -1,5 +1,6 @@
 import React from "react";
 import "./Trivia.sass";
+import logoPlaytec from './playvr.webp';
 import io from 'socket.io-client';
 
 const styles = {
@@ -22,6 +23,7 @@ export default class Trivia extends React.Component {
       respuestaRecibida: false,
       pregunta: '',
       time: 0,
+      imagen: '',
       respuesta1: '',
       respuesta2: '',
       respuesta3: '',
@@ -40,13 +42,14 @@ export default class Trivia extends React.Component {
         this.setState({
           pregunta: data.data.pregunta,
           time: data.data.tiempo,
+          imagen: data.data.imagen,
           preguntaCorrecta: data.data.respuestaCorrecta,
           respuesta1: data.data.respuestaOne,
           respuesta2: data.data.respuestaTwo,
           respuesta3: data.data.respuestaTree,
           respuesta4: data.data.respuestaFour
         })
-
+        if(data.data.imagen) document.getElementById("pre-imagen").setAttribute("src", data.data.imagen)
         setTimeout(() => {
           this.setState({ respuestaRecibida: true })
           this.interval = setInterval(() => this.cuentaRegresiva(), 1000)
@@ -70,6 +73,7 @@ export default class Trivia extends React.Component {
           respuesta3: '',
           respuesta4: ''
         })
+        document.getElementById("pre-imagen").setAttribute("src", logoPlaytec)  
       }
     })
   };
@@ -138,6 +142,7 @@ export default class Trivia extends React.Component {
 
         {/* contenido */}
         <div className="contenedorPrincipal">
+          <div className="triviaS-preheader"><h1>{this.state.pregunta}</h1></div>
           <div className="header2">
             <h1 className="triviaStudent-title" id="question">{this.state.pregunta ? this.state.pregunta : "¿Es esta una pregunta?"}</h1>
           </div>
@@ -154,8 +159,7 @@ export default class Trivia extends React.Component {
             <div className="trivia-student-center" id="center">
               <img
                 id="pre-imagen"
-                src={require("./playvr.webp")}
-                width="220"
+                src={logoPlaytec}
                 alt=""
               />
             </div>
@@ -204,7 +208,8 @@ export default class Trivia extends React.Component {
                       }
                     }}>
                     <div className="triviaStudentSimbol">
-                      <img src={require("./equis-blanco.webp")} alt="" />
+                      {/* <img src={require("./equis-blanco.webp")} alt="" /> */}
+                      <img src={require("./triangle.png")} alt="" />
                     </div>
                     <div className="triviaStudentText">
                       <p id="answerEquis">{this.state.respuesta2 ? this.state.respuesta2 : "Respuesta 2"}</p>

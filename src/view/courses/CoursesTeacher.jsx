@@ -16,7 +16,8 @@ export default class CoursesTeacher extends Component {
       _id: "",
       show: 0,
       id_curso: "",
-      courses: []
+      courses: [],
+      competencias: []
     };
   }
   componentDidMount() {
@@ -28,22 +29,7 @@ export default class CoursesTeacher extends Component {
     } = this.props;
     this.setState({ _id: params.id });
     //luego, obtenemos la lista de cursos del profesor por petición a la API
-    axios({
-      url: `${this.props.apiUrl}/v1/api/teacher/${params.id}/course_detail`,
-      method: "GET",
-      headers: {
-        "x-access-token": `${varToken}`
-      }
-    })
-      .then(({ data }) => {
-        console.log(data)
-        if (data === []) {
-          this.setState({ courses: [] });
-        } else {
-          this.setState({ courses: data });
-        }
-      })
-      .catch(e => console.log(e));
+    this.getCursos()
     axios({
       url: `${this.props.apiUrl}/v1/api/admin/user/${params.id}`,
       method: "GET",
@@ -51,7 +37,7 @@ export default class CoursesTeacher extends Component {
         "x-access-token": `${varToken}`
       }
     }).then(({ data }) => {
-      // console.log(data);
+      console.log(data);
       this.setState({ nombreProfesor: `${data.user_name} ${data.user_lastName}` });
     });
   }
@@ -111,6 +97,7 @@ export default class CoursesTeacher extends Component {
               this.state.courses.map((cursos, id) => (
                 <li className="courseTeacher-cards" key={id}>
                   <AllCourses
+                    apiUrl={this.props.apiUrl}
                     level={cursos.level}
                     grade={cursos.grade}
                     section={cursos.section}
@@ -121,6 +108,7 @@ export default class CoursesTeacher extends Component {
                     idteacher={this.state._id}
                     onClick={this.onClick}
                     setShow={this.setShow}
+                    competencias= {cursos.competences}
                   />
                 </li>
               ))
