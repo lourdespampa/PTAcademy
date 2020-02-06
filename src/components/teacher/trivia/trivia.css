@@ -316,7 +316,9 @@ h3.trivia-respuestas{
 }
 
 .input-Trespuestas{
-    width: 30px
+    width: 30px;
+    padding-top: 8px;
+    padding-bottom: 0;
 }
 
 @keyframes rolldown {
