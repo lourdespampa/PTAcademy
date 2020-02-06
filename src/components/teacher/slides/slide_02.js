@@ -104,7 +104,7 @@ changeCarrucel(e){
         </>
           :
       <div style={styles}> 
-        <Carousel showArrows={true} useKeyboardArrows={false} swipeable={true} emulateTouch={false}	 showIndicators={false}
+        <Carousel showArrows={true} useKeyboardArrows={true} swipeable={true} emulateTouch={true}	 showIndicators={false}
          showThumbs={false} onChange={(e)=>this.changeCarrucel(e)}>
             {
                 this.state.Slides.map((slide)=>(

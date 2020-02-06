@@ -7,7 +7,13 @@ import io from 'socket.io-client';
 //import { Container, Row, Col } from 'reactstrap';
 
 class Trivia extends React.Component {
-  constructor(props) {
+  /** 
+   * Fix pin 
+   *  :: valor inicial de PIN al cargar component
+   * */ 
+  pin = ''
+  /******************* */
+  constructor(props){
     super(props)
     this.state = {
       pregunta: '',
@@ -34,22 +40,34 @@ class Trivia extends React.Component {
     this.handleCorrectAnswer = this.handleCorrectAnswer.bind(this);
   }
 
-  componentDidMount() {
-    const socket = io(this.props.socketUrl, {
+  componentDidMount(){
+    const { 
+      id_access, 
+      socketUrl 
+    } = this.props
+    /** Fix pin */
+    this.pin = id_access
+    console.log('valor de pin cuando inicia componente: ' + this.pin)
+    /** **************** */
+    const socket = io(socketUrl, {
       query:
-        { pin: this.props.id_access }
+          { pin: this.pin }
     })
-    socket.on('pregunta escogida', (data) => {
-      this.state.alumnosRecibidos.push(data)
-      const temp = this.state.alumnosRecibidos
-      this.setState({ alumnosRecibidos: temp })
-    })
+      socket.on('pregunta escogida', (data) => {
+        const pinTeacher = this.pin.toUpperCase();
+        if(data.pin===pinTeacher){
+        this.state.alumnosRecibidos.push(data)
+        const temp = this.state.alumnosRecibidos
+        this.setState({alumnosRecibidos: temp})
+      }
+      })
   }
   //por buenas practicas, se deberia finalizar toda accion que pueda afectar el rendimiento del componente al morir
   //por lo que toda accion por tiempo se finaliza en este metodo, por ejemplo en la función handleSendQuestion() al final
   //hay un TimeOut
   componentWillUnmount() {
     clearTimeout(this.timeout);
+    this.pin = ''
   }
 
   showModal = () => {
@@ -159,7 +177,9 @@ class Trivia extends React.Component {
         respuestaCorrecta: this.state.selectedCorrectAnswer
       }
       socket.emit('enviando pregunta', contenido)
-      this.timeout = setTimeout(() => this.setState({ modal: true }), parseInt(`${this.state.tiempo}000`, 10) + 5000)
+      //finalmente cambia el estado del boton a restaurar.
+      this.setState(state => ({ preguntaEnviada: !state.preguntaEnviada }));
+      this.timeout = setTimeout(() => this.setState({ modal: true }), parseInt(`${this.state.tiempo}000`, 10) + 8000)
     }
   }
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Grupos.sass";
 import axios from "axios";
+import Loanding from '../loanding/spinner'
 import io from 'socket.io-client';
 
 export default class GrupoPage extends Component {
@@ -10,7 +11,9 @@ export default class GrupoPage extends Component {
       alumnos: [],
       nro_per_grupo: 1,
       grupos: [],
-      id_access : ''
+      id_access : '',
+      Refrescar:false,
+      loanding:false
     };
   }
   handleNumPerGrou = e => {
@@ -43,8 +46,16 @@ export default class GrupoPage extends Component {
     });
   };
   groupGenerator = () => {
+    this.setState({
+      Refrescar:true,
+      loanding:true
+    })
+    const socket = io(this.props.socketUrl, {
+      query:
+          { pin: this.props.id_access }
+    })
     let cadena = ``;
-    // this.getAlumnos();
+    this.getAlumnos();
     console.log("numero de personas en total:" + this.state.alumnos.length);
     let npg = this.state.nro_per_grupo;
     let n_grupos = Math.ceil(this.state.alumnos.length / npg);
@@ -73,23 +84,59 @@ export default class GrupoPage extends Component {
       </li>
       `;
     }
-    document.getElementById("imprimir").innerHTML = cadena;
-    const socket = io(this.props.socketUrl, {
-      query:
-          { pin: this.props.id_access }
-    })
-    socket.emit('enviando grupos',{
+    setTimeout(() => {
+      document.getElementById("imprimir").innerHTML = cadena;
+      socket.emit('enviando grupos',{
         data : cadena
-    })
-    console.log(cadena)
+      })
+      this.setState({
+        loanding:false
+      })
+      console.log(cadena)
+    }, 500);
+    
   };
+  limpiar=()=>{
+    this.setState({
+      loanding:true
+    })
+    setTimeout(() => {
+     this.setState({
+      Refrescar:false,
+      loanding:false
+    })
+    document.getElementById("imprimir").innerHTML = '' 
+    }, 500);
+    
+  }
 
   render() {
     const { nro_per_grupo } = this.state.nro_per_grupo;
     return (
       <>
+      {this.state.loanding?
+      <Loanding/>:null
+  
+      }
         {/* Cuerpos de Grupo */}
           <div className="cuerpo-grupos">
+            {
+            this.state.Refrescar?
+            
+            
+            
+            
+            /* Boton de Formar Grupos */
+            <>
+            <span>Grupos formados por {this.state.nro_per_grupo} Alumnos </span>
+            <button className="button" onClick={this.limpiar}>
+              <label className="tex">
+                LIMPIAR
+              </label>
+            </button>
+            </>
+            :
+            <>
             {nro_per_grupo}
             <span>Número de personas por grupo </span>
             <input
@@ -101,13 +148,13 @@ export default class GrupoPage extends Component {
               value={this.state.nro_per_grupo}
               onChange={this.handleNumPerGrou}
             />
-            {/* Boton de Formar Grupos */}
             <button className="button" onClick={this.groupGenerator}>
               <label className="tex">
                 FORMAR GRUPOS
               </label>
-
             </button>
+            </>
+            }
           </div>
           {/* Contenedor De  Grupos */}
           <div className="contenedor-grupos">
