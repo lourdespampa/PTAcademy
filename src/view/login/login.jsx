@@ -224,7 +224,7 @@ export default function App(props) {
                   <h2 className="loginTeacher-subtitle">Iniciar Sesión</h2>
                   <input name="email" placeholder="Correo" type="text" onChange={handleChangeInputsLogin} required autoComplete="true"/>
                   <input name="pass" placeholder="Contraseña" type="password" onChange={handleChangeInputsLogin} required autoComplete="true"/>
-                  <input className="loginTeacher-btn" type="submit" value="Inicia Sesiòn"/>
+                  <input className="loginTeacher-btn" type="submit" value="Inicia Sesión"/>
                   <div style={{width:"210px", margin:"10px auto"}}>
                     <div className="linea">&nbsp;</div>
                     <div className="leyenda">&nbsp;&nbsp;o accede con Google&nbsp;&nbsp;</div>
@@ -247,7 +247,7 @@ export default function App(props) {
                   <input name="lastname" placeholder="Apellidos" type="text" onChange={handleChangeInputsRegister} value={inputsRegister.lastname} required/>
                   <input name="pass" placeholder="Contraseña" type="password" value={inputsRegister.pass} onChange={handleChangeInputsRegister} minLength="6" required autoComplete="false"/>
                   <input name="rpass" placeholder="Repita su contraseña" type="password" value={inputsRegister.rpass} onChange={handleChangeInputsRegister} minLength="6" required autoComplete="false"/>
-                  <input className="loginTeacher-btn" type="submit" value="Iniciar Sesiòn"/>
+                  <input className="loginTeacher-btn" type="submit" value="Registrarse"/>
                   <a className="loginTeacher-login-register" onClick={cambiarTipoAcceso} href="#!">Iniciar sesión</a>
                 </div>
               </div>
