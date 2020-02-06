@@ -315,6 +315,10 @@ h3.trivia-respuestas{
     text-align: center;
 }
 
+.input-Trespuestas{
+    width: 30px
+}
+
 @keyframes rolldown {
     0% {
         visibility: visible;

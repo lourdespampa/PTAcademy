@@ -219,7 +219,7 @@ class Trivia extends React.Component {
                           puntos:&nbsp;&nbsp;
                           <button className="button btnMyM material-icons" >
                             add_circle_outline
-                          </button>&nbsp;&nbsp;
+                          </button>&nbsp;<input className="input-Trespuestas"></input>&nbsp;
                           <button className="button btnMyM material-icons">
                             remove_circle_outline
                           </button>
