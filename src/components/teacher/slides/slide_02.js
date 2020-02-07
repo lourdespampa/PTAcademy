@@ -60,6 +60,7 @@ nextPpt=async()=> {
     query:
         { pin: this.props.id_access }
   })
+  await socket.emit('sendSlides')
   await socket.emit('PositionPpt', {
         position: this.state.positionPpt
   });
@@ -74,6 +75,8 @@ backtPpt=async()=> {
     positionPpt:this.state.positionPpt - 1
   })
   await this.getUrl()
+ 
+  await socket.emit('sendSlides')
   await socket.emit('PositionPpt', {
     position: this.state.positionPpt
   });
@@ -83,6 +86,7 @@ changeCarrucel(e){
     query:
         { pin: this.props.id_access }
   })
+  socket.emit('sendSlides')
   socket.emit('PositionPpt', {
     position: e+ 1
   });
