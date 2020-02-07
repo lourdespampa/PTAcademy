@@ -129,7 +129,7 @@ cerrarSesion = () => {
       <>
       {this.state.token ? null : <Redirect to="/"></Redirect>}
         <HeaderCode
-          cerrarSesion={this.props.cerrarSesion}
+          cerrarSesion={this.cerrarSesion}
           socketUrl={this.props.socketUrl}
           ExitSocket={this.ExitSocket}
           redirect={this.redirect}
