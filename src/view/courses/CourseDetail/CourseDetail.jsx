@@ -55,10 +55,10 @@ export default class CourseDetail extends Component {
   }
 
   handleEditAllStudent = () => {
-    // this.setState({
-    //   editarTodos: !this.state.editarTodos,
-    console.log("hola")
+    this.setState({
+      editarTodos: !this.state.editarTodos
     })
+    console.log(this.state.editarTodos)
   }
 
   handleChangeInputs = e => {
