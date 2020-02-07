@@ -31,13 +31,14 @@ class Azar extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount = () => {
         this.getStudents();
         const socket = io(this.props.socketUrl, {
             query:
                 { pin: this.props.id_access }
         })
         socket.on('newAlum', (data) => {
+            console.log(data.pin, this.props.id_access)
             if (data.pin === (this.props.id_access).toUpperCase()) {
                 this.getStudents()
             }
@@ -66,7 +67,6 @@ class Azar extends React.Component {
                 const temp = [];
                 res.data.map(alumno => {
                     temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`)
-                    return null
                 })
                 this.setState({ alumnos: this.sortearElementos(temp), todosAlumnos: res.data })
             })
