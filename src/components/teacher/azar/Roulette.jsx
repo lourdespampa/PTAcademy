@@ -182,14 +182,14 @@ class Roulette extends React.Component {
   }
 
   handleOnClick = (e) => {
-    document.getElementById("btnRuleta").setAttribute("disabled", "")
+    this.setState({desactivarBoton: true})
     let pulsadas = Math.round(Math.random()*10)
     console.log(pulsadas)
     let intervalId = setInterval(() => this.spin(), 100)
     this.setState({intervalId: intervalId})
     setTimeout( () => {
       clearInterval(this.state.intervalId)
-      document.getElementById("btnRuleta").removeAttribute("disabled")
+      this.setState({desactivarBoton: false})
     }, pulsadas*1000)
   }
 
@@ -205,7 +205,7 @@ class Roulette extends React.Component {
           {
             this.state.desactivarBoton
             ?
-            <button className="roulette-container-button" onClick={this.handleOnClick} id="btnRuleta" disabled>
+            <button className="roulette-container-button" onClick={this.handleOnClick} style={{background:"grey"}} id="btnRuleta" disabled>
               <div className="button-zoom">GIRAR</div>
             </button>
             :
