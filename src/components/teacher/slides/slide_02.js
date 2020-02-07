@@ -118,7 +118,7 @@ nextimg=()=>{
             <li class="prev"  onClick={this.backimg}><span></span></li>
             <li class="next " onClick={this.nextimg}><span></span></li>
           </ul>
-        <Carousel selectedItem={this.state.positionPpt-1} centerMode  centerSlidePercentage={ 90 } showArrows={false} useKeyboardArrows={true} swipeable={true} emulateTouch={true}	 showIndicators={false}
+        <Carousel selectedItem={this.state.positionPpt-1} centerMode  centerSlidePercentage={ 90 } showArrows={false} useKeyboardArrows={false} swipeable={false} emulateTouch={true}	 showIndicators={false}
          showThumbs={false} onChange={(e)=>this.changeCarrucel(e)}>
             {
                 this.state.Slides.map((slide)=>(
