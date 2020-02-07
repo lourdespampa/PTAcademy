@@ -54,10 +54,19 @@ export default class CourseDetail extends Component {
     })
   }
 
-  handleEditAllStudent = () => {
+  handleEditAllStudentEnable = () => {
     this.setState({
       editar: true,
-      editarTodos: !this.state.editarTodos
+      editarTodos: true,
+      idMapAlumno: ""
+    })
+    console.log(this.state.editarTodos)
+  }
+  handleEditAllStudentDisable = () => {
+    this.setState({
+      editar: false,
+      editarTodos: false,
+      idMapAlumno: ""
     })
     console.log(this.state.editarTodos)
   }
@@ -120,7 +129,9 @@ export default class CourseDetail extends Component {
           nombreProfesor={this.state.nombreProfesor}
           getdata={this.getAlumnos}
           handleAddStudent={this.handleAddStudent}
-          handleEditAllStudent={this.handleEditAllStudent}
+          editarTodos={this.state.editarTodos}
+          handleEditAllStudentEnable={this.handleEditAllStudentEnable}
+          handleEditAllStudentDisable={this.handleEditAllStudentDisable}
         ></NavCourse>
         {/* <CardStudent></CardStudent> */}
         <div className="CourseDetail__Container" onClick={this.Cerrar}>
@@ -206,9 +217,29 @@ export default class CourseDetail extends Component {
                     className="CourseDetail__table-td"
                     data-th="Editar"
                   >
-                    <button className="courseTeacher__button-alumno" onClick={() => this.handleEditStudent(idAlumno)} >
-                      <i className="fas fa-save"></i>
-                    </button>
+                    {
+                    this.state.editar
+                    ?
+                      this.state.idMapAlumno === idAlumno
+                      ?
+                      <button className="courseTeacher__button-alumno" style={{background: "#52BE7F"}} onClick={() => this.handleEditStudent(idAlumno)} >
+                        <i className="fas fa-save"></i>
+                      </button>
+                      :
+                      <button className="courseTeacher__button-alumno" style={{background: "grey"}} disabled >
+                        <i className="fas fa-edit"></i>
+                      </button>
+                    :
+                      this.state.editarTodos
+                      ?
+                      <button className="courseTeacher__button-alumno" style={{background: "#grey"}} disabled >
+                        <i className="fas fa-save"></i>
+                      </button>
+                      :
+                      <button className="courseTeacher__button-alumno" onClick={() => this.handleEditStudent(idAlumno)} >
+                        <i className="fas fa-edit"></i>
+                      </button>
+                    }
                   </td>
                   <td
                     className="CourseDetail__table-td"
