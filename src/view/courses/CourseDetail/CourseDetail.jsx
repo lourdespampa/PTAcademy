@@ -19,7 +19,8 @@ export default class CourseDetail extends Component {
       apiUrl: "http://3.16.110.136:4200",
       compentencias: [],
       competenciasAlumnos: [],
-      showdelete: 0
+      showdelete: 0,
+      editarTodos: false
     };
   }
 
@@ -51,6 +52,14 @@ export default class CourseDetail extends Component {
       editar: !this.state.editar,
       idMapAlumno: idAlumno
     })
+  }
+
+  handleEditAllStudent = () => {
+    this.setState({
+      editar: true,
+      editarTodos: !this.state.editarTodos
+    })
+    console.log(this.state.editarTodos)
   }
 
   handleChangeInputs = e => {
@@ -111,6 +120,7 @@ export default class CourseDetail extends Component {
           nombreProfesor={this.state.nombreProfesor}
           getdata={this.getAlumnos}
           handleAddStudent={this.handleAddStudent}
+          handleEditAllStudent={this.handleEditAllStudent}
         ></NavCourse>
         {/* <CardStudent></CardStudent> */}
         <div className="CourseDetail__Container" onClick={this.Cerrar}>
@@ -142,7 +152,7 @@ export default class CourseDetail extends Component {
                     {
                       this.state.editar
                       ?
-                        this.state.idMapAlumno === idAlumno
+                        this.state.idMapAlumno === idAlumno || this.state.editarTodos
                         ?
                         <input type="text" name="apellidoAlumno" defaultValue={alumno.lastName_stu} onChange={this.handleChangeInputs} />
                         :
@@ -158,7 +168,7 @@ export default class CourseDetail extends Component {
                     {
                       this.state.editar
                       ?
-                        this.state.idMapAlumno === idAlumno
+                        this.state.idMapAlumno === idAlumno || this.state.editarTodos
                         ?
                         <input type="text" name="nombreAlumno" defaultValue={alumno.name_stu} onChange={this.handleChangeInputs} />
                         :
@@ -182,7 +192,7 @@ export default class CourseDetail extends Component {
                       {
                       this.state.editar
                       ?
-                        this.state.idMapAlumno === idAlumno
+                        this.state.idMapAlumno === idAlumno || this.state.editarTodos
                         ?
                         <input type="text" name="nombreAlumno" defaultValue={compentencia} onChange={this.handleChangeInputs} />
                         :
@@ -197,7 +207,7 @@ export default class CourseDetail extends Component {
                     data-th="Editar"
                   >
                     <button className="courseTeacher__button-alumno" onClick={() => this.handleEditStudent(idAlumno)} >
-                      <i className="courseTeacher__img fas fa-edit"></i>
+                      <i className="fas fa-save"></i>
                     </button>
                   </td>
                   <td
