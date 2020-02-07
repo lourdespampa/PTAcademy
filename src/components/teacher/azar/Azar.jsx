@@ -3,7 +3,7 @@ import Roulette from './Roulette';
 import io from 'socket.io-client';
 import axios from 'axios';
 import { BtnPuntos } from '../lista/btnpuntos';
-import iconExit from "../../../img/cerrar.png";
+import iconExit from "../../../img/cerrar1.png";
 
 class Azar extends React.Component {
     constructor(props) {

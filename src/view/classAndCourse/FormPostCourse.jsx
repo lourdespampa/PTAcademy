@@ -148,28 +148,34 @@ export default class FormPostCourse extends Component {
                 this.state.escogerNivelAcademico === 1
                 ?
                 <div className="CT-detallesCurso">
-                  <label className="listDetalleTitle">Grado: </label>
-                  <select name="grade" className="list-grade" onChange={this.handleChange}>
-                    {
-                    this.state.nivelPrimaria
-                    ?
-                    this.state.grados.map( (grado, id) => (
-                      <option key={id} value={grado.value}>{grado.name}</option>
-                    ))
-                    :
-                    this.state.grados.slice(0,5).map( (grado, id) => (
-                      <option key={id} value={grado.value}>{grado.name}</option>
-                    ))
-                    }
-                  </select>
-                  <label className="listDetalleTitle">Sección: </label>
-                  <select name="section" className="list-seccion" onChange={this.handleChange}>
-                    {
-                    this.state.secciones.map( (seccion, id) => (
-                      <option key={id} value={seccion}>{seccion}</option>
-                    ))
-                    }
-                  </select>
+                  <div className='select002'>
+                    <label >Grado: </label>
+                    <select name="grade" className="list-grade" onChange={this.handleChange}>
+                      {
+                      this.state.nivelPrimaria
+                      ?
+                      this.state.grados.map( (grado, id) => (
+                        <option key={id} value={grado.value}>{grado.name}</option>
+                      ))
+                      :
+                      this.state.grados.slice(0,5).map( (grado, id) => (
+                        <option key={id} value={grado.value}>{grado.name}</option>
+                      ))
+                      }
+                    </select>
+                  </div>
+                  <div className='select002'>
+                    <label>Sección: </label>
+                    <select name="section" className="list-seccion" onChange={this.handleChange}>
+                      {
+                      this.state.secciones.map( (seccion, id) => (
+                        <option key={id} value={seccion}>{seccion}</option>
+                      ))
+                      }
+                    </select>
+                  </div>
+                  
+                  
                 </div>
                 :
                 null
@@ -208,7 +214,7 @@ export default class FormPostCourse extends Component {
                     type="text"
                     name="course_name"
                     onChange={this.handleChangeInputsText}
-                    placeholder="Ingrese nombre del curso"
+                    placeholder="Ingrese el nombre del curso"
                     required
                   />
                   :

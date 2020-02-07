@@ -4,7 +4,7 @@ import "./boton.css";
 import Audio from "../audio/audio";
 import io from "socket.io-client";
 import Slide from '../slides/slide_02';
-import iconExit from "../../../img/cerrar.png";
+import iconExit from "../../../img/cerrar1.png";
 function enviarvideo(url, url2, socketUrl, id_access, setShow,seturlnombre, setNoData) {
   var urlnombre = url + url2;
   const socket = io(socketUrl, {

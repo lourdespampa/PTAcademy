@@ -5,7 +5,7 @@ import { ExportCSV } from './exportbtn'
 import { BtnPuntos } from './btnpuntos'
 import io from 'socket.io-client';
 import { TableBody } from './tablebody'
-import iconExit from "../../../img/cerrar.png";
+import iconExit from "../../../img/cerrar1.png";
 // import {alumnos} from '../../data/alumnos.json';
 export default class ListaAlum extends Component {
     constructor(props) {
@@ -206,7 +206,7 @@ export default class ListaAlum extends Component {
                          <th>Apellidos</th>
                          <th>Nota(0-20)</th>
                          <th>Comportamiento</th>
-                         <th>puntos</th>
+                         <th>Puntos</th>
                      </tr>
                  </thead>
                  <tbody>
@@ -250,7 +250,7 @@ export default class ListaAlum extends Component {
                                                 <th style={{ textAlign: "center" }}>Apellidos</th>
                                                 <th style={{ textAlign: "center", width: "15%" }}>Nota(0-20)</th>
                                                 <th style={{ textAlign: "center", width: "20%" }}>Comportamiento</th>
-                                                <th style={{ textAlign: "center", width: "15%" }}>puntos</th>
+                                                <th style={{ textAlign: "center", width: "15%" }}>Puntos</th>
                                                 <th style={{ textAlign: "center", width: "5%" }}>...</th>
                                             </tr>
                                         </thead>

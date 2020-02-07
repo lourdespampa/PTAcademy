@@ -211,7 +211,7 @@ export default function App(props) {
                     ?
                     null
                     :
-                      <div className="loginTeacher-btn" onClick={cambiarTipoAcceso}>Registrate</div>
+                      <div className="loginTeacher-btn" onClick={cambiarTipoAcceso}>Regístrate</div>
                   }
                 </div>
               </div>

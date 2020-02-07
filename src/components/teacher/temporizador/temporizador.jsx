@@ -2,7 +2,7 @@ import React from "react";
 import $ from 'jquery';
 import io from 'socket.io-client';
 import "./temporizador.sass";
-import iconExit from "../../../img/cerrar.png";
+import iconExit from "../../../img/cerrar1.png";
 
 class Temporizador extends React.Component {
     constructor(props) {
