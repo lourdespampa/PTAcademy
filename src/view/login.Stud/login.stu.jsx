@@ -7,7 +7,10 @@ import logo from "./images/Logo.svg";
 export default class LoginStu extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: "", acceso: false };
+    this.state = {
+      value: "",
+      acceso: false
+    };
     this.id_access = "";
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,14 +24,11 @@ export default class LoginStu extends Component {
   }
 
   componentDidMount() {}
-  handleKeyPress = event => {
-    if (event.key === "Enter") {
-      this.ValidateCode();
-    }
-  };
+  
 
   ValidateCode = e => {
     e.preventDefault();
+    console.log(this.state.value)
     const codigo = this.state.value.toUpperCase();
     const data = {
       id_access: codigo
@@ -38,17 +38,15 @@ export default class LoginStu extends Component {
       .then(result => {
         console.log(result);
         if (result.data.school === true) {
-          alert("el profesor es de colegio");
           this.setState({ id_access: codigo, acceso: true });
-
         } else {
-          console.log(result)
+          console.log(result);
           this.setState({ id_access: codigo, acceso: true });
         }
       })
       .catch(e => {
         console.log(e);
-        alert('CODIGO INCORRECTO O SOLICITUD INCORRECTA')
+        alert("CODIGO INCORRECTO O SOLICITUD INCORRECTA");
       });
   };
   render() {
