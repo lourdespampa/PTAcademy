@@ -87,6 +87,16 @@ changeCarrucel(e){
     position: e+ 1
   });
 }
+backimg=()=>{
+  this.setState({
+    positionPpt:this.state.positionPpt-1
+  })
+}
+nextimg=()=>{
+  this.setState({
+    positionPpt:this.state.positionPpt+1
+  })
+}
   render() {
     return (
       this.state.iframeon ?
@@ -104,12 +114,16 @@ changeCarrucel(e){
         </>
           :
       <div style={styles}> 
-        <Carousel showArrows={true} useKeyboardArrows={true} swipeable={true} emulateTouch={true}	 showIndicators={false}
+      <ul className="btnNextPrev">
+            <li class="prev"  onClick={this.backimg}><span></span></li>
+            <li class="next " onClick={this.nextimg}><span></span></li>
+          </ul>
+        <Carousel selectedItem={this.state.positionPpt-1} centerMode  centerSlidePercentage={ 90 } showArrows={false} useKeyboardArrows={false} swipeable={false} emulateTouch={true}	 showIndicators={false}
          showThumbs={false} onChange={(e)=>this.changeCarrucel(e)}>
             {
                 this.state.Slides.map((slide)=>(
-                    <div key={slide.index}>
-                    <img
+                    <div className="imagenes" key={slide.index}>
+                    <img className="imagenes-indiviuales"
                       src={slide.url}
                       alt="Hong Kong"
                     />
