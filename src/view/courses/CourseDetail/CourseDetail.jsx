@@ -19,7 +19,8 @@ export default class CourseDetail extends Component {
       apiUrl: "http://3.16.110.136:4200",
       compentencias: [],
       competenciasAlumnos: [],
-      showdelete: 0
+      showdelete: 0,
+      editarTodos: false
     };
   }
 
@@ -50,6 +51,13 @@ export default class CourseDetail extends Component {
     this.setState({
       editar: !this.state.editar,
       idMapAlumno: idAlumno
+    })
+  }
+
+  handleEditAllStudent = () => {
+    // this.setState({
+    //   editarTodos: !this.state.editarTodos,
+    console.log("hola")
     })
   }
 
@@ -111,6 +119,7 @@ export default class CourseDetail extends Component {
           nombreProfesor={this.state.nombreProfesor}
           getdata={this.getAlumnos}
           handleAddStudent={this.handleAddStudent}
+          handleEditAllStudent={this.handleEditAllStudent}
         ></NavCourse>
         {/* <CardStudent></CardStudent> */}
         <div className="CourseDetail__Container" onClick={this.Cerrar}>
@@ -197,7 +206,7 @@ export default class CourseDetail extends Component {
                     data-th="Editar"
                   >
                     <button className="courseTeacher__button-alumno" onClick={() => this.handleEditStudent(idAlumno)} >
-                      <i className="courseTeacher__img fas fa-edit"></i>
+                      <i className="fas fa-save"></i>
                     </button>
                   </td>
                   <td
