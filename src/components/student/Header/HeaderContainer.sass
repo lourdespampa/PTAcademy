@@ -1,0 +1,135 @@
+.alumnoH-header
+    position: fixed
+    background: -webkit-linear-gradient(left,#5D00FF, #007bff)
+    height: 66px
+    width: 100%
+    z-index: 3
+
+    .alumnoHeader-logo
+        float: left
+        height: inherit
+        margin-left: 1em
+        /* border: 1px solid red; */
+        
+    .alumnoHeader-image
+        margin: 18px 9px
+
+ 
+    .alumnoHeader-menu-toggle
+        display: none
+
+    .alumnoHeader-nav
+        float: right
+        margin: 0
+        padding: 0
+        list-style: none
+        /* border: 1px solid red; */
+
+        .alumnoHeader-li
+            float: left
+            position: relative
+            text-align: center
+
+            &:hover .alumnoHeader-nav
+                display: block
+                padding: 5px
+                
+            .alumnoHeader-nav
+                position: absolute
+                top: 65px
+                right: 0
+                width: 100%
+                display: none
+                background: rgb(216, 216, 216)
+                z-index: 3000
+
+                .alumnoHeader-li
+                    width: 100%
+                    text-align: center
+
+                    &:hover .alumnoHeader-a
+                        background: rgb(194, 194, 194)
+                        color: red;
+                        transition: 0.5s
+
+                        .fas
+                            color: red
+                            transition: 0.5s
+                                            
+
+                    .alumnoHeader-a
+                        padding: 10px
+                        background: rgb(216, 216, 216)
+                        color: #4d4d4d
+                    
+            .alumnoHeader-a
+                display: block
+                padding: 21px
+                font-size: 1.1em
+
+                &:hover
+                    background: -webkit-linear-gradient(left, #007bff, #5D00FF)
+                     padding: 20px
+                    
+                .fa
+                    font-size: 22px
+                    padding: 0 10px
+
+                        
+.alumnoH-header-base
+    height: 66px
+    width: 100%
+
+
+.alumnoH-header *
+    color: white
+
+/* media queries */
+
+@media only screen and (max-width: 850px)
+
+    .alumnoH-header 
+        .alumnoHeader-nav
+            width: 100%
+            background: -webkit-linear-gradient(left,#5D00FF, #007bff)
+            max-height: 0
+            overflow: hidden
+
+            .alumnoHeader-li
+                width: 100%
+                text-align: left
+                .alumnoHeader-nav 
+                    position: static
+                    display: block
+                    width: 100%
+                    background: -webkit-lisssnear-gradient(left, #5D00FF, #007bff)
+                   
+                    .alumnoHeader-li
+                        width: 100%
+                        text-align: left
+
+                        &:hover
+                            background: rgb(194, 194, 194)
+                            color: red
+                            transition: 0.5s
+                    
+
+                        .alumnoHeader-a
+                            padding: 10px
+                            background: -webkit-linear-gradient(left, #5D00FF, #007bff)
+                            color: white
+                            margin-left: 50px
+        
+        .alumnoHeader-menu-toggle
+            position: absolute
+            display: block
+            right: 20px
+            top: 10px
+            font-size: 2em
+        
+    
+
+    .showResponsive
+        max-height: 100em !important
+    
+

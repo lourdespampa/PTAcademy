@@ -8,6 +8,7 @@ class Roulette extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      desactivarBoton: false,
       intervalId: "",
       spinAngleStart: 0,
       startAngle: 0,
@@ -147,7 +148,7 @@ class Roulette extends React.Component {
 
   stopRotateWheel() {
     let { startAngle, arc } = this.state;
-    const { options, baseSize } = this.props;
+    const { options } = this.props;
 
     const canvas = this.refs.canvas;
     const ctx = canvas.getContext('2d');
@@ -201,7 +202,17 @@ class Roulette extends React.Component {
           <canvas ref="canvas" className="roulette-canvas" width={baseSize*2} height={baseSize*2}></canvas>
         </div>
         <div className="roulette-container">
-          <input type="button" value="Girar" onClick={this.handleOnClick} className="Azar-button" id="btnRuleta" style={{color:"black"}}/>
+          {
+            this.state.desactivarBoton
+            ?
+            <button className="roulette-container-button" onClick={this.handleOnClick} id="btnRuleta" disabled>
+              <div className="button-zoom">GIRAR</div>
+            </button>
+            :
+            <button className="roulette-container-button" onClick={this.handleOnClick} id="btnRuleta">
+              <div className="button-zoom">GIRAR</div>
+            </button>
+          }
         </div>
       </div>
     );

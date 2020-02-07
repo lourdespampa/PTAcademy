@@ -7,11 +7,18 @@ import io from 'socket.io-client';
 // import { Container, Row, Col } from 'reactstrap'; no se esta usando
 
 class Trivia extends React.Component {
+  /** 
+   * Fix pin 
+   *  :: valor inicial de PIN al cargar component
+   * */ 
+  pin = ''
+  /******************* */
   constructor(props){
     super(props)
     this.state = {
       pregunta: '',
       tiempo: '5',
+      imagen64: '',
       respuestaOne: '',
       respuestaTwo: '',
       respuestaTree: '',
@@ -34,15 +41,33 @@ class Trivia extends React.Component {
   }
 
   componentDidMount(){
-    const socket = io(this.props.socketUrl, {
+    const { 
+      id_access, 
+      socketUrl 
+    } = this.props
+    /** Fix pin */
+    this.pin = id_access
+    console.log('valor de pin cuando inicia componente: ' + this.pin)
+    /** **************** */
+    const socket = io(socketUrl, {
       query:
-          { pin: this.props.id_access }
+          { pin: this.pin }
     })
       socket.on('pregunta escogida', (data) => {
+        const pinTeacher = this.pin.toUpperCase();
+        if(data.pin===pinTeacher){
         this.state.alumnosRecibidos.push(data)
         const temp = this.state.alumnosRecibidos
         this.setState({alumnosRecibidos: temp})
+      }
       })
+  }
+  //por buenas practicas, se deberia finalizar toda accion que pueda afectar el rendimiento del componente al morir
+  //por lo que toda accion por tiempo se finaliza en este metodo, por ejemplo en la función handleSendQuestion() al final
+  //hay un TimeOut
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+    this.pin = ''
   }
 
   showModal = () => {
@@ -68,6 +93,20 @@ class Trivia extends React.Component {
     this.setState({
       tiempo: e.target.value
     })
+  }
+  handleChangeImage = e => {
+    // console.log(e.target.files[0])
+    let file = e.target.files[0]
+    if (file.type.substr(0,6) !== "image/"){
+      return alert("Ingrese una imagen.")
+    }
+    var reader = new FileReader();
+    reader.onload = eventImg => {
+      var result = eventImg.target.result;
+      this.setState({imagen64: result})
+      document.getElementById("imgSalida").setAttribute("src", result)
+    }
+    reader.readAsDataURL(file);
   }
   changeAnswer1 = e => {
     this.setState({
@@ -105,14 +144,17 @@ class Trivia extends React.Component {
       this.setState({
         pregunta: '',
         tiempo: '5',
+        imagen64: '',
         respuestaOne: '',
         respuestaTwo: '',
         respuestaTree: '',
-        respuestaFour: '',
-        alumnosRecibidos: []
+        respuestaFour: ''
       })
+      document.getElementById("input-img").value = "" 
+      document.getElementById("imgSalida").setAttribute("src", "")
       socket.emit('restaurando datos', '')
     }else{
+      this.setState({alumnosRecibidos: []})
       // preguntaEnviada comienza en false por lo que no existe y a partir de aqui se envian los datos...
       const preg = this.state.pregunta,
             resp1 = this.state.respuestaOne,
@@ -127,6 +169,7 @@ class Trivia extends React.Component {
       const contenido = {
         pregunta: this.state.pregunta,
         tiempo: parseInt(this.state.tiempo,10),
+        imagen: this.state.imagen64,
         respuestaOne: this.state.respuestaOne,
         respuestaTwo: this.state.respuestaTwo,
         respuestaTree: this.state.respuestaTree,
@@ -134,14 +177,16 @@ class Trivia extends React.Component {
         respuestaCorrecta: this.state.selectedCorrectAnswer
       }
       socket.emit('enviando pregunta', contenido)
+      this.timeout = setTimeout(() => this.setState({modal: true}), parseInt(`${this.state.tiempo}000`,10)+5000)
     }
+    //finalmente cambia el estado del boton a restaurar.
     this.setState(state => ({
       preguntaEnviada: !state.preguntaEnviada
     }));
   }
 
   render() {
-    console.log(this.state.alumnosRecibidos)
+    // console.log(this.state.alumnosRecibidos)
     return (
       <>
       <div className={this.state.navbarResponsive ? "triviaT-topnav responsive" : "triviaT-topnav"}>
@@ -155,7 +200,7 @@ class Trivia extends React.Component {
               </button>
               :
               <button className="triviaT-enviar" onClick={this.handleSendQuestion}>
-                Enviar
+                ENVIAR
               </button>
               }
               <button className="triviaT-respuestas" onClick={this.showModal}>
@@ -174,8 +219,7 @@ class Trivia extends React.Component {
         {/* Modal content */}
           <div className="modal-content-respuestas">
             <span id="cerrar" className="close" onClick={this.showModal}>x</span>
-            <h2>Clasificación</h2>
-            
+            <h2>Clasificación</h2>  
               <ul className="rolldown-list" id="myList">
                 {this.state.alumnosRecibidos.length > 0 
                   ?
@@ -185,11 +229,20 @@ class Trivia extends React.Component {
                     null
                     :
                     <li className="lista-contenedora" key={index}>
-                      <div style={{display: "inline-block"}}></div>
                       {/* <img className="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
-                      <h3 style={{display: "inline-block", marginLeft: "20px", marginTop: "25px"}}>
-                        {alumno.data.alumno}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puntaje:&nbsp;&nbsp;{alumno.data.puntaje}
-                      </h3>
+                      <div className="trivia-respuestas">
+                        <div>alumno:&nbsp;&nbsp;{alumno.data.alumno}&nbsp;&nbsp;puntaje:&nbsp;&nbsp;{alumno.data.puntaje}&nbsp;&nbsp;
+                        </div>
+                        <div>
+                          puntos:&nbsp;&nbsp;
+                          <button className="button btnMyM material-icons" >
+                            add_circle_outline
+                          </button>&nbsp;&nbsp;
+                          <button className="button btnMyM material-icons">
+                            remove_circle_outline
+                          </button>
+                        </div>
+                      </div>
                     </li>
                   ))
                   :
@@ -209,9 +262,9 @@ class Trivia extends React.Component {
         <form>
           <div className="triviaT-row">
             <div className="triviaT-col-6">
-              <label for="pregunta">Pregunta</label>
-              <input type="text" id="pregunta" className="triviaT-input-pregunta" value={this.state.pregunta} onChange={this.changeQuestion}/>
-              <label for="time">Tiempo</label>
+              <label htmlFor="pregunta">Pregunta</label>
+              <input type="text" id="pregunta" className="triviaT-input-pregunta" value={this.state.pregunta} onChange={this.changeQuestion} autoComplete="off"/>
+              <label htmlFor="time">Tiempo</label>
               <select id="time" name="tiempo" className="triviaT-input-pregunta triviaT-input-tiempo" value={this.state.value} onChange={this.handleChangeTime}>
                   <option value="5">5 segundos</option>
                   <option value="10">10 segundos</option>
@@ -221,78 +274,79 @@ class Trivia extends React.Component {
               </select>
             </div>
             <div className="triviaT-col-6">
-              <label for="input-img">Medio de Comunicación</label>
+              <label htmlFor="input-img">Medio de Comunicación (opcional)</label>
               <div className="triviaT-image-container">
-                <input type="file" id="input-img" className="imagen"/>
-                <img className="triviaT-imgSalida" width="120px" height="100px" src="" />
+                <input type="file" id="input-img" className="imagen" onChange={this.handleChangeImage} />
+                <img className="triviaT-imgSalida" id="imgSalida" width="120px" height="100px" src="" />
               </div>
             </div>
           </div>
 
           <div className="triviaT-row">
             <div className="triviaT-col-6">
-            <label for="res1">Respuesta 1</label>
+            <label htmlFor="res1">Respuesta 1</label>
             <br/>
             <div className="triviaT-contenedor-respuesta custom-radios">
-              <input type="text" id="res1" className="triviaT-input-respuestas" value={this.state.respuestaOne} onChange={this.changeAnswer1} />
+              <input type="text" id="res1" className="triviaT-input-respuestas" value={this.state.respuestaOne} onChange={this.changeAnswer1} autoComplete="off" />
               <input type="radio" id="color-1" name="color" value="rojo" 
                       checked={this.state.selectedCorrectAnswer === 'rojo'}
                       onChange={this.handleCorrectAnswer}
                       />
-              <label for="color-1">
+              <label htmlFor="color-1">
                 <span>
                   <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
                 </span>
               </label>
             </div>
 
-            <label for="res1">Respuesta 2</label>
+            <label htmlFor="res3">Respuesta 2</label>
             <br/>
             <div className="triviaT-contenedor-respuesta custom-radios">
-              <input type="text" id="res2" className="triviaT-input-respuestas" value={this.state.respuestaTwo} onChange={this.changeAnswer2}/>
-              <input type="radio" id="color-3" name="color" value="azul" 
-                      checked={this.state.selectedCorrectAnswer === 'azul'}
-                      onChange={this.handleCorrectAnswer}
-                      />
-              <label for="color-3">
-                <span>
-                  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                </span>
-              </label>
-            </div>
-            </div>
-
-            <div className="triviaT-col-6">
-            <label for="res2">Respuesta 3</label>
-            <br/>
-            <div className="triviaT-contenedor-respuesta custom-radios">
-              <input type="text" id="res3" className="triviaT-input-respuestas" value={this.state.respuestaTree} onChange={this.changeAnswer3}/>
+              <input type="text" id="res3" className="triviaT-input-respuestas" value={this.state.respuestaTree} onChange={this.changeAnswer3} autoComplete="off"/>
               <input type="radio" id="color-2" name="color" value="naranja"
                       checked={this.state.selectedCorrectAnswer === 'naranja'}
                       onChange={this.handleCorrectAnswer}
                       />
-              <label for="color-2">
+              <label htmlFor="color-2">
                 <span>
                   <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
                 </span>
               </label>
             </div>
             
-            <label for="res2">Respuesta 4</label>
+            </div>
+
+            <div className="triviaT-col-6">
+              <label htmlFor="res2">Respuesta 3</label>
+              <br/>
+              <div className="triviaT-contenedor-respuesta custom-radios">
+                <input type="text" id="res2" className="triviaT-input-respuestas" value={this.state.respuestaTwo} onChange={this.changeAnswer2} autoComplete="off"/>
+                <input type="radio" id="color-3" name="color" value="azul" 
+                        checked={this.state.selectedCorrectAnswer === 'azul'}
+                        onChange={this.handleCorrectAnswer}
+                        />
+                <label htmlFor="color-3">
+                  <span>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                  </span>
+                </label>
+              </div>
+            
+            <label htmlFor="res4">Respuesta 4</label>
             <br/>
             <div className="triviaT-contenedor-respuesta custom-radios">
-              <input type="text" id="res4" className="triviaT-input-respuestas" value={this.state.respuestaFour} onChange={this.changeAnswer4}/>
+              <input type="text" id="res4" className="triviaT-input-respuestas" value={this.state.respuestaFour} onChange={this.changeAnswer4} autoComplete="off"/>
               <input type="radio" id="color-4" name="color" value="verde" 
                       checked={this.state.selectedCorrectAnswer === 'verde'}
                       onChange={this.handleCorrectAnswer}
                       />
-              <label for="color-4">
+              <label htmlFor="color-4">
                 <span>
                   <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
                 </span>
               </label>
             </div>
-            </div>
+          </div>
 
           </div>
         </form>

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Dropzone from "./Dropzone";
-import Progress from "./Progress";
 import "./Upload.sass";
-import check from "./baseline-check_circle_outline-24px.svg"
 
 class Upload extends Component {
   constructor(props) {
@@ -14,7 +12,9 @@ class Upload extends Component {
       successfullUploaded: false,
       errorUploaded:false,
       slideOn:false,
-      NoData:false
+      NoData:false,
+      UploadDone:false,
+      limpiarInputFile:false
     };
 
     this.onFilesAdded = this.onFilesAdded.bind(this);
@@ -24,16 +24,25 @@ class Upload extends Component {
   }
 
   onFilesAdded(files) {
+    this.setState({
+      files: []
+    });
     this.setState({slideOn:true})
     this.setState(prevState => ({
       files: prevState.files.concat(files)
     }));
+    console.log(files)
   }
 
   async uploadFiles() {
-    if (this.props.className=='' || this.props.desc=='' ||  Object.keys(this.state.files).length === 0){
+    if (this.props.class_name==='' || this.props.desc==='' ||  Object.keys(this.state.files).length === 0){
       this.setState({NoData:true})
     }else{
+    this.props.handleDisableX()
+     document.addEventListener("keydown", function(e){
+       if (e.which === 27){
+           return false
+       }})
     this.setState({ uploadProgress: {}, uploading: true });
     const promises = [];
     this.state.files.forEach(file => {
@@ -42,7 +51,7 @@ class Upload extends Component {
     try {
       await Promise.all(promises);
 
-      this.setState({ successfullUploaded: true, uploading: true });
+      this.setState({ successfullUploaded: true, uploading: true, limpiarInputFile: true });
     } catch (e) {
       this.setState({ successfullUploaded: true, uploading: true });
     }}
@@ -66,7 +75,7 @@ class Upload extends Component {
       req.upload.addEventListener("load", event => {
         const copy = { ...this.state.uploadProgress };
         copy[file.name] = { state: "done", percentage: 100 };
-        this.setState({ uploadProgress: copy });
+        this.setState({ uploadProgress: copy,UploadDone:true,uploading:false });
         resolve(req.response);
       });
 
@@ -86,6 +95,7 @@ class Upload extends Component {
       var varToken = localStorage.getItem('token');
         
       req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
+      // req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/falllaApropocito`);
       req.setRequestHeader('x-access-token', `${varToken}`)
       req.send(formData);
       console.log('asdmasd')
@@ -95,65 +105,101 @@ class Upload extends Component {
             console.log(req.response)
             console.log('bien')
             this.props.handleClose()
+            this.props.cleanInputs()
+            this.props.handleEnableX()
+            this.setState({
+              files: [],
+              uploading: false,
+              uploadProgress: {},
+              successfullUploaded: false,
+              errorUploaded:false,
+              slideOn:false,
+              NoData:false,
+              UploadDone:false,
+              limpiarInputFile:false
+            })
           }
-          else if(req.status===500){
+          else{
             console.log(req.response)
             console.log('mal')
             this.setState({ errorUploaded: true});
+            this.props.handleEnableX()
+            // this.props.cleanInputs()
+            this.setState({
+              successfullUploaded: false,
+              errorUploaded:true,
+              uploading: false,
+              uploadProgress: {},
+              slideOn:false,
+              NoData:false,
+              UploadDone:false,
+              limpiarInputFile:false
+            })
           }
         }
       }
     });
   }
 
-  renderProgress(file) {
-    const uploadProgress = this.state.uploadProgress[file.name];
-    if (this.state.uploading || this.state.successfullUploaded) {
-      return (
-        <div className="ProgressWrapper">
-          <Progress progress={uploadProgress ? uploadProgress.percentage : 0} />
-          <img
-            className="CheckIcon"
-            alt="done"
-            src={check}
-            style={{
-              opacity:
-                uploadProgress && uploadProgress.state === "done" ? 0.5 : 0
-            }}
-          />
-        </div>
-      );
-    }
-  }
-
   renderActions() {
-    if (this.state.errorUploaded==true){
+    if (this.state.errorUploaded===true){
         return (
-          <button
-            onClick={() =>
-              this.setState({ files: [], errorUploaded: false ,slideOn:false})
-            }
+          <>
+          <button className='modal-body__button backCursos'
+            onClick={() =>{
+              this.props.cleanInputs()
+              this.setState({ files: [], uploading: false, errorUploaded: false,slideOn:false })
+            }}
           >
-            Clear
+            <div className="button-zoom">LIMPIAR</div>
           </button>
+          <p className="mensageAction negative">
+            OCURRIO UN ERROR, LIMPIE Y SUBA OTRA DIAPOSITIVA
+          </p>
+          </>
         );
-    } else  if (this.state.uploading==true){
+    } else  if (this.state.uploading===true & this.state.UploadDone===false){
       return (
         <>
-        Subiendo clase con diapositiva ...
+        <p className="mensageAction pocitive">
+        Procesando diapositiva...
+        </p>
+        </>
+      );
+    }else  if (this.state.uploading===true & this.state.UploadDone===true){
+      return (
+        <>
+        <p className="mensageAction pocitive"> 
+        Subiendo diapositiva...
+        </p>
         </>
       );
     }else {
       return (
         <>
-          <button id='modal-body__button-cursos' type="submit" className="btn btn-primary Opal"
+          <button id='modal-body__button-cursos' type="submit" className="modal-body__button yes"
                   hidden={this.state.files.length < 0 || this.state.uploading}
                   onClick={this.uploadFiles}>
-            Crear Clase
+            <div className="button-zoom">CREAR CLASE</div>
           </button>
-          { this.state.NoData ?
-          <p className="rellena">RELLENA TODOS LOS CAMPOS</p>:null
+          {this.state.files.length>0 ?
+            <button className='modal-body__button backCursos'
+            onClick={() => {
+              this.props.cleanInputs()
+              this.setState({ files: [], uploading: false, errorUploaded: false,slideOn:false,NoData:false })
+            }}
+          >
+            <div className="button-zoom">LIMPIAR</div>
+          </button>
+          :
+            null
           }
+          { this.state.NoData?
+          this.props.class_name==='' || this.props.desc==='' ||  Object.keys(this.state.files).length === 0?
+          <p className="mensageAction negative">RELLENA TODOS LOS CAMPOS</p>:null:null
+          }
+          
+
         </>
       );
     }
@@ -162,21 +208,21 @@ class Upload extends Component {
   render() {
     return (
       <div className="Upload">
-        <div className="Content" style={{display: 'inline-flex'}}>
+        <div className="Content">
           <div>
             <Dropzone
+              limpiarInputFile={this.state.limpiarInputFile}
               slideOn={this.state.slideOn}
               onFilesAdded={this.onFilesAdded}
-              disabled={this.state.uploading || this.state.successfullUploaded}
+              disabled={this.state.uploading}
             />
           </div>
           <div className="Files">
-            {this.state.files.map(file => {
+            {this.state.files.map((file, id) => {
               return (
-                <div key={file.name} className="Row">
-                  <span className="Filename">{file.name}</span>
-                  {this.renderProgress(file)}
-                </div>
+                <>
+                  <span key={id}>{file.name}</span>
+                </>
               );
             })}
           </div>

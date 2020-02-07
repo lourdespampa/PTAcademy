@@ -132,7 +132,8 @@ li .ingresarCodigo-a {
 
 .input--kozakura {
     overflow: hidden;
-    padding-bottom: 1em
+    padding-bottom: 3em
+    /* se modifico y por eso se aumenta tamañp */
 }
 
 .input__field--kozakura {

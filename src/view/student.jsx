@@ -23,10 +23,7 @@ export default class Student extends Component {
         lastName:''
     };
 }
-componentWillMount(){
-    this.initSocket()
-}
-async componentDidMount() {
+async componentWillMount() {
   var varToken = localStorage.getItem('token');
  const {
     match: { params }

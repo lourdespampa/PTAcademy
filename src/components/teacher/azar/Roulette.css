@@ -7,13 +7,13 @@
 .roulette-container {
   display: flex;
   justify-content: center;
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .azar-tab-group {
   list-style:none;
   padding:0;
-  margin:0 0 40px 0;}
+  margin:0;}
 .azar-tab-group:after {
     content: "";
     display: table;
@@ -31,9 +31,35 @@
     cursor:pointer;
     transition:.5s ease;}
 .azar-tab-group .azar-tab .azar-a:hover {
-      background:darken(#1ab188,5%);
+      background:darken(#52BE7F,5%);
     }
 .azar-tab-group .active .azar-a {
-    background:#1ab188;
+    background:#52BE7F;
     color:#fff !important;
   }
+.roulette-container-button{
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 0;
+  color:#fff;
+  font-size:20px;
+  cursor: pointer;
+  margin: auto 10px;
+  font-family: "Opal";
+  background: #FB9600;
+  cursor: pointer
+}
+
+.roulette-container-button .button-zoom{
+  transition: transform 0.3s ease-in-out;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  color: #fff
+}
+.roulette-container-button:hover .button-zoom{
+  -webkit-transform: scale(1.20);
+  transform: scale(1.20)} 
+

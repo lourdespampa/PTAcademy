@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import "./Dropzone.sass";
 import imgDiapo from "./baseline-cloud_upload-24px.svg";
 
 class Dropzone extends Component {
   constructor(props) {
     super(props);
-    this.state = { hightlight: false };
+    this.state = { hightlight: false, inputValue: "" };
     this.fileInputRef = React.createRef();
 
     this.openFileDialog = this.openFileDialog.bind(this);
@@ -21,6 +20,9 @@ class Dropzone extends Component {
   }
 
   onFilesAdded(evt) {
+    if(this.props.limpiarInputFile ){
+      return this.setState({inputValue: ""})
+    }
     if (this.props.disabled) return;
     const files = evt.target.files;
     if (this.props.onFilesAdded) {
@@ -60,31 +62,13 @@ class Dropzone extends Component {
 
   render() {
     return (
-      <div
-        className={`Dropzone ${this.state.hightlight ? "Highlight" : ""}`}
-        onDragOver={this.onDragOver}
-        onDragLeave={this.onDragLeave}
-        onDrop={this.onDrop}
-        onClick={this.openFileDialog}
-        style={{ cursor: this.props.disabled ? "default" : "pointer" }}
-      >
-        <input
-          ref={this.fileInputRef}
-          className="FileInput"
-          type="file"
-          //multiple
-          required
-          accept="application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.slideshow, application/vnd.openxmlformats-officedocument.presentationml.template, application/vnd.openxmlformats-officedocument.presentationml.presentation"
-          onChange={this.onFilesAdded}
-        />
-        <img
-          alt="diapositiva"
-          className="Icon"
-          src={imgDiapo}
-        />
-        {this.props.slideOn ?
-        null
-        : <span>Sube aqui tu diapositiva</span>
+      <div className={`Dropzone ${this.state.hightlight ? "Highlight" : ""}`} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave}
+        onDrop={this.onDrop} onClick={this.openFileDialog} style={{ cursor: this.props.disabled ? "default" : "pointer" }}>
+        <input ref={this.fileInputRef} className="FileInput" type="file" accept="application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.slideshow, application/vnd.openxmlformats-officedocument.presentationml.template, application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          onChange={this.onFilesAdded} value={this.state.inputValue}/>
+        <img alt="diapositiva" className="Icon" src={imgDiapo}/>
+        {
+        this.props.slideOn ? null : <span className="sube">Sube aqui tu diapositiva</span>
         }
       </div>
     );

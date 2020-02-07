@@ -5,26 +5,75 @@ import HeaderCode from "../../components/teacher/header/HeaderCode";
 import axios from "axios";
 import io from "socket.io-client";
 import "react-toastify/dist/ReactToastify.css";
+import { Redirect } from 'react-router-dom';
+
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
+  /** 
+   * Fix notificatión 
+   *  :: valor inicial de PIN al cargar component
+   * */ 
+  pin = ''
+  /******************* */
+  constructor( props ) {
+    super( props );
+
     this.state = {
-      nombre_clase: ""
+      nombre_clase: "",
+      token: false
+
     };
   }
   componentDidMount() {
+    // Destructurando 
+    const { 
+      id_access, 
+      socketUrl 
+    } = this.props
+
+    /** Fix notificatión */
+    this.pin = id_access
+    console.log('valor de pin cuando inicia componente: ' + this.pin)
+    /** **************** */
+
     setTimeout(() => {
       this.getName();
     }, 1000);
-    const socket = io(this.props.socketUrl, {
-      query: { pin: this.props.id_access }
-    });
-    socket.on("tabBlurred", data => {
-      if (data.pin === this.props.id_access.toUpperCase()) {
-        this.notify(data.fullname);
+    
+    const message = ( status, pinTeacher, pinStudent ) => {
+      return {
+        'status': status,
+        'pin (teacher): ': pinTeacher,
+        'data.pin (Student): ':pinStudent
       }
+    }
+
+    const socket = io(socketUrl, {
+      query: { pin: this.pin }
+    });
+    
+    socket.on("tabBlurred", data => {
+      const pinStudent = data.pin;
+      const pinTeacher = this.pin.toUpperCase();
+
+      if (pinStudent === pinTeacher){
+        return (
+          this.notify(data.fullname),
+          console.table(message('Códigos validados', pinTeacher, pinStudent))
+          );
+      }
+
+      console.table(message('Códigos Incorrectos', pinTeacher, pinStudent))
     });
   }
+  /** Fix notificatión */
+  componentWillUnmount() {
+    // valor despues de salir del component
+    this.pin = ''
+
+    console.log('componente desmontado')
+  }
+  /****************** */
+
   notify = (nom) => {
     toast.warn(<><p role = "img" aria-label = "warning">⚠ Alumno desatento!</p><p>{nom}</p></>,{
       position: "top-right",
@@ -65,11 +114,20 @@ class Header extends React.Component {
     socket.emit("ExitSocket");
     console.log("ExitSocket");
   };
+UNSAFE_componentWillMount = async () => {
+    let tokenStorage = localStorage.getItem("token")
+    await this.setState({token: tokenStorage})
+  };
 
+cerrarSesion = () => {
+    localStorage.clear();
+    this.setState({token: false})
+    this.ExitSocket()
+}
   render() {
     return (
       <>
-      
+      {this.state.token ? null : <Redirect to="/"></Redirect>}
         <HeaderCode
           cerrarSesion={this.props.cerrarSesion}
           socketUrl={this.props.socketUrl}

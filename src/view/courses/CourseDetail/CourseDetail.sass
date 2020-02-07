@@ -21,12 +21,11 @@
             color: #000000
             border-top: 1px solid #ddd
             border-bottom: 1px solid #ddd
-            background-color: #f5f9fc
+            background-color: #ddd
         &:nth-child(odd):not(:first-child)
-            background-color: #ebf3f9
+            background-color: rgb(199, 211, 220)
     .CourseDetail__table-th
         display: none
-
     .CourseDetail__table-td
         display: block
         &:first-child
@@ -44,9 +43,28 @@
         padding: .5em 1em
     .CourseDetail__table-tr
         border-color: #bfbfbf
+    .courseTeacher__button-alumno
+        background-color: #FB9600
+        min-width: 30px
+        max-width: 40px
+        border: 0
+        height: 30px
+        // display: block
+        margin: .1em
+        border-radius: 5px
+        color:#fff
+        // vertical-align: middle
+        // position: relative
+        z-index: 1
+        width: 100%
+        cursor: pointer
+        float: right
+        
 @media screen and (max-width: 601px)
     .CourseDetail__table .CourseDetail__table-tr:nth-child(2)
         border-top: none
+    .CourseDetail__Container
+            padding: 0
 
 @media screen and (min-width: 600px)
     .CourseDetail__table
@@ -58,6 +76,45 @@
             display: table-cell
             padding: 1em
         .CourseDetail__table-th:first-child, .CourseDetail__table-td:first-child
-            padding-left: 0
-        .CourseDetail__table-th:last-child, .CourseDetail__table-td:last-child
-            padding-right: 0
+            text-align: center
+// .teacherCourseNav
+//     width: 100%
+//     height: 1800px
+//     position: fixed
+@media screen and (max-width: 960px)
+    .teacherCourseNav
+        position: absolute
+        width: 500px
+        height: 1800px
+        padding: 7px
+        margin: 10px
+        top: 42px
+
+// cambios para poner de gerald en css
+    
+    // css para clases     #e74c3c
+.courseTeacher-cards__nullCourses
+    color: #ffffff
+    padding: 0 1rem
+    // css para tabla de compentecias 
+
+.CourseDetail-table
+
+    border-radius: 16px
+    -moz-border-radius: 6px
+    margin: 3px
+    padding: 10px
+    background-color: #c6c5d4
+    >table
+        border-radius: 16px
+        -moz-border-radius: 6px
+        background-color: #ebebf1
+        border-collapse: collapse
+        border: 0px
+        >thead
+        >tbody
+            >th
+                padding: 16px
+                >tr:nth-child(even)
+                    background-color: #f2f2f2
+                    

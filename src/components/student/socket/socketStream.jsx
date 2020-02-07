@@ -1,42 +1,53 @@
 import React, { Component} from 'react';
 // import {Link,Redirect}  from 'react-router-dom';
 import io from 'socket.io-client';
+import axios from "axios";
 import { Modal } from "react-bootstrap";
+import { Carousel } from "react-responsive-carousel";
 const { AudioStreamer } = require('sfmediastream');
-
+let styles = {
+    borderRadius:"10px",
+    display: 'table-cell',
+    verticalAlign: 'middle'
+  };
 
 export default class Audio extends Component {
+     /** 
+   * Fix notificatión 
+   *  :: valor inicial de PIN al cargar component
+   * */ 
+  pin = ''
+  /******************* */
     state={
         show:false,
-        showGrupo:false
+        showGrupo:false,
+        iframeon:false,
+        Slides:[],
+        src:"",
+        positionPpt: 1,
+        id_class:''
     }
     enviarvideo(url) {
-        const socket = io(this.props.socketUrl, {
-            query:
-                { pin: this.props.id_access }
-          })
         var urlnombre = url
         console.log(urlnombre)
-        socket.emit('VideoEmit', urlnombre)
         document.getElementById('overlay2').classList.add('active');
         document.getElementById('popupvideo').classList.add('active');
         var expresionRegular = 'https://www.youtube.com/watch?v=';
         var urlembed = urlnombre.split(expresionRegular);
-        document.getElementById('video-frame').src = "https://www.youtube.com/embed/" + urlembed[1] + "?autoplay=1&controls=0"
+        document.getElementById('video-frameStu').src = "https://www.youtube.com/embed/" + urlembed[1] + "?autoplay=1&controls=0"
     }
     DisablePopup() {
         const overlay_popup = document.getElementById('overlay2')
         const popup = document.getElementById('popupvideo')
         overlay_popup.className = 'overlay'
         popup.className = 'popup'
-        document.getElementById('video-frame').src = ""
+        document.getElementById('video-frameStu').src = ""
     }
     DisablePopup2() {
         const overlay_popup = document.getElementById('overlayinframe')
         const popup = document.getElementById('popupformulario')
         overlay_popup.className = 'overlay'
         popup.className = 'popup'
-        document.getElementById('video-frame').src = ""
     }
     closePopup = (o, p) => {
         var overlay = document.getElementById(o),
@@ -44,7 +55,6 @@ export default class Audio extends Component {
 
         overlay.classList.remove('active');
         popup.classList.remove('active');
-        document.getElementById('video-frame').src = "";
     }
     openPopup(o, p) {
         var overlay = document.getElementById(o),
@@ -53,83 +63,97 @@ export default class Audio extends Component {
         overlay.classList.add('active');
         popup.classList.add('active');
     }
-    nextPpt=()=> {
-           
-        var cambiado = '';
-        var url_string = document.getElementById("diapo-frame").src;
-        var url = new URL(url_string);
-        var c = url.searchParams.get("slide");
-        //Consigue num de la pagina
-        var pag = parseInt(c.substr(4)); 
-        //Pasas a la siguiente diapo
-        var slide = pag + 1;
-        //Se quita la pagina antigua
-        cambiado = (url.search).substr(0, 58);
-        //Se agrega la nueva pagina
-        cambiado += slide;
-        var final = url.origin + url.pathname + cambiado;
-        document.getElementById("diapo-frame").src = final;
-        // document.getElementById("diminute").src = final;
+    getUrl=()=> {
+        var old = this.state.src;
+        var casi = old.replace("pub", "embed");
+        var enlace = casi.replace("delayms=3000", "delayms=3000&rm=minimal&slide=id.p"+this.state.positionPpt);
+        console.log('get URL: ' + enlace)
+        document.getElementById("diapo-frame").src = enlace;
+        // document.getElementById("diminute").src = enlace;
     }
-
-    backtPpt=()=> {
-        var cambiado = '';
-        var url_string = document.getElementById("diapo-frame").src;
-        var url = new URL(url_string);
-        var c = url.searchParams.get("slide");
-        //Consigue num de la pagina
-        var pag = c.substr(4);
-        //Pasas a la siguiente diapo
-        var slide = parseInt(pag) - 1;
-        //Se quita la pagina antigua
-        cambiado = (url.search).substr(0, 58);
-        //Se agrega la nueva pagina
-        cambiado += slide;
-        var final = url.origin + url.pathname + cambiado;
-        document.getElementById("diapo-frame").src = final;
-        // document.getElementById("diminute").src = final;
-    }   
     componentDidMount() {
-        const socket = io(this.props.socketUrl, {
-            query:
-                { pin: this.props.id_access }
-          })
-        
-        //SLIDES
+        const { 
+            id_access, 
+            socketUrl 
+          } = this.props
 
+          this.pin = id_access
+          console.log('valor de pin cuando inicia componente: ' + this.pin)
+
+
+        const socket = io(socketUrl, {
+            query:
+                { pin: this.pin }
+          })
+      let varToken = localStorage.getItem('token')
+        //SLIDES
+        axios({
+            url:`${this.props.apiUrl}/v1/api/student/get_class/${this.props.id_access}`,
+            method : 'GET',
+            headers:{                
+                "x-access-token" :`${varToken}`
+            }
+        }).then((response)=>{
+            this.setState({id_class:response.data.id_class.id_class})
+            console.log(response.data.id_class.id_class)
+            axios({
+                url : `${this.props.apiUrl}/v1/api/teacher/presentations/${response.data.id_class.id_class}`,
+                method : 'GET',
+                headers:{                
+                    "x-access-token" :`${varToken}`
+                }
+            }).then((response) => {
+              console.log(response.data)
+              if(response.data.presentationIframe){
+                this.setState({iframeon:true,src:response.data.presentationIframe})
+                this.getUrl()
+              }else{
+                console.log(response.data);
+                this.setState({Slides:response.data})
+              }
+            }).catch((err)=>{
+                  console.log(err)
+          })
+        })
         socket.on('sendSlidesS', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             const overlayDiapo = document.getElementById('overlay')
             const popupDiapo = document.getElementById('popup')
             this.openPopup(overlayDiapo.id, popupDiapo.id)}
         })
-
-        socket.on('nextPptS', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
-            this.nextPpt()}
-        })
-
-        socket.on('backtPptS', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
-            this.backtPpt()}
-        })
-
         socket.on('closeSlidesS', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             const overlayDiapo = document.getElementById('overlay')
             const popupDiapo = document.getElementById('popup')
             this.closePopup(overlayDiapo.id, popupDiapo.id)}
+        })
+        socket.on('PositionPpt', (data) => {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
+                this.setState({
+                    positionPpt:data.position
+                })
+                if(this.state.iframeon) {
+                    this.getUrl()
+                }else{
+                    
+                }
+            }
         })
 
         //SLIDES END
         //VIDEO
 
         socket.on('Video', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             this.enviarvideo(data.url)}
         })
         socket.on('closeVideo', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             this.DisablePopup()
             }
         })
@@ -150,7 +174,8 @@ export default class Audio extends Component {
 
                 // Buffer header must be received first
                 socket.on('bufferHeader',  (packet) =>{
-                    if(packet.pin === (this.props.id_access).toUpperCase()) {
+                    const pinTeacher = this.pin.toUpperCase();
+                    if(packet.pin === (pinTeacher).toUpperCase()) {
                     // if (packet.pin === ('<%= pin %>').toUpperCase()) {
                     console.log('ejecutando buffer');
                     audioStreamer.setBufferHeader(packet.audio);
@@ -160,11 +185,12 @@ export default class Audio extends Component {
 
                 // Receive buffer and play it
                 socket.on('stream', (packet) =>{
-                    if(packet.pin === (this.props.id_access).toUpperCase()) {
+                    const pinTeacher = this.pin.toUpperCase();
+                    if(packet.pin === (pinTeacher).toUpperCase()) {
                     //    console.log("3");
                     //if (packet.pin === ('<%= pin %>').toUpperCase()) {
                     //   debug.value = "Buffer received: " + packet.audio[0].byteLength + "bytes";
-                    audioStreamer.receiveBuffer(packet.audio);
+                    audioStreamer.receiveBuffer(packet.audio)
                     console.log('recibiendo stream...');
                      }
                     // audioStreamer.realtimeBufferPlay(packet);
@@ -176,12 +202,14 @@ export default class Audio extends Component {
 
         })
         socket.on('onPlay',  (data)=> {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             btn_play.click()}
         })
         //ROULETTE
         socket.on('rouletteWinnerS',  (data) =>{
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             console.log('escucha el alum')
             this.setState({show:true});
             document.getElementById("modal_luckyStudent").innerHTML = data.data;
@@ -191,7 +219,8 @@ export default class Audio extends Component {
         //ROULETTE END 
         //grupos
         socket.on('enviando grupos',  (data) =>{
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             console.log(data.data.data)
             this.setState({showGrupo:true});
             document.getElementById("imprimir").innerHTML = data.data.data;
@@ -202,7 +231,8 @@ export default class Audio extends Component {
 
         //FORM
         socket.on('SendFormS', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             const overlay_popup = document.getElementById('overlayinframe')
             const popup = document.getElementById('popupformulario')
 
@@ -210,12 +240,20 @@ export default class Audio extends Component {
             popup.className = 'popup active'}
         })
         socket.on('closeForm', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
                 this.DisablePopup2()
             }
         })
     }
+/** Fix pin */
+componentWillUnmount() {
+    // valor despues de salir del component
+    this.pin = ''
 
+    console.log('componente desmontado')
+  }
+  /****************** */
    
 
     render() {
@@ -247,35 +285,56 @@ export default class Audio extends Component {
           </Modal>
 
             {/*VIDEO*/}
-            <div class="overlay" id="overlay2">
-                <div class="popup" id="popupvideo">
-                    {/* <a href id="btn-cerrar-popup2" className="btn-cerrar-popup" onClick={() => this.DisablePopup()}><i class="material-icons">close</i></a> */}
-                    <iframe title="iframevideo" id="video-frame" src="" frameborder="0" style={{ width: "100% !important", height: "100%" }}
+            <div className="overlay" id="overlay2">
+                <div className="popup" id="popupvideo">
+                    {/* <a href id="btn-cerrar-popup2" className="btn-cerrar-popup" onClick={() => this.DisablePopup()}><i className="material-icons">close</i></a> */}
+                    <iframe title="iframevideo" id="video-frameStu" src="" frameborder="0" style={{ width: "100% !important", height: "100%" }}
                         allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </div>
             </div>
             {/*VIDEO FIN*/}
             <div className="overlay" id="overlayinframe">
                 <div className="popup" id="popupformulario">
-                    <div class="punto-posi">
+                    <div className="punto-posi">
                         <h1>Formulario</h1>
                     </div>
                     <br />
-                    {/* <a href id="btnCerrarFormu" className="btn-cerrar-popup"><i class="material-icons" onClick={() => this.DisablePopup2()}>close</i></a> */}
+                    {/* <a href id="btnCerrarFormu" className="btn-cerrar-popup"><i className="material-icons" onClick={() => this.DisablePopup2()}>close</i></a> */}
                     <iframe title="diapo-iframe" id="diapo-formulario" frameBorder="0" style={{ width: "100% !important", height: "450px" }} allowFullScreen={true}
                         mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
-
-
                 </div>
             </div>
             {/*Diapo*/}
 
-        <div className="overlay" id="overlay">
-                    <div className="popup" id="popup">
-                        <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",height: "100%", pointerEvents: "none"}} allowFullScreen={true}
-                         mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
+            <div className="overlay" id="overlay">
+                <div className="popup" id="popup" style={{display: 'table', background: 'black'}}>
+                    {this.state.iframeon ?
+                    <>
+                    <div style={styles}> 
+                      <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="100%" height="100%" style={{ width: "100% !important", height: "100%", pointerEvents: "none" }} allowFullScreen={true}
+                          mozallowfullscreen="true" webkitallowfullscreen="true" src="" >
+                        </iframe>
                     </div>
+                    </>
+                        :
+                    <div style={styles}> 
+                      <Carousel selectedItem={this.state.positionPpt-1} showArrows={false} useKeyboardArrows={true} swipeable={true} emulateTouch={true} showIndicators={false} showThumbs={false} >
+                          {
+                              this.state.Slides.map((slide)=>(
+                                  <div key={slide.index}>
+                                  <img
+                                    src={slide.url}
+                                    alt="Hong Kong"
+                                  />
+                                </div>          
+                              ))
+                          }
+                      </Carousel>
+                    </div>}
+                    {/* <iframe title="diapo-iframe" id="diapo-frame" frameBorder="0" width="960" height="569" style={{width: "100% !important",height: "100%", pointerEvents: "none"}} allowFullScreen={true}
+                     mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe> */}
                 </div>
+             </div>
 
         {/*END Diapo*/}
 
