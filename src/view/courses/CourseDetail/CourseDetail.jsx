@@ -42,9 +42,10 @@ export default class CourseDetail extends Component {
   };
 
   handleAddStudent = () => {
-    let fila = document.createElement("tr")
+    // let fila = document.createElement("tr")
     
-    document.getElementById("CourseDetail__table-body").appendChild()
+    // document.getElementById("CourseDetail__table-body").appendChild()
+    console.log("holaaa")
   }
 
   handleEditStudent = (idAlumno) => {
@@ -118,6 +119,10 @@ export default class CourseDetail extends Component {
   setClose = () => {
     this.setState({showdelete:2})
   };
+
+  deleteAlumno = () => {
+    console.log("alumno eliminado")
+  }
 
   render() {
     return (
@@ -265,7 +270,7 @@ export default class CourseDetail extends Component {
                   <span className="modal-title">¿DESEA ELIMINAR AL ALUMNO?</span>
                 </div>
                 <div className="modal-general_container_body">
-                  <button className="modal-body__button yes" onClick={this.setClose} type="button">
+                  <button className="modal-body__button yes" onClick={ () => this.deleteAlumno() + this.setClose()} type="button">
                     <div className="button-zoom">SI</div>
                   </button>
                   <button className="modal-body__button no" onClick={this.setClose} type="button">
