@@ -138,7 +138,7 @@ class Azar extends React.Component {
                         id_access={this.props.id_access}
                     />
                     <div id="modal-general_container" className={this.state.showModal === 0 ? "" : this.state.showModal === 1 ? "six" : this.state.showModal === 2 ? "six out" : ""}>
-                        <div class="modal-general_background">
+                        <div class="modal-general_background" >
                             <div class="modal-general_bg_content">
                                 <button className="modal-general_close" onClick={() => this.setState({showModal:2})}>
                                     <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />

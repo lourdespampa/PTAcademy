@@ -12,13 +12,17 @@ const onFocus = () => {
   };  
   // User has switched away from the tab (AKA tab is hidden)
   const onBlur = () => {
+      let pin = props.id_access
       const socket = io(props.socketUrl, {
-          query:
-              { pin: props.id_access }
+        query:
+          { 
+            pin: pin
+          }
         })
         socket.emit('tabBlurred',{fullname:props.fullname})
-    console.log(props.fullname);
-    console.log('Tab is blurred');
+
+        console.log(props.fullname);
+        console.log('Tab is blurred');
   };
   useEffect(() => {
     window.addEventListener('focus',onFocus);
@@ -38,10 +42,27 @@ export default function HeaderContainer(props) {
     const [temporizador,settemporizador]=useState(false);
     const [Exit,setExit]=useState(false);
     const reinicio=()=>settrivia(false)+settemporizador(false)
-    const deleteStudent=async ()=>{
+
+    const deleteStudent= ()=>{
         console.log(props.apiUrl,props.id_access,props.id_student)
-        await axios.put(`${props.apiUrl}/v1/api/lesson/${props.id_access}/student/${props.id_student}`)
+        
+        var varToken = localStorage.getItem("token");
+         axios({
+          url: `${props.apiUrl}/v1/api/student/disable_student/${props.id_student}`,
+          method: "put",
+          headers: {
+            "x-access-token": `${varToken}`
+          }
+        }).then(() => {
+          setExit(true)
+          const socket = io(props.socketUrl, {
+            query:
+                { pin: props.id_access }
+          })
+          socket.emit('newAlum')
+        })    
     }
+
     useEffect(()=>{
         const socket = io(props.socketUrl, {
             query:
@@ -123,14 +144,10 @@ export default function HeaderContainer(props) {
                   <i className="fa fa-chevron-down"></i>
                 </a>
                 <ul className={showResponsive ? "alumnoHeader-nav showResponsive" : "alumnoHeader-nav"} style={{zIndex:"5000"}}>
-                  <li className="alumnoHeader-li"  onClick={() => deleteStudent()+setredirect(true)}>
+                  <li className="alumnoHeader-li"  onClick={() => deleteStudent()}>
                     <a href className="alumnoHeader-a alumnoHeader-salir">
                       <i className="fas fa-sign-out-alt" style={{fontSize:"22px", padding:"0 10px"}}></i>
                       Salir
-                      {
-                        redirect
-                        ? <Redirect to = '/' /> : null
-                      }
                     </a>
                   </li>
                 </ul>
@@ -138,7 +155,7 @@ export default function HeaderContainer(props) {
             </ul>
             </header>
             <div className="alumnoH-header-base"></div>
-          <SocketStream id_access={props.id_access} id_student={props.id_student} socketUrl={props.socketUrl}/>
+          <SocketStream apiUrl={props.apiUrl} id_access={props.id_access} id_student={props.id_student} socketUrl={props.socketUrl}/>
         </div>
     )
 }

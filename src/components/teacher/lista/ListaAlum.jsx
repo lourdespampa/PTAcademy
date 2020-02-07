@@ -54,13 +54,38 @@ export default class ListaAlum extends Component {
                 { pin: this.props.id_access }
         })
         socket.on('newAlum', (data) => {
+            console.log("El pin de ese curso es:", data.pin)
             if (data.pin === (this.props.id_access).toUpperCase()) {
                 this.getStudents()
             }
         })
     }
+    //rellenar alumnos para profesor de colegio
+    getAlumnos = () => {
+        console.log("listar cursos");
+        const {
+          match: { params }
+        } = this.props;
+        var varToken = localStorage.getItem("token");
+        axios({
+          url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
+          method: "GET",
+          headers: {
+            "x-access-token": `${varToken}`
+          }
+        })
+          .then(({ data }) => {
+            console.log(data);
+            if (data === []) {
+              this.setState({ students: [] });
+            } else {
+              this.setState({ students: data });
+            }
+          })
+          .catch(e => console.log(e));
+      };
+    //rellenar state de estudiantes de profesor privado
 
-    //rellenar state
     getStudents = async () => {
         console.log(this.state.students)
         console.log(this.props.id_access)
@@ -215,12 +240,12 @@ export default class ListaAlum extends Component {
              </table>`)
         var user = JSON.parse(localStorage.getItem('user'));
 
-        const params = {
-            hml: html,
-            data: a,
-            name: 'playtecAcademy Clase prueba',
-            email: user.email
-        }
+        // const params = {
+        //     hml: html,
+        //     data: a,
+        //     name: 'playtecAcademy Clase prueba',
+        //     email: user.email
+        // }
         // await axios.post('http://email-service-playtec.herokuapp.com/', params)
 
     }

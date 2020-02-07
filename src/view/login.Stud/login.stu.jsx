@@ -2,12 +2,16 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import "./ingresarCodigo.sass";
-import logo from './images/Logo.svg'
+import logo from "./images/Logo.svg";
 
 export default class LoginStu extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: "", acceso: false };
+    this.state = {
+      value: "",
+      acceso: false,
+      colegio: 'tipo'
+    };
     this.id_access = "";
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,14 +25,11 @@ export default class LoginStu extends Component {
   }
 
   componentDidMount() {}
-  handleKeyPress = event => {
-    if (event.key === "Enter") {
-      this.ValidateCode();
-    }
-  };
+  
 
-  ValidateCode = (e) => {
-    e.preventDefault()
+  ValidateCode = e => {
+    e.preventDefault();
+    console.log(this.state.value)
     const codigo = this.state.value.toUpperCase();
     const data = {
       id_access: codigo
@@ -36,37 +37,41 @@ export default class LoginStu extends Component {
     axios
       .post(this.props.apiUrl + "/verify_access", data)
       .then(result => {
-        // console.log(result);
-        if (result.data.message === "Code doesn´t exist") {
-          alert("codigo incorrecto");
+        console.log(result);
+        if (result.data.school === true) {
+          this.setState({ id_access: codigo, acceso: true,colegio:'School' });
+          console.log('este curso es de colegios');
+          // <Redirect to={`/loginStudentSchool/${this.state.id_access}`}/>;
         } else {
-          this.setState({ id_access: codigo, acceso: true });
+          console.log(result);
+          this.setState({ id_access: codigo, acceso: true,colegio:'Private'  });
+          console.log('este curso es un profe privadito  pe');
+          // <Redirect to={`/loginStudentPrivate/${this.state.id_access}`}></Redirect>
         }
       })
       .catch(e => {
         console.log(e);
+        alert("CODIGO INCORRECTO O SOLICITUD INCORRECTA");
       });
-  }
+  };
   render() {
     return (
       <div className="enter-code__contenedor">
-          {
-          this.state.acceso 
-          ? 
-          <Redirect to={`/loginStudent/${this.state.id_access}`} /> 
-          :
-          null
-          }
+        {this.state.acceso ? (
+          // <Redirect to={`/loginStudent/${this.state.id_access}`} />
+          <Redirect to={`/loginStudent${this.state.colegio}/${this.state.id_access}`}></Redirect>
+        ) : null}
         <ul className="enter-code__header">
           <li className="enter-code__academy">
             <Link to="/">
-            <img className="enter-code__academy-a" src={logo} alt="este logo es academy"/>
-
+              <img
+                className="enter-code__academy-a"
+                src={logo}
+                alt="este logo es academy"
+              />
             </Link>
           </li>
-          <li className="">
-            
-          </li>
+          <li className=""></li>
           <li className="enter-code__changeStudent">
             <Link className="enter-code__academy-a" to={"/loginTeacher"}>
               CAMBIAR A PROFESOR
@@ -78,7 +83,10 @@ export default class LoginStu extends Component {
             <h1 className="enter-code__tittle-body">
               Ingresa el PIN para unirte a una clase como ALUMNO
             </h1>
-            <form className="enter-code__body-body" onSubmit={this.ValidateCode}>
+            <form
+              className="enter-code__body-body"
+              onSubmit={this.ValidateCode}
+            >
               <span className="enter-code__input input--kozakura">
                 <input
                   className="input__field input__field--kozakura"
@@ -115,11 +123,7 @@ export default class LoginStu extends Component {
                   <path d="M1200,9c0,0-305.005,0-401.001,0C733,9,675.327,4.969,598,4.969C514.994,4.969,449.336,9,400.333,9C299.666,9,0,9,0,9v43c0,0,299.666,0,400.333,0c49.002,0,114.66,3.484,197.667,3.484c77.327,0,135-3.484,200.999-3.484C894.995,52,1200,52,1200,52V9z" />
                 </svg>
               </span>
-              <button
-                className="enter-code__button"
-              >
-                INGRESAR
-              </button>
+              <button className="enter-code__button">INGRESAR</button>
             </form>
           </div>
         </div>

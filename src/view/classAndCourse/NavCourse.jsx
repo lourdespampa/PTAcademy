@@ -14,7 +14,7 @@ function BotonCerrarSesion(props) {
           Cerrar sesión
       </div>
       <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
-        <div className="modal-general_background">
+        <div className="modal-general_background" >
           <div className="modal-general_bg_content">
             <button className="modal-general_close" onClick={handleClose}>
               <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
@@ -24,11 +24,12 @@ function BotonCerrarSesion(props) {
                 <span className="modal-title__controlname">¿DESEA CERRAR SESIÓN?</span>
               </div>
               <div className="modal-general_container_body">
-                <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
-                    <Link style={{textDecoration:"none"}} to="/">
+               <Link style={{textDecoration:"none"}} to="/"> 
+               <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
+                    
                       <div className="button-zoom">SI</div>
-                    </Link>
-                </button>
+                    
+                </button></Link>
                 <button className="modal-body__button no" onClick={handleClose}>
                     <div className="button-zoom">NO</div>
                 </button>

@@ -6,7 +6,8 @@ export default class AllCourses extends Component {
   constructor(props){
     super(props)
     this.state = {
-      cursoConAlumnos: true
+      cursoConAlumnos: true,
+      hola: "holamunod"
     }
   }
 
@@ -30,8 +31,8 @@ export default class AllCourses extends Component {
   }
 
   render() {
-
     return (
+      
       <>
         <div className="classTeacher-container">
           <div className="classTeacher-card">
@@ -43,7 +44,7 @@ export default class AllCourses extends Component {
                     <i className="courseTeacher__img fas fa-trash"></i>
                 </button>
                 <div className={this.state.cursoConAlumnos ? "courseTeacher__containerButton-Edit" : "courseTeacher__containerButton-Edit courseTeacher__animationEdit"}>
-                <Link to={`/${this.props.idteacher}/course_detail/${this.props.id}`} className="courseTeacher__button-Edit">
+                <Link to={{pathname:`/${this.props.idteacher}/course_detail/${this.props.id}`, state:this.props.competencias}} className="courseTeacher__button-Edit">
                     <i className="algodemargin courseTeacher__img fas fa-user-plus"></i>
                 </Link>
                 </div>
@@ -55,14 +56,12 @@ export default class AllCourses extends Component {
                 <path className="classTeacher-card__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" strokeWidth="3" fill="transparent"/>
               </svg>            
             <div className="classTeacher-card__content">
-              <p className="classTeacher-card__level">{this.props.level ? this.props.level : "particular"}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <p className="classTeacher-card__grade">{this.props.grade}</p>&nbsp;&nbsp;
-              <p className="classTeacher-card__section">{this.props.section}</p>
+              <p className="classTeacher-card__section">{this.props.section}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <p className="classTeacher-card__level">{this.props.level ? this.props.level : "particular"}</p>
               <h1 className="classTeacher-card__title">{this.props.name_course}</h1>
               <p>{this.props.description}</p>
             </div>
-            { this.state.cursoConAlumnos
-            ?
             <Link
               onClick={() => this.props.onClick(this.props.id)}
               to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
@@ -72,15 +71,6 @@ export default class AllCourses extends Component {
                 VER CLASES
               </label>
             </Link>
-            :
-            <Link 
-            to={`/${this.props.idteacher}/course_detail/${this.props.id}`}
-            className="courseTeacher__buttonEntry courseTeacherDisabled">
-              <label className="courseTeacher__buttonEntry-label">
-                DEBE AGREGAR ALUMNOS
-              </label>
-            </Link>
-            }
           </div>
         </div>       
       </>

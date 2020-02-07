@@ -1,14 +1,15 @@
 /*  Clase Principal */
 .btnNextPrev
 {
-    position: relative;
+    position: absolute;
     width: 100%;
-    top: calc(50% - 80px);
+    top: calc(50% - 40px);
     left: 50%;
     transform:translate(-50%, -50%);
     margin: 0;
     padding: 0;
     display: flex;
+    z-index: 1;
 }
 .btnNextPrev li 
 {

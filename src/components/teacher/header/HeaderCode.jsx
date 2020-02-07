@@ -23,18 +23,18 @@ function BotonSalir(props) {
                             </div>
                         <div className="modal-general_container_body">
                             <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
-                            <Link style={{ textDecoration: "none" }} to="">
+                            <Link style={{ textDecoration: "none" }} to="/">
                                 <div className="button-zoom">SI</div>
                             </Link>
                             </button>
                             <button className="modal-body__button no" onClick={handleClose}>
                                 <div className="button-zoom">NO</div>
                             </button>
-                            <Link to={`/CoursesTeacher/${user._id}`}>
-                                <button className="modal-body__button  backCursos" onClick={handleClose}>
+                            <button className="modal-body__button  backCursos" onClick={props.ExitSocket}>
+                                <Link style={{ textDecoration: "none" }} to={`/CoursesTeacher/${user._id}`}>
                                     <div className="button-zoom">REGRESAR A CURSOS</div>
-                                </button>
-                            </Link>
+                                </Link>
+                            </button>
                         </div>
                         </div>
                         <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -102,11 +102,11 @@ class HeaderCode extends React.Component {
                         </div>
                         <div className="code-menu-detail">
 
-                            {localStorage.getItem("token") ? <BotonSalir cerrarSesion={this.props.cerrarSesion} /> : null}
+                            {localStorage.getItem("token") ? <BotonSalir ExitSocket={this.props.ExitSocket} cerrarSesion={this.props.cerrarSesion} /> : null}
 
                         </div>
                         <div id="modal-general_container" className={this.state.codigoModal === 0 ? "" : this.state.codigoModal === 1 ? "six" : this.state.codigoModal === 2 ? "six out" : ""}>
-                            <div className="modal-general_background">
+                            <div className="modal-general_background" >
                                 <div className="modal-general_bg_content">
                                     <button className="modal-general_close" onClick={this.handleClose}>
                                         <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
