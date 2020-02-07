@@ -108,8 +108,8 @@ changeCarrucel(e){
          showThumbs={false} onChange={(e)=>this.changeCarrucel(e)}>
             {
                 this.state.Slides.map((slide)=>(
-                    <div key={slide.index}>
-                    <img
+                    <div className="imagenes" key={slide.index}>
+                    <img className="imagenes-indiviuales"
                       src={slide.url}
                       alt="Hong Kong"
                     />
