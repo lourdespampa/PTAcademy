@@ -6,7 +6,7 @@ import AllCourses from "./AllCourses";
 import axios from "axios";
 
 import "../courses/Course.sass";
-import iconExit from "../../img/cerrar.png";
+import iconExit from "../../img/cerrar1.png";
 
 export default class CoursesTeacher extends Component {
   constructor(props) {
@@ -122,6 +122,10 @@ export default class CoursesTeacher extends Component {
         <div className="modal-general_background">
           <div className="modal-general_bg_content">
             <button className="modal-general_close" onClick={() => this.setShow("show", 2)}>
+              {/* <div className='btnClose01'>
+                <div className='bar-left'></div>
+                <div className='bar-right'></div>
+              </div> */}
               <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
             </button>
             <div className="modal-general_container">

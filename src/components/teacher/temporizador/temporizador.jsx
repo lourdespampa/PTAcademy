@@ -2,12 +2,13 @@ import React from "react";
 import $ from "jquery";
 import io from "socket.io-client";
 import "./temporizador.sass";
+import iconExit from "../../../img/cerrar1.png";
 //import Modal from 'react-bootstrap/Modal';
 
 class Temporizador extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { store: "", valH: "0", valM: "0", valS: "0", open: true };
+    this.state = { store: "", valH: "0", valM: "0", valS: "0", open: true,Show:1 };
     this.onChangeInputH = this.onChangeInputH.bind(this);
     this.onChangeInputM = this.onChangeInputM.bind(this);
     this.onChangeInputS = this.onChangeInputS.bind(this);
@@ -15,9 +16,15 @@ class Temporizador extends React.Component {
 
   openModal = () => {
     // this.setState({open:true})
+    this.setState({
+      Show:1
+    })
     $("#modal-temp").css("display", "block");
   };
   closeModal = () => {
+    this.setState({
+      Show:0
+    })
     $("#modal-temp").css("display", "none");
   };
 
@@ -199,7 +206,6 @@ class Temporizador extends React.Component {
             Your browser does not support the audio element.
           </audio>
         </div>
-
         <div className="counter-tools">
           <button
             type="button"
@@ -223,9 +229,72 @@ class Temporizador extends React.Component {
           >
             ESTABLECER TIEMPO
           </button>
+        </div> 
+        
+        <div id="modal-general_container" className={this.state.Show === 0 ? "" : this.state.Show === 1 ? "six" : this.state.Show === 2 ? "six out" : ""}>
+          <div className="modal-general_background" >
+            <div className="modal-general_bg_content">
+              <button className="modal-general_close" onClick={this.closeModal}>
+                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+              </button>
+              <div className="modal-general_container">
+              <div className="modal-general_container_header">
+          <span className="modal-title__controlname" style={{color:'black'}}>ESTABLECER TIEMPO</span>
         </div>
-
-        <div
+        <div className="modal-general_container_body">
+        <form class="temporizador_form">
+                    <div>
+                      <label>Horas</label>
+                      <input
+                        className="pure-input-1"
+                        type="number"
+                        id="id_dt_1"
+                        value={this.state.valH}
+                        min="0"
+                        onChange={this.onChangeInputH}
+                      />
+                    </div>
+                    <div>
+                      <label>Minutos</label>
+                      <input
+                        className="pure-input-1"
+                        type="number"
+                        id="id_dt_2"
+                        value={this.state.valM}
+                        min="0"
+                        onChange={this.onChangeInputM}
+                      />
+                    </div>
+                    <div>
+                      <label>Segundos</label>
+                      <input
+                        className="pure-input-1"
+                        type="number"
+                        id="id_dt_3"
+                        value={this.state.valS}
+                        min="0"
+                        onChange={this.onChangeInputS}
+                      />
+                    </div>
+                  </form>
+                  <br/>
+                  <button
+                    type="button"
+                    id="button-set"
+                    className="btnenviarvideo"
+                  >
+                    <div className="button-zoom" onClick={this.closeModal}>ESTABLECER TIEMPO</div>
+                  </button>
+          </div>
+              </div>
+              <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        {/* <div
           id="modal-temp"
           role="dialog"
           aria-modal="true"
@@ -297,7 +366,7 @@ class Temporizador extends React.Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* <Modal size={'SM'} show={this.state.open} onHide={() => this.closeModal()}>
             <Modal.Header>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import iconExit from "../../img/cerrar.png";
+import iconExit from "../../img/cerrar1.png";
 import FormularioCourse from './FormPostCourse'
 import FormularioClass from './FormPostClass'
 import Loanding from "../../components/teacher/loanding/spinner"
