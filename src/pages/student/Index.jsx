@@ -1,5 +1,6 @@
 import React,{useEffect} from 'react'
 import io from 'socket.io-client';
+import './generalesAlum.sass'
 
 export default function Index(props) {
     useEffect(()=>{
@@ -10,8 +11,7 @@ export default function Index(props) {
         socket.emit('newAlum')
       })
     return (
-        <>
-            <h1>Index</h1>
-        </>
+        <div className="fondoAlumno">
+        </div>
     )
 }
