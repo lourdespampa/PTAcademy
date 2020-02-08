@@ -7,7 +7,11 @@ import logo from "./images/Logo.svg";
 export default class LoginStu extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: "", acceso: false };
+    this.state = {
+      value: "",
+      acceso: false,
+      colegio: 'tipo'
+    };
     this.id_access = "";
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,14 +25,11 @@ export default class LoginStu extends Component {
   }
 
   componentDidMount() {}
-  handleKeyPress = event => {
-    if (event.key === "Enter") {
-      this.ValidateCode();
-    }
-  };
+  
 
   ValidateCode = e => {
     e.preventDefault();
+    console.log(this.state.value)
     const codigo = this.state.value.toUpperCase();
     const data = {
       id_access: codigo
@@ -38,24 +39,27 @@ export default class LoginStu extends Component {
       .then(result => {
         console.log(result);
         if (result.data.school === true) {
-          alert("el profesor es de colegio");
-          this.setState({ id_access: codigo, acceso: true });
-
+          this.setState({ id_access: codigo, acceso: true,colegio:'School' });
+          console.log('este curso es de colegios');
+          // <Redirect to={`/loginStudentSchool/${this.state.id_access}`}/>;
         } else {
-          console.log(result)
-          this.setState({ id_access: codigo, acceso: true });
+          console.log(result);
+          this.setState({ id_access: codigo, acceso: true,colegio:'Private'  });
+          console.log('este curso es un profe privadito  pe');
+          // <Redirect to={`/loginStudentPrivate/${this.state.id_access}`}></Redirect>
         }
       })
       .catch(e => {
         console.log(e);
-        alert('CODIGO INCORRECTO O SOLICITUD INCORRECTA')
+        alert("CODIGO INCORRECTO O SOLICITUD INCORRECTA");
       });
   };
   render() {
     return (
       <div className="enter-code__contenedor">
         {this.state.acceso ? (
-          <Redirect to={`/loginStudent/${this.state.id_access}`} />
+          // <Redirect to={`/loginStudent/${this.state.id_access}`} />
+          <Redirect to={`/loginStudent${this.state.colegio}/${this.state.id_access}`}></Redirect>
         ) : null}
         <ul className="enter-code__header">
           <li className="enter-code__academy">
