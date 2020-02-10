@@ -97,6 +97,22 @@
     box-shadow: inset 0 -1px rgba(0, 0, 0, .25);
 }
 
+.modal-general_closeTrivia{
+    position: absolute;
+    right: 189px;
+    background-color: #E91E63;
+    max-width: 40px;
+    border: 0;
+    height: 30px;
+    margin: .7em;
+    border-radius: 5px;
+    z-index: 3;
+    width: 100%;
+    cursor: pointer}
+
+.modal-general_closeTrivia:hover .button-zoom{
+    -webkit-transform: scale(1.20);
+    transform: scale(1.20)}
 /* media querie sin hamburguesa */
 @media only screen and (max-width: 575px) {
     
@@ -305,14 +321,20 @@
 
 #myList {
     margin-top: 1%;
-    position: absolute;
+    /* position: absolute;
     width: 50%;
     left: 50%;
-    margin-left: -25%;
+    margin-left: -25%; */
 }
 
 h3.trivia-respuestas{
     text-align: center;
+}
+
+.input-Trespuestas{
+    width: 30px;
+    padding-top: 8px;
+    padding-bottom: 0;
 }
 
 @keyframes rolldown {

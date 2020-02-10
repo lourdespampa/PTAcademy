@@ -40,6 +40,12 @@ export default class CourseDetail extends Component {
     await this.setState({ token: tokenStorage });
   };
 
+  handleAddStudent = () => {
+    let fila = document.createElement("tr")
+    
+    document.getElementById("CourseDetail__table-body").appendChild()
+  }
+
   handleEditStudent = (idAlumno) => {
     this.setState({
       editar: !this.state.editar,
@@ -105,6 +111,7 @@ export default class CourseDetail extends Component {
           idteacher={this.state.id_teacher}
           nombreProfesor={this.state.nombreProfesor}
           getdata={this.getAlumnos}
+          handleAddStudent={this.handleAddStudent}
         ></NavCourse>
         {/* <CardStudent></CardStudent> */}
         <div className="CourseDetail__Container" onClick={this.Cerrar}>
@@ -126,7 +133,7 @@ export default class CourseDetail extends Component {
               </tr>
             </thead>
             {/* cuerpo de la tabla */}
-            <tbody className="CourseDetail__table-body">
+            <tbody className="CourseDetail__table-body" id="CourseDetail__table-body">
               {this.state.students.map((alumno,idAlumno) => (
                 <tr className="CourseDetail__table-tr" key={alumno._id}>
                   <td className="CourseDetail__table-td" data-th="Codigo">

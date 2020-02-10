@@ -131,16 +131,13 @@ export default class NavCourse extends Component {
     const nav = document.getElementById("main-nav");
     nav.classList.toggle("show");
   };
+
   render() {
     return (
       <>
         {this.state.token ? null : <Redirect to="/notfound"></Redirect>}
-        <div className="teacherCourses__floatingActionButton teacherCourses_editStudent">
-          <i className="fas fa-edit"></i>
-        </div>
-        <div className="teacherCourses__floatingActionButton teacherCourses_addStudent">
-          <i className="fas fa-plus"></i>
-        </div>
+        <div className="teacherCourses__floatingActionButton teacherCourses_editStudent"><i className="fas fa-edit"></i></div>
+        <div className="teacherCourses__floatingActionButton teacherCourses_addStudent" onClick={this.props.handleAddStudent}><i className="fas fa-plus"></i></div>
         <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
             <Link
