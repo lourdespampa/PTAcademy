@@ -21,13 +21,13 @@ function MenuLeft(props) {
         onMouseOver={props.aparecer}
         onMouseOut={props.desaparecer}
       ></div>
-      <div
+      {/* <div
         className="socialpestaña"
         onMouseOver={props.aparecer}
         onMouseOut={props.desaparecer}
       >
         <h5>Arrastre el click aqui</h5>
-      </div>
+      </div> */}
       <div
         id="social"
         className="social"
