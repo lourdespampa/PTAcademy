@@ -2,6 +2,7 @@ import React from "react";
 import "./trivia.css";
 import "./botones.scss";
 import iconExit from "../../../img/cerrar.png";
+import axios from 'axios';
 import io from 'socket.io-client';
 
 //import { Container, Row, Col } from 'reactstrap';
@@ -16,6 +17,7 @@ class Trivia extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      todosAlumnos: [],
       pregunta: '',
       tiempo: '5',
       imagen64: '',
@@ -31,7 +33,7 @@ class Trivia extends React.Component {
     }
 
     // Este enlace es necesario para hacer que `this` funcione en el callback
-    this.handleSendQuestion = this.handleSendQuestion.bind(this);
+    this.handleSendQuestion  = this.handleSendQuestion.bind(this);
     this.handleChangeTime = this.handleChangeTime.bind(this);
     this.changeAnswer1 = this.changeAnswer1.bind(this);
     this.changeAnswer2 = this.changeAnswer2.bind(this);
@@ -40,7 +42,8 @@ class Trivia extends React.Component {
     this.handleCorrectAnswer = this.handleCorrectAnswer.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount = () =>{
+    this.getStudents()
     const { 
       id_access, 
       socketUrl 
@@ -61,6 +64,7 @@ class Trivia extends React.Component {
         this.setState({alumnosRecibidos: temp})
       }
       })
+      setTimeout( () => console.log(this.props), 3000)
   }
   //por buenas practicas, se deberia finalizar toda accion que pueda afectar el rendimiento del componente al morir
   //por lo que toda accion por tiempo se finaliza en este metodo, por ejemplo en la función handleSendQuestion() al final
@@ -68,6 +72,25 @@ class Trivia extends React.Component {
   componentWillUnmount() {
     clearTimeout(this.timeout);
     this.pin = ''
+  }
+
+  getStudents = () => {
+    var varToken = localStorage.getItem('token');
+    axios({
+        url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
+        method: 'GET',
+        headers: {
+            'x-access-token': `${varToken}`
+        }
+    })
+    .then((res) => {
+        const temp = [];
+        res.data.map(alumno => {
+            temp.push({idAlumno: alumno._id, nombre: `${alumno.name_stu} ${alumno.lastName_stu}`})
+        })
+        this.setState({ todosAlumnos: temp})
+    })
+    .catch(e => console.log(e))
   }
 
   showModal = () => {
@@ -177,9 +200,31 @@ class Trivia extends React.Component {
         respuestaCorrecta: this.state.selectedCorrectAnswer
       }
       socket.emit('enviando pregunta', contenido)
-      //finalmente cambia el estado del boton a restaurar.
-      this.setState(state => ({ preguntaEnviada: !state.preguntaEnviada }));
       this.timeout = setTimeout(() => this.setState({ modal: true }), parseInt(`${this.state.tiempo}000`, 10) + 8000)
+    }
+    //finalmente cambia el estado del boton a restaurar.
+    this.setState(state => ({ preguntaEnviada: !state.preguntaEnviada }));
+  }
+
+  handleAddAndRemovePoint = (alumnoTop, punto) => {
+    const data = {
+      point: punto
+    }
+    for (var alumno of this.state.todosAlumnos) {
+      if (alumno.nombre === alumnoTop.data.alumno) {
+        var varToken = localStorage.getItem('token');
+        axios({
+            url: this.props.apiUrl + '/v1/api/student/update_score/' + alumno.idAlumno,
+            data,
+            method: 'put',
+            headers: {
+                'x-access-token': `${varToken}`
+            }
+        })
+        .then(res => console.log(res))
+        .catch(e => console.log(e))
+          // await this.setState({ point: alumno.point })
+      }
     }
   }
 
@@ -236,10 +281,10 @@ class Trivia extends React.Component {
                         </div>
                               <div>
                                 puntos:&nbsp;&nbsp;
-                          <button className="button btnMyM material-icons">
+                          <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno,1)}>
                                   add_circle_outline
                           </button>&nbsp;0&nbsp;
-                          <button className="button btnMyM material-icons">
+                          <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno,-1)}>
                                   remove_circle_outline
                           </button>
                               </div>
@@ -259,7 +304,7 @@ class Trivia extends React.Component {
           }
         </div>
 
-        <div>
+        <div className="triviaT-cuerpo">
           <form>
             <div className="triviaT-row">
               <div className="triviaT-col-6">

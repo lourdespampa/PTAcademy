@@ -331,20 +331,6 @@ export default class ListaAlum extends Component {
                         </div>
                     </div>
                 </div>
-                {/* <Modal className="modal-teacher__general" show={this.state.modals.shownota} onHide={() => this.setShow('shownota', false)}>
-                    <button className="modal-teacher__general-close" onClick={() => this.setShow('shownota', false)}>
-                        <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
-                    </button>
-                    <Modal.Header>
-                        <div className="punto-posi">
-                            <span className="punto-text">NOTA</span>
-                        </div>
-                    </Modal.Header>
-                    <Modal.Body style={{ justifyContent: 'center' }}>
-                        <input type="text" value={this.state.note} onChange={this.onChangeInput} />
-                        <button id="btnnotas" class="button btnMyM" onClick={() => this.onSubmitNote() + this.setShow('shownota', false)} type="button" >MODIFICAR</button>
-                    </Modal.Body>
-                </Modal> */}
                 <div id="modal-general_container" className={this.state.modals.shownota === 0 ? "" : this.state.modals.shownota === 1 ? "six" : this.state.modals.shownota === 2 ? "six out" : ""}>
                     <div className="modal-general_background">
                         <div className="modal-general_bg_content">
@@ -386,24 +372,6 @@ export default class ListaAlum extends Component {
                         </div>
                     </div>
                 </div>
-                {/* <Modal className="modal-teacher__general" size={'lg'} show={this.state.modals.showdelete} onHide={() => this.setShow('showdelete', false)}>
-                    <button className="modal-teacher__general-close" onClick={() => this.setShow('showdelete', false)}>
-                        <img className="modal-teacher__general-cross" src={iconExit} alt="imagen de cerrar modal" />
-                    </button>
-                    <Modal.Header>
-                        <div className="punto-posi">
-                            <span className="punto-text">¿DESEA ELIMINAR AL ALUMNO?</span>
-                        </div>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <button id="modal-body__button-yes" className="btn" onClick={() => this.deleteStudents() + this.setShow('showdelete', false)} type="button">
-                            <div className="button-yes__text">SI</div>
-                        </button>
-                        <button id="modal-body__button-no" className="btn" onClick={() => this.setShow('showdelete', false)} type="button">
-                            <div className="button-no__text">NO</div>
-                        </button>
-                    </Modal.Body>
-                </Modal> */}
                 <div id="modal-general_container" className={this.state.modals.showdelete === 0 ? "" : this.state.modals.showdelete === 1 ? "six" : this.state.modals.showdelete === 2 ? "six out" : ""}>
                     <div className="modal-general_background">
                         <div className="modal-general_bg_content">

@@ -132,7 +132,7 @@ render(){
           <Route exact path="/teacher/:id_class/:id_access/pizarra" 
           component={()=><Pizarra id_access={this.state.id_access} socketUrl={this.state.socketUrl}/>} />
           <Route exact path="/teacher/:id_class/:id_access/trivia" 
-          component={() => <Trivia id_access={this.state.id_access} socketUrl={this.state.socketUrl}/>} />
+          component={() => <Trivia id_access={this.state.id_access} apiUrl={this.props.apiUrl} socketUrl={this.state.socketUrl}/>} />
           {/* <Redirect from="/" to="/teacher/xxxxx" /> */}
       </Contenido>
       </Switch>
