@@ -11,16 +11,14 @@ import LoginStu from "./view/login.Stud/login.stu";
 import FormLoginStu from "./view/login.Stud/login.dataForm";
 import Index from "./view/index/Inicio";
 import CourseDetailTeacher from "./view/courses/CourseDetail/CourseDetail";
+// se va poner los componentes de dos login de alumnos
+import LoginSchool from './view/login.Stud/loginSchool'
+import LoginPrivate from './view/login.Stud/loginPrivate'
 
 export default class Access extends Component {
   state = {
-    // apiUrl: "http://3.16.110.136:4200"
-    apiUrl:'http://192.168.1.43:4200'
-  };
-  render() {
     return (
       <BrowserRouter>
-        <Switch>
           <Route exact path="/" component={Index} />
           <Route
             exact
@@ -77,6 +75,20 @@ export default class Access extends Component {
             path="/loginStudent/:id_access"
             component={props => (
               <FormLoginStu {...props} apiUrl={this.state.apiUrl} />
+            )}
+          />
+          <Route
+            exact
+            path="/loginStudentSchool/:id_access"
+            component={props => (
+              <LoginSchool {...props} apiUrl={this.state.apiUrl} />
+            )}
+          />
+          <Route
+            exact
+            path="/loginStudentPrivate/:id_access"
+            component={props => (
+              <LoginPrivate {...props} apiUrl={this.state.apiUrl} />
             )}
           />
           {/* se termina las rutas de login de estudiante */}

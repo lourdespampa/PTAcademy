@@ -23,7 +23,7 @@ function BotonSalir(props) {
                             </div>
                         <div className="modal-general_container_body">
                             <button className="modal-body__button yes" onClick={props.cerrarSesion} variant="primary">
-                            <Link style={{ textDecoration: "none" }} to="">
+                            <Link style={{ textDecoration: "none" }} to="/">
                                 <div className="button-zoom">SI</div>
                             </Link>
                             </button>
