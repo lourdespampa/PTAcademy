@@ -214,7 +214,7 @@ export default class CourseDetail extends Component {
                       ?
                         this.state.idMapAlumno === idAlumno || this.state.editarTodos
                         ?
-                        <input type="text" defaultValue={competencia}/>
+                        <input type="text" defaultValue={null}/>
                         :
                         "descripcion"
                       :
