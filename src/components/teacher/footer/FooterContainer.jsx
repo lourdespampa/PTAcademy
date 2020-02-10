@@ -49,56 +49,6 @@ function Video(props) {
   const [NoData, setNoData] = useState(false);
   return (
     <>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <div className="footer-div" id="btnvideo" onClick={() => setShow(1)+props.botonClick('btnvideo')+seturlnombre('')}>
-            <img alt="" width="30px" height="30px" src={require("../../../img/footer/video.svg")} />
-            <span className="footer-span">Youtube</span>
-        </div>
-  <div id="modal-general_container" className={Show === 0 ? "" : Show === 1 ? "six" : Show === 2 ? "six out" : ""}>
-  <div class="modal-general_background">
-    <div class="modal-general_bg_content">
-      <button className="modal-general_close" onClick={() => setShow(2) + props.botonClick("modalvideo") + setNoData(false)}>
-        <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-      </button>
-      <div className="modal-general_container">
-        <div className="modal-general_container_header">
-          <span className="modal-title__controlname" style={{color:'black', display:'block'}}>EMITIR VIDEO</span>
-        </div>
-        <div className="modal-general_container_body">
-          <input
-            id="urlid"
-            type="text"
-            name="urlvideo"
-            onChange={e =>
-              seturlnombre(e.target.value)
-            }
-            style={{ fontSize: "20px", width: "79%" }}
-            value={urlnombre}
-            required
-          />
-          <button
-            className="btnenviarvideo"
-            onClick={() =>
-              enviarvideo(
-                urlnombre,
-                props.socketUrl,
-                props.id_access,
-                setShow,
-                seturlnombre,
-                setNoData
-              )
-            }
-            type="button"
-          >
-            <div className="button-zoom">ENVIAR</div>
-          </button>
-          {NoData ? (
-            <p style={{color:'red'}}className="mensageAction negative">AGREGE UNA URL DE VIDEO</p>
-          ) : null}
-=======
-=======
->>>>>>> ebfdb65de4b8e397da928761b44df8c2311d4d72
       <div
         className="footer-div"
         id="btnvideo"
@@ -187,10 +137,6 @@ function Video(props) {
               <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
             </svg>
           </div>
-<<<<<<< HEAD
->>>>>>> eeffe89a00dfa4b35d635f1d704d336c05ee354d
-=======
->>>>>>> ebfdb65de4b8e397da928761b44df8c2311d4d72
         </div>
       </div>
       <div className="overlay" id="overlay2">
