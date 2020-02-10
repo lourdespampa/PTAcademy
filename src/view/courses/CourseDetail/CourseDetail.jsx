@@ -197,11 +197,7 @@ export default class CourseDetail extends Component {
                       alumno.name_stu
                     }
                   </td>
-<<<<<<< HEAD
-                  {this.state.compentencias.map((competencia, id) => (
-=======
                   {this.state.competenciasAlumnos.map((compentencia, id) => (
->>>>>>> miryan
                     <td
                       key={id}
                       className="CourseDetail__table-td"
