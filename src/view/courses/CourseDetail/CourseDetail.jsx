@@ -190,12 +190,7 @@ export default class CourseDetail extends Component {
                       alumno.name_stu
                     }
                   </td>
-
-
-
                   {this.state.competenciasAlumnos.map((compentencia, id) => (
-
-
                     <td
                       key={id}
                       className="CourseDetail__table-td"
@@ -212,7 +207,7 @@ export default class CourseDetail extends Component {
                       ?
                         this.state.idMapAlumno === idAlumno || this.state.editarTodos
                         ?
-                        <input type="text" defaultValue={competencia}/>
+                        <input type="text" defaultValue={null}/>
                         :
                         "descripcion"
                       :
