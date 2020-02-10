@@ -30,7 +30,7 @@ export default class CourseDetail extends Component {
     } = this.props;
     this.setState({ id_course: params.id_course, id_teacher: params.id, compentencias: this.props.location.state });
     setTimeout(
-      () => console.log(this.state.id_course, this.state.id_teacher, this.state.compentencias),
+      () => console.log('id del curso', this.state.id_course, 'id del teacher:', this.state.id_teacher,'listado de als compentencias', this.state.compentencias),
       2000
     );
     this.getAlumnos()
@@ -74,7 +74,8 @@ export default class CourseDetail extends Component {
           this.setState({ students: [], });
         } else {
           this.setState({ students: data, competenciasAlumnos: data.competences })
-          console.log(this.state.competenciasAlumnos);
+          
+          console.log(data[0].competences);
         }
       })
       .catch(e => console.log(e));
