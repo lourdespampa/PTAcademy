@@ -4,7 +4,7 @@ import "./botones.scss";
 
 import io from 'socket.io-client';
 
-//import { Container, Row, Col } from 'reactstrap';
+// import { Container, Row, Col } from 'reactstrap'; no se esta usando
 
 class Trivia extends React.Component {
   /** 

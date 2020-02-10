@@ -318,7 +318,7 @@ componentWillUnmount() {
                     </>
                         :
                     <div style={styles}> 
-                      <Carousel selectedItem={this.state.positionPpt-1} showArrows={false} useKeyboardArrows={true} swipeable={true} emulateTouch={true} showIndicators={false} showThumbs={false} >
+                      <Carousel centerMode  centerSlidePercentage={ 90 } selectedItem={this.state.positionPpt-1} showArrows={false} useKeyboardArrows={false} swipeable={false} emulateTouch={false} showIndicators={false} showThumbs={false} >
                           {
                               this.state.Slides.map((slide)=>(
                                   <div key={slide.index}>
