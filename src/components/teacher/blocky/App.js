@@ -69,9 +69,8 @@ class App extends React.Component {
                 wheel: true
               }}
             >
-              <Category name="variables" id="variables">
+              <Category name="a" id="variables">
                 <Block type="test_react_field" />
-                <Block type="Juan" />
                 <Block type="test_react_date_field" />
                 <Block type="controls_ifelse" />
                 <Block type="logic_compare" />
