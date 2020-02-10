@@ -64,26 +64,26 @@ export default class ListaAlum extends Component {
     getAlumnos = () => {
         console.log("listar cursos");
         const {
-          match: { params }
+            match: { params }
         } = this.props;
         var varToken = localStorage.getItem("token");
         axios({
-          url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
-          method: "GET",
-          headers: {
-            "x-access-token": `${varToken}`
-          }
-        })
-          .then(({ data }) => {
-            console.log(data);
-            if (data === []) {
-              this.setState({ students: [] });
-            } else {
-              this.setState({ students: data });
+            url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
+            method: "GET",
+            headers: {
+                "x-access-token": `${varToken}`
             }
-          })
-          .catch(e => console.log(e));
-      };
+        })
+            .then(({ data }) => {
+                console.log(data);
+                if (data === []) {
+                    this.setState({ students: [] });
+                } else {
+                    this.setState({ students: data });
+                }
+            })
+            .catch(e => console.log(e));
+    };
     //rellenar state de estudiantes de profesor privado
 
     getStudents = async () => {
@@ -415,12 +415,12 @@ export default class ListaAlum extends Component {
                                     <span className="modal-title">¿DESEA ELIMINAR AL ALUMNO?</span>
                                 </div>
                                 <div className="modal-general_container_body">
-                                <button className="modal-body__button yes" onClick={() => this.deleteStudents() + this.setShow('showdelete', 2)} type="button">
-                                    <div className="button-zoom">SI</div>
-                                </button>
-                                <button className="modal-body__button no" onClick={() => this.setShow('showdelete', 2)} type="button">
-                                    <div className="button-zoom">NO</div>
-                                </button>
+                                    <button className="modal-body__button yes" onClick={() => this.deleteStudents() + this.setShow('showdelete', 2)} type="button">
+                                        <div className="button-zoom">SI</div>
+                                    </button>
+                                    <button className="modal-body__button no" onClick={() => this.setShow('showdelete', 2)} type="button">
+                                        <div className="button-zoom">NO</div>
+                                    </button>
                                 </div>
                             </div>
                             <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">

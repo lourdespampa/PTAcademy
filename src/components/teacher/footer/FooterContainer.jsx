@@ -55,7 +55,7 @@ function Video (props){
       </button>
       <div className="modal-general_container">
         <div className="modal-general_container_header">
-          <span className="modal-title__controlname" style={{color:'black'}}>EMITIR VIDEO</span>
+          <span className="modal-title__controlname" style={{color:'black', display:'block'}}>EMITIR VIDEO</span>
         </div>
         <div className="modal-general_container_body">
           <input
@@ -65,7 +65,7 @@ function Video (props){
             onChange={e =>
               seturlnombre(e.target.value)
             }
-            style={{ fontSize: "20px", width: "80%" }}
+            style={{ fontSize: "20px", width: "79%" }}
             value={urlnombre}
             required
           />

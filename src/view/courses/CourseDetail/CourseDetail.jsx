@@ -3,6 +3,7 @@ import "./CourseDetail.sass";
 import NavCourse from "./NavCourseDetail";
 import axios from "axios";
 import iconExit from "../../../img/cerrar.png";
+import { Thumbnail } from "react-bootstrap";
 // import CardStudent from './CardStudent'
 export default class CourseDetail extends Component {
   constructor(props) {
@@ -13,14 +14,14 @@ export default class CourseDetail extends Component {
       id_teacher: "",
       students: [],
       editar: false,
+      editarTodos: false,
       idMapAlumno: "",
       apellidoAlumno: "",
       nombreAlumno: "",
       apiUrl: "http://3.16.110.136:4200",
       compentencias: [],
       competenciasAlumnos: [],
-      showdelete: 0,
-      editarTodos: false
+      showdelete: 0
     };
   }
 
@@ -49,10 +50,8 @@ export default class CourseDetail extends Component {
   }
 
   handleEditStudent = (idAlumno) => {
-    this.setState({
-      editar: !this.state.editar,
-      idMapAlumno: idAlumno
-    })
+    this.setState({editar: !this.state.editar, idMapAlumno: idAlumno})
+    console.log(this.state.idMapAlumno)
   }
 
   handleEditAllStudentEnable = () => {
@@ -82,9 +81,7 @@ export default class CourseDetail extends Component {
 
   getAlumnos = () => {
     console.log("listar alumnos ");
-    const {
-      match: { params }
-    } = this.props;
+    const { match: { params }} = this.props; 
     var varToken = localStorage.getItem("token");
     axios({
       url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
@@ -120,8 +117,9 @@ export default class CourseDetail extends Component {
     this.setState({showdelete:2})
   };
 
-  deleteAlumno = () => {
+  deleteAlumno = (estado,valor) => {
     console.log("alumno eliminado")
+    this.setClose()
   }
 
   render() {
@@ -170,7 +168,7 @@ export default class CourseDetail extends Component {
                       ?
                         this.state.idMapAlumno === idAlumno || this.state.editarTodos
                         ?
-                        <input type="text" name="apellidoAlumno" defaultValue={alumno.lastName_stu} onChange={this.handleChangeInputs} />
+                        <input type="text" defaultValue={alumno.lastName_stu}/>
                         :
                         alumno.lastName_stu
                       :
@@ -186,14 +184,14 @@ export default class CourseDetail extends Component {
                       ?
                         this.state.idMapAlumno === idAlumno || this.state.editarTodos
                         ?
-                        <input type="text" name="nombreAlumno" defaultValue={alumno.name_stu} onChange={this.handleChangeInputs} />
+                        <input type="text" defaultValue={alumno.name_stu}/>
                         :
                         alumno.name_stu
                       :
                       alumno.name_stu
                     }
                   </td>
-                  {this.state.compentencias.map((compentencia, id) => (
+                  {this.state.compentencias.map((competencia, id) => (
                     <td
                       key={id}
                       className="CourseDetail__table-td"
@@ -210,11 +208,11 @@ export default class CourseDetail extends Component {
                       ?
                         this.state.idMapAlumno === idAlumno || this.state.editarTodos
                         ?
-                        <input type="text" name="nombreAlumno" defaultValue={compentencia} onChange={this.handleChangeInputs} />
+                        <input type="text" defaultValue={competencia}/>
                         :
-                        "descripción"
+                        "descripcion"
                       :
-                      "descripción"
+                      "descripcion"
                       }
                     </td>
                   ))}
@@ -223,25 +221,19 @@ export default class CourseDetail extends Component {
                     data-th="Editar"
                   >
                     {
-                    this.state.editar
-                    ?
+                      this.state.editar 
+                      ?
                       this.state.idMapAlumno === idAlumno
-                      ?
-                      <button className="courseTeacher__button-alumno" style={{background: "#52BE7F"}} onClick={() => this.handleEditStudent(idAlumno)} >
-                        <i className="fas fa-save"></i>
-                      </button>
+                        ?
+                        <button className="courseTeacher__button-alumno" style={{background:'#52BE7F'}} onClick={ () => this.handleEditStudent(idAlumno)}>
+                          <i className="fas fa-save"></i>
+                        </button>
+                        :
+                        <button className="courseTeacher__button-alumno" style={{background:'grey'}} >
+                          <i className="fas fa-edit"></i>
+                        </button>
                       :
-                      <button className="courseTeacher__button-alumno" style={{background: "grey"}} disabled >
-                        <i className="fas fa-edit"></i>
-                      </button>
-                    :
-                      this.state.editarTodos
-                      ?
-                      <button className="courseTeacher__button-alumno" style={{background: "#grey"}} disabled >
-                        <i className="fas fa-save"></i>
-                      </button>
-                      :
-                      <button className="courseTeacher__button-alumno" onClick={() => this.handleEditStudent(idAlumno)} >
+                      <button className="courseTeacher__button-alumno" onClick={ () => this.handleEditStudent(idAlumno)}>
                         <i className="fas fa-edit"></i>
                       </button>
                     }
@@ -270,7 +262,7 @@ export default class CourseDetail extends Component {
                   <span className="modal-title">¿DESEA ELIMINAR AL ALUMNO?</span>
                 </div>
                 <div className="modal-general_container_body">
-                  <button className="modal-body__button yes" onClick={ () => this.deleteAlumno() + this.setClose()} type="button">
+                  <button className="modal-body__button yes" onClick={this.deleteAlumno} type="button">
                     <div className="button-zoom">SI</div>
                   </button>
                   <button className="modal-body__button no" onClick={this.setClose} type="button">
