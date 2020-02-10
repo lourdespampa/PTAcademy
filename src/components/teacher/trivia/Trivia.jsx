@@ -13,6 +13,7 @@ class Trivia extends React.Component {
    *  :: valor inicial de PIN al cargar component
    * */ 
   pin = ''
+  puntaje = 0
   /******************* */
   constructor(props){
     super(props)
@@ -207,6 +208,12 @@ class Trivia extends React.Component {
   }
 
   handleAddAndRemovePoint = (alumnoTop, punto) => {
+    this.puntaje += punto
+    console.log('punto', punto)
+    console.log('this.punto', this.puntaje)
+    const data = {
+      point: this.puntaje
+    }
     for (var alumno of this.state.todosAlumnos) {
       if (alumno.nombre === alumnoTop.data.alumno) {
         var varToken = localStorage.getItem('token');
