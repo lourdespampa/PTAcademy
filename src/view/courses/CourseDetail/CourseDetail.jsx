@@ -44,7 +44,7 @@ export default class CourseDetail extends Component {
   handleAddStudent = () => {
     let fila = document.createElement("tr")
     
-    document.getElementById("CourseDetail__table-body").appendChild()
+    document.getElementById("CourseDetail__table-body").appendChild(fila)
   }
 
   handleEditStudent = (idAlumno) => {
@@ -98,7 +98,7 @@ export default class CourseDetail extends Component {
           this.setState({ students: [], });
         } else {
           this.setState({ students: data, competenciasAlumnos: data.competences })
-          console.log(this.state.competenciasAlumnos);
+          // console.log(this.state.competenciasAlumnos);
         }
       })
       .catch(e => console.log(e));
