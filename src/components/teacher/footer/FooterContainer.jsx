@@ -50,6 +50,7 @@ function Video(props) {
   return (
     <>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <div className="footer-div" id="btnvideo" onClick={() => setShow(1)+props.botonClick('btnvideo')+seturlnombre('')}>
             <img alt="" width="30px" height="30px" src={require("../../../img/footer/video.svg")} />
             <span className="footer-span">Youtube</span>
@@ -96,6 +97,8 @@ function Video(props) {
             <p style={{color:'red'}}className="mensageAction negative">AGREGE UNA URL DE VIDEO</p>
           ) : null}
 =======
+=======
+>>>>>>> ebfdb65de4b8e397da928761b44df8c2311d4d72
       <div
         className="footer-div"
         id="btnvideo"
@@ -184,7 +187,10 @@ function Video(props) {
               <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
             </svg>
           </div>
+<<<<<<< HEAD
 >>>>>>> eeffe89a00dfa4b35d635f1d704d336c05ee354d
+=======
+>>>>>>> ebfdb65de4b8e397da928761b44df8c2311d4d72
         </div>
       </div>
       <div className="overlay" id="overlay2">

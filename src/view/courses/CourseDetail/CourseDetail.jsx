@@ -94,8 +94,20 @@ export default class CourseDetail extends Component {
         if (data === []) {
           this.setState({ students: [], });
         } else {
+<<<<<<< HEAD
           this.setState({ students: data, competenciasAlumnos: data.competences })
           // console.log(this.state.competenciasAlumnos);
+=======
+          this.setState({ students: data })
+          console.log(this.state.students.length)
+          for(let i=0; i<=data.length; i++){
+            console.log('bucle', data[i].competences);
+            this.setState({
+              competenciasAlumnos: data[i].competences
+            })
+          }
+          console.log(this.state.competenciasAlumnos);
+>>>>>>> ebfdb65de4b8e397da928761b44df8c2311d4d72
         }
       })
       .catch(e => console.log(e));
@@ -190,7 +202,15 @@ export default class CourseDetail extends Component {
                       alumno.name_stu
                     }
                   </td>
+<<<<<<< HEAD
                   {this.state.compentencias.map((competencia, id) => (
+=======
+<<<<<<< HEAD
+                  {this.state.compentencias.map((competencia, id) => (
+=======
+                  {this.state.competenciasAlumnos.map((compentencia, id) => (
+>>>>>>> miryan
+>>>>>>> ebfdb65de4b8e397da928761b44df8c2311d4d72
                     <td
                       key={id}
                       className="CourseDetail__table-td"
