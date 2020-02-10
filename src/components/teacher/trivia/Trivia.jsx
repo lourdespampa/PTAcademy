@@ -86,7 +86,7 @@ class Trivia extends React.Component {
     .then((res) => {
         const temp = [];
         res.data.map(alumno => {
-            temp.push({idAlumno: alumno._id, nombre: `${alumno.name_stu} ${alumno.lastName_stu}`})
+            temp.push({idAlumno: alumno._id, nombre: `${alumno.name_stu} ${alumno.lastName_stu}`, puntos: alumno.point})
         })
         this.setState({ todosAlumnos: temp})
     })
@@ -207,12 +207,12 @@ class Trivia extends React.Component {
   }
 
   handleAddAndRemovePoint = (alumnoTop, punto) => {
-    const data = {
-      point: punto
-    }
     for (var alumno of this.state.todosAlumnos) {
       if (alumno.nombre === alumnoTop.data.alumno) {
         var varToken = localStorage.getItem('token');
+        let data = {
+          point: alumno.puntos + punto
+        }
         axios({
             url: this.props.apiUrl + '/v1/api/student/update_score/' + alumno.idAlumno,
             data,
@@ -221,7 +221,7 @@ class Trivia extends React.Component {
                 'x-access-token': `${varToken}`
             }
         })
-        .then(res => console.log(res))
+        .then(res => this.getStudents())
         .catch(e => console.log(e))
           // await this.setState({ point: alumno.point })
       }
@@ -229,7 +229,6 @@ class Trivia extends React.Component {
   }
 
   render() {
-    // console.log(this.state.alumnosRecibidos)
     return (
       <>
         <div className={this.state.navbarResponsive ? "triviaT-topnav responsive" : "triviaT-topnav"}>
@@ -278,15 +277,24 @@ class Trivia extends React.Component {
                             <div className="trivia-respuestas">
                               <div>alumno:&nbsp;&nbsp;{alumno.data.alumno}&nbsp;&nbsp;
                               {/* puntaje:&nbsp;&nbsp;{alumno.data.puntaje}&nbsp;&nbsp; */}
-                        </div>
+                              </div>
                               <div>
                                 puntos:&nbsp;&nbsp;
-                          <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno,1)}>
-                                  add_circle_outline
-                          </button>&nbsp;0&nbsp;
-                          <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno,-1)}>
-                                  remove_circle_outline
-                          </button>
+                                <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno,1)}>
+                                        add_circle_outline
+                                </button>
+                                &nbsp;
+                                {this.state.todosAlumnos.map( todoAlumno => (
+                                  todoAlumno.nombre === alumno.data.alumno
+                                  ?
+                                  <label key={index}>{todoAlumno.puntos}</label>
+                                  :
+                                  null
+                                ))}
+                                &nbsp;
+                                <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno,-1)}>
+                                        remove_circle_outline
+                                </button>
                               </div>
                             </div>
                           </li>
