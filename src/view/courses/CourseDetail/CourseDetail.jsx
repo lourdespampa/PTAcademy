@@ -79,9 +79,15 @@ export default class CourseDetail extends Component {
         if (data === []) {
           this.setState({ students: [], });
         } else {
-          this.setState({ students: data, competenciasAlumnos: data.competences })
-          
-          console.log(data[0].competences);
+          this.setState({ students: data })
+          console.log(this.state.students.length)
+          for(let i=0; i<=data.length; i++){
+            console.log('bucle', data[i].competences);
+            this.setState({
+              competenciasAlumnos: data[i].competences
+            })
+          }
+          console.log(this.state.competenciasAlumnos);
         }
       })
       .catch(e => console.log(e));
@@ -168,7 +174,7 @@ export default class CourseDetail extends Component {
                       alumno.name_stu
                     }
                   </td>
-                  {this.state.compentencias.map((compentencia, id) => (
+                  {this.state.competenciasAlumnos.map((compentencia, id) => (
                     <td
                       key={id}
                       className="CourseDetail__table-td"
