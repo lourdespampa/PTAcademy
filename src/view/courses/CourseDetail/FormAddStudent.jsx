@@ -21,8 +21,6 @@ export default class FormAddStudent extends Component {
     const target = e.target;
     const name = target.name;
     const value = target.value;
-    console.log(value);
-
     this.setState({
       [name]: value
     });
@@ -32,7 +30,6 @@ export default class FormAddStudent extends Component {
     this.setState({
       bloquearBoton: true
     });
-    console.log(this.props.apiUrl);
     var varToken = localStorage.getItem("token");
     event.preventDefault();
     const data = {
@@ -50,11 +47,12 @@ export default class FormAddStudent extends Component {
         "x-access-token": `${varToken}`
       }
     })
-      .then((res) => {
+      .then(res => {
         this.setState({
-          bloquearBoton: false
-        })
-        console.log(res);
+          bloquearBoton: false,
+          name_stu: "",
+          lastName_stu: ""
+        });
         this.props.handleClose();
         this.props.getdata();
       })
@@ -63,8 +61,8 @@ export default class FormAddStudent extends Component {
         console.log(err);
         this.setState({
           bloquearBoton: false
-        })
-      })
+        });
+      });
   };
   render() {
     const { name_stu, lastName_stu } = this.state;
@@ -96,17 +94,15 @@ export default class FormAddStudent extends Component {
             required
           />
           <input type="file" />
-          {
-              this.state.bloquearBoton
-              ? 
-          <Button className="modal-body__button cursos" type="button">
-            <div className="button-zoom">Cargando ...</div>
-          </Button>
-          : 
-          <Button className="modal-body__button cursos" type="submit">
-            <div className="button-zoom">Agregar Alumno</div>
-          </Button>
-  }
+          {this.state.bloquearBoton ? (
+            <Button className="modal-body__button cursos" type="button">
+              <div className="button-zoom">Cargando ...</div>
+            </Button>
+          ) : (
+            <Button className="modal-body__button cursos" type="submit">
+              <div className="button-zoom">Agregar Alumno</div>
+            </Button>
+          )}
         </Form>
       </>
     );
