@@ -1,8 +1,8 @@
 import React, { Component, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import "../courses/Course.sass";
-import iconExit from "../../img/cerrar.png";
-import ModalAddCourseAndClass from "./ModalAgregar.jsx";
+import iconExit from "../../img/cerrar1.png";
+import ModalAddCourseAndClass from "./ModalAgregar.jsx"
 
 function BotonCerrarSesion(props) {
   const [show, setShow] = useState(0);
@@ -11,7 +11,7 @@ function BotonCerrarSesion(props) {
   return (
     <>
       <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
-        Cerrar sesion
+          Cerrar sesión
       </div>
       <div
         id="modal-general_container"

@@ -2,6 +2,7 @@ import React from "react";
 import "./trivia.css";
 import "./botones.scss";
 import iconExit from "../../../img/cerrar.png";
+import axios from 'axios';
 import io from 'socket.io-client';
 
 // import { Container, Row, Col } from 'reactstrap'; no se esta usando
@@ -12,10 +13,12 @@ class Trivia extends React.Component {
    *  :: valor inicial de PIN al cargar component
    * */ 
   pin = ''
+  puntaje = 0
   /******************* */
   constructor(props){
     super(props)
     this.state = {
+      todosAlumnos: [],
       pregunta: '',
       tiempo: '5',
       imagen64: '',
@@ -31,7 +34,7 @@ class Trivia extends React.Component {
     }
 
     // Este enlace es necesario para hacer que `this` funcione en el callback
-    this.handleSendQuestion = this.handleSendQuestion.bind(this);
+    this.handleSendQuestion  = this.handleSendQuestion.bind(this);
     this.handleChangeTime = this.handleChangeTime.bind(this);
     this.changeAnswer1 = this.changeAnswer1.bind(this);
     this.changeAnswer2 = this.changeAnswer2.bind(this);
@@ -40,7 +43,8 @@ class Trivia extends React.Component {
     this.handleCorrectAnswer = this.handleCorrectAnswer.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount = () =>{
+    this.getStudents()
     const { 
       id_access, 
       socketUrl 
@@ -61,6 +65,7 @@ class Trivia extends React.Component {
         this.setState({alumnosRecibidos: temp})
       }
       })
+      setTimeout( () => console.log(this.props), 3000)
   }
   //por buenas practicas, se deberia finalizar toda accion que pueda afectar el rendimiento del componente al morir
   //por lo que toda accion por tiempo se finaliza en este metodo, por ejemplo en la función handleSendQuestion() al final
@@ -68,6 +73,25 @@ class Trivia extends React.Component {
   componentWillUnmount() {
     clearTimeout(this.timeout);
     this.pin = ''
+  }
+
+  getStudents = () => {
+    var varToken = localStorage.getItem('token');
+    axios({
+        url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
+        method: 'GET',
+        headers: {
+            'x-access-token': `${varToken}`
+        }
+    })
+    .then((res) => {
+        const temp = [];
+        res.data.map(alumno => {
+            temp.push({idAlumno: alumno._id, nombre: `${alumno.name_stu} ${alumno.lastName_stu}`, puntos: alumno.point})
+        })
+        this.setState({ todosAlumnos: temp})
+    })
+    .catch(e => console.log(e))
   }
 
   showModal = () => {
@@ -177,14 +201,41 @@ class Trivia extends React.Component {
         respuestaCorrecta: this.state.selectedCorrectAnswer
       }
       socket.emit('enviando pregunta', contenido)
-      //finalmente cambia el estado del boton a restaurar.
-      this.setState(state => ({ preguntaEnviada: !state.preguntaEnviada }));
       this.timeout = setTimeout(() => this.setState({ modal: true }), parseInt(`${this.state.tiempo}000`, 10) + 8000)
+    }
+    //finalmente cambia el estado del boton a restaurar.
+    this.setState(state => ({ preguntaEnviada: !state.preguntaEnviada }));
+  }
+
+  handleAddAndRemovePoint = (alumnoTop, punto) => {
+    this.puntaje += punto
+    console.log('punto', punto)
+    console.log('this.punto', this.puntaje)
+    const data = {
+      point: this.puntaje
+    }
+    for (var alumno of this.state.todosAlumnos) {
+      if (alumno.nombre === alumnoTop.data.alumno) {
+        var varToken = localStorage.getItem('token');
+        let data = {
+          point: alumno.puntos + punto
+        }
+        axios({
+            url: this.props.apiUrl + '/v1/api/student/update_score/' + alumno.idAlumno,
+            data,
+            method: 'put',
+            headers: {
+                'x-access-token': `${varToken}`
+            }
+        })
+        .then(res => this.getStudents())
+        .catch(e => console.log(e))
+          // await this.setState({ point: alumno.point })
+      }
     }
   }
 
   render() {
-    // console.log(this.state.alumnosRecibidos)
     return (
       <>
         <div className={this.state.navbarResponsive ? "triviaT-topnav responsive" : "triviaT-topnav"}>
@@ -215,10 +266,10 @@ class Trivia extends React.Component {
               ?
               <div className="modal-respuestas">
                 {/* Modal content */}
-                <button className="modal-general_closeTrivia" onClick={this.showModal}>
+                <div className="modal-content-respuestas">
+                  <button className="modal-general_closeTrivia" onClick={this.showModal}>
                     <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                   </button>
-                <div className="modal-content-respuestas">
                   <h2>Clasificación</h2>
                   <ul className="rolldown-list" id="myList">
                     {this.state.alumnosRecibidos.length > 0
@@ -231,16 +282,26 @@ class Trivia extends React.Component {
                           <li className="lista-contenedora" key={index}>
                             {/* <img className="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
                             <div className="trivia-respuestas">
-                              <div>alumno:&nbsp;&nbsp;{alumno.data.alumno}&nbsp;&nbsp;puntaje:&nbsp;&nbsp;{alumno.data.puntaje}&nbsp;&nbsp;
-                        </div>
+                              <div>alumno:&nbsp;&nbsp;{alumno.data.alumno}&nbsp;&nbsp;
+                              {/* puntaje:&nbsp;&nbsp;{alumno.data.puntaje}&nbsp;&nbsp; */}
+                              </div>
                               <div>
                                 puntos:&nbsp;&nbsp;
-                          <button className="button btnMyM material-icons">
-                                  add_circle_outline
-                          </button>&nbsp;<input className="input-Trespuestas"></input>&nbsp;
-                          <button className="button btnMyM material-icons">
-                                  remove_circle_outline
-                          </button>
+                                <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno,1)}>
+                                        add_circle_outline
+                                </button>
+                                &nbsp;
+                                {this.state.todosAlumnos.map( todoAlumno => (
+                                  todoAlumno.nombre === alumno.data.alumno
+                                  ?
+                                  <label key={index}>{todoAlumno.puntos}</label>
+                                  :
+                                  null
+                                ))}
+                                &nbsp;
+                                <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno,-1)}>
+                                        remove_circle_outline
+                                </button>
                               </div>
                             </div>
                           </li>
@@ -258,7 +319,7 @@ class Trivia extends React.Component {
           }
         </div>
 
-        <div>
+        <div className="triviaT-cuerpo">
           <form>
             <div className="triviaT-row">
               <div className="triviaT-col-6">

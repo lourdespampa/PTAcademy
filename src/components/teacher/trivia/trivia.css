@@ -4,6 +4,8 @@
     text-align: center
 }
 .triviaT-topnav {
+    position: fixed;
+    width: 100%;
     overflow: hidden;
     background-color: #333;
     margin-bottom: 10px;
@@ -98,8 +100,7 @@
 }
 
 .modal-general_closeTrivia{
-    position: absolute;
-    right: 189px;
+    position: static;
     background-color: #E91E63;
     max-width: 40px;
     border: 0;
@@ -108,6 +109,7 @@
     border-radius: 5px;
     z-index: 3;
     width: 100%;
+    float: right;
     cursor: pointer}
 
 .modal-general_closeTrivia:hover .button-zoom{
@@ -131,7 +133,7 @@
 /* media querie con hamburguesa */
 @media only screen and (max-width: 575px) {
     
-  .triviaT-topnav.responsive {position: relative;}
+  .triviaT-topnav.responsive {position: fixed;}
   .triviaT-topnav.responsive .triviaT-icon {
     position: absolute;
     right: 0;
@@ -153,6 +155,9 @@
 
 
 /* Contenido o cuerpo */
+.triviaT-cuerpo{
+    padding: 90px 0 0 0;
+}
 
 /* estilos grid de row and column */
 .triviaT-row:after {
@@ -183,7 +188,7 @@
     height: 142px;
     width: 99%;
     padding: 12px;
-    border: 3px dotted #B2BABB;
+    border: 3px dotted #9325b9;
     background: #F2F4F4;
     margin-bottom: 18px;
 }
