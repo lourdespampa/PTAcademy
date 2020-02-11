@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './audio.sass'
 import io from 'socket.io-client';
-import iconExit from "../../../img/cerrar.png";
+import iconExit from "../../../img/cerrar1.png";
 const {MediaPresenter} = require('sfmediastream/dist/SFMediaStream');
 
 export default class Audio extends Component{

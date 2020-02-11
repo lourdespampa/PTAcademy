@@ -35,12 +35,12 @@ export default class FormPostCourse extends Component {
               name="class_name"
               onChange={this.handleChange}
               value={class_name}
-              placeholder="Ingresar nombre de la clase"
+              placeholder="Ingrese el nombre de la clase"
               required
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label className="modal-title__controlname">Descripcion de la Clase</Form.Label>
+            <Form.Label className="modal-title__controlname">Descripción de la Clase</Form.Label>
             <Form.Control className="modal-teacher__general-controldescription"
               name="desc"
               onChange={this.handleChange}

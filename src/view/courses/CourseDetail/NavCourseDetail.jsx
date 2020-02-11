@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import iconExit from "../../../img/cerrar.png";
+import iconExit from "../../../img/cerrar1.png";
 import FormAddStudent from "./FormAddStudent";
 import iconBack from "../../../img/back_button.svg";
 function BotonAgregar(props) {
@@ -59,7 +59,7 @@ function BotonCerrarSesion(props) {
   return (
     <>
       <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
-        Cerrar sesion
+        Cerrar sesión
       </div>
       <div
         id="modal-general_container"

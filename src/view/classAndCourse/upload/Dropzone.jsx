@@ -68,7 +68,7 @@ class Dropzone extends Component {
           onChange={this.onFilesAdded} value={this.state.inputValue}/>
         <img alt="diapositiva" className="Icon" src={imgDiapo}/>
         {
-        this.props.slideOn ? null : <span className="sube">Sube aqui tu diapositiva</span>
+        this.props.slideOn ? null : <span className="sube">Sube aquí tu diapositiva</span>
         }
       </div>
     );

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NavCourse from "../classAndCourse/NavCourse";
 import axios from 'axios'
 import AllClass from './AllClass'
-import iconExit from "../../img/cerrar.png";
+import iconExit from "../../img/cerrar1.png";
 export default class ClassTeacher extends Component {
   constructor(props){
     super(props)

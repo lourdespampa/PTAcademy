@@ -168,6 +168,10 @@ img {
   border-style: none;
 }
 
+.modal-general-background .modal-general_bg_content .modal-general_close .button-zoom{
+  width: 17px !important
+}
+
 /* Forms
    ========================================================================== */
 
@@ -245,9 +249,8 @@ button:-moz-focusring,
 }
 
 /* solo para contraseñas */
-input[type="text"],
-input[type="password"] {
-  font-family: monospace !important;
+input[type="text"], input[type="password"] {
+  font-family: Opal;
 }
 /**
  * Correct the padding in Firefox.
@@ -432,6 +435,9 @@ template {
   z-index: 1;
   width: 100%;
   cursor: pointer;
+}
+.modal-teacher__general-close .button-zoom{
+  width: 17px;
 }
 
 .modal-teacher__general-controlname {
