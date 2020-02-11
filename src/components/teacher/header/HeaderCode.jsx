@@ -86,8 +86,8 @@ class HeaderCode extends React.Component {
                                 <li className="menu-header__item"><Link onClick={this.closeMenu} className="menu-header__item-link" to={`/teacher/${this.props.id_class}/${this.props.id_access}`}>LISTA DE ALUMNOS</Link></li>
                                 <li className="menu-header__item"><Link onClick={this.closeMenu} className="menu-header__item-link" to={`/teacher/${this.props.id_class}/${this.props.id_access}/azar`}>AL AZAR</Link></li>
                                 <li className="menu-header__item"><Link onClick={this.closeMenu} className="menu-header__item-link" to={`/teacher/${this.props.id_class}/${this.props.id_access}/grupos`}>GRUPOS</Link></li>
-                                <li className="menu-header__item"><Link onClick={() => this.props.redirect('temporizador') + this.closeMenu} className="menu-header__item-link" to={`/teacher/${this.props.id_class}/${this.props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
-                                <li className="menu-header__item"><Link onClick={() => this.props.redirect('trivia') + this.closeMenu} className="menu-header__item-link" to={`/teacher/${this.props.id_class}/${this.props.id_access}/trivia`}>TRIVIA</Link></li>
+                                <li className="menu-header__item"><Link onClick={this.closeMenu} className="menu-header__item-link" to={`/teacher/${this.props.id_class}/${this.props.id_access}/temporizador`}>TEMPORIZADOR</Link></li>
+                                <li className="menu-header__item"><Link onClick={this.closeMenu} className="menu-header__item-link" to={`/teacher/${this.props.id_class}/${this.props.id_access}/trivia`}>TRIVIA</Link></li>
                             </ul>
                         </nav>
                     </div>

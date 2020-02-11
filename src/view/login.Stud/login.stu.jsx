@@ -13,11 +13,10 @@ export default class LoginStu extends Component {
       colegio: 'tipo'
     };
     this.id_access = "";
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(event) {
-    this.setState({ value: event.target.value });
+  handleChange = async (event) => {
+    await this.setState({ value: event.target.value.toUpperCase() });
   }
   handleSubmit(event) {
     alert("A name was submitted: " + this.state.value);
