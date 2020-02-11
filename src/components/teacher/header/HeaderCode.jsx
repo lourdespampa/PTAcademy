@@ -10,7 +10,7 @@ function BotonSalir(props) {
     useEffect(() => console.log(user._id));
     return (
         <>
-            <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../img/index/settings.svg")} alt="" />
+            <img className="btn-setting" onClick={handleShow} width="35px" src={require("../../../components/../img/rueda.png")} alt="" />
             <div id="modal-general_container" className={show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""}>
                 <div className="modal-general_background">
                     <div className="modal-general_bg_content">
