@@ -333,7 +333,7 @@ export default function App(props) {
                     type="submit"
                     value="Inicia Sesión"
                   />
-                  <button onClick={toggleShow} type="button">{type ? 'Hide' : 'Show'}</button>
+                  {/* <button onClick={toggleShow} type="button">{type ? 'Hide' : 'Show'}</button> */}
                   <div style={{ width: "210px", margin: "10px auto" }}>
                     <div className="linea">&nbsp;</div>
                     <div className="leyenda">
