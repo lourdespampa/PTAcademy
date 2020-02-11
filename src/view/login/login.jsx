@@ -281,7 +281,7 @@ export default function App(props) {
                 <div className="loginTeacher-table-cell">
                   <p>¿Ya tienes una cuenta?</p>
                   <div className="loginTeacher-btn" onClick={cambiarTipoAcceso}>
-                    Iniciar Sesión
+                    Inicia Sesión
                   </div>
                 </div>
               </div>
@@ -289,19 +289,14 @@ export default function App(props) {
             <div className="loginTeacher-info-item">
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
-                  <p>
-                    {cuentaVerificada
-                      ? "Verifique su cuenta a través del enlace enviado a su correo"
-                      : "¿Aún no tienes una cuenta?"}
-                  </p>
-                  {cuentaVerificada ? null : (
-                    <div
-                      className="loginTeacher-btn"
-                      onClick={cambiarTipoAcceso}
-                    >
-                      Registrate
-                    </div>
-                  )}
+                  <p>{cuentaVerificada ? "Verifique su cuenta a través del enlace enviado a su correo" : "¿Aún no tienes una cuenta?"}</p>
+                  {
+                    cuentaVerificada
+                    ?
+                    null
+                    :
+                      <div className="loginTeacher-btn" onClick={cambiarTipoAcceso}>Regístrate</div>
+                  }
                 </div>
               </div>
             </div>
@@ -437,7 +432,7 @@ export default function App(props) {
                   <input
                     className="loginTeacher-btn"
                     type="submit"
-                    value="Registrarse"
+                    value="Regístrate"
                   />
                   <a
                     className="loginTeacher-login-register"
