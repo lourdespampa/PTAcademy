@@ -136,7 +136,13 @@ export default class NavCourse extends Component {
     return (
       <>
         {this.state.token ? null : <Redirect to="/notfound"></Redirect>}
-        <div className="teacherCourses__floatingActionButton teacherCourses_editStudent"><i className="fas fa-edit"></i></div>
+        {
+          this.props.editarTodos
+          ?
+          <div className="teacherCourses__floatingActionButton teacherCourses_editStudent" onClick={this.props.handleEditAllStudentDisable} style={{background: "#52BE7F"}} ><i className="fas fa-save"></i></div>
+          :
+          <div className="teacherCourses__floatingActionButton teacherCourses_editStudent" onClick={this.props.handleEditAllStudentEnable}><i className="fas fa-edit"></i></div>
+          }
         <div className="teacherCourses__floatingActionButton teacherCourses_addStudent" onClick={this.props.handleAddStudent}><i className="fas fa-plus"></i></div>
         <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
@@ -158,13 +164,13 @@ export default class NavCourse extends Component {
             <nav className="teacherCourses__main-nav" id="main-nav">
               <ul className="teacherCourses__main-menu">
                 <li className="teacherCourses__main-menu__item">
-                  <BotonAgregar
+                  {/* <BotonAgregar
                     apiUrl={this.props.apiUrl}
                     idteacher={this.props.idteacher}
                     idcourse={this.props.idcourse}
                     agregarX={this.props.agregarX}
                     getdata={this.props.getdata}
-                  ></BotonAgregar>
+                  ></BotonAgregar> */}
                 </li>
                 <li className="teacherCourses__main-menu__item">
                   <BotonCerrarSesion cerrarSesion={this.cerrarSesion} />

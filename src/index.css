@@ -250,7 +250,7 @@ button:-moz-focusring,
 
 /* solo para contraseñas */
 input[type="text"], input[type="password"] {
-  font-family: Opal;
+  font-family: monospace;
 }
 /**
  * Correct the padding in Firefox.
@@ -446,6 +446,7 @@ template {
   padding: 0 10px;
   margin: auto auto 10px;
   border: 1px solid #4747d5;
+  font-size: 13px;
 }
 
 .modal-title__controlname {
