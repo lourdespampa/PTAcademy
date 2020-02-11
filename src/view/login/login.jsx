@@ -6,8 +6,8 @@ import axios from "axios";
 import Loading from "./Loading";
 //importamos la configuración de firebase
 import firebase from "./firebaseConfig";
-import openEye from '../../img/openEyes.svg'
-import closeEye from '../../img/closeEyes.svg'
+import openEye from "../../img/openEyes.svg";
+import closeEye from "../../img/closeEyes.svg";
 
 //libreria que cifra el token
 // import aesjs from 'aes-js'
@@ -289,14 +289,19 @@ export default function App(props) {
             <div className="loginTeacher-info-item">
               <div className="loginTeacher-table">
                 <div className="loginTeacher-table-cell">
-                  <p>{cuentaVerificada ? "Verifique su cuenta a través del enlace enviado a su correo" : "¿Aún no tienes una cuenta?"}</p>
-                  {
-                    cuentaVerificada
-                    ?
-                    null
-                    :
-                      <div className="loginTeacher-btn" onClick={cambiarTipoAcceso}>Regístrate</div>
-                  }
+                  <p>
+                    {cuentaVerificada
+                      ? "Verifique su cuenta a través del enlace enviado a su correo"
+                      : "¿Aún no tienes una cuenta?"}
+                  </p>
+                  {cuentaVerificada ? null : (
+                    <div
+                      className="loginTeacher-btn"
+                      onClick={cambiarTipoAcceso}
+                    >
+                      Regístrate
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -328,8 +333,11 @@ export default function App(props) {
                       autoComplete="true"
                     />
                     <div onClick={toggleShow} class="input-group-addon">
-                      
-                      {type ? <img src={openEye} alt="imgen"></img> : <img src={closeEye} alt="imgen"></img>}
+                      {type ? (
+                        <img src={openEye} alt="imgen"></img>
+                      ) : (
+                        <img src={closeEye} alt="imgen"></img>
+                      )}
                     </div>
                   </div>
                   <input
@@ -409,20 +417,31 @@ export default function App(props) {
                     value={inputsRegister.lastname}
                     required
                   />
-                  <input
-                    name="pass"
-                    placeholder="Contraseña"
-                    type="password"
-                    value={inputsRegister.pass}
-                    onChange={handleChangeInputsRegister}
-                    minLength="6"
-                    required
-                    autoComplete="false"
-                  />
+                  <div class="input-group">
+                    <input
+                      class="form-control"
+                      name="pass"
+                      placeholder="Contraseña"
+                      type={hidden ? "password" : "text"}
+                      value={inputsRegister.pass}
+                      onChange={handleChangeInputsRegister}
+                      minLength="6"
+                      required
+                      autoComplete="false"
+                    />
+                    <div onClick={toggleShow} class="input-group-addon">
+                      {type ? (
+                        <img src={openEye} alt="imgen"></img>
+                      ) : (
+                        <img src={closeEye} alt="imgen"></img>
+                      )}
+                    </div>
+                  </div>
+
                   <input
                     name="rpass"
                     placeholder="Repita su contraseña"
-                    type="password"
+                    type={hidden ? "password" : "text"}
                     value={inputsRegister.rpass}
                     onChange={handleChangeInputsRegister}
                     minLength="6"
