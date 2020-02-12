@@ -164,13 +164,13 @@ export default class NavCourse extends Component {
             <nav className="teacherCourses__main-nav" id="main-nav">
               <ul className="teacherCourses__main-menu">
                 <li className="teacherCourses__main-menu__item">
-                  {/* <BotonAgregar
+                  <BotonAgregar
                     apiUrl={this.props.apiUrl}
                     idteacher={this.props.idteacher}
                     idcourse={this.props.idcourse}
                     agregarX={this.props.agregarX}
                     getdata={this.props.getdata}
-                  ></BotonAgregar> */}
+                  ></BotonAgregar>
                 </li>
                 <li className="teacherCourses__main-menu__item">
                   <BotonCerrarSesion cerrarSesion={this.cerrarSesion} />

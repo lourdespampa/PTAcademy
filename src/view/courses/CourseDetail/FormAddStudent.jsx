@@ -36,7 +36,7 @@ export default class FormAddStudent extends Component {
       name_stu: this.state.name_stu,
       lastName_stu: this.state.lastName_stu,
       id_teach: this.props.idteacher,
-      id_course: this.props.idcourse
+      id_course: this.props.idcourse,
     };
 
     axios({

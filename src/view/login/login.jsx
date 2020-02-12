@@ -55,6 +55,7 @@ export default function App(props) {
   const handleChangeInputsLogin = event => {
     getMessage({ message: "" });
     setInputsLogin({ ...inputsLogin, [event.target.name]: event.target.value });
+    console.log(event.target.name)
   };
 
   //Funcion que se llama cada vez que cambian los value de los inputs del registro
@@ -64,12 +65,14 @@ export default function App(props) {
       ...inputsRegister,
       [event.target.name]: event.target.value
     });
+    console.log(setInputsLogin)
   };
 
   //Funcion para validar y conectar a la API cuando se logea
   const handleToLogin = event => {
     event.preventDefault();
     const { email, pass } = inputsLogin;
+    console.log(email)
     getMessage({ message: "" });
     setLoading({ loading: true });
     //llamamos a la función de firebase que crea al usuario por correo y contraseña
@@ -148,6 +151,7 @@ export default function App(props) {
           console.log(error);
         });
         firebase.auth().signOut();
+        console.log(email,pass, username, lastname)
         axios
           .post(`${props.apiUrl}/signup`, {
             email,
