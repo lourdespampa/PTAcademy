@@ -39,7 +39,7 @@ export default class LoginStu extends Component {
       .then(result => {
         console.log(result);
         if (result.data.school === true) {
-          this.setState({ id_access: codigo,data:{id_teacher:result.data.id_teacher,id_course:result.data.id_course}, acceso: true,colegio:'School'});
+          this.setState({ id_access: codigo,data:{id_teacher:result.data.id_teacher,id_course:result.data.id_course,hasStudents:result.data.hasStudents}, acceso: true,colegio:'School'});
           console.log(result.data.id_teacher);
           console.log('se envio la data', this.state.data)
           // <Redirect to={`/loginStudentSchool/${this.state.id_access}`}/>;
