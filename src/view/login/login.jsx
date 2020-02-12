@@ -6,14 +6,16 @@ import axios from "axios";
 import Loading from "./Loading";
 //importamos la configuración de firebase
 import firebase from "./firebaseConfig";
+import openEye from "../../img/openEyes.svg";
+import closeEye from "../../img/closeEyes.svg";
+
 //libreria que cifra el token
 // import aesjs from 'aes-js'
 
 export default function App(props) {
-
   //login para ver contraseña
-  const [type, setType ] = useState(true)
-  const [hidden, setHidden ] = useState(true)
+  const [type, setType] = useState(true);
+  const [hidden, setHidden] = useState(true);
 
   //hook para obtener valores de los inputs de login
   const [inputsLogin, setInputsLogin] = useState({ email: "", pass: "" });
@@ -38,11 +40,11 @@ export default function App(props) {
   //hook para mostrar loading mientras se hace una petición
   const [{ loading }, setLoading] = useState({ loading: false });
 
-  //funcion para ver la contraseña haber si funciona :v 
+  //funcion para ver la contraseña haber si funciona :v
   const toggleShow = () => {
-    setType(!type)
-    setHidden(!hidden)
-  }
+    setType(!type);
+    setHidden(!hidden);
+  };
   //funcion que cambia el efecto entre login y registro
   const cambiarTipoAcceso = () => {
     getMessage({ message: "" });
@@ -123,7 +125,7 @@ export default function App(props) {
           });
       });
   };
-  
+
   //Funcion para registrar y conectar a la API
   const handleToRegister = async event => {
     event.preventDefault();
@@ -279,7 +281,7 @@ export default function App(props) {
                 <div className="loginTeacher-table-cell">
                   <p>¿Ya tienes una cuenta?</p>
                   <div className="loginTeacher-btn" onClick={cambiarTipoAcceso}>
-                    Iniciar Sesión
+                    Inicia Sesión
                   </div>
                 </div>
               </div>
@@ -297,7 +299,7 @@ export default function App(props) {
                       className="loginTeacher-btn"
                       onClick={cambiarTipoAcceso}
                     >
-                      Registrate
+                      Regístrate
                     </div>
                   )}
                 </div>
@@ -320,20 +322,29 @@ export default function App(props) {
                     required
                     autoComplete="true"
                   />
-                  <input
-                    name="pass"
-                    placeholder="Contraseña"
-                    type={hidden ? "password" : "text"}
-                    onChange={handleChangeInputsLogin}
-                    required
-                    autoComplete="true"
-                  />
+                  <div class="input-group">
+                    <input
+                      class="form-control"
+                      name="pass"
+                      placeholder="Contraseña"
+                      type={hidden ? "password" : "text"}
+                      onChange={handleChangeInputsLogin}
+                      required
+                      autoComplete="true"
+                    />
+                    <div onClick={toggleShow} class="input-group-addon">
+                      {type ? (
+                        <img src={openEye} alt="imgen"></img>
+                      ) : (
+                        <img src={closeEye} alt="imgen"></img>
+                      )}
+                    </div>
+                  </div>
                   <input
                     className="loginTeacher-btn"
                     type="submit"
                     value="Inicia Sesión"
                   />
-                  <button onClick={toggleShow} type="button">{type ? 'Hide' : 'Show'}</button>
                   <div style={{ width: "210px", margin: "10px auto" }}>
                     <div className="linea">&nbsp;</div>
                     <div className="leyenda">
@@ -406,20 +417,31 @@ export default function App(props) {
                     value={inputsRegister.lastname}
                     required
                   />
-                  <input
-                    name="pass"
-                    placeholder="Contraseña"
-                    type="password"
-                    value={inputsRegister.pass}
-                    onChange={handleChangeInputsRegister}
-                    minLength="6"
-                    required
-                    autoComplete="false"
-                  />
+                  <div class="input-group">
+                    <input
+                      class="form-control"
+                      name="pass"
+                      placeholder="Contraseña"
+                      type={hidden ? "password" : "text"}
+                      value={inputsRegister.pass}
+                      onChange={handleChangeInputsRegister}
+                      minLength="6"
+                      required
+                      autoComplete="false"
+                    />
+                    <div onClick={toggleShow} class="input-group-addon">
+                      {type ? (
+                        <img src={openEye} alt="imgen"></img>
+                      ) : (
+                        <img src={closeEye} alt="imgen"></img>
+                      )}
+                    </div>
+                  </div>
+
                   <input
                     name="rpass"
                     placeholder="Repita su contraseña"
-                    type="password"
+                    type={hidden ? "password" : "text"}
                     value={inputsRegister.rpass}
                     onChange={handleChangeInputsRegister}
                     minLength="6"
@@ -429,7 +451,7 @@ export default function App(props) {
                   <input
                     className="loginTeacher-btn"
                     type="submit"
-                    value="Registrarse"
+                    value="Regístrate"
                   />
                   <a
                     className="loginTeacher-login-register"
