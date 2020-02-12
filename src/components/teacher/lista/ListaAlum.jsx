@@ -7,7 +7,7 @@ import io from "socket.io-client";
 import { TableBody } from "./tablebody";
 import iconExit from "../../../img/cerrar1.png";
 
-import {TablePrivate} from "./TableStudentPrivate";
+import  TablePrivate  from "./TableStudentPrivate";
 import TableSchool from "./TableStudentSchool";
 // import {alumnos} from '../../data/alumnos.json';
 export default class ListaAlum extends Component {
@@ -349,12 +349,6 @@ export default class ListaAlum extends Component {
                     <TableSchool></TableSchool>
                   ) : (
                     <TablePrivate
-                      students={this.state.students}
-                      onClickNote={this.onClickNote}
-                      onClick={this.onClick}
-                      onClickPoint={this.onClickPoint}
-                      deleteStudents={this.deleteStudents}
-                      setShow={this.setShow}
                     ></TablePrivate>
                   )}
                   {/* <table
