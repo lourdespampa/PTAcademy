@@ -3,6 +3,19 @@
     padding: 8.5px;
     text-align: center
 }
+
+.name-contenedor{
+    width:49%;
+    float: left;
+    margin-top: 8px;
+    text-align: right;
+}
+
+.points-contenedor{
+    width: 48%;
+    float: right;
+    text-align: left
+}
 .triviaT-topnav {
     position: fixed;
     width: 100%;
@@ -85,9 +98,7 @@
     outline:none;
 }
 
-.triviaT-restaurar {
-    background: #F11D0B;
-}
+
 
 .triviaT-enviar:hover {
     background: #1e7209;
@@ -130,26 +141,42 @@
   }
 
 }
+
+@media only screen and (max-width: 900px){
+    .name-contenedor{
+        width: 100%;
+        float: none;
+        margin-top: 8px;
+        text-align: center
+    }
+    
+    .points-contenedor{
+        width: 100%;
+        float: none;
+        text-align: center
+    }
+}
+
 /* media querie con hamburguesa */
 @media only screen and (max-width: 575px) {
     
-  .triviaT-topnav.responsive {position: fixed;}
-  .triviaT-topnav.responsive .triviaT-icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .triviaT-topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: center;
-  }
-  .triviaT-topnav.responsive .titulo{
-    display: none;
-  }
-  .contenedor-btn-enviar{
-    margin: 0;    
+    .triviaT-topnav.responsive {position: fixed;}
+    .triviaT-topnav.responsive .triviaT-icon {
+        position: absolute;
+        right: 0;
+        top: 0;
     }
+    .triviaT-topnav.responsive a {
+        float: none;
+        display: block;
+        text-align: center;
+    }
+    .triviaT-topnav.responsive .titulo{
+        display: none;
+    }
+    .contenedor-btn-enviar{
+        margin: 0;    
+        }
 
 }
 
@@ -306,6 +333,7 @@
 .rolldown-list li:nth-child(2n+1) {
     animation-delay: 0.25s;
     -webkit-animation-delay: 0.25s !important;
+    padding: 7px
 }
 .rolldown-list li:nth-child(2n+2) {
     animation-delay: 0.50s;
@@ -360,5 +388,17 @@ h3.trivia-respuestas{
 @media screen and (max-width: 600px){
 .modal-respuestas .modal-content-respuestas{
     width: 80% 
+}
+.name-contenedor{
+    width: 100%;
+    float: none;
+    margin-top: 8px;
+    text-align: center
+}
+
+.points-contenedor{
+    width: 100%;
+    float: none;
+    text-align: center
 }
 }
