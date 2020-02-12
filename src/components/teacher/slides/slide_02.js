@@ -122,16 +122,22 @@ nextimg=()=>{
             <li class="prev"  onClick={this.backimg}><span></span></li>
             <li class="next " onClick={this.nextimg}><span></span></li>
           </ul>
-        <Carousel selectedItem={this.state.positionPpt-1} centerMode  centerSlidePercentage={ 90 } showArrows={false} useKeyboardArrows={false} swipeable={false} emulateTouch={true}	 showIndicators={false}
+        <Carousel selectedItem={this.state.positionPpt-1} 
+        // centerMode  
+        // centerSlidePercentage={ 90 } 
+        showArrows={false} useKeyboardArrows={false} swipeable={false} emulateTouch={true}	 showIndicators={false}
          showThumbs={false} onChange={(e)=>this.changeCarrucel(e)}>
             {
                 this.state.Slides.map((slide)=>(
                     <div className="imagenes" key={slide.index}>
+                      <div style={{width:"5%",float:'left'}}></div>
                     <img className="imagenes-indiviuales"
+                    style={{width:"90%",float:'left',marginLeft:'calc(50% - 45%)'}}
                       src={slide.url}
                       alt="Hong Kong"
                     />
-                  </div>          
+                     <div style={{width:"5%",float:'left'}}></div> 
+                  </div>       
                 ))
             }
         </Carousel>
