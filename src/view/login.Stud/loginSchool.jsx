@@ -11,13 +11,20 @@ export default class loginPrivate extends Component {
       last_student: "",
       id_access: "",
       redirection: false,
-      idStudent: ""
+      idStudent: "",
+      id_teacher:'',
+      id_course:''
     };
   }
   componentDidMount() {
+
+    console.log(this.props.location.state)
+
     console.log(this.props.apiUrl);
     const data = this.props.match.params.id_access;
-    this.setState({ id_access: data });
+    this.setState({ id_access: data ,
+      id_teacher:this.props.location.state.id_teacher,
+      id_course:this.props.location.state.id_course});
   }
   handleChange = e => {
     const target = e.target;
