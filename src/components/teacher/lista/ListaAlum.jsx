@@ -6,15 +6,20 @@ import { BtnPuntos } from "./btnpuntos";
 import io from "socket.io-client";
 import { TableBody } from "./tablebody";
 import iconExit from "../../../img/cerrar1.png";
+
+import {TablePrivate} from "./TableStudentPrivate";
+import TableSchool from "./TableStudentSchool";
 // import {alumnos} from '../../data/alumnos.json';
 export default class ListaAlum extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        validarColegio: true,
-        TipoColegio: '',
-        id_teacher: '',
-        id_course: '',
+      validarColegio: true,
+      TipoColegio: "",
+      id_teacher: "",
+      id_course: "",
+      compentencias: [],
+      alumnosColegio: [],
       id_access: "",
       modals: {
         showpuntosmas: 0,
@@ -94,10 +99,24 @@ export default class ListaAlum extends Component {
   }
 
   componentDidMount() {
-    console.log("en clase activa es de curso", this.props.school);
-    console.log('lista de alumnos',this.props.all)
-    console.log("se va a enviar el codigo class", this.props.id_access);
-    this.setState()
+    // console.log("en clase activa es de curso", this.props.school);
+    // console.log("lista de alumnos", this.props.all);
+    // console.log(
+    //   "lista de alumnos las compentencias",
+    //   this.props.all.compentencias
+    // );
+    // console.log("lista de alumnos id curso", this.props.all.id_course);
+    // console.log("lista de alumnos id teacher", this.props.all.id_teacher);
+
+    // console.log("se va a enviar el codigo class", this.props.id_access);
+    // // this.setState({
+    //     validarColegio: this.props.school,
+    //     compentencias: this.props.all.compentencias,
+    //     id_course: this.props.all.id_course,
+    //     id_teacher: this.props.id_teacher
+    // });
+    this.getAlumnos();
+    // console.log(this.state.validarColegio, this.state.compentencias, this.state.id_course, this.state.id_teacher    )
     this.getStudents();
     const socket = io(this.props.socketUrl, {
       query: { pin: this.props.id_access }
@@ -112,12 +131,12 @@ export default class ListaAlum extends Component {
   //rellenar alumnos para profesor de colegio
   getAlumnos = () => {
     console.log("listar cursos");
-    const {
-      match: { params }
-    } = this.props;
     var varToken = localStorage.getItem("token");
+    console.log(this.props.all.id_course);
+    console.log(this.props.all.id_teacher);
+
     axios({
-      url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
+      url: `${this.props.apiUrl}/v1/api/student/${this.props.all.id_teacher}/${this.props.all.id_course}/students`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
@@ -126,9 +145,10 @@ export default class ListaAlum extends Component {
       .then(({ data }) => {
         console.log(data);
         if (data === []) {
-          this.setState({ students: [] });
+          console.log("no tiene ningun alumnos");
+          this.setState({ alumnosColegio: [] });
         } else {
-          this.setState({ students: data });
+          this.setState({ alumnosColegio: data });
         }
       })
       .catch(e => console.log(e));
@@ -325,7 +345,19 @@ export default class ListaAlum extends Component {
             <div className="card">
               <div className="body" id="html">
                 <div className="table-responsive">
-                  <table
+                  {this.props.school ? (
+                    <TableSchool></TableSchool>
+                  ) : (
+                    <TablePrivate
+                      students={this.state.students}
+                      onClickNote={this.onClickNote}
+                      onClick={this.onClick}
+                      onClickPoint={this.onClickPoint}
+                      deleteStudents={this.deleteStudents}
+                      setShow={this.setShow}
+                    ></TablePrivate>
+                  )}
+                  {/* <table
                     id="tabla_usuarios"
                     className="table table-bordered table-striped table-hover dataTable js-exportable"
                   >
@@ -361,7 +393,7 @@ export default class ListaAlum extends Component {
                         <h1>no hay alumnos para mostrar</h1>
                       )}
                     </tbody>
-                  </table>
+                  </table> */}
                 </div>
               </div>
             </div>

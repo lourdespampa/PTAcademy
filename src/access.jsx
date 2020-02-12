@@ -18,7 +18,7 @@ import LoginPrivate from './view/login.Stud/loginPrivate'
 export default class Access extends Component {
   state = {
     apiUrl: "http://3.16.110.136:4200"
-    // apiUrl:'http://192.168.1.34:4200'
+    // apiUrl:'http://192.168.1.43:4200'
   };
   render() {
     return (
