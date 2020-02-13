@@ -10,7 +10,8 @@ export default class LoginStu extends Component {
     this.state = {
       value: "",
       acceso: false,
-      colegio: 'tipo'
+      colegio: 'tipo',
+      data:{}
     };
     this.id_access = "";
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,8 +39,9 @@ export default class LoginStu extends Component {
       .then(result => {
         console.log(result);
         if (result.data.school === true) {
-          this.setState({ id_access: codigo, acceso: true,colegio:'School' });
-          console.log('este curso es de colegios');
+          this.setState({ id_access: codigo,data:{id_teacher:result.data.id_teacher,id_course:result.data.id_course,hasStudents:result.data.hasStudents}, acceso: true,colegio:'School'});
+          console.log(result.data.id_teacher);
+          console.log('se envio la data', this.state.data)
           // <Redirect to={`/loginStudentSchool/${this.state.id_access}`}/>;
         } else {
           console.log(result);
@@ -56,10 +58,13 @@ export default class LoginStu extends Component {
   render() {
     return (
       <div className="enter-code__contenedor">
-        {this.state.acceso ? (
+        {
+          // console.log(this.state.data)
+        this.state.acceso ? (
           // <Redirect to={`/loginStudent/${this.state.id_access}`} />
-          <Redirect to={`/loginStudent${this.state.colegio}/${this.state.id_access}`}></Redirect>
-        ) : null}
+          <Redirect to={{pathname:`/loginStudent${this.state.colegio}/${this.state.id_access}`, state:this.state.data }}></Redirect>
+        ) : null
+      }
         <ul className="enter-code__header">
           <li className="enter-code__academy">
             <Link to="/">
