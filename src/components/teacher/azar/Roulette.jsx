@@ -20,6 +20,7 @@ class Roulette extends React.Component {
     this.handleOnClick = this.handleOnClick.bind(this);
     this.spin = this.spin.bind(this);
     this.rotate = this.rotate.bind(this);
+    // this.emitChangeDebounced = debounce(this.emitChange, 250);
   }
 
   static propTypes = {
@@ -178,18 +179,20 @@ class Roulette extends React.Component {
   easeOut(t, b, c, d) {
     const ts = (t/=d)*t;
     const tc = ts*t;
-    return b+c*(tc + -3*ts + 3*t);
-  }
+    return b+c*(tc + -3*ts + 3*t);}
 
   handleOnClick = (e) => {
-    this.setState({desactivarBoton: true})
-    let pulsadas = Math.round(Math.random()*10)
+      this.setState({desactivarBoton: true})
+    let pulsadas = Math.round(Math.random()*9)
     console.log(pulsadas)
     let intervalId = setInterval(() => this.spin(), 100)
     this.setState({intervalId: intervalId})
     setTimeout( () => {
       clearInterval(this.state.intervalId)
-      this.setState({desactivarBoton: false})
+      setTimeout( () => {
+        clearInterval(this.state.intervalId)
+        this.setState({desactivarBoton: false})
+      }, 4500)
     }, pulsadas*1000)
   }
 

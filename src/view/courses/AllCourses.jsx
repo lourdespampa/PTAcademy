@@ -21,6 +21,7 @@ export default class AllCourses extends Component {
       }
     })
       .then(({data}) => {
+        console.log(data)
         if (data.length) {
           this.setState({ cursoConAlumnos: true });
         } else {
