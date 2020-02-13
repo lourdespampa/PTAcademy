@@ -44,6 +44,9 @@ export default class ClassTeacher extends Component {
     const {
       match: { params }
     } = this.props;
+    localStorage.setItem("id_teacher", params.id_teacher);
+    localStorage.setItem("id_course", params._id);
+
     axios({
       url: `${this.props.apiUrl}/v1/api/teacher/${params.id_teacher}/course_detail/${params._id}`,
       method: "GET",

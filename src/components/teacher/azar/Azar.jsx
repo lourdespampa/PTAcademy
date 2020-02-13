@@ -94,10 +94,12 @@ class Azar extends React.Component {
 
   getStudents = () => {
     var varToken = localStorage.getItem("token");
+    var id_teacher = localStorage.getItem("id_teacher");
+    var id_course = localStorage.getItem("id_course");
     // console.log(this.props.all.id_course);
     // console.log(this.props.all.id_teacher);
     axios({
-      url: `${this.props.apiUrl}/v1/api/student/5e431a9cf0ad3c4b99feefae/5e431bc16b05a54bbb4e38a1/students`,
+      url: `${this.props.apiUrl}/v1/api/student/${id_teacher}/${id_course}/students`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
