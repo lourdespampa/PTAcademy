@@ -116,7 +116,7 @@ export default function HeaderContainer(props) {
           Exit
           ? <Redirect to={`/`} /> : null
           }         
-          <header className="alumnoH-header">
+          <header className="alumnoH-header ">
             <div className="alumnoHeader-logo">
               <Link onClick={reinicio} to={`/student/${props.id_student}/${props.id_access}`} style={{textDecoration:"none"}}>
                 <h1 className="alumnoHeader-image">PlayTec Academy</h1>
