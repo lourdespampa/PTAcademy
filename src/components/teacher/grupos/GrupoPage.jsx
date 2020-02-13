@@ -20,30 +20,37 @@ export default class GrupoPage extends Component {
     this.setState({ nro_per_grupo: e.target.value });
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.getAlumnos();
     const data = this.props
     this.setState({id_access: data})
     console.log(this.props)
   }
-  getAlumnos = () => {
-    var varToken = localStorage.getItem('token');
-     axios({
-      url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
+  getAlumnos = async() => {
+    var varToken = await localStorage.getItem('token');
+    console.log('llego a getAlum')
+    await axios({
+      // url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
+      url: `${this.props.apiUrl}/v1/api/student/5e431a9cf0ad3c4b99feefae/5e431bc16b05a54bbb4e38a1/students`,
       method: 'GET',
       headers: {
         'x-access-token': `${varToken}`
       }
-    }).then(res => {
-      res.data.map(alumno => {
+    }).then(data => {
+      console.log("data",data)
+      data.data.map(alumno => {
+        console.log('hola perro')
         this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
         return null
       }); 
-      // const temp = this.state.alumnos;
-      // this.setState({
-      //   alumnos: temp
-      // });
-    });
+      const temp = this.state.alumnos;
+      this.setState({
+        alumnos: temp
+      });
+    })
+    .catch((err)=>{
+      console.log("error",err)
+    })
   };
   groupGenerator = () => {
     this.setState({
