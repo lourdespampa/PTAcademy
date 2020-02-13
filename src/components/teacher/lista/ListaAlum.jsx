@@ -148,9 +148,9 @@ export default class ListaAlum extends Component {
         console.log(data);
         if (data === []) {
           console.log("no tiene ningun alumnos");
-          this.setState({ alumnosColegio: [] });
+          this.setState({ students: [] });
         } else {
-          this.setState({ alumnosColegio: data });
+          this.setState({ students: data });
         }
       })
       .catch(e => console.log(e));
@@ -349,7 +349,7 @@ export default class ListaAlum extends Component {
                 <div className="table-responsive">
                   {this.props.school ? (
                     <TableSchool
-                    students={this.state.alumnosColegio}
+                    students={this.state.students}
                     compentencias={this.props.all.compentencias}
                     
                     ></TableSchool>
