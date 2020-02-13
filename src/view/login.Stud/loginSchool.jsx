@@ -34,7 +34,6 @@ export default class loginPrivate extends Component {
     const target = e.target;
     const name = target.name;
     const value = target.value;
-    console.log(value);
 
     this.setState({
       [name]: value
@@ -43,14 +42,13 @@ export default class loginPrivate extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    console.log(this.props.apiUrl);
+    console.log("apiURl: "+this.props.apiUrl);
     var varToken = localStorage.getItem("token");
 
     const data = {
       name_stu: this.state.name_student,
       lastName_stu: this.state.last_student,
-      id_access: this.state.id_access,
-      id_teacher:this.state.id_teacher,
+      id_teach:this.state.id_teacher,
       id_course:this.state.id_course
     };
     const data2={
@@ -79,7 +77,7 @@ export default class loginPrivate extends Component {
         .catch(err => console.log(err));
     }else{
     axios({
-      url: `${this.props.apiUrl}/signin_student`,
+      url: `${this.props.apiUrl}/v1/api/student`,
       data,
       method: "post",
       headers: {
