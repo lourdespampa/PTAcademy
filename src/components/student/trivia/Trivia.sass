@@ -19,6 +19,8 @@
     height: auto
     min-height: 65px
 
+.contenedorsecundario
+    width: 100%
 .header2
     top: 65px
     width: 100%
@@ -46,8 +48,9 @@
     font-size: 1.7em
     padding: 10px
     display: inline-flex
-    position: relative
-    top: -145px
+    align-items: center
+    // position: relative
+    // top: -145px
     .contador
         background: #A647FA
         padding: 30px
@@ -75,8 +78,8 @@
     display: inline-flex
     justify-content: center
     // align-items: center
-    height: 320px
-    margin: 12px auto auto auto
+    height: 300px
+    // margin: 12px auto auto auto
     #pre-imagen
         width: 90%
         min-width: 60%
@@ -216,6 +219,11 @@
 #btn_play
     display: none
 
+.primercontenedor
+    display: flex
+    margin-top: 70px
+    justify-content: center
+
 @media screen and (max-width: 500px)
     .trivia-student-button
         min-height: 50px
@@ -242,3 +250,5 @@
     .left
         top: 0
         z-index: 1
+    .primercontenedor
+        display: block
