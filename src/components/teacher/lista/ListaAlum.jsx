@@ -7,7 +7,7 @@ import io from "socket.io-client";
 import { TableBody } from "./tablebody";
 import iconExit from "../../../img/cerrar1.png";
 
-import  TablePrivate  from "./TableStudentPrivate";
+import TablePrivate from "./TableStudentPrivate";
 import TableSchool from "./TableStudentSchool";
 // import {alumnos} from '../../data/alumnos.json';
 export default class ListaAlum extends Component {
@@ -115,6 +115,7 @@ export default class ListaAlum extends Component {
     //     id_course: this.props.all.id_course,
     //     id_teacher: this.props.id_teacher
     // });
+    //obtener alumnos de colegio
     this.getAlumnos();
     // console.log(this.state.validarColegio, this.state.compentencias, this.state.id_course, this.state.id_teacher    )
     this.getStudents();
@@ -125,6 +126,7 @@ export default class ListaAlum extends Component {
       console.log("El pin de ese curso es:", data.pin);
       if (data.pin === this.props.id_access.toUpperCase()) {
         this.getStudents();
+        this.getAlumnos();
       }
     });
   }
@@ -346,9 +348,19 @@ export default class ListaAlum extends Component {
               <div className="body" id="html">
                 <div className="table-responsive">
                   {this.props.school ? (
-                    <TableSchool></TableSchool>
+                    <TableSchool
+                    students={this.state.alumnosColegio}
+                    compentencias={this.props.all.compentencias}
+                    
+                    ></TableSchool>
                   ) : (
                     <TablePrivate
+                      students={this.state.students}
+                      onClickNote={this.onClickNote}
+                      onClick={this.onClick}
+                      onClickPoint={this.onClickPoint}
+                      deleteStudents={this.deleteStudents}
+                      setShow={this.setShow}
                     ></TablePrivate>
                   )}
                   {/* <table
