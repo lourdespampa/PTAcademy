@@ -158,6 +158,9 @@ export default class ListaAlum extends Component {
   //rellenar state de estudiantes de profesor privado
 
   getStudents = async () => {
+    if(this.props.school){
+      
+    }
     console.log(this.state.students);
     console.log(this.props.id_access);
     var varToken = localStorage.getItem("token");
