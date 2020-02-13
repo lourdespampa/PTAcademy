@@ -30,18 +30,42 @@ export default class Views extends Component {
       txt:'',
       grabacion:[],
       id_class:'',
-      id_access:''
+      id_access:'',
+      school: '' ,
+      todo: []
     };
   }
+  componentDidMount(){
+    console.log('se esta enviando el api por teacher', this.state.id_class)
+    console.log('se tiene que enviar el id del teacher')
+    console.log(' se tiene que enviar el id del teacher')
+    var varToken = localStorage.getItem('token');
+    axios({
+      url: `${this.props.apiUrl}/v1/api/teacher/detail_class/${this.state.id_class}`,
+      method: "GET",
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    }) .then(res => {
+      this.setState({
+        school: res.data.school
+      })
+      console.log('se esta pasando para el contenedor', this.state.school)
+     
+    }) .catch( err => {
+      console.log(err)
+    })
+  }
     componentWillMount() {
-      
+     
       this.getRecord();
       const {
         match: { params }
       } = this.props;
-      this.setState({id_class:params.id_class,id_access:params.id_access})
+      this.setState({id_class:params.id_class,id_access:params.id_access, todo: this.props.location.state})
       console.log("id class: "+params.id_class);
       console.log("codigo generado: "+params.id_access);
+      console.log('para la clase', this.props.location.state)
     }
  
   getRecord = async () => {
@@ -122,7 +146,9 @@ render(){
       socketUrl={this.state.socketUrl} botonClick={this.botonClick} grabar={this.grabar} reproclick={this.reproclick} 
       changeOn={this.changeOn} apiUrl={this.props.apiUrl} txt={this.state.txt}>
           <Route exact path="/teacher/:id_class/:id_access" 
-          component={()=><ListaAlumnos id_access={this.state.id_access} socketUrl={this.state.socketUrl} apiUrl={this.props.apiUrl}/>}  />
+          component={()=>
+          
+          <ListaAlumnos id_access={this.state.id_access} todo={this.state.todo} school={this.state.school} socketUrl={this.state.socketUrl} apiUrl={this.props.apiUrl}/>}  />
           <Route exact path="/teacher/:id_class/:id_access/azar" 
           component={() => <Azar id_access={this.state.id_access} apiUrl={this.props.apiUrl} socketUrl={this.state.socketUrl}/>} />
           <Route exact path="/teacher/:id_class/:id_access/grupos" 

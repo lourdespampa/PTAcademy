@@ -42,6 +42,6 @@ export const TableBody = (props) => {
                     </td> */}
                 </tr>
             ))}
-        </>
-    )
-}
+            </>
+        )
+    }

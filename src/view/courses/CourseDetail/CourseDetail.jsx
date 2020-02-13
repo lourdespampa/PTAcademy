@@ -3,7 +3,6 @@ import "./CourseDetail.sass";
 import NavCourse from "./NavCourseDetail";
 import axios from "axios";
 import iconExit from "../../../img/cerrar.png";
-import { Thumbnail } from "react-bootstrap";
 // import CardStudent from './CardStudent'
 export default class CourseDetail extends Component {
   constructor(props) {
@@ -14,7 +13,6 @@ export default class CourseDetail extends Component {
       id_teacher: "",
       students: [],
       editar: false,
-      editarTodos: false,
       idMapAlumno: "",
       apellidoAlumno: "",
       nombreAlumno: "",
@@ -42,32 +40,11 @@ export default class CourseDetail extends Component {
     await this.setState({ token: tokenStorage });
   };
 
-  handleAddStudent = () => {
-    let fila = document.createElement("tr")
-    
-    document.getElementById("CourseDetail__table-body").appendChild(fila)
-  }
-
   handleEditStudent = (idAlumno) => {
-    this.setState({editar: !this.state.editar, idMapAlumno: idAlumno})
-    console.log(this.state.idMapAlumno)
-  }
-
-  handleEditAllStudentEnable = () => {
     this.setState({
-      editar: true,
-      editarTodos: true,
-      idMapAlumno: ""
+      editar: !this.state.editar,
+      idMapAlumno: idAlumno
     })
-    console.log(this.state.editarTodos)
-  }
-  handleEditAllStudentDisable = () => {
-    this.setState({
-      editar: false,
-      editarTodos: false,
-      idMapAlumno: ""
-    })
-    console.log(this.state.editarTodos)
   }
 
   handleChangeInputs = e => {
@@ -80,7 +57,9 @@ export default class CourseDetail extends Component {
 
   getAlumnos = () => {
     console.log("listar alumnos ");
-    const { match: { params }} = this.props; 
+    const {
+      match: { params }
+    } = this.props;
     var varToken = localStorage.getItem("token");
     axios({
       url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
@@ -95,7 +74,8 @@ export default class CourseDetail extends Component {
           this.setState({ students: [], });
         } else {
           this.setState({ students: data, competenciasAlumnos: data.competences })
-          // console.log(this.state.competenciasAlumnos);
+          
+          console.log(data[0].competences);
         }
       })
       .catch(e => console.log(e));
@@ -116,11 +96,6 @@ export default class CourseDetail extends Component {
     this.setState({showdelete:2})
   };
 
-  deleteAlumno = (estado,valor) => {
-    console.log("alumno eliminado")
-    this.setClose()
-  }
-
   render() {
     return (
       <>
@@ -130,10 +105,6 @@ export default class CourseDetail extends Component {
           idteacher={this.state.id_teacher}
           nombreProfesor={this.state.nombreProfesor}
           getdata={this.getAlumnos}
-          handleAddStudent={this.handleAddStudent}
-          editarTodos={this.state.editarTodos}
-          handleEditAllStudentEnable={this.handleEditAllStudentEnable}
-          handleEditAllStudentDisable={this.handleEditAllStudentDisable}
         ></NavCourse>
         {/* <CardStudent></CardStudent> */}
         <div className="CourseDetail__Container" onClick={this.Cerrar}>
@@ -155,7 +126,7 @@ export default class CourseDetail extends Component {
               </tr>
             </thead>
             {/* cuerpo de la tabla */}
-            <tbody className="CourseDetail__table-body" id="CourseDetail__table-body">
+            <tbody className="CourseDetail__table-body">
               {this.state.students.map((alumno,idAlumno) => (
                 <tr className="CourseDetail__table-tr" key={alumno._id}>
                   <td className="CourseDetail__table-td" data-th="Codigo">
@@ -165,9 +136,9 @@ export default class CourseDetail extends Component {
                     {
                       this.state.editar
                       ?
-                        this.state.idMapAlumno === idAlumno || this.state.editarTodos
+                        this.state.idMapAlumno === idAlumno
                         ?
-                        <input type="text" defaultValue={alumno.lastName_stu}/>
+                        <input type="text" name="apellidoAlumno" defaultValue={alumno.lastName_stu} onChange={this.handleChangeInputs} />
                         :
                         alumno.lastName_stu
                       :
@@ -181,16 +152,16 @@ export default class CourseDetail extends Component {
                     {
                       this.state.editar
                       ?
-                        this.state.idMapAlumno === idAlumno || this.state.editarTodos
+                        this.state.idMapAlumno === idAlumno
                         ?
-                        <input type="text" defaultValue={alumno.name_stu}/>
+                        <input type="text" name="nombreAlumno" defaultValue={alumno.name_stu} onChange={this.handleChangeInputs} />
                         :
                         alumno.name_stu
                       :
                       alumno.name_stu
                     }
                   </td>
-                  {this.state.competenciasAlumnos.map((compentencia, id) => (
+                  {this.state.compentencias.map((compentencia, id) => (
                     <td
                       key={id}
                       className="CourseDetail__table-td"
@@ -205,13 +176,13 @@ export default class CourseDetail extends Component {
                       {
                       this.state.editar
                       ?
-                        this.state.idMapAlumno === idAlumno || this.state.editarTodos
+                        this.state.idMapAlumno === idAlumno
                         ?
-                        <input type="text" defaultValue={null}/>
+                        <input type="text" name="nombreAlumno" defaultValue={compentencia} onChange={this.handleChangeInputs} />
                         :
-                        "descripcion"
+                        "descripción"
                       :
-                      "descripcion"
+                      "descripción"
                       }
                     </td>
                   ))}
@@ -219,23 +190,9 @@ export default class CourseDetail extends Component {
                     className="CourseDetail__table-td"
                     data-th="Editar"
                   >
-                    {
-                      this.state.editar 
-                      ?
-                      this.state.idMapAlumno === idAlumno
-                        ?
-                        <button className="courseTeacher__button-alumno" style={{background:'#52BE7F'}} onClick={ () => this.handleEditStudent(idAlumno)}>
-                          <i className="fas fa-save"></i>
-                        </button>
-                        :
-                        <button className="courseTeacher__button-alumno" style={{background:'grey'}} >
-                          <i className="fas fa-edit"></i>
-                        </button>
-                      :
-                      <button className="courseTeacher__button-alumno" onClick={ () => this.handleEditStudent(idAlumno)}>
-                        <i className="fas fa-edit"></i>
-                      </button>
-                    }
+                    <button className="courseTeacher__button-alumno" onClick={() => this.handleEditStudent(idAlumno)} >
+                      <i className="courseTeacher__img fas fa-edit"></i>
+                    </button>
                   </td>
                   <td
                     className="CourseDetail__table-td"
@@ -261,7 +218,7 @@ export default class CourseDetail extends Component {
                   <span className="modal-title">¿DESEA ELIMINAR AL ALUMNO?</span>
                 </div>
                 <div className="modal-general_container_body">
-                  <button className="modal-body__button yes" onClick={this.deleteAlumno} type="button">
+                  <button className="modal-body__button yes" onClick={this.setClose} type="button">
                     <div className="button-zoom">SI</div>
                   </button>
                   <button className="modal-body__button no" onClick={this.setClose} type="button">
