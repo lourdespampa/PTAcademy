@@ -318,15 +318,18 @@ componentWillUnmount() {
                     </>
                         :
                     <div style={styles}> 
-                      <Carousel centerMode  centerSlidePercentage={ 90 } selectedItem={this.state.positionPpt-1} showArrows={false} useKeyboardArrows={false} swipeable={false} emulateTouch={false} showIndicators={false} showThumbs={false} >
+                      <Carousel selectedItem={this.state.positionPpt-1} showArrows={false} useKeyboardArrows={false} swipeable={false} emulateTouch={false} showIndicators={false} showThumbs={false} >
                           {
                               this.state.Slides.map((slide)=>(
-                                  <div key={slide.index}>
-                                  <img
-                                    src={slide.url}
-                                    alt="Hong Kong"
-                                  />
-                                </div>          
+                                <div className="imagenes" key={slide.index}>
+                                <div style={{width:"5%",float:'left'}}></div>
+                              <img className="imagenes-indiviuales"
+                              style={{width:"90%",float:'left',marginLeft:'calc(50% - 45%)'}}
+                                src={slide.url}
+                                alt="Hong Kong"
+                              />
+                               <div style={{width:"5%",float:'left'}}></div> 
+                            </div>               
                               ))
                           }
                       </Carousel>
