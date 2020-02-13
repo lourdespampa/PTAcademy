@@ -48,6 +48,7 @@ export default class FormAddStudent extends Component {
       }
     })
       .then(res => {
+        console.log(res)
         this.setState({
           bloquearBoton: false,
           name_stu: "",
