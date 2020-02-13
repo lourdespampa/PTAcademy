@@ -43,7 +43,6 @@ export default class loginPrivate extends Component {
     e.preventDefault();
 
     console.log("apiURl: "+this.props.apiUrl);
-    var varToken = localStorage.getItem("token");
 
     const data = {
       name_stu: this.state.name_student,
@@ -57,32 +56,31 @@ export default class loginPrivate extends Component {
       randonCode:this.state.codigoSecreto
     }
     if(this.state.hasStudents===true){
+      console.log(data2)
       axios({
         url: `${this.props.apiUrl}/verify_student_code`,
-        data2,
-        method: "post",
-        headers: {
-          "x-access-token": `${varToken}`
-        }
+        data:data2,
+        method: "post"
       })
         .then(res => {
           console.log(res);
-          this.setState({
-            redirection: true,
-            idStudent: res.data.idStu
-          });
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("alumId", res.data.idStu);
+          if(res.data.exist===true){
+            this.setState({
+              redirection: true,
+              idStudent: res.data.id_stud
+            });
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("alumId", res.data.id_stud);
+          }else{
+            console.log('fallo la verificacion de alumno')
+          }
         })
         .catch(err => console.log(err));
     }else{
     axios({
       url: `${this.props.apiUrl}/v1/api/student`,
       data,
-      method: "post",
-      headers: {
-        "x-access-token": `${varToken}`
-      }
+      method: "post"
     })
       .then(res => {
         console.log(res);

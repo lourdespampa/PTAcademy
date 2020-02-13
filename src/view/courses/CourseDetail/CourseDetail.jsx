@@ -62,7 +62,7 @@ export default class CourseDetail extends Component {
     } = this.props;
     var varToken = localStorage.getItem("token");
     axios({
-      url: `${this.state.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
+      url: `${this.props.apiUrl}/v1/api/student/${params.id}/${params.id_course}/students`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
@@ -100,7 +100,7 @@ export default class CourseDetail extends Component {
     return (
       <>
         <NavCourse
-          apiUrl={this.state.apiUrl}
+          apiUrl={this.props.apiUrl}
           idcourse={this.state.id_course}
           idteacher={this.state.id_teacher}
           nombreProfesor={this.state.nombreProfesor}
