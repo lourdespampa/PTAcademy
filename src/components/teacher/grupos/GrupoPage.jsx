@@ -29,9 +29,10 @@ export default class GrupoPage extends Component {
   getAlumnos = async() => {
     var varToken = await localStorage.getItem('token');
     console.log('llego a getAlum')
-    await axios({
-      // url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
-      url: `${this.props.apiUrl}/v1/api/student/5e431a9cf0ad3c4b99feefae/5e431bc16b05a54bbb4e38a1/students`,
+    var id_teacher = localStorage.getItem("id_teacher");
+    var id_course = localStorage.getItem("id_course");
+    axios({
+      url: `${this.props.apiUrl}/v1/api/student/${id_teacher}/${id_course}/students`,
       method: 'GET',
       headers: {
         'x-access-token': `${varToken}`
