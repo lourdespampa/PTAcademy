@@ -3,7 +3,7 @@ import React, { Component} from 'react';
 import io from 'socket.io-client';
 import axios from "axios";
 import iconExit from "../../../img/cerrar1.png";
-import { Modal } from "react-bootstrap";
+// import { Modal } from "react-bootstrap"; no se esta usando
 import './socketStream.sass'
 import { Carousel } from "react-responsive-carousel";
 const { AudioStreamer } = require('sfmediastream');

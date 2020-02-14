@@ -42,6 +42,8 @@ export default class TableStudentSchool extends Component {
         <table className="table table-bordered table-striped table-hover dataTable js-exportable">
           <thead>
             <tr>
+            <th style={{ textAlign: "center", width: "10%" }}>Activo</th>
+
               <th style={{ textAlign: "center", width: "10%" }}>Codigo</th>
               <th style={{ textAlign: "center", width: "10%" }}>Apellidos</th>
               <th style={{ textAlign: "center", width: "10%" }}>Nombres</th>
@@ -64,6 +66,14 @@ export default class TableStudentSchool extends Component {
             {this.props.students ? (
               this.props.students.map((alumno, idAlumno) => (
                 <tr key={alumno._id}>
+                  {(alumno.state='active')?
+                  <td>activo</td>:
+                  <td>inactivo</td>
+                  
+                  }
+                  <td data-th="Codigo">
+                    {alumno.randonCode}
+                  </td>
                   <td data-th="Codigo">
                     {alumno.randonCode}
                   </td>
