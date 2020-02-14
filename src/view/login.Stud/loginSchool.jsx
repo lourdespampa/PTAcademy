@@ -66,6 +66,7 @@ export default class loginPrivate extends Component {
           console.log(res);
           if(res.data.exist===true){
             const data3={
+              state:"active",
               id_stud:res.data.id_stud
             }
             axios({
@@ -96,6 +97,7 @@ export default class loginPrivate extends Component {
       .then(res => {
         console.log(res);
         const data3={
+          state:"active",
           id_stud:res.data.idStu
         }
         axios({

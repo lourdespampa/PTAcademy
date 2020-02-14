@@ -134,8 +134,8 @@ export default class ListaAlum extends Component {
   getAlumnos = () => {
     console.log("listar cursos");
     var varToken = localStorage.getItem("token");
-    console.log(this.props.all.id_course);
-    console.log(this.props.all.id_teacher);
+    // console.log(this.props.all.id_course);
+    // console.log(this.props.all.id_teacher);
 
     axios({
       url: `${this.props.apiUrl}/v1/api/student/${this.props.all.id_teacher}/${this.props.all.id_course}/students`,

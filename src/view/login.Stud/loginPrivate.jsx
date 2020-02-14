@@ -50,6 +50,7 @@ export default class loginPrivate extends Component {
       .then(res => {
         console.log(res);
         const data3={
+          state:"active",
           id_stud:res.data.idStu
         }
         axios({
