@@ -53,7 +53,7 @@ export default class TableStudentSchool extends Component {
                   </th>
                 ))
               ) : (
-                <h1>no hay alumnos</h1>
+                <h1>no hay compentencias</h1>
               )}
 
               <th style={{ textAlign: "center", width: "10%" }}>Editar</th>

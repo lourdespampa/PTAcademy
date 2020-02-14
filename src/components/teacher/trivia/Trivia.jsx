@@ -247,7 +247,7 @@ class Trivia extends React.Component {
                 ?
                 <button className="triviaT-restaurar" onClick={this.handleSendQuestion}>
                   Restaurar
-              </button>
+                </button>
                 :
                 <button className="triviaT-enviar" onClick={this.handleSendQuestion}>
                   ENVIAR

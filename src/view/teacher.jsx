@@ -150,9 +150,9 @@ render(){
           
           <ListaAlumnos id_access={this.state.id_access} todo={this.state.todo} school={this.state.school} socketUrl={this.state.socketUrl} apiUrl={this.props.apiUrl}/>}  />
           <Route exact path="/teacher/:id_class/:id_access/azar" 
-          component={() => <Azar id_access={this.state.id_access} apiUrl={this.props.apiUrl} socketUrl={this.state.socketUrl}/>} />
+          component={() => <Azar todo={this.state.todo} school={this.state.school} id_access={this.state.id_access} apiUrl={this.props.apiUrl} socketUrl={this.state.socketUrl}/>} />
           <Route exact path="/teacher/:id_class/:id_access/grupos" 
-          component={() => <Grupos id_access={this.state.id_access} apiUrl={this.props.apiUrl} socketUrl={this.state.socketUrl}/>} />
+          component={() => <Grupos todo={this.state.todo} school={this.state.school} id_access={this.state.id_access} apiUrl={this.props.apiUrl} socketUrl={this.state.socketUrl}/>} />
           <Route exact path="/teacher/:id_class/:id_access/temporizador" 
           component={() => <Temporizador id_access={this.state.id_access} socketUrl={this.state.socketUrl}/>} />
           <Route exact path="/teacher/:id_class/:id_access/pizarra" 
