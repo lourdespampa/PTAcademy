@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import IconActive from '../../../img/lista/activeIcon.svg'
+import IconInactive from '../../../img/lista/InactiveIcon.svg'
 export default class TableStudentSchool extends Component {
   constructor(props) {
     super(props);
@@ -67,13 +68,10 @@ export default class TableStudentSchool extends Component {
               this.props.students.map((alumno, idAlumno) => (
                 <tr key={alumno._id}>
                   {(alumno.state='active')?
-                  <td>activo</td>:
-                  <td>inactivo</td>
+                  <td style={{textAlign: 'center'}}><img alt="icon active" src={IconActive}></img></td>:
+                  <td style={{textAlign: 'center'}}><img src={IconInactive} alt="icon inactivo"/></td>
                   
                   }
-                  <td data-th="Codigo">
-                    {alumno.randonCode}
-                  </td>
                   <td data-th="Codigo">
                     {alumno.randonCode}
                   </td>
