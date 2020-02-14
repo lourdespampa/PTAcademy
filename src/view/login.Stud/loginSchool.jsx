@@ -65,10 +65,21 @@ export default class loginPrivate extends Component {
         .then(res => {
           console.log(res);
           if(res.data.exist===true){
-            this.setState({
-              redirection: true,
-              idStudent: res.data.id_stud
-            });
+            const data3={
+              id_stud:res.data.id_stud
+            }
+            axios({
+              url: `${this.props.apiUrl}/v1/api/student/change_state`,
+              data:data3 ,
+              method: "post"
+            }).then((res2)=>{
+                console.log(res2)
+                this.setState({
+                redirection: true,
+                idStudent: res.data.id_stud
+              });
+            }).catch(err2=> console.log(err2))
+            
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("alumId", res.data.id_stud);
           }else{
@@ -84,10 +95,20 @@ export default class loginPrivate extends Component {
     })
       .then(res => {
         console.log(res);
-        this.setState({
-          redirection: true,
-          idStudent: res.data.idStu
-        });
+        const data3={
+          id_stud:res.data.idStu
+        }
+        axios({
+          url: `${this.props.apiUrl}/v1/api/student/change_state`,
+          data:data3 ,
+          method: "post"
+        }).then((res2)=>{
+            console.log(res2)
+            this.setState({
+            redirection: true,
+            idStudent: res.data.idStu
+          });
+        }).catch(err2=> console.log(err2))
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("alumId", res.data.idStu);
       })
