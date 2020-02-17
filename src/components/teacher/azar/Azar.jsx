@@ -193,7 +193,7 @@ class Azar extends React.Component {
   };
 
   render() {
-    if (this.state.alumnos.length > 0) {
+    if (this.state.alumnos.length === "active") {
       return (
         <div>
           <Roulette
