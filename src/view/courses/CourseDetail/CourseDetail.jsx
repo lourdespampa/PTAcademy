@@ -11,11 +11,13 @@ export default class CourseDetail extends Component {
       token: false,
       id_course: "",
       id_teacher: "",
+      notaCompe: "",
       students: [],
       editar: false,
       idMapAlumno: "",
       apellidoAlumno: "",
       nombreAlumno: "",
+      descAlumno: "",
       apiUrl: "http://3.16.110.136:4200",
       compentencias: [],
       competenciasAlumnos: [],
@@ -47,12 +49,28 @@ export default class CourseDetail extends Component {
     })
   }
 
+  handleChange = e => {
+    console.log(`Seleccionaste ${e.target.value}`);
+    // this.setState({value: event.target.value});
+    // setTimeout(() => console.clear(), 1000);
+  }
+
   handleChangeInputs = e => {
     let name = e.target.name
     let value = e.target.value
-
     this.setState({[name]: value})
-    console.log(this.state.apellidoAlumno,this.state.nombreAlumno)
+
+    // console.log('cuando se esta editando', value)
+
+    console.log([name], value)
+  }
+  handleEditStudent = (idAlumno) => {
+    this.setState({
+      editar: !this.state.editar,
+      idMapAlumno: idAlumno
+    })
+    console.log('id del estudiante', this.state.idMapAlumno)
+    console.log('nuevos nombre', this.state.nombreAlumno)
   }
 
   getAlumnos = () => {
@@ -167,18 +185,18 @@ export default class CourseDetail extends Component {
                       className="CourseDetail__table-td"
                       data-th="Competencia d"
                     >
-                      <select>
-                        <option value="AD">AD</option>
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
+                      <select name={`compAlum${id}`} onChange={this.handleChangeInputs}>
+                        <option value="20">AD</option>
+                        <option value="16">A</option>
+                        <option value="14">B</option>
+                        <option value="10">C</option>
                       </select>
                       {
                       this.state.editar
                       ?
                         this.state.idMapAlumno === idAlumno
                         ?
-                        <input type="text" name="nombreAlumno" defaultValue={compentencia} onChange={this.handleChangeInputs} />
+                        <input type="text" name="descAlumno" defaultValue={compentencia} onChange={this.handleChangeInputs} />
                         :
                         "descripción"
                       :
@@ -190,9 +208,16 @@ export default class CourseDetail extends Component {
                     className="CourseDetail__table-td"
                     data-th="Editar"
                   >
-                    <button className="courseTeacher__button-alumno" onClick={() => this.handleEditStudent(idAlumno)} >
+                    {(this.state.editar)?(
+                      <button className="courseTeacher__button-alumno" onClick={() => this.handleEditStudent(idAlumno)} >
+                      <i className="courseTeacher__img fas fa-save"></i>
+                    </button>
+                    ):(
+                      <button className="courseTeacher__button-alumno" onClick={() => this.handleEditStudent(idAlumno)} >
                       <i className="courseTeacher__img fas fa-edit"></i>
                     </button>
+                    )}
+                    
                   </td>
                   <td
                     className="CourseDetail__table-td"
