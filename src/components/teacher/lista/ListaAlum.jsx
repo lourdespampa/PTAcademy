@@ -4,7 +4,7 @@ import axios from "axios";
 import { ExportCSV } from "./exportbtn";
 import { BtnPuntos } from "./btnpuntos";
 import io from "socket.io-client";
-import { TableBody } from "./tablebody";
+// import { TableBody } from "./tablebody"; no se esta usando by: Miryan
 import iconExit from "../../../img/cerrar1.png";
 
 import TablePrivate from "./TableStudentPrivate";
@@ -289,32 +289,32 @@ export default class ListaAlum extends Component {
   onClickEnviar = async e => {
     e.preventDefault();
 
-    const a = this.state.students;
-    const text = a.map(
-      student =>
-        `<tr>
-                 <td>${student.nombres}</td>
-                 <td>${student.apodo}</td>
-                 <td>${student.nota}</td>
-                 <td>${student.comportamiento}</td>
-                 <td>${student.puntos}</td>
-             </tr>`
-    );
-    const html = `<table>
-                 <thead>
-                     <tr>
-                         <th>Nombres</th>
-                         <th>Apellidos</th>
-                         <th>Nota(0-20)</th>
-                         <th>Comportamiento</th>
-                         <th>Puntos</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     ${text}
-                 </tbody>
-             </table>`;
-    var user = JSON.parse(localStorage.getItem("user"));
+    // const a = this.state.students;
+    // const text = a.map(
+    //   student =>
+    //     `<tr>
+    //              <td>${student.nombres}</td>
+    //              <td>${student.apodo}</td>
+    //              <td>${student.nota}</td>
+    //              <td>${student.comportamiento}</td>
+    //              <td>${student.puntos}</td>
+    //          </tr>`
+    // );
+    // const html = `<table>
+    //              <thead>
+    //                  <tr>
+    //                      <th>Nombres</th>
+    //                      <th>Apellidos</th>
+    //                      <th>Nota(0-20)</th>
+    //                      <th>Comportamiento</th>
+    //                      <th>Puntos</th>
+    //                  </tr>
+    //              </thead>
+    //              <tbody>
+    //                  ${text}
+    //              </tbody>
+    //          </table>`;
+    // var user = JSON.parse(localStorage.getItem("user"));
 
     // const params = {
     //     hml: html,

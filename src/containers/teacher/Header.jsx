@@ -104,6 +104,7 @@ class Header extends React.Component {
       query: { pin: this.props.id_access }
     });
     socket.emit("redirectAlum", { page: e });
+    console.log('se manda al alumnos redirigir a', e)
   };
   ExitSocket = () => {
     const socket = io(this.props.socketUrl, {
