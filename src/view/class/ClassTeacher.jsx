@@ -14,7 +14,6 @@ export default class ClassTeacher extends Component {
       id_class: "",
       show: 0,
       classes: [],
-      competences: []
     };
   }
   async componentDidMount() {
@@ -22,7 +21,7 @@ export default class ClassTeacher extends Component {
     const {
       match: { params }
     } = this.props;
-    await this.setState({ idteacher: params.id_teacher, idcourse: params._id, competences: this.props.location.state });
+    await this.setState({ idteacher: params.id_teacher, idcourse: params._id });
     // console.log(this.state.compentecias);
     this.getClass();
     axios({
@@ -117,7 +116,6 @@ export default class ClassTeacher extends Component {
                     id={clase._id}
                     onClick={this.onClick}
                     setShow={this.setShow}
-                    competences={this.state.competences}
                   />
                 </li>
               ))

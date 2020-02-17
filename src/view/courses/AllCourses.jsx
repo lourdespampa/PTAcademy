@@ -64,8 +64,8 @@ export default class AllCourses extends Component {
               <p>{this.props.description}</p>
             </div>
             <Link
-              onClick={() => this.props.onClick(this.props.id)}
-              to={{pathname:`/${this.props.idteacher}/ClassTeacher/${this.props.id}`, state:{compentencias:this.props.competencias, id_course: this.props.id, id_teacher: this.props.idteacher}}}
+              onClick={() => localStorage.setItem("competencias", JSON.stringify(this.props.competencias))}
+              to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`}
               className="courseTeacher__buttonEntry"
             >
               <label className="courseTeacher__buttonEntry-label">

@@ -11,9 +11,6 @@ export default class AllClass extends Component {
       redirect: false
     };
   }
-  componentDidMount() {
-    console.log(this.props.competences)
-  }
   //funcion GenerarCodigo
   obtenerCodigo = () => {
     var varToken = localStorage.getItem("token");
@@ -49,7 +46,7 @@ export default class AllClass extends Component {
   renderRedirect = () => {
     if (this.state.redirect) {
       return (
-        <Redirect to={{pathname:`/teacher/${this.props.id}/${this.state.id_access}`, state: this.props.competences }} />
+        <Redirect to={`/teacher/${this.props.id}/${this.state.id_access}` } />
       );
     }
   };

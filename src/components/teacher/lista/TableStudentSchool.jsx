@@ -10,13 +10,15 @@ export default class TableStudentSchool extends Component {
       idMapAlumno: "",
       apellidoAlumno: "",
       nombreAlumno: "",
-      compentencias: [],
+      competencias: [],
       competenciasAlumnos: [],
       showdelete: 0
     };
   }
-
-  handleEditStudent = idAlumno => {
+componentDidMount(){
+  console.log(this.props.students)
+}
+  handleEditStudent = (idAlumno) => {
     this.setState({
       editar: !this.state.editar,
       idMapAlumno: idAlumno
@@ -49,14 +51,14 @@ export default class TableStudentSchool extends Component {
               <th style={{ textAlign: "center", width: "10%" }}>Apellidos</th>
               <th style={{ textAlign: "center", width: "10%" }}>Nombres</th>
 
-              {this.props.compentencias ? (
-                this.props.compentencias.map((compentencia, id) => (
+              {this.props.competencias ? (
+                this.props.competencias.map((Competencia, id) => (
                   <th key={id} style={{ textAlign: "center", width: "35%" }}>
-                    {compentencia}
+                    {Competencia}
                   </th>
                 ))
               ) : (
-                <h1>no hay compentencias</h1>
+                <h1>no hay competencias</h1>
               )}
 
               <th style={{ textAlign: "center", width: "10%" }}>Editar</th>
@@ -78,20 +80,19 @@ export default class TableStudentSchool extends Component {
                   )}
                   <td data-th="Codigo">{alumno.randonCode}</td>
                   <td data-th="Apellidos">
-                    {this.state.editar ? (
-                      this.state.idMapAlumno === idAlumno ? (
+                    {this.state.editar ? 
+                      this.state.idMapAlumno === idAlumno ? 
                         <input
                           type="text"
                           name="apellidoAlumno"
                           defaultValue={alumno.lastName_stu}
                           onChange={this.handleChangeInputs}
                         />
-                      ) : (
+                       : 
                         alumno.lastName_stu
-                      )
-                    ) : (
+                     : 
                       alumno.lastName_stu
-                    )}
+                    }
                   </td>
                   <td data-th="Nombres">
                     {this.state.editar ? (
@@ -109,7 +110,7 @@ export default class TableStudentSchool extends Component {
                       alumno.name_stu
                     )}
                   </td>
-                  {this.props.compentencias.map((compentencia, id) => (
+                  {this.props.competencias.map((Competencia, id) => (
                     <td key={id} data-th="Competencia d">
                       <select>
                         <option value="AD">AD</option>
@@ -122,7 +123,7 @@ export default class TableStudentSchool extends Component {
                           <input
                             type="text"
                             name="nombreAlumno"
-                            defaultValue={compentencia}
+                            defaultValue={Competencia}
                             onChange={this.handleChangeInputs}
                           />
                         ) : (
