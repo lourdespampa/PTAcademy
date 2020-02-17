@@ -144,7 +144,7 @@ export default class ListaAlum extends Component {
         "x-access-token": `${varToken}`
       }
     })
-      .then(({ data }) => {
+    .then(({ data }) => {
         console.log(data);
         if (data === []) {
           console.log("no tiene ningun alumnos");
@@ -351,6 +351,7 @@ export default class ListaAlum extends Component {
               <div className="body" id="html">
                 <div className="table-responsive">
                   {this.props.school ? (
+                    // null
                     <TableSchool
                     students={this.state.students}
                     compentencias={this.props.all.compentencias}
