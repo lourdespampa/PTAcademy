@@ -1,5 +1,5 @@
 import React from "react";
-import "./trivia.css";
+// import "./trivia.css";
 import "./trivia.sass";
 import "./botones.scss";
 import iconExit from "../../../img/cerrar.png";

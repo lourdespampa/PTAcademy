@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import IconActive from '../../../img/lista/activeIcon.svg'
-import IconInactive from '../../../img/lista/InactiveIcon.svg'
+import IconActive from "../../../img/lista/activeIcon.svg";
+import IconInactive from "../../../img/lista/InactiveIcon.svg";
 export default class TableStudentSchool extends Component {
   constructor(props) {
     super(props);
@@ -15,27 +15,27 @@ export default class TableStudentSchool extends Component {
       showdelete: 0
     };
   }
-  
-  handleEditStudent = (idAlumno) => {
+
+  handleEditStudent = idAlumno => {
     this.setState({
       editar: !this.state.editar,
       idMapAlumno: idAlumno
-    })
-  }
+    });
+  };
 
   handleChangeInputs = e => {
-    let name = e.target.name
-    let value = e.target.value
+    let name = e.target.name;
+    let value = e.target.value;
 
-    this.setState({[name]: value})
-    console.log(this.state.apellidoAlumno,this.state.nombreAlumno)
-  }
+    this.setState({ [name]: value });
+    console.log(this.state.apellidoAlumno, this.state.nombreAlumno);
+  };
 
   setShow = () => {
-    this.setState({showdelete:1})
+    this.setState({ showdelete: 1 });
   };
   setClose = () => {
-    this.setState({showdelete:2})
+    this.setState({ showdelete: 2 });
   };
   render() {
     return (
@@ -43,7 +43,7 @@ export default class TableStudentSchool extends Component {
         <table className="table table-bordered table-striped table-hover dataTable js-exportable">
           <thead>
             <tr>
-            <th style={{ textAlign: "center", width: "10%" }}>Activo</th>
+              <th style={{ textAlign: "center", width: "10%" }}>Activo</th>
 
               <th style={{ textAlign: "center", width: "10%" }}>Codigo</th>
               <th style={{ textAlign: "center", width: "10%" }}>Apellidos</th>
@@ -67,14 +67,16 @@ export default class TableStudentSchool extends Component {
             {this.props.students ? (
               this.props.students.map((alumno, idAlumno) => (
                 <tr key={alumno._id}>
-                  {(alumno.state='active')?
-                  <td style={{textAlign: 'center'}}><img alt="icon active" src={IconActive}></img></td>:
-                  <td style={{textAlign: 'center'}}><img src={IconInactive} alt="icon inactivo"/></td>
-                  
-                  }
-                  <td data-th="Codigo">
-                    {alumno.randonCode}
-                  </td>
+                  {(alumno.state === "active") ? (
+                    <td style={{ textAlign: "center" }}>
+                      <img alt="icon active" src={IconActive}></img>
+                    </td>
+                  ) : (
+                    <td style={{ textAlign: "center" }}>
+                      <img src={IconInactive} alt="icon inactivo" />
+                    </td>
+                  )}
+                  <td data-th="Codigo">{alumno.randonCode}</td>
                   <td data-th="Apellidos">
                     {this.state.editar ? (
                       this.state.idMapAlumno === idAlumno ? (
@@ -108,10 +110,7 @@ export default class TableStudentSchool extends Component {
                     )}
                   </td>
                   {this.props.compentencias.map((compentencia, id) => (
-                    <td
-                      key={id}
-                      data-th="Competencia d"
-                    >
+                    <td key={id} data-th="Competencia d">
                       <select>
                         <option value="AD">AD</option>
                         <option value="A">A</option>
@@ -135,16 +134,12 @@ export default class TableStudentSchool extends Component {
                     </td>
                   ))}
                   <td data-th="Editar">
-                    <button
-                      onClick={() => this.handleEditStudent(idAlumno)}
-                    >
+                    <button onClick={() => this.handleEditStudent(idAlumno)}>
                       <i className="courseTeacher__img fas fa-edit"></i>
                     </button>
                   </td>
                   <td data-th="Eliminar">
-                    <button
-                      onClick={this.setShow}
-                    >
+                    <button onClick={this.setShow}>
                       <i className="courseTeacher__img fas fa-trash"></i>
                     </button>
                   </td>

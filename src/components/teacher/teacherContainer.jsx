@@ -7,8 +7,8 @@ import Footer from '../../containers/teacher/Footer';
 export default class Contenido extends Component {
 componentDidMount(){
     // const { match: { params } } = this.props;
-    console.log("en clase pasando compentencias", this.props.location.state)
-    console.log()
+    // console.log("en clase pasando compentencias", this.props.location.state)
+    // console.log()
 }
     render() {
         const {children}=this.props
