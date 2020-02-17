@@ -11,7 +11,7 @@ import Pizarra from "../pages/teacher/Pizarra";
 import Access from "../access";
 import NotFound from "./404/NotFound";
 //socket initial
-import io from 'socket.io-client';
+// import io from 'socket.io-client'; //no se esta usando
 //
 
 export default class Views extends Component {
