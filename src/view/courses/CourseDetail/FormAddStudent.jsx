@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button } from "react-bootstrap";
+// import { Form, Button } from "react-bootstrap"; no se esta usando
 import axios from "axios";
 export default class FormAddStudent extends Component {
   constructor(props) {
@@ -10,7 +10,9 @@ export default class FormAddStudent extends Component {
       name_stu: "",
       lastName_stu: "",
       id_course: "",
-      id_teacher: ""
+      id_teacher: "",
+      signup: false,
+      login: true
     };
   }
   componentDidMount() {
@@ -48,6 +50,7 @@ export default class FormAddStudent extends Component {
       }
     })
       .then(res => {
+        console.log(res)
         this.setState({
           bloquearBoton: false,
           name_stu: "",
@@ -68,11 +71,12 @@ export default class FormAddStudent extends Component {
     const { name_stu, lastName_stu } = this.state;
     return (
       <>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Label className="modal-title__controlname">
+        
+         <form onSubmit={this.handleSubmit}>
+          <label className="modal-title__controlname">
             Nombres del alumno
-          </Form.Label>
-          <Form.Control
+          </label>
+          <input
             className="modal-teacher__general-controlname"
             type="text"
             name="name_stu"
@@ -81,10 +85,10 @@ export default class FormAddStudent extends Component {
             placeholder="Ingresar nombres completos de los estudiantes"
             required
           />
-          <Form.Label className="modal-title__controlname">
+          <label className="modal-title__controlname">
             Apellidos del alumno
-          </Form.Label>
-          <Form.Control
+          </label>
+          <input
             className="modal-teacher__general-controlname"
             type="text"
             name="lastName_stu"
@@ -95,15 +99,15 @@ export default class FormAddStudent extends Component {
           />
           <input type="file" />
           {this.state.bloquearBoton ? (
-            <Button className="modal-body__button cursos" type="button">
+            <button className="modal-body__button cursos" type="button">
               <div className="button-zoom">Cargando ...</div>
-            </Button>
+            </button>
           ) : (
-            <Button className="modal-body__button cursos" type="submit">
+            <button className="modal-body__button cursos" type="submit">
               <div className="button-zoom">Agregar Alumno</div>
-            </Button>
+            </button>
           )}
-        </Form>
+        </form>
       </>
     );
   }

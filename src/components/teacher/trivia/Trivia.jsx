@@ -1,5 +1,6 @@
 import React from "react";
-import "./trivia.css";
+// import "./trivia.css";
+import "./trivia.sass";
 import "./botones.scss";
 import iconExit from "../../../img/cerrar.png";
 import axios from 'axios';
@@ -11,11 +12,11 @@ class Trivia extends React.Component {
   /** 
    * Fix pin 
    *  :: valor inicial de PIN al cargar component
-   * */ 
+   * */
   pin = ''
   puntaje = 0
   /******************* */
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       todosAlumnos: [],
@@ -34,7 +35,7 @@ class Trivia extends React.Component {
     }
 
     // Este enlace es necesario para hacer que `this` funcione en el callback
-    this.handleSendQuestion  = this.handleSendQuestion.bind(this);
+    this.handleSendQuestion = this.handleSendQuestion.bind(this);
     this.handleChangeTime = this.handleChangeTime.bind(this);
     this.changeAnswer1 = this.changeAnswer1.bind(this);
     this.changeAnswer2 = this.changeAnswer2.bind(this);
@@ -43,11 +44,11 @@ class Trivia extends React.Component {
     this.handleCorrectAnswer = this.handleCorrectAnswer.bind(this);
   }
 
-  componentDidMount = () =>{
+  componentDidMount = () => {
     this.getStudents()
-    const { 
-      id_access, 
-      socketUrl 
+    const {
+      id_access,
+      socketUrl
     } = this.props
     /** Fix pin */
     this.pin = id_access
@@ -55,17 +56,17 @@ class Trivia extends React.Component {
     /** **************** */
     const socket = io(socketUrl, {
       query:
-          { pin: this.pin }
+        { pin: this.pin }
     })
-      socket.on('pregunta escogida', (data) => {
-        const pinTeacher = this.pin.toUpperCase();
-        if(data.pin===pinTeacher){
+    socket.on('pregunta escogida', (data) => {
+      const pinTeacher = this.pin.toUpperCase();
+      if (data.pin === pinTeacher) {
         this.state.alumnosRecibidos.push(data)
         const temp = this.state.alumnosRecibidos
-        this.setState({alumnosRecibidos: temp})
+        this.setState({ alumnosRecibidos: temp })
       }
-      })
-      setTimeout( () => console.log(this.props), 3000)
+    })
+    setTimeout(() => console.log(this.props), 3000)
   }
   //por buenas practicas, se deberia finalizar toda accion que pueda afectar el rendimiento del componente al morir
   //por lo que toda accion por tiempo se finaliza en este metodo, por ejemplo en la función handleSendQuestion() al final
@@ -78,20 +79,20 @@ class Trivia extends React.Component {
   getStudents = () => {
     var varToken = localStorage.getItem('token');
     axios({
-        url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
-        method: 'GET',
-        headers: {
-            'x-access-token': `${varToken}`
-        }
+      url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
+      method: 'GET',
+      headers: {
+        'x-access-token': `${varToken}`
+      }
     })
-    .then((res) => {
+      .then((res) => {
         const temp = [];
         res.data.map(alumno => {
-            temp.push({idAlumno: alumno._id, nombre: `${alumno.name_stu} ${alumno.lastName_stu}`, puntos: alumno.point})
+          temp.push({ idAlumno: alumno._id, nombre: `${alumno.name_stu} ${alumno.lastName_stu}`, puntos: alumno.point })
         })
-        this.setState({ todosAlumnos: temp})
-    })
-    .catch(e => console.log(e))
+        this.setState({ todosAlumnos: temp })
+      })
+      .catch(e => console.log(e))
   }
 
   showModal = () => {
@@ -211,9 +212,9 @@ class Trivia extends React.Component {
     this.puntaje += punto
     console.log('punto', punto)
     console.log('this.punto', this.puntaje)
-    const data = {
-      point: this.puntaje
-    }
+    // const data = {
+    //   point: this.puntaje
+    // }
     for (var alumno of this.state.todosAlumnos) {
       if (alumno.nombre === alumnoTop.data.alumno) {
         var varToken = localStorage.getItem('token');
@@ -221,16 +222,16 @@ class Trivia extends React.Component {
           point: alumno.puntos + punto
         }
         axios({
-            url: this.props.apiUrl + '/v1/api/student/update_score/' + alumno.idAlumno,
-            data,
-            method: 'put',
-            headers: {
-                'x-access-token': `${varToken}`
-            }
+          url: this.props.apiUrl + '/v1/api/student/update_score/' + alumno.idAlumno,
+          data,
+          method: 'put',
+          headers: {
+            'x-access-token': `${varToken}`
+          }
         })
-        .then(res => this.getStudents())
-        .catch(e => console.log(e))
-          // await this.setState({ point: alumno.point })
+          .then(res => this.getStudents())
+          .catch(e => console.log(e))
+        // await this.setState({ point: alumno.point })
       }
     }
   }
@@ -246,7 +247,7 @@ class Trivia extends React.Component {
                 ?
                 <button className="triviaT-restaurar" onClick={this.handleSendQuestion}>
                   Restaurar
-              </button>
+                </button>
                 :
                 <button className="triviaT-enviar" onClick={this.handleSendQuestion}>
                   ENVIAR
@@ -270,7 +271,7 @@ class Trivia extends React.Component {
                   <button className="modal-general_closeTrivia" onClick={this.showModal}>
                     <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                   </button>
-                  <h2>Clasificación</h2>
+                  <h2>Alumnos Finalistas</h2>
                   <ul className="rolldown-list" id="myList">
                     {this.state.alumnosRecibidos.length > 0
                       ?
@@ -282,25 +283,25 @@ class Trivia extends React.Component {
                           <li className="lista-contenedora" key={index}>
                             {/* <img className="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
                             <div className="trivia-respuestas">
-                              <div>alumno:&nbsp;&nbsp;{alumno.data.alumno}&nbsp;&nbsp;
+                              <div className="name-contenedor">alumno:&nbsp;&nbsp;{alumno.data.alumno}&nbsp;&nbsp;
                               {/* puntaje:&nbsp;&nbsp;{alumno.data.puntaje}&nbsp;&nbsp; */}
                               </div>
-                              <div>
+                              <div className="points-contenedor">
                                 puntos:&nbsp;&nbsp;
-                                <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno,1)}>
-                                        add_circle_outline
+                                <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno, 1)}>
+                                  add_circle_outline
                                 </button>
                                 &nbsp;
-                                {this.state.todosAlumnos.map( todoAlumno => (
+                                {this.state.todosAlumnos.map(todoAlumno => (
                                   todoAlumno.nombre === alumno.data.alumno
-                                  ?
-                                  <label key={index}>{todoAlumno.puntos}</label>
-                                  :
-                                  null
+                                    ?
+                                    <label key={index}>{todoAlumno.puntos}</label>
+                                    :
+                                    null
                                 ))}
                                 &nbsp;
-                                <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno,-1)}>
-                                        remove_circle_outline
+                                <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno, -1)}>
+                                  remove_circle_outline
                                 </button>
                               </div>
                             </div>

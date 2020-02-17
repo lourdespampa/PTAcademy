@@ -86,7 +86,6 @@ class Header extends React.Component {
   };
 
   getName = async () => {
-    console.log("hola que hace" + this.props.id_class);
     var varToken = localStorage.getItem("token");
     const res = await axios({
       url: `${this.props.apiUrl}/v1/api/teacher/detail_class/${this.props.id_class}`,
@@ -105,14 +104,13 @@ class Header extends React.Component {
       query: { pin: this.props.id_access }
     });
     socket.emit("redirectAlum", { page: e });
-    console.log("redirect " + e);
+    console.log('se manda al alumnos redirigir a', e)
   };
   ExitSocket = () => {
     const socket = io(this.props.socketUrl, {
       query: { pin: this.props.id_access }
     });
     socket.emit("ExitSocket");
-    console.log("ExitSocket");
   };
 UNSAFE_componentWillMount = async () => {
     let tokenStorage = localStorage.getItem("token")

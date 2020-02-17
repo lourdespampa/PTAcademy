@@ -37,7 +37,7 @@ const onFocus = () => {
 };
 export default function HeaderContainer(props) {
     const [showResponsive, setShowResponsive] = useState(false)
-    const [redirect,setredirect]=useState(false);
+    const [redirect,setredirect]=useState(false); //no se esta usando
     const [trivia,settrivia]=useState(false);
     const [temporizador,settemporizador]=useState(false);
     const [Exit,setExit]=useState(false);
@@ -45,22 +45,26 @@ export default function HeaderContainer(props) {
 
     const deleteStudent= ()=>{
         console.log(props.apiUrl,props.id_access,props.id_student)
-        
-        var varToken = localStorage.getItem("token");
-         axios({
-          url: `${props.apiUrl}/v1/api/student/disable_student/${props.id_student}`,
-          method: "put",
-          headers: {
-            "x-access-token": `${varToken}`
-          }
-        }).then(() => {
-          setExit(true)
-          const socket = io(props.socketUrl, {
+        const data3={
+          state:"inactive",
+          id_stud:props.id_student
+        }
+        axios({
+          url: `${props.apiUrl}/v1/api/student/change_state`,
+          data:data3 ,
+          method: "post"
+        }).then((res2)=>{
+            console.log(res2)
+            const socket = io(props.socketUrl, {
             query:
                 { pin: props.id_access }
           })
           socket.emit('newAlum')
-        })    
+          setExit(true)
+        }).catch(err2=> console.log(err2))
+         
+          
+          
     }
 
     useEffect(()=>{

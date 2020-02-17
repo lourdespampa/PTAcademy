@@ -8,7 +8,7 @@ import iconExit from "../../../img/cerrar1.png";
 class Temporizador extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { store: "", valH: "0", valM: "0", valS: "0", open: true,Show:1 };
+    this.state = { store: "", valH: "0", valM: "0", valS: "0", open: true, Show: 1 };
     this.onChangeInputH = this.onChangeInputH.bind(this);
     this.onChangeInputM = this.onChangeInputM.bind(this);
     this.onChangeInputS = this.onChangeInputS.bind(this);
@@ -17,13 +17,13 @@ class Temporizador extends React.Component {
   openModal = () => {
     // this.setState({open:true})
     this.setState({
-      Show:1
+      Show: 1
     })
     $("#modal-temp").css("display", "block");
   };
   closeModal = () => {
     this.setState({
-      Show:0
+      Show: 0
     })
     $("#modal-temp").css("display", "none");
   };
@@ -72,7 +72,7 @@ class Temporizador extends React.Component {
       u = $("#button-set"),
       et = $("#button-establecer"),
       m = $(".unit_value:visible"),
-      n = function() {
+      n = function () {
         for (var /*a = "",*/ b = g, c = 0; c < e.length; ++c) {
           var d = e[c],
             f = Math.abs(Math.floor(b / d.value));
@@ -84,7 +84,7 @@ class Temporizador extends React.Component {
         // q.length !== a.length;
         //const q = a;
       },
-      v = function() {
+      v = function () {
         g = l - Date.now();
         if (0 <= g) {
           n();
@@ -92,14 +92,14 @@ class Temporizador extends React.Component {
           clearInterval(d);
           try {
             r.get(0).play();
-          } catch (a) {}
+          } catch (a) { }
           g = 0;
           n();
           m.css("color", "red");
           h(!0);
         }
       },
-      h = function(a) {
+      h = function (a) {
         a ? k.text("INICIAR") : k.text("PAUSAR");
         t.prop("disabled", !a);
         u.prop("disabled", !a);
@@ -107,7 +107,7 @@ class Temporizador extends React.Component {
         for (var b = 0; b < e.length; ++b)
           e[b].input_element.prop("disabled", !a);
       },
-      p = function() {
+      p = function () {
         for (var a = (c = 0); a < e.length; ++a) {
           var b = e[a];
           c +=
@@ -127,12 +127,12 @@ class Temporizador extends React.Component {
         n();
         m.css("color", "black");
       },
-      x = function() {
+      x = function () {
         clearInterval(d);
         p();
         h(!0);
       },
-      y = function() {
+      y = function () {
         if ("INICIAR" === k.text()) {
           w();
         } else {
@@ -143,7 +143,7 @@ class Temporizador extends React.Component {
           socket.emit("stop", { state: "pause" });
         }
       },
-      w = function() {
+      w = function () {
         console.log("Empieza");
         clearInterval(d);
         l = Date.now() + c;
@@ -155,7 +155,7 @@ class Temporizador extends React.Component {
         v();
         d = window.setInterval(v, 50);
       };
-    window.timer = function(a) {
+    window.timer = function (a) {
       p();
       u.click(p);
       t.click(x);
@@ -229,8 +229,8 @@ class Temporizador extends React.Component {
           >
             ESTABLECER TIEMPO
           </button>
-        </div> 
-        
+        </div>
+
         <div id="modal-general_container" className={this.state.Show === 0 ? "" : this.state.Show === 1 ? "six" : this.state.Show === 2 ? "six out" : ""}>
           <div className="modal-general_background" >
             <div className="modal-general_bg_content">
@@ -238,88 +238,10 @@ class Temporizador extends React.Component {
                 <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
               </button>
               <div className="modal-general_container">
-              <div className="modal-general_container_header">
-          <span className="modal-title__controlname" style={{color:'black'}}>ESTABLECER TIEMPO</span>
-        </div>
-        <div className="modal-general_container_body">
-        <form class="temporizador_form">
-                    <div>
-                      <label>Horas</label>
-                      <input
-                        className="pure-input-1"
-                        type="number"
-                        id="id_dt_1"
-                        value={this.state.valH}
-                        min="0"
-                        onChange={this.onChangeInputH}
-                      />
-                    </div>
-                    <div>
-                      <label>Minutos</label>
-                      <input
-                        className="pure-input-1"
-                        type="number"
-                        id="id_dt_2"
-                        value={this.state.valM}
-                        min="0"
-                        onChange={this.onChangeInputM}
-                      />
-                    </div>
-                    <div>
-                      <label>Segundos</label>
-                      <input
-                        className="pure-input-1"
-                        type="number"
-                        id="id_dt_3"
-                        value={this.state.valS}
-                        min="0"
-                        onChange={this.onChangeInputS}
-                      />
-                    </div>
-                  </form>
-                  <br/>
-                  <button
-                    type="button"
-                    id="button-set"
-                    className="btnenviarvideo"
-                  >
-                    <div className="button-zoom" onClick={this.closeModal}>ESTABLECER TIEMPO</div>
-                  </button>
-          </div>
-              </div>
-              <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
-              </svg>
-            </div>
-          </div>
-        </div>
-        
-        {/* <div
-          id="modal-temp"
-          role="dialog"
-          aria-modal="true"
-          className="modal"
-          tabIndex="-1"
-          aria-hidden="true"
-          style={{ display: "block" }}
-        >
-          <div role="document" className="modal-teacher__general">
-            <div className="modal-content">
-              <div className="modal-header">
-                <div className="punto-posi">
-                  <span>ESTABLECER TIEMPO</span>
-                  <button
-                    type="button"
-                    className="close"
-                    onClick={this.closeModal}
-                  >
-                    <span aria-hidden="true">x</span>
-                    <span class="sr-only">Close</span>
-                  </button>
+                <div className="modal-general_container_header">
+                  <span className="modal-title__controlname" style={{ color: 'black' }}>ESTABLECER TIEMPO</span>
                 </div>
-              </div>
-              <div className="modal-body">
-                <div className="temporizador_modal_body">
+                <div className="modal-general_container_body">
                   <form class="temporizador_form">
                     <div>
                       <label>Horas</label>
@@ -355,45 +277,22 @@ class Temporizador extends React.Component {
                       />
                     </div>
                   </form>
+                  <br />
                   <button
                     type="button"
                     id="button-set"
-                    className="pure-button pure-button-primary"
+                    className="btnenviarvideo"
                   >
-                    Establecer Tiempo
+                    <div className="button-zoom" onClick={this.closeModal}>ESTABLECER TIEMPO</div>
                   </button>
                 </div>
               </div>
+              <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+              </svg>
             </div>
           </div>
-        </div> */}
-
-        {/* <Modal size={'SM'} show={this.state.open} onHide={() => this.closeModal()}>
-            <Modal.Header>
-                <div className="punto-posi">
-                    <h3>ESTABLECER TIEMPO</h3>
-                </div>
-            </Modal.Header>
-            <Modal.Body>
-                <div className="temporizador_modal_body">
-                    <form className="temporizador_form">
-                        <div>
-                            <label>Horas</label>
-                            <input className="pure-input-1" type="number" id="id_dt_1" value={this.state.valH} min="0" onChange={this.onChangeInputH} />
-                        </div>
-                        <div>
-                            <label>Minutos</label>
-                            <input className="pure-input-1" type="number" id="id_dt_2" value={this.state.valM} min="0" onChange={this.onChangeInputM} />
-                        </div>
-                        <div>
-                            <label>Segundos</label>
-                            <input className="pure-input-1" type="number" id="id_dt_3" value={this.state.valS} min="0" onChange={this.onChangeInputS} />
-                        </div>
-                    </form>
-                    <button type="button" id="button-set" onClick={() => this.closeModal()} className="pure-button pure-button-primary" >Establecer Tiempo</button>
-                </div>
-            </Modal.Body>
-        </Modal> */}
+        </div>
       </div>
     );
   }

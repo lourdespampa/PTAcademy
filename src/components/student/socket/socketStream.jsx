@@ -3,7 +3,7 @@ import React, { Component} from 'react';
 import io from 'socket.io-client';
 import axios from "axios";
 import iconExit from "../../../img/cerrar1.png";
-import { Modal } from "react-bootstrap";
+// import { Modal } from "react-bootstrap"; no se esta usando
 import './socketStream.sass'
 import { Carousel } from "react-responsive-carousel";
 const { AudioStreamer } = require('sfmediastream');
@@ -370,15 +370,18 @@ componentWillUnmount() {
                     </>
                         :
                     <div style={styles}> 
-                      <Carousel centerMode  centerSlidePercentage={ 90 } selectedItem={this.state.positionPpt-1} showArrows={false} useKeyboardArrows={false} swipeable={false} emulateTouch={false} showIndicators={false} showThumbs={false} >
+                      <Carousel selectedItem={this.state.positionPpt-1} showArrows={false} useKeyboardArrows={false} swipeable={false} emulateTouch={false} showIndicators={false} showThumbs={false} >
                           {
                               this.state.Slides.map((slide)=>(
-                                  <div key={slide.index}>
-                                  <img
-                                    src={slide.url}
-                                    alt="Hong Kong"
-                                  />
-                                </div>          
+                                <div className="imagenes" key={slide.index}>
+                                <div style={{width:"5%",float:'left'}}></div>
+                              <img className="imagenes-indiviuales"
+                              style={{width:"90%",float:'left',marginLeft:'calc(50% - 45%)'}}
+                                src={slide.url}
+                                alt="Hong Kong"
+                              />
+                               <div style={{width:"5%",float:'left'}}></div> 
+                            </div>               
                               ))
                           }
                       </Carousel>

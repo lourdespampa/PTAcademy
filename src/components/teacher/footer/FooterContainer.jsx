@@ -5,8 +5,8 @@ import Audio from "../audio/audio";
 import io from "socket.io-client";
 import Slide from '../slides/slide_02';
 import iconExit from "../../../img/cerrar1.png";
-function enviarvideo(url, url2, socketUrl, id_access, setShow,seturlnombre, setNoData) {
-  var urlnombre = url + url2;
+function enviarvideo(url, socketUrl, id_access, setShow,seturlnombre, setNoData) {
+  var urlnombre = url ;
   const socket = io(socketUrl, {
     query: { pin: id_access }
   });

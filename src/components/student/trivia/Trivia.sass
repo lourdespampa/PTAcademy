@@ -19,6 +19,8 @@
     height: auto
     min-height: 65px
 
+.contenedorsecundario
+    width: 100%
 .header2
     top: 65px
     width: 100%
@@ -32,6 +34,7 @@
     position: fixed
     box-shadow: rgba(150, 150, 150, 0.5) 0px 2px 2px
     text-align: center
+    z-index: 2
     .triviaStudent-title
         margin: 0
 
@@ -45,6 +48,9 @@
     font-size: 1.7em
     padding: 10px
     display: inline-flex
+    align-items: center
+    // position: relative
+    // top: -145px
     .contador
         background: #A647FA
         padding: 30px
@@ -71,12 +77,13 @@
     min-width: 200px
     display: inline-flex
     justify-content: center
-    align-items: center
+    // align-items: center
     height: 300px
-    margin: 12px auto auto auto
+    // margin: 12px auto auto auto
     #pre-imagen
-        width: 500px
-        min-width: 200px
+        width: 90%
+        min-width: 60%
+    
 
 .trivia-student-button
     color: #fff
@@ -212,6 +219,11 @@
 #btn_play
     display: none
 
+.primercontenedor
+    display: flex
+    margin-top: 70px
+    justify-content: center
+
 @media screen and (max-width: 500px)
     .trivia-student-button
         min-height: 50px
@@ -223,13 +235,20 @@
                 margin: 20px 0
     .left
         height: 150px
+        top: 0
+        z-index: 1
     .right
         height: 200px
     .trivia-student-button img  
         width: 40px
 
-@media screen and (max-width: 600px)
+@media screen and (max-width: 800px)
     .trivia-student-center
         width: 100%
     .right
         display: none
+    .left
+        top: 0
+        z-index: 1
+    .primercontenedor
+        display: block
