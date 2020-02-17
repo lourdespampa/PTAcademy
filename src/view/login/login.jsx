@@ -55,7 +55,6 @@ export default function App(props) {
   const handleChangeInputsLogin = event => {
     getMessage({ message: "" });
     setInputsLogin({ ...inputsLogin, [event.target.name]: event.target.value });
-    console.log(event.target.name)
   };
 
   //Funcion que se llama cada vez que cambian los value de los inputs del registro
@@ -65,7 +64,6 @@ export default function App(props) {
       ...inputsRegister,
       [event.target.name]: event.target.value
     });
-    console.log(setInputsLogin)
   };
 
   //Funcion para validar y conectar a la API cuando se logea
@@ -326,9 +324,9 @@ export default function App(props) {
                     required
                     autoComplete="true"
                   />
-                  <div class="input-group">
+                  <div className="input-group">
                     <input
-                      class="form-control"
+                      className="form-control"
                       name="pass"
                       placeholder="Contraseña"
                       type={hidden ? "password" : "text"}
@@ -336,7 +334,7 @@ export default function App(props) {
                       required
                       autoComplete="true"
                     />
-                    <div onClick={toggleShow} class="input-group-addon">
+                    <div onClick={toggleShow} className="input-group-addon">
                       {type ? (
                         <img src={openEye} alt="imgen"></img>
                       ) : (
@@ -421,9 +419,9 @@ export default function App(props) {
                     value={inputsRegister.lastname}
                     required
                   />
-                  <div class="input-group">
+                  <div className="input-group">
                     <input
-                      class="form-control"
+                      className="form-control"
                       name="pass"
                       placeholder="Contraseña"
                       type={hidden ? "password" : "text"}
@@ -433,7 +431,7 @@ export default function App(props) {
                       required
                       autoComplete="false"
                     />
-                    <div onClick={toggleShow} class="input-group-addon">
+                    <div onClick={toggleShow} className="input-group-addon">
                       {type ? (
                         <img src={openEye} alt="imgen"></img>
                       ) : (

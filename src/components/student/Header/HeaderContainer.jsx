@@ -37,7 +37,7 @@ const onFocus = () => {
 };
 export default function HeaderContainer(props) {
     const [showResponsive, setShowResponsive] = useState(false)
-    const [redirect,setredirect]=useState(false); //no se esta usando
+    // const [redirect,setredirect]=useState(false); //no se esta usando
     const [trivia,settrivia]=useState(false);
     const [temporizador,settemporizador]=useState(false);
     const [Exit,setExit]=useState(false);
