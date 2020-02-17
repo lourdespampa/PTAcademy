@@ -11,6 +11,7 @@ import TablePrivate from "./TableStudentPrivate";
 import TableSchool from "./TableStudentSchool";
 // import {alumnos} from '../../data/alumnos.json';
 export default class ListaAlum extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +19,7 @@ export default class ListaAlum extends Component {
       TipoColegio: "",
       id_teacher: "",
       id_course: "",
-      compentencias: [],
+      competencias: [],
       alumnosColegio: [],
       id_access: "",
       modals: {
@@ -97,13 +98,18 @@ export default class ListaAlum extends Component {
     };
     this.onChangeInput = this.onChangeInput.bind(this);
   }
-
+  componentWillMount(){
+    var competencias = JSON.parse(localStorage.getItem("competencias"));
+    this.setState({
+      competencias:competencias
+    })
+  }
   componentDidMount() {
     // console.log("en clase activa es de curso", this.props.school);
     // console.log("lista de alumnos", this.props.all);
     // console.log(
-    //   "lista de alumnos las compentencias",
-    //   this.props.all.compentencias
+    //   "lista de alumnos las competencias",
+    //   this.props.all.competencias
     // );
     // console.log("lista de alumnos id curso", this.props.all.id_course);
     // console.log("lista de alumnos id teacher", this.props.all.id_teacher);
@@ -111,13 +117,13 @@ export default class ListaAlum extends Component {
     // console.log("se va a enviar el codigo class", this.props.id_access);
     // // this.setState({
     //     validarColegio: this.props.school,
-    //     compentencias: this.props.all.compentencias,
+    //     competencias: this.props.all.competencias,
     //     id_course: this.props.all.id_course,
     //     id_teacher: this.props.id_teacher
     // });
     //obtener alumnos de colegio
     this.getAlumnos();
-    // console.log(this.state.validarColegio, this.state.compentencias, this.state.id_course, this.state.id_teacher    )
+    // console.log(this.state.validarColegio, this.state.competencias, this.state.id_course, this.state.id_teacher    )
     this.getStudents();
     const socket = io(this.props.socketUrl, {
       query: { pin: this.props.id_access }
@@ -150,7 +156,7 @@ export default class ListaAlum extends Component {
           console.log("no tiene ningun alumnos");
           this.setState({ students: [] });
         } else {
-          this.setState({ students: data });
+          this.setState({ students: data});
         }
       })
       .catch(e => console.log(e));
@@ -350,14 +356,12 @@ export default class ListaAlum extends Component {
             <div className="card">
               <div className="body" id="html">
                 <div className="table-responsive">
-                  {this.props.school ? (
-                    // null
+                  {this.props.school ? 
                     <TableSchool
                     students={this.state.students}
-                    compentencias={this.props.all.compentencias}
-                    
+                    competencias={this.state.competencias}
                     ></TableSchool>
-                  ) : (
+                   : 
                     <TablePrivate
                       students={this.state.students}
                       onClickNote={this.onClickNote}
@@ -366,7 +370,7 @@ export default class ListaAlum extends Component {
                       deleteStudents={this.deleteStudents}
                       setShow={this.setShow}
                     ></TablePrivate>
-                  )}
+                  }
                   {/* <table
                     id="tabla_usuarios"
                     className="table table-bordered table-striped table-hover dataTable js-exportable"
