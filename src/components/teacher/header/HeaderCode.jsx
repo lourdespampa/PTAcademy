@@ -153,8 +153,10 @@ class HeaderCode extends React.Component {
                   </Link>
                 </li>
                 <li className="menu-header__item">
+                  {/** falta  opcion de cerrar modal a la hora de redirigir */}
+
                   <Link
-                    onClick={this.closeMenu,()=> this.props.redirect('temporizador')}
+                    onClick={()=> this.props.redirect('temporizador')}
                     className="menu-header__item-link"
                     to={`/teacher/${this.props.id_class}/${this.props.id_access}/temporizador`}
                   >
@@ -163,7 +165,7 @@ class HeaderCode extends React.Component {
                 </li>
                 <li className="menu-header__item">
                   <Link
-                    onClick={this.closeMenu,()=> this.props.redirect('trivia')}
+                    onClick={()=> this.props.redirect('trivia')}
                     className="menu-header__item-link"
                     to={`/teacher/${this.props.id_class}/${this.props.id_access}/trivia`}
                   >
