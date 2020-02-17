@@ -1,7 +1,7 @@
 .alumnoH-header{
     position: fixed;
-    background: -webkit-linear-gradient(left,#5D00FF, #007bff);
-    height: 66px;
+    background:#52BE7F;
+    height: 56px;
     width: 100%;
     z-index: 5;
 }
@@ -28,9 +28,17 @@
     display: none;
 }
 
+.logo{
+    padding: 4px;
+}
+
+.rt{
+    margin: 12px;
+    margin-left: 4px;
+}
 .alumnoH-header .alumnoHeader-nav{
     float: right;
-    margin: 0;
+    margin: 0px;
     padding: 0;
     list-style: none;
     /* border: 1px solid red; */
@@ -42,15 +50,21 @@
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a{
     display: block;
-    padding: 21px;
+    padding: 14px;
     font-size: 1.1em;
     text-decoration: none;
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a:hover{
-    background: -webkit-linear-gradient(left, #007bff, #5D00FF);
-    padding: 20px;
+    background: white;
+    color: #52BE7F;
+    padding: 16px;
 }
-
+/* .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a .fa:hover{
+    color: #52BE7F;
+} */
+.alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a .fa .fa-list-ol:hover{
+    color: #52BE7F;
+}
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li:hover .alumnoHeader-nav{
     display: block;
     padding: 5px;

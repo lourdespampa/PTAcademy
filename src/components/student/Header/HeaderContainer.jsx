@@ -119,7 +119,11 @@ export default function HeaderContainer(props) {
           <header className="alumnoH-header ">
             <div className="alumnoHeader-logo">
               <Link onClick={reinicio} to={`/student/${props.id_student}/${props.id_access}`} style={{textDecoration:"none"}}>
-                <h1 className="alumnoHeader-image">PlayTec Academy</h1>
+                <div className="logo">
+                  <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" />
+                  <img className="logo-img rt"src={require("../../../img/index/logo.svg")} alt="" />
+                </div>
+
               </Link>
             </div>
             <i className="fas fa-bars alumnoHeader-menu-toggle" onClick={handleNavbarResponsive}></i>
