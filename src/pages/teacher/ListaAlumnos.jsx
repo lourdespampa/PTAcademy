@@ -8,7 +8,7 @@ class ListaAlumnos extends React.Component {
   render() {
     return (
       <ListaAlum
-      all = {this.props.todo}
+        all = {this.props.todo}
         school={this.props.school}
         socketUrl={this.props.socketUrl}
         id_access={this.props.id_access}

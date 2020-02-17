@@ -134,17 +134,17 @@ export default class ListaAlum extends Component {
   getAlumnos = () => {
     console.log("listar cursos");
     var varToken = localStorage.getItem("token");
-    console.log(this.props.all.id_course);
-    console.log(this.props.all.id_teacher);
+    var id_teacher = localStorage.getItem("id_teacher");
+    var id_course = localStorage.getItem("id_course");
 
     axios({
-      url: `${this.props.apiUrl}/v1/api/student/${this.props.all.id_teacher}/${this.props.all.id_course}/students`,
+      url: `${this.props.apiUrl}/v1/api/student/${id_teacher}/${id_course}/students`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
       }
     })
-      .then(({ data }) => {
+    .then(({ data }) => {
         console.log(data);
         if (data === []) {
           console.log("no tiene ningun alumnos");
@@ -351,6 +351,7 @@ export default class ListaAlum extends Component {
               <div className="body" id="html">
                 <div className="table-responsive">
                   {this.props.school ? (
+                    // null
                     <TableSchool
                     students={this.state.students}
                     compentencias={this.props.all.compentencias}
