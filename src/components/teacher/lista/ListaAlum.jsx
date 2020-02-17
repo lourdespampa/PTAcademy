@@ -11,6 +11,7 @@ import TablePrivate from "./TableStudentPrivate";
 import TableSchool from "./TableStudentSchool";
 // import {alumnos} from '../../data/alumnos.json';
 export default class ListaAlum extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {

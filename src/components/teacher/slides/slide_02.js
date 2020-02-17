@@ -111,16 +111,16 @@ nextimg=()=>{
           </iframe>
           </div>
            <ul className="btnNextPrev">
-            <li class="prev"  onClick={this.backtPpt}><span></span></li>
-            <li class="next " onClick={this.nextPpt}><span></span></li>
+            <li className="prev"  onClick={this.backtPpt}><span></span></li>
+            <li className="next " onClick={this.nextPpt}><span></span></li>
           </ul>
           
         </>
           :
       <div style={styles}> 
       <ul className="btnNextPrev">
-            <li class="prev"  onClick={this.backimg}><span></span></li>
-            <li class="next " onClick={this.nextimg}><span></span></li>
+            <li className="prev"  onClick={this.backimg}><span></span></li>
+            <li className="next " onClick={this.nextimg}><span></span></li>
           </ul>
         <Carousel selectedItem={this.state.positionPpt-1} 
         // centerMode  
