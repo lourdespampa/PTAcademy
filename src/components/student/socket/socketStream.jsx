@@ -317,7 +317,7 @@ componentWillUnmount() {
                         </button>
                         <div className="modal-general_container">
                             <div className="modal-general_container_header">
-                            <h4 className="title"><strong>El afortunado(a) estudiante es:</strong></h4>
+                            <h4 className="title"><strong>El estudiante afortunado(a) es:</strong></h4>
                             </div>
                             <div className="modal-general_container_body">
                             <div id="modal_luckyStudent" className="modal-body texto" style={{ fontSize: "45px" }}></div>

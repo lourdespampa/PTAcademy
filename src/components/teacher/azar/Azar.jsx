@@ -107,9 +107,9 @@ class Azar extends React.Component {
     }).then(( {data} ) => {
         console.log(data)
         const temp = [];
-        data.map(alumno => {
+        data.map(alumno => {if(alumno.state === "active"){
           temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`);
-          return null;
+          return null;}
         });
         this.setState({
           alumnos: this.sortearElementos(temp),
@@ -193,7 +193,7 @@ class Azar extends React.Component {
   };
 
   render() {
-    if (this.state.alumnos.length === "active") {
+    if (this.state.alumnos.length > 0) {
       return (
         <div>
           <Roulette
