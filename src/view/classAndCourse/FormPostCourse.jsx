@@ -133,9 +133,9 @@ export default class FormPostCourse extends Component {
           <Form.Group>
             <Form.Label className="modal-title__controlname">Detalles del curso</Form.Label>
             <div className="CT-contenedorNivel">
-              <input className="CT-opcionNivel" type="radio" name="level" value="primaria" id="option-one" onChange={this.handleChange} required/> 
+              <input className="CT-opcionNivel" type="radio" name="level" value="Primaria" id="option-one" onChange={this.handleChange} required/> 
                 <label className="CT-labelNivel" htmlFor="option-one">Primaria</label>
-              <input className="CT-opcionNivel" type="radio" name="level" value="secundaria" id="option-two" onChange={this.handleChange} /> 
+              <input className="CT-opcionNivel" type="radio" name="level" value="Secundaria" id="option-two" onChange={this.handleChange} /> 
                 <label className="CT-labelNivel" htmlFor="option-two">Secundaria</label>
               <input className="CT-opcionNivel" type="radio" name="level" value="" id="option-three" onChange={this.handleChange} />
                 <label className="CT-labelNivel" htmlFor="option-three">Ninguno</label>

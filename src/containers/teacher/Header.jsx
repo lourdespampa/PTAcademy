@@ -132,6 +132,7 @@ cerrarSesion = () => {
           ExitSocket={this.ExitSocket}
           redirect={this.redirect}
           id_access={this.props.id_access}
+          id_class={this.props.id_class}
           nombre_clase={this.state.nombre_clase}
         />
         <Empatia
