@@ -9,6 +9,12 @@ componentDidMount(){
     // const { match: { params } } = this.props;
     // console.log("en clase pasando compentencias", this.props.location.state)
     // console.log()
+    
+    window.addEventListener("beforeunload", (ev) => 
+    {  
+        ev.preventDefault();
+        return ev.returnValue = 'Are you sure you want to close?';
+    });
 }
     render() {
         const {children}=this.props
