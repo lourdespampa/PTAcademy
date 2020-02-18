@@ -26,7 +26,7 @@ const onFocus = () => {
   };
   useEffect(() => {
     window.addEventListener('focus',onFocus);
-    window.addEventListener('blur',onBlur);    
+    window.addEventListener('blur',onBlur);  
     // Specify how to clean up after this effect:
     return () => {
       window.removeEventListener('focus',onFocus);
@@ -43,24 +43,25 @@ export default function HeaderContainer(props) {
     const [Exit,setExit]=useState(false);
     const reinicio=()=>settrivia(false)+settemporizador(false)
 
-    const deleteStudent= ()=>{
+    const deleteStudent= async()=>{
         console.log(props.apiUrl,props.id_access,props.id_student)
         const data3={
           state:"inactive",
           id_stud:props.id_student
         }
-        axios({
+        await axios({
           url: `${props.apiUrl}/v1/api/student/change_state`,
           data:data3 ,
           method: "post"
-        }).then((res2)=>{
+        }).then(async(res2)=>{
+            await localStorage.clear();
             console.log(res2)
             const socket = io(props.socketUrl, {
             query:
                 { pin: props.id_access }
           })
-          socket.emit('newAlum')
-          setExit(true)
+          await socket.emit('newAlum')
+          await setExit(true)
         }).catch(err2=> console.log(err2))
          
           
@@ -72,6 +73,13 @@ export default function HeaderContainer(props) {
             query:
                 { pin: props.id_access }
           })
+          
+        if(localStorage.getItem("token")){
+          console.log('si tiene')}
+        else{
+            console.log('no tiene')
+          setExit(true)
+        }
         socket.on('redirectAlum', (data) => {
             console.log('llega redirectAlum')
             if(data.pin === (props.id_access).toUpperCase()){
@@ -86,6 +94,7 @@ export default function HeaderContainer(props) {
         })
         socket.on('ExitSocket',(data)=>{
             if(data.pin===(props.id_access).toUpperCase()){
+              localStorage.clear();
                 setExit(true)
             }
         })       
@@ -96,6 +105,7 @@ export default function HeaderContainer(props) {
                 console.log('REcibe salida')
                 if(data.id===props.id_student){
                     console.log('REcibe  salida fase 2')
+                    localStorage.clear();
                     setExit(true)
                 }
             }

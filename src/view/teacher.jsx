@@ -189,6 +189,7 @@ export default class Views extends Component {
                   school={this.state.school}
                   socketUrl={this.state.socketUrl}
                   apiUrl={this.props.apiUrl}
+                  id_class={this.state.id_class}
                 />
               )}
             />
