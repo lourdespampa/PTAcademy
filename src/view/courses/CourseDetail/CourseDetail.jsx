@@ -179,29 +179,19 @@ export default class CourseDetail extends Component {
                       alumno.name_stu
                     }
                   </td>
-                  {this.state.compentencias.map((compentencia, id) => (
+                  {/* {alumno.competences.map((a,id)=>
+                    <td key={id}>
+                      {a.comp}
+                      {a.nota}
+                    </td>
+                  )} */}
+                  {alumno.competences.map((compentencia, id) => (
                     <td
                       key={id}
                       className="CourseDetail__table-td"
                       data-th="Competencia d"
                     >
-                      <select name={`compAlum${id}`} onChange={this.handleChangeInputs}>
-                        <option value="20">AD</option>
-                        <option value="16">A</option>
-                        <option value="14">B</option>
-                        <option value="10">C</option>
-                      </select>
-                      {
-                      this.state.editar
-                      ?
-                        this.state.idMapAlumno === idAlumno
-                        ?
-                        <input type="text" name="descAlumno" defaultValue={compentencia} onChange={this.handleChangeInputs} />
-                        :
-                        "descripción"
-                      :
-                      "descripción"
-                      }
+                      {compentencia.nota}
                     </td>
                   ))}
                   <td

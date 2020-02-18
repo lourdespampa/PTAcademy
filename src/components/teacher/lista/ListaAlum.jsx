@@ -122,6 +122,7 @@ export default class ListaAlum extends Component {
     //     id_teacher: this.props.id_teacher
     // });
     //obtener alumnos de colegio
+
     this.getAlumnos();
     // console.log(this.state.validarColegio, this.state.competencias, this.state.id_course, this.state.id_teacher    )
     this.getStudents();
@@ -360,6 +361,8 @@ export default class ListaAlum extends Component {
                     <TableSchool
                     students={this.state.students}
                     competencias={this.state.competencias}
+                    apiUrl = {this.props.apiUrl}
+                    id_class = {this.props.id_class}
                     ></TableSchool>
                    : 
                     <TablePrivate
