@@ -66,7 +66,7 @@ class Header extends React.Component {
     });
   }
   /** Fix notificatión */
-  componentDidUnmount() {
+  componentWillUnmount() {
     // valor despues de salir del component
     this.pin = ''
 

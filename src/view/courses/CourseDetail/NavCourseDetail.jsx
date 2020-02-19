@@ -263,10 +263,10 @@ export default class NavCourse extends Component {
                 <li className="teacherCourses__main-menu__item">
                   <BotonCerrarSesion cerrarSesion={this.cerrarSesion} />
                 </li>
-                <li className="teacherCourses__main-menu__item">
+                {/* <li className="teacherCourses__main-menu__item">
                   <input ref="" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excels" 
                   onChange={this.onFilesAdded} value={this.state.inputValue}/>
-                </li>
+                </li> */}
               </ul>
             </nav>
           </div>
