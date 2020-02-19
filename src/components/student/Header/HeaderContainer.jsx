@@ -124,8 +124,8 @@ export default function HeaderContainer(props) {
             <div className="alumnoHeader-logo">
               <Link onClick={reinicio} to={`/student/${props.id_student}/${props.id_access}`} style={{textDecoration:"none"}}>
                 <div className="logo">
-                  <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" />
-                  <img className="logo-img rt"src={require("../../../img/index/logo.svg")} alt="" />
+                  {/* <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" /> */}
+                  <img className="logo-img rt"src={require("../../../img/Logou.svg")} alt="" />
                 </div>
 
               </Link>
@@ -145,7 +145,7 @@ export default function HeaderContainer(props) {
                 </Link>
               </li>
               {/* <li className="alumnoHeader-"><a className="alumnoHeader-"></a></li> */}
-              <li className="alumnoHeader-li"> 
+              <li className="alumnoHeader-li "> 
                 <a href className="alumnoHeader-a">
                   <i className="fa fa-user"></i>
                   {props.name} {props.lastName}
@@ -153,7 +153,7 @@ export default function HeaderContainer(props) {
                 </a>
                 <ul className={showResponsive ? "alumnoHeader-nav showResponsive" : "alumnoHeader-nav"} style={{zIndex:"5000"}}>
                   <li className="alumnoHeader-li"  onClick={() => deleteStudent()}>
-                    <a href className="alumnoHeader-a alumnoHeader-salir">
+                    <a href className="alumnoHeader-a alumnoHeader-salir  se">
                       <i className="fas fa-sign-out-alt" style={{fontSize:"22px", padding:"0 10px"}}></i>
                       Salir
                     </a>
