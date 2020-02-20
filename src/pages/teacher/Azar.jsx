@@ -6,6 +6,8 @@ class Azar extends React.Component {
       <div>
         <AzarPage
         all = {this.props.todo}
+        school={this.props.school}
+
           socketUrl={this.props.socketUrl}
           id_access={this.props.id_access}
           apiUrl={this.props.apiUrl}
