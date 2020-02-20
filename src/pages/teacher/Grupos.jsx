@@ -6,6 +6,7 @@ class Grupos extends React.Component {
     return (
       <div>
         <GruposPage
+        school={this.props.school}
           all={this.props.todo}
           id_access={this.props.id_access}
           socketUrl={this.props.socketUrl}

@@ -5,6 +5,7 @@ class Azar extends React.Component {
     return (
       <div>
         <AzarPage
+        school={this.props.school}
         all = {this.props.todo}
         school={this.props.school}
 
