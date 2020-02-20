@@ -31,27 +31,55 @@ export default class GrupoPage extends Component {
     console.log('llego a getAlum')
     var id_teacher = localStorage.getItem("id_teacher");
     var id_course = localStorage.getItem("id_course");
-    axios({
-      url: `${this.props.apiUrl}/v1/api/student/${id_teacher}/${id_course}/students`,
-      method: 'GET',
-      headers: {
-        'x-access-token': `${varToken}`
-      }
-    }).then(data => {
-      console.log("data",data)
-      data.data.map(alumno => {
-        console.log('hola perro')
-        this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
-        return null
-      }); 
-      const temp = this.state.alumnos;
-      this.setState({
-        alumnos: temp
-      });
-    })
-    .catch((err)=>{
-      console.log("error",err)
-    })
+    if(this.props.school){
+      axios({
+        url: `${this.props.apiUrl}/v1/api/student/${id_teacher}/${id_course}/students`,
+        method: 'GET',
+        headers: {
+          'x-access-token': `${varToken}`
+        }
+      }).then(data => {
+        console.log("data",data)
+        data.data.map(alumno => {
+          console.log('hola perro')
+          this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
+          return null
+        }); 
+        const temp = this.state.alumnos;
+        this.setState({
+          alumnos: temp
+        });
+      })
+      .catch((err)=>{
+        console.log("error",err)
+      })
+    }else{
+      axios({
+        url:`${this.props.apiUrl + "/v1/api/lesson"}/${
+          this.props.id_access
+        }/students`,
+        method: 'GET',
+        headers: {
+          'x-access-token': `${varToken}`
+        }
+      }).then(data => {
+        console.log("data",data)
+        data.data.map(alumno => {
+          console.log('hola perro')
+          this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
+          return null
+        }); 
+        const temp = this.state.alumnos;
+        this.setState({
+          alumnos: temp
+        });
+      })
+      .catch((err)=>{
+        console.log("error",err)
+      })
+    }
+    
+    
   };
   groupGenerator = () => {
     this.setState({

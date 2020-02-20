@@ -1,57 +1,58 @@
 import React, { Component, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
+import ModalAgregar from "../../classAndCourse/ModalAgregar"
 import iconExit from "../../../img/cerrar1.png";
 import FormAddStudent from "./FormAddStudent";
 import iconBack from "../../../img/back_button.svg";
-function BotonAgregar(props) {
-  const [show, setShow] = useState(0);
-  const handleClose = () => setShow(2);
-  const handleShow = () => setShow(1);
-  const AgregarClick = () => setShow(false) + props.getdata();
-  return (
-    <>
-      <div
-        className="teacherCourses__main-menu__addCourse"
-        onClick={handleShow}
-      >
-        Agregar Alumno
-      </div>
-      <div
-        id="modal-general_container"
-        className={
-          show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""
-        }
-      >
-        <div className="modal-general_background">
-          <div className="modal-general_bg_content">
-            <button className="modal-general_close" onClick={handleClose}>
-              <img
-                className="button-zoom"
-                src={iconExit}
-                alt="imagen de cerrar modal"
-              />
-            </button>
-            <div className="modal-general_container">
-              <FormAddStudent
-                handleClose={AgregarClick}
-                apiUrl={props.apiUrl}
-                idcourse={props.idcourse}
-                idteacher={props.idteacher}
-              />
-            </div>
-            <svg
-              className="modal-general_svg"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-            >
-              <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
+// function BotonAgregar(props) {
+//   const [show, setShow] = useState(0);
+//   const handleClose = () => setShow(2);
+//   const handleShow = () => setShow(1);
+//   const AgregarClick = () => setShow(false) + props.getdata();
+//   return (
+//     <>
+//       <div
+//         className="teacherCourses__main-menu__addCourse"
+//         onClick={handleShow}
+//       >
+//         Agregar Alumno
+//       </div>
+//       <div
+//         id="modal-general_container"
+//         className={
+//           show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""
+//         }
+//       >
+//         <div className="modal-general_background">
+//           <div className="modal-general_bg_content">
+//             <button className="modal-general_close" onClick={handleClose}>
+//               <img
+//                 className="button-zoom"
+//                 src={iconExit}
+//                 alt="imagen de cerrar modal"
+//               />
+//             </button>
+//             <div className="modal-general_container">
+//               <FormAddStudent
+//                 handleClose={AgregarClick}
+//                 apiUrl={props.apiUrl}
+//                 idcourse={props.idcourse}
+//                 idteacher={props.idteacher}
+//               />
+//             </div>
+//             <svg
+//               className="modal-general_svg"
+//               xmlns="http://www.w3.org/2000/svg"
+//               preserveAspectRatio="none"
+//             >
+//               <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+//             </svg>
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
 function BotonCerrarSesion(props) {
   const [show, setShow] = useState(0);
   const handleClose = () => setShow(2);
@@ -252,13 +253,20 @@ export default class NavCourse extends Component {
             <nav className="teacherCourses__main-nav" id="main-nav">
               <ul className="teacherCourses__main-menu">
                 <li className="teacherCourses__main-menu__item">
-                  <BotonAgregar
+                  <ModalAgregar
+                   apiUrl={this.props.apiUrl}
+                   idteacher={this.props.idteacher}
+                   idcourse={this.props.idcourse}
+                   agregarX={"Alumno"}
+                   getdata={this.props.getdata}>
+                  </ModalAgregar>
+                  {/* <BotonAgregar
                     apiUrl={this.props.apiUrl}
                     idteacher={this.props.idteacher}
                     idcourse={this.props.idcourse}
                     agregarX={this.props.agregarX}
                     getdata={this.props.getdata}
-                  ></BotonAgregar>
+                  ></BotonAgregar> */}
                 </li>
                 <li className="teacherCourses__main-menu__item">
                   <BotonCerrarSesion cerrarSesion={this.cerrarSesion} />
