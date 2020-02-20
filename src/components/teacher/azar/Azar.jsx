@@ -107,9 +107,9 @@ class Azar extends React.Component {
     }).then(( {data} ) => {
         console.log(data)
         const temp = [];
-        data.map(alumno => {
+        data.map(alumno => {if(alumno.state === "active"){
           temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`);
-          return null;
+          return null;}
         });
         this.setState({
           alumnos: this.sortearElementos(temp),

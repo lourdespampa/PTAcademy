@@ -179,6 +179,7 @@ class Trivia extends React.Component {
       document.getElementById("imgSalida").setAttribute("src", "")
       socket.emit('restaurando datos', '')
     } else {
+      socket.emit('restaurando datos', '')
       this.setState({ alumnosRecibidos: [] })
       // preguntaEnviada comienza en false por lo que no existe y a partir de aqui se envian los datos...
       const preg = this.state.pregunta,
@@ -250,7 +251,7 @@ class Trivia extends React.Component {
                 </button>
                 :
                 <button className="triviaT-enviar" onClick={this.handleSendQuestion}>
-                  ENVIAR
+                  Enviar
               </button>
               }
               <button className="triviaT-respuestas" onClick={this.showModal}>

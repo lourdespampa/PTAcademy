@@ -192,8 +192,8 @@ export default class Trivia extends React.Component {
                       <div className="triviaStudentSimbol">
                         <img src={require("./rombo-blanco.webp")} alt="" />
                       </div>
-                      <div className="triviaStudentText">
-                        <p id="answerTriangulo">{this.state.respuesta1 ? this.state.respuesta1 : "Respuesta 1"}</p>
+                      <div className="triviaStudentText" >
+                        <p id="answerTriangulo" style={this.state.respuesta1.length < 10 ? {fontSize:'25px'} : {fontSize:'11px'}}>{this.state.respuesta1 ? this.state.respuesta1 : "Respuesta 1"}</p> 
                       </div>
                     </div>
                   </div>
@@ -225,11 +225,8 @@ export default class Trivia extends React.Component {
                       </div>
                     </div>
                   </div>
-
                 </div>
-
                 <div className="triviaT-col-6 contendorDeBotonesRespuesta">
-
                   <div>
                     <div style={pe === 'rojo' || pe === 'azul' || pe === 'verde' ? styles.botonInactivo : {}}
                       id="circulo" className="trivia-student-button naranja"

@@ -39,10 +39,10 @@ export default class GrupoPage extends Component {
       }
     }).then(data => {
       console.log("data",data)
-      data.data.map(alumno => {
-        console.log('hola perro')
+      data.data.map(alumno => {if(alumno.state === "active"){
+        // console.log('hola perro')
         this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
-        return null
+        return null;}
       }); 
       const temp = this.state.alumnos;
       this.setState({
