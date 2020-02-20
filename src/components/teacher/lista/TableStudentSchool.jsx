@@ -68,7 +68,7 @@ export default class TableStudentSchool extends Component {
       }
     })
       .then(res => {
-        alert("enviado correctamente");
+        console.log(res)
       })
 
       .catch(err => {

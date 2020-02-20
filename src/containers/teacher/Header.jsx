@@ -66,7 +66,7 @@ class Header extends React.Component {
     });
   }
   /** Fix notificatión */
-  componentDidUnmount() {
+  componentWillUnmount() {
     // valor despues de salir del component
     this.pin = ''
 
@@ -134,7 +134,6 @@ cerrarSesion = () => {
           id_access={this.props.id_access}
           id_class={this.props.id_class}
           nombre_clase={this.state.nombre_clase}
-          id_class={this.props.id_class}
         />
         <Empatia
           socketUrl={this.props.socketUrl}
