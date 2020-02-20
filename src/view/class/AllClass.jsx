@@ -96,9 +96,9 @@ export default class AllClass extends Component {
             className="courseTeacher__buttonEntry"
             onClick={this.obtenerCodigo}
           >
-            <label className="courseTeacher__buttonEntry-label">
+            <div className="button-zoom">
               ACTIVAR CLASE
-            </label>
+            </div>
           </div>
         </div>
       </div>

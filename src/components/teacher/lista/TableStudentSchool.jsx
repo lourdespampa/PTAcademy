@@ -91,31 +91,6 @@ export default class TableStudentSchool extends Component {
   render() {
     return (
       <>
-        <div id="modal-general_container" className={this.state.showdelete === 0 ? "" : this.state.showdelete === 1 ? "six" : this.state.showdelete === 2 ? "six out" : ""}>
-          <div className="modal-general_background">
-            <div className="modal-general_bg_content">
-              <button className="modal-general_close" onClick={this.setClose}>
-                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
-              </button>
-              <div className="modal-general_container">
-                <div className="modal-general_container_header">
-                  <span className="modal-title">¿DESEA ELIMINAR AL ALUMNO?</span>
-                </div>
-                <div className="modal-general_container_body">
-                  <button className="modal-body__button yes" onClick={this.setClose} type="button">
-                    <div className="button-zoom">SI</div>
-                  </button>
-                  <button className="modal-body__button no" onClick={this.setClose} type="button">
-                    <div className="button-zoom">NO</div>
-                  </button>
-                </div>
-              </div>
-              <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
-              </svg>
-            </div>
-          </div>
-        </div>
         <table className="table table-bordered table-striped table-hover dataTable js-exportable">
           <thead>
             <tr>

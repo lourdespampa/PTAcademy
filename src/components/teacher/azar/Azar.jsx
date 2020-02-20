@@ -104,18 +104,20 @@ class Azar extends React.Component {
       headers: {
         "x-access-token": `${varToken}`
       }
-    }).then(( {data} ) => {
-        console.log(data)
-        const temp = [];
-        data.map(alumno => {if(alumno.state === "active"){
+    }).then(({ data }) => {
+      console.log(data)
+      const temp = [];
+      data.map(alumno => {
+        if (alumno.state === "active") {
           temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`);
-          return null;}
-        });
-        this.setState({
-          alumnos: this.sortearElementos(temp),
-          todosAlumnos: data
-        });
-      })
+          return null;
+        }
+      });
+      this.setState({
+        alumnos: this.sortearElementos(temp),
+        todosAlumnos: data
+      });
+    })
       .catch(err => {
         console.log(err);
       });
@@ -209,10 +211,10 @@ class Azar extends React.Component {
               this.state.showModal === 0
                 ? ""
                 : this.state.showModal === 1
-                ? "six"
-                : this.state.showModal === 2
-                ? "six out"
-                : ""
+                  ? "six"
+                  : this.state.showModal === 2
+                    ? "six out"
+                    : ""
             }
           >
             <div class="modal-general_background">
@@ -264,11 +266,11 @@ class Azar extends React.Component {
                         funcion={this.onClickPointAdd}
                       />
                     ) : (
-                      <BtnPuntos
-                        data={this.state.datapoint.negativo}
-                        funcion={this.onClickPointRemove}
-                      />
-                    )}
+                        <BtnPuntos
+                          data={this.state.datapoint.negativo}
+                          funcion={this.onClickPointRemove}
+                        />
+                      )}
                   </div>
                 </div>
                 <svg

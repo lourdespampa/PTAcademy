@@ -193,7 +193,7 @@ export default class Trivia extends React.Component {
                         <img src={require("./rombo-blanco.webp")} alt="" />
                       </div>
                       <div className="triviaStudentText" >
-                        <p id="answerTriangulo" style={this.state.respuesta1.length < 10 ? {fontSize:'25px'} : {fontSize:'11px'}}>{this.state.respuesta1 ? this.state.respuesta1 : "Respuesta 1"}</p> 
+                        <p id="answerTriangulo">{this.state.respuesta1 ? this.state.respuesta1 : "Respuesta 1"}</p> 
                       </div>
                     </div>
                   </div>
