@@ -10,8 +10,6 @@ class Azar extends React.Component {
     super(props);
     this.state = {
       todosAlumnos: [],
-      id_teacher: '5e431a9cf0ad3c4b99feefae',
-      id_course: '5e431bc16b05a54bbb4e38a1',
       alumnos: [],
       alumnoElegido: "",
       point: 10,
@@ -96,38 +94,52 @@ class Azar extends React.Component {
     var varToken = localStorage.getItem("token");
     var id_teacher = localStorage.getItem("id_teacher");
     var id_course = localStorage.getItem("id_course");
-    // console.log(this.props.all.id_course);
-    // console.log(this.props.all.id_teacher);
-    axios({
-      url: `${this.props.apiUrl}/v1/api/student/${id_teacher}/${id_course}/students`,
-      method: "GET",
-      headers: {
-        "x-access-token": `${varToken}`
-      }
-    }).then(({ data }) => {
-      console.log(data)
-      const temp = [];
-      data.map(alumno => {
-      if (alumno.randonCode){
-        if (alumno.state === "active") {
+    console.log(this.props.school)
+    if(this.props.school){
+      axios({
+        url: `${this.props.apiUrl}/v1/api/student/${id_teacher}/${id_course}/students`,
+        method: "GET",
+        headers: {
+          "x-access-token": `${varToken}`
+        }
+      }).then(({ data }) => {
+        console.log(data)
+        const temp = [];
+        data.map(alumno => {
+        if (alumno.randonCode){
+          if (alumno.state === "active") {
+            temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`);
+            return null;}  
+        }else{
           temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`);
           return null;}  
-      }else{
-        temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`);
-        return null;}  
-      });
-      // if (alumno.state === "active") {
-      //   temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`);
-      //   return null;}
-      // });
-      this.setState({
-        alumnos: this.sortearElementos(temp),
-        todosAlumnos: data
-      });
+        });
+        this.setState({
+          alumnos: this.sortearElementos(temp),
+          todosAlumnos: data
+        });
+      })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      axios({
+        url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
+        method: 'GET',
+        headers: {
+            'x-access-token': `${varToken}`
+        }
     })
-      .catch(err => {
-        console.log(err);
-      });
+        .then((res) => {
+            const temp = [];
+            res.data.map(alumno => {
+                temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`)
+                return null
+            })
+            this.setState({ alumnos: this.sortearElementos(temp), todosAlumnos: res.data })
+        })
+    }
+   
     // var varToken = localStorage.getItem('token');
     // axios({
     //     url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
