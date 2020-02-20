@@ -49,7 +49,8 @@
     float: left;
     position: relative;
     text-align: center;
-    margin-top: 1px;
+    margin-top: 5px;
+    margin-right: 4px;
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a{
     display: block;
@@ -58,12 +59,16 @@
     text-decoration: none;
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a:hover{
-    margin-top: 5px;
+    /*margin-top: 5px;*/
     background: white;
     color: #52BE7F;
-    padding: 10px;
+    /*padding: 10px;*/
     border-radius: 23px;
-    margin-right: 8px;
+    height: 45px;
+    /*margin-right: 8px;*/
+}
+.alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a:hover.alumnoHeader-nav{
+    background: red;
 }
 /* .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a .fa:hover{
     color: #52BE7F;
@@ -73,10 +78,18 @@
 } */
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li:hover .alumnoHeader-nav{
     display: block;
-    margin-top: 3.5px;
-    /* padding: 5px; */
+    margin-top: 5.8px;
+    padding: 5px;
+    border-radius: 0px 0px 14px 14px;
 }
-
+.alumnoH-header .alumnoHeader-nav .alumnoHeader-li:hover .alumnoHeader-a{
+    margin-bottom: -8px;
+  /* margin-top: 2px;*/
+}
+.alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a:hover{
+    margin-bottom: 0;
+  /* margin-top: 2px;*/
+}
 /* .fa .fa-list-ol:hover{
     color: #52be7f;
 }
@@ -125,6 +138,7 @@ li.alumnoHeader-li .ft:hover{
     /* color: #4d4d4d;
     margin-top: -9px; */
     cursor: pointer;
+    margin-bottom: -1px;
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a .fa{
     font-size: 22px;
@@ -179,12 +193,17 @@ li.alumnoHeader-li .ft:hover{
         padding: 10px;
         background: #52BE7F;
         color: white;
-        margin-left: 50px;
+        margin-left: 40px;
     }
     .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav .alumnoHeader-li:hover{
-        background: rgb(194, 194, 194);
+       /* background: rgb(194, 194, 194);*/
         color: red;
-        transition: 0.5s;
+        /*transition: 0.5s;*/
+    }
+    .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a:hover{
+        background: white;
+        color: #52BE7F;
+        height: 55%;
     }
 
 }

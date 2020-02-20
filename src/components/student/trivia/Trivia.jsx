@@ -136,7 +136,7 @@ export default class Trivia extends React.Component {
             ?
             null
             :
-            <div id="animatedModal" style={{ zIndex: 3, marginTop: "65px" }}>
+            <div id="animatedModal" style={{ zIndex: 3, marginTop: "56px" }}>
               <div className="close-animatedModal"></div>
               <div></div>
               <div className="modal-contenido">
