@@ -149,6 +149,7 @@ export default function HeaderContainer(props) {
               ? "alumnoHeader-nav showResponsive"
               : "alumnoHeader-nav"
           }
+<<<<<<< HEAD
         >
           <li className="alumnoHeader-li">
             <Link
@@ -196,6 +197,51 @@ export default function HeaderContainer(props) {
                   ></i>
                   Salir
                 </a>
+=======
+          {
+          Exit
+          ? <Redirect to={`/`} /> : null
+          }         
+          <header className="alumnoH-header ">
+            <div className="alumnoHeader-logo">
+              <Link onClick={reinicio} to={`/student/${props.id_student}/${props.id_access}`} style={{textDecoration:"none"}}>
+                <div className="logo">
+                  {/* <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" /> */}
+                  <img className="logo-img rt"src={require("../../../img/Logou.svg")} alt="" />
+                </div>
+
+              </Link>
+            </div>
+            <i className="fas fa-bars alumnoHeader-menu-toggle" onClick={handleNavbarResponsive}></i>
+            <ul className={showResponsive ? "alumnoHeader-nav showResponsive" : "alumnoHeader-nav"}>
+              <li className="alumnoHeader-li">
+                <Link onClick={reinicio} className="alumnoHeader-a" to={`/student/${props.id_student}/${props.id_access}/trivia`}>
+                  <i className="fa fa-list-ol"></i>
+                  Trivia
+                </Link>
+              </li>
+              <li className="alumnoHeader-li">
+                <Link onClick={reinicio} className="alumnoHeader-a" to={`/student/${props.id_student}/${props.id_access}/temporizador`}>
+                  <i className="fas fa-hourglass" style={{fontSize:"22px", padding:"0 10px"}}></i>
+                  Temporizador
+                </Link>
+              </li>
+              {/* <li className="alumnoHeader-"><a className="alumnoHeader-"></a></li> */}
+              <li className="alumnoHeader-li "> 
+                <a href className="alumnoHeader-a">
+                  <i className="fa fa-user"></i>
+                  {props.name} {props.lastName}
+                  <i className="fa fa-chevron-down"></i>
+                </a>
+                <ul className={showResponsive ? "alumnoHeader-nav showResponsive" : "alumnoHeader-nav"} style={{zIndex:"5000"}}>
+                  <li className="alumnoHeader-li"  onClick={() => deleteStudent()}>
+                    <a href className="alumnoHeader-a alumnoHeader-salir  se">
+                      <i className="fas fa-sign-out-alt" style={{fontSize:"22px", padding:"0 10px"}}></i>
+                      Salir
+                    </a>
+                  </li>
+                </ul>
+>>>>>>> dcadd127a9922170b58f768a0f2036091a12e9c6
               </li>
             </ul>
           </li>
