@@ -125,7 +125,7 @@ class Temporizador extends React.Component {
         // $('#establecer_tiempo').modal('hide');
         g = c;
         n();
-        m.css("color", "black");
+        m.css("color", "blue");
       },
       x = function () {
         clearInterval(d);
