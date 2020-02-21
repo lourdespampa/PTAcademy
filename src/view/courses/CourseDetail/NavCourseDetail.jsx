@@ -4,6 +4,50 @@ import ModalAgregar from "../../classAndCourse/ModalAgregar"
 import iconExit from "../../../img/cerrar1.png";
 import FormAddStudent from "./FormAddStudent";
 import iconBack from "../../../img/back_button.svg";
+import FormPostSiagie from "../../classAndCourse/FormPostSiagie";
+function Siagie(props){
+    const [show, setShow] = useState(0);
+  const handleClose = () => setShow(2);
+  const handleShow = () => setShow(1);
+  return (
+    <>
+      <div
+        className="teacherCourses__main-menu__addCourse"
+        onClick={handleShow}
+      >
+        SIAGIE
+      </div>
+      <div
+        id="modal-general_container"
+        className={
+          show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""
+        }
+      >
+        <div className="modal-general_background">
+          <div className="modal-general_bg_content">
+            <button className="modal-general_close" onClick={handleClose}>
+              <img
+                className="button-zoom"
+                src={iconExit}
+                alt="imagen de cerrar modal"
+              />
+            </button>
+            <div className="modal-general_container">
+             <FormPostSiagie></FormPostSiagie>
+            </div>
+            <svg
+              className="modal-general_svg"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+            >
+              <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
 // function BotonAgregar(props) {
 //   const [show, setShow] = useState(0);
 //   const handleClose = () => setShow(2);
@@ -252,6 +296,9 @@ export default class NavCourse extends Component {
 
             <nav className="teacherCourses__main-nav" id="main-nav">
               <ul className="teacherCourses__main-menu">
+                 <li className="teacherCourses__main-menu__item">
+                  <Siagie></Siagie>
+                </li>
                 <li className="teacherCourses__main-menu__item">
                   <ModalAgregar
                    apiUrl={this.props.apiUrl}
