@@ -184,7 +184,7 @@ li.alumnoHeader-li .ft:hover{
 
     .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav{
         position: static;
-        display: block;
+        display: none;
         width: 100%;
         background: #52BE7F;
     }
@@ -194,10 +194,13 @@ li.alumnoHeader-li .ft:hover{
         background: #52BE7F;
         color: white;
         margin-left: 40px;
+        display: block;
     }
+    
+   
     .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav .alumnoHeader-li:hover{
        /* background: rgb(194, 194, 194);*/
-        color: red;
+        color: rgb(219, 190, 23);
         /*transition: 0.5s;*/
     }
     .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a:hover{
