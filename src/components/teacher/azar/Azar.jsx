@@ -139,23 +139,6 @@ class Azar extends React.Component {
             this.setState({ alumnos: this.sortearElementos(temp), todosAlumnos: res.data })
         })
     }
-   
-    // var varToken = localStorage.getItem('token');
-    // axios({
-    //     url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
-    //     method: 'GET',
-    //     headers: {
-    //         'x-access-token': `${varToken}`
-    //     }
-    // })
-    //     .then((res) => {
-    //         const temp = [];
-    //         res.data.map(alumno => {
-    //             temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`)
-    //             return null
-    //         })
-    //         this.setState({ alumnos: this.sortearElementos(temp), todosAlumnos: res.data })
-    //     })
   };
   sortearElementos = array => {
     for (let i = array.length - 1; i > 0; i--) {

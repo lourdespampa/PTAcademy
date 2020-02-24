@@ -2,7 +2,6 @@ import React, { Component, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import ModalAgregar from "../../classAndCourse/ModalAgregar"
 import iconExit from "../../../img/cerrar1.png";
-import FormAddStudent from "./FormAddStudent";
 import iconBack from "../../../img/back_button.svg";
 import FormPostSiagie from "../../classAndCourse/FormPostSiagie";
 function Siagie(props){
