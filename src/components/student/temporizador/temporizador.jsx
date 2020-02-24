@@ -104,7 +104,7 @@ class Temporizador extends React.Component {
                 // $('#establecer_tiempo').modal('hide');
                 g = c;
                 n();
-                m.css("color", "black")
+                m.css("color", "#1a73e8")
             },
             x = function() {
                 clearInterval(d);
@@ -125,7 +125,7 @@ class Temporizador extends React.Component {
                 console.log("Empieza")
                 clearInterval(d);
                 l = Date.now() + c;
-                m.css("color", "black");
+                m.css("color", "#1a73e8");
                 h(!1);
                 v();
                 d = window.setInterval(v, 50)
@@ -174,7 +174,7 @@ class Temporizador extends React.Component {
     
     return (
         <div className="temporizador">
-            <div>
+            <div className="tamano">
                 <div className="counter_part" id="hour_wrapper">
                     <div className="unit_value" id="hour">.</div>
                     <div className="unit_name">HORAS</div>

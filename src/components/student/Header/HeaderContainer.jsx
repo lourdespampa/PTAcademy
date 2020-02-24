@@ -124,8 +124,8 @@ export default function HeaderContainer(props) {
             <div className="alumnoHeader-logo">
               <Link onClick={reinicio} to={`/student/${props.id_student}/${props.id_access}`} style={{textDecoration:"none"}}>
                 <div className="logo">
-                  {/* <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" /> */}
-                  <img className="logo-img rt"src={require("../../../img/Logou.svg")} alt="" />
+                  <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" />
+                  <img className="logo-img rt"src={require("../../../img/acad.svg")} alt="" />
                 </div>
 
               </Link>
