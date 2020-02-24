@@ -14,7 +14,9 @@ class Upload extends Component {
       slideOn:false,
       NoData:false,
       UploadDone:false,
-      limpiarInputFile:false
+      limpiarInputFile:false,
+      DisableDropZone:{},
+      fileEditOn:false
     };
 
     this.onFilesAdded = this.onFilesAdded.bind(this);
@@ -22,7 +24,20 @@ class Upload extends Component {
     this.sendRequest = this.sendRequest.bind(this);
     this.renderActions = this.renderActions.bind(this);
   }
+componentDidMount(){
+  if(this.props.EditDiapo){
+    this.getFile()
+  }
+}
+getFile(){
+  this.setState({
+    files:this.props.fileActual,
+    slideOn:true,
+    DisableDropZone:{pointerEvents:'none'},
+    fileEditOn:false
 
+  })
+}
   onFilesAdded(files) {
     this.setState({
       files: []
@@ -35,6 +50,28 @@ class Upload extends Component {
   }
 
   async uploadFiles() {
+    if(this.props.EditDiapo){
+      if (Object.keys(this.state.files).length === 0){
+        this.setState({NoData:true})
+      }else{
+        document.addEventListener("keydown", function(e){
+          if (e.which === 27){
+              return false
+          }})
+       this.setState({ uploadProgress: {}, uploading: true });
+       const promises = [];
+       this.state.files.forEach(file => {
+         promises.push(this.sendRequest(file));
+       });
+       try {
+         await Promise.all(promises);
+   
+         this.setState({ successfullUploaded: true, uploading: true, limpiarInputFile: true });
+       } catch (e) {
+         this.setState({ successfullUploaded: true, uploading: true });
+       }
+      }
+    }else{
     if (this.props.class_name==='' || this.props.desc==='' ||  Object.keys(this.state.files).length === 0){
       this.setState({NoData:true})
     }else{
@@ -54,7 +91,7 @@ class Upload extends Component {
       this.setState({ successfullUploaded: true, uploading: true, limpiarInputFile: true });
     } catch (e) {
       this.setState({ successfullUploaded: true, uploading: true });
-    }}
+    }}}
   }
 
   sendRequest(file) {
@@ -86,55 +123,100 @@ class Upload extends Component {
         reject(req.response);
       });
 
+      var varToken = localStorage.getItem('token');
       const formData = new FormData();
       formData.append("file", file, file.name);
-      formData.append("class_name",this.props.class_name)
-      formData.append("desc",this.props.desc)
-      console.log(file)
 
-      var varToken = localStorage.getItem('token');
-        
-      req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
-      // req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/falllaApropocito`);
-      req.setRequestHeader('x-access-token', `${varToken}`)
-      req.send(formData);
-      console.log('asdmasd')
-      req.onload=()=>{
-        if(req.readyState===req.DONE){
-          if(req.status===200){
-            console.log(req.response)
-            console.log('bien')
-            this.props.handleClose()
-            this.props.cleanInputs()
-            this.props.handleEnableX()
-            this.setState({
-              files: [],
-              uploading: false,
-              uploadProgress: {},
-              successfullUploaded: false,
-              errorUploaded:false,
-              slideOn:false,
-              NoData:false,
-              UploadDone:false,
-              limpiarInputFile:false
-            })
+      if(this.props.EditDiapo===false){
+        formData.append("class_name",this.props.class_name)
+        formData.append("desc",this.props.desc)
+        console.log(file)
+
+        req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
+        // req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/falllaApropocito`);
+        req.setRequestHeader('x-access-token', `${varToken}`)
+        req.send(formData);
+        console.log('asdmasd')
+        req.onload=()=>{
+          if(req.readyState===req.DONE){
+            if(req.status===200){
+              console.log(req.response)
+              console.log('bien')
+              this.props.handleClose()
+              this.props.cleanInputs()
+              this.props.handleEnableX()
+              this.setState({
+                files: [],
+                uploading: false,
+                uploadProgress: {},
+                successfullUploaded: false,
+                errorUploaded:false,
+                slideOn:false,
+                NoData:false,
+                UploadDone:false,
+                limpiarInputFile:false
+              })
+            }
+            else{
+              console.log(req.response)
+              console.log('mal')
+              this.setState({ errorUploaded: true});
+              this.props.handleEnableX()
+              // this.props.cleanInputs()
+              this.setState({
+                successfullUploaded: false,
+                errorUploaded:true,
+                uploading: false,
+                uploadProgress: {},
+                slideOn:false,
+                NoData:false,
+                UploadDone:false,
+                limpiarInputFile:false
+              })
+            }
           }
-          else{
-            console.log(req.response)
-            console.log('mal')
-            this.setState({ errorUploaded: true});
-            this.props.handleEnableX()
-            // this.props.cleanInputs()
-            this.setState({
-              successfullUploaded: false,
-              errorUploaded:true,
-              uploading: false,
-              uploadProgress: {},
-              slideOn:false,
-              NoData:false,
-              UploadDone:false,
-              limpiarInputFile:false
-            })
+        }
+      }else{
+        formData.append("id_class",this.props.id_class)
+        console.log(file)
+        req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
+        // req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/falllaApropocito`);
+        req.setRequestHeader('x-access-token', `${varToken}`)
+        req.send(formData);
+        console.log('asdmasd')
+        req.onload=()=>{
+          if(req.readyState===req.DONE){
+            if(req.status===200){
+              console.log(req.response)
+              console.log('bien')
+              this.setState({
+                files: [],
+                uploading: false,
+                uploadProgress: {},
+                successfullUploaded: false,
+                errorUploaded:false,
+                slideOn:false,
+                NoData:false,
+                UploadDone:false,
+                limpiarInputFile:false,
+                fileEditOn:false,
+                DisableDropZone:{}
+              })
+            }
+            else{
+              console.log(req.response)
+              console.log('mal')
+              this.setState({
+                successfullUploaded: false,
+                errorUploaded:true,
+                uploading: false,
+                uploadProgress: {},
+                slideOn:false,
+                NoData:false,
+                UploadDone:false,
+                limpiarInputFile:false
+              })
+            }
           }
         }
       }
@@ -177,12 +259,38 @@ class Upload extends Component {
     }else {
       return (
         <>
-          <button id='modal-body__button-cursos' type="submit" className="modal-body__button yes"
+          {this.props.EditDiapo?
+          this.state.fileEditOn?
+            <>
+              <button id='modal-body__button-cursos' type="submit" className="modal-body__button yes"
+                      hidden={this.state.files.length < 0 || this.state.uploading}
+                      onClick={this.uploadFiles}>
+                <div className="button-zoom">GUARDAR</div>
+              </button>
+              <button id='modal-body__button-cursos' type="submit" className="modal-body__button no"
+                      hidden={this.state.files.length < 0 || this.state.uploading}
+                      onClick={()=>this.getFile()}>
+                <div className="button-zoom">CANCELAR</div>
+              </button>
+            </>:null
+            :
+            <button id='modal-body__button-cursos' type="submit" className="modal-body__button yes"
                   hidden={this.state.files.length < 0 || this.state.uploading}
                   onClick={this.uploadFiles}>
-            <div className="button-zoom">CREAR CLASE</div>
-          </button>
+              <div className="button-zoom">CREAR CLASE</div>
+            </button>
+            }
           {this.state.files.length>0 ?
+          this.props.EditDiapo?
+          this.state.fileEditOn?null:
+          <button className='modal-body__button backCursos'
+            onClick={() => {
+              this.setState({ files: [],DisableDropZone:{},fileEditOn:true, uploading: false, errorUploaded: false,slideOn:false,NoData:false })
+            }}
+          >
+            <div className="button-zoom">CAMBIAR DIAPOSITIVA</div>
+          </button>
+          :
             <button className='modal-body__button backCursos'
             onClick={() => {
               this.props.cleanInputs()
@@ -198,8 +306,6 @@ class Upload extends Component {
           this.props.class_name==='' || this.props.desc==='' ||  Object.keys(this.state.files).length === 0?
           <p className="mensageAction negative">RELLENA TODOS LOS CAMPOS</p>:null:null
           }
-          
-
         </>
       );
     }
@@ -208,13 +314,13 @@ class Upload extends Component {
   render() {
     return (
       <div className="Upload">
-        <div className="Content">
+        <div className="Content" style={this.state.DisableDropZone}>
           <div>
             <Dropzone
               limpiarInputFile={this.state.limpiarInputFile}
               slideOn={this.state.slideOn}
               onFilesAdded={this.onFilesAdded}
-              disabled={this.state.uploading}
+              disabled={this.state.uploading||this.state.files.length>0}
             />
           </div>
           <div className="Files">
