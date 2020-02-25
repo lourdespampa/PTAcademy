@@ -126,7 +126,7 @@ getFile(){
       var varToken = localStorage.getItem('token');
       const formData = new FormData();
       formData.append("file", file, file.name);
-
+      
       if(this.props.EditDiapo===false){
         formData.append("class_name",this.props.class_name)
         formData.append("desc",this.props.desc)
@@ -177,9 +177,8 @@ getFile(){
           }
         }
       }else{
-        formData.append("id_class",this.props.id_class)
         console.log(file)
-        req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/class`);
+        req.open("PUT", `192.168.1.66:4200/v1/api/teacher/presentation/${this.props.id_class}`);
         // req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/falllaApropocito`);
         req.setRequestHeader('x-access-token', `${varToken}`)
         req.send(formData);
