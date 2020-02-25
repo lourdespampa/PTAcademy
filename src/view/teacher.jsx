@@ -244,6 +244,7 @@ export default class Views extends Component {
               path="/teacher/:id_class/:id_access/trivia"
               component={() => (
                 <Trivia
+                  school={this.state.school}
                   id_access={this.state.id_access}
                   apiUrl={this.props.apiUrl}
                   socketUrl={this.state.socketUrl}

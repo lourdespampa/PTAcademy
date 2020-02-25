@@ -212,7 +212,6 @@ class Azar extends React.Component {
     this.getStudents();
     this.setState({ showModal: 2 });
   };
-
   render() {
     if (this.state.alumnos.length > 0) {
       return (

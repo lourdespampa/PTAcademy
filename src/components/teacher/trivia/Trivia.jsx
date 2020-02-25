@@ -5,6 +5,7 @@ import "./botones.scss";
 import iconExit from "../../../img/cerrar.png";
 import axios from 'axios';
 import io from 'socket.io-client';
+import { BtnPuntos } from "../lista/btnpuntos";
 
 // import { Container, Row, Col } from 'reactstrap'; no se esta usando
 
@@ -31,7 +32,62 @@ class Trivia extends React.Component {
       preguntaEnviada: false,
       alumnosRecibidos: [],
       modal: false,
-      navbarResponsive: false
+      navbarResponsive: false,
+      showpuntosmas: 0,
+      showpuntosmenos: 0,
+      point: "",
+      // _id: "",
+      datapoint: {
+        positivo: [
+          {
+            imgen: require("../../../img/lista/punto1.png"),
+            valor: 1,
+            title: "Ayuda a Otros"
+          },
+          {
+            imgen: require("../../../img/lista/punto2.png"),
+            valor: 1,
+            title: "Cumplimiento de Tareas"
+          },
+          {
+            imgen: require("../../../img/lista/punto3.png"),
+            valor: 1,
+            title: "Participacion"
+          },
+          {
+            imgen: require("../../../img/lista/punto4.png"),
+            valor: 1,
+            title: "Persistencia"
+          },
+          {
+            imgen: require("../../../img/lista/punto5.png"),
+            valor: 1,
+            title: "responsabilidad"
+          },
+          {
+            imgen: require("../../../img/lista/punto6.png"),
+            valor: 1,
+            title: "trabajo en equipo"
+          }
+        ],
+        negativo: [
+          {
+            imgen: require("../../../img/lista/punto-1.png"),
+            valor: 1,
+            title: "Ayuda a Otros"
+          },
+          {
+            imgen: require("../../../img/lista/punto-2.png"),
+            valor: 1,
+            title: "Cumplimiento de Tareas"
+          },
+          {
+            imgen: require("../../../img/lista/punto-3.png"),
+            valor: 1,
+            title: "Participacion"
+          }
+        ]
+      }
     }
 
     // Este enlace es necesario para hacer que `this` funcione en el callback
@@ -88,7 +144,7 @@ class Trivia extends React.Component {
       .then((res) => {
         const temp = [];
         res.data.map(alumno => {
-          temp.push({ idAlumno: alumno._id, nombre: `${alumno.name_stu} ${alumno.lastName_stu}`, puntos: alumno.point })
+          temp.push({ _id: alumno._id, nombre: `${alumno.name_stu} ${alumno.lastName_stu}`, puntos: alumno.point })
         })
         this.setState({ todosAlumnos: temp })
       })
@@ -208,7 +264,6 @@ class Trivia extends React.Component {
     //finalmente cambia el estado del boton a restaurar.
     this.setState(state => ({ preguntaEnviada: !state.preguntaEnviada }));
   }
-
   handleAddAndRemovePoint = (alumnoTop, punto) => {
     this.puntaje += punto
     console.log('punto', punto)
@@ -223,7 +278,7 @@ class Trivia extends React.Component {
           point: alumno.puntos + punto
         }
         axios({
-          url: this.props.apiUrl + '/v1/api/student/update_score/' + alumno.idAlumno,
+          url: this.props.apiUrl + '/v1/api/student/update_score/' + alumno._id,
           data,
           method: 'put',
           headers: {
@@ -236,7 +291,48 @@ class Trivia extends React.Component {
       }
     }
   }
-
+  onClickPoint = (id, point) => {
+    this.setState({
+      _id: id,
+      point: point
+    });
+    console.log(id, point);
+  };
+  onClickPointAdd = async valor => {
+    const point = this.state.point + valor;
+    const data = {
+      point: point
+    };
+    var varToken = localStorage.getItem("token");
+    await axios({
+      url: this.props.apiUrl + "/v1/api/student/update_score/" + this.state._id,
+      data,
+      method: "put",
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    });
+    this.getStudents();
+    this.setState({ "showpuntosmas": 2 });
+  };
+  onClickPointRemove = async valor => {
+    const point = this.state.point - valor;
+    const data = { point : point };
+    var varToken = localStorage.getItem("token");
+      await axios({
+        url: this.props.apiUrl + "/v1/api/student/update_score/" + this.props._id,
+        data,
+        method: "put",
+        headers: {
+          "x-access-token": `${varToken}`
+        }
+      }); 
+    this.getStudents();
+    this.setState({ "showpuntosmenos": 2 });
+  };
+  setShow = (nom, val) => {
+    this.setState({ [nom]: val });
+  };
   render() {
     return (
       <>
@@ -289,7 +385,7 @@ class Trivia extends React.Component {
                               </div>
                               <div className="points-contenedor">
                                 puntos:&nbsp;&nbsp;
-                                <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno, 1)}>
+                                <button className="button btnMyM material-icons" onClick={() => this.onClickPoint(alumno._id, alumno.point) + this.setShow("showpuntosmas", 1)}>
                                   add_circle_outline
                                 </button>
                                 &nbsp;
@@ -301,7 +397,7 @@ class Trivia extends React.Component {
                                     null
                                 ))}
                                 &nbsp;
-                                <button className="button btnMyM material-icons" onClick={() => this.handleAddAndRemovePoint(alumno, -1)}>
+                                <button className="button btnMyM material-icons" onClick={() => this.onClickPoint(alumno._id, alumno.point) + this.setShow("showpuntosmenos", 1)}>
                                   remove_circle_outline
                                 </button>
                               </div>
@@ -340,7 +436,7 @@ class Trivia extends React.Component {
                 <label htmlFor="input-img">Medio de Comunicación (opcional)</label>
                 <div className="triviaT-image-container">
                   <input type="file" id="input-img" className="imagen" onChange={this.handleChangeImage} />
-                  <img alt="imagen a enviar " className="triviaT-imgSalida" id="imgSalida" width="120px" height="100px" src="" />
+                  <img alt="imagen a enviar " className="triviaT-imgSalida" id="imgSalida" width="120px" height="110px" src="" />
                 </div>
               </div>
             </div>
@@ -413,6 +509,81 @@ class Trivia extends React.Component {
 
             </div>
           </form>
+        </div>
+        <div
+          id="modal-general_container"
+          className={this.state.showpuntosmas === 0 ? "" : this.state.showpuntosmas === 1 ? "six" : this.state.showpuntosmas === 2 ? "six out" : ""}
+        >
+          <div className="modal-general_background">
+            <div className="modal-general_bg_content">
+              <button
+                className="modal-general_close"
+                onClick={() => this.setShow("showpuntosmas", 2)}
+              >
+                <img
+                  className="button-zoom"
+                  src={iconExit}
+                  alt="imagen de cerrar modal"
+                />
+              </button>
+              <div className="modal-general_container">
+                <div className="modal-general_container_header">
+                  <span className="modal-title">POSITIVO:</span>
+                </div>
+                <div className="modal-general_container_body">
+                  <BtnPuntos
+                    data={this.state.datapoint.positivo}
+                    funcion={this.onClickPointAdd}
+                  />
+                </div>
+              </div>
+              <svg
+                className="modal-general_svg"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+              >
+                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          id="modal-general_container"
+          className={
+            this.state.showpuntosmenos === 0 ? "" : this.state.showpuntosmenos === 1 ? "six" : this.state.showpuntosmenos === 2 ? "six out" : ""}
+        >
+          <div className="modal-general_background">
+            <div className="modal-general_bg_content">
+              <button
+                className="modal-general_close"
+                onClick={() => this.setShow("showpuntosmenos", 2)}
+              >
+                <img
+                  className="button-zoom"
+                  src={iconExit}
+                  alt="imagen de cerrar modal"
+                />
+              </button>
+              <div className="modal-general_container">
+                <div className="modal-general_container_header">
+                  <span className="modal-title">NECESITAS MEJORAR:</span>
+                </div>
+                <div className="modal-general_container_body">
+                  <BtnPuntos
+                    data={this.state.datapoint.negativo}
+                    funcion={this.onClickPointRemove}
+                  />
+                </div>
+              </div>
+              <svg
+                className="modal-general_svg"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+              >
+                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+              </svg>
+            </div>
+          </div>
         </div>
       </>
     );

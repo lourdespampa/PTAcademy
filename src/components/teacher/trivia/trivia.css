@@ -210,6 +210,11 @@
     .triviaT-imgSalida{display: initial}
 }
 
+@media only screen and (max-width: 1600px) {
+    /* For desktop: */
+    .triviaT-col-6 {width: 100%}
+}
+
 .triviaT-input-pregunta:focus, .triviaT-input-respuestas:focus {
     border: 2px solid #000;
 }
