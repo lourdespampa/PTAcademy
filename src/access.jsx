@@ -4,7 +4,7 @@ import Teacher from "./view/teacher";
 import Student from "./view/student";
 import CoursesTeacher from "./view/courses/CoursesTeacher";
 import ClassTeacher from "./view/class/ClassTeacher";
-import ClassDetailTeacher from "./view/class/ClassDetailTeacher";
+import ClassDetailTeacher from "./view/class/ClassDetail/ClassDetailTeacher";
 import Login from "./view//login/login";
 import NotFound from "./view/404/NotFound";
 import LoginStu from "./view/login.Stud/login.stu";
@@ -65,8 +65,8 @@ export default class Access extends Component {
           />
           <Route
             exact
-            path="/ClassDetailTeacher"
-            component={() => <ClassDetailTeacher apiUrl={this.state.apiUrl} />}
+            path="/ClassDetailTeacher/:id"
+            component={props => <ClassDetailTeacher {...props} apiUrl={this.state.apiUrl} />}
           />
           <Route
             path="/teacher/:id_class/:id_access"
