@@ -26,7 +26,9 @@ class Upload extends Component {
   }
 componentDidMount(){
   if(this.props.EditDiapo){
-    this.getFile()
+    setTimeout(() => {
+      this.getFile()
+    }, 1000); 
   }
 }
 getFile(){
@@ -127,7 +129,7 @@ getFile(){
       const formData = new FormData();
       formData.append("file", file, file.name);
       
-      if(this.props.EditDiapo===false){
+      if(!this.props.EditDiapo){
         formData.append("class_name",this.props.class_name)
         formData.append("desc",this.props.desc)
         console.log(file)
@@ -178,7 +180,7 @@ getFile(){
         }
       }else{
         console.log(file)
-        req.open("PUT", `192.168.1.66:4200/v1/api/teacher/presentation/${this.props.id_class}`);
+        req.open("PUT", `http://192.168.1.66:4200/v1/api/teacher/presentation/${this.props.id_class}`);
         // req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/falllaApropocito`);
         req.setRequestHeader('x-access-token', `${varToken}`)
         req.send(formData);
@@ -188,18 +190,16 @@ getFile(){
             if(req.status===200){
               console.log(req.response)
               console.log('bien')
+              this.getFile()
               this.setState({
-                files: [],
                 uploading: false,
                 uploadProgress: {},
                 successfullUploaded: false,
                 errorUploaded:false,
-                slideOn:false,
                 NoData:false,
                 UploadDone:false,
                 limpiarInputFile:false,
-                fileEditOn:false,
-                DisableDropZone:{}
+                fileEditOn:false
               })
             }
             else{
