@@ -55,12 +55,12 @@ function BotonSalir(props) {
                   className="modal-body__button  backCursos"
                   onClick={props.ExitSocket}
                 >
-                  {/* <Link
+                  <Link
                     style={{ textDecoration: "none" }}
-                    to={`/CoursesTeacher/${id_teacher}`}
+                    // to={`/CoursesTeacher/${id_teacher}`}
                   >
                     <div className="button-zoom">REGRESAR A CURSOS</div>
-                  </Link> */}
+                  </Link> 
                 </button>
               </div>
             </div>

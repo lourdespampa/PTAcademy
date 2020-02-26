@@ -34,6 +34,7 @@ const onFocus = () => {
     };
   });
   return <></>;
+
 };
 export default function HeaderContainer(props) {
     const [showResponsive, setShowResponsive] = useState(false)
@@ -41,7 +42,9 @@ export default function HeaderContainer(props) {
     const [trivia,settrivia]=useState(false);
     const [temporizador,settemporizador]=useState(false);
     const [Exit,setExit]=useState(false);
-    const reinicio=()=>settrivia(false)+settemporizador(false)
+    
+    
+    // settrivia(true)+settemporizador(false);
 
     const deleteStudent= ()=>{
         console.log(props.apiUrl,props.id_access,props.id_student)
@@ -122,24 +125,25 @@ export default function HeaderContainer(props) {
           }         
           <header className="alumnoH-header ">
             <div className="alumnoHeader-logo">
-              <Link onClick={reinicio} to={`/student/${props.id_student}/${props.id_access}`} style={{textDecoration:"none"}}>
+              <Link onClick={handleNavbarResponsive} to={`/student/${props.id_student}/${props.id_access}`} style={{textDecoration:"none"}}>
                 <div className="logo">
                   <img className="icon-img" height="45px" src={require("../../../img/index/icon.svg")} alt="" />
                   <img className="logo-img rt"src={require("../../../img/acad.svg")} alt="" />
                 </div>
-
               </Link>
             </div>
-            <i className="fas fa-bars alumnoHeader-menu-toggle" onClick={handleNavbarResponsive}></i>
-            <ul className={showResponsive ? "alumnoHeader-nav showResponsive" : "alumnoHeader-nav"}>
+            <div>
+              <i className="fas fa-bars alumnoHeader-menu-toggle" onClick={handleNavbarResponsive}></i>
+            </div>
+              <ul className={showResponsive ? "alumnoHeader-nav showResponsive" : "alumnoHeader-nav"}>
               <li className="alumnoHeader-li">
-                <Link onClick={reinicio} className="alumnoHeader-a" to={`/student/${props.id_student}/${props.id_access}/trivia`}>
+                <Link onClick={handleNavbarResponsive} className="alumnoHeader-a" to={`/student/${props.id_student}/${props.id_access}/trivia`}>
                   <i className="fa fa-list-ol"></i>
                   Trivia
                 </Link>
               </li>
               <li className="alumnoHeader-li">
-                <Link onClick={reinicio} className="alumnoHeader-a" to={`/student/${props.id_student}/${props.id_access}/temporizador`}>
+                <Link onClick={handleNavbarResponsive} className="alumnoHeader-a" to={`/student/${props.id_student}/${props.id_access}/temporizador`}>
                   <i className="fas fa-hourglass" style={{fontSize:"22px", padding:"0 10px"}}></i>
                   Temporizador
                 </Link>

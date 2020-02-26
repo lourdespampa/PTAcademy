@@ -125,7 +125,7 @@ li.alumnoHeader-li .ft:hover{
     right: 0;
     width: 100%;
     display: none;
-    background: rgb(216, 216, 216);
+    background:#52BE7F;
     z-index: 3000;
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav .alumnoHeader-li{
@@ -134,7 +134,7 @@ li.alumnoHeader-li .ft:hover{
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a{
     padding: 10px; 
-    background: rgb(216, 216, 216);
+    background: #52BE7F;
     /* color: #4d4d4d;
     margin-top: -9px; */
     cursor: pointer;
