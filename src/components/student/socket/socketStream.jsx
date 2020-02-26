@@ -238,7 +238,7 @@ export default class Audio extends Component {
             const popup = document.getElementById('popupformulario')
 
             overlay_popup.className = 'overlay active'
-            popup.className = 'popup active '}
+            popup.className = 'popup active scale'}
         })
         socket.on('closeForm', (data) => {
             const pinTeacher = this.pin.toUpperCase();
@@ -272,7 +272,7 @@ componentWillUnmount() {
                             <div className="modal-general_container_header">
                             <h4 className="title"><strong>GRUPOS ELEGIDOS SON</strong></h4>
                             </div>
-                            <div id="modal_GrupoStudent" style={{maxHeight: '350px',height:'350px',overflow: 'auto'}}>
+                            <div id="modal_GrupoStudent" style={{maxHeight: '350px', height:"350px", overflow: 'auto'}}>
                                 <ul className="grupos-cards" id="imprimir"></ul>
                             </div>
                         </div>

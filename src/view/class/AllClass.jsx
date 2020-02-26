@@ -48,6 +48,7 @@ export default class AllClass extends Component {
       return (
         <Redirect to={`/teacher/${this.props.id}/${this.state.id_access}` } />
       );
+      console.log('te va a redirigir')
     }
   };
   //end

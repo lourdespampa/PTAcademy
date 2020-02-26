@@ -3,7 +3,6 @@ import "./CourseDetail.sass";
 import NavCourse from "./NavCourseDetail";
 import axios from "axios";
 import iconExit from "../../../img/cerrar.png";
-// import CardStudent from './CardStudent'
 export default class CourseDetail extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +17,6 @@ export default class CourseDetail extends Component {
       apellidoAlumno: "",
       nombreAlumno: "",
       descAlumno: "",
-      apiUrl: "http://3.16.110.136:4200",
       compentencias: [],
       competenciasAlumnos: [],
       showdelete: 0
@@ -48,33 +46,22 @@ export default class CourseDetail extends Component {
       idMapAlumno: idAlumno
     })
   }
-
   handleChange = e => {
     console.log(`Seleccionaste ${e.target.value}`);
-    // this.setState({value: event.target.value});
-    // setTimeout(() => console.clear(), 1000);
   }
-
   handleChangeInputs = e => {
     let name = e.target.name
     let value = e.target.value
     this.setState({[name]: value})
-
-    // console.log('cuando se esta editando', value)
-
-    console.log([name], value)
   }
   handleEditStudent = (idAlumno) => {
     this.setState({
       editar: !this.state.editar,
       idMapAlumno: idAlumno
     })
-    console.log('id del estudiante', this.state.idMapAlumno)
-    console.log('nuevos nombre', this.state.nombreAlumno)
   }
 
   getAlumnos = () => {
-    console.log("listar alumnos ");
     const {
       match: { params }
     } = this.props;

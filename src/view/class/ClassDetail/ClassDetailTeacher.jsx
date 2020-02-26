@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {useState, Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import NavClass from "./NavClass";
@@ -73,8 +73,8 @@ export default class ClassDetailTeacher extends Component {
                   </div>
                   <br />
                   <div className="Item-card_createquestion">
-                  <label className="triviaPregunta">Pregunta</label>
-                <input type="text" id="pregunta" className="triviaT-input-pregunta" value={this.state.pregunta} onChange={this.changeQuestion} autoComplete="off" />
+                    <label className="triviaPregunta">Pregunta</label>
+                    <input type="text" id="pregunta" className="triviaT-input-pregunta" value={this.state.pregunta} onChange={this.changeQuestion} autoComplete="off" />
                     <label className="triviaRepuestas">Respuesta 1</label>
                     <br />
                     <br />

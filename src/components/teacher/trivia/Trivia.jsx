@@ -350,6 +350,9 @@ class Trivia extends React.Component {
                   Enviar
               </button>
               }
+              <button className="triviaT-preguntas">
+                Preguntas
+              </button>
               <button className="triviaT-respuestas" onClick={this.showModal}>
                 Respuestas
               </button>

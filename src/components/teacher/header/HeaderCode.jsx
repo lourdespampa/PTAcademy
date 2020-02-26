@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import iconExit from "../../../img/cerrar1.png";
 import "./HeaderCode.sass";
 function BotonSalir(props) {
-  var user = JSON.parse(localStorage.getItem("user"));
+  // var id_teacher = JSON.parse(localStorage.getItem("id_teacher"));
   const [show, setShow] = useState(0);
   const handleClose = () => setShow(2);
   const handleShow = () => setShow(1);
-  useEffect(() => console.log(user._id));
+  // useEffect(() => console.log(id_teacher));
   return (
     <>
       <img
@@ -57,10 +57,10 @@ function BotonSalir(props) {
                 >
                   <Link
                     style={{ textDecoration: "none" }}
-                    to={`/CoursesTeacher/${user._id}`}
+                    // to={`/CoursesTeacher/${id_teacher}`}
                   >
                     <div className="button-zoom">REGRESAR A CURSOS</div>
-                  </Link>
+                  </Link> 
                 </button>
               </div>
             </div>
