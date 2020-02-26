@@ -4,7 +4,6 @@ import React from 'react';
          return(
              <div>
                 <Trivia 
-                school={this.props.school}
                 socketUrl={props.socketUrl} 
                 id_access={props.id_access} 
                 apiUrl={props.apiUrl}

@@ -519,6 +519,7 @@ template {
   transform: scale(1.2);
 }
 
+.footerTriviaClass .modal-body__button.yes:hover .button-zoom,
 .modal-body__button.backCursos:hover .button-zoom {
   -webkit-transform: scale(1.08);
   transform: scale(1.08);
