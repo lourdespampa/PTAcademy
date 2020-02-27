@@ -214,10 +214,16 @@ export default class Audio extends Component {
             if(data.pin === (pinTeacher).toUpperCase()) {
             console.log('escucha el alum')
             this.setState({show:1});
-            document.getElementById("modal_luckyStudent").innerHTML = data.data;
+            document.getElementById("modal_luckyStudent").innerHTML = data.data;}
             
+        })
+         socket.on('closeModalAzar',  (data) =>{
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
+                this.setState({show:2});
             }
         })
+
         //ROULETTE END 
         //grupos
         socket.on('enviando grupos',  (data) =>{
