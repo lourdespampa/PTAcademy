@@ -5,7 +5,8 @@ export default class FormPostSiagie extends Component {
     super(props);
     this.state = {
       selectedFile: null,
-      estudiantes: []
+      estudiantes: [],
+      estudiante: [{}]
     };
   }
   componentDidMount(){
@@ -27,10 +28,14 @@ export default class FormPostSiagie extends Component {
   };
   onClickHandler = () => {
     const data = new FormData();
-    console.log(JSON.stringify(this.state.estudiantes))
-    console.log(this.state.estudiantes[0])
+    var details = {
+
+    };
+    const ahora = {estudiante: this.state.estudiantes}
+    console.log(JSON.stringify(this.state.estudiantes));
+    console.log(this.state.estudiantes);
     data.append("file", this.state.selectedFile);
-    data.append('students', this.state.estudiantes[0]);
+    data.append('asdasd', (Object.values(ahora)));
     data.append('name_course', this.props.name_course);
     axios
       .post(
@@ -50,10 +55,21 @@ export default class FormPostSiagie extends Component {
       })
   };
   onclickStudents = () => {
-    // console.log(this.props.students)
-    // this.props.students.map(alumno{
-    //   console.log('asdasd')
-    // })
+    console.log(this.props.students)
+    console.log(JSON.stringify(this.state.estudiantes))
+    console.log(this.state.estudiantes.length)
+    for(var i=0; i < this.state.estudiantes.length; i++){
+      this.state.estudiante.push(this.state.estudiantes[i]);
+      
+    }
+    console.log(this.state.estudiante)
+    const map = { a: 1, b: 2, c: 3 };
+    const ahora = {estudiante: this.state.estudiantes}
+
+const result = Object.values(ahora);
+
+console.log(result);
+
   }
   render() {
     return (

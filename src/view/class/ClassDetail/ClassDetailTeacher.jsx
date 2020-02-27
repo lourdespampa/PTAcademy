@@ -1,6 +1,5 @@
 import React, { useState, Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import iconExit from "../../../img/cerrar1.png";
 import NavClass from "./NavClass";
 import Upload from "../../classAndCourse/upload/Upload"

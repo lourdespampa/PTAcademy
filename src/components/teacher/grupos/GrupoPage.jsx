@@ -129,7 +129,7 @@ export default class GrupoPage extends Component {
       this.setState({
         loanding: false
       });
-      console.log(cadena);
+      console.log('enviando grupos');
     }, 500);
   };
   limpiar = () => {
@@ -156,7 +156,7 @@ export default class GrupoPage extends Component {
               <span>
                 Grupos formados por {this.state.nro_per_grupo} Alumnos{" "}
               </span>
-              <button className="button" onClick={this.closeModallimpiar()}>
+              <button className="button" onClick={this.limpiar}>
                 <label className="tex">LIMPIAR</label>
               </button>
             </>

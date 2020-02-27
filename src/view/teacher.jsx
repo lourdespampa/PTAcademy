@@ -20,8 +20,8 @@ export default class Views extends Component {
     this.state = {
       socket: null,
       class: "clase3",
-      socketUrl:"http://192.168.1.24:4000/teacher",
-      // socketUrl: "http://3.16.110.136:4000/teacher",
+      // socketUrl:"http://192.168.1.24:4000/teacher",
+      socketUrl: "http://3.16.110.136:4000/teacher",
       user: null,
       id: "",
       grabar: false,

@@ -5,7 +5,6 @@ import iconExit from "../../../img/cerrar1.png";
 import iconBack from "../../../img/back_button.svg";
 import FormPostSiagie from "../../classAndCourse/FormPostSiagie";
 import axios from "axios";
-import fs from "fs";
 function Siagie(props) {
   const [show, setShow] = useState(0);
   const handleClose = () => setShow(2);
