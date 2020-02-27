@@ -83,15 +83,6 @@ export default class GrupoPage extends Component {
         });
     }
   };
-
-  closeModalGrupo(){
-    const socket = io(this.props.socketUrl, {
-      query: { pin: this.props.id_access }
-    });
-    this.setState({ showModal: 2 })
-    socket.emit('closeModalGrupo')
-
-  }
   groupGenerator = () => {
     this.setState({
       Refrescar: true,
@@ -165,7 +156,7 @@ export default class GrupoPage extends Component {
               <span>
                 Grupos formados por {this.state.nro_per_grupo} Alumnos{" "}
               </span>
-              <button className="button" onClick={this.limpiar}>
+              <button className="button" onClick={this.closeModallimpiar}>
                 <label className="tex">LIMPIAR</label>
               </button>
             </>
