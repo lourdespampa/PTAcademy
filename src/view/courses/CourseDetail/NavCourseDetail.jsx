@@ -40,6 +40,7 @@ function Siagie(props) {
                 apiUrl={props.apiUrl}
                 idteacher={props.idteacher}
                 idcourse={props.idcourse}
+                name_course = {props.name_course}
               ></FormPostSiagie>
             </div>
             <svg
@@ -173,7 +174,6 @@ export default class NavCourse extends Component {
   UNSAFE_componentWillMount = async () => {
     let tokenStorage = localStorage.getItem("token");
     await this.setState({ token: tokenStorage });
-    console.log(this.props.students)
   };
 
   cerrarSesion = () => {
@@ -204,6 +204,17 @@ export default class NavCourse extends Component {
           };
           this.setState({ uploadProgress: copy });
         }
+      });
+
+      req.upload.addEventListener("load", event => {
+        const copy = { ...this.state.uploadProgress };
+        copy[file.name] = { state: "done", percentage: 100 };
+        this.setState({
+          uploadProgress: copy,
+          UploadDone: true,
+          uploading: false
+        });
+        resolve(req.response);
       });
 
       req.upload.addEventListener("error", event => {
@@ -348,6 +359,7 @@ export default class NavCourse extends Component {
                     idteacher={this.props.idteacher}
                     idcourse={this.props.idcourse}
                     students={this.props.students}
+                    name_course= {this.props.name_course}
                   ></Siagie>
                 </li>
                 <li className="teacherCourses__main-menu__item">
