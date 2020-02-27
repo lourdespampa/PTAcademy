@@ -8,7 +8,7 @@ import io from "socket.io-client";
 const WindowFocusHandler = props => {
   // User has switched back to the tab
   const onFocus = () => {
-    // console.log("Tab is in focus");
+    console.log("Tab is in focus");
   };
   // User has switched away from the tab (AKA tab is hidden)
   const onBlur = () => {
@@ -20,8 +20,8 @@ const WindowFocusHandler = props => {
     });
     socket.emit("tabBlurred", { fullname: props.fullname });
 
-    // console.log(props.fullname);
-    // console.log("Tab is blurred");
+    console.log(props.fullname);
+    console.log("Tab is blurred");
   };
   useEffect(() => {
     window.addEventListener("focus", onFocus);
@@ -40,10 +40,10 @@ export default function HeaderContainer(props) {
   const [trivia, settrivia] = useState(false);
   const [temporizador, settemporizador] = useState(false);
   const [Exit, setExit] = useState(false);
-  // const reinicio = () => settrivia(false) + settemporizador(false);
+  const reinicio = () => settrivia(false) + settemporizador(false);
 
   const deleteStudent = async () => {
-    // console.log(props.apiUrl, props.id_access, props.id_student);
+    console.log(props.apiUrl, props.id_access, props.id_student);
     const data3 = {
       state: "inactive",
       id_stud: props.id_student
@@ -70,13 +70,13 @@ export default function HeaderContainer(props) {
     });
 
     if (localStorage.getItem("token")) {
-      // console.log("si tiene");
+      console.log("si tiene");
     } else {
-      // console.log("no tiene");
+      console.log("no tiene");
       setExit(true);
     }
     socket.on("redirectAlum", data => {
-      // console.log("llega redirectAlum");
+      console.log("llega redirectAlum");
       if (data.pin === props.id_access.toUpperCase()) {
         if (data.page === "trivia") {
           settrivia(true);
@@ -95,11 +95,11 @@ export default function HeaderContainer(props) {
     });
     //liSTA
     socket.on("RemoveStudS", data => {
-      // console.log(data);
+      console.log(data);
       if (data.pin === props.id_access.toUpperCase()) {
-        // console.log("REcibe salida");
+        console.log("REcibe salida");
         if (data.id === props.id_student) {
-          // console.log("REcibe  salida fase 2");
+          console.log("REcibe  salida fase 2");
           localStorage.clear();
           setExit(true);
         }
@@ -132,7 +132,7 @@ export default function HeaderContainer(props) {
       <header className="alumnoH-header ">
         <div className="alumnoHeader-logo">
           <Link
-            onClick={handleNavbarResponsive}
+            onClick={reinicio}
             to={`/student/${props.id_student}/${props.id_access}`}
             style={{ textDecoration: "none" }}
           >
@@ -152,7 +152,7 @@ export default function HeaderContainer(props) {
         >
           <li className="alumnoHeader-li">
             <Link
-              onClick={handleNavbarResponsive}
+              onClick={reinicio}
               className="alumnoHeader-a"
               to={`/student/${props.id_student}/${props.id_access}/trivia`}
             >
@@ -162,7 +162,7 @@ export default function HeaderContainer(props) {
           </li>
           <li className="alumnoHeader-li">
             <Link
-              onClick={handleNavbarResponsive}
+              onClick={reinicio}
               className="alumnoHeader-a"
               to={`/student/${props.id_student}/${props.id_access}/temporizador`}
             >
