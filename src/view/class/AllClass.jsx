@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect,Link } from "react-router-dom";
 import axios from "axios";
 // import iconEdit from "../courses/assets/edit.svg";
 import "../courses/cardCourses.sass";
@@ -48,7 +48,6 @@ export default class AllClass extends Component {
       return (
         <Redirect to={`/teacher/${this.props.id}/${this.state.id_access}` } />
       );
-      console.log('te va a redirigir')
     }
   };
   //end
@@ -66,6 +65,11 @@ export default class AllClass extends Component {
             >
               <i className="courseTeacher__img fas fa-trash"></i>
             </button>
+            <div className={"courseTeacher__containerButton-Edit"}>
+                <Link to={`/ClassDetailTeacher/${this.props.id}`} className="courseTeacher__button-Edit">
+                    <i className="algodemargin courseTeacher__img fas fa-edit"></i>
+                </Link>
+            </div>
             <img
               className="classTeacher-card__image"
               src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80"

@@ -1,0 +1,74 @@
+.Item-card_createquestion
+    .triviaRepuestas
+        color: black
+        float: left
+        font-size: 17px
+    .triviaPregunta
+        color: black
+        font-size: 24px
+    .showResponsive
+        max-height: 100em !important
+.contenedor-Items
+    color: #ffffff
+    font-family: "Opal"
+    font-style: normal
+    font-weight: 400
+    letter-spacing: 0
+    text-rendering: optimizeLegibility
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    -moz-font-feature-settings: "liga" on
+    margin: 16px
+.Item-cards
+    display: flex
+    flex-wrap: wrap
+    list-style: none
+    margin: 0
+    padding: 0
+    .Item-cards__item
+        display: flex
+        padding: 1rem
+        .Item-card
+            background: white
+            border-radius: 0.25rem
+            box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25)
+            width: 100%
+            flex-direction: column
+            overflow: hidden
+            text-align: center
+            border: solid #000000
+            &:hover .Item-card__image
+                -webkit-filter: contrast(100%)
+                filter: contrast(100%)
+            .Item-card__content
+                display: flex
+                flex: 1 1 auto
+                flex-direction: column
+                padding: 1rem
+                .Item-card__title
+                    color: #696969
+                    font-size: 1.25rem
+                    font-weight: 300
+                    letter-spacing: 2px
+                    text-transform: uppercase
+                .Item-card__text
+                    color: #000000
+                    flex: 1 1 auto
+                    font-size: 0.875rem
+                    line-height: 1.5
+                    margin-bottom: 1.25rem
+                    height: 500px
+
+//responsive                    
+@media (max-width: 200rem)
+    .Item-cards__item
+        width: 15%
+@media (max-width: 100rem)
+    .Item-cards__item
+        width: 33.33%
+@media (max-width: 56rem)
+    .Item-cards__item
+        width: 50%
+@media (max-width: 36rem)
+    .Item-cards__item
+        width: 100%

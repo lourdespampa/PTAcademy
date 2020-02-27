@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import io from 'socket.io-client';
 import './Roulette.css';
+import fondomusical from './fondomusical.mp3';
 
 class Roulette extends React.Component {
 
@@ -209,6 +210,7 @@ class Roulette extends React.Component {
             this.state.desactivarBoton
             ?
             <button className="roulette-container-button" onClick={this.handleOnClick} style={{background:"grey"}} id="btnRuleta" disabled>
+              <audio autoPlay src={fondomusical} type="audio/mp3"></audio>
               <div className="button-zoom">GIRAR</div>
             </button>
             :

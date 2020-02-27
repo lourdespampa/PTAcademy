@@ -73,7 +73,7 @@
     margin: 7px;
 }
 
-.triviaT-enviar, .triviaT-restaurar, .triviaT-respuestas {
+.triviaT-enviar, .triviaT-restaurar, .triviaT-respuestas, .triviaT-preguntas {
     width: 130px;
     background: #26890c;
     color: #fff;
@@ -92,13 +92,20 @@
     background: #45a3e5;
 }
 
+.triviaT-preguntas {
+    background: #FB9600;
+}
+
 .triviaT-respuestas:hover {
     background: #3086c4;
     box-shadow: inset 0 -1px rgba(0, 0, 0, .25);
     outline:none;
 }
-
-
+.triviaT-preguntas:hover {
+    background: #FB9600;
+    box-shadow: inset 0 -1px rgba(0, 0, 0, .25);
+    outline:none
+}
 
 .triviaT-enviar:hover {
     background: #1e7209;
@@ -208,6 +215,11 @@
     /* For desktop: */
     .triviaT-col-6 {width: 50%;}
     .triviaT-imgSalida{display: initial}
+}
+
+@media only screen and (max-width: 1600px) {
+    /* For desktop: */
+    .triviaT-col-6 {width: 100%}
 }
 
 .triviaT-input-pregunta:focus, .triviaT-input-respuestas:focus {

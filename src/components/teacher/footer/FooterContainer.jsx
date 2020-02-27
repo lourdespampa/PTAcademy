@@ -10,8 +10,6 @@ function enviarvideo(url, socketUrl, id_access, setShow,seturlnombre, setNoData)
   const socket = io(socketUrl, {
     query: { pin: id_access }
   });
-  
-
   var expresionRegular = "https://www.youtube.com/watch?v=";
   var urlembed = urlnombre.split(expresionRegular);
   document.getElementById("video-frame").src =
