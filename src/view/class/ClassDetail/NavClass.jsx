@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import iconExit from "../../../img/cerrar1.png";
 import iconBack from "../../../img/back_button.svg";
 
