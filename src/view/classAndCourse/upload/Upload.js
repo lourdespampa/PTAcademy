@@ -180,7 +180,7 @@ getFile(){
         }
       }else{
         console.log(file)
-        req.open("PUT", `http://192.168.1.66:4200/v1/api/teacher/presentation/${this.props.id_class}`);
+        req.open("PUT", `http://3.16.110.136:4200/v1/api/teacher/presentation/${this.props.id_class}`);
         // req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/falllaApropocito`);
         req.setRequestHeader('x-access-token', `${varToken}`)
         req.send(formData);
