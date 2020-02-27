@@ -16,7 +16,6 @@ export default class CourseDetail extends Component {
       idMapAlumno: "",
       apellidoAlumno: "",
       nombreAlumno: "",
-      descAlumno: "",
       compentencias: [],
       competenciasAlumnos: [],
       showdelete: 0
@@ -110,6 +109,7 @@ export default class CourseDetail extends Component {
           idteacher={this.state.id_teacher}
           nombreProfesor={this.state.nombreProfesor}
           getdata={this.getAlumnos}
+          students = {this.state.students}
         ></NavCourse>
         {/* <CardStudent></CardStudent> */}
         <div className="CourseDetail__Container" onClick={this.Cerrar}>
