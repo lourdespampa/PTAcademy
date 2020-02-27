@@ -58,7 +58,7 @@ function BotonSalir(props) {
                 >
                   <Link
                     style={{ textDecoration: "none" }}
-                    // to={`/CoursesTeacher/${id_teacher}`}
+                    to={`/CoursesTeacher/${id_teacher}`}
                   >
                     <div className="button-zoom">REGRESAR A CURSOS</div>
                   </Link> 
