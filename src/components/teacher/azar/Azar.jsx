@@ -196,6 +196,15 @@ class Azar extends React.Component {
     this.setState({ showModal: 2 });
   };
 
+  
+  closeModalAzar(){
+    const socket = io(this.props.socketUrl, {
+      query: { pin: this.props.id_access }
+    });
+    this.setState({ showModal: 2 })
+    socket.emit('closeModalAzar')
+
+  }
   render() {
     if (this.state.alumnos.length > 0) {
       return (
@@ -223,7 +232,7 @@ class Azar extends React.Component {
               <div class="modal-general_bg_content">
                 <button
                   className="modal-general_close"
-                  onClick={() => this.setState({ showModal: 2 })}
+                  onClick={() => this.closeModalAzar()}
                 >
                   <img
                     className="button-zoom"

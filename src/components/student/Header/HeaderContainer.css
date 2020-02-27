@@ -145,7 +145,7 @@ li.alumnoHeader-li .ft:hover{
     padding: 0 10px;
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav .alumnoHeader-li:hover .alumnoHeader-a{
-    /* background: rgb(194, 194, 194); */
+    background: #ffffff;;
     color: red;
     transition: 0.5s;
 }
