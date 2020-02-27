@@ -4,11 +4,18 @@ export default class FormPostSiagie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedFile: null
+      selectedFile: null,
+      estudiantes: []
     };
   }
   componentDidMount(){
     console.log(this.props.students)
+    setTimeout(() => {
+      this.setState({
+        estudiantes: this.props.students
+      })
+    }, 2000);
+    console.log(this.state.estudiantes)
   }
   onChangeHandler = event => {
     this.setState({
@@ -16,11 +23,14 @@ export default class FormPostSiagie extends Component {
       loaded: 0
     });
     console.log(event.target.files[0])
+    
   };
   onClickHandler = () => {
     const data = new FormData();
+    console.log(JSON.stringify(this.state.estudiantes))
+    console.log(this.state.estudiantes[0])
     data.append("file", this.state.selectedFile);
-    data.append('students', this.props.students);
+    data.append('students', this.state.estudiantes[0]);
     data.append('name_course', this.props.name_course);
     axios
       .post(
@@ -31,6 +41,9 @@ export default class FormPostSiagie extends Component {
       .then(res => {
         // then print response status
         console.log(res.statusText);
+        console.log(res);
+        
+
       })
       .catch(err => {
         console.log(err)
