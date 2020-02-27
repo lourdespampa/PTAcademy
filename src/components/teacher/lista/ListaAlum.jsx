@@ -124,7 +124,6 @@ export default class ListaAlum extends Component {
     var varToken = localStorage.getItem("token");
     var id_teacher = localStorage.getItem("id_teacher");
     var id_course = localStorage.getItem("id_course");
-    var varToken = localStorage.getItem("token");
     console.log(this.props.school);
     if (this.props.school) {
       console.log("3. el profesor es de colegio y se lista al colegio");

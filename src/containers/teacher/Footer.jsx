@@ -40,6 +40,10 @@ class Footer extends Component {
       popup.id === "popupformulario"
     ) {
       socket.emit("closeForm");
+    } else if(
+      overlay.id === "overlayrouletteWinnerS"
+    ) {
+      socket.emit("closerouletteWinnerS")
     }
     overlay.classList.remove("active");
     popup.classList.remove("active");

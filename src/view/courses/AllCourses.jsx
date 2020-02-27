@@ -45,7 +45,7 @@ export default class AllCourses extends Component {
                 <i className="courseTeacher__img fas fa-trash"></i>
               </button>
               <div className={this.state.cursoConAlumnos ? "courseTeacher__containerButton-Edit" : "courseTeacher__containerButton-Edit courseTeacher__animationEdit"}>
-                <Link to={{ pathname: `/${this.props.idteacher}/course_detail/${this.props.id}`, state: this.props.competencias }} className="courseTeacher__button-Edit">
+                <Link onClick={() => {localStorage.setItem("name_course", (this.props.name_course))}} to={{ pathname: `/${this.props.idteacher}/course_detail/${this.props.id}`, state: this.props.competencias }} className="courseTeacher__button-Edit">
                   <i className="algodemargin courseTeacher__img fas fa-user-plus"></i>
                 </Link>
               </div>
@@ -64,7 +64,9 @@ export default class AllCourses extends Component {
               <p>{this.props.description}</p>
             </div>
             <Link
-              onClick={() => localStorage.setItem("competencias", JSON.stringify(this.props.competencias))}
+              onClick={() => {localStorage.setItem("competencias", JSON.stringify(this.props.competencias))
+              localStorage.setItem("name_course", (this.props.name_course))
+            }}
               to={`/${this.props.idteacher}/ClassTeacher/${this.props.id}`} className="courseTeacher__buttonEntry">
               <div className="button-zoom">VER CLASES</div>
             </Link>

@@ -156,7 +156,7 @@ export default class GrupoPage extends Component {
               <span>
                 Grupos formados por {this.state.nro_per_grupo} Alumnos{" "}
               </span>
-              <button className="button" onClick={this.limpiar}>
+              <button className="button" onClick={this.closeModallimpiar()}>
                 <label className="tex">LIMPIAR</label>
               </button>
             </>
