@@ -40,7 +40,7 @@ export default function HeaderContainer(props) {
   const [trivia, settrivia] = useState(false);
   const [temporizador, settemporizador] = useState(false);
   const [Exit, setExit] = useState(false);
-  const reinicio = () => settrivia(false) + settemporizador(false);
+  // const reinicio = () => settrivia(false) + settemporizador(false);
 
   const deleteStudent = async () => {
     // console.log(props.apiUrl, props.id_access, props.id_student);
@@ -132,7 +132,7 @@ export default function HeaderContainer(props) {
       <header className="alumnoH-header ">
         <div className="alumnoHeader-logo">
           <Link
-            onClick={reinicio}
+            onClick={handleNavbarResponsive}
             to={`/student/${props.id_student}/${props.id_access}`}
             style={{ textDecoration: "none" }}
           >
@@ -152,7 +152,7 @@ export default function HeaderContainer(props) {
         >
           <li className="alumnoHeader-li">
             <Link
-              onClick={reinicio}
+              onClick={handleNavbarResponsive}
               className="alumnoHeader-a"
               to={`/student/${props.id_student}/${props.id_access}/trivia`}
             >
@@ -162,7 +162,7 @@ export default function HeaderContainer(props) {
           </li>
           <li className="alumnoHeader-li">
             <Link
-              onClick={reinicio}
+              onClick={handleNavbarResponsive}
               className="alumnoHeader-a"
               to={`/student/${props.id_student}/${props.id_access}/temporizador`}
             >
