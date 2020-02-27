@@ -32,6 +32,7 @@ class Trivia extends React.Component {
       preguntaEnviada: false,
       alumnosRecibidos: [],
       modal: false,
+      modalQuestions: false,
       navbarResponsive: false,
       showpuntosmas: 0,
       showpuntosmenos: 0,
@@ -156,6 +157,14 @@ class Trivia extends React.Component {
       modal: !state.modal
     }));
     if (this.state.modal) {
+
+    }
+  }
+  showModalQ = () => {
+    this.setState(state => ({
+      modalQuestions: !state.modalQuestions
+    }));
+    if (this.state.modalQuestions) {
 
     }
   }
@@ -317,20 +326,23 @@ class Trivia extends React.Component {
   };
   onClickPointRemove = async valor => {
     const point = this.state.point - valor;
-    const data = { point : point };
+    const data = { point: point };
     var varToken = localStorage.getItem("token");
-      await axios({
-        url: this.props.apiUrl + "/v1/api/student/update_score/" + this.props._id,
-        data,
-        method: "put",
-        headers: {
-          "x-access-token": `${varToken}`
-        }
-      }); 
+    await axios({
+      url: this.props.apiUrl + "/v1/api/student/update_score/" + this.props._id,
+      data,
+      method: "put",
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    });
     this.getStudents();
     this.setState({ "showpuntosmenos": 2 });
   };
   setShow = (nom, val) => {
+    this.setState({ [nom]: val });
+  };
+  setShowQuestions = (nom, val) => {
     this.setState({ [nom]: val });
   };
   render() {
@@ -350,7 +362,7 @@ class Trivia extends React.Component {
                   Enviar
               </button>
               }
-              <button className="triviaT-preguntas">
+              <button className="triviaT-preguntas" onClick={this.showModalQ}>
                 Preguntas
               </button>
               <button className="triviaT-respuestas" onClick={this.showModal}>
@@ -410,7 +422,6 @@ class Trivia extends React.Component {
                       :
                       <h2>Aún no hay alumnos en el top.</h2>
                     }
-
                   </ul>
 
                 </div>
@@ -418,8 +429,21 @@ class Trivia extends React.Component {
               :
               null
           }
+          {
+            this.state.modalQuestions
+              ?
+              <div className="modal-respuestas">
+                <div className="modal-content-respuestas">
+                  <button className="modal-general_closeTrivia" onClick={this.showModalQ}>
+                    <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                  </button>
+                  <h2>Banco de preguntas</h2>
+                </div>
+              </div>
+              :
+              null
+          }
         </div>
-
         <div className="triviaT-cuerpo">
           <form>
             <div className="triviaT-row">
