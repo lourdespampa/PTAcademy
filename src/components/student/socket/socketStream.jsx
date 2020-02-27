@@ -234,6 +234,14 @@ export default class Audio extends Component {
             this.setState({showGrupo:1});
             }
         })
+        socket.on('closeModalGrupo',  (data) =>{
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
+            console.log(data.data.data)
+            document.getElementById("imprimir").innerHTML = data.data.data;
+            this.setState({showGrupo:1});
+            }
+        })
         //grupos END 
 
         //FORM
