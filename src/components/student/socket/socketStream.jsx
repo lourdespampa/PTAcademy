@@ -214,27 +214,13 @@ export default class Audio extends Component {
             if(data.pin === (pinTeacher).toUpperCase()) {
             console.log('escucha el alum')
             this.setState({show:1});
-            document.getElementById("modal_luckyStudent").innerHTML = data.data;}
+            document.getElementById("modal_luckyStudent").innerHTML = data.data;
             
-        })
-         socket.on('closeModalAzar',  (data) =>{
-            const pinTeacher = this.pin.toUpperCase();
-            if(data.pin === (pinTeacher).toUpperCase()) {
-                this.setState({show:2});
             }
         })
-
         //ROULETTE END 
         //grupos
         socket.on('enviando grupos',  (data) =>{
-            const pinTeacher = this.pin.toUpperCase();
-            if(data.pin === (pinTeacher).toUpperCase()) {
-            console.log(data.data.data)
-            document.getElementById("imprimir").innerHTML = data.data.data;
-            this.setState({showGrupo:1});
-            }
-        })
-        socket.on('closeModalGrupo',  (data) =>{
             const pinTeacher = this.pin.toUpperCase();
             if(data.pin === (pinTeacher).toUpperCase()) {
             console.log(data.data.data)
@@ -252,7 +238,7 @@ export default class Audio extends Component {
             const popup = document.getElementById('popupformulario')
 
             overlay_popup.className = 'overlay active'
-            popup.className = 'popup active scale'}
+            popup.className = 'popup active '}
         })
         socket.on('closeForm', (data) => {
             const pinTeacher = this.pin.toUpperCase();
@@ -286,7 +272,7 @@ componentWillUnmount() {
                             <div className="modal-general_container_header">
                             <h4 className="title"><strong>GRUPOS ELEGIDOS SON</strong></h4>
                             </div>
-                            <div id="modal_GrupoStudent" style={{maxHeight: '350px', height:"350px", overflow: 'auto'}}>
+                            <div id="modal_GrupoStudent" style={{maxHeight: '350px',height:'350px',overflow: 'auto'}}>
                                 <ul className="grupos-cards" id="imprimir"></ul>
                             </div>
                         </div>
