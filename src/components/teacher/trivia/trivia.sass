@@ -93,6 +93,19 @@
   box-shadow: inset 0 -4px rgba(0, 0, 0, 0.25)
   outline: none !important
 
+.triviaT-preguntas
+  width: 130px
+  background: #FB9600
+  color: #fff
+  text-decoration: none
+  font-weight: bold
+  font-size: 16px
+  border: none
+  padding: 10px 27px
+  margin: 7px 10px 10px 10px
+  border-radius: 5px
+  box-shadow: inset 0 -4px rgba(0, 0, 0, 0.25)
+  outline: none !important
 
 .triviaT-respuestas
   width: 130px
@@ -121,6 +134,11 @@
 .triviaT-restaurar:hover
   background: rgb(197, 20, 4)
   box-shadow: inset 0 -1px rgba(0, 0, 0, 0.25)
+
+.triviaT-preguntas:hover 
+  background: #da8301
+  box-shadow: inset 0 -1px rgba(0, 0, 0, .25)
+  outline:none
 
 .modal-general_closeTrivia
   position: static
@@ -360,3 +378,22 @@ h3.trivia-respuestas
     width: 100%
     float: none
     text-align: center
+@media only screen and (min-height: 750px) 
+    /* For desktop: */
+    .triviaT-col-6 
+      width: 100%
+    .triviaT-image-container 
+      height: 88px
+    .triviaT-imgSalida 
+      height: 77px
+      margin-top: -10px
+    .triviaT-cuerpo 
+      padding: 76px 0 0 0
+    .triviaT-input-respuestas
+      width: 95%
+@media only screen and (max-width: 700px) 
+    /* For desktop: */
+    .triviaT-col-6 
+      width: 50%
+    .triviaT-imgSalida
+      display: initial
