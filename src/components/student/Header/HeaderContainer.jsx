@@ -8,7 +8,7 @@ import io from "socket.io-client";
 const WindowFocusHandler = props => {
   // User has switched back to the tab
   const onFocus = () => {
-    // console.log("Tab is in focus");
+    console.log("Tab is in focus");
   };
   // User has switched away from the tab (AKA tab is hidden)
   const onBlur = () => {
@@ -36,7 +36,7 @@ const WindowFocusHandler = props => {
 };
 export default function HeaderContainer(props) {
   const [showResponsive, setShowResponsive] = useState(false);
-  // const [redirect,setredirect]=useState(false); //no se esta usando
+  const [redirect,setredirect]=useState(false); //no se esta usando
   const [trivia, settrivia] = useState(false);
   const [temporizador, settemporizador] = useState(false);
   const [Exit, setExit] = useState(false);
