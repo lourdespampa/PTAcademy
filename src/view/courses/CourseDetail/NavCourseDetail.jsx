@@ -381,14 +381,6 @@ export default class NavCourse extends Component {
                 <li className="teacherCourses__main-menu__item">
                   <BotonCerrarSesion cerrarSesion={this.cerrarSesion} />
                 </li>
-                <li className="teacherCourses__main-menu__item">
-                  <div
-                    className="teacherCourses__main-menu__LogOut"
-                    onClick={this.getExcel}
-                  >
-                    descargarExcel
-                  </div>
-                </li>
               </ul>
             </nav>
           </div>

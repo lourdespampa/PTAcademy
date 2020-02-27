@@ -23,7 +23,7 @@ export default class FormPostSiagie extends Component {
       loaded: 0
     });
     console.log(event.target.files[0])
-    
+
   };
   onClickHandler = () => {
     const data = new FormData();
@@ -49,6 +49,12 @@ export default class FormPostSiagie extends Component {
         console.log(err)
       })
   };
+  onclickStudents = () => {
+    // console.log(this.props.students)
+    // this.props.students.map(alumno{
+    //   console.log('asdasd')
+    // })
+  }
   render() {
     return (
       <>
@@ -59,6 +65,9 @@ export default class FormPostSiagie extends Component {
           onClick={this.onClickHandler}
         >
           Upload
+        </button>
+        <button onClick={this.onclickStudents}>
+          dd
         </button>
       </>
     );
