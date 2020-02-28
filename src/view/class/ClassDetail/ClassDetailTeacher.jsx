@@ -175,6 +175,18 @@ export default class ClassDetailTeacher extends Component {
                       <div className="button-zoom">AGREGAR PREGUNTA</div>
                     </button>
                   </div>
+                  <div className="triviaQuestionsBody">
+                    <ul className="QuestionsListClass">
+                      <li className="QuestionsClass">¿Esta es una pregunta?
+                        <button className="classTrivia__button-Edit">
+                          <i className="courseTeacher__img fas fa-edit"></i>
+                        </button>
+                        <button className="classTrivia__button-delette" >
+                          <i className="courseTeacher__img fas fa-trash"></i>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </li>
