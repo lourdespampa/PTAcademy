@@ -5,11 +5,27 @@ import NavClass from "./NavClass";
 import Upload from "../../classAndCourse/upload/Upload"
 import './ClassDetail.sass'
 export default class ClassDetailTeacher extends Component {
-  state = {
+  constructor (props){
+  super(props)
+  this.state = {
     id_class: '',
     fileActual: '',
     newQuestionModal: 0,
+    pregunta: '',
+    respuestauno: '',
+    respuestados: '',
+    respuestatres: '',
+    respuestacuatro: '',
+    respuestacorrecta: 'rojo',
+    
   }
+    
+    this.changeQuestion = this.changeQuestion.bind(this);
+    this.changeAnswer1 = this.changeAnswer1.bind(this);
+    this.changeAnswer2 = this.changeAnswer2.bind(this);
+    this.changeAnswer3 = this.changeAnswer3.bind(this);
+    this.changeAnswer4 = this.changeAnswer4.bind(this);
+    this.handleCorrectAnswer = this.handleCorrectAnswer.bind(this);}
   componentDidMount() {
     var varToken = localStorage.getItem("token");
     const {
@@ -36,6 +52,57 @@ export default class ClassDetailTeacher extends Component {
   setClose = () => {
     this.setState({ newQuestionModal: 2 });
   };
+  bancoPreguntas = () =>{
+    var varToken = localStorage.getItem("token");
+    var clase = this.state.id_class;
+    var data = {
+    question: this.state.pregunta,
+    answer1: this.state.respuestauno,
+    answer2: this.state.respuestados,
+    answer3: this.state.respuestatres,
+    answer4: this.state.respuestacuatro,
+    correctAnswer: this.state.respuestacorrecta,
+    }
+    axios({
+      url: `http://192.168.1.66:4200/v1/api/question/new_question/${clase}`,
+      method: "POST",
+      data: data,
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    })
+
+  }
+  changeQuestion = e => {
+    this.setState({
+      pregunta: e.target.value
+    })
+  }
+  changeAnswer1 = e => {
+    this.setState({
+      respuestauno: e.target.value
+    })
+  }
+  changeAnswer2 = e => {
+    this.setState({
+      respuestados: e.target.value
+    })
+  }
+  changeAnswer3 = e => {
+    this.setState({
+      respuestatres: e.target.value
+    })
+  }
+  changeAnswer4 = e => {
+    this.setState({
+      respuestacuatro: e.target.value
+    })
+  }
+  handleCorrectAnswer = e => {
+    this.setState({
+      respuestacorrecta: e.target.value
+    });
+  }
   render() {
     return (
       <>
@@ -102,7 +169,7 @@ export default class ClassDetailTeacher extends Component {
                             <div className="triviaT-contenedor-respuesta custom-radios">
                               <input type="text" id="res1" className="triviaT-input-respuestas" value={this.state.respuestaOne} onChange={this.changeAnswer1} autoComplete="off" />
                               <input type="radio" id="color-1" name="color" value="rojo"
-                                checked={this.state.selectedCorrectAnswer === 'rojo'}
+                                // checked={this.state.selectedCorrectAnswer === 'rojo'}
                                 onChange={this.handleCorrectAnswer}
                               />
                               <label htmlFor="color-1">
@@ -114,9 +181,9 @@ export default class ClassDetailTeacher extends Component {
                             <label className="triviaRepuestas">Respuesta 2</label>
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
-                              <input type="text" id="res3" className="triviaT-input-respuestas" value={this.state.respuestaTree} onChange={this.changeAnswer3} autoComplete="off" />
+                              <input type="text" id="res3" className="triviaT-input-respuestas" value={this.state.respuestaTree} onChange={this.changeAnswer2} autoComplete="off" />
                               <input type="radio" id="color-2" name="color" value="naranja"
-                                checked={this.state.selectedCorrectAnswer === 'naranja'}
+                                // checked={this.state.selectedCorrectAnswer === 'naranja'}
                                 onChange={this.handleCorrectAnswer}
                               />
                               <label htmlFor="color-2">
@@ -128,9 +195,9 @@ export default class ClassDetailTeacher extends Component {
                             <label className="triviaRepuestas">Respuesta 3</label>
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
-                              <input type="text" id="res2" className="triviaT-input-respuestas" value={this.state.respuestaTwo} onChange={this.changeAnswer2} autoComplete="off" />
+                              <input type="text" id="res2" className="triviaT-input-respuestas" value={this.state.respuestaTwo} onChange={this.changeAnswer3} autoComplete="off" />
                               <input type="radio" id="color-3" name="color" value="azul"
-                                checked={this.state.selectedCorrectAnswer === 'azul'}
+                                // checked={this.state.selectedCorrectAnswer === 'azul'}
                                 onChange={this.handleCorrectAnswer}
                               />
                               <label htmlFor="color-3">
@@ -144,7 +211,7 @@ export default class ClassDetailTeacher extends Component {
                             <div className="triviaT-contenedor-respuesta custom-radios">
                               <input type="text" id="res4" className="triviaT-input-respuestas" value={this.state.respuestaFour} onChange={this.changeAnswer4} autoComplete="off" />
                               <input type="radio" id="color-4" name="color" value="verde"
-                                checked={this.state.selectedCorrectAnswer === 'verde'}
+                                // checked={this.state.selectedCorrectAnswer === 'verde'}
                                 onChange={this.handleCorrectAnswer}
                               />
                               <label htmlFor="color-4">
@@ -154,7 +221,7 @@ export default class ClassDetailTeacher extends Component {
                               </label>
                             </div>
                             <div className="footerTriviaClass">
-                              <button className="modal-body__button yes">
+                              <button className="modal-body__button yes" onClick={this.bancoPreguntas}>
                                 <div className="button-zoom">AGREGAR</div>
                               </button>
                             </div>
@@ -170,6 +237,7 @@ export default class ClassDetailTeacher extends Component {
                       </div>
                     </div>
                   </div>
+                  <div className="Item-card__text">
                   <div className="footerTriviaClass">
                     <button className="modal-body__button backCursos" onClick={this.setShow}>
                       <div className="button-zoom">AGREGAR PREGUNTA</div>
@@ -178,18 +246,20 @@ export default class ClassDetailTeacher extends Component {
                   <div className="triviaQuestionsBody">
                     <ul className="QuestionsListClass">
                       <li className="QuestionsClass">¿Esta es una pregunta?
-                        <button className="classTrivia__button-Edit">
-                          <i className="courseTeacher__img fas fa-edit"></i>
-                        </button>
                         <button className="classTrivia__button-delette" >
                           <i className="courseTeacher__img fas fa-trash"></i>
+                        </button>
+                        <button className="classTrivia__button-Edit">
+                          <i className="courseTeacher__img fas fa-edit"></i>
                         </button>
                       </li>
                     </ul>
                   </div>
+                  </div>
                 </div>
               </div>
             </li>
+
           </ul>
         </div>
       </>

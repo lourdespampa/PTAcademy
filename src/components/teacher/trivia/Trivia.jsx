@@ -37,7 +37,6 @@ class Trivia extends React.Component {
       showpuntosmas: 0,
       showpuntosmenos: 0,
       point: "",
-      // _id: "",
       datapoint: {
         positivo: [
           {
