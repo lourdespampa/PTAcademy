@@ -4,12 +4,10 @@ import ModalAgregar from "../../classAndCourse/ModalAgregar";
 import iconExit from "../../../img/cerrar1.png";
 import iconBack from "../../../img/back_button.svg";
 import FormPostSiagie from "../../classAndCourse/FormPostSiagie";
-import axios from "axios";
 function Siagie(props) {
   const [show, setShow] = useState(0);
   const handleClose = () => setShow(2);
   const handleShow = () => setShow(1);
-  console.log(props.students)
   return (
     <>
       <div
@@ -39,7 +37,7 @@ function Siagie(props) {
                 apiUrl={props.apiUrl}
                 idteacher={props.idteacher}
                 idcourse={props.idcourse}
-                name_course = {props.name_course}
+                name_course={props.name_course}
               ></FormPostSiagie>
             </div>
             <svg
@@ -55,55 +53,6 @@ function Siagie(props) {
     </>
   );
 }
-// function BotonAgregar(props) {
-//   const [show, setShow] = useState(0);
-//   const handleClose = () => setShow(2);
-//   const handleShow = () => setShow(1);
-//   const AgregarClick = () => setShow(false) + props.getdata();
-//   return (
-//     <>
-//       <div
-//         className="teacherCourses__main-menu__addCourse"
-//         onClick={handleShow}
-//       >
-//         Agregar Alumno
-//       </div>
-//       <div
-//         id="modal-general_container"
-//         className={
-//           show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""
-//         }
-//       >
-//         <div className="modal-general_background">
-//           <div className="modal-general_bg_content">
-//             <button className="modal-general_close" onClick={handleClose}>
-//               <img
-//                 className="button-zoom"
-//                 src={iconExit}
-//                 alt="imagen de cerrar modal"
-//               />
-//             </button>
-//             <div className="modal-general_container">
-//               <FormAddStudent
-//                 handleClose={AgregarClick}
-//                 apiUrl={props.apiUrl}
-//                 idcourse={props.idcourse}
-//                 idteacher={props.idteacher}
-//               />
-//             </div>
-//             <svg
-//               className="modal-general_svg"
-//               xmlns="http://www.w3.org/2000/svg"
-//               preserveAspectRatio="none"
-//             >
-//               <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
-//             </svg>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
 function BotonCerrarSesion(props) {
   const [show, setShow] = useState(0);
   const handleClose = () => setShow(2);
@@ -279,38 +228,10 @@ export default class NavCourse extends Component {
       };
     });
   }
-  getExcel = () => {
-    var varToken = localStorage.getItem("token");
-    axios({
-      url: `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/upload_excel/${this.props.idcourse}`,
-      method: "GET",
-      responseType: "blob",
-      headers: {
-        "x-access-token": `${varToken}`
-      }
-    })
-      .then(({ data }) => {
-        const downloadUrl = window.URL.createObjectURL(new Blob([data]));
-
-        const link = document.createElement("a");
-
-        link.href = downloadUrl;
-
-        link.setAttribute("download", "file.xlsx"); //any other extension
-
-        document.body.appendChild(link);
-
-        link.click();
-
-        link.remove();
-      })
-      .catch(e => console.log(e));
-  };
-
   render() {
     return (
       <>
-        {this.state.token ? null : <Redirect to="/notfound"></Redirect>}
+        {this.state.token ? null : <Redirect to="/"></Redirect>}
         {this.props.editarTodos ? (
           <div
             className="teacherCourses__floatingActionButton teacherCourses_editStudent"
@@ -358,7 +279,7 @@ export default class NavCourse extends Component {
                     idteacher={this.props.idteacher}
                     idcourse={this.props.idcourse}
                     students={this.props.students}
-                    name_course= {this.props.name_course}
+                    name_course={this.props.name_course}
                   ></Siagie>
                 </li>
                 <li className="teacherCourses__main-menu__item">
@@ -369,13 +290,6 @@ export default class NavCourse extends Component {
                     agregarX={"Alumno"}
                     getdata={this.props.getdata}
                   ></ModalAgregar>
-                  {/* <BotonAgregar
-                    apiUrl={this.props.apiUrl}
-                    idteacher={this.props.idteacher}
-                    idcourse={this.props.idcourse}
-                    agregarX={this.props.agregarX}
-                    getdata={this.props.getdata}
-                  ></BotonAgregar> */}
                 </li>
                 <li className="teacherCourses__main-menu__item">
                   <BotonCerrarSesion cerrarSesion={this.cerrarSesion} />
