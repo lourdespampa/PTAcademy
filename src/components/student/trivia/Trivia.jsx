@@ -213,7 +213,7 @@ export default class Trivia extends React.Component {
                               { pin: this.props.id_access }
                           })
                           clearInterval(this.interval2);
-                          await this.setState({ preguntaElegida: 'azul', eligio: true })
+                          await this.setState({preguntaElegida: 'azul', eligio: true })
                           if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
                             socket.emit('enviando elegida', { alumno: this.props.fullname, puntaje: this.state.puntaje })
                           }

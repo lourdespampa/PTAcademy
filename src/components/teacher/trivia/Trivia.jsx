@@ -37,7 +37,6 @@ class Trivia extends React.Component {
       showpuntosmas: 0,
       showpuntosmenos: 0,
       point: "",
-      // _id: "",
       datapoint: {
         positivo: [
           {
@@ -467,7 +466,6 @@ class Trivia extends React.Component {
                 </div>
               </div>
             </div>
-
             <div className="triviaT-row">
               <div className="triviaT-col-6">
                 <label htmlFor="res1">Respuesta 1</label>
