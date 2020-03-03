@@ -1,137 +1,51 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import Sketch from 'react-p5';
+// import './styles.css';
 
-export default class ReactPaint extends Component {
-  // static propTypes = {
-  //   className: PropTypes.string,
-  //   style: PropTypes.object.isRequired,
-  //   height: PropTypes.number,
-  //   width: PropTypes.number,
-  //   brushCol: PropTypes.string,
-  //   lineWidth: PropTypes.number,
-  //   onDraw: PropTypes.func,
-  // };
-  // static defaultProps = {
-  //   className: 'react-paint',
-  //   style: {},
-  //   height: 500,
-  //   width: 500,
-  //   brushCol: '#ff6347',
-  //   lineWidth: 10,
-  //   onDraw: () => {},
-  // };
-
-  constructor(...props) {
-    super(...props);
-    this.state = {
-      mouseDown: false,
-      mouseLoc: [0, 0],
-      context:false,
-      bb:false  
-      };
-  }
-
-  componentDidMount() {
-    const { brushCol, lineWidth } = this.props;
-    var canvas=document.getElementById('canvasid')
-    var context = canvas.getContext('2d');
-    
-    context.lineWidth = lineWidth;
-    context.strokeStyle = brushCol;
-    context.lineJoin = context.lineCap = 'round';
-
-    var bb = document.getElementById('canvasid').getBoundingClientRect();
-    this.setState({
-      context:context,
-      bb:bb
-    })
-  }
-
-  componentWillUpdate(nextProps) {
-    const { brushCol, lineWidth } = this.props;
-
-    if (
-      brushCol !== nextProps.brushCol ||
-      lineWidth !== nextProps.lineWidth
-    ) {
-      this.state.context.lineWidth = nextProps.lineWidth;
-      this.state.context.strokeStyle = nextProps.brushCol;
-    }
-  }
-
-  mouseDown = e => {
-    if (!this.state.mouseDown) this.setState({ mouseDown: true });
-
-    this.setState({
-      mouseLoc: [e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY],
-    });
-
-    this.state.context.moveTo(
-      (e.pageX || e.touches[0].pageX) - this.bb.left,
-      (e.pageY || e.touches[0].pageY) - this.bb.top
-    );
-  }
-
-  mouseUp = () => (this.setState({ mouseDown: false }));
-
-  mouseMove = e => {
-    if (this.state.mouseDown) {
-      // prevent IOS scroll when drawing
-      if (e.touches) e.preventDefault();
-
-      if (
-        (e.pageX || e.touches[0].pageX) > 0 &&
-        (e.pageY || e.touches[0].pageY) < this.props.height
-      ) {
-        this.state.context.lineTo(
-          ((e.pageX || e.touches[0].pageX) - this.bb.left),
-          ((e.pageY || e.touches[0].pageY) - this.bb.top)
-        );
-
-        this.state.context.stroke();
-      }
-    }
-  }
-
-  render() {
-    const {
-      width,
-      height,
-      onDraw,
-      style,
-      className,
-    } = this.props;
-
-    return (
-      <div className={className}>
-        <canvas id="canvasid"
-          ref={c => (this.canvas = c)}
-          className={`${className}__canvas`}
-
-          width={width}
-          height={height}
-
-          onClick={onDraw}
-
-          style={
-            Object.assign({}, style, {
-              width: 500,
-              height: 500,
-            })
-          }
-
-          onMouseDown={this.mouseDown}
-          onTouchStart={this.mouseDown}
-
-          onMouseUp={this.mouseUp}
-          onTouchEnd={this.mouseUp}
-
-          onMouseMove={this.mouseMove}
-          onTouchMove={this.mouseMove}
-        />
-      </div>
-    );
-  }
+export default class board extends React.Component {
+ state={
+   x:'',
+   y:'',
+   x1:'',
+   y1:'',
+   color:'black',
+   size:10
+ }
+ mousePressed(e){
+  this.setState({
+    x:e.pmouseX,y:e.pmouseY,x1:e.pmouseX,y1:e.pmouseY
+  })
+ }
+ mouseDragged(e){
+  console.log('tocuchStart x', e.pmouseX)
+  console.log('tocuchStart y', e.pmouseY)
+  this.setState({
+    x1:e.pmouseX,y1:e.pmouseY
+  })
 }
-
-
-export { ReactPaint };
+draw(p5){
+  p5.stroke(this.state.color);
+  p5.strokeWeight (this.state.size)
+  p5.line(this.state.x, this.state.y, this.state.x1, this.state.y1);
+  this.setState({
+    x:this.state.x1,y:this.state.y1
+  })
+}
+	render() {
+		return (
+			<div >
+				<Sketch
+          style={{background:'gray',width:'1000px',height:'500px'}}
+					onclick
+					setup={(p5, parentRef) => {
+						p5.createCanvas(1000, 500).parent(parentRef);
+					}}
+					draw={p5 =>this.draw(p5)}
+          mouseDragged={e=>this.mouseDragged(e)}
+          mousePressed={e=>this.mousePressed(e)}
+          touchStarted={e=>this.mousePressed(e)}
+				/>
+			</div>
+		);
+	}
+}

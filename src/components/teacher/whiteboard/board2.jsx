@@ -14,11 +14,9 @@ export default function board2() {
   width: 500,
   onDraw: () => { console.log('i have drawn!'); },
 };
-
-const App = () => <ReactPaint {...props} />;
     return (
         <div>
-            <App></App>
+            <ReactPaint {...props} />
         </div>
     )
 }
