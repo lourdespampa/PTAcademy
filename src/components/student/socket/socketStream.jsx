@@ -2,7 +2,9 @@ import React, { Component} from 'react';
 // import {Link,Redirect}  from 'react-router-dom';
 import io from 'socket.io-client';
 import axios from "axios";
-import { Modal } from "react-bootstrap";
+import iconExit from "../../../img/cerrar1.png";
+// import { Modal } from "react-bootstrap"; no se esta usando
+import './socketStream.sass'
 import { Carousel } from "react-responsive-carousel";
 const { AudioStreamer } = require('sfmediastream');
 let styles = {
@@ -12,8 +14,14 @@ let styles = {
   };
 
 export default class Audio extends Component {
+     /** 
+   * Fix notificatión 
+   *  :: valor inicial de PIN al cargar component
+   * */ 
+  pin = ''
+  /******************* */
     state={
-        show:false,
+        show:0,
         showGrupo:false,
         iframeon:false,
         Slides:[],
@@ -34,7 +42,7 @@ export default class Audio extends Component {
         const overlay_popup = document.getElementById('overlay2')
         const popup = document.getElementById('popupvideo')
         overlay_popup.className = 'overlay'
-        popup.className = 'popup'
+        popup.className = 'popup '
         document.getElementById('video-frameStu').src = ""
     }
     DisablePopup2() {
@@ -66,9 +74,18 @@ export default class Audio extends Component {
         // document.getElementById("diminute").src = enlace;
     }
     componentDidMount() {
-        const socket = io(this.props.socketUrl, {
+        const { 
+            id_access, 
+            socketUrl 
+          } = this.props
+
+          this.pin = id_access
+          console.log('valor de pin cuando inicia componente: ' + this.pin)
+
+
+        const socket = io(socketUrl, {
             query:
-                { pin: this.props.id_access }
+                { pin: this.pin }
           })
       let varToken = localStorage.getItem('token')
         //SLIDES
@@ -100,21 +117,23 @@ export default class Audio extends Component {
                   console.log(err)
           })
         })
-        
         socket.on('sendSlidesS', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             const overlayDiapo = document.getElementById('overlay')
             const popupDiapo = document.getElementById('popup')
             this.openPopup(overlayDiapo.id, popupDiapo.id)}
         })
         socket.on('closeSlidesS', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             const overlayDiapo = document.getElementById('overlay')
             const popupDiapo = document.getElementById('popup')
             this.closePopup(overlayDiapo.id, popupDiapo.id)}
         })
         socket.on('PositionPpt', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
                 this.setState({
                     positionPpt:data.position
                 })
@@ -130,11 +149,13 @@ export default class Audio extends Component {
         //VIDEO
 
         socket.on('Video', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             this.enviarvideo(data.url)}
         })
         socket.on('closeVideo', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             this.DisablePopup()
             }
         })
@@ -155,7 +176,8 @@ export default class Audio extends Component {
 
                 // Buffer header must be received first
                 socket.on('bufferHeader',  (packet) =>{
-                    if(packet.pin === (this.props.id_access).toUpperCase()) {
+                    const pinTeacher = this.pin.toUpperCase();
+                    if(packet.pin === (pinTeacher).toUpperCase()) {
                     // if (packet.pin === ('<%= pin %>').toUpperCase()) {
                     console.log('ejecutando buffer');
                     audioStreamer.setBufferHeader(packet.audio);
@@ -165,7 +187,8 @@ export default class Audio extends Component {
 
                 // Receive buffer and play it
                 socket.on('stream', (packet) =>{
-                    if(packet.pin === (this.props.id_access).toUpperCase()) {
+                    const pinTeacher = this.pin.toUpperCase();
+                    if(packet.pin === (pinTeacher).toUpperCase()) {
                     //    console.log("3");
                     //if (packet.pin === ('<%= pin %>').toUpperCase()) {
                     //   debug.value = "Buffer received: " + packet.audio[0].byteLength + "bytes";
@@ -181,14 +204,16 @@ export default class Audio extends Component {
 
         })
         socket.on('onPlay',  (data)=> {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             btn_play.click()}
         })
         //ROULETTE
         socket.on('rouletteWinnerS',  (data) =>{
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             console.log('escucha el alum')
-            this.setState({show:true});
+            this.setState({show:1});
             document.getElementById("modal_luckyStudent").innerHTML = data.data;
             
             }
@@ -196,31 +221,40 @@ export default class Audio extends Component {
         //ROULETTE END 
         //grupos
         socket.on('enviando grupos',  (data) =>{
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             console.log(data.data.data)
-            this.setState({showGrupo:true});
             document.getElementById("imprimir").innerHTML = data.data.data;
-            
+            this.setState({showGrupo:1});
             }
         })
         //grupos END 
 
         //FORM
         socket.on('SendFormS', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
             const overlay_popup = document.getElementById('overlayinframe')
             const popup = document.getElementById('popupformulario')
 
             overlay_popup.className = 'overlay active'
-            popup.className = 'popup active'}
+            popup.className = 'popup active '}
         })
         socket.on('closeForm', (data) => {
-            if(data.pin === (this.props.id_access).toUpperCase()) {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
                 this.DisablePopup2()
             }
         })
     }
+/** Fix pin */
+componentWillUnmount() {
+    // valor despues de salir del component
+    this.pin = ''
 
+    console.log('componente desmontado')
+  }
+  /****************** */
    
 
     render() {
@@ -228,7 +262,28 @@ export default class Audio extends Component {
         <>
             <button id="btn_play"></button>
             {/* grupos */}
-            <Modal className="modal-teacher__general" size={'xl'} show={this.state.showGrupo} onHide={()=>this.setState({showGrupo:false})}>
+            <div id="modal-general_container" className={this.state.showGrupo === 0 ? "" : this.state.showGrupo === 1 ? "six" : this.state.showGrupo === 2 ? "six out" : ""}>
+                <div className="modal-general_background" >
+                    <div className="modal-general_bg_content" >
+                        <button className="modal-general_close" onClick={()=>this.setState({showGrupo:0})}>
+                            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                        </button>
+                        <div className="modal-general_container">
+                            <div className="modal-general_container_header">
+                            <h4 className="title"><strong>GRUPOS ELEGIDOS SON</strong></h4>
+                            </div>
+                            <div id="modal_GrupoStudent" style={{maxHeight: '350px',height:'350px',overflow: 'auto'}}>
+                                <ul className="grupos-cards" id="imprimir"></ul>
+                            </div>
+                        </div>
+                        <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            {/* <Modal className="modal-teacher__general" size={'xl'} show={this.state.showGrupo} onHide={()=>this.setState({showGrupo:false})}>
             <Modal.Header closeButton>
                 <span className="title">GRUPOS ELEGIDOS SON:</span>
             </Modal.Header>
@@ -237,19 +292,46 @@ export default class Audio extends Component {
                     <ul className="grupos-cards" id="imprimir"></ul>
                 </div>
             </Modal.Body>
-          </Modal>
+          </Modal> */}
 
           {/* Azar */}
-            <Modal size={'lg'} show={this.state.show} onHide={()=>this.setState({show:false})}>
-            <Modal.Header closeButton>
+            {/* <Modal size={'lg'} show={this.state.show} 
+                <button className="modal-general_close" onClick={()=>this.setState({show:false})}>
+                    <img className="button-zoom tamaño" src={iconExit} alt="imagen de cerrar modal" />
+                </button>
+            <Modal.Header>
                 <h4 className="title"><strong>The lucky student is :</strong></h4>
             </Modal.Header>
             <Modal.Body>
-                <div id="modal_luckyStudent" className="modal-body" style={{ fontSize: "60px" }}>
-                            
-                </div>
+                <div id="modal_luckyStudent" className="modal-body" style={{ fontSize: "60px" }}></div>
             </Modal.Body>
           </Modal>
+          <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+            </svg> */}
+            <div id="modal-general_container" className={this.state.show === 0 ? "" : this.state.show === 1 ? "six" : this.state.show === 2 ? "six out" : ""}>
+                <div className="modal-general_background" >
+                    <div className="modal-general_bg_content" >
+                        <button className="modal-general_close" onClick={()=>this.setState({show:0})}>
+                            <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                        </button>
+                        <div className="modal-general_container">
+                            <div className="modal-general_container_header">
+                            <h4 className="title"><strong>El estudiante afortunado(a) es:</strong></h4>
+                            </div>
+                            <div className="modal-general_container_body">
+                            <div id="modal_luckyStudent" className="modal-body texto" style={{ fontSize: "45px" }}></div>
+                            </div>
+                        </div>
+                        <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+
+
 
             {/*VIDEO*/}
             <div className="overlay" id="overlay2">
@@ -261,9 +343,12 @@ export default class Audio extends Component {
             </div>
             {/*VIDEO FIN*/}
             <div className="overlay" id="overlayinframe">
+                <button className="modal-general_close" onClick={()=>this.setState({show:0})}>
+                    <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                </button>
                 <div className="popup" id="popupformulario">
                     <div className="punto-posi">
-                        <h1>Formulario</h1>
+                        <h1 className="t">Formulario</h1>
                     </div>
                     <br />
                     {/* <a href id="btnCerrarFormu" className="btn-cerrar-popup"><i className="material-icons" onClick={() => this.DisablePopup2()}>close</i></a> */}
@@ -285,15 +370,18 @@ export default class Audio extends Component {
                     </>
                         :
                     <div style={styles}> 
-                      <Carousel selectedItem={this.state.positionPpt-1} showArrows={false} useKeyboardArrows={true} swipeable={true} emulateTouch={true} showIndicators={false} showThumbs={false} >
+                      <Carousel selectedItem={this.state.positionPpt-1} showArrows={false} useKeyboardArrows={false} swipeable={false} emulateTouch={false} showIndicators={false} showThumbs={false} >
                           {
                               this.state.Slides.map((slide)=>(
-                                  <div key={slide.index}>
-                                  <img
-                                    src={slide.url}
-                                    alt="Hong Kong"
-                                  />
-                                </div>          
+                                <div className="imagenes" key={slide.index}>
+                                <div style={{width:"5%",float:'left'}}></div>
+                              <img className="imagenes-indiviuales"
+                              style={{width:"90%",float:'left',marginLeft:'calc(50% - 45%)'}}
+                                src={slide.url}
+                                alt="Hong Kong"
+                              />
+                               <div style={{width:"5%",float:'left'}}></div> 
+                            </div>               
                               ))
                           }
                       </Carousel>

@@ -47,7 +47,7 @@
   Blockly.Msg["CONTROLS_FOREACH_TITLE"] = "para cada elemento %1 en la lista %2";
   Blockly.Msg["CONTROLS_FOREACH_TOOLTIP"] = "Para cada elemento en una lista, establecer la variable '%1' al elemento y luego hacer algunas declaraciones.";
   Blockly.Msg["CONTROLS_FOR_HELPURL"] = "https://github.com/google/blockly/wiki/Loops#count-with";  // untranslated
-  Blockly.Msg["CONTROLS_FOR_TITLE"] = "contar con %1 desde %2 hasta %3 de a %4";
+  Blockly.Msg["CONTROLS_FOR_TITLE"] = "contar con %1 desde %2 hasta %3";
   Blockly.Msg["CONTROLS_FOR_TOOLTIP"] = "Hacer que la variable \"%1\" tome los valores desde el número de inicio hasta el número final, contando con el intervalo especificado, y hacer los bloques especificados.";
   Blockly.Msg["CONTROLS_IF_ELSEIF_TOOLTIP"] = "Agregar una condición a este bloque.";
   Blockly.Msg["CONTROLS_IF_ELSE_TOOLTIP"] = "Agregar una condición general final a este bloque.";
@@ -432,6 +432,11 @@
   Blockly.Msg["PROCEDURES_DEFRETURN_TITLE"] = Blockly.Msg["PROCEDURES_DEFNORETURN_TITLE"];
   Blockly.Msg["TEXT_APPEND_VARIABLE"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
   Blockly.Msg["TEXT_CREATE_JOIN_ITEM_TITLE_ITEM"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
+
+  Blockly.Msg["Logic"] = "Logica";
+  Blockly.Msg["CONTROLS_WHILE"] = "mientras %1";
+  Blockly.Msg["CONTROLS_WHILE_DO"] = "hacer que ";
+  Blockly.Msg["ROMPER"] = "true";
 
   Blockly.Msg["MATH_HUE"] = "230";
   Blockly.Msg["LOOPS_HUE"] = "120";

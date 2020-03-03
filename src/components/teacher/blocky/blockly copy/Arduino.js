@@ -8,6 +8,8 @@
 /*-----loop()
 	return""
 */
+/* eslint-disable */
+;
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) { // AMD
     define(['./core'], factory);
@@ -71,10 +73,15 @@
   ];
   Blockly.Arduino.init = function (a) {
     Blockly.Arduino.definitions_ = Object.create(null);
-    Blockly.Arduino.setups_ = Object.create(null);
+    Blockly.Arduino.functionNames_ = Object.create(null);
     Blockly.Arduino.variableDB_ ? Blockly.Arduino.variableDB_.reset() : Blockly.Arduino.variableDB_ = new Blockly.Names(Blockly.Arduino.RESERVED_WORDS_);
-
+    Blockly.Arduino.variableDB_.setVariableMap(a.getVariableMap());
+    for (var b = [], c = Blockly.Variables.allDeveloperVariables(a), d = 0; d < c.length; d++) b.push(Blockly.Arduino.variableDB_.getName(c[d], Blockly.Names.DEVELOPER_VARIABLE_TYPE));
+    a = Blockly.Variables.allUsedVarModels(a);
+    for (d = 0; d < a.length; d++) b.push(Blockly.Arduino.variableDB_.getName(a[d].getId(), Blockly.Variables.NAME_TYPE));
+    b.length && (Blockly.Arduino.definitions_.variables = "var " + b.join(", ") + ";")
   };
+
   Blockly.Arduino.finish = function (a) {
     a = "  " + a.replace(/\n/g, "\n");
     a = a.replace(/\n\s+$/, "\n");
@@ -103,6 +110,11 @@
     return "'" + a + "'"
   };
 
+  Blockly.Arduino.quote2 = function(a) {
+    a = a.replace(/\\/g, "\\\\").replace(/\n/g, "\\\n").replace(/\$/g, "\\$").replace(/'/g, "\\'");
+    return '"' + a + '"'
+};
+
   Blockly.Arduino.multiline_quote_ = function (a) {
     return a.split(/\n/g).map(Blockly.Arduino.quote_).join(" + '\\n' +\n")
   };
@@ -120,6 +132,13 @@
     c = c ? "" : Blockly.Arduino.blockToCode(a);
     return d + b + c
   };
+  Blockly.Arduino.react_text = function() {
+    return [Blockly.Arduino.quote2(this.getFieldValue("TEXT")), Blockly.Arduino.ORDER_ATOMIC]
+};
+Blockly.Arduino.react_textapos = {};
+Blockly.Arduino.react_textapos = function() {
+    return [Blockly.Arduino.quote_(this.getFieldValue("TEXT")), Blockly.Arduino.ORDER_ATOMIC]
+};
 
   Blockly.Arduino.getAdjusted = function (a, b, c, d, e) {
     c = c || 0;
@@ -163,331 +182,6 @@
       c = Blockly.Arduino.valueToCode(a, "COLOUR2", Blockly.Arduino.ORDER_COMMA) || "'#000000'";
     a = Blockly.Arduino.valueToCode(a, "RATIO", Blockly.Arduino.ORDER_COMMA) || .5;
     return [Blockly.Arduino.provideFunction_("colourBlend", ["function " + Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_ + "(c1, c2, ratio) {", "  ratio = Math.max(Math.min(Number(ratio), 1), 0);", "  var r1 = parseInt(c1.substring(1, 3), 16);", "  var g1 = parseInt(c1.substring(3, 5), 16);", "  var b1 = parseInt(c1.substring(5, 7), 16);", "  var r2 = parseInt(c2.substring(1, 3), 16);", "  var g2 = parseInt(c2.substring(3, 5), 16);", "  var b2 = parseInt(c2.substring(5, 7), 16);", "  var r = Math.round(r1 * (1 - ratio) + r2 * ratio);", "  var g = Math.round(g1 * (1 - ratio) + g2 * ratio);", "  var b = Math.round(b1 * (1 - ratio) + b2 * ratio);", "  r = ('0' + (r || 0).toString(16)).slice(-2);", "  g = ('0' + (g || 0).toString(16)).slice(-2);", "  b = ('0' + (b || 0).toString(16)).slice(-2);", "  return '#' + r + g + b;", "}"]) + "(" + b + ", " + c + ", " + a + ")", Blockly.Arduino.ORDER_FUNCTION_CALL]
-  };
-
-  Blockly.Arduino.lists = {};
-
-  Blockly.Arduino.lists_create_empty = function (a) {
-    return ["[]", Blockly.Arduino.ORDER_ATOMIC]
-  };
-
-  Blockly.Arduino.lists_create_with = function (a) {
-    for (var b = Array(a.itemCount_), c = 0; c < a.itemCount_; c++) b[c] = Blockly.Arduino.valueToCode(a, "ADD" + c, Blockly.Arduino.ORDER_COMMA) || "null";
-    return ["[" + b.join(", ") + "]", Blockly.Arduino.ORDER_ATOMIC]
-  };
-
-  Blockly.Arduino.lists_repeat = function (a) {
-    var b = Blockly.Arduino.provideFunction_("listsRepeat", ["function " + Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_ + "(value, n) {", "  var array = [];", "  for (var i = 0; i < n; i++) {", "    array[i] = value;", "  }", "  return array;", "}"]),
-      c = Blockly.Arduino.valueToCode(a, "ITEM", Blockly.Arduino.ORDER_COMMA) || "null";
-    a = Blockly.Arduino.valueToCode(a, "NUM", Blockly.Arduino.ORDER_COMMA) || "0";
-    return [b + "(" + c + ", " + a + ")", Blockly.Arduino.ORDER_FUNCTION_CALL]
-  };
-
-  Blockly.Arduino.lists_length = function (a) {
-    return [(Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_MEMBER) || "[]") + ".length", Blockly.Arduino.ORDER_MEMBER]
-  };
-
-  Blockly.Arduino.lists_isEmpty = function (a) {
-    return ["!" + (Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_MEMBER) || "[]") + ".length", Blockly.Arduino.ORDER_LOGICAL_NOT]
-  };
-
-  Blockly.Arduino.lists_indexOf = function (a) {
-    var b = "FIRST" == a.getFieldValue("END") ? "indexOf" : "lastIndexOf",
-      c = Blockly.Arduino.valueToCode(a, "FIND", Blockly.Arduino.ORDER_NONE) || "''";
-    b = (Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_MEMBER) || "[]") + "." + b + "(" + c + ")";
-    return a.workspace.options.oneBasedIndex ? [b + " + 1", Blockly.Arduino.ORDER_ADDITION] : [b, Blockly.Arduino.ORDER_FUNCTION_CALL]
-  };
-
-  Blockly.Arduino.lists_getIndex = function (a) {
-    var b = a.getFieldValue("MODE") || "GET",
-      c = a.getFieldValue("WHERE") || "FROM_START",
-      d = Blockly.Arduino.valueToCode(a, "VALUE", "RANDOM" == c ? Blockly.Arduino.ORDER_COMMA : Blockly.Arduino.ORDER_MEMBER) || "[]";
-    switch (c) {
-      case "FIRST":
-        if ("GET" == b) return [d + "[0]", Blockly.Arduino.ORDER_MEMBER];
-        if ("GET_REMOVE" == b) return [d + ".shift()", Blockly.Arduino.ORDER_MEMBER];
-        if ("REMOVE" == b) return d + ".shift();\n";
-        break;
-      case "LAST":
-        if ("GET" == b) return [d + ".slice(-1)[0]", Blockly.Arduino.ORDER_MEMBER];
-        if ("GET_REMOVE" == b) return [d + ".pop()", Blockly.Arduino.ORDER_MEMBER];
-        if ("REMOVE" == b) return d + ".pop();\n";
-        break;
-      case "FROM_START":
-        a = Blockly.Arduino.getAdjusted(a, "AT");
-        if ("GET" == b) return [d + "[" + a + "]", Blockly.Arduino.ORDER_MEMBER];
-        if ("GET_REMOVE" == b) return [d + ".splice(" + a + ", 1)[0]", Blockly.Arduino.ORDER_FUNCTION_CALL];
-        if ("REMOVE" == b) return d + ".splice(" + a + ", 1);\n";
-        break;
-      case "FROM_END":
-        a = Blockly.Arduino.getAdjusted(a, "AT", 1, !0);
-        if ("GET" == b) return [d + ".slice(" + a + ")[0]", Blockly.Arduino.ORDER_FUNCTION_CALL];
-        if ("GET_REMOVE" == b) return [d + ".splice(" + a + ", 1)[0]", Blockly.Arduino.ORDER_FUNCTION_CALL];
-        if ("REMOVE" == b) return d + ".splice(" + a + ", 1);";
-        break;
-      case "RANDOM":
-        d = Blockly.Arduino.provideFunction_("listsGetRandomItem", ["function " + Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_ + "(list, remove) {", "  var x = Math.floor(Math.random() * list.length);", "  if (remove) {", "    return list.splice(x, 1)[0];", "  } else {", "    return list[x];", "  }", "}"]) + "(" + d + ", " + ("GET" != b) + ")";
-        if ("GET" == b || "GET_REMOVE" == b) return [d, Blockly.Arduino.ORDER_FUNCTION_CALL];
-        if ("REMOVE" == b) return d + ";\n"
-    }
-    throw Error("Unhandled combination (lists_getIndex).");
-  };
-
-  Blockly.Arduino.lists_setIndex = function (a) {
-    function b() {
-      if (c.match(/^\w+$/)) return "";
-      var a = Blockly.Arduino.variableDB_.getDistinctName("tmpList", Blockly.Variables.NAME_TYPE),
-        b = "var " + a + " = " + c + ";\n";
-      c = a;
-      return b
-    }
-    var c = Blockly.Arduino.valueToCode(a, "LIST", Blockly.Arduino.ORDER_MEMBER) || "[]",
-      d = a.getFieldValue("MODE") || "GET",
-      e = a.getFieldValue("WHERE") || "FROM_START",
-      f = Blockly.Arduino.valueToCode(a, "TO", Blockly.Arduino.ORDER_ASSIGNMENT) || "null";
-    switch (e) {
-      case "FIRST":
-        if ("SET" == d) return c + "[0] = " + f + ";\n";
-        if ("INSERT" == d) return c + ".unshift(" + f + ");\n";
-        break;
-      case "LAST":
-        if ("SET" == d) return a = b(), a + (c + "[" + c + ".length - 1] = " + f + ";\n");
-        if ("INSERT" == d) return c + ".push(" + f + ");\n";
-        break;
-      case "FROM_START":
-        e = Blockly.Arduino.getAdjusted(a, "AT");
-        if ("SET" == d) return c + "[" + e + "] = " + f + ";\n";
-        if ("INSERT" == d) return c + ".splice(" + e + ", 0, " + f + ");\n";
-        break;
-      case "FROM_END":
-        e = Blockly.Arduino.getAdjusted(a, "AT", 1, !1, Blockly.Arduino.ORDER_SUBTRACTION);
-        a = b();
-
-        if ("SET" == d) return a + (c + "[" + c + ".length - " + e + "] = " + f + ";\n");
-        if ("INSERT" == d) return a + (c + ".splice(" + c + ".length - " + e + ", 0, " + f + ");\n");
-        break;
-      case "RANDOM":
-        a = b();
-
-        e = Blockly.Arduino.variableDB_.getDistinctName("tmpX", Blockly.Variables.NAME_TYPE);
-        a += "var " + e + " = Math.floor(Math.random() * " + c + ".length);\n";
-        if ("SET" == d) return a + (c + "[" + e + "] = " + f + ";\n");
-        if ("INSERT" == d) return a + (c + ".splice(" + e + ", 0, " + f + ");\n")
-    }
-    throw Error("Unhandled combination (lists_setIndex).");
-  };
-
-  Blockly.Arduino.lists.getIndex_ = function (a, b, c) {
-    return "FIRST" == b ? "0" : "FROM_END" == b ? a + ".length - 1 - " + c : "LAST" == b ? a + ".length - 1" : c
-  };
-
-  Blockly.Arduino.lists_getSublist = function (a) {
-    var b = Blockly.Arduino.valueToCode(a, "LIST", Blockly.Arduino.ORDER_MEMBER) || "[]",
-      c = a.getFieldValue("WHERE1"),
-      d = a.getFieldValue("WHERE2");
-    if ("FIRST" == c && "LAST" == d) b += ".slice(0)";
-    else if (b.match(/^\w+$/) || "FROM_END" != c && "FROM_START" == d) {
-      switch (c) {
-        case "FROM_START":
-          var e = Blockly.Arduino.getAdjusted(a, "AT1");
-          break;
-        case "FROM_END":
-          e = Blockly.Arduino.getAdjusted(a, "AT1", 1, !1, Blockly.Arduino.ORDER_SUBTRACTION);
-          e = b + ".length - " + e;
-          break;
-        case "FIRST":
-          e = "0";
-          break;
-        default:
-          throw Error("Unhandled option (lists_getSublist).");
-      }
-      switch (d) {
-        case "FROM_START":
-          a = Blockly.Arduino.getAdjusted(a, "AT2", 1);
-          break;
-        case "FROM_END":
-          a = Blockly.Arduino.getAdjusted(a, "AT2", 0, !1, Blockly.Arduino.ORDER_SUBTRACTION);
-          a = b + ".length - " + a;
-          break;
-        case "LAST":
-          a = b + ".length";
-          break;
-        default:
-          throw Error("Unhandled option (lists_getSublist).");
-      }
-      b = b + ".slice(" + e + ", " + a + ")"
-    } else {
-      e = Blockly.Arduino.getAdjusted(a, "AT1");
-      a = Blockly.Arduino.getAdjusted(a, "AT2");
-      var f = Blockly.Arduino.lists.getIndex_,
-        g = {
-          FIRST: "First",
-          LAST: "Last",
-          FROM_START: "FromStart",
-          FROM_END: "FromEnd"
-        };
-
-      b = Blockly.Arduino.provideFunction_("subsequence" + g[c] + g[d], ["function " + Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_ + "(sequence" + ("FROM_END" == c || "FROM_START" == c ? ", at1" : "") + ("FROM_END" == d || "FROM_START" == d ? ", at2" : "") + ") {", "  var start = " + f("sequence", c, "at1") + ";", "  var end = " + f("sequence", d, "at2") + " + 1;", "  return sequence.slice(start, end);", "}"]) + "(" + b + ("FROM_END" == c || "FROM_START" == c ? ", " + e : "") + ("FROM_END" == d || "FROM_START" == d ? ", " + a : "") + ")"
-    }
-    return [b, Blockly.Arduino.ORDER_FUNCTION_CALL]
-  };
-
-  Blockly.Arduino.lists_sort = function (a) {
-    var b = Blockly.Arduino.valueToCode(a, "LIST", Blockly.Arduino.ORDER_FUNCTION_CALL) || "[]",
-      c = "1" === a.getFieldValue("DIRECTION") ? 1 : -1;
-    a = a.getFieldValue("TYPE");
-    var d = Blockly.Arduino.provideFunction_("listsGetSortCompare", ["function " + Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_ + "(type, direction) {", "  var compareFuncs = {", '    "NUMERIC": function(a, b) {', "        return Number(a) - Number(b); },", '    "TEXT": function(a, b) {', "        return a.toString() > b.toString() ? 1 : -1; },", '    "IGNORE_CASE": function(a, b) {', "        return a.toString().toLowerCase() > b.toString().toLowerCase() ? 1 : -1; },", "  };", "  var compare = compareFuncs[type];", "  return function(a, b) { return compare(a, b) * direction; }", "}"]);
-    return [b + ".slice().sort(" + d + '("' + a + '", ' + c + "))", Blockly.Arduino.ORDER_FUNCTION_CALL]
-  };
-
-  Blockly.Arduino.lists_split = function (a) {
-    var b = Blockly.Arduino.valueToCode(a, "INPUT", Blockly.Arduino.ORDER_MEMBER),
-      c = Blockly.Arduino.valueToCode(a, "DELIM", Blockly.Arduino.ORDER_NONE) || "''";
-    a = a.getFieldValue("MODE");
-    if ("SPLIT" == a) b || (b = "''"), a = "split";
-    else if ("JOIN" == a) b || (b = "[]"), a = "join";
-    else
-      throw Error("Unknown mode: " + a);
-    return [b + "." + a + "(" + c + ")", Blockly.Arduino.ORDER_FUNCTION_CALL]
-  };
-
-  Blockly.Arduino.lists_reverse = function (a) {
-    return [(Blockly.Arduino.valueToCode(a, "LIST", Blockly.Arduino.ORDER_FUNCTION_CALL) || "[]") + ".slice().reverse()", Blockly.Arduino.ORDER_FUNCTION_CALL]
-  };
-
-  Blockly.Arduino.logic = {};
-
-  Blockly.Arduino.controls_if = function (a) {
-    var b = 0,
-      c = "";
-    Blockly.Arduino.STATEMENT_PREFIX && (c += Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX, a));
-    do {
-      var d = Blockly.Arduino.valueToCode(a, "IF" + b, Blockly.Arduino.ORDER_NONE) || "false";
-      var e = Blockly.Arduino.statementToCode(a, "DO" + b);
-      Blockly.Arduino.STATEMENT_SUFFIX && (e = Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX, a), Blockly.Arduino.INDENT) + e);
-      c += (0 < b ? " else " : "") + "if (" + d + ") {\n" + e + "}"; ++b
-    } while
-      (a.getInput("IF" + b));
-    if (a.getInput("ELSE") || Blockly.Arduino.STATEMENT_SUFFIX) e = Blockly.Arduino.statementToCode(a, "ELSE"), Blockly.Arduino.STATEMENT_SUFFIX && (e = Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX, a), Blockly.Arduino.INDENT) + e), c += " else {\n" + e + "}";
-    return c + "\n"
-  };
-
-  Blockly.Arduino.controls_ifelse = Blockly.Arduino.controls_if;
-  Blockly.Arduino.logic_compare = function (a) {
-    var b = {
-      EQ: "==",
-      NEQ: "!=",
-      LT: "<",
-      LTE: "<=",
-      GT: ">",
-      GTE: ">="
-    }[a.getFieldValue("OP")],
-      c = "==" == b || "!=" == b ? Blockly.Arduino.ORDER_EQUALITY : Blockly.Arduino.ORDER_RELATIONAL,
-      d = Blockly.Arduino.valueToCode(a, "A", c) || "0";
-    a = Blockly.Arduino.valueToCode(a, "B", c) || "0";
-    return [d + " " + b + " " + a, c]
-  };
-
-  Blockly.Arduino.logic_operation = function (a) {
-    var b = "AND" == a.getFieldValue("OP") ? "&&" : "||",
-      c = "&&" == b ? Blockly.Arduino.ORDER_LOGICAL_AND : Blockly.Arduino.ORDER_LOGICAL_OR,
-      d = Blockly.Arduino.valueToCode(a, "A", c);
-    a = Blockly.Arduino.valueToCode(a, "B", c);
-    if (d || a) {
-      var e = "&&" == b ? "true" : "false";
-      d || (d = e);
-      a || (a = e)
-    } else a = d = "false";
-    return [d + " " + b + " " + a, c]
-  };
-
-  Blockly.Arduino.logic_negate = function (a) {
-    var b = Blockly.Arduino.ORDER_LOGICAL_NOT;
-    return ["!" + (Blockly.Arduino.valueToCode(a, "BOOL", b) || "true"), b]
-  };
-
-  Blockly.Arduino.logic_boolean = function (a) {
-    return ["TRUE" == a.getFieldValue("BOOL") ? "true" : "false", Blockly.Arduino.ORDER_ATOMIC]
-  };
-
-  Blockly.Arduino.logic_null = function (a) {
-    return ["null", Blockly.Arduino.ORDER_ATOMIC]
-  };
-
-  Blockly.Arduino.logic_ternary = function (a) {
-    var b = Blockly.Arduino.valueToCode(a, "IF", Blockly.Arduino.ORDER_CONDITIONAL) || "false",
-      c = Blockly.Arduino.valueToCode(a, "THEN", Blockly.Arduino.ORDER_CONDITIONAL) || "null";
-    a = Blockly.Arduino.valueToCode(a, "ELSE", Blockly.Arduino.ORDER_CONDITIONAL) || "null";
-    return [b + " ? " + c + " : " + a, Blockly.Arduino.ORDER_CONDITIONAL]
-  };
-
-  Blockly.Arduino.loops = {};
-
-  Blockly.Arduino.controls_repeat_ext = function (a) {
-    var b = a.getField("TIMES") ? String(Number(a.getFieldValue("TIMES"))) : Blockly.Arduino.valueToCode(a, "TIMES", Blockly.Arduino.ORDER_ASSIGNMENT) || "0",
-      c = Blockly.Arduino.statementToCode(a, "DO");
-    c = Blockly.Arduino.addLoopTrap(c, a);
-    a = "";
-    var d = Blockly.Arduino.variableDB_.getDistinctName("count", Blockly.Variables.NAME_TYPE),
-      e = b;
-    b.match(/^\w+$/) || Blockly.isNumber(b) || (e = Blockly.Arduino.variableDB_.getDistinctName("repeat_end", Blockly.Variables.NAME_TYPE), a += "var " + e + " = " + b + ";\n");
-    return a + ("for (var " + d + " = 0; " + d + " < " + e + "; " + d + "++) {\n" + c + "}\n")
-  };
-
-  Blockly.Arduino.controls_repeat = Blockly.Arduino.controls_repeat_ext;
-  Blockly.Arduino.controls_whileUntil = function (a) {
-    var b = "UNTIL" == a.getFieldValue("MODE"),
-      c = Blockly.Arduino.valueToCode(a, "BOOL", b ? Blockly.Arduino.ORDER_LOGICAL_NOT : Blockly.Arduino.ORDER_NONE) || "false",
-      d = Blockly.Arduino.statementToCode(a, "DO");
-    d = Blockly.Arduino.addLoopTrap(d, a);
-    b && (c = "!" + c);
-    return "while (" + c + ") {\n" + d + "}\n"
-  };
-
-  Blockly.Arduino.controls_for = function (a) {
-    var b = Blockly.Arduino.variableDB_.getName(a.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE),
-      c = Blockly.Arduino.valueToCode(a, "FROM", Blockly.Arduino.ORDER_ASSIGNMENT) || "0",
-      d = Blockly.Arduino.valueToCode(a, "TO", Blockly.Arduino.ORDER_ASSIGNMENT) || "0",
-      e = Blockly.Arduino.valueToCode(a, "BY", Blockly.Arduino.ORDER_ASSIGNMENT) || "1",
-      f = Blockly.Arduino.statementToCode(a, "DO");
-    f = Blockly.Arduino.addLoopTrap(f, a);
-    if (Blockly.isNumber(c) && Blockly.isNumber(d) && Blockly.isNumber(e)) {
-      var g = Number(c) <= Number(d);
-      a = "for (" + b + " = " + c + "; " + b + (g ? " <= " : " >= ") + d + "; " + b;
-      b = Math.abs(Number(e));
-      a = (1 == b ? a + (g ? "++" : "--") : a + ((g ? " += " : " -= ") + b)) + (") {\n" + f + "}\n")
-    } else a = "", g = c, c.match(/^\w+$/) || Blockly.isNumber(c) || (g = Blockly.Arduino.variableDB_.getDistinctName(b + "_start", Blockly.Variables.NAME_TYPE), a += "var " + g + " = " + c + ";\n"), c = d, d.match(/^\w+$/) || Blockly.isNumber(d) || (c = Blockly.Arduino.variableDB_.getDistinctName(b + "_end", Blockly.Variables.NAME_TYPE), a += "var " + c + " = " + d + ";\n"), d = Blockly.Arduino.variableDB_.getDistinctName(b + "_inc", Blockly.Variables.NAME_TYPE), a += "var " + d + " = ", a = Blockly.isNumber(e) ? a + (Math.abs(e) + ";\n") : a + ("Math.abs(" + e + ");\n"), a = a + ("if (" + g + " > " + c + ") {\n") + (Blockly.Arduino.INDENT + d + " = -" + d + ";\n"), a += "}\n", a += "for (" + b + " = " + g + "; " + d + " >= 0 ? " + b + " <= " + c + " : " + b + " >= " + c + "; " + b + " += " + d + ") {\n" + f + "}\n";
-    return a
-  };
-
-  Blockly.Arduino.controls_forEach = function (a) {
-    var b = Blockly.Arduino.variableDB_.getName(a.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE),
-      c = Blockly.Arduino.valueToCode(a, "LIST", Blockly.Arduino.ORDER_ASSIGNMENT) || "[]",
-      d = Blockly.Arduino.statementToCode(a, "DO");
-    d = Blockly.Arduino.addLoopTrap(d, a);
-    a = "";
-    var e = c;
-    c.match(/^\w+$/) || (e = Blockly.Arduino.variableDB_.getDistinctName(b + "_list", Blockly.Variables.NAME_TYPE), a += "var " + e + " = " + c + ";\n");
-    c = Blockly.Arduino.variableDB_.getDistinctName(b + "_index", Blockly.Variables.NAME_TYPE);
-    d = Blockly.Arduino.INDENT + b + " = " + e + "[" + c + "];\n" + d;
-    return a + ("for (var " + c + " in " + e + ") {\n" + d + "}\n")
-  };
-
-  Blockly.Arduino.controls_flow_statements = function (a) {
-    var b = "";
-    Blockly.Arduino.STATEMENT_PREFIX && (b += Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX, a));
-    Blockly.Arduino.STATEMENT_SUFFIX && (b += Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX, a));
-    if (Blockly.Arduino.STATEMENT_PREFIX) {
-      var c = Blockly.Constants.Loops.CONTROL_FLOW_IN_LOOP_CHECK_MIXIN.getSurroundLoop(a);
-      c && !c.suppressPrefixSuffix && (b += Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX, c))
-    }
-    switch (a.getFieldValue("FLOW")) {
-      case "BREAK":
-        return b + "break;\n";
-      case "CONTINUE":
-        return b + "continue;\n"
-    }
-    throw Error("Unknown flow statement.");
   };
 
   Blockly.Arduino.math = {};
@@ -690,234 +384,129 @@
     return ["Math.atan2(" + (Blockly.Arduino.valueToCode(a, "Y", Blockly.Arduino.ORDER_COMMA) || "0") + ", " + b + ") / Math.PI * 180", Blockly.Arduino.ORDER_DIVISION]
   };
 
-  Blockly.Arduino.procedures = {};
+  Blockly.Arduino.logic = {};
 
-  Blockly.Arduino.procedures_defreturn = function (a) {
-    var b = Blockly.Arduino.variableDB_.getName(a.getFieldValue("NAME"), Blockly.Procedures.NAME_TYPE),
+  Blockly.Arduino.react_controls_if = function (a) {
+    var b = 0,
       c = "";
     Blockly.Arduino.STATEMENT_PREFIX && (c += Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX, a));
-    Blockly.Arduino.STATEMENT_SUFFIX && (c += Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX, a));
-    c && (c = Blockly.Arduino.prefixLines(c, Blockly.Arduino.INDENT));
-    var d = "";
-    Blockly.Arduino.INFINITE_LOOP_TRAP && (d = Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.INFINITE_LOOP_TRAP, a), Blockly.Arduino.INDENT));
-    var e = Blockly.Arduino.statementToCode(a, "STACK"),
-      f = Blockly.Arduino.valueToCode(a, "RETURN", Blockly.Arduino.ORDER_NONE) || "",
-      g = "";
-    e && f && (g = c);
-    f && (f = Blockly.Arduino.INDENT + "return " + f + ";\n");
-    for (var k = [], h = 0; h < a.arguments_.length; h++) k[h] = Blockly.Arduino.variableDB_.getName(a.arguments_[h], Blockly.Variables.NAME_TYPE);
-    c = "function " + b + "(" + k.join(", ") + ") {\n" + c + d + e + g + f + "}";
-    c = Blockly.Arduino.scrub_(a, c);
-    Blockly.Arduino.definitions_["%" + b] = c;
-    return null
+    do {
+      var d = Blockly.Arduino.valueToCode(a, "IF" + b, Blockly.Arduino.ORDER_NONE) || "false";
+      var e = Blockly.Arduino.statementToCode(a, "DO" + b);
+      Blockly.Arduino.STATEMENT_SUFFIX && (e = Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX, a), Blockly.Arduino.INDENT) + e);
+      c += (0 < b ? " else " : "") + "if (" + d + ") {\n" + e + "}"; ++b
+    } while
+      (a.getInput("IF" + b));
+    if (a.getInput("ELSE") || Blockly.Arduino.STATEMENT_SUFFIX) e = Blockly.Arduino.statementToCode(a, "ELSE"), Blockly.Arduino.STATEMENT_SUFFIX && (e = Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX, a), Blockly.Arduino.INDENT) + e), c += " else {\n" + e + "}";
+    return c + "\n"
   };
 
-  Blockly.Arduino.procedures_defnoreturn = Blockly.Arduino.procedures_defreturn;
-  Blockly.Arduino.procedures_callreturn = function (a) {
-    for (var b = Blockly.Arduino.variableDB_.getName(a.getFieldValue("NAME"), Blockly.Procedures.NAME_TYPE), c = [], d = 0; d < a.arguments_.length; d++) c[d] = Blockly.Arduino.valueToCode(a, "ARG" + d, Blockly.Arduino.ORDER_COMMA) || "null";
-    return [b + "(" + c.join(", ") + ")", Blockly.Arduino.ORDER_FUNCTION_CALL]
-  };
-
-  Blockly.Arduino.procedures_callnoreturn = function (a) {
-    return Blockly.Arduino.procedures_callreturn(a)[0] + ";\n"
-  };
-
-  Blockly.Arduino.procedures_ifreturn = function (a) {
-    var b = "if (" + (Blockly.Arduino.valueToCode(a, "CONDITION", Blockly.Arduino.ORDER_NONE) || "false") + ") {\n";
-    Blockly.Arduino.STATEMENT_SUFFIX && (b += Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX, a), Blockly.Arduino.INDENT));
-    a.hasReturnValue_ ? (a = Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_NONE) || "null", b += Blockly.Arduino.INDENT + "return " + a + ";\n") : b += Blockly.Arduino.INDENT + "return;\n";
-    return b + "}\n"
-  };
-
-  Blockly.Arduino.texts = {};
-
-  Blockly.Arduino.text = function (a) {
-    return [Blockly.Arduino.quote_(a.getFieldValue("TEXT")), Blockly.Arduino.ORDER_ATOMIC]
-  };
-
-  Blockly.Arduino.text_multiline = function (a) {
-    a = Blockly.Arduino.multiline_quote_(a.getFieldValue("TEXT"));
-    a.includes("\n") && (a = "(" + a + ")");
-    return [a, Blockly.Arduino.ORDER_ATOMIC]
-  };
-
-  Blockly.Arduino.text.forceString_ = function (a) {
-    return Blockly.Arduino.text.forceString_.strRegExp.test(a) ? a : "String(" + a + ")"
-  };
-
-  Blockly.Arduino.text.forceString_.strRegExp = /^\s*'([^']|\\')*'\s*$/;
-  Blockly.Arduino.text_join = function (a) {
-    switch (a.itemCount_) {
-      case 0:
-        return ["''", Blockly.Arduino.ORDER_ATOMIC];
-      case 1:
-        return a = Blockly.Arduino.valueToCode(a, "ADD0", Blockly.Arduino.ORDER_NONE) || "''", a = Blockly.Arduino.text.forceString_(a), [a, Blockly.Arduino.ORDER_FUNCTION_CALL];
-      case 2:
-        var b = Blockly.Arduino.valueToCode(a, "ADD0", Blockly.Arduino.ORDER_NONE) || "''";
-        a = Blockly.Arduino.valueToCode(a, "ADD1", Blockly.Arduino.ORDER_NONE) || "''";
-        a = Blockly.Arduino.text.forceString_(b) + " + " + Blockly.Arduino.text.forceString_(a);
-        return [a, Blockly.Arduino.ORDER_ADDITION];
-      default:
-        b = Array(a.itemCount_);
-        for (var c = 0; c < a.itemCount_; c++) b[c] = Blockly.Arduino.valueToCode(a, "ADD" + c, Blockly.Arduino.ORDER_COMMA) || "''";
-        a = "[" + b.join(",") + "].join('')";
-        return [a, Blockly.Arduino.ORDER_FUNCTION_CALL]
-    }
-  };
-
-  Blockly.Arduino.text_append = function (a) {
-    var b = Blockly.Arduino.variableDB_.getName(a.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE);
-    a = Blockly.Arduino.valueToCode(a, "TEXT", Blockly.Arduino.ORDER_NONE) || "''";
-    return b + " += " + Blockly.Arduino.text.forceString_(a) + ";\n"
-  };
-
-  Blockly.Arduino.text_length = function (a) {
-    return [(Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_FUNCTION_CALL) || "''") + ".length", Blockly.Arduino.ORDER_MEMBER]
-  };
-
-  Blockly.Arduino.text_isEmpty = function (a) {
-    return ["!" + (Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_MEMBER) || "''") + ".length", Blockly.Arduino.ORDER_LOGICAL_NOT]
-  };
-
-  Blockly.Arduino.text_indexOf = function (a) {
-    var b = "FIRST" == a.getFieldValue("END") ? "indexOf" : "lastIndexOf",
-      c = Blockly.Arduino.valueToCode(a, "FIND", Blockly.Arduino.ORDER_NONE) || "''";
-    b = (Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_MEMBER) || "''") + "." + b + "(" + c + ")";
-    return a.workspace.options.oneBasedIndex ? [b + " + 1", Blockly.Arduino.ORDER_ADDITION] : [b, Blockly.Arduino.ORDER_FUNCTION_CALL]
-  };
-
-  Blockly.Arduino.text_charAt = function (a) {
-    var b = a.getFieldValue("WHERE") || "FROM_START",
-      c = Blockly.Arduino.valueToCode(a, "VALUE", "RANDOM" == b ? Blockly.Arduino.ORDER_NONE : Blockly.Arduino.ORDER_MEMBER) || "''";
-    switch (b) {
-      case "FIRST":
-        return [c + ".charAt(0)", Blockly.Arduino.ORDER_FUNCTION_CALL];
-      case "LAST":
-        return [c + ".slice(-1)", Blockly.Arduino.ORDER_FUNCTION_CALL];
-      case "FROM_START":
-        return a = Blockly.Arduino.getAdjusted(a, "AT"), [c + ".charAt(" + a + ")", Blockly.Arduino.ORDER_FUNCTION_CALL];
-      case "FROM_END":
-        return a =
-          Blockly.Arduino.getAdjusted(a, "AT", 1, !0), [c + ".slice(" + a + ").charAt(0)", Blockly.Arduino.ORDER_FUNCTION_CALL];
-      case "RANDOM":
-        return [Blockly.Arduino.provideFunction_("textRandomLetter", ["function " + Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_ + "(text) {", "  var x = Math.floor(Math.random() * text.length);", "  return text[x];", "}"]) + "(" + c + ")", Blockly.Arduino.ORDER_FUNCTION_CALL]
-    }
-    throw Error("Unhandled option (text_charAt).");
-  };
-
-  Blockly.Arduino.text.getIndex_ = function (a, b, c) {
-    return "FIRST" == b ? "0" : "FROM_END" == b ? a + ".length - 1 - " + c : "LAST" == b ? a + ".length - 1" : c
-  };
-
-  Blockly.Arduino.text_getSubstring = function (a) {
-    var b = Blockly.Arduino.valueToCode(a, "STRING", Blockly.Arduino.ORDER_FUNCTION_CALL) || "''",
-      c = a.getFieldValue("WHERE1"),
-      d = a.getFieldValue("WHERE2");
-    if ("FIRST" != c || "LAST" != d) if (b.match(/^'?\w+'?$/) || "FROM_END" != c && "LAST" != c && "FROM_END" != d && "LAST" != d) {
-      switch (c) {
-        case "FROM_START":
-          var e = Blockly.Arduino.getAdjusted(a, "AT1");
-          break;
-        case "FROM_END":
-          e = Blockly.Arduino.getAdjusted(a, "AT1", 1, !1, Blockly.Arduino.ORDER_SUBTRACTION);
-          e = b + ".length - " + e;
-          break;
-
-        case "FIRST":
-          e = "0";
-          break;
-        default:
-          throw Error("Unhandled option (text_getSubstring).");
-      }
-      switch (d) {
-        case "FROM_START":
-          a = Blockly.Arduino.getAdjusted(a, "AT2", 1);
-          break;
-        case "FROM_END":
-          a = Blockly.Arduino.getAdjusted(a, "AT2", 0, !1, Blockly.Arduino.ORDER_SUBTRACTION);
-          a = b + ".length - " + a;
-          break;
-        case "LAST":
-          a = b + ".length";
-          break;
-        default:
-          throw Error("Unhandled option (text_getSubstring).");
-      }
-      b = b + ".slice(" + e + ", " + a + ")"
-    } else {
-      e = Blockly.Arduino.getAdjusted(a, "AT1");
-      a = Blockly.Arduino.getAdjusted(a, "AT2");
-      var f =
-        Blockly.Arduino.text.getIndex_,
-        g = {
-          FIRST: "First",
-          LAST: "Last",
-          FROM_START: "FromStart",
-          FROM_END: "FromEnd"
-        };
-
-      b = Blockly.Arduino.provideFunction_("subsequence" + g[c] + g[d], ["function " + Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_ + "(sequence" + ("FROM_END" == c || "FROM_START" == c ? ", at1" : "") + ("FROM_END" == d || "FROM_START" == d ? ", at2" : "") + ") {", "  var start = " + f("sequence", c, "at1") + ";", "  var end = " + f("sequence", d, "at2") + " + 1;", "  return sequence.slice(start, end);", "}"]) + "(" + b + ("FROM_END" == c || "FROM_START" == c ? ", " + e : "") + ("FROM_END" == d || "FROM_START" == d ? ", " + a : "") + ")"
-    }
-    return [b, Blockly.Arduino.ORDER_FUNCTION_CALL]
-  };
-
-  Blockly.Arduino.text_changeCase = function (a) {
+  Blockly.Arduino.controls_ifelse = Blockly.Arduino.controls_if;
+  Blockly.Arduino.react_logic_compare = function (a) {
     var b = {
-      UPPERCASE: ".toUpperCase()",
-      LOWERCASE: ".toLowerCase()",
-      TITLECASE: null
-    }[a.getFieldValue("CASE")];
-    a = Blockly.Arduino.valueToCode(a, "TEXT", b ? Blockly.Arduino.ORDER_MEMBER : Blockly.Arduino.ORDER_NONE) || "''";
-    return [b ? a + b : Blockly.Arduino.provideFunction_("textToTitleCase", ["function " + Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_ + "(str) {", "  return str.replace(/\\S+/g,", "      function(txt) {return txt[0].toUpperCase() + txt.substring(1).toLowerCase();});", "}"]) + "(" + a + ")", Blockly.Arduino.ORDER_FUNCTION_CALL]
+      EQ: "==",
+      NEQ: "!=",
+      LT: "<",
+      LTE: "<=",
+      GT: ">",
+      GTE: ">="
+    }[a.getFieldValue("OP")],
+      c = "==" == b || "!=" == b ? Blockly.Arduino.ORDER_EQUALITY : Blockly.Arduino.ORDER_RELATIONAL,
+      d = Blockly.Arduino.valueToCode(a, "A", c) || "0";
+    a = Blockly.Arduino.valueToCode(a, "B", c) || "0";
+    return [d + " " + b + " " + a, c]
   };
 
-  Blockly.Arduino.text_trim = function (a) {
-    var b = {
-      LEFT: ".replace(/^[\\s\\xa0]+/, '')",
-      RIGHT: ".replace(/[\\s\\xa0]+$/, '')",
-      BOTH: ".trim()"
-    }[a.getFieldValue("MODE")];
-    return [(Blockly.Arduino.valueToCode(a, "TEXT", Blockly.Arduino.ORDER_MEMBER) || "''") + b, Blockly.Arduino.ORDER_FUNCTION_CALL]
+  Blockly.Arduino.logic_operation = function (a) {
+    var b = "AND" == a.getFieldValue("OP") ? "&&" : "||",
+      c = "&&" == b ? Blockly.Arduino.ORDER_LOGICAL_AND : Blockly.Arduino.ORDER_LOGICAL_OR,
+      d = Blockly.Arduino.valueToCode(a, "A", c);
+    a = Blockly.Arduino.valueToCode(a, "B", c);
+    if (d || a) {
+      var e = "&&" == b ? "true" : "false";
+      d || (d = e);
+      a || (a = e)
+    } else a = d = "false";
+    return [d + " " + b + " " + a, c]
   };
 
-  Blockly.Arduino.text_print = function (a) {
-    return "window.alert(" + (Blockly.Arduino.valueToCode(a, "TEXT", Blockly.Arduino.ORDER_NONE) || "''") + ");\n"
+  Blockly.Arduino.logic_negate = function (a) {
+    var b = Blockly.Arduino.ORDER_LOGICAL_NOT;
+    return ["!" + (Blockly.Arduino.valueToCode(a, "BOOL", b) || "true"), b]
   };
 
-  Blockly.Arduino.text_prompt_ext = function (a) {
-    var b = "window.prompt(" + (a.getField("TEXT") ? Blockly.Arduino.quote_(a.getFieldValue("TEXT")) : Blockly.Arduino.valueToCode(a, "TEXT", Blockly.Arduino.ORDER_NONE) || "''") + ")";
-    "NUMBER" == a.getFieldValue("TYPE") && (b = "Number(" + b + ")");
-    return [b, Blockly.Arduino.ORDER_FUNCTION_CALL]
+  Blockly.Arduino.logic_boolean = function (a) {
+    return ["TRUE" == a.getFieldValue("BOOL") ? "true" : "false", Blockly.Arduino.ORDER_ATOMIC]
   };
 
-  Blockly.Arduino.text_prompt = Blockly.Arduino.text_prompt_ext;
-  Blockly.Arduino.text_count = function (a) {
-    var b = Blockly.Arduino.valueToCode(a, "TEXT", Blockly.Arduino.ORDER_MEMBER) || "''";
-    a = Blockly.Arduino.valueToCode(a, "SUB", Blockly.Arduino.ORDER_NONE) || "''";
-    return [Blockly.Arduino.provideFunction_("textCount", ["function " + Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_ + "(haystack, needle) {", "  if (needle.length === 0) {", "    return haystack.length + 1;", "  } else {", "    return haystack.split(needle).length - 1;", "  }", "}"]) + "(" + b + ", " + a + ")", Blockly.Arduino.ORDER_SUBTRACTION]
+  Blockly.Arduino.logic_null = function (a) {
+    return ["null", Blockly.Arduino.ORDER_ATOMIC]
   };
 
-  Blockly.Arduino.text_replace = function (a) {
-    var b = Blockly.Arduino.valueToCode(a, "TEXT", Blockly.Arduino.ORDER_MEMBER) || "''",
-      c = Blockly.Arduino.valueToCode(a, "FROM", Blockly.Arduino.ORDER_NONE) || "''";
-    a = Blockly.Arduino.valueToCode(a, "TO", Blockly.Arduino.ORDER_NONE) || "''";
-    return [Blockly.Arduino.provideFunction_("textReplace", ["function " + Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_ + "(haystack, needle, replacement) {", '  needle = needle.replace(/([-()\\[\\]{}+?*.$\\^|,:#<!\\\\])/g,"\\\\$1")', '                 .replace(/\\x08/g,"\\\\x08");', "  return haystack.replace(new RegExp(needle, 'g'), replacement);", "}"]) + "(" + b + ", " + c + ", " + a + ")", Blockly.Arduino.ORDER_MEMBER]
+  Blockly.Arduino.logic_ternary = function (a) {
+    var b = Blockly.Arduino.valueToCode(a, "IF", Blockly.Arduino.ORDER_CONDITIONAL) || "false",
+      c = Blockly.Arduino.valueToCode(a, "THEN", Blockly.Arduino.ORDER_CONDITIONAL) || "null";
+    a = Blockly.Arduino.valueToCode(a, "ELSE", Blockly.Arduino.ORDER_CONDITIONAL) || "null";
+    return [b + " ? " + c + " : " + a, Blockly.Arduino.ORDER_CONDITIONAL]
   };
 
-  Blockly.Arduino.text_reverse = function (a) {
-    return [(Blockly.Arduino.valueToCode(a, "TEXT", Blockly.Arduino.ORDER_MEMBER) || "''") + ".split('').reverse().join('')", Blockly.Arduino.ORDER_MEMBER]
+
+
+
+
+
+
+  ///Categoria Bucles//
+
+  Blockly.Arduino.loops = {};
+  //Codigo del 1er Bloque
+
+  Blockly.Arduino.react_controls_repeat = function (a) {
+    var b = a.getField("TIMES") ? String(Number(a.getFieldValue("TIMES"))) : Blockly.Arduino.valueToCode(a, "TIMES", Blockly.Arduino.ORDER_ASSIGNMENT) || "0",
+      c = Blockly.Arduino.statementToCode(a, "DO");
+    c = Blockly.Arduino.addLoopTrap(c, a);
+    a = "";
+    var d = Blockly.Arduino.variableDB_.getDistinctName("count", Blockly.Variables.NAME_TYPE),
+      e = b;
+    b.match(/^\w+$/) || Blockly.isNumber(b) || (e = Blockly.Arduino.variableDB_.getDistinctName("repeat_end", Blockly.Variables.NAME_TYPE), a += "var " + e + " = " + b + ";\n");
+    return a + ("for (var " + d + " = 0; " + d + " < " + e + "; " + d + "++) {\n" + c + "}\n")
+  };
+  //Codigo del 2do Bloque
+
+  Blockly.Arduino.react_controls_while = function (a) {
+    var b = Blockly.Arduino.valueToCode(a, "BOOL", Blockly.Arduino.ORDER_NONE) || "false",
+      c = Blockly.Arduino.statementToCode(a, "DO");
+    c = Blockly.Arduino.addLoopTrap(c, a.id);
+    return "while (" + b + ") {\n" + c + "}\n"
+  };
+  //Codigo del 3er Bloque
+
+  Blockly.Arduino.react_controls_for = function () {
+    var a = Blockly.Arduino.variableDB_.getName(this.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE),
+      b = Blockly.Arduino.valueToCode(this, "FROM", Blockly.Arduino.ORDER_ASSIGNMENT) || "0",
+      c = Blockly.Arduino.valueToCode(this, "TO", Blockly.Arduino.ORDER_ASSIGNMENT) || "0",
+      d = Blockly.Arduino.statementToCode(this, "DO");
+    Blockly.Arduino.INFINITE_LOOP_TRAP && (d = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g, "'" + this.id + "'") + d);
+    if (b.match(/^-?\d+(\.\d+)?$/) && c.match(/^-?\d+(\.\d+)?$/)) {
+      var e =
+        parseFloat(b) <= parseFloat(c);
+      d = "for (" + a + " = " + b + "; " + a + (e ? " <= " : " >= ") + c + "; " + a + (e ? "++" : "--") + ") {\n" + d + "}\n"
+    } else d = "", e = b, b.match(/^\w+$/) || b.match(/^-?\d+(\.\d+)?$/) || (e = Blockly.Arduino.variableDB_.getDistinctName(a + "_start", Blockly.Variables.NAME_TYPE), d += "int " + e + " = " + b + ";\n"), b = c, c.match(/^\w+$/) || c.match(/^-?\d+(\.\d+)?$/) || (b = Blockly.Arduino.variableDB_.getDistinctName(a + "_end", Blockly.Variables.NAME_TYPE), d += "int " + b + " = " + c + ";\n"), d += "for (" + a + " = " + e + ";\n    (" + e + " <= " + b + ") ? " + a +
+      " <= " + b + " : " + a + " >= " + b + ";\n    " + a + " += (" + e + " <= " + b + ") ? 1 : -1) {\n" + branch0 + "}\n";
+    return d
+  };
+  //Codigo del 4to Bloque
+
+  Blockly.Arduino.react_controls_flow_statements = function (a) {
+    switch (a.getFieldValue("FLOW")) {
+      case "BREAK":
+        return "break;\n";
+      case "CONTINUE":
+        return "continue;\n"
+    }
+    throw "Unknown flow statement.";
   };
 
-  Blockly.Arduino.variables = {};
-
-  Blockly.Arduino.variables_get = function (a) {
-    return [Blockly.Arduino.variableDB_.getName(a.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE), Blockly.Arduino.ORDER_ATOMIC]
-  };
-
-  Blockly.Arduino.variables_set = function (a) {
-    var b = Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_ASSIGNMENT) || "0";
-    return Blockly.Arduino.variableDB_.getName(a.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE) + " = " + b + ";\n"
-  };
 
   Blockly.Arduino.variablesDynamic = {};
 

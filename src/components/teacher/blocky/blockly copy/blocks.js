@@ -1,5 +1,5 @@
 /* eslint-disable */
-;
+
 (function (root, factory) {
 	if (typeof define === 'function' && define.amd) { // AMD
 		define(['./core'], factory);
@@ -638,168 +638,8 @@
 	Blockly.Constants.Logic = {};
 
 	Blockly.Constants.Logic.HUE = 210;
-	Blockly.defineBlocksWithJsonArray([{
-		type: "logic_boolean",
-		message0: "%1",
-		args0: [{
-			type: "field_dropdown",
-			name: "BOOL",
-			options: [
-				["%{BKY_LOGIC_BOOLEAN_TRUE}", "TRUE"],
-				["%{BKY_LOGIC_BOOLEAN_FALSE}", "FALSE"]
-			]
-		}],
-		output: "Boolean",
-		style: "logic_blocks",
-		tooltip: "%{BKY_LOGIC_BOOLEAN_TOOLTIP}",
-		helpUrl: "%{BKY_LOGIC_BOOLEAN_HELPURL}"
-	},
-	{
-		type: "controls_if",
-		message0: "%{BKY_CONTROLS_IF_MSG_IF} %1",
-		args0: [{
-			type: "input_value",
-			name: "IF0",
-			check: "Boolean"
-		}],
-		message1: "%{BKY_CONTROLS_IF_MSG_THEN} %1",
-		args1: [{
-			type: "input_statement",
-			name: "DO0"
-		}],
-		previousStatement: null,
-		nextStatement: null,
-		style: "logic_blocks",
-		helpUrl: "%{BKY_CONTROLS_IF_HELPURL}",
-		mutator: "controls_if_mutator",
-		extensions: ["controls_if_tooltip"]
-	},
-	{
-		type: "controls_ifelse",
-		message0: "%{BKY_CONTROLS_IF_MSG_IF} %1",
-		args0: [{
-			type: "input_value",
-			name: "IF0",
-			check: "Boolean"
-		}],
-		message1: "%{BKY_CONTROLS_IF_MSG_THEN} %1",
-		args1: [{
-			type: "input_statement",
-			name: "DO0"
-		}],
-		message2: "%{BKY_CONTROLS_IF_MSG_ELSE} %1",
-		args2: [{
-			type: "input_statement",
-			name: "ELSE"
-		}],
-		previousStatement: null,
-		nextStatement: null,
-		style: "logic_blocks",
-		tooltip: "%{BKYCONTROLS_IF_TOOLTIP_2}",
-		helpUrl: "%{BKY_CONTROLS_IF_HELPURL}",
-		extensions: ["controls_if_tooltip"]
-	},
-	{
-		type: "logic_compare",
-		message0: "%1 %2 %3",
-		args0: [{
-			type: "input_value",
-			name: "A"
-		},
-		{
-			type: "field_dropdown",
-			name: "OP",
-			options: [
-				["=", "EQ"],
-				["\u2260", "NEQ"],
-				["\u200f<", "LT"],
-				["\u200f\u2264", "LTE"],
-				["\u200f>", "GT"],
-				["\u200f\u2265", "GTE"]
-			]
-		},
-		{
-			type: "input_value",
-			name: "B"
-		}],
-		inputsInline: !0,
-		output: "Boolean",
-		style: "logic_blocks",
-		helpUrl: "%{BKY_LOGIC_COMPARE_HELPURL}",
-		extensions: ["logic_compare", "logic_op_tooltip"]
-	},
-	{
-		type: "logic_operation",
-		message0: "%1 %2 %3",
-		args0: [{
-			type: "input_value",
-			name: "A",
-			check: "Boolean"
-		},
-		{
-			type: "field_dropdown",
-			name: "OP",
-			options: [
-				["%{BKY_LOGIC_OPERATION_AND}", "AND"],
-				["%{BKY_LOGIC_OPERATION_OR}", "OR"]
-			]
-		},
-		{
-			type: "input_value",
-			name: "B",
-			check: "Boolean"
-		}],
-		inputsInline: !0,
-		output: "Boolean",
-		style: "logic_blocks",
-		helpUrl: "%{BKY_LOGIC_OPERATION_HELPURL}",
-		extensions: ["logic_op_tooltip"]
-	},
-	{
-		type: "logic_negate",
-		message0: "%{BKY_LOGIC_NEGATE_TITLE}",
-		args0: [{
-			type: "input_value",
-			name: "BOOL",
-			check: "Boolean"
-		}],
-		output: "Boolean",
-		style: "logic_blocks",
-		tooltip: "%{BKY_LOGIC_NEGATE_TOOLTIP}",
-		helpUrl: "%{BKY_LOGIC_NEGATE_HELPURL}"
-	},
-	{
-		type: "logic_null",
-		message0: "%{BKY_LOGIC_NULL}",
-		output: null,
-		style: "logic_blocks",
-		tooltip: "%{BKY_LOGIC_NULL_TOOLTIP}",
-		helpUrl: "%{BKY_LOGIC_NULL_HELPURL}"
-	},
-	{
-		type: "logic_ternary",
-		message0: "%{BKY_LOGIC_TERNARY_CONDITION} %1",
-		args0: [{
-			type: "input_value",
-			name: "IF",
-			check: "Boolean"
-		}],
-		message1: "%{BKY_LOGIC_TERNARY_IF_TRUE} %1",
-		args1: [{
-			type: "input_value",
-			name: "THEN"
-		}],
-		message2: "%{BKY_LOGIC_TERNARY_IF_FALSE} %1",
-		args2: [{
-			type: "input_value",
-			name: "ELSE"
-		}],
-		output: null,
-		style: "logic_blocks",
-		tooltip: "%{BKY_LOGIC_TERNARY_TOOLTIP}",
-		helpUrl: "%{BKY_LOGIC_TERNARY_HELPURL}",
-		extensions: ["logic_ternary"]
-	}]);
+	Blockly.defineBlocksWithJsonArray([
+	]);
 	Blockly.defineBlocksWithJsonArray([{
 		type: "controls_if_if",
 		message0: "%{BKY_CONTROLS_IF_IF_TITLE_IF}",
@@ -1040,22 +880,15 @@
 		helpUrl: "%{BKY_CONTROLS_REPEAT_HELPURL}"
 	},
 	{
-		type: "controls_whileUntil",
-		message0: "%1 %2",
-		args0: [{
-			type: "field_dropdown",
-			name: "MODE",
-			options: [
-				["%{BKY_CONTROLS_WHILEUNTIL_OPERATOR_WHILE}", "WHILE"],
-				["%{BKY_CONTROLS_WHILEUNTIL_OPERATOR_UNTIL}", "UNTIL"]
-			]
-		},
-		{
-			type: "input_value",
-			name: "BOOL",
-			check: "Boolean"
-		}],
-		message1: "%{BKY_CONTROLS_REPEAT_INPUT_DO} %1",
+		type: "controls_while",
+		message0: "%{BKY_CONTROLS_WHILE}",
+		args0: [
+			{
+				type: "input_value",
+				name: "BOOL",
+				check: "Boolean"
+			}],
+		message1: "%{BKY_CONTROLS_WHILE_DO} %1",
 		args1: [{
 			type: "input_statement",
 			name: "DO"
@@ -1063,8 +896,6 @@
 		previousStatement: null,
 		nextStatement: null,
 		style: "loop_blocks",
-		helpUrl: "%{BKY_CONTROLS_WHILEUNTIL_HELPURL}",
-		extensions: ["controls_whileUntil_tooltip"]
 	},
 	{
 		type: "controls_for",
@@ -1083,12 +914,6 @@
 		{
 			type: "input_value",
 			name: "TO",
-			check: "Number",
-			align: "RIGHT"
-		},
-		{
-			type: "input_value",
-			name: "BY",
 			check: "Number",
 			align: "RIGHT"
 		}],
@@ -1204,306 +1029,8 @@
 	Blockly.Constants.Math = {};
 
 	Blockly.Constants.Math.HUE = 230;
-	Blockly.defineBlocksWithJsonArray([{
-		type: "math_number",
-		message0: "%1",
-		args0: [{
-			type: "field_number",
-			name: "NUM",
-			value: 0
-		}],
-		output: "Number",
-		helpUrl: "%{BKY_MATH_NUMBER_HELPURL}",
-		style: "math_blocks",
-		tooltip: "%{BKY_MATH_NUMBER_TOOLTIP}",
-		extensions: ["parent_tooltip_when_inline"]
-	},
-	{
-		type: "math_arithmetic",
-		message0: "%1 %2 %3",
-		args0: [{
-			type: "input_value",
-			name: "A",
-			check: "Number"
-		},
-		{
-			type: "field_dropdown",
-			name: "OP",
-			options: [
-				["%{BKY_MATH_ADDITION_SYMBOL}", "ADD"],
-				["%{BKY_MATH_SUBTRACTION_SYMBOL}", "MINUS"],
-				["%{BKY_MATH_MULTIPLICATION_SYMBOL}", "MULTIPLY"],
-				["%{BKY_MATH_DIVISION_SYMBOL}", "DIVIDE"],
-				["%{BKY_MATH_POWER_SYMBOL}", "POWER"]
-			]
-		},
-		{
-			type: "input_value",
-			name: "B",
-			check: "Number"
-		}],
-		inputsInline: !0,
-		output: "Number",
-		style: "math_blocks",
-		helpUrl: "%{BKY_MATH_ARITHMETIC_HELPURL}",
-		extensions: ["math_op_tooltip"]
-	},
-	{
-		type: "math_single",
-		message0: "%1 %2",
-		args0: [{
-			type: "field_dropdown",
-			name: "OP",
-			options: [
-				["%{BKY_MATH_SINGLE_OP_ROOT}", "ROOT"],
-				["%{BKY_MATH_SINGLE_OP_ABSOLUTE}", "ABS"],
-				["-", "NEG"],
-				["ln", "LN"],
-				["log10", "LOG10"],
-				["e^", "EXP"],
-				["10^", "POW10"]
-			]
-		},
-		{
-			type: "input_value",
-			name: "NUM",
-			check: "Number"
-		}],
-		output: "Number",
-		style: "math_blocks",
-		helpUrl: "%{BKY_MATH_SINGLE_HELPURL}",
-		extensions: ["math_op_tooltip"]
-	},
-	{
-		type: "math_trig",
-		message0: "%1 %2",
-		args0: [{
-			type: "field_dropdown",
-			name: "OP",
-			options: [
-				["%{BKY_MATH_TRIG_SIN}", "SIN"],
-				["%{BKY_MATH_TRIG_COS}", "COS"],
-				["%{BKY_MATH_TRIG_TAN}", "TAN"],
-				["%{BKY_MATH_TRIG_ASIN}", "ASIN"],
-				["%{BKY_MATH_TRIG_ACOS}", "ACOS"],
-				["%{BKY_MATH_TRIG_ATAN}", "ATAN"]
-			]
-		},
-		{
-			type: "input_value",
-			name: "NUM",
-			check: "Number"
-		}],
-		output: "Number",
-		style: "math_blocks",
-		helpUrl: "%{BKY_MATH_TRIG_HELPURL}",
-		extensions: ["math_op_tooltip"]
-	},
-	{
-		type: "math_constant",
-		message0: "%1",
-		args0: [{
-			type: "field_dropdown",
-			name: "CONSTANT",
-			options: [
-				["\u03c0", "PI"],
-				["e", "E"],
-				["\u03c6", "GOLDEN_RATIO"],
-				["sqrt(2)", "SQRT2"],
-				["sqrt(\u00bd)", "SQRT1_2"],
-				["\u221e", "INFINITY"]
-			]
-		}],
-		output: "Number",
-		style: "math_blocks",
-		tooltip: "%{BKY_MATH_CONSTANT_TOOLTIP}",
-		helpUrl: "%{BKY_MATH_CONSTANT_HELPURL}"
-	},
-	{
-		type: "math_number_property",
-		message0: "%1 %2",
-		args0: [{
-			type: "input_value",
-			name: "NUMBER_TO_CHECK",
-			check: "Number"
-		},
-		{
-			type: "field_dropdown",
-			name: "PROPERTY",
-			options: [
-				["%{BKY_MATH_IS_EVEN}", "EVEN"],
-				["%{BKY_MATH_IS_ODD}", "ODD"],
-				["%{BKY_MATH_IS_PRIME}", "PRIME"],
-				["%{BKY_MATH_IS_WHOLE}", "WHOLE"],
-				["%{BKY_MATH_IS_POSITIVE}", "POSITIVE"],
-				["%{BKY_MATH_IS_NEGATIVE}", "NEGATIVE"],
-				["%{BKY_MATH_IS_DIVISIBLE_BY}", "DIVISIBLE_BY"]
-			]
-		}],
-		inputsInline: !0,
-		output: "Boolean",
-		style: "math_blocks",
-		tooltip: "%{BKY_MATH_IS_TOOLTIP}",
-		mutator: "math_is_divisibleby_mutator"
-	},
-	{
-		type: "math_change",
-		message0: "%{BKY_MATH_CHANGE_TITLE}",
-		args0: [{
-			type: "field_variable",
-			name: "VAR",
-			variable: "%{BKY_MATH_CHANGE_TITLE_ITEM}"
-		},
-		{
-			type: "input_value",
-			name: "DELTA",
-			check: "Number"
-		}],
-		previousStatement: null,
-		nextStatement: null,
-		style: "variable_blocks",
-		helpUrl: "%{BKY_MATH_CHANGE_HELPURL}",
-		extensions: ["math_change_tooltip"]
-	},
-	{
-		type: "math_round",
-		message0: "%1 %2",
-		args0: [{
-			type: "field_dropdown",
-			name: "OP",
-			options: [
-				["%{BKY_MATH_ROUND_OPERATOR_ROUND}", "ROUND"],
-				["%{BKY_MATH_ROUND_OPERATOR_ROUNDUP}", "ROUNDUP"],
-				["%{BKY_MATH_ROUND_OPERATOR_ROUNDDOWN}", "ROUNDDOWN"]
-			]
-		},
-		{
-			type: "input_value",
-			name: "NUM",
-			check: "Number"
-		}],
-		output: "Number",
-		style: "math_blocks",
-		helpUrl: "%{BKY_MATH_ROUND_HELPURL}",
-		tooltip: "%{BKY_MATH_ROUND_TOOLTIP}"
-	},
-	{
-		type: "math_on_list",
-		message0: "%1 %2",
-		args0: [{
-			type: "field_dropdown",
-			name: "OP",
-			options: [
-				["%{BKY_MATH_ONLIST_OPERATOR_SUM}", "SUM"],
-				["%{BKY_MATH_ONLIST_OPERATOR_MIN}", "MIN"],
-				["%{BKY_MATH_ONLIST_OPERATOR_MAX}", "MAX"],
-				["%{BKY_MATH_ONLIST_OPERATOR_AVERAGE}", "AVERAGE"],
-				["%{BKY_MATH_ONLIST_OPERATOR_MEDIAN}", "MEDIAN"],
-				["%{BKY_MATH_ONLIST_OPERATOR_MODE}", "MODE"],
-				["%{BKY_MATH_ONLIST_OPERATOR_STD_DEV}", "STD_DEV"],
-				["%{BKY_MATH_ONLIST_OPERATOR_RANDOM}", "RANDOM"]
-			]
-		},
-		{
-			type: "input_value",
-			name: "LIST",
-			check: "Array"
-		}],
-		output: "Number",
-		style: "math_blocks",
-		helpUrl: "%{BKY_MATH_ONLIST_HELPURL}",
-		mutator: "math_modes_of_list_mutator",
-		extensions: ["math_op_tooltip"]
-	},
-	{
-		type: "math_modulo",
-		message0: "%{BKY_MATH_MODULO_TITLE}",
-		args0: [{
-			type: "input_value",
-			name: "DIVIDEND",
-			check: "Number"
-		},
-		{
-			type: "input_value",
-			name: "DIVISOR",
-			check: "Number"
-		}],
-		inputsInline: !0,
-		output: "Number",
-		style: "math_blocks",
-		tooltip: "%{BKY_MATH_MODULO_TOOLTIP}",
-		helpUrl: "%{BKY_MATH_MODULO_HELPURL}"
-	},
-	{
-		type: "math_constrain",
-		message0: "%{BKY_MATH_CONSTRAIN_TITLE}",
-		args0: [{
-			type: "input_value",
-			name: "VALUE",
-			check: "Number"
-		},
-		{
-			type: "input_value",
-			name: "LOW",
-			check: "Number"
-		},
-		{
-			type: "input_value",
-			name: "HIGH",
-			check: "Number"
-		}],
-		inputsInline: !0,
-		output: "Number",
-		style: "math_blocks",
-		tooltip: "%{BKY_MATH_CONSTRAIN_TOOLTIP}",
-		helpUrl: "%{BKY_MATH_CONSTRAIN_HELPURL}"
-	},
-	{
-		type: "math_random_int",
-		message0: "%{BKY_MATH_RANDOM_INT_TITLE}",
-		args0: [{
-			type: "input_value",
-			name: "FROM",
-			check: "Number"
-		},
-		{
-			type: "input_value",
-			name: "TO",
-			check: "Number"
-		}],
-		inputsInline: !0,
-		output: "Number",
-		style: "math_blocks",
-		tooltip: "%{BKY_MATH_RANDOM_INT_TOOLTIP}",
-		helpUrl: "%{BKY_MATH_RANDOM_INT_HELPURL}"
-	},
-	{
-		type: "math_random_float",
-		message0: "%{BKY_MATH_RANDOM_FLOAT_TITLE_RANDOM}",
-		output: "Number",
-		style: "math_blocks",
-		tooltip: "%{BKY_MATH_RANDOM_FLOAT_TOOLTIP}",
-		helpUrl: "%{BKY_MATH_RANDOM_FLOAT_HELPURL}"
-	},
-	{
-		type: "math_atan2",
-		message0: "%{BKY_MATH_ATAN2_TITLE}",
-		args0: [{
-			type: "input_value",
-			name: "X",
-			check: "Number"
-		},
-		{
-			type: "input_value",
-			name: "Y",
-			check: "Number"
-		}],
-		inputsInline: !0,
-		output: "Number",
-		style: "math_blocks",
-		tooltip: "%{BKY_MATH_ATAN2_TOOLTIP}",
-		helpUrl: "%{BKY_MATH_ATAN2_HELPURL}"
-	}]);
+	Blockly.defineBlocksWithJsonArray([
+	]);
 	Blockly.Constants.Math.TOOLTIPS_BY_OP = {
 		ADD: "%{BKY_MATH_ARITHMETIC_TOOLTIP_ADD}",
 		MINUS: "%{BKY_MATH_ARITHMETIC_TOOLTIP_MINUS}",
@@ -2101,154 +1628,6 @@
 		helpUrl: "%{BKY_TEXT_TEXT_HELPURL}",
 		tooltip: "%{BKY_TEXT_TEXT_TOOLTIP}",
 		extensions: ["text_quotes", "parent_tooltip_when_inline"]
-	},
-	{
-		type: "text_multiline",
-		message0: "%1 %2",
-		args0: [{
-			type: "field_image",
-			src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAARCAYAAADpPU2iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAdhgAAHYYBXaITgQAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMS42/U4J6AAAAP1JREFUOE+Vks0KQUEYhjmRIja4ABtZ2dm5A3t3Ia6AUm7CylYuQRaUhZSlLZJiQbFAyRnPN33y01HOW08z8873zpwzM4F3GWOCruvGIE4/rLaV+Nq1hVGMBqzhqlxgCys4wJA65xnogMHsQ5lujnYHTejBBCK2mE4abjCgMGhNxHgDFWjDSG07kdfVa2pZMf4ZyMAdWmpZMfYOsLiDMYMjlMB+K613QISRhTnITnsYg5yUd0DETmEoMlkFOeIT/A58iyK5E18BuTBfgYXfwNJv4P9/oEBerLylOnRhygmGdPpTTBZAPkde61lbQe4moWUvYUZYLfUNftIY4zwA5X2Z9AYnQrEAAAAASUVORK5CYII=",
-			width: 12,
-			height: 17,
-			alt: "\u00b6"
-		},
-		{
-			type: "field_multilinetext",
-			name: "TEXT",
-			text: ""
-		}],
-		output: "String",
-		style: "text_blocks",
-		helpUrl: "%{BKY_TEXT_TEXT_HELPURL}",
-		tooltip: "%{BKY_TEXT_TEXT_TOOLTIP}",
-		extensions: ["parent_tooltip_when_inline"]
-	},
-	{
-		type: "text_join",
-		message0: "",
-		output: "String",
-		style: "text_blocks",
-		helpUrl: "%{BKY_TEXT_JOIN_HELPURL}",
-		tooltip: "%{BKY_TEXT_JOIN_TOOLTIP}",
-		mutator: "text_join_mutator"
-	},
-	{
-		type: "text_create_join_container",
-		message0: "%{BKY_TEXT_CREATE_JOIN_TITLE_JOIN} %1 %2",
-		args0: [{
-			type: "input_dummy"
-		},
-		{
-			type: "input_statement",
-			name: "STACK"
-		}],
-		style: "text_blocks",
-		tooltip: "%{BKY_TEXT_CREATE_JOIN_TOOLTIP}",
-		enableContextMenu: !1
-	},
-	{
-		type: "text_create_join_item",
-		message0: "%{BKY_TEXT_CREATE_JOIN_ITEM_TITLE_ITEM}",
-		previousStatement: null,
-		nextStatement: null,
-		style: "text_blocks",
-		tooltip: "%{BKY_TEXT_CREATE_JOIN_ITEM_TOOLTIP}",
-		enableContextMenu: !1
-	},
-	{
-		type: "text_append",
-		message0: "%{BKY_TEXT_APPEND_TITLE}",
-		args0: [{
-			type: "field_variable",
-			name: "VAR",
-			variable: "%{BKY_TEXT_APPEND_VARIABLE}"
-		},
-		{
-			type: "input_value",
-			name: "TEXT"
-		}],
-		previousStatement: null,
-		nextStatement: null,
-		style: "text_blocks",
-		extensions: ["text_append_tooltip"]
-	},
-	{
-		type: "text_length",
-		message0: "%{BKY_TEXT_LENGTH_TITLE}",
-		args0: [{
-			type: "input_value",
-			name: "VALUE",
-			check: ["String", "Array"]
-		}],
-		output: "Number",
-		style: "text_blocks",
-		tooltip: "%{BKY_TEXT_LENGTH_TOOLTIP}",
-		helpUrl: "%{BKY_TEXT_LENGTH_HELPURL}"
-	},
-	{
-		type: "text_isEmpty",
-		message0: "%{BKY_TEXT_ISEMPTY_TITLE}",
-		args0: [{
-			type: "input_value",
-			name: "VALUE",
-			check: ["String", "Array"]
-		}],
-		output: "Boolean",
-		style: "text_blocks",
-		tooltip: "%{BKY_TEXT_ISEMPTY_TOOLTIP}",
-		helpUrl: "%{BKY_TEXT_ISEMPTY_HELPURL}"
-	},
-	{
-		type: "text_indexOf",
-		message0: "%{BKY_TEXT_INDEXOF_TITLE}",
-		args0: [{
-			type: "input_value",
-			name: "VALUE",
-			check: "String"
-		},
-		{
-			type: "field_dropdown",
-			name: "END",
-			options: [
-				["%{BKY_TEXT_INDEXOF_OPERATOR_FIRST}", "FIRST"],
-				["%{BKY_TEXT_INDEXOF_OPERATOR_LAST}", "LAST"]
-			]
-		},
-		{
-			type: "input_value",
-			name: "FIND",
-			check: "String"
-		}],
-		output: "Number",
-		style: "text_blocks",
-		helpUrl: "%{BKY_TEXT_INDEXOF_HELPURL}",
-		inputsInline: !0,
-		extensions: ["text_indexOf_tooltip"]
-	},
-	{
-		type: "text_charAt",
-		message0: "%{BKY_TEXT_CHARAT_TITLE}",
-		args0: [{
-			type: "input_value",
-			name: "VALUE",
-			check: "String"
-		},
-		{
-			type: "field_dropdown",
-			name: "WHERE",
-			options: [
-				["%{BKY_TEXT_CHARAT_FROM_START}", "FROM_START"],
-				["%{BKY_TEXT_CHARAT_FROM_END}", "FROM_END"],
-				["%{BKY_TEXT_CHARAT_FIRST}", "FIRST"],
-				["%{BKY_TEXT_CHARAT_LAST}", "LAST"],
-				["%{BKY_TEXT_CHARAT_RANDOM}", "RANDOM"]
-			]
-		}],
-		output: "String",
-		style: "text_blocks",
-		helpUrl: "%{BKY_TEXT_CHARAT_HELPURL}",
-		inputsInline: !0,
-		mutator: "text_charAt_mutator"
 	}]);
 	Blockly.Blocks.text_getSubstring = {
 		init: function () {
@@ -2488,7 +1867,7 @@
 			})
 		}
 	};
-
+	/*Comillas*/
 	Blockly.Constants.Text.QUOTE_IMAGE_MIXIN = {
 		QUOTE_IMAGE_LEFT_DATAURI: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC",
 		QUOTE_IMAGE_RIGHT_DATAURI: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg==",
@@ -2509,8 +1888,32 @@
 		}
 	};
 
+	Blockly.Constants.Text.QUOTE_IMAGE_MIXIN2 = {
+		QUOTE_IMAGE_LEFT_DATAURI: "data:image/png;base64,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",
+		QUOTE_IMAGE_RIGHT_DATAURI: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEwAAAB2CAYAAABidnXgAAAKN2lDQ1BzUkdCIElFQzYxOTY2LTIuMQAAeJydlndUU9kWh8+9N71QkhCKlNBraFICSA29SJEuKjEJEErAkAAiNkRUcERRkaYIMijggKNDkbEiioUBUbHrBBlE1HFwFBuWSWStGd+8ee/Nm98f935rn73P3Wfvfda6AJD8gwXCTFgJgAyhWBTh58WIjYtnYAcBDPAAA2wA4HCzs0IW+EYCmQJ82IxsmRP4F726DiD5+yrTP4zBAP+flLlZIjEAUJiM5/L42VwZF8k4PVecJbdPyZi2NE3OMErOIlmCMlaTc/IsW3z2mWUPOfMyhDwZy3PO4mXw5Nwn4405Er6MkWAZF+cI+LkyviZjg3RJhkDGb+SxGXxONgAoktwu5nNTZGwtY5IoMoIt43kA4EjJX/DSL1jMzxPLD8XOzFouEiSniBkmXFOGjZMTi+HPz03ni8XMMA43jSPiMdiZGVkc4XIAZs/8WRR5bRmyIjvYODk4MG0tbb4o1H9d/JuS93aWXoR/7hlEH/jD9ld+mQ0AsKZltdn6h21pFQBd6wFQu/2HzWAvAIqyvnUOfXEeunxeUsTiLGcrq9zcXEsBn2spL+jv+p8Of0NffM9Svt3v5WF485M4knQxQ143bmZ6pkTEyM7icPkM5p+H+B8H/nUeFhH8JL6IL5RFRMumTCBMlrVbyBOIBZlChkD4n5r4D8P+pNm5lona+BHQllgCpSEaQH4eACgqESAJe2Qr0O99C8ZHA/nNi9GZmJ37z4L+fVe4TP7IFiR/jmNHRDK4ElHO7Jr8WgI0IABFQAPqQBvoAxPABLbAEbgAD+ADAkEoiARxYDHgghSQAUQgFxSAtaAYlIKtYCeoBnWgETSDNnAYdIFj4DQ4By6By2AE3AFSMA6egCnwCsxAEISFyBAVUod0IEPIHLKFWJAb5AMFQxFQHJQIJUNCSAIVQOugUqgcqobqoWboW+godBq6AA1Dt6BRaBL6FXoHIzAJpsFasBFsBbNgTzgIjoQXwcnwMjgfLoK3wJVwA3wQ7oRPw5fgEVgKP4GnEYAQETqiizARFsJGQpF4JAkRIauQEqQCaUDakB6kH7mKSJGnyFsUBkVFMVBMlAvKHxWF4qKWoVahNqOqUQdQnag+1FXUKGoK9RFNRmuizdHO6AB0LDoZnYsuRlegm9Ad6LPoEfQ4+hUGg6FjjDGOGH9MHCYVswKzGbMb0445hRnGjGGmsVisOtYc64oNxXKwYmwxtgp7EHsSewU7jn2DI+J0cLY4X1w8TogrxFXgWnAncFdwE7gZvBLeEO+MD8Xz8MvxZfhGfA9+CD+OnyEoE4wJroRIQiphLaGS0EY4S7hLeEEkEvWITsRwooC4hlhJPEQ8TxwlviVRSGYkNimBJCFtIe0nnSLdIr0gk8lGZA9yPFlM3kJuJp8h3ye/UaAqWCoEKPAUVivUKHQqXFF4pohXNFT0VFysmK9YoXhEcUjxqRJeyUiJrcRRWqVUo3RU6YbStDJV2UY5VDlDebNyi/IF5UcULMWI4kPhUYoo+yhnKGNUhKpPZVO51HXURupZ6jgNQzOmBdBSaaW0b2iDtCkVioqdSrRKnkqNynEVKR2hG9ED6On0Mvph+nX6O1UtVU9Vvuom1TbVK6qv1eaoeajx1UrU2tVG1N6pM9R91NPUt6l3qd/TQGmYaYRr5Grs0Tir8XQObY7LHO6ckjmH59zWhDXNNCM0V2ju0xzQnNbS1vLTytKq0jqj9VSbru2hnaq9Q/uE9qQOVcdNR6CzQ+ekzmOGCsOTkc6oZPQxpnQ1df11Jbr1uoO6M3rGelF6hXrtevf0Cfos/ST9Hfq9+lMGOgYhBgUGrQa3DfGGLMMUw12G/YavjYyNYow2GHUZPTJWMw4wzjduNb5rQjZxN1lm0mByzRRjyjJNM91tetkMNrM3SzGrMRsyh80dzAXmu82HLdAWThZCiwaLG0wS05OZw2xljlrSLYMtCy27LJ9ZGVjFW22z6rf6aG1vnW7daH3HhmITaFNo02Pzq62ZLde2xvbaXPJc37mr53bPfW5nbse322N3055qH2K/wb7X/oODo4PIoc1h0tHAMdGx1vEGi8YKY21mnXdCO3k5rXY65vTW2cFZ7HzY+RcXpkuaS4vLo3nG8/jzGueNueq5clzrXaVuDLdEt71uUnddd457g/sDD30PnkeTx4SnqWeq50HPZ17WXiKvDq/XbGf2SvYpb8Tbz7vEe9CH4hPlU+1z31fPN9m31XfKz95vhd8pf7R/kP82/xsBWgHcgOaAqUDHwJWBfUGkoAVB1UEPgs2CRcE9IXBIYMj2kLvzDecL53eFgtCA0O2h98KMw5aFfR+OCQ8Lrwl/GGETURDRv4C6YMmClgWvIr0iyyLvRJlESaJ6oxWjE6Kbo1/HeMeUx0hjrWJXxl6K04gTxHXHY+Oj45vipxf6LNy5cDzBPqE44foi40V5iy4s1licvvj4EsUlnCVHEtGJMYktie85oZwGzvTSgKW1S6e4bO4u7hOeB28Hb5Lvyi/nTyS5JpUnPUp2Td6ePJninlKR8lTAFlQLnqf6p9alvk4LTduf9ik9Jr09A5eRmHFUSBGmCfsytTPzMoezzLOKs6TLnJftXDYlChI1ZUPZi7K7xTTZz9SAxESyXjKa45ZTk/MmNzr3SJ5ynjBvYLnZ8k3LJ/J9879egVrBXdFboFuwtmB0pefK+lXQqqWrelfrry5aPb7Gb82BtYS1aWt/KLQuLC98uS5mXU+RVtGaorH1futbixWKRcU3NrhsqNuI2ijYOLhp7qaqTR9LeCUXS61LK0rfb+ZuvviVzVeVX33akrRlsMyhbM9WzFbh1uvb3LcdKFcuzy8f2x6yvXMHY0fJjpc7l+y8UGFXUbeLsEuyS1oZXNldZVC1tep9dUr1SI1XTXutZu2m2te7ebuv7PHY01anVVda926vYO/Ner/6zgajhop9mH05+x42Rjf2f836urlJo6m06cN+4X7pgYgDfc2Ozc0tmi1lrXCrpHXyYMLBy994f9Pdxmyrb6e3lx4ChySHHn+b+O31w0GHe4+wjrR9Z/hdbQe1o6QT6lzeOdWV0iXtjusePhp4tLfHpafje8vv9x/TPVZzXOV42QnCiaITn07mn5w+lXXq6enk02O9S3rvnIk9c60vvG/wbNDZ8+d8z53p9+w/ed71/LELzheOXmRd7LrkcKlzwH6g4wf7HzoGHQY7hxyHui87Xe4Znjd84or7ldNXva+euxZw7dLI/JHh61HXb95IuCG9ybv56Fb6ree3c27P3FlzF3235J7SvYr7mvcbfjT9sV3qID0+6j068GDBgztj3LEnP2X/9H686CH5YcWEzkTzI9tHxyZ9Jy8/Xvh4/EnWk5mnxT8r/1z7zOTZd794/DIwFTs1/lz0/NOvm1+ov9j/0u5l73TY9P1XGa9mXpe8UX9z4C3rbf+7mHcTM7nvse8rP5h+6PkY9PHup4xPn34D94Tz+49wZioAAAAJcEhZcwAALiMAAC4jAXilP3YAAAymSURBVHic7V0NdBTFHb/k9u5yl+QCjQ1BeKElVEgQH6FKBenlKdV++EHhUkuxCBg+qkKVh/JsIQmJgGCpFvteBYoWsKitIX1CK1LL60sJorUCAi+kDSBggCZo+EjCfeVCf//L3HVzuUvudmdvdyG/9zYzt5mZ/e9v//Of/8zOzApXr141KI3q6mph/PjxeUajcSR+Dk9KSspBOAhHJo7+OFJxmFlyL442HBdwfI7jJGQ8RaHf7/9PfX39kfz8fK/iQkeBoESh5eXlyUuWLLk9OTn5WyDnTofDcZuhkxRJQBmBUBAEQ15enhcEHsTPfyH80OVy7UpNTW3kJHqv4EpYe3v77dCiGaWlpZPxc0DwPN0wL01GWWaUNRbRsYg/ZrPZ8PPqR/i9E9evMplMh7hcKApkE3bs2DHL0KFDH4LwC0HWzZHS8Kz24WXhuklBAqGBZYiT5m1ubW193W63N3O7MINkwvbv328aPXr0rNzc3FJDpz1SBWICmSbfivDW9PT0NYj/zuv1rrFYLMd5XU8SYVD9woKCgt8gms9LEB4II8+C3z8xm81zSOM8Hs+ylJSUz+ReIy7CGhsbU7Oysl6A6s9NROsqB0H5QJwR8UegZVM7OjpW1tXV/UJOKxszYT6fbyTI2obocKkXUwOiB2sDecvRyj6Ie5mBxuGglPJiIgz+z/ehVa8hmhYmhB5xC+7lQ2jbE3B71sWbuVfCUPAsFLwR0WRJ4mkTZmjby3jwIysqKp4oKyvriDVjj4SBrJkg61Wda1REsBZ1PnzGDDjaM2MlLSph1BLCr9pwLZJFoPtipE0HaZdxan4s+SIShib4K2iOqxA18RRSaxCR9jhqUz1q09re8nQjjPqBYHwzol9SREqNIUga8Es0bkdQq3b3lL4bYSUlJYsQOHj2/7QOdp9GaNjr6MwXWK3Ws9HSdiEMiW+EN7zseiIrDFm4/y0g7m5U0YgEdCEMiZ9FYLtOyQras4lo8Bbg50uR0oQIQyf1Jni/M69j7RJ3p55zu91vQ4FOhacJEQayiNXk65WsMNjQ9yQNmxT+jwBhzc3N9v79+8+6nrVLDMbDA2g1J4a3mgHC+vXrdx+C1D6yOhHkAcZ/NY7bxA1AgDAwWqSSbJoF07Kv+3w+UqYdwfNCZWWl0el03q2ibJqESMueMogJmzRp0igDG7bpQ1cwLXNAywrQKB6gcwKM2jfUFkyrCGqZIAiPIFgQiIPFm9QUSif4UXV19cLCwsJ2MvrD1JZGB8icMGFCIcLdRFiW2tLoATD+3zUwwvqpLYxOcBf9IcJSVBZE82Ct5S30mpEI86stkNYRHC/LzMwcRYSpNnVIb4AdG0GEfaG2IDrCECKsSW0p9ALYsoFE2KdqC6IjZAgwaPXBGX596BU2oaOj4xP0J9UWRDcQzp8/fyg7O7sdWib0DSD2Co8wcODAKzS5FscdakujA1wOjLiCrPegYX2E9Y4zAcJgx96DHVumsjCaBxTr0wBhe/fu/afD4aBFBDeoLJOmAcU6ESCMBsbA3h8QfVxlmTQNj8dTF3qR6/f7t6Ja9hEWHcdTU1ObQoSZzeYPQBoN9BeoKJSW8T79CRFGLyu9Xu80k8n0MX7aVBNLo4DJqqEeUZfZO9CyOhD3GP6xSQ/TBhIhY7Db6Ha7/2K1WrtPqEtOTt4MIUbgeEbrpEE2GsvbhfAfCM9CXlqZshihiZfcrJwPQNYZikSc4wrj/3PYs8FI/GONktYAmda2tra+YrfbL4gHD3DejmMBz4uhvKrQEsRICcieVVZWznQ6nW4knq02aaLrNyMsP3HixPphw4Z5QFa3tPj/PqTnQhi7bgds+5spKZ2vPqJOOy8qKvKjes6Fpp1FphLKz0MIKcD1fQjWt7S0lJJGgayeknN7R8Ee0g7xoq7eFjZQjjKQtg/k0dKZG5TWtrDyP0N8ncvl2kg+UCSNioCBPOUBB+vEw18xrTVChncvX748PD09fQVuYC5OJXNeZRsqixny7RB0S01NzU7qhYCseMoayUWoTtQvX778r2VlZaETMa9mY6tbH0V9/jV8tUXUIBjYwvZ4yQtPj7gbwd8Qbm9ra6vCg/mCnirIirlMEbiNukCeleFLauJeYApfrRZBMVqoZ2w222TcvBMFfxPnrHEI4kJA67RroEk1TU1N1TQuR0SCrHhFCgG+Uo7FYsnnpP3H9uzZ8/vwhyZ5CXNaWtp5BBvoYNss5LM13zdC4GyEFkPnCjg/hKeRkM8Rnm5vb69dtWrVyeCTI00CWVLF6AI8zPsp5GEqSLvIHISf57KrACv4EDu6QewnEUFim8ATpO2cijoM7XotkklQZN8KNcBWsRTKqY7BvLT4NJJ2Ea4ZwmC7qBGStc6A5a1ELfh7tDTXBGFsBd4cDkW1ejyeRUGvPhKuCcKWLl1Kk90kz6QMVkUci0HW6Z7SXhOEoRfytJz8rCruFgRhHexXj2l1TxjclPGwObKMPdAKh3x2tCV/YuieMJC1kkIpZImq4jw0GidjyaNrwvx+/72ojpK1i+XZSCtxY82jW8JYy/gcxWVUxcNnzpz56eDBg2POoFvCSkpKZiAYJUW7WB4f7N80kOWKJ68uCWtpaclEX/Z5ikutijieNZlMR+LNq0vCQNZqg7xpDZ8cPHhw1ZgxY+LOqDvCUI0mwF8qprjEqoi2wl8MsnxSrq8rwk6dOpWSk5OzXqqRZ/meB+EfS5VBV4SBrBUGebvi1Z0+fbpiyJAhkgvQDWGoRnfCX1ooo1WkulgMstxy5NAFYRcvXswANiGaJMNB/RWq4vtyZdEFYSCLNqjMkVFELRzUJfE4qNGgecLQIZ6HKjVNpoM6PV4HNRo0TZjP5xuDahTY00uGg7oMDup+XjJplrBLly71s9vtbxk63z5Jxd6qqqrVRUX8tuXQJGGsY01TE4bKKKbN6/XOoDkivOQiaJIwNgpxnwy7RceTPLdUDkJzhMHIP4ybXixzjGs720qVOzRFGFqzcUaj8bcUlzHGdf7KlStz4pnAEg80QxjszdfQmr1t+P+XG+KC6CXsbJoaxVm8EDRBGDQi22q17kL0y1LLYBq5ARq6nZtgEaA6YWyzt3cQ/arMoo7Am3+ShzffE1QljL72kJubSxvsyl1M4YKT+0Ne3nxPUI0w+uJDQUHBHxGdKLVFFLkQC9i8NcWhCmE0n8zhcGxF9AE5L2BZvjfgQrzCU76ekHDCmBe/CdEfcJgpWA8bOC8zM5OPcDEgoYTR9oEgixzKhziQdQV+mxNktXASLyYkjDCyWU6ncwuiU3lMesMxB37bYb5S9o6EEFZbW2uGgX8T0ck8yAJeiuf1Pk8oTlhDQ4M1Ly+PXIfvyK2GLG/NgQMHnpLyTpEHFCWM3lAPGjSIujt3cJoK/l+Xy/Wg1HeKPKAYYfTVh7S0tJ2IjuBElsfv90+x2WznOIgnGYoQRkPLcCSpuxP4oJ0csoJT1tGpLhYEYR8XAWWAO2HQgvtxY2SQZW+mK9LMlTDyW2ULxwHcCMMNJcEv+hnC5QZOSwUZWVUVFRUlSi2GiBdcCDt37pwNmkXdE1k+VgTsb2pqejieDzUpDdmEwbgPzc7Oprc7YziT1eB2uycNGDCgjVeBPCCLMGiVE8b9VUQDKz85ktWMhuMeq9XawKtAXpBEGBvHWgN7FdPXpuJEGx7E9/AgjipQtmzETRie/M0gi/qEBQosZ/bBfXDS1/l4FsoTMRNGIw1Tpkx5GjdTbmAvKjgvYSbMMBqNu7gUqhBiIszr9Y5wOp1kq8bx1qqgY4oyH0UVf4NbwQqhR8LIXUALuMRkMtFaHpNSZNH2NSBrPbeCFURUwqjfBrJeRDRHNAbF9eKsGs4HWS9zLVhBdCMMRN2FG3gWx/jgOYX2qehAucW4ziYlClcKIcJoOjcMbjluILBvvMIbenhpGwdc6y2lLqAUAoTBox5isViqDaINPBQk6wK0eDJa22qlLqAkAoTRR9tAEL0jnKoEUSJtPQ4/7l44pf/mfpEEIVQlcSOlaA2n4ObMvFtCVt67LS0t02izIW6FqwDxHoj1uLHVtJMTT/tF20khWLFt27Zy3rMB1UCXVvLo0aP0pfVv4ybHyilURPhJ2KvpsFc1POeZqokuhOXn53tdLtdk2DRaABD3+hJRg0GatLa5uXlZol+0Ko1ufhh9UBetpgOt5p8NMS7gDEvzDo28wh4eSuQr/EQhoqdPezc0NjaOy8rKqrjauZ9gj9/7RhoPgj+BqBdQ/T4CWUrIqglE7Rqxkc5FqKIvQtumQ4vuMXSuJKPBQvryOr3uom3la9D67cjIyLgIshIjtYr4H3Iw7GPcnOjtAAAAAElFTkSuQmCC",
+		QUOTE_IMAGE_WIDTH: 12,
+		QUOTE_IMAGE_HEIGHT: 12,
+		quoteField_: function (a) {
+			for (var b = 0, c; c = this.inputList[b]; b++) for (var d = 0, e; e = c.fieldRow[d]; d++) if (a == e.name) {
+				c.insertFieldAt(d, this.newQuote_(!0));
+				c.insertFieldAt(d + 2, this.newQuote_(!1));
+				return
+			}
+			console.warn('field named "' + a + '" not found in ' + this.toDevString())
+		},
+
+		newQuote_: function (a) {
+			a = this.RTL ? !a : a;
+			return new Blockly.FieldImage(a ? this.QUOTE_IMAGE_LEFT_DATAURI : this.QUOTE_IMAGE_RIGHT_DATAURI, this.QUOTE_IMAGE_WIDTH, this.QUOTE_IMAGE_HEIGHT, a ? "\u201c" : "\u201d")
+		}
+	};
+
 	Blockly.Constants.Text.TEXT_QUOTES_EXTENSION = function () {
 		this.mixin(Blockly.Constants.Text.QUOTE_IMAGE_MIXIN);
+		this.quoteField_("TEXT")
+	};
+	Blockly.Constants.Text.TEXT_QUOTES_EXTENSION2 = function () {
+		this.mixin(Blockly.Constants.Text.QUOTE_IMAGE_MIXIN2);
 		this.quoteField_("TEXT")
 	};
 
@@ -2627,9 +2030,12 @@
 			return c
 		})
 	};
-
-	Blockly.Extensions.register("text_indexOf_tooltip", Blockly.Constants.Text.TEXT_INDEXOF_TOOLTIP_EXTENSION);
+	/*Apostrofes*/
+	Blockly.Extensions.register("text_quotes2", Blockly.Constants.Text.TEXT_QUOTES_EXTENSION2);
+	/*Comillas*/
 	Blockly.Extensions.register("text_quotes", Blockly.Constants.Text.TEXT_QUOTES_EXTENSION);
+	//-------------------//
+	Blockly.Extensions.register("text_indexOf_tooltip", Blockly.Constants.Text.TEXT_INDEXOF_TOOLTIP_EXTENSION);
 	Blockly.Extensions.registerMutator("text_join_mutator", Blockly.Constants.Text.TEXT_JOIN_MUTATOR_MIXIN, Blockly.Constants.Text.TEXT_JOIN_EXTENSION);
 	Blockly.Extensions.registerMutator("text_charAt_mutator", Blockly.Constants.Text.TEXT_CHARAT_MUTATOR_MIXIN, Blockly.Constants.Text.TEXT_CHARAT_EXTENSION);
 	Blockly.Blocks.variables = {};

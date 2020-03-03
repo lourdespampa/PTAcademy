@@ -20,7 +20,7 @@ const customStyles = {
 };
 
 // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
-//Modal.setAppElement('#yourAppElement')
+//Modal.setAppElement(document.getElementById('modal'))
 
 
 class Menu extends React.Component {
@@ -69,16 +69,16 @@ class Menu extends React.Component {
     }
     render() {
         return (
-            <div>
-                <button onClick={this.openModal}>Lenguaje</button>
+            <div id="modal">
+                <button onClick={this.openModal}>Open Modal</button>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
                     style={customStyles}
-                    contentLabel="Example Modal"
+                    contentLabel="Lenguaje"
+                    ariaHideApp={false}
                 >
-
                     <h2 ref={subtitle => this.subtitle = subtitle}>Lenguaje</h2>
 
 

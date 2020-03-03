@@ -1,20 +1,22 @@
-import React from "react";
+
 import "./Styles/App.css";
+
+import React from "react";
+
+//Code// 
 import Generar from "./Code/generar";
 import Blockly from "./blockly copy/blockly";
-import BlocklyJS from "./blockly copy/Arduino";
+import BlocklyJSA from "./Code/Arduino";
+import BlocklyComponent from "./Blockly";
 import Menu from "./Code/Modal";
-import BlocklyComponent, {
-  Block,
-  Value,
-  Field,
-  Shadow,
-  Category
-} from "./Blockly";
-import "./blocks/customblocks";
-import "./Code/Arduino";
-//import Idioma from "./Code/idioma";
-//import '../src/blockly copy/setCategoryCharacter'
+
+//Categorias//
+import CategoryBucles from "./blocks/Category_Bucles/categ_bucle.jsx";
+import CategoryLogica from "./blocks/Category_Logic/cate_logic.jsx";
+import CategoryMath from "./blocks/Category_Math/cate_math.jsx";
+import CategoryInicial from "./blocks/Category_Inicializar/cate_inicializar"
+import CategoryText from "./blocks/Category_Text/cate_text.jsx";
+
 
 class App extends React.Component {
   generateXml = () => {
@@ -24,8 +26,11 @@ class App extends React.Component {
     console.log(newXml);
   };
   generateCode = () => {
-    var code = BlocklyJS.workspaceToCode(this.simpleWorkspace.workspace);
+    var code = BlocklyJSA.workspaceToCode(this.simpleWorkspace.workspace);
+
+
     document.getElementById("content_arduino").value = code;
+
     var arduino = document.getElementById("content_arduino");
     var bloques = document.getElementById("bloques");
     arduino.style.visibility = "visible"
@@ -46,7 +51,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div name="app">
         <button type="button" onClick={this.Bloques}>
           Bloques
         </button>
@@ -69,32 +74,11 @@ class App extends React.Component {
                 wheel: true
               }}
             >
-              <Category name="a" id="variables">
-                <Block type="test_react_field" />
-                <Block type="test_react_date_field" />
-                <Block type="controls_ifelse" />
-                <Block type="logic_compare" />
-                <Block type="logic_operation" />
-                <Block type="controls_repeat_ext">
-                  <Value name="TIMES">
-                    <Shadow type="math_number">
-                      <Field name="NUM">10</Field>
-                    </Shadow>
-                  </Value>
-                </Block>
-                <Block type="logic_operation" />
-                <Block type="logic_negate" />
-                <Block type="logic_boolean" />
-                <Block type="logic_null" disabled="true" />
-                <Block type="logic_ternary" />
-                <Block type="text_charAt">
-                  <Value name="VALUE">
-                    <Block type="variables_get">
-                      <Field name="VAR">text</Field>
-                    </Block>
-                  </Value>
-                </Block>
-              </Category>
+              <CategoryLogica />
+              <CategoryBucles />
+              <CategoryMath />
+              <CategoryText />
+              <CategoryInicial />
             </BlocklyComponent>
           </header>
         </div>

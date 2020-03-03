@@ -60,6 +60,7 @@ nextPpt=async()=> {
     query:
         { pin: this.props.id_access }
   })
+  await socket.emit('sendSlides')
   await socket.emit('PositionPpt', {
         position: this.state.positionPpt
   });
@@ -74,6 +75,8 @@ backtPpt=async()=> {
     positionPpt:this.state.positionPpt - 1
   })
   await this.getUrl()
+ 
+  await socket.emit('sendSlides')
   await socket.emit('PositionPpt', {
     position: this.state.positionPpt
   });
@@ -83,9 +86,20 @@ changeCarrucel(e){
     query:
         { pin: this.props.id_access }
   })
+  socket.emit('sendSlides')
   socket.emit('PositionPpt', {
     position: e+ 1
   });
+}
+backimg=()=>{
+  this.setState({
+    positionPpt:this.state.positionPpt-1
+  })
+}
+nextimg=()=>{
+  this.setState({
+    positionPpt:this.state.positionPpt+1
+  })
 }
   render() {
     return (
@@ -97,23 +111,33 @@ changeCarrucel(e){
           </iframe>
           </div>
            <ul className="btnNextPrev">
-            <li class="prev"  onClick={this.backtPpt}><span></span></li>
-            <li class="next " onClick={this.nextPpt}><span></span></li>
+            <li className="prev"  onClick={this.backtPpt}><span></span></li>
+            <li className="next " onClick={this.nextPpt}><span></span></li>
           </ul>
           
         </>
           :
       <div style={styles}> 
-        <Carousel showArrows={true} useKeyboardArrows={true} swipeable={true} emulateTouch={true}	 showIndicators={false}
+      <ul className="btnNextPrev">
+            <li className="prev"  onClick={this.backimg}><span></span></li>
+            <li className="next " onClick={this.nextimg}><span></span></li>
+          </ul>
+        <Carousel selectedItem={this.state.positionPpt-1} 
+        // centerMode  
+        // centerSlidePercentage={ 90 } 
+        showArrows={false} useKeyboardArrows={false} swipeable={false} emulateTouch={true}	 showIndicators={false}
          showThumbs={false} onChange={(e)=>this.changeCarrucel(e)}>
             {
                 this.state.Slides.map((slide)=>(
-                    <div key={slide.index}>
-                    <img
+                    <div className="imagenes" key={slide.index}>
+                      <div style={{width:"5%",float:'left'}}></div>
+                    <img className="imagenes-indiviuales"
+                    style={{width:"90%",float:'left',marginLeft:'calc(50% - 45%)'}}
                       src={slide.url}
                       alt="Hong Kong"
                     />
-                  </div>          
+                     <div style={{width:"5%",float:'left'}}></div> 
+                  </div>       
                 ))
             }
         </Carousel>

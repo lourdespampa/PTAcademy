@@ -1,5 +1,5 @@
 import React from 'react';
-import './arduino.css';
+import './styles/text_code.css';
 import '../App';
 
 

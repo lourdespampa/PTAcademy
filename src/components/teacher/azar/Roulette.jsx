@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import io from 'socket.io-client';
 import './Roulette.css';
+import fondomusical from './fondomusical.mp3';
 
 class Roulette extends React.Component {
 
@@ -20,6 +21,7 @@ class Roulette extends React.Component {
     this.handleOnClick = this.handleOnClick.bind(this);
     this.spin = this.spin.bind(this);
     this.rotate = this.rotate.bind(this);
+    // this.emitChangeDebounced = debounce(this.emitChange, 250);
   }
 
   static propTypes = {
@@ -178,18 +180,20 @@ class Roulette extends React.Component {
   easeOut(t, b, c, d) {
     const ts = (t/=d)*t;
     const tc = ts*t;
-    return b+c*(tc + -3*ts + 3*t);
-  }
+    return b+c*(tc + -3*ts + 3*t);}
 
   handleOnClick = (e) => {
-    document.getElementById("btnRuleta").setAttribute("disabled", "")
-    let pulsadas = Math.round(Math.random()*10)
+      this.setState({desactivarBoton: true})
+    let pulsadas = Math.round(Math.random()*9)
     console.log(pulsadas)
     let intervalId = setInterval(() => this.spin(), 100)
     this.setState({intervalId: intervalId})
     setTimeout( () => {
       clearInterval(this.state.intervalId)
-      document.getElementById("btnRuleta").removeAttribute("disabled")
+      setTimeout( () => {
+        clearInterval(this.state.intervalId)
+        this.setState({desactivarBoton: false})
+      }, 4500)
     }, pulsadas*1000)
   }
 
@@ -205,7 +209,8 @@ class Roulette extends React.Component {
           {
             this.state.desactivarBoton
             ?
-            <button className="roulette-container-button" onClick={this.handleOnClick} id="btnRuleta" disabled>
+            <button className="roulette-container-button" onClick={this.handleOnClick} style={{background:"grey"}} id="btnRuleta" disabled>
+              <audio autoPlay src={fondomusical} type="audio/mp3"></audio>
               <div className="button-zoom">GIRAR</div>
             </button>
             :

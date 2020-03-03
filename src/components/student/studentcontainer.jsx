@@ -4,7 +4,16 @@ import Left from '../../containers/teacher/Left'
 import Header from '../../containers/student/Header'
 import Footer from '../../containers/student/Footer';
 export default class Container extends Component {
-    
+    componentDidMount(){
+        window.addEventListener("beforeunload", (ev) => 
+        {  
+            ev.preventDefault();
+            return ev.returnValue = 'Are you sure you want to close?';
+        }); 
+    }
+    componentWillUnmount(){
+        localStorage.clear();
+    }
     render() {
         const {children}=this.props
         return (

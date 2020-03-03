@@ -64,11 +64,11 @@ class Dropzone extends Component {
     return (
       <div className={`Dropzone ${this.state.hightlight ? "Highlight" : ""}`} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave}
         onDrop={this.onDrop} onClick={this.openFileDialog} style={{ cursor: this.props.disabled ? "default" : "pointer" }}>
-        <input ref={this.fileInputRef} className="FileInput" type="file" accept="application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.slideshow, application/vnd.openxmlformats-officedocument.presentationml.template, application/vnd.openxmlformats-officedocument.presentationml.presentation"
+        <input ref={this.fileInputRef} className="FileInput" type="file" accept="application/vnd.ms-powerpoint, .pptx,"
           onChange={this.onFilesAdded} value={this.state.inputValue}/>
         <img alt="diapositiva" className="Icon" src={imgDiapo}/>
         {
-        this.props.slideOn ? null : <span className="sube">Sube aqui tu diapositiva</span>
+        this.props.slideOn ? null : <span className="sube">Sube aquí tu diapositiva</span>
         }
       </div>
     );

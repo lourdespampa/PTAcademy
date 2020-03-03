@@ -5,85 +5,92 @@ import HeaderCode from "../../components/teacher/header/HeaderCode";
 import axios from "axios";
 import io from "socket.io-client";
 import "react-toastify/dist/ReactToastify.css";
+import { Redirect } from "react-router-dom";
 
 class Header extends React.Component {
-  /** 
-   * Fix notificatión 
+  /**
+   * Fix notificatión
    *  :: valor inicial de PIN al cargar component
-   * */ 
-  pin = ''
+   * */
+
+  pin = "";
   /******************* */
-  constructor( props ) {
-    super( props );
+  constructor(props) {
+    super(props);
 
     this.state = {
-      nombre_clase: ""
+      nombre_clase: "",
+      token: false
     };
   }
   componentDidMount() {
-    // Destructurando 
-    const { 
-      id_access, 
-      socketUrl 
-    } = this.props
+    // Destructurando
+    const { id_access, socketUrl } = this.props;
 
     /** Fix notificatión */
-    this.pin = id_access
-    console.log('valor de pin cuando inicia componente: ' + this.pin)
+    this.pin = id_access;
+    console.log("valor de pin cuando inicia componente: " + this.pin);
     /** **************** */
 
     setTimeout(() => {
       this.getName();
     }, 1000);
-    
-    const message = ( status, pinTeacher, pinStudent ) => {
+
+    const message = (status, pinTeacher, pinStudent) => {
       return {
-        'status': status,
-        'pin (teacher): ': pinTeacher,
-        'data.pin (Student): ':pinStudent
-      }
-    }
+        status: status,
+        "pin (teacher): ": pinTeacher,
+        "data.pin (Student): ": pinStudent
+      };
+    };
 
     const socket = io(socketUrl, {
       query: { pin: this.pin }
     });
-    
+
     socket.on("tabBlurred", data => {
       const pinStudent = data.pin;
       const pinTeacher = this.pin.toUpperCase();
 
-      if (pinStudent === pinTeacher){
+      if (pinStudent === pinTeacher) {
         return (
           this.notify(data.fullname),
-          console.table(message('Códigos validados', pinTeacher, pinStudent))
-          );
+          console.table(message("Códigos validados", pinTeacher, pinStudent))
+        );
       }
 
-      console.table(message('Códigos Incorrectos', pinTeacher, pinStudent))
+      console.table(message("Códigos Incorrectos", pinTeacher, pinStudent));
     });
   }
   /** Fix notificatión */
   componentWillUnmount() {
     // valor despues de salir del component
-    this.pin = ''
+    this.pin = "";
 
-    console.log('componente desmontado')
+    console.log("componente desmontado");
   }
   /****************** */
 
-  notify = (nom) => {
-    toast.warn(<><p role = "img" aria-label = "warning">⚠ Alumno desatento!</p><p>{nom}</p></>,{
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true
-    });
+  notify = nom => {
+    toast.warn(
+      <>
+        <p role="img" aria-label="warning">
+          ⚠ Alumno desatento!
+        </p>
+        <p>{nom}</p>
+      </>,
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+      }
+    );
   };
 
   getName = async () => {
-    console.log("hola que hace" + this.props.id_class);
     var varToken = localStorage.getItem("token");
     const res = await axios({
       url: `${this.props.apiUrl}/v1/api/teacher/detail_class/${this.props.id_class}`,
@@ -102,26 +109,35 @@ class Header extends React.Component {
       query: { pin: this.props.id_access }
     });
     socket.emit("redirectAlum", { page: e });
-    console.log("redirect " + e);
+    console.log("se manda al alumnos redirigir a", e);
   };
   ExitSocket = () => {
     const socket = io(this.props.socketUrl, {
       query: { pin: this.props.id_access }
     });
     socket.emit("ExitSocket");
-    console.log("ExitSocket");
+  };
+  UNSAFE_componentWillMount = async () => {
+    let tokenStorage = localStorage.getItem("token");
+    await this.setState({ token: tokenStorage });
   };
 
+  cerrarSesion = () => {
+    localStorage.clear();
+    this.setState({ token: false });
+    this.ExitSocket();
+  };
   render() {
     return (
       <>
-      
+        {this.state.token ? null : <Redirect to="/"></Redirect>}
         <HeaderCode
-          cerrarSesion={this.props.cerrarSesion}
+          cerrarSesion={this.cerrarSesion}
           socketUrl={this.props.socketUrl}
           ExitSocket={this.ExitSocket}
           redirect={this.redirect}
           id_access={this.props.id_access}
+          id_class={this.props.id_class}
           nombre_clase={this.state.nombre_clase}
         />
         <Empatia

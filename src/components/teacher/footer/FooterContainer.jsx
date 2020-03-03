@@ -4,14 +4,12 @@ import "./boton.css";
 import Audio from "../audio/audio";
 import io from "socket.io-client";
 import Slide from '../slides/slide_02';
-import iconExit from "../../../img/cerrar.png";
+import iconExit from "../../../img/cerrar1.png";
 function enviarvideo(url, socketUrl, id_access, setShow,seturlnombre, setNoData) {
-  var urlnombre = url;
+  var urlnombre = url ;
   const socket = io(socketUrl, {
     query: { pin: id_access }
   });
-  
-
   var expresionRegular = "https://www.youtube.com/watch?v=";
   var urlembed = urlnombre.split(expresionRegular);
   document.getElementById("video-frame").src =
@@ -48,14 +46,14 @@ function Video (props){
             <span className="footer-span">Youtube</span>
         </div>
   <div id="modal-general_container" className={Show === 0 ? "" : Show === 1 ? "six" : Show === 2 ? "six out" : ""}>
-  <div class="modal-general_background">
-    <div class="modal-general_bg_content">
+  <div className="modal-general_background">
+    <div className="modal-general_bg_content">
       <button className="modal-general_close" onClick={() => setShow(2) + props.botonClick("modalvideo") + setNoData(false)}>
         <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
       </button>
       <div className="modal-general_container">
         <div className="modal-general_container_header">
-          <span className="modal-title__controlname" style={{color:'black'}}>EMITIR VIDEO</span>
+          <span className="modal-title__controlname botton-zoom" style={{color:'black'}}>EMITIR VIDEO</span>
         </div>
         <div className="modal-general_container_body">
           <input
@@ -70,7 +68,7 @@ function Video (props){
             required
           />
           <button
-            className="btnenviarvideo"
+            className="Myni"
             onClick={() =>
               enviarvideo(
                 urlnombre,
@@ -90,7 +88,7 @@ function Video (props){
           ) : null}
         </div>
       </div>
-      <svg class="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
       </svg>
     </div>
@@ -162,13 +160,13 @@ function FooterContainer(props) {
           <button className="modal-teacher__general-close" onClick={() => props.closePopup('overlayinframe', 'popupformulario') + props.botonClick('btnCerrarFormu')} >
             <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
           </button>
-          <div class="punto-posi">
+          <div className="punto-posi">
             <span className="letra">EMITIR FORMULARIO</span>
           </div>
           <br />
           <iframe title="diapo-iframe" id="diapo-formulario" className="fc-formulario" frameBorder="0" allowFullScreen={true}
             mozallowfullscreen="true" webkitallowfullscreen="true" src="" ></iframe>
-          <button class="Myni" onClick={() => SendForm(props.socketUrl, props.id_access)}>
+          <button className="Myni" onClick={() => SendForm(props.socketUrl, props.id_access)}>
             <div className="button-zoom">EMITIR</div>
           </button>
         </div>

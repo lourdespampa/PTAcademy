@@ -168,6 +168,10 @@ img {
   border-style: none;
 }
 
+.modal-general-background .modal-general_bg_content .modal-general_close .button-zoom{
+  width: 17px !important
+}
+
 /* Forms
    ========================================================================== */
 
@@ -245,9 +249,8 @@ button:-moz-focusring,
 }
 
 /* solo para contraseñas */
-input[type="text"],
-input[type="password"] {
-  font-family: monospace !important;
+input[type="text"], input[type="password"] {
+  font-family: monospace;
 }
 /**
  * Correct the padding in Firefox.
@@ -433,6 +436,9 @@ template {
   width: 100%;
   cursor: pointer;
 }
+.modal-teacher__general-close .button-zoom{
+  width: 17px;
+}
 
 .modal-teacher__general-controlname {
   height: 48px;
@@ -440,10 +446,11 @@ template {
   padding: 0 10px;
   margin: auto auto 10px;
   border: 1px solid #4747d5;
+  font-size: 13px;
 }
 
 .modal-title__controlname {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin: 0;
   line-height: 1.4;
   letter-spacing: 0.02em;
@@ -512,6 +519,7 @@ template {
   transform: scale(1.2);
 }
 
+.footerTriviaClass .modal-body__button.yes:hover .button-zoom,
 .modal-body__button.backCursos:hover .button-zoom {
   -webkit-transform: scale(1.08);
   transform: scale(1.08);
@@ -548,7 +556,7 @@ template {
 }
 
 .list-course {
-  background-color: rgb(247, 166, 45);
+  background-color:#fb9600;
   width: 95%;
   padding: 2px;
   text-align-last: center;

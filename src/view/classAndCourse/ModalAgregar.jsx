@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import iconExit from "../../img/cerrar.png";
+import iconExit from "../../img/cerrar1.png";
 import FormularioCourse from './FormPostCourse'
 import FormularioClass from './FormPostClass'
 import Loanding from "../../components/teacher/loanding/spinner"
+import FormAddStudent from "../courses/CourseDetail/FormAddStudent";
 
 export default function BotonAgregar(props) {
     const [show, setShow] = useState(0);
@@ -30,6 +31,8 @@ export default function BotonAgregar(props) {
               <div className="modal-general_container">
                 { (props.agregarX === 'curso')?
               <FormularioCourse apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
+              :(props.agregarX==='Alumno')?
+              <FormAddStudent handleClose={AgregarClick} apiUrl={props.apiUrl} idcourse={props.idcourse}  idteacher={props.idteacher}></FormAddStudent>
               :
               <FormularioClass handleEnableX={handleEnableX} handleDisableX={handleDisableX}  apiUrl={props.apiUrl} handleClose={AgregarClick} idteacher={props.idteacher} idcourse={props.idcourse} menuToggleNavbar={props.menuToggleNavbar}/>
               }
