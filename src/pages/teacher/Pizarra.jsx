@@ -13,7 +13,7 @@ class Pizarra_page extends React.Component {
     render(){
         return(
             // <Pizarra socketUrl={this.props.socketUrl} id_access={this.props.id_access}/>
-            <Board/>
+            <Board socketUrl={this.props.socketUrl} id_access={this.props.id_access}/>
             // <Board2/>
         )
     }
