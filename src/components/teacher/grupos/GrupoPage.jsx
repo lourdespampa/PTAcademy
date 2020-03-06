@@ -129,7 +129,7 @@ export default class GrupoPage extends Component {
       this.setState({
         loanding: false
       });
-      console.log(cadena);
+      console.log('enviando grupos');
     }, 500);
   };
   limpiar = () => {

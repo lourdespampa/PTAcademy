@@ -5,56 +5,41 @@ export default class FormPostSiagie extends Component {
     super(props);
     this.state = {
       selectedFile: null,
-      estudiantes: []
+      estudiantes: [],
+      nomArch: ''
     };
   }
-  componentDidMount(){
-    console.log(this.props.students)
-    setTimeout(() => {
-      this.setState({
-        estudiantes: this.props.students
-      })
-    }, 2000);
-    console.log(this.state.estudiantes)
-  }
+  componentDidMount() {}
   onChangeHandler = event => {
     this.setState({
       selectedFile: event.target.files[0],
+      nomArch: event.target.files[0].name,
       loaded: 0
     });
-    console.log(event.target.files[0])
 
+    console.log(event.target.files[0].name);
   };
   onClickHandler = () => {
     const data = new FormData();
-    console.log(JSON.stringify(this.state.estudiantes))
-    console.log(this.state.estudiantes[0])
     data.append("file", this.state.selectedFile);
-    data.append('students', this.state.estudiantes[0]);
-    data.append('name_course', this.props.name_course);
-    axios
-      .post(
-      `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/upload_excel/${this.props.idcourse}`,
-      data, {
-        // receive two parameter endpoint url ,form data
-      })
+    axios({
+      url: `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/upload_excel/${this.props.idcourse}`,
+      method: "POST",
+      responseType: "blob",
+      Accept: 'application/vnd.ms-excel',
+      data: data
+    })
       .then(res => {
-        // then print response status
-        console.log(res.statusText);
-        console.log(res);
-        
-
-      })
-      .catch(err => {
+        const url = window.URL.createObjectURL(new Blob([res.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `${this.state.nomArch}`);
+        document.body.appendChild(link);
+        link.click();
+      }).catch(err => {
         console.log(err)
       })
   };
-  onclickStudents = () => {
-    // console.log(this.props.students)
-    // this.props.students.map(alumno{
-    //   console.log('asdasd')
-    // })
-  }
   render() {
     return (
       <>
@@ -64,10 +49,7 @@ export default class FormPostSiagie extends Component {
           className="modal-body__button yes"
           onClick={this.onClickHandler}
         >
-          Upload
-        </button>
-        <button onClick={this.onclickStudents}>
-          dd
+          Descargar
         </button>
       </>
     );
