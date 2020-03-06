@@ -44,7 +44,11 @@ class Footer extends Component {
       overlay.id === "overlayrouletteWinnerS"
     ) {
       socket.emit("closerouletteWinnerS")
-    }
+    } else if(
+      overlay.id === "overlyenviar"
+    )
+   
+    
     overlay.classList.remove("active");
     popup.classList.remove("active");
   };

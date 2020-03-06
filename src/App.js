@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route,Redirect } from 'react-router-dom';
-
+import Bloque from './components/Blockly/src/Bloques'
 import Contenido from './components/Contenido';
 import ListaAlumnos from './pages/teacher/ListaAlumnos';
 import Azar from './pages/teacher/Azar';
@@ -18,8 +18,8 @@ function App() {
           <Route exact path="/grupos/:user" component={Grupos} />
           <Route exact path="/temporizador/:user" component={Temporizador} />
           <Route exact path="/trivia/:user" component={Trivia} />
-          <Route exact path="/pizarra" component={Pizarra} />
-          <Route exact path="/chat" component={Chat} />
+          <Route exact path="/blockly" component={Bloque} />
+
           {/* <Route path="/404" component={NotFound} /> */}
           <Redirect from="/" to="/lista" />
         </Switch>
