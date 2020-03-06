@@ -2,7 +2,7 @@ import React from 'react';
 import Sketch from 'react-p5';
 import io from 'socket.io-client';
 // import './styles.css';
-let l = false
+// let l = false
 export default class board extends React.Component {
   state = {
     x: '',
@@ -11,37 +11,50 @@ export default class board extends React.Component {
     y1: '',
     color: 'black',
     size: 10,
-    clickPress: false
+    clickPress: false,
+    trazo: [],
+    pageinit:false
   }
   componentDidMount() {
-    l = true
+    this.setState({
+      pageinit:true
+    }) 
   }
   mousePressed(e) {
     this.setState({
       clickPress: true,
       x: e.pmouseX, y: e.pmouseY, x1: e.pmouseX, y1: e.pmouseY
     })
-    const socket = io(this.props.socketUrl, {
-      query:
-        { pin: this.props.id_access }
-    })
-    var data = {
-      color: this.state.color,
-      size: this.state.size,
-      lines: { x: e.pmouseX, y: e.pmouseY, x1: e.pmouseX, y1: e.pmouseY }
-    }
-    socket.emit('startPencil', {
-      data: data
-    })
+    // const socket = io(this.props.socketUrl, {
+    //   query:
+    //     { pin: this.props.id_access }
+    // })
+    // var data = {
+    //   color: this.state.color,
+    //   size: this.state.size,
+    //   lines: { x: e.pmouseX, y: e.pmouseY, x1: e.pmouseX, y1: e.pmouseY }
+    // }
+    // socket.emit('startPencil', {
+    //   data: data
+    // })
   }
   mouseReleased(e) {
-    this.setState({
-      clickPress: false
+      console.log(this.state.trazo)
+      const socket = io(this.props.socketUrl, {
+        query:
+          { pin: this.props.id_access }
+      })
+      socket.emit('DrawPencil', {
+        data: this.state.trazo
+      })
+      this.setState({
+      clickPress: false,
+      trazo:[]
     })
   }
   mouseDragged(e) {
-    console.log('tocuchStart x', e.pmouseX)
-    console.log('tocuchStart y', e.pmouseY)
+    // console.log('tocuchStart x', e.pmouseX)
+    // console.log('tocuchStart y', e.pmouseY)
     this.setState({
       x1: e.pmouseX, y1: e.pmouseY
     })
@@ -51,21 +64,27 @@ export default class board extends React.Component {
       p5.stroke(this.state.color);
       p5.strokeWeight(this.state.size)
       p5.line(this.state.x, this.state.y, this.state.x1, this.state.y1);
+      
+      this.state.trazo.push({
+            x: this.state.x,
+            y: this.state.y,
+            x1: this.state.x1,
+            y1: this.state.y1 
+          })
       this.setState({
         x: this.state.x1,
         y: this.state.y1
       })
-
-      const socket = io(this.props.socketUrl, {
-        query:
-          { pin: this.props.id_access }
-      })
-      var data = {
-        x: this.state.x, y: this.state.y, x1: this.state.x1, y1: this.state.y1
-      }
-      socket.emit('DrawPencil', {
-        data: data
-      })
+      // const socket = io(this.props.socketUrl, {
+      //   query:
+      //     { pin: this.props.id_access }
+      // })
+      // var data = {
+      //   x: this.state.x, y: this.state.y, x1: this.state.x1, y1: this.state.y1
+      // }
+      // socket.emit('DrawPencil', {
+      //   data: data
+      // })
     }
   }
   render() {
@@ -73,7 +92,7 @@ export default class board extends React.Component {
 
     return (
       <div style={{ justifyContent: 'center', display: 'flex' }}>
-        {l ? <Sketch
+        {this.state.pageinit ? <Sketch
           style={{ background: 'gray', width: '1000px', height: '500px' }}
           onclick
           setup={(p5, parentRef) => {
