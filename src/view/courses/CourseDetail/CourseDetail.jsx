@@ -46,6 +46,7 @@ export default class CourseDetail extends Component {
     );
     this.getAlumnos();
   }
+  //r: 
   UNSAFE_componentWillMount = async () => {
     let tokenStorage = localStorage.getItem("token");
     await this.setState({ token: tokenStorage });
@@ -280,6 +281,7 @@ export default class CourseDetail extends Component {
               : ""
           }
         >
+          
           <div className="modal-general_background">
             <div className="modal-general_bg_content">
               <button className="modal-general_close" onClick={this.setClose}>

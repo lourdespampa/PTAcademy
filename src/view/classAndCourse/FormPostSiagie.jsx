@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import './FormPostSiagie.css';
 export default class FormPostSiagie extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +44,9 @@ export default class FormPostSiagie extends Component {
   render() {
     return (
       <>
-        <input type="file" name="file" onChange={this.onChangeHandler} />
+        <div id="example">
+          <input type="file" name="file" onChange={this.onChangeHandler} />
+        </div>
         <button
           type="button"
           className="modal-body__button yes"
