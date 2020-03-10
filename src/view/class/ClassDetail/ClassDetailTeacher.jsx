@@ -11,19 +11,15 @@ export default class ClassDetailTeacher extends Component {
     id_class: '',
     fileActual: '',
     newQuestionModal: 0,
-    pregunta: '',
-    respuestauno: '',
-    respuestados: '',
-    respuestatres: '',
-    respuestacuatro: '',
-    respuestacorrecta: 'rojo',    
+    question: '',
+    answer1: '',
+    answer2: '',
+    answer3: '',
+    answer4: '',
+    correctanswer: 'rojo',    
   }
     
-    this.changeQuestion = this.changeQuestion.bind(this);
-    this.changeAnswer1 = this.changeAnswer1.bind(this);
-    this.changeAnswer2 = this.changeAnswer2.bind(this);
-    this.changeAnswer3 = this.changeAnswer3.bind(this);
-    this.changeAnswer4 = this.changeAnswer4.bind(this);
+    this.handlechangeQuestion = this.handlechangeQuestion.bind(this);
     this.handleCorrectAnswer = this.handleCorrectAnswer.bind(this);}
   componentDidMount() {
     var varToken = localStorage.getItem("token");
@@ -55,13 +51,13 @@ export default class ClassDetailTeacher extends Component {
     var varToken = localStorage.getItem("token");
     var clase = this.state.id_class;
     var data = {
-    question: this.state.pregunta,
-    answer1: this.state.respuestauno,
-    answer2: this.state.respuestados,
-    answer3: this.state.respuestatres,
-    answer4: this.state.respuestacuatro,
-    correctAnswer: this.state.respuestacorrecta }
-    if (this.state.pregunta === '' || this.state.respuestauno === '' || this.state.respuestados === '' || this.state.respuestatres === '' || this.state.respuestacuatro === '') {
+    question: this.state.question,
+    answer1: this.state.answer1,
+    answer2: this.state.answer2,
+    answer3: this.state.answer3,
+    answer4: this.state.answer4,
+    correctAnswer: this.state.correctanswer }
+    if (this.state.question === '' || this.state.answer1 === '' || this.state.answer2 === '' || this.state.answer3 === '' || this.state.answer4 === '') {
       return alert('debe completar todos los campos')
     }
     axios({
@@ -76,37 +72,24 @@ export default class ClassDetailTeacher extends Component {
     this.setState({"newQuestionModal": 2 });
 
   }
-  changeQuestion = e => {
+  handlechangeQuestion = e => {
+    const name = e.target.name;
+    const value = e.target.value;
+    console.log(name)
     this.setState({
-      pregunta: e.target.value
+      [name]: value
     })
+    console.log(name, value)
+
   }
-  changeAnswer1 = e => {
-    this.setState({
-      respuestauno: e.target.value
-    })
-  }
-  changeAnswer2 = e => {
-    this.setState({
-      respuestados: e.target.value
-    })
-  }
-  changeAnswer3 = e => {
-    this.setState({
-      respuestatres: e.target.value
-    })
-  }
-  changeAnswer4 = e => {
-    this.setState({
-      respuestacuatro: e.target.value
-    })
-  }
+  
   handleCorrectAnswer = e => {
     this.setState({
       respuestacorrecta: e.target.value
     });
   }
   render() {
+    const {question, answer1, answer2, answer3, answer4} = this.state;
     return (
       <>
         <NavClass apiUrl={this.props.apiUrl}></NavClass>
@@ -165,12 +148,12 @@ export default class ClassDetailTeacher extends Component {
                         <div className="modal-general_container">
                           <div className="Item-card_createquestion">
                             <label className="triviaPregunta">Pregunta</label>
-                            <input type="text" id="pregunta" className="triviaT-input-pregunta" value={this.state.pregunta} onChange={this.changeQuestion} autoComplete="off" />
+                            <input type="text" id="pregunta" className="triviaT-input-pregunta" name="question" value={question} onChange={this.handlechangeQuestion} autoComplete="off" />
                             <label className="triviaRepuestas">Respuesta 1</label>
                             <br />
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
-                              <input type="text" id="res1" className="triviaT-input-respuestas" value={this.state.respuestauno} onChange={this.changeAnswer1} autoComplete="off" />
+                              <input type="text" id="res1" className="triviaT-input-respuestas" name="answer1" value={answer1} onChange={this.handlechangeQuestion} autoComplete="off" />
                               <input type="radio" id="color-1" name="color" value="rojo"
                                 checked={this.state.respuestacorrecta === 'rojo'}
                                 onChange={this.handleCorrectAnswer}
@@ -184,8 +167,8 @@ export default class ClassDetailTeacher extends Component {
                             <label className="triviaRepuestas">Respuesta 2</label>
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
-                              <input type="text" id="res3" className="triviaT-input-respuestas" value={this.state.respuestados} onChange={this.changeAnswer2} autoComplete="off" />
-                              <input type="radio" id="color-2" name="color" value="naranja"
+                              <input type="text" id="res3" className="triviaT-input-respuestas" name="answer2" value={answer2} onChange={this.handlechangeQuestion} autoComplete="off" />
+                              <input type="radio" id="color-2" name="correctanswer" value="answer2"
                                 checked={this.state.respuestacorrecta === 'naranja'}
                                 onChange={this.handleCorrectAnswer}
                               />
@@ -198,8 +181,8 @@ export default class ClassDetailTeacher extends Component {
                             <label className="triviaRepuestas">Respuesta 3</label>
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
-                              <input type="text" id="res2" className="triviaT-input-respuestas" value={this.state.respuestatres} onChange={this.changeAnswer3} autoComplete="off" />
-                              <input type="radio" id="color-3" name="color" value="azul"
+                              <input type="text" id="res2" className="triviaT-input-respuestas" name="answer3" value={answer3} onChange={this.handlechangeQuestion} autoComplete="off" />
+                              <input type="radio" id="color-3" name="correctanswer" value="answer3"
                                 checked={this.state.respuestacorrecta === 'azul'}
                                 onChange={this.handleCorrectAnswer}
                               />
@@ -212,8 +195,8 @@ export default class ClassDetailTeacher extends Component {
                             <label className="triviaRepuestas">Respuesta 4</label>
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
-                              <input type="text" id="res4" className="triviaT-input-respuestas" value={this.state.respuestacuatro} onChange={this.changeAnswer4} autoComplete="off" />
-                              <input type="radio" id="color-4" name="color" value="verde"
+                              <input type="text" id="res4" className="triviaT-input-respuestas" name="answer4" value={answer4} onChange={this.handlechangeQuestion} autoComplete="off" />
+                              <input type="radio" id="color-4" name="correctanswer" value="answer4"
                                 checked={this.state.respuestacorrecta === 'verde'}
                                 onChange={this.handleCorrectAnswer}
                               />
