@@ -13,14 +13,12 @@ export default class CourseDetail extends Component {
       notaCompe: "",
       students: [],
       editar: false,
-      idMapAlumno: "",
-      apellidoAlumno: "",
-      nombreAlumno: "",
       compentencias: [],
       competenciasAlumnos: [],
       showdelete: 0,
       name_stu: '',
-      lastName_stu: ''
+      lastName_stu: '',
+      idAlumno: ''
     };
   }
 
@@ -135,6 +133,28 @@ export default class CourseDetail extends Component {
   setClose = () => {
     this.setState({ showdelete: 2 });
   };
+  onClick=(idAlumno) => {
+    this.setState({
+      idAlumno: idAlumno
+    })
+  }
+  setDeleteStudent = () => {
+    var varToken = localStorage.getItem("token");
+    
+    axios({
+      url: `${this.props.apiUrl}/v1/api/student/${this.state.idAlumno}`,
+      method: "DELETE",
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    }).then((res)=> {
+      console.log(res)
+    }).catch((err)=> {
+      console.log(err)
+    })
+    this.getAlumnos()
+    this.setClose();
+  }
 
   render() {
     return (
@@ -236,7 +256,9 @@ export default class CourseDetail extends Component {
                   <td className="CourseDetail__table-td" data-th="Eliminar">
                     <button
                       className="courseTeacher__button-delette"
-                      onClick={this.setShow}
+                      onClick={() =>
+                        this.onClick(alumno._id) +
+                        this.setShow("show")}
                     >
                       <i className="courseTeacher__img fas fa-trash"></i>
                     </button>
@@ -276,7 +298,7 @@ export default class CourseDetail extends Component {
                 <div className="modal-general_container_body">
                   <button
                     className="modal-body__button yes"
-                    onClick={this.setClose}
+                    onClick={this.setDeleteStudent}
                     type="button"
                   >
                     <div className="button-zoom">SI</div>

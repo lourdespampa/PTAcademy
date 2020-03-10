@@ -16,6 +16,7 @@ class Left extends React.Component {
         view={this.props.view}
         socketUrl={this.props.socketUrl}
         id_access={this.props.id_access}
+        id_class={this.props.id_class}
         aparecer={this.aparecer}
         desaparecer={this.desaparecer}
       />
