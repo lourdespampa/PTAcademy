@@ -39,6 +39,7 @@ export default class FormAddStudent extends Component {
     this.setState({
       [name]: value
     });
+    console.log(name, value)
   };
   handleFileChange = ev => {
     const target = ev.target;
