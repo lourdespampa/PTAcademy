@@ -1,0 +1,128 @@
+.divSketch
+    position: absolute
+    left: calc(50% - 500px)
+    top: calc(50% - 290px)
+    max-width: 1000px
+    height: 500px
+    background: #5f6368
+    width: 100%
+.divPalette
+    position: absolute
+    background: #54b1a7
+    width: 1000px
+    top: calc(50% + 220px)
+    left: calc(50% - 500px)
+    display: flex
+    flex-wrap: wrap
+    list-style: none
+    margin: 0
+    padding: 0
+    .liPalette
+        display: flex
+        padding: 10px
+        .divCuadro
+            border: solid
+            width: 100%
+            text-align: center
+            padding: 5px
+        & .contColor
+            .ulcolors
+                display: flex
+                flex-wrap: wrap
+                list-style: none
+                padding: 0
+                li
+                    width: 12.5%
+                    display: flex
+                    padding: 3px
+                    justify-content: center
+                    div
+                        width: 30px
+                        height: 30px
+                        border-radius: 50%
+                        cursor: pointer
+                    & .white
+                        background: white
+                    & .silver
+                        background: silver
+                    & .gray
+                        background: gray
+                    & .black
+                        background: black
+                    & .red
+                        background: red
+                    & .maroon
+                        background: maroon
+                    & .yellow
+                        background: yellow
+                    & .olive
+                        background: olive
+                    & .lime
+                        background: lime
+                    & .green
+                        background: green
+                    & .aqua
+                        background: aqua
+                    & .teal
+                        background: teal !important
+                    & .blue
+                        background: blue
+                    & .navy
+                        background: navy
+                    & .fuchsia
+                        background: fuchsia
+                    & .purple
+                        background: purple
+        & .contSize
+            .ulSize
+                display: flex
+                flex-wrap: wrap
+                list-style: none
+                padding: 0
+                position: relative
+                top: calc(50% - 30px)
+                li
+                    width: 16.66%
+                    display: flex
+                    padding: 3px
+                    justify-content: center
+                    div
+                        border-radius: 50%
+                        cursor: pointer
+                        background: black
+                    & .size-4
+                        position: relative
+                        top: calc(50% - 2px)
+                        width: 4px
+                        height: 4px
+                    & .size-8
+                        position: relative
+                        top: calc(50% - 4px)
+                        width: 8px
+                        height: 8px
+                    & .size-12
+                        position: relative
+                        top: calc(50% - 6px)
+                        width: 12px
+                        height: 12px
+                    & .size-16
+                        position: relative
+                        top: calc(50% - 8px)
+                        width: 16px
+                        height: 16px
+                    & .size-20
+                        position: relative
+                        top: calc(50% - 10px)
+                        width: 20px
+                        height: 20px
+                    & .size-24
+                        position: relative
+                        top: calc(50% - 12px)
+                        width: 24px
+                        height: 24px
+    .liColor
+        width: 45%
+    .liSize
+        width: 35%
+    .liClear
+        width: 20%

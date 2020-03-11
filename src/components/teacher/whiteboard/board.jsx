@@ -1,8 +1,8 @@
 import React from 'react';
 import Sketch from 'react-p5';
 import io from 'socket.io-client';
-// import './styles.css';
-// let l = false
+import './board.sass'
+
 export default class board extends React.Component {
   state = {
     x: '',
@@ -10,34 +10,38 @@ export default class board extends React.Component {
     x1: '',
     y1: '',
     color: 'black',
-    size: 10,
+    size: 6,
     clickPress: false,
     trazo: [],
     pageinit:false
   }
+  // c: inicializacion retardada por 1 segundo para evitar bugs
   componentDidMount() {
-    this.setState({
+    setTimeout(() => {
+      this.setState({
       pageinit:true
     }) 
+    }, 1000); 
   }
+  // c: evento que se realiza al precionar el click
   mousePressed(e) {
     this.setState({
       clickPress: true,
       x: e.pmouseX, y: e.pmouseY, x1: e.pmouseX, y1: e.pmouseY
     })
-    // const socket = io(this.props.socketUrl, {
-    //   query:
-    //     { pin: this.props.id_access }
-    // })
-    // var data = {
-    //   color: this.state.color,
-    //   size: this.state.size,
-    //   lines: { x: e.pmouseX, y: e.pmouseY, x1: e.pmouseX, y1: e.pmouseY }
-    // }
-    // socket.emit('startPencil', {
-    //   data: data
-    // })
+    const socket = io(this.props.socketUrl, {
+      query:
+        { pin: this.props.id_access }
+    })
+    var data={
+      color:this.state.color,
+      size:this.state.size
+    }
+    socket.emit('startPencil', {
+      data: data
+    })
   }
+  // c: evento que se realiza al dejar de precionar el click
   mouseReleased(e) {
       console.log(this.state.trazo)
       const socket = io(this.props.socketUrl, {
@@ -52,13 +56,13 @@ export default class board extends React.Component {
       trazo:[]
     })
   }
+  // c: evento al mover el mouse precionando el click
   mouseDragged(e) {
-    // console.log('tocuchStart x', e.pmouseX)
-    // console.log('tocuchStart y', e.pmouseY)
     this.setState({
       x1: e.pmouseX, y1: e.pmouseY
     })
   }
+  // c: evento que realiza las acciones en el canvas
   draw = (p5) => {
     if (this.state.clickPress) {
       p5.stroke(this.state.color);
@@ -75,36 +79,86 @@ export default class board extends React.Component {
         x: this.state.x1,
         y: this.state.y1
       })
-      // const socket = io(this.props.socketUrl, {
-      //   query:
-      //     { pin: this.props.id_access }
-      // })
-      // var data = {
-      //   x: this.state.x, y: this.state.y, x1: this.state.x1, y1: this.state.y1
-      // }
-      // socket.emit('DrawPencil', {
-      //   data: data
-      // })
     }
   }
+  // c: opteniendo color seleccionado (negro por default)
+  getColor=(e)=>{
+    var color=e.target.id
+    this.setState({
+      color: color
+    })
+  }
+  // c: opteniendo tamaño seleccionado (6 por default)
+  getSize=(e)=>{
+    this.setState({
+      size:e.target.id
+    })
+  }
   render() {
-
-
     return (
-      <div style={{ justifyContent: 'center', display: 'flex' }}>
-        {this.state.pageinit ? <Sketch
-          style={{ background: 'gray', width: '1000px', height: '500px' }}
+      <>
+      <div className='divSketch'>
+        {this.state.pageinit ? 
+        <Sketch
           onclick
           setup={(p5, parentRef) => {
             p5.createCanvas(1000, 500).parent(parentRef);
+          }}
+          windowResized={(p5)=>{
+            p5.resizeCanvas(500,250);
           }}
           draw={(p5) => this.draw(p5)}
           mouseDragged={e => this.mouseDragged(e)}
           mousePressed={e => this.mousePressed(e)}
           touchStarted={e => this.mousePressed(e)}
           mouseReleased={e => this.mouseReleased(e)}
-        /> : null}
+        /> 
+        : null}
       </div>
+      <ul className='divPalette'>
+          <li className='liPalette liColor' >
+              <div className='divCuadro contColor'>
+                COLORES
+                <ul className='ulcolors'>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='white' className='white'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='silver' className='silver'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='gray' className='gray'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='black' className='black'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='red' className='red'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='maroon' className='maroon'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='yellow' className='yellow'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='olive' className='olive'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='lime' className='lime'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='green' className='green'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='aqua' className='aqua'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='teal' className='teal'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='blue' className='blue'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='navy' className='navy'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='fuchsia' className='fuchsia'></div></li>
+                  <li><div type='button' onClick={(e)=>this.getColor(e)} id='purple' className='purple'></div></li>
+                </ul>
+              </div>
+          </li>
+          <li className='liPalette liSize'>
+              <div className='divCuadro contSize'>
+                TAMAÑO
+                <ul className='ulSize'>
+                  <li><div onClick={(e)=>this.getSize(e)} className='size-4' id='4'></div></li>
+                  <li><div onClick={(e)=>this.getSize(e)} className='size-8' id='8'></div></li>
+                  <li><div onClick={(e)=>this.getSize(e)} className='size-12' id='12'></div></li>
+                  <li><div onClick={(e)=>this.getSize(e)} className='size-16' id='16'></div></li>
+                  <li><div onClick={(e)=>this.getSize(e)} className='size-20' id='20'></div></li>
+                  <li><div onClick={(e)=>this.getSize(e)} className='size-24' id='24'></div></li>
+                </ul>
+              </div>
+          </li>
+          <li className='liPalette liClear'>
+              <div className='divCuadro'>
+                OPCIONES
+              </div>
+          </li>
+      </ul>
+      </>
     );
   }
 }

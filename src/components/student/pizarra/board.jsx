@@ -1,39 +1,29 @@
 import React from "react";
 import Sketch from "react-p5";
 import io from "socket.io-client";
-// import './styles.css';
-let sket = false;
 export default class board extends React.Component {
   state={
     x:0,
     y:0,
     x1:0,
     y1:0,
-    color:'',
-    size:1,
-    trazo:[]
+    color:'black',
+    size:6,
+    trazo:[],
+    pageinit:false
   }
+  // c: inicializacion retardada por 1 seg y recepcion de eventos por socket
   componentDidMount() {
-    sket = true;
+      setTimeout(() => {
+        this.setState({
+          pageinit:true
+        })
+      }, 1000);
      const socket = io(this.props.socketUrl, {
         query:
             { pin: this.props.id_access }
       })
-      // socket.on('startPencil',(data)=>{
-      //   console.log(data)
-      //   this.setState({
-      //     color:data.data.color,
-      //     size:data.data.size,
-      //     x: data.data.lines.x,
-      //     y: data.data.lines.y,
-      //     x1: data.data.lines.x1,
-      //     y1: data.data.lines.y1
-      //   })
-      // })
     socket.on('DrawPencil',(data) => {
-        // console.log(data)
-        // console.log(data.data.color)
-        // console.log(data.data.size)
     if(data.pin === (this.props.id_access).toUpperCase()) {
 
         console.log(data.data)
@@ -42,34 +32,28 @@ export default class board extends React.Component {
           trazo:data.data
         })
       }
-        // console.log(data.data.lines.y1)
-    // const pinTeacher = this.pin.toUpperCase();
-    // if(data.pin === (pinTeacher).toUpperCase()) {
-        // this.setState({
-        //   x1: data.data.x1,
-        //   y1: data.data.y1
-        // })
-    // }
+    })
+    socket.on('startPencil',(data) => {
+    if(data.pin === (this.props.id_access).toUpperCase()) {
+        this.setState({
+          color:data.data.color,
+          size:data.data.size
+        })
+      }
     })
   }
+  // c: evento que realiza las acciones en el canvas
   draw = p5 => {
-    p5.stroke('black');
-    p5.strokeWeight(10);
+    p5.stroke(this.state.color);
+    p5.strokeWeight(this.state.size);
     this.state.trazo.map(traz=>{
       p5.line(traz.x, traz.y, traz.x1, traz.y1);
-
     })
-    // p5.line(this.state.x, this.state.y, this.state.x1, this.state.y1);
-    // this.setState ({
-    //   x:this.state.x1,
-    //   y:this.state.y1
-    // })
-    // console.log(this.state.x, this.state.y, this.state.x1, this.state.y1)
   };
   render() {
     return (
-      <div style={{ justifyContent: "center", display: "flex" }}>
-        {sket ? (
+      <div style={{ position: 'absolute',left: 'calc(50% - 500px)', top:'calc(50% - 250px)',width:'1000px' }}>
+        {this.state.pageinit ? (
           <Sketch
             style={{ background: "gray", width: "1000px", height: "500px" }}
             onclick
