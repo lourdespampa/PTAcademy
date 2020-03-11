@@ -16,17 +16,20 @@ export default class ClassDetailTeacher extends Component {
     answer2: '',
     answer3: '',
     answer4: '',
-    correctanswer: 'rojo',    
+    respuestacorrecta: '', 
+      
   }
     
-    this.handlechangeQuestion = this.handlechangeQuestion.bind(this);
+    this.handleChangeQuestion = this.handleChangeQuestion.bind(this);
     this.handleCorrectAnswer = this.handleCorrectAnswer.bind(this);}
   componentDidMount() {
+    this.vistaBancoPreguntas();
     var varToken = localStorage.getItem("token");
     const {
       match: { params }
     } = this.props;
-    this.setState({ id_class: params.id });
+     this.setState({ id_class: params.id });
+    
     console.log(params.id)
     axios({
       url: `http://192.168.1.66:4200/v1/api/teacher/presentation_detail/${params.id}`,
@@ -56,31 +59,69 @@ export default class ClassDetailTeacher extends Component {
     answer2: this.state.answer2,
     answer3: this.state.answer3,
     answer4: this.state.answer4,
-    correctAnswer: this.state.correctanswer }
+    correctAnswer: this.state.respuestacorrecta }
+    console.log(data)
     if (this.state.question === '' || this.state.answer1 === '' || this.state.answer2 === '' || this.state.answer3 === '' || this.state.answer4 === '') {
       return alert('debe completar todos los campos')
     }
+    console.log(this.props.apiUrl)
     axios({
-      url: `http://192.168.1.66:4200/v1/api/question/new_question/${clase}`,
+      url: `${this.props.apiUrl}/v1/api/question/new_question/${clase}`,
       method: "POST",
       data: data,
       headers: {
         "x-access-token": `${varToken}`
       }
+    }).then((res)=>{
+      console.log(res)
+    }).catch((err)=> {
+      console.log(err)
     })
 
     this.setState({"newQuestionModal": 2 });
 
   }
-  handlechangeQuestion = e => {
+  vistaBancoPreguntas = () => {
+    const {
+      match: { params }
+    } = this.props;
+     this.setState({ id_class: params.id });
+    
+    console.log(params.id)
+    var varToken = localStorage.getItem("token");
+    var clase = this.id_class;
+    console.log(this.props.apiUrl)
+    axios({
+      url: `${this.props.apiUrl}/v1/api/question/get_questions/${params.id}`,
+      method: "GET",
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    }).then((res)=>{
+      console.log(res)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
+  handleChangeQuestion = e => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(name)
     this.setState({
-      [name]: value
+      [name] : value
     })
-    console.log(name, value)
-
+    console.log(name,value);
+    if(name==='respuestacorrecta'){
+      switch(e.target.value){
+        case 'rojo':
+          this.setState({'respuestacorrecta'  :"answer1"});
+        case 'naranja':
+          this.setState({'respuestacorrecta':"answer2"});
+        case 'azul':
+          this.setState({'respuestacorrecta':"answer3"});
+        case 'verde':
+          this.setState({'respuestacorrecta':"answer4"});
+        }
+    }
   }
   
   handleCorrectAnswer = e => {
@@ -148,15 +189,15 @@ export default class ClassDetailTeacher extends Component {
                         <div className="modal-general_container">
                           <div className="Item-card_createquestion">
                             <label className="triviaPregunta">Pregunta</label>
-                            <input type="text" id="pregunta" className="triviaT-input-pregunta" name="question" value={question} onChange={this.handlechangeQuestion} autoComplete="off" />
+                            <input type="text" id="pregunta" className="triviaT-input-pregunta" name="question" value={question} onChange={this.handleChangeQuestion} autoComplete="off" />
                             <label className="triviaRepuestas">Respuesta 1</label>
                             <br />
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
-                              <input type="text" id="res1" className="triviaT-input-respuestas" name="answer1" value={answer1} onChange={this.handlechangeQuestion} autoComplete="off" />
-                              <input type="radio" id="color-1" name="color" value="rojo"
+                              <input type="text" id="res1" className="triviaT-input-respuestas" name="answer1" value={answer1} onChange={this.handleChangeQuestion} autoComplete="off" />
+                              <input type="radio" id="color-1" name="respuestacorrecta" value="rojo"
                                 checked={this.state.respuestacorrecta === 'rojo'}
-                                onChange={this.handleCorrectAnswer}
+                                onChange={this.handleChangeQuestion}
                               />
                               <label htmlFor="color-1">
                                 <span>
@@ -167,10 +208,10 @@ export default class ClassDetailTeacher extends Component {
                             <label className="triviaRepuestas">Respuesta 2</label>
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
-                              <input type="text" id="res3" className="triviaT-input-respuestas" name="answer2" value={answer2} onChange={this.handlechangeQuestion} autoComplete="off" />
-                              <input type="radio" id="color-2" name="correctanswer" value="answer2"
+                              <input type="text" id="res3" className="triviaT-input-respuestas" name="answer2" value={answer2} onChange={this.handleChangeQuestion} autoComplete="off" />
+                              <input type="radio" id="color-2" name="respuestacorrecta" value="naranja"
                                 checked={this.state.respuestacorrecta === 'naranja'}
-                                onChange={this.handleCorrectAnswer}
+                                onChange={this.handleChangeQuestion}
                               />
                               <label htmlFor="color-2">
                                 <span>
@@ -181,10 +222,10 @@ export default class ClassDetailTeacher extends Component {
                             <label className="triviaRepuestas">Respuesta 3</label>
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
-                              <input type="text" id="res2" className="triviaT-input-respuestas" name="answer3" value={answer3} onChange={this.handlechangeQuestion} autoComplete="off" />
-                              <input type="radio" id="color-3" name="correctanswer" value="answer3"
+                              <input type="text" id="res2" className="triviaT-input-respuestas" name="answer3" value={answer3} onChange={this.handleChangeQuestion} autoComplete="off" />
+                              <input type="radio" id="color-3" name="respuestacorrecta" value="azul"
                                 checked={this.state.respuestacorrecta === 'azul'}
-                                onChange={this.handleCorrectAnswer}
+                                onChange={this.handleChangeQuestion}
                               />
                               <label htmlFor="color-3">
                                 <span>
@@ -195,10 +236,10 @@ export default class ClassDetailTeacher extends Component {
                             <label className="triviaRepuestas">Respuesta 4</label>
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
-                              <input type="text" id="res4" className="triviaT-input-respuestas" name="answer4" value={answer4} onChange={this.handlechangeQuestion} autoComplete="off" />
-                              <input type="radio" id="color-4" name="correctanswer" value="answer4"
+                              <input type="text" id="res4" className="triviaT-input-respuestas" name="answer4" value={answer4} onChange={this.handleChangeQuestion} autoComplete="off" />
+                              <input type="radio" id="color-4" name="respuestacorrecta" value="verde"
                                 checked={this.state.respuestacorrecta === 'verde'}
-                                onChange={this.handleCorrectAnswer}
+                                onChange={this.handleChangeQuestion}
                               />
                               <label htmlFor="color-4">
                                 <span>

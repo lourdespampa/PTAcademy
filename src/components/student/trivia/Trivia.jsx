@@ -98,9 +98,9 @@ export default class Trivia extends React.Component {
       clearInterval(this.interval);
       //Aqui verficamos si el alumno ha elegido la respuesta correcta!!
       if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
-        console.log("elegiste la respuesta correcta!!")
+        alert("elegiste la respuesta correcta!!")
       } else {
-        console.log("no es la respuesta correcta :c")
+        alert("no es la respuesta correcta :c")
         let color = this.state.preguntaCorrecta
         this.setState({ preguntaElegida: color })
       }
@@ -179,7 +179,7 @@ export default class Trivia extends React.Component {
                 </div>
               </div>
               <div className="triviaT-row">
-                <div className=" triviaT-col-6 contendorDeBotonesRespuesta">
+                <div className="contendorDeBotonesRespuesta">
                   <div>
                     <div style={pe === 'azul' || pe === 'naranja' || pe === 'verde' ? styles.botonInactivo : {}}
                       id="triangulo" className="trivia-student-button rojo"
@@ -228,7 +228,7 @@ export default class Trivia extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className="triviaT-col-6 contendorDeBotonesRespuesta">
+                <div className="contendorDeBotonesRespuestaR">
                   <div>
                     <div style={pe === 'rojo' || pe === 'azul' || pe === 'verde' ? styles.botonInactivo : {}}
                       id="circulo" className="trivia-student-button naranja"
