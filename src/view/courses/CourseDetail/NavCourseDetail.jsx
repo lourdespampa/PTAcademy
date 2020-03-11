@@ -1,58 +1,58 @@
 import React, { Component, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import ModalAgregar from "../../classAndCourse/ModalAgregar"
+import ModalAgregar from "../../classAndCourse/ModalAgregar";
 import iconExit from "../../../img/cerrar1.png";
-import FormAddStudent from "./FormAddStudent";
 import iconBack from "../../../img/back_button.svg";
-// function BotonAgregar(props) {
-//   const [show, setShow] = useState(0);
-//   const handleClose = () => setShow(2);
-//   const handleShow = () => setShow(1);
-//   const AgregarClick = () => setShow(false) + props.getdata();
-//   return (
-//     <>
-//       <div
-//         className="teacherCourses__main-menu__addCourse"
-//         onClick={handleShow}
-//       >
-//         Agregar Alumno
-//       </div>
-//       <div
-//         id="modal-general_container"
-//         className={
-//           show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""
-//         }
-//       >
-//         <div className="modal-general_background">
-//           <div className="modal-general_bg_content">
-//             <button className="modal-general_close" onClick={handleClose}>
-//               <img
-//                 className="button-zoom"
-//                 src={iconExit}
-//                 alt="imagen de cerrar modal"
-//               />
-//             </button>
-//             <div className="modal-general_container">
-//               <FormAddStudent
-//                 handleClose={AgregarClick}
-//                 apiUrl={props.apiUrl}
-//                 idcourse={props.idcourse}
-//                 idteacher={props.idteacher}
-//               />
-//             </div>
-//             <svg
-//               className="modal-general_svg"
-//               xmlns="http://www.w3.org/2000/svg"
-//               preserveAspectRatio="none"
-//             >
-//               <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
-//             </svg>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
+import FormPostSiagie from "../../classAndCourse/FormPostSiagie";
+function Siagie(props) {
+  const [show, setShow] = useState(0);
+  const handleClose = () => setShow(2);
+  const handleShow = () => setShow(1);
+  return (
+    <>
+      <div
+        className="teacherCourses__main-menu__addCourse"
+        onClick={handleShow}
+      >
+        SIAGIE
+      </div>
+      <div
+        id="modal-general_container"
+        className={
+          show === 0 ? "" : show === 1 ? "six" : show === 2 ? "six out" : ""
+        }
+      >
+        <div className="modal-general_background">
+          <div className="modal-general_bg_content">
+            <button className="modal-general_close" onClick={handleClose}>
+              <img
+                className="button-zoom"
+                src={iconExit}
+                alt="imagen de cerrar modal"
+              />
+            </button>
+            <div className="modal-general_container">
+              <FormPostSiagie
+                students={props.students}
+                apiUrl={props.apiUrl}
+                idteacher={props.idteacher}
+                idcourse={props.idcourse}
+                name_course={props.name_course}
+              ></FormPostSiagie>
+            </div>
+            <svg
+              className="modal-general_svg"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+            >
+              <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
 function BotonCerrarSesion(props) {
   const [show, setShow] = useState(0);
   const handleClose = () => setShow(2);
@@ -116,7 +116,7 @@ function BotonCerrarSesion(props) {
 export default class NavCourse extends Component {
   state = {
     token: false,
-    inputValue:""
+    inputValue: ""
   };
 
   UNSAFE_componentWillMount = async () => {
@@ -133,11 +133,12 @@ export default class NavCourse extends Component {
     const nav = document.getElementById("main-nav");
     nav.classList.toggle("show");
   };
-  onFilesAdded=(evt)=>{
+  onFilesAdded = evt => {
     this.setState({
-      inputValue: evt.value})
-      this.sendRequest(evt.value)
-  }
+      inputValue: evt.value
+    });
+    this.sendRequest(evt.value);
+  };
   sendRequest(file) {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
@@ -156,7 +157,11 @@ export default class NavCourse extends Component {
       req.upload.addEventListener("load", event => {
         const copy = { ...this.state.uploadProgress };
         copy[file.name] = { state: "done", percentage: 100 };
-        this.setState({ uploadProgress: copy,UploadDone:true,uploading:false });
+        this.setState({
+          uploadProgress: copy,
+          UploadDone: true,
+          uploading: false
+        });
         resolve(req.response);
       });
 
@@ -169,70 +174,86 @@ export default class NavCourse extends Component {
 
       const formData = new FormData();
       formData.append("file", file, file.name);
-      formData.append("class_name",this.props.class_name)
-      formData.append("desc",this.props.desc)
-      console.log(file)
+      formData.append("class_name", this.props.class_name);
+      formData.append("desc", this.props.desc);
+      console.log(file);
 
-      var varToken = localStorage.getItem('token');
-        
-      req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/upload_excel/${this.props.idcourse}`);
+      var varToken = localStorage.getItem("token");
+
+      req.open(
+        "POST",
+        `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/upload_excel/${this.props.idcourse}`
+      );
       // req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/falllaApropocito`);
-      req.setRequestHeader('x-access-token', `${varToken}`)
+      req.setRequestHeader("x-access-token", `${varToken}`);
       req.send(formData);
-      console.log('asdmasd')
-      req.onload=()=>{
-        if(req.readyState===req.DONE){
-          if(req.status===200){
-            console.log(req.response)
-            console.log('bien')
-            this.props.handleClose()
-            this.props.cleanInputs()
-            this.props.handleEnableX()
+      console.log("asdmasd");
+      req.onload = () => {
+        if (req.readyState === req.DONE) {
+          if (req.status === 200) {
+            console.log(req.response);
+            console.log("bien");
+            this.props.handleClose();
+            this.props.cleanInputs();
+            this.props.handleEnableX();
             this.setState({
               files: [],
               uploading: false,
               uploadProgress: {},
               successfullUploaded: false,
-              errorUploaded:false,
-              slideOn:false,
-              NoData:false,
-              UploadDone:false,
-              limpiarInputFile:false
-            })
-          }
-          else{
-            console.log(req.response)
-            console.log('mal')
-            this.setState({ errorUploaded: true});
-            this.props.handleEnableX()
+              errorUploaded: false,
+              slideOn: false,
+              NoData: false,
+              UploadDone: false,
+              limpiarInputFile: false
+            });
+          } else {
+            console.log(req.response);
+            console.log("mal");
+            this.setState({ errorUploaded: true });
+            this.props.handleEnableX();
             // this.props.cleanInputs()
             this.setState({
               successfullUploaded: false,
-              errorUploaded:true,
+              errorUploaded: true,
               uploading: false,
               uploadProgress: {},
-              slideOn:false,
-              NoData:false,
-              UploadDone:false,
-              limpiarInputFile:false
-            })
+              slideOn: false,
+              NoData: false,
+              UploadDone: false,
+              limpiarInputFile: false
+            });
           }
         }
-      }
+      };
     });
   }
   render() {
     return (
       <>
-        {this.state.token ? null : <Redirect to="/notfound"></Redirect>}
-        {
-          this.props.editarTodos
-          ?
-          <div className="teacherCourses__floatingActionButton teacherCourses_editStudent" onClick={this.props.handleEditAllStudentDisable} style={{background: "#52BE7F"}} ><i className="fas fa-save"></i></div>
-          :
-          <div className="teacherCourses__floatingActionButton teacherCourses_editStudent" onClick={this.props.handleEditAllStudentEnable}><i className="fas fa-edit"></i></div>
-          }
-        <div className="teacherCourses__floatingActionButton teacherCourses_addStudent" onClick={this.props.handleAddStudent}><i className="fas fa-plus"></i></div>
+        {this.state.token ? null : <Redirect to="/"></Redirect>}
+        {this.props.editarTodos ? (
+          <div
+            className="teacherCourses__floatingActionButton teacherCourses_editStudent"
+            onClick={this.props.handleEditAllStudentDisable}
+            style={{ background: "#52BE7F" }}
+          >
+            <i className="fas fa-save"></i>
+          </div>
+        ) : (
+          <div
+            className="teacherCourses__floatingActionButton teacherCourses_editStudent"
+            onClick={this.props.handleEditAllStudentEnable}
+          >
+            <i className="fas fa-edit"></i>
+          </div>
+        )}
+        <div
+          className="teacherCourses__floatingActionButton teacherCourses_addStudent"
+          onClick={this.props.handleAddStudent}
+        >
+          <i className="fas fa-plus"></i>
+        </div>
         <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
             <Link
@@ -253,28 +274,26 @@ export default class NavCourse extends Component {
             <nav className="teacherCourses__main-nav" id="main-nav">
               <ul className="teacherCourses__main-menu">
                 <li className="teacherCourses__main-menu__item">
-                  <ModalAgregar
-                   apiUrl={this.props.apiUrl}
-                   idteacher={this.props.idteacher}
-                   idcourse={this.props.idcourse}
-                   agregarX={"Alumno"}
-                   getdata={this.props.getdata}>
-                  </ModalAgregar>
-                  {/* <BotonAgregar
+                  <Siagie
                     apiUrl={this.props.apiUrl}
                     idteacher={this.props.idteacher}
                     idcourse={this.props.idcourse}
-                    agregarX={this.props.agregarX}
+                    students={this.props.students}
+                    name_course={this.props.name_course}
+                  ></Siagie>
+                </li>
+                <li className="teacherCourses__main-menu__item">
+                  <ModalAgregar
+                    apiUrl={this.props.apiUrl}
+                    idteacher={this.props.idteacher}
+                    idcourse={this.props.idcourse}
+                    agregarX={"Alumno"}
                     getdata={this.props.getdata}
-                  ></BotonAgregar> */}
+                  ></ModalAgregar>
                 </li>
                 <li className="teacherCourses__main-menu__item">
                   <BotonCerrarSesion cerrarSesion={this.cerrarSesion} />
                 </li>
-                {/* <li className="teacherCourses__main-menu__item">
-                  <input ref="" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excels" 
-                  onChange={this.onFilesAdded} value={this.state.inputValue}/>
-                </li> */}
               </ul>
             </nav>
           </div>

@@ -242,7 +242,7 @@ class Temporizador extends React.Component {
                   <span className="modal-title__controlname" style={{ color: 'black' }}>ESTABLECER TIEMPO</span>
                 </div>
                 <div className="modal-general_container_body">
-                  <form class="temporizador_form">
+                  <form className="temporizador_form">
                     <div>
                       <label>Horas</label>
                       <input

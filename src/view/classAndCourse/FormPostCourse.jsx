@@ -97,7 +97,7 @@ export default class FormPostCourse extends Component {
         'x-access-token': `${varToken}`
       }
     }).then((res) => {
-      // return console.log(res.data)
+      console.log(res.data)
       this.setState({
         bloquearBoton: false,
         message: "Elija una opción",

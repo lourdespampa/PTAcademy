@@ -3,7 +3,6 @@ import "./CourseDetail.sass";
 import NavCourse from "./NavCourseDetail";
 import axios from "axios";
 import iconExit from "../../../img/cerrar.png";
-// import CardStudent from './CardStudent'
 export default class CourseDetail extends Component {
   constructor(props) {
     super(props);
@@ -14,67 +13,85 @@ export default class CourseDetail extends Component {
       notaCompe: "",
       students: [],
       editar: false,
-      idMapAlumno: "",
-      apellidoAlumno: "",
-      nombreAlumno: "",
-      descAlumno: "",
-      apiUrl: "http://3.16.110.136:4200",
       compentencias: [],
       competenciasAlumnos: [],
-      showdelete: 0
+      showdelete: 0,
+      name_stu: '',
+      lastName_stu: '',
+      idAlumno: ''
     };
   }
 
   componentDidMount() {
-    console.log(this.props, this.props.location.state)
+    console.log(this.props, this.props.location.state);
     const {
       match: { params }
     } = this.props;
-    this.setState({ id_course: params.id_course, id_teacher: params.id, compentencias: this.props.location.state });
+    this.setState({
+      id_course: params.id_course,
+      id_teacher: params.id,
+      compentencias: this.props.location.state
+    });
     setTimeout(
-      () => console.log('id del curso', this.state.id_course, 'id del teacher:', this.state.id_teacher,'listado de als compentencias', this.state.compentencias),
+      () =>
+        console.log(
+          "id del curso",
+          this.state.id_course,
+          "id del teacher:",
+          this.state.id_teacher,
+          "listado de als compentencias",
+          this.state.compentencias
+        ),
       2000
     );
-    this.getAlumnos()
+    this.getAlumnos();
   }
   UNSAFE_componentWillMount = async () => {
     let tokenStorage = localStorage.getItem("token");
     await this.setState({ token: tokenStorage });
   };
 
-  handleEditStudent = (idAlumno) => {
+  handleEditStudent() {
     this.setState({
       editar: !this.state.editar,
-      idMapAlumno: idAlumno
-    })
-  }
-
+    });
+  };
   handleChange = e => {
     console.log(`Seleccionaste ${e.target.value}`);
-    // this.setState({value: event.target.value});
-    // setTimeout(() => console.clear(), 1000);
-  }
-
+  };
   handleChangeInputs = e => {
-    let name = e.target.name
-    let value = e.target.value
-    this.setState({[name]: value})
-
-    // console.log('cuando se esta editando', value)
-
+    let name = e.target.name;
+    let value = e.target.value;
+    this.setState({ [name]: value });
     console.log([name], value)
-  }
-  handleEditStudent = (idAlumno) => {
+  };
+  handleSaveStudent = idAlumno => {
+    var varToken = localStorage.getItem("token");
+
     this.setState({
       editar: !this.state.editar,
       idMapAlumno: idAlumno
+    });
+    const data ={
+      name_stu: this.state.name_stu,
+      lastName_stu: this.state.lastName_stu
+    }
+    axios({
+      url: `${this.props.apiUrl}/v1/api/student/${idAlumno}/`,
+      method: "PUT",
+      headers: {
+        "x-access-token": `${varToken}`
+      },
+      data
+    }).then((res)=> {
+      console.log(res)
+    }).catch((err)=> {
+      console.log(err)
     })
-    console.log('id del estudiante', this.state.idMapAlumno)
-    console.log('nuevos nombre', this.state.nombreAlumno)
-  }
+    this.getAlumnos()
+  };
 
   getAlumnos = () => {
-    console.log("listar alumnos ");
     const {
       match: { params }
     } = this.props;
@@ -89,10 +106,13 @@ export default class CourseDetail extends Component {
       .then(({ data }) => {
         console.log(data);
         if (data === []) {
-          this.setState({ students: [], });
+          this.setState({ students: [] });
         } else {
-          this.setState({ students: data, competenciasAlumnos: data.competences })
-          
+          this.setState({
+            students: data,
+            competenciasAlumnos: data.competences
+          });
+
           console.log(data[0].competences);
         }
       })
@@ -108,11 +128,33 @@ export default class CourseDetail extends Component {
     nav.classList.remove("show");
   };
   setShow = () => {
-    this.setState({showdelete:1})
+    this.setState({ showdelete: 1 });
   };
   setClose = () => {
-    this.setState({showdelete:2})
+    this.setState({ showdelete: 2 });
   };
+  onClick=(idAlumno) => {
+    this.setState({
+      idAlumno: idAlumno
+    })
+  }
+  setDeleteStudent = () => {
+    var varToken = localStorage.getItem("token");
+    
+    axios({
+      url: `${this.props.apiUrl}/v1/api/student/${this.state.idAlumno}`,
+      method: "DELETE",
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    }).then((res)=> {
+      console.log(res)
+    }).catch((err)=> {
+      console.log(err)
+    })
+    this.getAlumnos()
+    this.setClose();
+  }
 
   render() {
     return (
@@ -123,6 +165,8 @@ export default class CourseDetail extends Component {
           idteacher={this.state.id_teacher}
           nombreProfesor={this.state.nombreProfesor}
           getdata={this.getAlumnos}
+          students={this.state.students}
+          name_course={localStorage.getItem("name_course")}
         ></NavCourse>
         {/* <CardStudent></CardStudent> */}
         <div className="CourseDetail__Container" onClick={this.Cerrar}>
@@ -137,7 +181,9 @@ export default class CourseDetail extends Component {
                 <th className="CourseDetail__table-th">Apellidos</th>
                 <th className="CourseDetail__table-th">Nombres</th>
                 {this.state.compentencias.map((compentencia, id) => (
-                  <th key={id} className="CourseDetail__table-th">{compentencia}</th>
+                  <th key={id} className="CourseDetail__table-th">
+                    {compentencia}
+                  </th>
                 ))}
                 <th className="CourseDetail__table-th">Editar</th>
                 <th className="CourseDetail__table-th">Eliminar</th>
@@ -145,39 +191,35 @@ export default class CourseDetail extends Component {
             </thead>
             {/* cuerpo de la tabla */}
             <tbody className="CourseDetail__table-body">
-              {this.state.students.map((alumno,idAlumno) => (
+              {this.state.students.map((alumno, idAlumno) => (
+               
                 <tr className="CourseDetail__table-tr" key={alumno._id}>
                   <td className="CourseDetail__table-td" data-th="Codigo">
                     {alumno.randonCode}
                   </td>
                   <td className="CourseDetail__table-td" data-th="Apellidos">
-                    {
-                      this.state.editar
-                      ?
-                        this.state.idMapAlumno === idAlumno
-                        ?
-                        <input type="text" name="apellidoAlumno" defaultValue={alumno.lastName_stu} onChange={this.handleChangeInputs} />
-                        :
-                        alumno.lastName_stu
-                      :
+                    {this.state.editar ? (
+                        <input
+                          type="text"
+                          name="lastName_stu"
+                          defaultValue={alumno.lastName_stu}
+                          onChange={this.handleChangeInputs}
+                        />
+                    ) : (
                       alumno.lastName_stu
-                    }
+                    )}
                   </td>
-                  <td
-                    className="CourseDetail__table-td"
-                    data-th="Nombres"
-                  >
-                    {
-                      this.state.editar
-                      ?
-                        this.state.idMapAlumno === idAlumno
-                        ?
-                        <input type="text" name="nombreAlumno" defaultValue={alumno.name_stu} onChange={this.handleChangeInputs} />
-                        :
-                        alumno.name_stu
-                      :
+                  <td className="CourseDetail__table-td" data-th="Nombres">
+                    {this.state.editar ? (
+                        <input
+                          type="text"
+                          name="name_stu"
+                          defaultValue={alumno.name_stu}
+                          onChange={this.handleChangeInputs}
+                        />
+                    ) : (
                       alumno.name_stu
-                    }
+                    )}
                   </td>
                   {/* {alumno.competences.map((a,id)=>
                     <td key={id}>
@@ -194,26 +236,30 @@ export default class CourseDetail extends Component {
                       {compentencia.nota}
                     </td>
                   ))}
-                  <td
-                    className="CourseDetail__table-td"
-                    data-th="Editar"
-                  >
-                    {(this.state.editar)?(
-                      <button className="courseTeacher__button-alumno" onClick={() => this.handleEditStudent(idAlumno)} >
-                      <i className="courseTeacher__img fas fa-save"></i>
-                    </button>
-                    ):(
-                      <button className="courseTeacher__button-alumno" onClick={() => this.handleEditStudent(idAlumno)} >
-                      <i className="courseTeacher__img fas fa-edit"></i>
-                    </button>
+                  <td className="CourseDetail__table-td" data-th="Editar">
+                    {this.state.editar ? (
+                      <button
+                        className="courseTeacher__button-alumno"
+                        onClick={() => this.handleSaveStudent(alumno._id)}
+                      >
+                        <i className="courseTeacher__img fas fa-save"></i>
+                      </button>
+                    ) : (
+                      <button
+                        className="courseTeacher__button-alumno"
+                        onClick={() => this.handleEditStudent()}
+                      >
+                        <i className="courseTeacher__img fas fa-edit"></i>
+                      </button>
                     )}
-                    
                   </td>
-                  <td
-                    className="CourseDetail__table-td"
-                    data-th="Eliminar"
-                  >
-                    <button className="courseTeacher__button-delette" onClick={this.setShow}>
+                  <td className="CourseDetail__table-td" data-th="Eliminar">
+                    <button
+                      className="courseTeacher__button-delette"
+                      onClick={() =>
+                        this.onClick(alumno._id) +
+                        this.setShow("show")}
+                    >
                       <i className="courseTeacher__img fas fa-trash"></i>
                     </button>
                   </td>
@@ -222,26 +268,55 @@ export default class CourseDetail extends Component {
             </tbody>
           </table>
         </div>
-        <div id="modal-general_container" className={this.state.showdelete === 0 ? "" : this.state.showdelete === 1 ? "six" : this.state.showdelete === 2 ? "six out" : ""}>
+        <div
+          id="modal-general_container"
+          className={
+            this.state.showdelete === 0
+              ? ""
+              : this.state.showdelete === 1
+              ? "six"
+              : this.state.showdelete === 2
+              ? "six out"
+              : ""
+          }
+        >
           <div className="modal-general_background">
             <div className="modal-general_bg_content">
               <button className="modal-general_close" onClick={this.setClose}>
-                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                <img
+                  className="button-zoom"
+                  src={iconExit}
+                  alt="imagen de cerrar modal"
+                />
               </button>
               <div className="modal-general_container">
                 <div className="modal-general_container_header">
-                  <span className="modal-title">¿DESEA ELIMINAR AL ALUMNO?</span>
+                  <span className="modal-title">
+                    ¿DESEA ELIMINAR AL ALUMNO?
+                  </span>
                 </div>
                 <div className="modal-general_container_body">
-                  <button className="modal-body__button yes" onClick={this.setClose} type="button">
+                  <button
+                    className="modal-body__button yes"
+                    onClick={this.setDeleteStudent}
+                    type="button"
+                  >
                     <div className="button-zoom">SI</div>
                   </button>
-                  <button className="modal-body__button no" onClick={this.setClose} type="button">
+                  <button
+                    className="modal-body__button no"
+                    onClick={this.setClose}
+                    type="button"
+                  >
                     <div className="button-zoom">NO</div>
                   </button>
                 </div>
               </div>
-              <svg className="modal-general_svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <svg
+                className="modal-general_svg"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+              >
                 <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
               </svg>
             </div>

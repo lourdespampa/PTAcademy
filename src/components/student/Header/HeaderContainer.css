@@ -1,7 +1,7 @@
 .alumnoH-header{
     position: fixed;
-    background: -webkit-linear-gradient(left,#5D00FF, #007bff);
-    height: 66px;
+    background:#52BE7F;
+    height: 56px;
     width: 100%;
     z-index: 5;
 }
@@ -28,41 +28,104 @@
     display: none;
 }
 
+.logo{
+    padding: 4px;
+}
+
+.rt{
+    margin: 12px;
+    margin-left: 11px;
+}
 .alumnoH-header .alumnoHeader-nav{
     float: right;
-    margin: 0;
+    margin: 0px;
     padding: 0;
     list-style: none;
+    border-radius: 0px 0px 13px 13px;
+
     /* border: 1px solid red; */
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li{
     float: left;
     position: relative;
     text-align: center;
+    margin-top: 5px;
+    margin-right: 4px;
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a{
     display: block;
-    padding: 21px;
+    padding: 14px;
     font-size: 1.1em;
     text-decoration: none;
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a:hover{
-    background: -webkit-linear-gradient(left, #007bff, #5D00FF);
-    padding: 20px;
+    /*margin-top: 5px;*/
+    background: white;
+    color: #52BE7F;
+    /*padding: 10px;*/
+    border-radius: 23px;
+    height: 45px;
+    /*margin-right: 8px;*/
 }
-
+.alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a:hover.alumnoHeader-nav{
+    background: red;
+}
+/* .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a .fa:hover{
+    color: #52BE7F;
+} */
+/* .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a .fa .fa-list-ol:hover{
+    color: #52BE7F;
+} */
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li:hover .alumnoHeader-nav{
     display: block;
+    margin-top: 5.8px;
     padding: 5px;
+    border-radius: 0px 0px 14px 14px;
+}
+.alumnoH-header .alumnoHeader-nav .alumnoHeader-li:hover .alumnoHeader-a{
+    margin-bottom: -8px;
+  /* margin-top: 2px;*/
+}
+.alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a:hover{
+    margin-bottom: 0;
+  /* margin-top: 2px;*/
+}
+/* .fa .fa-list-ol:hover{
+    color: #52be7f;
 }
 
+.fa .fa-list-ol{
+    color: white;
+} */
+/* .alumnoHeader-li .alumnoHeader-a .fa-list-ol:hover{
+    color: tomato;
+} */
+
+li.alumnoHeader-li .ft:hover{
+    cursor: pointer;
+    padding: 0 0 6px;
+}
+
+.alumnoHeader-li .alumnoHeader-a:hover .fa-list-ol{
+    color: #52BE7F;
+}
+
+.alumnoHeader-li .alumnoHeader-a:hover .fa-hourglass{
+    color:#52BE7F;
+}
+.alumnoHeader-li .alumnoHeader-a:hover .fa-user{
+    color:#52BE7F
+}
+.alumnoHeader-li .alumnoHeader-a:hover .fa-chevron-down{
+    color:#52BE7F
+}
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav{
-    position: absolute;
-    top: 65px;
+    /* position: absolute; */
+    top: 56px;
     right: 0;
     width: 100%;
     display: none;
-    background: rgb(216, 216, 216);
+    background:#52BE7F;
     z-index: 3000;
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav .alumnoHeader-li{
@@ -70,16 +133,19 @@
     text-align: center;
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a{
-    padding: 10px;
-    background: rgb(216, 216, 216);
-    color: #4d4d4d;
+    padding: 10px; 
+    background: #52BE7F;
+    /* color: #4d4d4d;
+    margin-top: -9px; */
+    cursor: pointer;
+    margin-bottom: -1px;
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a .fa{
     font-size: 22px;
     padding: 0 10px;
 }
 .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav .alumnoHeader-li:hover .alumnoHeader-a{
-    background: rgb(194, 194, 194);
+    background: #ffffff;;
     color: red;
     transition: 0.5s;
 }
@@ -94,7 +160,7 @@
 
     .alumnoH-header .alumnoHeader-nav{
         width: 100%;
-        background: -webkit-linear-gradient(left,#5D00FF, #007bff);
+        background:#52BE7F;
         max-height: 0;
         overflow: hidden;
     }
@@ -118,21 +184,40 @@
 
     .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav{
         position: static;
-        display: block;
+        display: none;
         width: 100%;
-        background: -webkit-linear-gradient(left, #5D00FF, #007bff);
+        background: #52BE7F;
     }
     
     .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a{
         padding: 10px;
-        background: -webkit-linear-gradient(left, #5D00FF, #007bff);
+        background: #52BE7F;
         color: white;
-        margin-left: 50px;
+        /*margin-left: 40px;*/
+        display: block;
+        width: 100%;
     }
+    
+   
     .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav .alumnoHeader-li:hover{
-        background: rgb(194, 194, 194);
+       /* background: rgb(194, 194, 194);*/
+        color: rgb(219, 190, 23);
+        /*transition: 0.5s;*/
+    }
+    .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-a:hover{
+        background: white;
+        color: #52BE7F;
+        height: 55%;
+    }
+    .alumnoH-header .alumnoHeader-nav .alumnoHeader-li .alumnoHeader-nav .alumnoHeader-li:hover .alumnoHeader-a {
+        /* background: rgb(194, 194, 194); */
+        background: white;
         color: red;
         transition: 0.5s;
+    }
+    .alumnoH-header .alumnoHeader-nav .alumnoHeader-li:hover .alumnoHeader-a{
+        margin-bottom: 0px; 
+        margin-top: 0px;
     }
 
 }

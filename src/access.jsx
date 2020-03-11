@@ -12,10 +12,10 @@ import FormLoginStu from "./view/login.Stud/login.dataForm";
 import Index from "./view/index/Inicio";
 import CourseDetailTeacher from "./view/courses/CourseDetail/CourseDetail";
 // se va poner los componentes de dos login de alumnos
-import LoginSchool from './view/login.Stud/loginSchool'
-import LoginPrivate from './view/login.Stud/loginPrivate'
-//terminos y condiciones 
-import TerminosCondiciones from './Terminos'
+import LoginSchool from "./view/login.Stud/loginSchool";
+import LoginPrivate from "./view/login.Stud/loginPrivate";
+//terminos y condiciones
+import TerminosCondiciones from "./Terminos";
 
 export default class Access extends Component {
   state = {
@@ -27,7 +27,11 @@ export default class Access extends Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Index} />
-          <Route exact path="/terminos-condiciones" component={TerminosCondiciones} />
+          <Route
+            exact
+            path="/terminos-condiciones"
+            component={TerminosCondiciones}
+          />
           <Route
             exact
             path="/Login"

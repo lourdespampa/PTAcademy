@@ -10,8 +10,6 @@ function enviarvideo(url, socketUrl, id_access, setShow,seturlnombre, setNoData)
   const socket = io(socketUrl, {
     query: { pin: id_access }
   });
-  
-
   var expresionRegular = "https://www.youtube.com/watch?v=";
   var urlembed = urlnombre.split(expresionRegular);
   document.getElementById("video-frame").src =
@@ -55,7 +53,7 @@ function Video (props){
       </button>
       <div className="modal-general_container">
         <div className="modal-general_container_header">
-          <span className="modal-title__controlname" style={{color:'black'}}>EMITIR VIDEO</span>
+          <span className="modal-title__controlname botton-zoom" style={{color:'black'}}>EMITIR VIDEO</span>
         </div>
         <div className="modal-general_container_body">
           <input
@@ -70,7 +68,7 @@ function Video (props){
             required
           />
           <button
-            className="btnenviarvideo"
+            className="Myni"
             onClick={() =>
               enviarvideo(
                 urlnombre,

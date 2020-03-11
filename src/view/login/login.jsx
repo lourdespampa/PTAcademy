@@ -88,7 +88,6 @@ export default function App(props) {
             const { user, token } = data;
             // let tokenEncrypt = encriptarToken(token)
             localStorage.setItem("token", token);
-            localStorage.setItem("user", JSON.stringify(user));
             getMessage({
               userState: user,
               message: `Logeado como ${user.email}`
@@ -227,9 +226,7 @@ export default function App(props) {
           });
         }
         const { user, token } = data;
-        // let tokenEncrypt = encriptarToken(token)
         localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(user));
         getMessage({
           userState: user,
           message: `Logeado como ${user.email}`

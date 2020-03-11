@@ -136,7 +136,7 @@ export default class Trivia extends React.Component {
             ?
             null
             :
-            <div id="animatedModal" style={{ zIndex: 3, marginTop: "65px" }}>
+            <div id="animatedModal" style={{ zIndex: 3, marginTop: "56px" }}>
               <div className="close-animatedModal"></div>
               <div></div>
               <div className="modal-contenido">
@@ -192,8 +192,10 @@ export default class Trivia extends React.Component {
                       <div className="triviaStudentSimbol">
                         <img src={require("./rombo-blanco.webp")} alt="" />
                       </div>
-                      <div className="triviaStudentText">
-                        <p id="answerTriangulo">{this.state.respuesta1 ? this.state.respuesta1 : "Respuesta 1"}</p>
+                      <div className="triviaStudentText" >
+                        <p id="answerTriangulo">
+                          {this.state.respuesta1 ? this.state.respuesta1 : "Respuesta 1"}
+                        </p> 
                       </div>
                     </div>
                   </div>
@@ -211,7 +213,7 @@ export default class Trivia extends React.Component {
                               { pin: this.props.id_access }
                           })
                           clearInterval(this.interval2);
-                          await this.setState({ preguntaElegida: 'azul', eligio: true })
+                          await this.setState({preguntaElegida: 'azul', eligio: true })
                           if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
                             socket.emit('enviando elegida', { alumno: this.props.fullname, puntaje: this.state.puntaje })
                           }
@@ -225,11 +227,8 @@ export default class Trivia extends React.Component {
                       </div>
                     </div>
                   </div>
-
                 </div>
-
                 <div className="triviaT-col-6 contendorDeBotonesRespuesta">
-
                   <div>
                     <div style={pe === 'rojo' || pe === 'azul' || pe === 'verde' ? styles.botonInactivo : {}}
                       id="circulo" className="trivia-student-button naranja"
