@@ -167,21 +167,24 @@ export default class ListaAlum extends Component {
     }
   };
   //eliminar estudiante
-  deleteStudents = async studentsId => {
+  deleteStudents(){
     const socket = io(this.props.socketUrl, {
       query: { pin: this.props.id_access }
     });
     var varToken = localStorage.getItem("token");
-    await axios({
-      url:
-        this.props.apiUrl + "/v1/api/student/disable_student/" + this.state._id,
-      method: "put",
+    console.log(this.props.apiUrl)
+     axios({
+      url: `${this.props.apiUrl}/v1/api/student/${this.state._id}`,
+      method: "delete",
       headers: {
         "x-access-token": `${varToken}`
       }
-    });
-    this.getStudents();
-    socket.emit("RemoveStud", { id: this.state._id });
+    }).then(e=> {
+      this.getStudents();
+    socket.emit("RemoveStud", { id: this.state._id })
+    })
+    .catch(e => console.log(e));
+    
   };
   //captura value y id
   onClick = id => {
@@ -345,6 +348,8 @@ export default class ListaAlum extends Component {
                       competencias={this.state.competencias}
                       apiUrl={this.props.apiUrl}
                       id_class={this.props.id_class}
+                      setShow={this.setShow}
+                      onClick={this.onClick}
                     ></TableSchool>
                   ) : (
                     <TablePrivate
@@ -352,7 +357,7 @@ export default class ListaAlum extends Component {
                       onClickNote={this.onClickNote}
                       onClick={this.onClick}
                       onClickPoint={this.onClickPoint}
-                      deleteStudents={this.deleteStudents}
+                      // deleteStudents={this.deleteStudents}
                       setShow={this.setShow}
                     ></TablePrivate>
                   )}
