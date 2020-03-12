@@ -1,16 +1,8 @@
-.divSketch
-    position: absolute
-    left: calc(50% - 500px)
-    top: calc(50% - 290px)
-    max-width: 1000px
-    height: 500px
-    background: #5f6368
-    width: 100%
 .divPalette
-    position: absolute
+    position: relative
     background: #54b1a7
     width: 1000px
-    top: calc(50% + 220px)
+    top: 10px
     left: calc(50% - 500px)
     display: flex
     flex-wrap: wrap
@@ -120,9 +112,80 @@
                         top: calc(50% - 12px)
                         width: 24px
                         height: 24px
+                .iclear
+                    width: 100%
+                    i
+                        font-size: 40px
     .liColor
         width: 45%
     .liSize
         width: 35%
     .liClear
         width: 20%
+.p5Canvas
+    border: solid 5px
+    background: #ffffff
+    position: relative
+    left: calc(50% - 500px)
+    top: 10px
+    max-width: 1000px
+    height: 500px
+    width: 100%
+    touch-action: none
+@media only screen and (max-width: 1000px)
+    .p5Canvas
+        width: 700px !important
+        height: 350px !important
+        left: calc(50% - 350px)
+    .divPalette
+        width: 700px
+        left: calc(50% - 350px)
+@media only screen and (max-width: 700px)
+    .p5Canvas
+        width: 500px !important
+        height: 250px !important
+        left: calc(50% - 250px)
+    .divPalette
+        width: 500px
+        left: calc(50% - 250px)
+    .ulcolors
+        li
+            width: 25% !important
+    .ulSize
+        top: calc(50%  -  55px) !important
+        li
+            padding: 10px !important
+            width: 33.3% !important
+@media only screen and (max-width: 500px)
+    .p5Canvas
+        width: 400px !important
+        height: 200px !important
+        left: calc(50% - 200px)
+    .divPalette
+        width: 400px
+        left: calc(50% - 200px)
+    .ulcolors
+        li
+            width: 33.3% !important
+    .ulSize
+        top: 5px !important
+        li
+            padding: 10px !important
+            width: 100% !important
+@media only screen and (max-width: 400px)
+    .p5Canvas
+        width: 300px !important
+        height: 150px !important
+        left: calc(50% - 150px)
+    .divPalette
+        width: 300px
+        left: calc(50% - 150px)
+    .ulcolors
+        li
+            width: 33.3% !important
+    .ulSize
+        top: 5px !important
+        li
+            padding: 10px !important
+            width: 100% !important
+    

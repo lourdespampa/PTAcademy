@@ -13,7 +13,8 @@ export default class board extends React.Component {
     size: 6,
     clickPress: false,
     trazo: [],
-    pageinit:false
+    pageinit:false,
+    clear:false
   }
   // c: inicializacion retardada por 1 segundo para evitar bugs
   componentDidMount() {
@@ -79,6 +80,11 @@ export default class board extends React.Component {
         x: this.state.x1,
         y: this.state.y1
       })
+    }else if(this.state.clear){
+      p5.clear()
+      this.setState({
+        clear:false
+      })
     }
   }
   // c: opteniendo color seleccionado (negro por default)
@@ -94,6 +100,15 @@ export default class board extends React.Component {
       size:e.target.id
     })
   }
+  // c: limpiar pizarra
+  clear=()=>{
+    this.setState({clear:true})
+    const socket = io(this.props.socketUrl, {
+      query:
+        { pin: this.props.id_access }
+    })
+    socket.emit('clearBoard')
+  }
   render() {
     return (
       <>
@@ -101,11 +116,10 @@ export default class board extends React.Component {
         {this.state.pageinit ? 
         <Sketch
           onclick
+          mouseWheel={()=>{return false},false}
+          className='canvasBoard'
           setup={(p5, parentRef) => {
             p5.createCanvas(1000, 500).parent(parentRef);
-          }}
-          windowResized={(p5)=>{
-            p5.resizeCanvas(500,250);
           }}
           draw={(p5) => this.draw(p5)}
           mouseDragged={e => this.mouseDragged(e)}
@@ -153,9 +167,15 @@ export default class board extends React.Component {
               </div>
           </li>
           <li className='liPalette liClear'>
-              <div className='divCuadro'>
-                OPCIONES
+              <div className='divCuadro contSize'>
+                <ul className='ulSize'>
+                    <div className="iclear">
+                      <i className="material-icons" onClick={()=>this.clear()}>refresh</i>
+                    </div>
+                </ul>
+                
               </div>
+              
           </li>
       </ul>
       </>

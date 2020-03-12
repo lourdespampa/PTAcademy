@@ -41,9 +41,22 @@ export default class board extends React.Component {
         })
       }
     })
+    socket.on('clearBoard',(data) => {
+    if(data.pin === (this.props.id_access).toUpperCase()) {
+        this.setState({
+          clear:true
+        })
+      }
+    })
   }
   // c: evento que realiza las acciones en el canvas
   draw = p5 => {
+    if(this.state.clear){
+      p5.clear()
+      this.setState({
+        clear:false
+      })
+    }
     p5.stroke(this.state.color);
     p5.strokeWeight(this.state.size);
     this.state.trazo.map(traz=>{
@@ -52,11 +65,11 @@ export default class board extends React.Component {
   };
   render() {
     return (
-      <div style={{ position: 'absolute',left: 'calc(50% - 500px)', top:'calc(50% - 250px)',width:'1000px' }}>
+      <div className='divSketch'>
         {this.state.pageinit ? (
           <Sketch
-            style={{ background: "gray", width: "1000px", height: "500px" }}
             onclick
+            className='canvasBoard'
             setup={(p5, parentRef) => {
               p5.createCanvas(1000, 500).parent(parentRef);
             }}
