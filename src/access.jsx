@@ -20,7 +20,7 @@ import TerminosCondiciones from "./Terminos";
 export default class Access extends Component {
   state = {
     apiUrl: "http://3.16.110.136:4200"
-    // apiUrl:'http://192.168.1.66:4200'
+    // apiUrl:'http://3.135.172.97:4200'
   };
   render() {
     return (
