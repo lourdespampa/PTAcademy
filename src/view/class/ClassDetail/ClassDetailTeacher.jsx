@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import iconExit from "../../../img/cerrar1.png";
 import NavClass from "./NavClass";
@@ -89,7 +89,6 @@ export default class ClassDetailTeacher extends Component {
     
     console.log(params.id)
     var varToken = localStorage.getItem("token");
-    var clase = this.id_class;
     console.log(this.props.apiUrl)
     axios({
       url: `${this.props.apiUrl}/v1/api/question/get_questions/${params.id}`,
@@ -113,13 +112,13 @@ export default class ClassDetailTeacher extends Component {
     if(name==='respuestacorrecta'){
       switch(e.target.value){
         case 'rojo':
-          this.setState({'respuestacorrecta'  :"answer1"});
+          this.setState({respuestacorrecta  :"answer1"});
         case 'naranja':
-          this.setState({'respuestacorrecta':"answer2"});
+          this.setState({respuestacorrecta:"answer2"});
         case 'azul':
-          this.setState({'respuestacorrecta':"answer3"});
+          this.setState({respuestacorrecta:"answer3"});
         case 'verde':
-          this.setState({'respuestacorrecta':"answer4"});
+          this.setState({respuestacorrecta:"answer4"});
         }
     }
   }
