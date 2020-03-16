@@ -29,9 +29,14 @@ export default class Trivia extends React.Component {
       respuesta1: '',
       respuesta2: '',
       respuesta3: '',
-      respuesta4: ''
+      respuesta4: '',
+      correctModal: 0,
+      incorrectModal: 0,
+      noneModal: 0,
+      llamandoModal: 0
     }
   }
+
 
   componentDidMount() {
     this._isMounted = true
@@ -82,14 +87,28 @@ export default class Trivia extends React.Component {
       }
     })
   };
-
+  vendoCorrectamente = () => {
+    this.setState({ correctModal: 1 });
+    // console.log(this.state.llamandoModal);
+    setTimeout(() => { this.setState({correctModal:2}) }, 4000);
+  }
+  vendoIncorrectamente = () => {
+    this.setState({ incorrectModal: 1 });
+    setTimeout(() => { this.setState({incorrectModal:2}) }, 4000);
+  }
+  noVendo = () => {
+    this.setState({noneModal : 1});
+    setTimeout(() => { this.setState({noneModal:2}) }, 4000);
+  }
   componentWillUnmount = () => {
     this._isMounted = false
     clearTimeout(this.timeOut)
     clearInterval(this.interval)
     clearInterval(this.interval2)
   }
-
+  // setShow = () => {
+  //   this.setState({ correctModal: 1 });
+  // };
   cuentaRegresiva() {
     if (this.state.time > 0) {
       this.setState({ time: this.state.time - 1 });
@@ -97,12 +116,13 @@ export default class Trivia extends React.Component {
       this.setState({ eligio: true });
       clearInterval(this.interval);
       //Aqui verficamos si el alumno ha elegido la respuesta correcta!!
-      if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
-        alert("elegiste la respuesta correcta!!")
-      } else {
-        alert("no es la respuesta correcta :c")
-        let color = this.state.preguntaCorrecta
-        this.setState({ preguntaElegida: color })
+      if(this.state.preguntaElegida != this.state.preguntaCorrecta){
+        this.vendoIncorrectamente();}
+      else if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
+        // this.setState({ correctModal: 1 });
+        this.vendoCorrectamente();
+      }else{
+        this.noVendo();
       }
     }
   }
@@ -150,9 +170,75 @@ export default class Trivia extends React.Component {
                 </div>
               </div>
             </div>
+
         }
 
+
+        <div id="modal-general_container" className={this.state.correctModal === 0 ? "" : this.state.correctModal === 1 ? "six" : this.state.correctModal === 2 ? "six out" : ""}>
+          <div className="modal-general_background">
+            <div className="modal-general_bg_content">
+              <div className="modal-general_container">
+                <div className="modal-general_container_header">
+                  <span className="modal-title">RESPUESTA CORRECTA</span>
+                </div>
+                <div className="modal-general_container_body">
+                  <i class="fas fa-check"></i>
+                </div>
+              </div>
+              <svg
+                className="modal-general_svg"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+              >
+                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div id="modal-general_container" className={this.state.incorrectModal === 0 ? "" : this.state.incorrectModal === 1 ? "six" : this.state.incorrectModal === 2 ? "six out" : ""}>
+          <div className="modal-general_background">
+            <div className="modal-general_bg_content">
+              <div className="modal-general_container">
+                <div className="modal-general_container_header">
+                  <span className="modal-title">RESPUESTA INCORRECTA</span>
+                </div>
+                <div className="modal-general_container_body">
+                  <i class="fas fa-times"></i>
+                </div>
+              </div>
+              <svg
+                className="modal-general_svg"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+              >
+                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div id="modal-general_container" className={this.state.noneModal === 0 ? "" : this.state.noneModal === 1 ? "six" : this.state.noneModal === 2 ? "six out" : ""}>
+          <div className="modal-general_background">
+            <div className="modal-general_bg_content">
+              <div className="modal-general_container">
+                <div className="modal-general_container_header">
+                  <span className="modal-title">SIN RESPUESTA</span>
+                </div>
+                <div className="modal-general_container_body">
+                  <i class="fas fa-question"></i>
+                </div>
+              </div>
+              <svg
+                className="modal-general_svg"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+              >
+                <rect x="0" y="0" fill="none" rx="3" ry="3"></rect>
+              </svg>
+            </div>
+          </div>
+        </div>
         {/* contenido */}
+
         <div className="contenedorPrincipal">
           {/* <div className="triviaS-preheader"><h1>{this.state.pregunta}</h1></div> */}
           <div className="header2">
@@ -195,7 +281,7 @@ export default class Trivia extends React.Component {
                       <div className="triviaStudentText" >
                         <p id="answerTriangulo">
                           {this.state.respuesta1 ? this.state.respuesta1 : "Respuesta 1"}
-                        </p> 
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -213,7 +299,7 @@ export default class Trivia extends React.Component {
                               { pin: this.props.id_access }
                           })
                           clearInterval(this.interval2);
-                          await this.setState({preguntaElegida: 'azul', eligio: true })
+                          await this.setState({ preguntaElegida: 'azul', eligio: true })
                           if (this.state.preguntaElegida === this.state.preguntaCorrecta) {
                             socket.emit('enviando elegida', { alumno: this.props.fullname, puntaje: this.state.puntaje })
                           }
@@ -255,7 +341,6 @@ export default class Trivia extends React.Component {
                       </div>
                     </div>
                   </div>
-
                   <div>
                     <div style={pe === 'rojo' || pe === 'azul' || pe === 'naranja' ? styles.botonInactivo : {}}
                       id="cuadrado" className="trivia-student-button verde"
@@ -283,11 +368,14 @@ export default class Trivia extends React.Component {
                     </div>
                   </div>
 
+
+
                 </div>
 
               </div>
             </div>
           </div>
+
         </div>
       </>
     );
