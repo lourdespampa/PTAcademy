@@ -19,7 +19,8 @@ export default class TableStudentSchool extends Component {
       name_stu: "",
       lastName_stu: "",
       competencia: "",
-      nota: ""
+      nota: "",
+      id:""
     };
   }
   componentDidMount() {
@@ -182,21 +183,21 @@ export default class TableStudentSchool extends Component {
                     {this.state.editar ? (
                       <button
                         className="courseTeacher__button-alumno"
-                        onClick={() => this.handleEditStudent(idAlumno)}
+                        onClick={() => this.handleEditStudent(alumno._id)}
                       >
                         <i className="courseTeacher__img fas fa-save"></i>
                       </button>
                     ) : (
                       <button
                         className="courseTeacher__button-alumno"
-                        onClick={() => this.handleChangeStudent(idAlumno)}
+                        onClick={() => this.handleChangeStudent(alumno._id)}
                       >
                         <i className="courseTeacher__img fas fa-edit"></i>
                       </button>
                     )}
                   </td>
                   <td data-th="Eliminar">
-                    <button onClick={this.setShow}>
+                    <button onClick={() => this.props.onClick(alumno._id) + this.props.setShow('showdelete', 1)}>
                       <i className="courseTeacher__img fas fa-trash"></i>
                     </button>
                   </td>
@@ -237,7 +238,7 @@ export default class TableStudentSchool extends Component {
                 <div className="modal-general_container_body">
                   <button
                     className="modal-body__button yes"
-                    onClick={this.setClose}
+                    onClick={()=>this.deleteStudent()}
                     type="button"
                   >
                     <div className="button-zoom">SI</div>
