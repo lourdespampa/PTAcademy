@@ -1,41 +1,34 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "./cardCourses.sass";
 import axios from 'axios';
-export default class AllCourses extends Component {
-  constructor(props) {
-    super(props) 
-    this.state = {
-      cursoConAlumnos: true,
-      hola: "holamunod"
-    }
-  }
-
-  componentDidMount = () => {
-    var varToken = localStorage.getItem("token");
-    axios({
-      url: `${this.props.apiUrl}/v1/api/student/${this.props.idteacher}/${this.props.id}/students`,
-      method: "GET",
-      headers: {
-        "x-access-token": `${varToken}`
-      }
-    })
-      .then(({ data }) => {
-        console.log(data)
-        if (data.length) {
-          this.setState({ cursoConAlumnos: true });
-        } else {
-          this.setState({ cursoConAlumnos: false });
+export default class AllQuestions extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            cursoConAlumnos: true,
+            hola: "holamunod"
         }
-      })
-      .catch(e => console.log(e));
-  }
+    }
 
-  render() {
-    return (
+    componentDidMount = () => {
+        var varToken = localStorage.getItem("token");
+        // var clase = this.state.id_class;
+        axios({
+            url: `${this.props.apiUrl}/v1/api/question/get_questions/${this.props.id_class}`,
+            method: "GET",
+            headers: {
+                "x-access-token": `${varToken}`
+            }
+        }).then((res) =>{
+          console.log(res)
+        }).catch((err) =>{
+          console.log(err)
+        })
+      }
+    render() {
+        return (
 
-      <>
-        <div className="classTeacher-container">
+            <>
+                {/* <div className="classTeacher-container">
           <div className="classTeacher-card">
             <div className="classTeacher-card__image-container">
               <button onClick={() =>
@@ -71,8 +64,18 @@ export default class AllCourses extends Component {
               <div className="button-zoom">VER CLASES</div>
             </Link>
           </div>
-        </div>
-      </>
-    );
-  }
+        </div> */}
+                <div className="triviaQuestionsBody">
+                    <ul className="QuestionsListClass">
+                        <li className="QuestionsClass">{this.props.question}
+                            <button className="classTrivia__button-Edit">
+                                <i class="far fa-eye"></i>
+                            </button>
+                            <p>{this.props.answer1}</p>
+                        </li>
+                    </ul>
+                </div>
+            </>
+        );
+    }
 }

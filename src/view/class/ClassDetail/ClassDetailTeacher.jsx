@@ -2,33 +2,36 @@ import React, { useState, Component } from "react";
 import axios from "axios";
 import iconExit from "../../../img/cerrar1.png";
 import NavClass from "./NavClass";
-import Upload from "../../classAndCourse/upload/Upload"
+import Upload from "../../classAndCourse/upload/Upload";
 import './ClassDetail.sass'
+import AllQuestions from "./AllQuestions";
 export default class ClassDetailTeacher extends Component {
-  constructor (props){
-  super(props)
-  this.state = {
-    id_class: '',
-    fileActual: '',
-    newQuestionModal: 0,
-    question: '',
-    answer1: '',
-    answer2: '',
-    answer3: '',
-    answer4: '',
-    respuestacorrecta: '', 
-      
-  }
-    
+  constructor(props) {
+    super(props)
+    this.state = {
+      id_class: '',
+      fileActual: '',
+      newQuestionModal: 0,
+      preguntas: [],
+      question: '',
+      answer1: '',
+      answer2: '',
+      answer3: '',
+      answer4: '',
+      correctAnswer: 'rojo',
+
+    }
+
     this.handleChangeQuestion = this.handleChangeQuestion.bind(this);
-    this.handleCorrectAnswer = this.handleCorrectAnswer.bind(this);}
+    // this.handleCorrectAnswer = this.handleCorrectAnswer.bind(this);
+  }
   componentDidMount() {
     var varToken = localStorage.getItem("token");
     const {
       match: { params }
     } = this.props;
-     this.setState({ id_class: params.id });
-    
+    this.setState({ id_class: params.id });
+
     console.log(params.id)
     axios({
       url: `http://192.168.1.66:4200/v1/api/teacher/presentation_detail/${params.id}`,
@@ -44,22 +47,31 @@ export default class ClassDetailTeacher extends Component {
     });
     this.vistaBancoPreguntas();
   };
+  clearAll = () => {
+    this.state.question = '';
+    this.state.answer1 = '';
+    this.state.answer2 = '';
+    this.state.answer3 = '';
+    this.state.answer4 = '';
+    this.state.correctAnswer = '';
+  }
   setShow = () => {
     this.setState({ newQuestionModal: 1 });
   };
   setClose = () => {
     this.setState({ newQuestionModal: 2 });
   };
-  bancoPreguntas = () =>{
+  bancoPreguntas = () => {
     var varToken = localStorage.getItem("token");
     var clase = this.state.id_class;
     var data = {
-    question: this.state.question,
-    answer1: this.state.answer1,
-    answer2: this.state.answer2,
-    answer3: this.state.answer3,
-    answer4: this.state.answer4,
-    correctAnswer: this.state.respuestacorrecta }
+      question: this.state.question,
+      answer1: this.state.answer1,
+      answer2: this.state.answer2,
+      answer3: this.state.answer3,
+      answer4: this.state.answer4,
+      correctAnswer: this.state.correctAnswer
+    }
     console.log(data)
     if (this.state.question === '' || this.state.answer1 === '' || this.state.answer2 === '' || this.state.answer3 === '' || this.state.answer4 === '') {
       return alert('debe completar todos los campos')
@@ -72,34 +84,34 @@ export default class ClassDetailTeacher extends Component {
       headers: {
         "x-access-token": `${varToken}`
       }
-    }).then((res)=>{
+    }).then((res) => {
       console.log(res)
-    }).catch((err)=> {
+    }).catch((err) => {
       console.log(err)
     })
 
-    this.setState({"newQuestionModal": 2 });
+    this.setState({ "newQuestionModal": 2 });
 
   }
   vistaBancoPreguntas = () => {
     const {
       match: { params }
     } = this.props;
-     this.setState({ id_class: params.id });
-    
+    this.setState({ id_class: params.id });
+
     console.log(params.id)
     var varToken = localStorage.getItem("token");
-    var clase = this.id_class;
+    // var clase = this.id_class;
     console.log(this.props.apiUrl)
     axios({
-      url: `${this.state.apiUrl}/v1/api/question/get_questions/${params.id}`,
+      url: `${this.props.apiUrl}/v1/api/question/get_questions/${params.id}`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
       }
-    }).then((res)=>{
+    }).then((res) => {
       console.log(res)
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err)
     })
   }
@@ -107,30 +119,25 @@ export default class ClassDetailTeacher extends Component {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
-      [name] : value
+      [name]: value
     })
-    console.log(name,value);
-    if(name==='respuestacorrecta'){
-      switch(e.target.value){
-        case 'rojo':
-          this.setState({'respuestacorrecta'  :"answer1"});
-        case 'naranja':
-          this.setState({'respuestacorrecta':"answer2"});
-        case 'azul':
-          this.setState({'respuestacorrecta':"answer3"});
-        case 'verde':
-          this.setState({'respuestacorrecta':"answer4"});
-        }
+    console.log(name, value);
+    if (name === 'correctAnswer') {
+      switch (e.target.value) {
+        case 'answer1':
+          this.setState({ 'correctAnswer': "answer1" });
+        case 'answer2':
+          this.setState({ 'correctAnswer': "answer2" });
+        case 'answer3':
+          this.setState({ 'correctAnswer': "answer3" });
+        case 'answer4':
+          this.setState({ 'correctAnswer': "answer4" });
+      }
     }
   }
-  
-  handleCorrectAnswer = e => {
-    this.setState({
-      respuestacorrecta: e.target.value
-    });
-  }
+
   render() {
-    const {question, answer1, answer2, answer3, answer4} = this.state;
+    const { question, answer1, answer2, answer3, answer4 } = this.state;
     return (
       <>
         <NavClass apiUrl={this.props.apiUrl}></NavClass>
@@ -195,8 +202,8 @@ export default class ClassDetailTeacher extends Component {
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
                               <input type="text" id="res1" className="triviaT-input-respuestas" name="answer1" value={answer1} onChange={this.handleChangeQuestion} autoComplete="off" />
-                              <input type="radio" id="color-1" name="respuestacorrecta" value="rojo"
-                                checked={this.state.respuestacorrecta === 'rojo'}
+                              <input type="radio" id="color-1" name="correctAnswer" value="rojo"
+                                checked={this.state.correctAnswer === 'rojo'}
                                 onChange={this.handleChangeQuestion}
                               />
                               <label htmlFor="color-1">
@@ -208,9 +215,9 @@ export default class ClassDetailTeacher extends Component {
                             <label className="triviaRepuestas">Respuesta 2</label>
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
-                              <input type="text" id="res3" className="triviaT-input-respuestas" name="answer2" value={answer2} onChange={this.handleChangeQuestion} autoComplete="off" />
-                              <input type="radio" id="color-2" name="respuestacorrecta" value="naranja"
-                                checked={this.state.respuestacorrecta === 'naranja'}
+                              <input type="text" id="res2" className="triviaT-input-respuestas" name="answer2" value={answer2} onChange={this.handleChangeQuestion} autoComplete="off" />
+                              <input type="radio" id="color-2" name="correctAnswer" value="naranja"
+                                checked={this.state.correctAnswer === 'naranja'}
                                 onChange={this.handleChangeQuestion}
                               />
                               <label htmlFor="color-2">
@@ -222,9 +229,9 @@ export default class ClassDetailTeacher extends Component {
                             <label className="triviaRepuestas">Respuesta 3</label>
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
-                              <input type="text" id="res2" className="triviaT-input-respuestas" name="answer3" value={answer3} onChange={this.handleChangeQuestion} autoComplete="off" />
-                              <input type="radio" id="color-3" name="respuestacorrecta" value="azul"
-                                checked={this.state.respuestacorrecta === 'azul'}
+                              <input type="text" id="res3" className="triviaT-input-respuestas" name="answer3" value={answer3} onChange={this.handleChangeQuestion} autoComplete="off" />
+                              <input type="radio" id="color-3" name="correctAnswer" value="azul"
+                                checked={this.state.correctAnswer === 'azul'}
                                 onChange={this.handleChangeQuestion}
                               />
                               <label htmlFor="color-3">
@@ -237,8 +244,8 @@ export default class ClassDetailTeacher extends Component {
                             <br />
                             <div className="triviaT-contenedor-respuesta custom-radios">
                               <input type="text" id="res4" className="triviaT-input-respuestas" name="answer4" value={answer4} onChange={this.handleChangeQuestion} autoComplete="off" />
-                              <input type="radio" id="color-4" name="respuestacorrecta" value="verde"
-                                checked={this.state.respuestacorrecta === 'verde'}
+                              <input type="radio" id="color-4" name="correctAnswer" value="verde"
+                                checked={this.state.correctAnswer === 'verde'}
                                 onChange={this.handleChangeQuestion}
                               />
                               <label htmlFor="color-4">
@@ -265,23 +272,36 @@ export default class ClassDetailTeacher extends Component {
                     </div>
                   </div>
                   <div className="Item-card__text">
-                  <div className="footerTriviaClass">
-                    <button className="modal-body__button backCursos" onClick={this.setShow}>
-                      <div className="button-zoom">AGREGAR PREGUNTA</div>
-                    </button>
+                    <div className="footerTriviaClass">
+                      <button className="modal-body__button backCursos" onClick={() => this.setShow() + this.clearAll()}>
+                        <div className="button-zoom">AGREGAR PREGUNTA</div>
+                      </button>
+                    </div>
                   </div>
                   <div className="triviaQuestionsBody">
-                    <ul className="QuestionsListClass">
-                      <li className="QuestionsClass">¿Esta es una pregunta?
-                        <button className="classTrivia__button-delette" >
-                          <i className="courseTeacher__img fas fa-trash"></i>
-                        </button>
-                        <button className="classTrivia__button-Edit">
-                          <i className="courseTeacher__img fas fa-edit"></i>
-                        </button>
+                    <ul className="Questions-ListCards">
+                      {this.state.preguntas.length > 0 ? (
+                        this.state.preguntas.map((questions, id) => (
+                      <li className="Question-cards" key={id}>
+                        <AllQuestions
+                          apiUrl={this.props.apiUrl}
+                          id_class={questions.id_class}
+                          idteacher={questions.idteacher}
+                          question={questions.question}
+                          answer1={questions.answer1}
+                          answer2={questions.answer2}
+                          answer3={questions.answer3}
+                          answer4={questions.answer4}
+                          correctAnswer={question.correctAnswer}
+                          id={questions._id}
+                          vistaBancoPreguntas={this.vistaBancoPreguntas}
+                        />
                       </li>
+                        ))
+                          ) : (<h3 className="Questioncards-nullcards">Cargando cursos... Si no tiene, puede crear uno.</h3>
+                      )}
+                      
                     </ul>
-                  </div>
                   </div>
                 </div>
               </div>
