@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import Dropzone from 'react-dropzone';
 import axios from "axios";
-import './FormPostSiagie.css';
+import "./FormPostCourse.sass";
 export default class FormPostSiagie extends Component {
   constructor(props) {
     super(props);
@@ -44,16 +45,14 @@ export default class FormPostSiagie extends Component {
   render() {
     return (
       <>
-        <div id="example">
-          <input type="file" name="file" onChange={this.onChangeHandler} />
-        </div>
+        <input type="file" name="file" onChange={this.onChangeHandler} />
         <button
           type="button"
           className="modal-body__button yes"
           onClick={this.onClickHandler}
         >
-          Descargar
-        </button>
+          DESCARGAR
+        </button> 
       </>
     );
   }
