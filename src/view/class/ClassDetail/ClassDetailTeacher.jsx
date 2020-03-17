@@ -26,6 +26,7 @@ export default class ClassDetailTeacher extends Component {
     // this.handleCorrectAnswer = this.handleCorrectAnswer.bind(this);
   }
   componentDidMount() {
+    this.vistaBancoPreguntas();
     var varToken = localStorage.getItem("token");
     const {
       match: { params }
@@ -45,7 +46,6 @@ export default class ClassDetailTeacher extends Component {
         fileActual: data.name
       });
     });
-    this.vistaBancoPreguntas();
   };
   clearAll = () => {
     this.state.question = '';
@@ -110,10 +110,12 @@ export default class ClassDetailTeacher extends Component {
         "x-access-token": `${varToken}`
       }
     }).then((res) => {
-      console.log(res)
+      console.log(res.data)
+      this.setState({preguntas: res.data})
     }).catch((err) => {
       console.log(err)
     })
+    
   }
   handleChangeQuestion = e => {
     const name = e.target.name;
@@ -283,19 +285,16 @@ export default class ClassDetailTeacher extends Component {
                       {this.state.preguntas.length > 0 ? (
                         this.state.preguntas.map((questions, id) => (
                       <li className="Question-cards" key={id}>
+                        {questions.question}
                         <AllQuestions
-                          apiUrl={this.props.apiUrl}
-                          id_class={questions.id_class}
-                          idteacher={questions.idteacher}
-                          question={questions.question}
-                          answer1={questions.answer1}
-                          answer2={questions.answer2}
-                          answer3={questions.answer3}
-                          answer4={questions.answer4}
-                          correctAnswer={question.correctAnswer}
-                          id={questions._id}
                           vistaBancoPreguntas={this.vistaBancoPreguntas}
-                        />
+                          id_class={questions.id_class}
+                          question={questions.question}
+                          preguntas={questions.question}
+
+
+                          >
+                        </AllQuestions>
                       </li>
                         ))
                           ) : (<h3 className="Questioncards-nullcards">Cargando cursos... Si no tiene, puede crear uno.</h3>
