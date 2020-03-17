@@ -20,6 +20,7 @@ export default class ClassDetailTeacher extends Component {
       answer4: '',
       correctAnswer: 'rojo',
 
+
     }
 
     this.handleChangeQuestion = this.handleChangeQuestion.bind(this);
@@ -35,7 +36,7 @@ export default class ClassDetailTeacher extends Component {
 
     console.log(params.id)
     axios({
-      url: `http://192.168.1.66:4200/v1/api/teacher/presentation_detail/${params.id}`,
+      url: `${this.props.apiUrl}/v1/api/teacher/presentation_detail/${params.id}`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`
@@ -110,6 +111,9 @@ export default class ClassDetailTeacher extends Component {
         "x-access-token": `${varToken}`
       }
     }).then((res) => {
+      this.setState({
+        preguntas: res.data
+      })
       console.log(res)
     }).catch((err) => {
       console.log(err)
@@ -281,21 +285,9 @@ export default class ClassDetailTeacher extends Component {
                   <div className="triviaQuestionsBody">
                     <ul className="Questions-ListCards">
                       {this.state.preguntas.length > 0 ? (
-                        this.state.preguntas.map((questions, id) => (
+                        this.state.preguntas.map((preguntita, id) => (
                       <li className="Question-cards" key={id}>
-                        <AllQuestions
-                          apiUrl={this.props.apiUrl}
-                          id_class={questions.id_class}
-                          idteacher={questions.idteacher}
-                          question={questions.question}
-                          answer1={questions.answer1}
-                          answer2={questions.answer2}
-                          answer3={questions.answer3}
-                          answer4={questions.answer4}
-                          correctAnswer={question.correctAnswer}
-                          id={questions._id}
-                          vistaBancoPreguntas={this.vistaBancoPreguntas}
-                        />
+                        {preguntita.question}
                       </li>
                         ))
                           ) : (<h3 className="Questioncards-nullcards">Cargando cursos... Si no tiene, puede crear uno.</h3>

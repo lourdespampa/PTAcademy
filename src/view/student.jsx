@@ -17,7 +17,7 @@ export default class Student extends Component {
     this.state={
         id_access:'',
         // socketUrl:"http://192.168.1.15:4000/student",
-        socketUrl:"http://3.16.110.136:4000/student",
+        socketUrl:"https://socket.playtecedu.com/student",
         id_student:'',
         name:'',
         lastName:''
