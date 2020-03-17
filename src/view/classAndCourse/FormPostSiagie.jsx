@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Dropzone from 'react-dropzone';
 import axios from "axios";
 import "./FormPostCourse.sass";
+import "./dropzonet.css";
+
+
 export default class FormPostSiagie extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +12,12 @@ export default class FormPostSiagie extends Component {
       selectedFile: null,
       estudiantes: [],
       nomArch: ''
+    };
+    this.onDrop = (files) => {
+      this.setState({files})
+    };
+    this.state = {
+      files: []
     };
   }
   componentDidMount() {}
@@ -43,9 +52,29 @@ export default class FormPostSiagie extends Component {
       })
   };
   render() {
+    const files = this.state.files.map(file => (
+      <li key={file.name}>
+        {file.name} - {file.size} bytes
+      </li>
+    ));
     return (
       <>
-        <input type="file" name="file" onChange={this.onChangeHandler} />
+        <Dropzone onDrop={this.onDrop}>
+        {({getRootProps, getInputProps}) => (
+          <section className="container">
+            <div {...getRootProps({className: 'dropzone'})}>
+              <input {...getInputProps()} />
+              <div className="text">
+                <img  className="imagenes"width="50px" height="50px" src={require("../../img/subir.png")} />
+                <p className="letra">Sube Tu Archivo</p>
+              </div>
+            </div>
+            <aside>
+              <ul>{files}</ul>
+            </aside>
+          </section>
+        )}
+      </Dropzone>
         <button
           type="button"
           className="modal-body__button yes"
