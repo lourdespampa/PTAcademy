@@ -19,10 +19,10 @@ import TerminosCondiciones from "./Terminos";
 
 export default class Access extends Component {
   state = {
-    // apiUrl: "http://3.16.110.136:4200"
-    // apiUrl : "http://3.135.172.97:4200"
-    apiUrl:'http://192.168.1.66:4200'
-  }
+    // apiUrl: "http://3.16.110.136:4200" serivdor antiguo solo para sockets
+    apiUrl: "https://back.playtecedu.com" //servidor nuevo para back
+    // apiUrl:'http://192.168.1.66:4200' //servidor de manera local
+  };
   render() {
     return (
       <BrowserRouter>
@@ -67,7 +67,9 @@ export default class Access extends Component {
           <Route
             exact
             path="/ClassDetailTeacher/:id"
-            component={props => <ClassDetailTeacher {...props} apiUrl={this.state.apiUrl} />}
+            component={props => (
+              <ClassDetailTeacher {...props} apiUrl={this.state.apiUrl} />
+            )}
           />
           <Route
             path="/teacher/:id_class/:id_access"

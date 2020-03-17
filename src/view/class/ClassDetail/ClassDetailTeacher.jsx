@@ -272,35 +272,36 @@ export default class ClassDetailTeacher extends Component {
                         </svg>
                       </div>
                     </div>
-                  </div>
+                  </div>  
                   <div className="Item-card__text">
                     <div className="footerTriviaClass">
                       <button className="modal-body__button backCursos" onClick={() => this.setShow() + this.clearAll()}>
                         <div className="button-zoom">AGREGAR PREGUNTA</div>
                       </button>
                     </div>
-                  </div>
                   <div className="triviaQuestionsBody">
                     <ul className="Questions-ListCards">
                       {this.state.preguntas.length > 0 ? (
                         this.state.preguntas.map((questions, id) => (
                       <li className="Question-cards" key={id}>
-                        {questions.question}
+                        {/* {questions.question} */}
                         <AllQuestions
                           vistaBancoPreguntas={this.vistaBancoPreguntas}
                           id_class={questions.id_class}
                           question={questions.question}
                           preguntas={questions.question}
-
-
-                          >
-                        </AllQuestions>
+                          answer1={questions.answer1}
+                          answer2={questions.answer2}
+                          answer3={questions.answer3}
+                          answer4={questions.answer4}
+                          />
                       </li>
                         ))
                           ) : (<h3 className="Questioncards-nullcards">Cargando cursos... Si no tiene, puede crear uno.</h3>
                       )}
                       
                     </ul>
+                  </div>
                   </div>
                 </div>
               </div>

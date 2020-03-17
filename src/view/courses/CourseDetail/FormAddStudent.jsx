@@ -14,7 +14,9 @@ export default class FormAddStudent extends Component {
       signup: false,
       login: true,
       message: "Elija una opción",
-      escogerOption: 0
+      escogerOption: 0,
+      selectedFile: null,
+      nomArch: ''
     };
   }
   handleChange = async event => {
@@ -116,6 +118,30 @@ export default class FormAddStudent extends Component {
       event.preventDefault();
     }
   };
+
+  onChangeHandler = event => {
+    this.setState({
+      selectedFile: event.target.files[0],
+      nomArch: event.target.files[0].name,
+      loaded: 0
+    });
+
+    console.log(event.target.files[0].name);
+  };
+  onClickHandler = () => {
+    const data = new FormData();
+    data.append("file", this.state.selectedFile);
+    axios({
+      url: `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/excel_students/${this.props.idcourse}`,
+      method: "POST",
+      data: data
+    })
+      .then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+  };
   render() {
     const { name_stu, lastName_stu } = this.state;
     return (
@@ -196,28 +222,14 @@ export default class FormAddStudent extends Component {
             </>
           ) : (
             <>
-              <label className="modal-title__controlname">
-                Subir Excel aqui
-              </label>
-              <input
-                type="file"
-                required
-                name="file"
-                id="excel"
-                onChange={this.handleFileChange}
-                placeholder="Archivo de excel"
-              />
-              <br />
-              <br />
-              {this.state.bloquearBoton ? (
-                <button className="modal-body__button cursos" type="button">
-                  <div className="button-zoom">Cargando ...</div>
-                </button>
-              ) : (
-                <button className="modal-body__button cursos" type="submit">
-                  <div className="button-zoom">Agregar Alumno</div>
-                </button>
-              )}
+              <input type="file" name="file" onChange={this.onChangeHandler} />
+              <button
+                type="button"
+                className="modal-body__button yes"
+                onClick={this.onClickHandler}
+              >
+                Subir alumnos
+              </button>
             </>
           )}
 

@@ -13,12 +13,12 @@ export default class CourseDetail extends Component {
       notaCompe: "",
       students: [],
       editar: false,
-      idMapAlumno: "",
-      apellidoAlumno: "",
-      nombreAlumno: "",
       compentencias: [],
       competenciasAlumnos: [],
-      showdelete: 0
+      showdelete: 0,
+      name_stu: '',
+      lastName_stu: '',
+      idAlumno: ''
     };
   }
 
@@ -51,10 +51,9 @@ export default class CourseDetail extends Component {
     await this.setState({ token: tokenStorage });
   };
 
-  handleEditStudent = idAlumno => {
+  handleEditStudent() {
     this.setState({
       editar: !this.state.editar,
-      idMapAlumno: idAlumno
     });
   };
   handleChange = e => {
@@ -64,12 +63,32 @@ export default class CourseDetail extends Component {
     let name = e.target.name;
     let value = e.target.value;
     this.setState({ [name]: value });
+    console.log([name], value)
   };
-  handleEditStudent = idAlumno => {
+  handleSaveStudent = idAlumno => {
+    var varToken = localStorage.getItem("token");
+
     this.setState({
       editar: !this.state.editar,
       idMapAlumno: idAlumno
     });
+    const data ={
+      name_stu: this.state.name_stu,
+      lastName_stu: this.state.lastName_stu
+    }
+    axios({
+      url: `${this.props.apiUrl}/v1/api/student/${idAlumno}/`,
+      method: "PUT",
+      headers: {
+        "x-access-token": `${varToken}`
+      },
+      data
+    }).then((res)=> {
+      console.log(res)
+    }).catch((err)=> {
+      console.log(err)
+    })
+    this.getAlumnos()
   };
 
   getAlumnos = () => {
@@ -114,6 +133,28 @@ export default class CourseDetail extends Component {
   setClose = () => {
     this.setState({ showdelete: 2 });
   };
+  onClick=(idAlumno) => {
+    this.setState({
+      idAlumno: idAlumno
+    })
+  }
+  setDeleteStudent = () => {
+    var varToken = localStorage.getItem("token");
+    
+    axios({
+      url: `${this.props.apiUrl}/v1/api/student/${this.state.idAlumno}`,
+      method: "DELETE",
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    }).then((res)=> {
+      console.log(res)
+    }).catch((err)=> {
+      console.log(err)
+    })
+    this.getAlumnos()
+    this.setClose();
+  }
 
   render() {
     return (
@@ -151,38 +192,31 @@ export default class CourseDetail extends Component {
             {/* cuerpo de la tabla */}
             <tbody className="CourseDetail__table-body">
               {this.state.students.map((alumno, idAlumno) => (
+               
                 <tr className="CourseDetail__table-tr" key={alumno._id}>
                   <td className="CourseDetail__table-td" data-th="Codigo">
                     {alumno.randonCode}
                   </td>
                   <td className="CourseDetail__table-td" data-th="Apellidos">
                     {this.state.editar ? (
-                      this.state.idMapAlumno === idAlumno ? (
                         <input
                           type="text"
-                          name="apellidoAlumno"
+                          name="lastName_stu"
                           defaultValue={alumno.lastName_stu}
                           onChange={this.handleChangeInputs}
                         />
-                      ) : (
-                        alumno.lastName_stu
-                      )
                     ) : (
                       alumno.lastName_stu
                     )}
                   </td>
                   <td className="CourseDetail__table-td" data-th="Nombres">
                     {this.state.editar ? (
-                      this.state.idMapAlumno === idAlumno ? (
                         <input
                           type="text"
-                          name="nombreAlumno"
+                          name="name_stu"
                           defaultValue={alumno.name_stu}
                           onChange={this.handleChangeInputs}
                         />
-                      ) : (
-                        alumno.name_stu
-                      )
                     ) : (
                       alumno.name_stu
                     )}
@@ -206,14 +240,14 @@ export default class CourseDetail extends Component {
                     {this.state.editar ? (
                       <button
                         className="courseTeacher__button-alumno"
-                        onClick={() => this.handleEditStudent(idAlumno)}
+                        onClick={() => this.handleSaveStudent(alumno._id)}
                       >
                         <i className="courseTeacher__img fas fa-save"></i>
                       </button>
                     ) : (
                       <button
                         className="courseTeacher__button-alumno"
-                        onClick={() => this.handleEditStudent(idAlumno)}
+                        onClick={() => this.handleEditStudent()}
                       >
                         <i className="courseTeacher__img fas fa-edit"></i>
                       </button>
@@ -222,7 +256,9 @@ export default class CourseDetail extends Component {
                   <td className="CourseDetail__table-td" data-th="Eliminar">
                     <button
                       className="courseTeacher__button-delette"
-                      onClick={this.setShow}
+                      onClick={() =>
+                        this.onClick(alumno._id) +
+                        this.setShow("show")}
                     >
                       <i className="courseTeacher__img fas fa-trash"></i>
                     </button>
@@ -262,7 +298,7 @@ export default class CourseDetail extends Component {
                 <div className="modal-general_container_body">
                   <button
                     className="modal-body__button yes"
-                    onClick={this.setClose}
+                    onClick={this.setDeleteStudent}
                     type="button"
                   >
                     <div className="button-zoom">SI</div>

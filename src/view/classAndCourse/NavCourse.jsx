@@ -85,7 +85,7 @@ export default class NavCourse extends Component {
   render() {
     return (
       <>
-        {this.state.token ? null : <Redirect to="/notfound"></Redirect>}
+        {this.state.token ? null : <Redirect to="/"></Redirect>}
         <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
             <h3>

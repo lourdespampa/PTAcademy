@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./Grupos.sass";
 import axios from "axios";
-import Loanding from "../loanding/spinner";
-import io from "socket.io-client";
+import Loanding from '../loanding/spinner'
+import io from 'socket.io-client';
 
 export default class GrupoPage extends Component {
   constructor(props) {
@@ -11,9 +11,9 @@ export default class GrupoPage extends Component {
       alumnos: [],
       nro_per_grupo: 1,
       grupos: [],
-      id_access: "",
-      Refrescar: false,
-      loanding: false
+      id_access : '',
+      Refrescar:false,
+      loanding:false
     };
   }
   handleNumPerGrou = e => {
@@ -22,75 +22,74 @@ export default class GrupoPage extends Component {
 
   componentDidMount() {
     this.getAlumnos();
-    const data = this.props;
-    this.setState({ id_access: data });
-    console.log(this.props);
+    const data = this.props
+    this.setState({id_access: data})
+    console.log(this.props)
   }
-  getAlumnos = async () => {
-    var varToken = await localStorage.getItem("token");
+  getAlumnos = async() => {
+    var varToken = await localStorage.getItem('token');
+    console.log('llego a getAlum')
     var id_teacher = localStorage.getItem("id_teacher");
     var id_course = localStorage.getItem("id_course");
-    if (this.props.school) {
+    if(this.props.school){
       axios({
         url: `${this.props.apiUrl}/v1/api/student/${id_teacher}/${id_course}/students`,
-        method: "GET",
+        method: 'GET',
         headers: {
-          "x-access-token": `${varToken}`
+          'x-access-token': `${varToken}`
         }
-      })
-        .then(data => {
-          console.log("data", data);
-          data.data.map(alumno => {
-            this.state.alumnos.push(
-              "▷" + alumno.name_stu + " " + alumno.lastName_stu
-            );
-            return null;
-          });
-          const temp = this.state.alumnos;
-          this.setState({
-            alumnos: temp
-          });
-        })
-        .catch(err => {
-          console.log("error", err);
+      }).then(data => {
+        console.log("data",data)
+        data.data.map(alumno => {
+          console.log('hola perro')
+          this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
+          return null
+        }); 
+        const temp = this.state.alumnos;
+        this.setState({
+          alumnos: temp
         });
-    } else {
+      })
+      .catch((err)=>{
+        console.log("error",err)
+      })
+    }else{
       axios({
-        url: `${this.props.apiUrl + "/v1/api/lesson"}/${
+        url:`${this.props.apiUrl + "/v1/api/lesson"}/${
           this.props.id_access
         }/students`,
-        method: "GET",
+        method: 'GET',
         headers: {
-          "x-access-token": `${varToken}`
+          'x-access-token': `${varToken}`
         }
-      })
-        .then(data => {
-          console.log("data", data);
-          data.data.map(alumno => {
-            console.log("hola perro");
-            this.state.alumnos.push(
-              "▷" + alumno.name_stu + " " + alumno.lastName_stu
-            );
-            return null;
-          });
-          const temp = this.state.alumnos;
-          this.setState({
-            alumnos: temp
-          });
-        })
-        .catch(err => {
-          console.log("error", err);
+      }).then(data => {
+        console.log("data",data)
+        data.data.map(alumno => {
+          console.log('hola perro')
+          this.state.alumnos.push("▷"+alumno.name_stu + " " + alumno.lastName_stu);
+          return null
+        }); 
+        const temp = this.state.alumnos;
+        this.setState({
+          alumnos: temp
         });
+      })
+      .catch((err)=>{
+        console.log("error",err)
+      })
     }
+    
+    
   };
   groupGenerator = () => {
     this.setState({
-      Refrescar: true,
-      loanding: true
-    });
+      Refrescar:true,
+      loanding:true
+    })
     const socket = io(this.props.socketUrl, {
-      query: { pin: this.props.id_access }
-    });
+      query:
+          { pin: this.props.id_access }
+    })
     let cadena = ``;
     this.getAlumnos();
     console.log("numero de personas en total:" + this.state.alumnos.length);
@@ -123,65 +122,80 @@ export default class GrupoPage extends Component {
     }
     setTimeout(() => {
       document.getElementById("imprimir").innerHTML = cadena;
-      socket.emit("enviando grupos", {
-        data: cadena
-      });
+      socket.emit('enviando grupos',{
+        data : cadena
+      })
       this.setState({
-        loanding: false
-      });
-      console.log('enviando grupos');
+        loanding:false
+      })
+      console.log(cadena)
     }, 500);
+    
   };
-  limpiar = () => {
+  limpiar=()=>{
     this.setState({
-      loanding: true
-    });
+      loanding:true
+    })
     setTimeout(() => {
-      this.setState({
-        Refrescar: false,
-        loanding: false
-      });
-      document.getElementById("imprimir").innerHTML = "";
+     this.setState({
+      Refrescar:false,
+      loanding:false
+    })
+    document.getElementById("imprimir").innerHTML = '' 
     }, 500);
-  };
+    
+  }
 
   render() {
     const { nro_per_grupo } = this.state.nro_per_grupo;
     return (
       <>
-        {this.state.loanding ? <Loanding /> : null}
-        <div className="cuerpo-grupos">
-          {this.state.Refrescar ? (
+      {this.state.loanding?
+      <Loanding/>:null
+  
+      }
+        {/* Cuerpos de Grupo */}
+          <div className="cuerpo-grupos">
+            {
+            this.state.Refrescar?
+            
+            
+            
+            
+            /* Boton de Formar Grupos */
             <>
-              <span>
-                Grupos formados por {this.state.nro_per_grupo} Alumnos{" "}
-              </span>
-              <button className="button" onClick={this.limpiar}>
-                <label className="tex">LIMPIAR</label>
-              </button>
+            <span>Grupos formados por {this.state.nro_per_grupo} Alumnos </span>
+            <button className="button" onClick={this.limpiar}>
+              <label className="tex">
+                LIMPIAR
+              </label>
+            </button>
             </>
-          ) : (
+            :
             <>
-              {nro_per_grupo}
-              <span>Número de personas por grupo </span>
-              <input
-                min="1"
-                className="input-text"
-                type="number"
-                name="numGrup"
-                placeholder="Nùmero de personas por grupos"
-                value={this.state.nro_per_grupo}
-                onChange={this.handleNumPerGrou}
-              />
-              <button className="button" onClick={this.groupGenerator}>
-                <label className="tex">FORMAR GRUPOS</label>
-              </button>
+            {nro_per_grupo}
+            <span>Número de personas por grupo </span>
+            <input
+              min="1"
+              className="input-text"
+              type="number"
+              name="numGrup"
+              placeholder="Nùmero de personas por grupos"
+              value={this.state.nro_per_grupo}
+              onChange={this.handleNumPerGrou}
+            />
+            <button className="button" onClick={this.groupGenerator}>
+              <label className="tex">
+                FORMAR GRUPOS
+              </label>
+            </button>
             </>
-          )}
-        </div>
-        <div className="contenedor-grupos">
-          <ul className="grupos-cards" id="imprimir"></ul>
-        </div>
+            }
+          </div>
+          {/* Contenedor De  Grupos */}
+          <div className="contenedor-grupos">
+            <ul className="grupos-cards" id="imprimir"></ul>
+          </div>
       </>
     );
   }

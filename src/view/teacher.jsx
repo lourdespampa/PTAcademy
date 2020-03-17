@@ -10,6 +10,7 @@ import Trivia from "../pages/teacher/Trivia";
 import Pizarra from "../pages/teacher/Pizarra";
 import Access from "../access";
 import NotFound from "./404/NotFound";
+import Bloque from '../components/teacher/blocky/App'
 //socket initial
 // import io from 'socket.io-client'; //no se esta usando
 //
@@ -20,7 +21,7 @@ export default class Views extends Component {
     this.state = {
       socket: null,
       class: "clase3",
-      // socketUrl:"http://192.168.1.24:4000/teacher",
+      // socketUrl:"http://192.168.1.15:4000/teacher",
       socketUrl: "http://3.16.110.136:4000/teacher",
       user: null,
       id: "",
@@ -251,6 +252,8 @@ export default class Views extends Component {
                 />
               )}
             />
+            <Route exact path="/teacher/:id_class/:id_access/bloque"
+              component={() => <Bloque id_access={this.state.id_access} socketUrl={this.state.socketUrl} />} />
             {/* <Redirect from="/" to="/teacher/xxxxx" /> */}
           </Contenido>
         </Switch>
