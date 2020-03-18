@@ -16640,9 +16640,9 @@
 		},
 
 		math_blocks: {
-			colourPrimary: "#5b67a5",
-			colourSecondary: "#bdc2db",
-			colourTertiary: "#495284"
+			colourPrimary: "#5D6D7E",
+			colourSecondary: "#5D6D7E",
+			colourTertiary: "#5D6D7E"
 		},
 
 		procedure_blocks: {
