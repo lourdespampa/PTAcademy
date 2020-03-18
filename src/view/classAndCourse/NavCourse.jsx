@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import "../courses/Course.sass";
 import iconExit from "../../img/cerrar1.png";
-import ModalAddCourseAndClass from "./ModalAgregar.jsx"
+import ModalAddCourseAndClass from "./ModalAgregar.jsx";
 
 function BotonCerrarSesion(props) {
   const [show, setShow] = useState(0);
@@ -11,7 +11,7 @@ function BotonCerrarSesion(props) {
   return (
     <>
       <div className="teacherCourses__main-menu__LogOut" onClick={handleShow}>
-          Cerrar sesión
+        Cerrar sesión
       </div>
       <div
         id="modal-general_container"
@@ -112,16 +112,28 @@ export default class NavCourse extends Component {
                   ></ModalAddCourseAndClass>
                 </li>
                 {this.props.agregarX === "clase" ? (
-                  <li className="teacherCourses__main-menu__item">
-                    <Link
-                      to={`/CoursesTeacher/${this.props.idteacher}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <div className="teacherCourses__main-menu__addCourse">
-                        Regresar a cursos
-                      </div>
-                    </Link>
-                  </li>
+                  <>
+                    <li className="teacherCourses__main-menu__item">
+                      <Link
+                        to={`/CoursesTeacher/${this.props.idteacher}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <div className="teacherCourses__main-menu__addCourse">
+                          Regresar a cursos
+                        </div>
+                      </Link>
+                    </li>
+                    {/* <li className="teacherCourses__main-menu__item">
+                      <Link
+                        to={`/CoursesTeacher/${this.props.idteacher}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <div className="teacherCourses__main-menu__addCourse">
+                          Formularios
+                        </div>
+                      </Link>
+                    </li> */}
+                  </>
                 ) : null}
                 <li className="teacherCourses__main-menu__item">
                   <BotonCerrarSesion cerrarSesion={this.cerrarSesion} />

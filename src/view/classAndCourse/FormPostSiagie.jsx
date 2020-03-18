@@ -30,6 +30,8 @@ export default class FormPostSiagie extends Component {
       data: data
     })
       .then(res => {
+        console.log(res)
+
         const url = window.URL.createObjectURL(new Blob([res.data]));
         const link = document.createElement("a");
         link.href = url;
