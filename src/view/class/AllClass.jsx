@@ -65,11 +65,11 @@ export default class AllClass extends Component {
             >
               <i className="courseTeacher__img fas fa-trash"></i>
             </button>
-            <div className={"courseTeacher__containerButton-Edit"}>
+            {/* <div className={"courseTeacher__containerButton-Edit"}>
                 <Link to={`/ClassDetailTeacher/${this.props.id}`} className="courseTeacher__button-Edit">
                     <i className="algodemargin courseTeacher__img fas fa-edit"></i>
                 </Link>
-            </div>
+            </div> */}
             <img
               className="classTeacher-card__image"
               src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80"
