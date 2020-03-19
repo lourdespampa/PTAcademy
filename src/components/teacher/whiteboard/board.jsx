@@ -175,6 +175,7 @@ export default class board extends React.Component {
   draw = p5 => {
     if (this.state.clickPress) {
       if (this.state.pencil) {
+        p5.stroke(this.state.color);
         p5.fill("#be525200");
         p5.strokeWeight(this.state.size);
         p5.line(this.state.x1, this.state.y1, this.state.x2, this.state.y2);
