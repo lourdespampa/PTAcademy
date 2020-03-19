@@ -1,8 +1,9 @@
 .container{
-    margin: 25px;
+    margin: 0 auto;
     background-color: #f0f0f0;
     width: 352px;
     height: 147px;
+    margin-left: 40px;
     border: #cecece 3px dashed;
     cursor: pointer;
   }
@@ -30,6 +31,17 @@
     height: 55px;
   }
   
-  .letra{
+  .letras{
     margin-top: 0px;
+    color: black;
+    
+  }
+
+  .centrado{
+    margin-left: -36px;
+    margin-top: 14px;
+  }
+
+  .boton {
+    margin-top: 45px;
   }

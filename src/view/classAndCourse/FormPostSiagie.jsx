@@ -15,6 +15,7 @@ export default class FormPostSiagie extends Component {
     };
     this.onDrop = (files) => {
       this.setState({files})
+      console.log("onDrop");
     };
     this.state = {
       files: []
@@ -63,13 +64,13 @@ export default class FormPostSiagie extends Component {
         {({getRootProps, getInputProps}) => (
           <section className="container">
             <div {...getRootProps({className: 'dropzone'})}>
-              <input {...getInputProps()} />
+              <input {...getInputProps() }accept="application/vnd.ms-Microsoft Excel, .xlsx"/>
               <div className="text">
                 <img  className="imagenes"width="50px" height="50px" src={require("../../img/subir.png")} />
-                <p className="letra">Sube Tu Archivo</p>
+                <p className="letras">Sube Tu Archivo</p>
               </div>
             </div>
-            <aside>
+            <aside className="centrado">
               <ul>{files}</ul>
             </aside>
           </section>
