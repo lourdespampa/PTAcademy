@@ -20,6 +20,11 @@ export default class FormPostCourse extends Component {
       [name]: value
     });
   };
+
+  changeLenguage (env){
+    console.log('hola mundo')
+    
+  }
   handleCleanInput = () => {
     this.setState({class_name: "", desc: ""})
   }
