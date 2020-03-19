@@ -29,6 +29,13 @@ export default class board extends React.Component {
     texto: "",
     Show:0
   };
+  // c:
+  componentWillMount(){
+    const socket = io(this.props.socketUrl, {
+      query: { pin: this.props.id_access }
+    });
+    socket.emit("redirectAlum", { page: "board" });
+  }
   // c: inicializacion retardada por 1 segundo para evitar bugs
   componentDidMount() {
     setTimeout(() => {
@@ -583,11 +590,11 @@ export default class board extends React.Component {
                     remove
                   </i>
                 </li>
-                <li className="iclear">
+                {/* <li className="iclear">
                   <i className="material-icons" onClick={() => this.text()}>
                     title
                   </i>
-                </li>
+                </li> */}
               </ul>
             </div>
           </li>
