@@ -5,16 +5,24 @@ import './board.sass'
 
 export default class board extends React.Component {
   state = {
-    x: '',
-    y: '',
     x1: '',
     y1: '',
+    x2: '',
+    y2: '',
+    x3:'',
+    y3:'',
     color: 'black',
     size: 6,
     clickPress: false,
+    mouseReleased:false,
     trazo: [],
     pageinit:false,
-    clear:false
+    clear:false,
+    circle:false,
+    rect:false,
+    triangle:false,
+    pencil:true,
+    diameter:0
   }
   // c: inicializacion retardada por 1 segundo para evitar bugs
   componentDidMount() {
@@ -28,7 +36,7 @@ export default class board extends React.Component {
   mousePressed(e) {
     this.setState({
       clickPress: true,
-      x: e.pmouseX, y: e.pmouseY, x1: e.pmouseX, y1: e.pmouseY
+      x1: e.pmouseX, y1: e.pmouseY, x2: e.pmouseX, y2: e.pmouseY
     })
     const socket = io(this.props.socketUrl, {
       query:
@@ -44,42 +52,148 @@ export default class board extends React.Component {
   }
   // c: evento que se realiza al dejar de precionar el click
   mouseReleased(e) {
-      console.log(this.state.trazo)
-      const socket = io(this.props.socketUrl, {
+    const socket = io(this.props.socketUrl, {
         query:
           { pin: this.props.id_access }
       })
+    if(this.state.pencil){
+      console.log(this.state.trazo)
       socket.emit('DrawPencil', {
         data: this.state.trazo
       })
       this.setState({
       clickPress: false,
       trazo:[]
-    })
+      })
+    }else if(this.state.circle){
+
+      const d=this.state.x1-e.pmouseX
+      const x1=this.state.x1-(d/2)
+      const y1=this.state.y1-(d/2)
+      const data={
+        d:d,
+        x1:x1,
+        y1:y1
+      }
+      socket.emit('DrawCircle', {
+        data: data
+      })
+      this.setState({
+        clickPress: false,
+        mouseReleased:true,
+        diameter:d,
+        x2:x1,
+        y2:y1
+      })
+    }else if(this.state.rect){
+      this.setState({
+        clickPress: false,
+        mouseReleased:true,
+        x2:e.pmouseX-this.state.x1,
+        y2:e.pmouseY-this.state.y1
+      })
+      const data={
+        x1:this.state.x1,
+        y1:this.state.y1,
+        x2:e.pmouseX-this.state.x1,
+        y2:e.pmouseY-this.state.y1
+      }
+      socket.emit('DrawRect', {
+        data: data
+      })
+    }else if(this.state.triangle){
+      
+      const r=this.state.x1-e.pmouseX
+      const x2=this.state.x1
+      const y2=this.state.y1
+      const x3=e.pmouseX
+      const x1=this.state.x1+r
+      const y1=e.pmouseY
+      const y3=e.pmouseY
+
+      const data={
+        x1:x1,
+        y1:y1,
+        x2:x2,
+        y2:y2,
+        x3:x3,
+        y3:y3
+      }
+      socket.emit('DrawTriangle', {
+        data: data
+      })
+
+      this.setState({
+        clickPress: false,
+        mouseReleased:true,
+        x1:x1,
+        y1:y1,
+        x2:x2,
+        y2:y2,
+        x3:x3,
+        y3:y3
+      })
+    }else if(this.state.line){
+      const data={
+        x1:this.state.x1,
+        y1:this.state.y1,
+        x2:e.pmouseX,
+        y2:e.pmouseY
+      }
+      socket.emit('DrawLine', {
+        data: data
+      })
+      this.setState({
+        clickPress: false,
+        mouseReleased:true,
+        x2:e.pmouseX,
+        y2:e.pmouseY
+      })
+    }
   }
   // c: evento al mover el mouse precionando el click
   mouseDragged(e) {
-    this.setState({
-      x1: e.pmouseX, y1: e.pmouseY
-    })
+    if(this.state.pencil){
+      this.setState({
+        x2: e.pmouseX, y2: e.pmouseY
+      })
+    }
   }
   // c: evento que realiza las acciones en el canvas
   draw = (p5) => {
+    
     if (this.state.clickPress) {
+      p5.fill('#be525200')
       p5.stroke(this.state.color);
       p5.strokeWeight(this.state.size)
-      p5.line(this.state.x, this.state.y, this.state.x1, this.state.y1);
+      if(this.state.pencil){
+      p5.line(this.state.x1, this.state.y1, this.state.x2, this.state.y2);
       
       this.state.trazo.push({
-            x: this.state.x,
-            y: this.state.y,
-            x1: this.state.x1,
-            y1: this.state.y1 
+            x: this.state.x1,
+            y: this.state.y1,
+            x1: this.state.x2,
+            y1: this.state.y2 
           })
       this.setState({
-        x: this.state.x1,
-        y: this.state.y1
+        x1: this.state.x2,
+        y1: this.state.y2
       })
+    }
+    }else if(this.state.mouseReleased){ 
+      if(this.state.circle){
+        p5.circle(this.state.x2,this.state.y2,this.state.diameter);
+        
+      }else if(this.state.rect){
+        p5.rect(this.state.x1,this.state.y1,this.state.x2,this.state.y2)
+      }else if(this.state.triangle){
+        p5.triangle(this.state.x1,this.state.y1,this.state.x2,this.state.y2,this.state.x3,this.state.y3)
+      }else if(this.state.line){
+        p5.line(this.state.x1,this.state.y1,this.state.x2,this.state.y2)
+      }
+      this.setState({
+          mouseReleased:false
+        })
     }else if(this.state.clear){
       p5.clear()
       this.setState({
@@ -102,12 +216,65 @@ export default class board extends React.Component {
   }
   // c: limpiar pizarra
   clear=()=>{
-    this.setState({clear:true})
+    this.setState({
+      clear:true
+
+    })
     const socket = io(this.props.socketUrl, {
       query:
         { pin: this.props.id_access }
     })
-    socket.emit('clearBoard')
+    socket.emit('clearBoard',{data:'aqui va la data'})
+  }
+  // c: Cambiar opcion a circulo
+  circle=()=>{
+    this.setState({
+      circle:true,
+      rect:false,
+      triangle:false,
+      pencil:false,
+      mouseReleased:false
+    })
+  }
+  // c: Cambiar opcion a rectangulo
+  rect=()=>{
+    this.setState({
+      circle:false,
+      rect:true,
+      triangle:false,
+      pencil:false,
+      mouseReleased:false
+    })
+  }
+  // c: Cambiar opcion a triangulo
+  triangle=()=>{
+    this.setState({
+      circle:false,
+      rect:false,
+      triangle:true,
+      pencil:false,
+      mouseReleased:false
+    })
+  }
+  // c: Cambiar opcion a lapiz
+  pencil=()=>{
+    this.setState({
+      circle:false,
+      rect:false,
+      triangle:false,
+      pencil:true,
+      mouseReleased:false,
+    })
+  }
+  line=()=>{
+    this.setState({
+      circle:false,
+      rect:false,
+      triangle:false,
+      pencil:false,
+      mouseReleased:false,
+      line:true
+    })
   }
   render() {
     return (
@@ -168,10 +335,25 @@ export default class board extends React.Component {
           </li>
           <li className='liPalette liClear'>
               <div className='divCuadro contSize'>
-                <ul className='ulSize'>
-                    <div className="iclear">
+                <ul className='ulOptions'>
+                    <li className="iclear">
                       <i className="material-icons" onClick={()=>this.clear()}>refresh</i>
-                    </div>
+                    </li>
+                    <li className="iclear">
+                      <i className="material-icons" onClick={()=>this.circle()}>panorama_fish_eye</i>
+                    </li>
+                    <li className="iclear">
+                      <i className="material-icons" onClick={()=>this.rect()}>check_box_outline_blank</i>
+                    </li>
+                    <li className="iclear">
+                      <i className="material-icons" onClick={()=>this.triangle()}>change_history</i>
+                    </li>
+                    <li className="iclear">
+                      <i className="material-icons" onClick={()=>this.pencil()}>create</i>
+                    </li>
+                    <li className="iclear">
+                      <i className="material-icons" onClick={()=>this.line()}>remove</i>
+                    </li>
                 </ul>
                 
               </div>
