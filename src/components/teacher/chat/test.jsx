@@ -26,7 +26,7 @@ export default class Test extends Component
         var nav = document.getElementById('nav');
         var icono = document.getElementById('icono');
         var div = document.getElementById('div_chat');
-        // var div_head = document.getElementById('div_head');
+        var div_head = document.getElementById('div_head');
         var div_foot = document.getElementById('div_foot');
         // var div_tab = document.getElementById('div_tab');
         var div_child = document.getElementById('div_children');
@@ -120,8 +120,8 @@ export default class Test extends Component
         <div>
           <nav className="nav__cont" id="nav">
             <ul className="nav">  
-              <li className="nav__items ">
-              <i className="fas fa-comments" id="icono"></i>
+              <li className="nav__items">
+              <i className="" id="icono">SSS</i>
               </li>
 
 
