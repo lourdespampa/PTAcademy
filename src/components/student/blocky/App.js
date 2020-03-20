@@ -9,30 +9,26 @@ import Blockly from "./blockly copy/blockly";
 import BlocklyJSA from "./Code/Arduino";
 import BlocklyComponent from "./Blockly";
 import AlertDialog from "./modals/config/Modal.jsx";
-//Categorias//
-import CategoryBucles from "./blocks/Category_Bucles/categ_bucle.jsx";
-import CategoryLogica from "./blocks/Category_Logic/cate_logic.jsx";
-import CategoryMath from "./blocks/Category_Math/cate_math";
-import CategoryInicial from "./blocks/Category_Inicializar/cate_inicializar"
-import CategoryText from "./blocks/Category_Text/cate_text.jsx";
-import CategoryVariable from "./blocks/Category_Variables/categ_variable";
-import CategoryDigital from "./blocks/Category_Digital/categ_digital";
-import CategoryFuncion from "./blocks/Category_Function/categ_funcion.jsx";
+// //Categorias//
+// import CategoryBucles from "./blocks/Category_Bucles/categ_bucle.jsx";
+// import CategoryLogica from "./blocks/Category_Logic/cate_logic.jsx";
+// import CategoryMath from "./blocks/Category_Math/cate_math";
+// import CategoryInicial from "./blocks/Category_Inicializar/cate_inicializar"
+// import CategoryText from "./blocks/Category_Text/cate_text.jsx";
+// import CategoryVariable from "./blocks/Category_Variables/categ_variable";
+// import CategoryDigital from "./blocks/Category_Digital/categ_digital";
+// import CategoryFuncion from "./blocks/Category_Function/categ_funcion.jsx";
 
-import CategoryAnalog from "./blocks/Category_Analog/categ_analog.jsx";
-import CategorySerial from "./blocks/Category_Serial/cate_serial.jsx";
-import CategoryTone from "./blocks/Category_Tone/categ_tone"
-import CategoryTime from "./blocks/Category_Timer/categ_timer";
-import CategoryServo from "./blocks/Category_Servo/categ_Servo"
-import CategoryRobot from "./blocks/Category_Robot/Category_Engines/categ_engines";
+// import CategoryAnalog from "./blocks/Category_Analog/categ_analog.jsx";
+// import CategorySerial from "./blocks/Category_Serial/cate_serial.jsx";
+// import CategoryTone from "./blocks/Category_Tone/categ_tone"
+// import CategoryTime from "./blocks/Category_Timer/categ_timer";
+// import CategoryServo from "./blocks/Category_Servo/categ_Servo"
+// import CategoryRobot from "./blocks/Category_Robot/Category_Engines/categ_engines";
 
 import io from 'socket.io-client';
 
 export default class App extends React.Component {
- 
-  socket =io(this.props.socketUrl, {query:{ pin: this.props.id_access}})
-
- 
   // constructor() {
   //   super();
   //   this.state = {
@@ -47,16 +43,24 @@ export default class App extends React.Component {
     
   // }
 
+  socket = io(this.props.socketUrl, {    query:     { pin: this.props.id_access }  })
+    componentDidMount(){
+      this.socket.on("blockly-student",(data)=>{
+        console.log(data)
+      })
+    }
 
-  generateXml = () => {
+    //    socket.on('DrawPencil',(data) => {
 
-    const newXml = Blockly.Xml.domToText(
-      Blockly.Xml.workspaceToDom(this.simpleWorkspace.workspace)
+  // generateXml = () => {
 
-    );
-    this.socket.emit('blockly-xml',newXml)
-    console.log(newXml)
-  };
+  //   const newXml = Blockly.Xml.domToText(
+  //     Blockly.Xml.workspaceToDom(this.simpleWorkspace.workspace)
+
+  //   );
+  //   this.socket.emit('blockly-xml',newXml)
+  //   console.log(newXml)
+  // };
   
 
             
@@ -93,9 +97,7 @@ export default class App extends React.Component {
         <button type="button" onClick={this.generateCode}>
           Arduino
         </button>
-        <button type="button" onClick={this.generateXml}>
-          Xml
-        </button>
+     
         <AlertDialog
           // cambioCategorias={this.handleChangeOtrosComponent.bind(this)}
         />
@@ -112,7 +114,7 @@ export default class App extends React.Component {
                 wheel: true
               }}
             >
-              <CategoryLogica />
+              {/* <CategoryLogica />
               <CategoryBucles />
               <CategoryMath /> 
               <CategoryText />
@@ -125,7 +127,7 @@ export default class App extends React.Component {
               <CategoryTone />
               <CategoryTime />
               <CategoryServo />
-              <CategoryRobot/>
+              <CategoryRobot/> */}
             </BlocklyComponent>
           </header>
         </div>

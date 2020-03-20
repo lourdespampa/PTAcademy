@@ -22,7 +22,9 @@ export default class Views extends Component {
       socket: null,
       class: "clase3",
       // socketUrl:"http://192.168.1.15:4000/teacher",
-      socketUrl: "https://socket.playtecedu.com/teacher",
+      // socketUrl: "https://socket.playtecedu.com/teacher",
+      socketUrl:"http://localhost:8080/teacher",
+
       user: null,
       id: "",
       grabar: false,
@@ -245,7 +247,7 @@ export default class Views extends Component {
               path="/teacher/:id_class/:id_access/trivia"
               component={() => (
                 <Trivia
-                  school={this.state.school}
+                  school={this.state.school} 
                   id_access={this.state.id_access}
                   apiUrl={this.props.apiUrl}
                   socketUrl={this.state.socketUrl}
