@@ -28,6 +28,7 @@ class Cate_analog extends React.Component {
                     </Value>
                 </Block> 
             </Category>
+            
         )
     }
 }

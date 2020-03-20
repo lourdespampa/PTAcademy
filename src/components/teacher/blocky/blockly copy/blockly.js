@@ -116,7 +116,7 @@
 			var h = [],
 				k = c.length / e,
 				l = 1;
-			for (d = 0; d < c.length - 1; d++) l < (d + 1.5) / k ? (l++ , h[d] = !0) : h[d] = !1;
+			for (d = 0; d < c.length - 1; d++) l < (d + 1.5) / k ? (l++, h[d] = !0) : h[d] = !1;
 			h = Blockly.utils.string.wrapMutate_(c, h, b);
 			d = Blockly.utils.string.wrapScore_(c, h, b);
 			a = Blockly.utils.string.wrapToText_(c, h);
@@ -370,7 +370,7 @@
 		d.push("");
 		for (var e = 0, f = [], g = null, h = 0; h < d.length; h++) {
 			var k = d[h];
-			0 == e ? "%" == k ? ((k = f.join("")) && c.push(k), f.length = 0, e = 1) : f.push(k) : 1 == e ? "%" == k ? (f.push(k), e = 0) : b && "0" <= k && "9" >= k ? (e = 2, g = k, (k = f.join("")) && c.push(k), f.length = 0) : "{" == k ? e = 3 : (f.push("%", k), e = 0) : 2 == e ? "0" <= k && "9" >= k ? g += k : (c.push(parseInt(g, 10)), h-- , e = 0) : 3 == e && ("" == k ? (f.splice(0, 0, "%{"), h-- , e = 0) : "}" != k ? f.push(k) : (e = f.join(""), /[A-Z]\w*/i.test(e) ? (k = e.toUpperCase(), (k =
+			0 == e ? "%" == k ? ((k = f.join("")) && c.push(k), f.length = 0, e = 1) : f.push(k) : 1 == e ? "%" == k ? (f.push(k), e = 0) : b && "0" <= k && "9" >= k ? (e = 2, g = k, (k = f.join("")) && c.push(k), f.length = 0) : "{" == k ? e = 3 : (f.push("%", k), e = 0) : 2 == e ? "0" <= k && "9" >= k ? g += k : (c.push(parseInt(g, 10)), h--, e = 0) : 3 == e && ("" == k ? (f.splice(0, 0, "%{"), h--, e = 0) : "}" != k ? f.push(k) : (e = f.join(""), /[A-Z]\w*/i.test(e) ? (k = e.toUpperCase(), (k =
 				Blockly.utils.string.startsWith(k, "BKY_") ? k.substring(4) : null) && k in Blockly.Msg ? (e = Blockly.Msg[k], "string" == typeof e ? Array.prototype.push.apply(c, Blockly.utils.tokenizeInterpolation_(e, b)) : b ? c.push(String(e)) : c.push(e)) : c.push("%{" + e + "}")) : c.push("%{" + e + "}"), e = f.length = 0))
 		} (k = f.join("")) && c.push(k);
 		d = [];
@@ -5310,9 +5310,11 @@
 	};
 
 	Blockly.Block.prototype.setOnChange = function (a) {
+		
 		if (a && "function" != typeof a) throw Error("onchange must be a function.");
 		this.onchangeWrapper_ && this.workspace.removeChangeListener(this.onchangeWrapper_);
 		if (this.onchange = a) this.onchangeWrapper_ = a.bind(this), this.workspace.addChangeListener(this.onchangeWrapper_)
+
 	};
 
 	Blockly.Block.prototype.getField = function (a) {
@@ -5393,12 +5395,14 @@
 
 	Blockly.Block.prototype.setInputsInline = function (a) {
 		this.inputsInline != a && (Blockly.Events.fire(new Blockly.Events.BlockChange(this, "inline", null, this.inputsInline, a)), this.inputsInline = a)
+	
 	};
 
 	Blockly.Block.prototype.getInputsInline = function () {
 		if (void 0 != this.inputsInline) return this.inputsInline;
 		for (var a = 1; a < this.inputList.length; a++) if (this.inputList[a - 1].type == Blockly.DUMMY_INPUT && this.inputList[a].type == Blockly.DUMMY_INPUT) return !1;
 		for (a = 1; a < this.inputList.length; a++) if (this.inputList[a - 1].type == Blockly.INPUT_VALUE && this.inputList[a].type == Blockly.DUMMY_INPUT) return !0;
+		//console.log('movimiento de bloques ')
 		return !1
 	};
 
@@ -10531,7 +10535,7 @@
 				f = !0;
 				break
 			}
-			f ? (d++ , 25 == d && (d = 0, c++), e = "ijkmnopqrstuvwxyzabcdefgh".charAt(d), 1 < c && (e += c)) : b = e
+			f ? (d++, 25 == d && (d = 0, c++), e = "ijkmnopqrstuvwxyzabcdefgh".charAt(d), 1 < c && (e += c)) : b = e
 		} else b = "i";
 		return b
 	};

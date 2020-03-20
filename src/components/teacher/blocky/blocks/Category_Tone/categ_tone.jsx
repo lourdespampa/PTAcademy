@@ -6,6 +6,7 @@ import {
     Category
 } from "../../Blockly";
 import "./custom_tone";
+import "../../blockly copy/media/robot.png"
 class Cate_Tone extends React.Component {
 
     render() {

@@ -22,6 +22,7 @@ class Cate_digital extends React.Component {
                 </Block>
 
             </Category>
+            
         );
     }
 }

@@ -899,6 +899,121 @@
 
 
   ///fin Digital
+
+  /* categoria_robot */
+  Blockly.Arduino.robot = {};
+  Blockly.Arduino.react_playbot = function () {
+      var a = Blockly.Arduino.valueToCode(this, "Derecho", Blockly.Arduino.ORDER_ATOMIC);
+      var b = Blockly.Arduino.valueToCode(this, "Izquierdo", Blockly.Arduino.ORDER_ATOMIC);
+      Blockly.Arduino.definitions_.define_derecho = "int MotorD=" + a + ";"
+      Blockly.Arduino.definitions_.define_izquierdo = "int MotorI=" + b + ";"
+      Blockly.Arduino.definitions_.define_avanzar =
+          "\n void Avanzar() {\n" +
+          "\n" +
+          "    digitalWrite(4, HIGH);\n" +
+          "    digitalWrite(5, LOW);\n" +
+          "    digitalWrite(7, LOW);\n" +
+          "    digitalWrite(8, HIGH);\n}"
+      Blockly.Arduino.definitions_.define_retroceder =
+          "\n void Retroceder() {\n" +
+          "\n" +
+          "    digitalWrite(4, LOW);\n" +
+          "    digitalWrite(5, HIGH);\n" +
+          "    digitalWrite(7, HIGH);\n" +
+          "    digitalWrite(8, LOW);\n}"
+      Blockly.Arduino.definitions_.define_izquierda =
+          "\n void Izquierda() {\n" +
+          "\n" +
+          "    digitalWrite(4, LOW);\n" +
+          "    digitalWrite(5, HIGH);\n" +
+          "    digitalWrite(7, LOW);\n" +
+          "    digitalWrite(8, HIGH);\n}"
+      Blockly.Arduino.definitions_.define_derecha =
+          "\n void Derecha() {\n" +
+          "\n" +
+          "    digitalWrite(4, HIGH);\n" +
+          "    digitalWrite(5, LOW);\n" +
+          "    digitalWrite(7, HIGH);\n" +
+          "    digitalWrite(8, LOW);\n}"
+      Blockly.Arduino.definitions_.define_detener =
+          "\n void Detener() {\n" +
+          "\n" +
+          "    digitalWrite(4, LOW);\n" +
+          "    digitalWrite(5, LOW);\n" +
+          "    digitalWrite(7, LOW);\n" +
+          "    digitalWrite(8, LOW);\n}"
+      Blockly.Arduino.setups_.setup_softserial =
+          " pinMode(4, OUTPUT);\n" +
+          "   pinMode(5, OUTPUT);\n" +
+          "   pinMode(7, OUTPUT);\n" +
+          "   pinMode(8, OUTPUT);\n" +
+          "   pinMode(3, OUTPUT);\n" +
+          "   pinMode(6, OUTPUT);\n" +
+          "   analogWrite(" + 6 + "," + b + ");\n" +
+          "   analogWrite(" + 3 + "," + a + ");\n"
+      return "\n"
+  
+  };
+  
+  Blockly.Arduino.react_robot_avanzar = function () {
+      return "  Avanzar();\n"
+  };
+  Blockly.Arduino.react_robot_atras = function () {
+      return "  Retroceder();\n"
+  };
+  Blockly.Arduino.react_robot_izquierda = function () {
+      return "  Izquierda();\n"
+  };
+  Blockly.Arduino.react_robot_derecha = function () {
+      return "  Derecha();\n"
+  };
+  
+  Blockly.Arduino.react_robot_detener = function () {
+      return "  Detener();\n"
+  };
+  /*categoria linefollower */
+
+  Blockly.Arduino.react_controls_switch = function () {
+    var a = 0,
+        b = Blockly.Arduino.valueToCode(this, "IF" + a, Blockly.Arduino.ORDER_NONE) || "false",
+        c = Blockly.Arduino.statementToCode(this, "DO" + a),
+        d = "switch (" + b + ") {\n" + c + "\n}";
+    for (a = 1; a <= this.elseifCount_; a++) b = Blockly.Arduino.valueToCode(this, "IF" + a, Blockly.Arduino.ORDER_NONE) || "false", c = Blockly.Arduino.statementToCode(this, "DO" + a), d += " else if (" + b + ") {\n" + c + "}";
+    this.elseCount_ && (c = Blockly.Arduino.statementToCode(this, "ELSE"), d += " else {\n" + c + "\n}");
+    return d + "\n"
+};
+
+Blockly.Arduino.react_controls_case = function () {
+    var a = 0,
+        b = Blockly.Arduino.valueToCode(this, "establecer", Blockly.Arduino.ORDER_ATOMIC) || "false",
+        c = Blockly.Arduino.statementToCode(this, "DO" + a),
+        d = "case " + b + ":\n" + c + "\n break;\n";
+    for (a = 1; a <= this.elseifCount_; a++) b = Blockly.Arduino.valueToCode(this, "establecer" + a, Blockly.Arduino.ORDER_NONE) || "false", c = Blockly.Arduino.statementToCode(this, "DO" + a), d += " else if (" + b + ") {\n" + c + "}";
+    this.elseCount_ && (c = Blockly.Arduino.statementToCode(this, "ELSE"), d += " else {\n" + c + "\n}");
+    return d + "\n"
+};
+Blockly.Arduino.react_SensorDerecha = function () {
+  var a = window.parseFloat(this.getFieldValue("NUM"));
+  Blockly.Arduino.setups_.seguir = 'pinMode(' + a + ',INPUT);'
+  return ["digitalRead(" + a + ")", Blockly.Arduino.ORDER_UNARY_PREFIX, Blockly.Arduino.ORDER_ATOMIC]
+};
+
+
+Blockly.Arduino.react_SensorIzquierda = function () {
+  var b = window.parseFloat(this.getFieldValue("NUM"));
+  Blockly.Arduino.setups_.seguidor = 'pinMode(' + b + ',INPUT);'
+  return ["digitalRead(" + b + ")", Blockly.Arduino.ORDER_UNARY_PREFIX, Blockly.Arduino.ORDER_ATOMIC]
+};
+//Analogico_Velocidad
+
+Blockly.Arduino.react_Analogico_Velocidad = function () {
+    var a = window.parseFloat(this.getFieldValue("NUM3")),
+        b = window.parseFloat(this.getFieldValue("NUM6"));
+    return "  analogWrite(3," + a + ");\n  analogWrite(6," + b + ");\n"
+};
+
+
+   /*end categoria linefollower*/
   Blockly.Arduino.variablesDynamic = {};
 
   Blockly.Arduino.variables_get_dynamic = Blockly.Arduino.variables_get;

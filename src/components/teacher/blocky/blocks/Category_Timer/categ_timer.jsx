@@ -21,6 +21,7 @@ class Cate_time extends React.Component {
                     </Value>
                 </Block> 
             </Category>
+            
         );
     }
 }

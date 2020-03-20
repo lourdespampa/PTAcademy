@@ -7,6 +7,7 @@ import {
 } from "../../Blockly";
 import "./custom_Servo";
 class Cate_Servo extends React.Component {
+   
 
     render() {
         return (
@@ -28,6 +29,7 @@ class Cate_Servo extends React.Component {
                     </Value>
                 </Block>
             </Category>
+            
         );
     }
 }

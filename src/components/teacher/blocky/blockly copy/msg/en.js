@@ -579,8 +579,37 @@
   Blockly.Msg.SERVO_WRITE_US_TOOLTIP = "Writes a value in microSeconds(uS) to the servo, controlling the shaft accordingly.";
   /* END SERVO */
 
+//categoria robot*/
+///s
+Blockly.Msg.CATEGORY_PLAYBOT = "Engines PlayBot";
+
+Blockly.Msg.MOTORES_ROBOT = "%1 Right Engine %2 Left Engine %3";
+Blockly.Msg.ROBOT_AVANZAR= "Robot Ahead    ";
+Blockly.Msg.ROBOT_ATRAS = "Robot Behind   ";
+Blockly.Msg.ROBOT_IZQUIERDA = "Robot Left  ";
+Blockly.Msg.ROBOT_DERECHA = "Robot Right     ";
+Blockly.Msg.ROBOT_DETENER= "Robot Stop      ";
+Blockly.Msg.ROBOT_VELOCIDAD = "Speed (0 - 255)";
+Blockly.Msg.INOUT_ANALOG_WRITE_TOOLTIP = "Write analog value between 0 and 255 to a specific Port.";
 
 
+/*end robot*/
+
+
+/*category linefollower */
+Blockly.Msg.CATEGORY_SEGUIDOR= "Line follower";
+Blockly.Msg.CONTROLS_SWITCH="switch";
+//Blockly.Msg.MOTORES_ROBOT = "%1 Right Engine %2 Left Engine %3";
+Blockly.Msg.CONTROLS_CASE="case";
+Blockly.Msg.CONTROLS_VACIO="";
+
+Blockly.Msg.SENSOR_DERECHA="Sensor-Right";
+Blockly.Msg.SENSOR_IZQUIERDA="Sensor-Left  ";
+Blockly.Msg.ANALOG_VELOCIDAD3="Right Engine Pin 3 %1 Speed";
+Blockly.Msg.ANALOG_VELOCIDAD6="Left  Engine  Pin 6 %1 Speed";
+// Blockly.Msg.Analogico_vel="Speed";
+
+/*end linefollower */
   Blockly.Msg["MATH_HUE"] = "230";
   Blockly.Msg["LOOPS_HUE"] = "120";
   Blockly.Msg["LISTS_HUE"] = "260";
