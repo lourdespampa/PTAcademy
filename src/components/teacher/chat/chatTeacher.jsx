@@ -91,7 +91,7 @@ export default class Chat extends Component
               */}
               {
                   this.state.message.map(message =>{
-                    if (message.sendByTeacher==true) {
+                    if (message.sendByTeacher===true) {
                       return <ChatItem 
                       avatar={'https://image.flaticon.com/icons/svg/1089/1089129.svg'}
                       alt={'Reactjs'}

@@ -3,6 +3,8 @@ import React,{Component} from 'react'
 import Left from '../../containers/teacher/Left'
 import Header from '../../containers/student/Header'
 import Footer from '../../containers/student/Footer';
+import Derecha from '../../containers/student/Right';
+// import { Right } from 'react-bootstrap/lib/Media';
 export default class Container extends Component {
     componentDidMount(){
         // window.addEventListener("beforeunload", (ev) => 
@@ -22,6 +24,7 @@ export default class Container extends Component {
                 id_student={this.props.id_student} name={this.props.name} lastName={this.props.lastName}/>
                 <Left   view={`/student/${this.props.id_student}/${this.props.id_access}/pizarra`} socketUrl={this.props.socketUrl} id_access={this.props.id_access}/>
                 {children}
+                <Derecha></Derecha>
                 <Footer socketUrl={this.props.socketUrl} id_access={this.props.id_access}/>
             </div>
         )

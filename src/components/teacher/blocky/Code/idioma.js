@@ -8,7 +8,7 @@ class Idioma extends React.Component {
   changeEs = () => {
     Blockly.setLocale(es);
   };
-  changeEn = () => {
+  changeEn = () => { 
     Blockly.setLocale(en);
   };
   changeFr = () => {
