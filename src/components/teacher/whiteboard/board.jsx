@@ -2,7 +2,7 @@ import React from "react";
 import Sketch from "react-p5";
 import io from "socket.io-client";
 import "./board.sass";
-import iconExit from "../../../img/cerrar1.png";
+// import iconExit from "../../../img/cerrar1.png";
 
 
 export default class board extends React.Component {
@@ -397,132 +397,132 @@ export default class board extends React.Component {
           <div className="divCuadro contColor">
               COLORES
               <ul className="ulcolors">
-                <li>
+                <li className={this.state.color==="white" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="white"
-                    className={this.state.color==="white" ? "white sombreado":"white"}
+                    className="white "
                   ></div>
                 </li>
-                <li>
+                <li className={ this.state.color==="silver" ?"sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="silver"
-                    className={ this.state.color==="silver" ?"silver sombreado":"silver"}
+                    className="silver"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="gray" ? " sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="gray"
-                    className={this.state.color==="gray" ? "gray sombreado":"gray"}
+                    className="gray"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="black" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="black"
-                    className={this.state.color==="black" ? "black sombreado":"black"}
+                    className="black"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="red" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="red"
-                    className={this.state.color==="red" ? "red sombreado":"red"}
+                    className="red"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="maroon" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="maroon"
-                    className={this.state.color==="maroon" ? "maroon sombreado":"maroon"}
+                    className="maroon"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="yellow" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="yellow"
-                    className={this.state.color==="yellow" ? "yellow sombreado":"yellow"}
+                    className="yellow"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="olive" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="olive"
-                    className={this.state.color==="olive" ? "olive sombreado":"olive"}
+                    className="olive"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="lime" ? " sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="lime"
-                    className={this.state.color==="lime" ? "lime sombreado":"lime"}
+                    className="lime"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="green" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="green"
-                    className={this.state.color==="green" ? "green sombreado":"green"}
+                    className="green"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="aqua" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="aqua"
-                    className={this.state.color==="aqua" ? "aqua sombreado":"aqua"}
+                    className="aqua"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="teal" ? " sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="teal"
-                    className={this.state.color==="teal" ? "teal sombreado":"teal"}
+                    className="teal"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="blue" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="blue"
-                    className={this.state.color==="blue" ? "blue sombreado":"blue"}
+                    className="blue"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="navy" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="navy"
-                    className={this.state.color==="navy" ? "navy sombreado":"navy"}
+                    className="navy"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="fuchsia" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="fuchsia"
-                    className={this.state.color==="fuchsia" ? "fuchsia sombreado":"fuchsia"}
+                    className="fuchsia"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="purple" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="purple"
-                    className={this.state.color==="purple" ? "purple sombreado":"purple"}
+                    className="purple"
                   ></div>
                 </li>
               </ul>
@@ -548,88 +548,88 @@ export default class board extends React.Component {
             <div className="divCuadro contSize">
               TAMAÑO
               <ul className="ulSize">
-                <li>
+                <li className={this.state.size==="4" ? " sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
-                    className={this.state.size==="4" ? "size-4 sombreado":"size-4"}
+                    className="size-4"
                     id="4"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="8" ? " sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
-                    className={this.state.size==="8" ? "size-8 sombreado":"size-8"}
+                    className="size-8"
                     id="8"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="12" ? "sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
-                    className={this.state.size==="12" ? "size-12 sombreado":"size-12"}
+                    className="size-12"
                     id="12"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="16" ? "sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
-                    className={this.state.size==="16" ? "size-16 sombreado":"size-16"}
+                    className="size-16"
                     id="16"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="20" ? "sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
-                    className={this.state.size==="20" ? "size-20 sombreado":"size-20"}
+                    className="size-20"
                     id="20"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="24" ? "sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
-                    className={this.state.size==="24" ? "size-24 sombreado":"size-24"}
+                    className="size-24"
                     id="24"
                   ></div>
                 </li>
               </ul>
               OPCIONES
               <ul className="ulOptions">
-                <li className="iclear">
-                  <i className={this.state.clear ? "material-icons sombreado":"material-icons"} onClick={() => this.clear()}>
+                <li className={this.state.clear ? "iclear sombreado":"iclear"}>
+                  <i  className="material-icons" onClick={() => this.clear()}>
                     refresh
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.draft ? "material-icons sombreado":"material-icons"} onClick={() => this.draft()}>
+                <li className={this.state.draft ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.draft()}>
                     how_to_vote
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.pencil ? "material-icons sombreado":"material-icons"} onClick={() => this.pencil()}>
+                <li className={this.state.pencil ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.pencil()}>
                     create
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.circle ? "material-icons sombreado":"material-icons"} onClick={() => this.circle()}>
+                <li className={this.state.circle ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.circle()}>
                     panorama_fish_eye
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.rect ? "material-icons sombreado":"material-icons"} onClick={() => this.rect()}>
+                <li className={this.state.rect ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.rect()}>
                     check_box_outline_blank
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.triangle ? "material-icons sombreado":"material-icons"} onClick={() => this.triangle()}>
+                <li className={this.state.triangle ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.triangle()}>
                     change_history
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.line ? "material-icons sombreado":"material-icons"} onClick={() => this.line()}>
+                <li className={this.state.line ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.line()}>
                     remove
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.text ? "material-icons sombreado":"material-icons"} onClick={() => this.text()}>
+                <li className={this.state.text ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.text()}>
                     title
                   </i>
                 </li>
@@ -642,132 +642,132 @@ export default class board extends React.Component {
             <div className="divCuadro contColor">
               COLORES
               <ul className="ulcolors">
-                <li>
+                <li className={this.state.color==="white" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="white"
-                    className={this.state.color==="white" ? "white sombreado":"white"}
+                    className="white "
                   ></div>
                 </li>
-                <li>
+                <li className={ this.state.color==="silver" ?"sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="silver"
-                    className={ this.state.color==="silver" ?"silver sombreado":"silver"}
+                    className="silver"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="gray" ? " sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="gray"
-                    className={this.state.color==="gray" ? "gray sombreado":"gray"}
+                    className="gray"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="black" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="black"
-                    className={this.state.color==="black" ? "black sombreado":"black"}
+                    className="black"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="red" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="red"
-                    className={this.state.color==="red" ? "red sombreado":"red"}
+                    className="red"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="maroon" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="maroon"
-                    className={this.state.color==="maroon" ? "maroon sombreado":"maroon"}
+                    className="maroon"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="yellow" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="yellow"
-                    className={this.state.color==="yellow" ? "yellow sombreado":"yellow"}
+                    className="yellow"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="olive" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="olive"
-                    className={this.state.color==="olive" ? "olive sombreado":"olive"}
+                    className="olive"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="lime" ? " sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="lime"
-                    className={this.state.color==="lime" ? "lime sombreado":"lime"}
+                    className="lime"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="green" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="green"
-                    className={this.state.color==="green" ? "green sombreado":"green"}
+                    className="green"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="aqua" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="aqua"
-                    className={this.state.color==="aqua" ? "aqua sombreado":"aqua"}
+                    className="aqua"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="teal" ? " sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="teal"
-                    className={this.state.color==="teal" ? "teal sombreado":"teal"}
+                    className="teal"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="blue" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="blue"
-                    className={this.state.color==="blue" ? "blue sombreado":"blue"}
+                    className="blue"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="navy" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="navy"
-                    className={this.state.color==="navy" ? "navy sombreado":"navy"}
+                    className="navy"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="fuchsia" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="fuchsia"
-                    className={this.state.color==="fuchsia" ? "fuchsia sombreado":"fuchsia"}
+                    className="fuchsia"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="purple" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="purple"
-                    className={this.state.color==="purple" ? "purple sombreado":"purple"}
+                    className="purple"
                   ></div>
                 </li>
               </ul>
@@ -777,45 +777,45 @@ export default class board extends React.Component {
             <div className="divCuadro contSize">
               TAMAÑO
               <ul className="ulSize">
-                <li>
+                <li className={this.state.size==="4" ? " sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
-                    className={this.state.size==="4" ? "size-4 sombreado":"size-4"}
+                    className="size-4"
                     id="4"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="8" ? " sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
-                    className={this.state.size==="8" ? "size-8 sombreado":"size-8"}
+                    className="size-8"
                     id="8"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="12" ? "sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
-                    className={this.state.size==="12" ? "size-12 sombreado":"size-12"}
+                    className="size-12"
                     id="12"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="16" ? "sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
-                    className={this.state.size==="16" ? "size-16 sombreado":"size-16"}
+                    className="size-16"
                     id="16"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="20" ? "sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
-                    className={this.state.size==="20" ? "size-20 sombreado":"size-20"}
+                    className="size-20"
                     id="20"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="24" ? "sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
-                    className={this.state.size==="24" ? "size-24 sombreado":"size-24"}
+                    className="size-24"
                     id="24"
                   ></div>
                 </li>
@@ -826,43 +826,43 @@ export default class board extends React.Component {
             <div className="divCuadro contOption">
               OPCIONES
               <ul className="ulOptions">
-              <li className="iclear">
-                  <i className={this.state.clear ? "material-icons sombreado":"material-icons"} onClick={() => this.clear()}>
+                <li className={this.state.clear ? "iclear sombreado":"iclear"}>
+                  <i  className="material-icons" onClick={() => this.clear()}>
                     refresh
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.draft ? "material-icons sombreado":"material-icons"} onClick={() => this.draft()}>
+                <li className={this.state.draft ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.draft()}>
                     how_to_vote
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.pencil ? "material-icons sombreado":"material-icons"} onClick={() => this.pencil()}>
+                <li className={this.state.pencil ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.pencil()}>
                     create
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.circle ? "material-icons sombreado":"material-icons"} onClick={() => this.circle()}>
+                <li className={this.state.circle ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.circle()}>
                     panorama_fish_eye
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.rect ? "material-icons sombreado":"material-icons"} onClick={() => this.rect()}>
+                <li className={this.state.rect ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.rect()}>
                     check_box_outline_blank
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.triangle ? "material-icons sombreado":"material-icons"} onClick={() => this.triangle()}>
+                <li className={this.state.triangle ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.triangle()}>
                     change_history
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.line ? "material-icons sombreado":"material-icons"} onClick={() => this.line()}>
+                <li className={this.state.line ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.line()}>
                     remove
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className={this.state.text ? "material-icons sombreado":"material-icons"} onClick={() => this.text()}>
+                <li className={this.state.text ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.text()}>
                     title
                   </i>
                 </li>
@@ -870,7 +870,13 @@ export default class board extends React.Component {
             </div>
           </li>
         </ul>
-        <div
+        {/* <div className="textoinput">
+          <textarea name="" id="" cols="30" rows="10">
+            asdasdasdasdasd
+          </textarea>
+        </div> */}
+
+        {/* <div
           id="modal-general_container"
           className={
             this.state.Show === 0 ? "" : this.state.Show === 1 ? "six" : this.state.Show === 2 ? "six out" : ""
@@ -929,7 +935,7 @@ export default class board extends React.Component {
               </svg>
             </div>
           </div>
-        </div>
+        </div> */}
       </>
     );
   }

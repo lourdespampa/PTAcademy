@@ -1,6 +1,4 @@
 .p5Canvas
-    border-top: solid 5px
-    border-bottom: solid 5px
     background: #ffffff
     position: relative
     left: calc(50% - 500px)
@@ -9,6 +7,14 @@
     height: 500px
     width: 100%
     touch-action: none
+
+
+// .textoinput
+//     position: fixed
+//     border: solid red
+//     width: 50px
+//     height: 50px
+
 .divSketch
     position: relative
     width: 1200px
@@ -25,7 +31,9 @@
         width: 100px
         top: 10px
         position: relative
-        border: solid 5px
+        background-color: #f0f0f0
+        border-radius: 10px
+        border: 1px solid #cccccc
         text-align: center
         padding: 15px 5px 5px 5px
     & .contColor
@@ -41,13 +49,12 @@
                 display: flex
                 padding: 3px
                 justify-content: center
+            
                 div
                     width: 30px
                     height: 30px
                     border-radius: 50%
                     cursor: pointer
-                & .sombreado 
-                    border: solid #52be7f
                 & .white
                     background: white
                 & .silver
@@ -80,6 +87,9 @@
                     background: fuchsia
                 & .purple
                     background: purple
+            & .sombreado
+                background-color: #D6D6D6
+                border-radius: 8px  
     & .contSize
         .ulSize
             display: flex
@@ -97,8 +107,6 @@
                     border-radius: 50%
                     cursor: pointer
                     background: black
-                & .sombreado 
-                    border: solid #52be7f
                 & .size-4
                     position: relative
                     top: calc(50% - 2px)
@@ -129,6 +137,9 @@
                     top: calc(50% - 12px)
                     width: 24px
                     height: 24px
+            & .sombreado
+                background-color: #D6D6D6
+                border-radius: 8px  
         .ulOptions
             margin-top: 0px
             display: flex
@@ -143,9 +154,9 @@
                 justify-content: center
                 i
                     color: black
-                & .sombreado
-                    border: solid green
-                    border-radius: 50%
+            & .sombreado
+                background-color: #D6D6D6
+                border-radius: 8px
 
 .divPalette
     position: relative
@@ -157,7 +168,9 @@
     list-style: none
     margin: 0
     padding: 0
-    border: solid 2px
+    background-color: #f0f0f0
+    border-radius: 10px
+    border: solid 1px #cccccc
     display: none
     .liPalette
         display: flex
@@ -165,8 +178,9 @@
             width: 100%
             text-align: center
             padding: 5px
+            padding-top: 15px
         & .contColor
-            border-right: solid 2px
+            border-right: solid 1px #cccccc
             .ulcolors
                 display: flex
                 flex-wrap: wrap
@@ -182,8 +196,6 @@
                         height: 30px
                         border-radius: 50%
                         cursor: pointer
-                    & .sombreado 
-                        border: solid #52be7f
                     & .white
                         background: white
                     & .silver
@@ -216,8 +228,11 @@
                         background: fuchsia
                     & .purple
                         background: purple
+                & .sombreado
+                    background-color: #D6D6D6
+                    border-radius: 8px
         & .contSize
-            border-right: solid 2px
+            border-right: solid 1px #cccccc
             .ulSize
                 display: flex
                 flex-wrap: wrap
@@ -234,8 +249,6 @@
                         border-radius: 50%
                         cursor: pointer
                         background: black
-                    & .sombreado 
-                        border: solid #52be7f
                     & .size-4
                         position: relative
                         top: calc(50% - 2px)
@@ -270,6 +283,9 @@
                     width: 100%
                     i
                         font-size: 40px
+                & .sombreado
+                    background-color: #D6D6D6
+                    border-radius: 8px
         & .contOption
             .ulOptions
                 display: flex
@@ -285,9 +301,9 @@
                     justify-content: center
                     i
                         color: black
-                    & .sombreado
-                        border: solid green
-                        border-radius: 50%
+                & .sombreado
+                    background-color: #D6D6D6
+                    border-radius: 8px
 
     .liColor
         width: 45%
@@ -385,7 +401,7 @@
         width: 400px !important
         height: 200px !important
         left: calc(50% - 200px)
-        border: solid 2px
+        border: solid 1px #cccccc
     .divSketch
         width: 400px
         left: calc(50% - 200px)
@@ -400,7 +416,6 @@
         width: 360px !important
         height: 180px !important
         left: calc(50% - 180px)
-        border: solid 2px
     .divSketch
         width: 360px
         left: calc(50% - 180px)
@@ -417,7 +432,6 @@
         width: 320px !important
         height: 160px !important
         left: calc(50% - 160px)
-        border: solid 2px
     .divSketch
         width: 320px
         left: calc(50% - 160px)
