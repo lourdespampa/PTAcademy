@@ -628,11 +628,11 @@ export default class board extends React.Component {
                     remove
                   </i>
                 </li>
-                <li className={this.state.text ? "iclear sombreado":"iclear"}>
+                {/* <li className={this.state.text ? "iclear sombreado":"iclear"}>
                   <i className="material-icons" onClick={() => this.text()}>
                     title
                   </i>
-                </li>
+                </li> */}
               </ul>
             </div>
             </div>
@@ -861,11 +861,11 @@ export default class board extends React.Component {
                     remove
                   </i>
                 </li>
-                <li className={this.state.text ? "iclear sombreado":"iclear"}>
+                {/* <li className={this.state.text ? "iclear sombreado":"iclear"}>
                   <i className="material-icons" onClick={() => this.text()}>
                     title
                   </i>
-                </li>
+                </li> */}
               </ul>
             </div>
           </li>
