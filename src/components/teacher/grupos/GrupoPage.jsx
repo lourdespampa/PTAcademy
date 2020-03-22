@@ -26,6 +26,12 @@ export default class GrupoPage extends Component {
     this.setState({id_access: data})
     console.log(this.props)
   }
+  componentWillUnmount(){
+    const socket = io(this.props.socketUrl, {
+      query: { pin: this.props.id_access }
+    });
+    socket.emit("closeModalGrupo");
+  }
   getAlumnos = async() => {
     var varToken = await localStorage.getItem('token');
     console.log('llego a getAlum')
@@ -143,7 +149,10 @@ export default class GrupoPage extends Component {
     })
     document.getElementById("imprimir").innerHTML = '' 
     }, 500);
-    
+    const socket = io(this.props.socketUrl, {
+      query: { pin: this.props.id_access }
+    });
+    socket.emit("closeModalGrupo");
   }
 
   render() {

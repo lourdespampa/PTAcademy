@@ -231,9 +231,7 @@ export default class Audio extends Component {
         socket.on('closeModalGrupo',  (data) =>{
             const pinTeacher = this.pin.toUpperCase();
             if(data.pin === (pinTeacher).toUpperCase()) {
-            console.log(data.data.data)
-            document.getElementById("imprimir").innerHTML = data.data.data;
-            this.setState({showGrupo:1});
+            this.setState({showGrupo:2});
             }
         })
         //grupos END 
