@@ -5,7 +5,7 @@ import Index from '../pages/student/Index'
 import Trivia from '../pages/student/Trivia'
 import Temporizador from '../pages/student/temporizador'
 import Board from '../pages/student/board'
-import Chat from "../pages/student/chat";
+
 
 import Access from '../access'
 //socket initial
@@ -39,6 +39,10 @@ async componentWillMount() {
       'x-access-token': `${varToken}`
     }
   })
+  console.log(res.data.name_stu);
+  console.log(res.data.lastName_stu);
+  localStorage.setItem("name",res.data.name_stu)
+  localStorage.setItem("lastName",res.data.lastName_stu)
     this.setState({
       name:res.data.name_stu,
       lastName:res.data.lastName_stu
@@ -56,8 +60,7 @@ initSocket=()=>{
       <Switch>
         <Route exact path="/" component={()=><Access/>} />
         <Container apiUrl={this.props.apiUrl} socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student} name={this.state.name} lastName={this.state.lastName}>
-            <Route exact path="/student/:id/:cod/test" component={()=><Chat socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student}name={this.state.name} lastName={this.state.lastName} />} />
-						<Route exact path="/student/:id/:cod" component={() => <Index socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student}  />}/>
+      			<Route exact path="/student/:id/:cod" component={() => <Index socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student}  />}/>
 						<Route exact path="/student/:id/:cod/trivia" component={() => <Trivia socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student} fullname={`${this.state.name} ${this.state.lastName}`}/>}/>
 						<Route exact path="/student/:id/:cod/temporizador" component={() => <Temporizador socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student}/>}/>
 						<Route exact path="/student/:id/:cod/pizarra" component={() => <Board socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student}/>}/>

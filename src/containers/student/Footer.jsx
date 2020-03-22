@@ -44,7 +44,7 @@ export default class Footer extends Component {
         <FooterContainer socketUrl={this.props.socketUrl} id_access={this.props.id_access}
         diapositivaHover={this.state.diapositivaHover} toggleHoverSlide={this.toggleHoverSlide} 
         closePopup={this.closePopup} openPopup={this.openPopup} nextPpt={this.nextPpt} 
-        backtPpt={this.backtPpt}
+        backtPpt={this.backtPpt} name={this.props.name} lastName={this.props.lastName}
         />
         </>
     )}

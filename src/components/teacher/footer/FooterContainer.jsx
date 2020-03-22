@@ -5,6 +5,8 @@ import Audio from "../audio/audio";
 import io from "socket.io-client";
 import Slide from '../slides/slide_02';
 import iconExit from "../../../img/cerrar1.png";
+import Chat from '../chat/chatTeacher'
+//import '../chat/chat_teacher.css'
 function enviarvideo(url, socketUrl, id_access, setShow,seturlnombre, setNoData) {
   var urlnombre = url ;
   const socket = io(socketUrl, {
@@ -143,8 +145,8 @@ function FooterContainer(props) {
             <Audio socketUrl={props.socketUrl} id_access={props.id_access}/>
         </div>
         <div className="footer-div">
-            <img alt="" id="btn-chat" width="30px" height="30px" src={require("../../../img/footer/chat.svg")} />
-            <span className="footer-span">Chat</span>
+        
+            <Chat socketUrl={props.socketUrl} id_access={props.id_access}></Chat>
         </div>
       </div>
       <div className="overlay" id="overlay">
