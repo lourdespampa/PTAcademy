@@ -4,7 +4,6 @@ import axios from "axios";
 import "./FormPostCourse.sass";
 import "./dropzonet.css";
 
-
 export default class FormPostSiagie extends Component {
   constructor(props) {
     super(props);
