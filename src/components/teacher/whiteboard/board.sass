@@ -1,30 +1,193 @@
-.divPalette
+.p5Canvas
+    background: #ffffff
     position: relative
-    background: #54b1a7
-    width: 1000px
-    top: 10px
     left: calc(50% - 500px)
+    top: 10px
+    max-width: 1000px
+    height: 500px
+    width: 100%
+    touch-action: none
+
+
+// .textoinput
+//     position: fixed
+//     border: solid red
+//     width: 50px
+//     height: 50px
+
+.divSketch
+    position: relative
+    width: 1200px
+    left: calc(50% - 600px)
     display: flex
     flex-wrap: wrap
     list-style: none
     margin: 0
     padding: 0
+    .canvasBoard
+        display: flex
+        width: 1000px
+    .divCuadro
+        width: 100px
+        top: 10px
+        position: relative
+        background-color: #f0f0f0
+        border-radius: 10px
+        border: 1px solid #cccccc
+        text-align: center
+        padding: 15px 5px 5px 5px
+    & .contColor
+        .ulcolors
+            display: flex
+            flex-wrap: wrap
+            list-style: none
+            padding: 0
+            margin-top: 0px
+            margin-bottom: 0px
+            li
+                width: 50%
+                display: flex
+                padding: 3px
+                justify-content: center
+            
+                div
+                    width: 30px
+                    height: 30px
+                    border-radius: 50%
+                    cursor: pointer
+                & .white
+                    background: white
+                & .silver
+                    background: silver
+                & .gray
+                    background: gray
+                & .black
+                    background: black
+                & .red
+                    background: red
+                & .maroon
+                    background: maroon
+                & .yellow
+                    background: yellow
+                & .olive
+                    background: olive
+                & .lime
+                    background: lime
+                & .green
+                    background: green
+                & .aqua
+                    background: aqua
+                & .teal
+                    background: teal !important
+                & .blue
+                    background: blue
+                & .navy
+                    background: navy
+                & .fuchsia
+                    background: fuchsia
+                & .purple
+                    background: purple
+            & .sombreado
+                background-color: #D6D6D6
+                border-radius: 8px  
+    & .contSize
+        .ulSize
+            display: flex
+            flex-wrap: wrap
+            list-style: none
+            padding: 0
+            position: relative
+            margin-top: 0px
+            li
+                width: 100%
+                display: flex
+                padding: 3px
+                justify-content: center
+                div
+                    border-radius: 50%
+                    cursor: pointer
+                    background: black
+                & .size-4
+                    position: relative
+                    top: calc(50% - 2px)
+                    width: 4px
+                    height: 4px
+                & .size-8
+                    position: relative
+                    top: calc(50% - 4px)
+                    width: 8px
+                    height: 8px
+                & .size-12
+                    position: relative
+                    top: calc(50% - 6px)
+                    width: 12px
+                    height: 12px
+                & .size-16
+                    position: relative
+                    top: calc(50% - 8px)
+                    width: 16px
+                    height: 16px
+                & .size-20
+                    position: relative
+                    top: calc(50% - 10px)
+                    width: 20px
+                    height: 20px
+                & .size-24
+                    position: relative
+                    top: calc(50% - 12px)
+                    width: 24px
+                    height: 24px
+            & .sombreado
+                background-color: #D6D6D6
+                border-radius: 8px  
+        .ulOptions
+            margin-top: 0px
+            display: flex
+            flex-wrap: wrap
+            list-style: none
+            padding: 0
+            position: relative
+            li
+                width: 100%
+                display: flex
+                padding: 3px
+                justify-content: center
+                i
+                    color: black
+            & .sombreado
+                background-color: #D6D6D6
+                border-radius: 8px
+
+.divPalette
+    position: relative
+    width: 400px
+    top: 15px
+    left: calc(50% - 200px)
+    display: flex
+    flex-wrap: wrap
+    list-style: none
+    margin: 0
+    padding: 0
+    background-color: #f0f0f0
+    border-radius: 10px
+    border: solid 1px #cccccc
+    display: none
     .liPalette
         display: flex
-        padding: 10px
         .divCuadro
-            border: solid
             width: 100%
             text-align: center
             padding: 5px
+            padding-top: 15px
         & .contColor
+            border-right: solid 1px #cccccc
             .ulcolors
                 display: flex
                 flex-wrap: wrap
                 list-style: none
                 padding: 0
                 li
-                    width: 12.5%
+                    width: 25%
                     display: flex
                     padding: 3px
                     justify-content: center
@@ -65,16 +228,20 @@
                         background: fuchsia
                     & .purple
                         background: purple
+                & .sombreado
+                    background-color: #D6D6D6
+                    border-radius: 8px
         & .contSize
+            border-right: solid 1px #cccccc
             .ulSize
                 display: flex
                 flex-wrap: wrap
                 list-style: none
                 padding: 0
                 position: relative
-                top: calc(50% - 30px)
+                top: 10px
                 li
-                    width: 16.66%
+                    width: 100%
                     display: flex
                     padding: 3px
                     justify-content: center
@@ -116,76 +283,200 @@
                     width: 100%
                     i
                         font-size: 40px
+                & .sombreado
+                    background-color: #D6D6D6
+                    border-radius: 8px
+        & .contOption
+            .ulOptions
+                display: flex
+                flex-wrap: wrap
+                list-style: none
+                padding: 0
+                position: relative
+                top: 10px
+                li
+                    width: 50%
+                    display: flex
+                    padding: 3px
+                    justify-content: center
+                    i
+                        color: black
+                & .sombreado
+                    background-color: #D6D6D6
+                    border-radius: 8px
+
     .liColor
         width: 45%
     .liSize
-        width: 35%
-    .liClear
         width: 20%
-.p5Canvas
-    border: solid 5px
-    background: #ffffff
-    position: relative
-    left: calc(50% - 500px)
-    top: 10px
-    max-width: 1000px
-    height: 500px
-    width: 100%
-    touch-action: none
+    .liClear
+        width: 35%
+@media only screen and (max-width: 1200px)
+    .p5Canvas
+        width: 900px !important
+        height: 450px !important
+        left: calc(50% - 450px)
+    
+    .divSketch
+        width: 1100px
+        left: calc(50% - 550px)
+        .canvasBoard
+            width: 900px
+        .divCuadro
+            .ulOptions
+                li
+                    width: 50%
+@media only screen and (max-width: 1100px)
+    .p5Canvas
+        width: 800px !important
+        height: 400px !important
+        left: calc(50% - 400px)
+    
+    .divSketch
+        width: 1000px
+        left: calc(50% - 500px)
+        .canvasBoard
+            width: 800px
+        .divCuadro
+            .ulOptions
+                li
+                    width: 50%
 @media only screen and (max-width: 1000px)
     .p5Canvas
         width: 700px !important
         height: 350px !important
         left: calc(50% - 350px)
-    .divPalette
-        width: 700px
-        left: calc(50% - 350px)
-@media only screen and (max-width: 700px)
+    
+    .divSketch
+        width: 900px
+        left: calc(50% - 450px)
+        .canvasBoard
+            width: 700px
+        .divCuadro
+            .ulOptions
+                li
+                    width: 50%
+
+@media only screen and (max-width: 900px)
     .p5Canvas
         width: 500px !important
         height: 250px !important
         left: calc(50% - 250px)
-    .divPalette
-        width: 500px
-        left: calc(50% - 250px)
-    .ulcolors
-        li
-            width: 25% !important
-    .ulSize
-        top: calc(50%  -  55px) !important
-        li
-            padding: 10px !important
-            width: 33.3% !important
-@media only screen and (max-width: 500px)
+    
+    .divSketch
+        width: 700px
+        left: calc(50% - 350px)
+        .canvasBoard
+            width: 500px
+        .divCuadro
+            overflow: auto
+            height: 250px
+            .ulOptions
+                li
+                    width: 50%
+@media only screen and (max-width: 700px)
     .p5Canvas
         width: 400px !important
         height: 200px !important
         left: calc(50% - 200px)
-    .divPalette
-        width: 400px
-        left: calc(50% - 200px)
-    .ulcolors
-        li
-            width: 33.3% !important
-    .ulSize
-        top: 5px !important
-        li
-            padding: 10px !important
-            width: 100% !important
-@media only screen and (max-width: 400px)
+    .divSketch
+        width: 600px
+        left: calc(50% - 300px)
+        .canvasBoard
+            width: 400px
+        .divCuadro
+            overflow: auto
+            height: 200px
+@media only screen and (max-width: 600px)
+    .p5Canvas
+        width: 350px !important
+        height: 175px !important
+        left: calc(50% - 175px)
+    .divSketch
+        width: 550px
+        left: calc(50% - 275px)
+        .canvasBoard
+            width: 350px
+        .divCuadro
+            overflow: auto
+            height: 175px
+@media only screen and (max-width: 550px)
     .p5Canvas
         width: 300px !important
         height: 150px !important
         left: calc(50% - 150px)
+    .divSketch
+        width: 500px
+        left: calc(50% - 250px)
+        .canvasBoard
+            width: 300px
+        .divCuadro
+            overflow: auto
+            height: 150px
+@media only screen and (max-width: 500px)
+    .p5Canvas
+        width: 250px !important
+        height: 125px !important
+        left: calc(50% - 125px)
+    .divSketch
+        width: 450px
+        left: calc(50% - 225px)
+        .canvasBoard
+            width: 250px
+        .divCuadro
+            overflow: auto
+            height: 125px
+@media only screen and (max-width: 450px)
+    .p5Canvas
+        width: 400px !important
+        height: 200px !important
+        left: calc(50% - 200px)
+        border: solid 1px #cccccc
+    .divSketch
+        width: 400px
+        left: calc(50% - 200px)
+        .canvasBoard
+            width: 400px
+        .divCuadro
+            display: none
     .divPalette
-        width: 300px
-        left: calc(50% - 150px)
-    .ulcolors
-        li
-            width: 33.3% !important
-    .ulSize
-        top: 5px !important
-        li
-            padding: 10px !important
-            width: 100% !important
+        display: flex
+@media only screen and (max-width: 400px)
+    .p5Canvas
+        width: 360px !important
+        height: 180px !important
+        left: calc(50% - 180px)
+    .divSketch
+        width: 360px
+        left: calc(50% - 180px)
+        .canvasBoard
+            width: 360px
+        .divCuadro
+            display: none
+    .divPalette
+        width: 360px
+        left: calc(50% - 180px)
+
+@media only screen and (max-width: 350px)
+    .p5Canvas
+        width: 320px !important
+        height: 160px !important
+        left: calc(50% - 160px)
+    .divSketch
+        width: 320px
+        left: calc(50% - 160px)
+        .canvasBoard
+            width: 320px
+        .divCuadro
+            display: none
+    .divPalette
+        width: 320px
+        left: calc( 50% - 160px )
+    .liColor
+        width: 45% !important
+    .liSize
+        width: 25% !important
+    .liClear
+        width: 30% !important
+
     

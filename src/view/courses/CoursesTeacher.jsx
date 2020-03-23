@@ -2,9 +2,7 @@ import React, { Component } from "react";
 
 import NavCourse from "../classAndCourse/NavCourse";
 import AllCourses from "./AllCourses";
-
 import axios from "axios";
-
 import "../courses/Course.sass";
 import iconExit from "../../img/cerrar1.png";
 
@@ -87,8 +85,14 @@ export default class CoursesTeacher extends Component {
   render() {
     return (
       <>
-        <NavCourse apiUrl={this.props.apiUrl} idcourse={this.state.id_curso} idteacher={this.state._id}
-         agregarX={'curso'} nombreProfesor={this.state.nombreProfesor} getdata={this.getCursos}></NavCourse>
+        <NavCourse 
+          apiUrl={this.props.apiUrl} 
+          idcourse={this.state.id_curso} 
+          idteacher={this.state._id}
+          agregarX={'curso'} 
+          nombreProfesor={this.state.nombreProfesor} 
+          getdata={this.getCursos}>
+        </NavCourse>
         <div className="CourseTeacher-main">
           <h1 className="courseTeacher-title">SECCION DE CURSOS</h1>
           <ul className="courseTeacher-container">

@@ -2,7 +2,7 @@ import React from "react";
 import Sketch from "react-p5";
 import io from "socket.io-client";
 import "./board.sass";
-import iconExit from "../../../img/cerrar1.png";
+// import iconExit from "../../../img/cerrar1.png";
 
 
 export default class board extends React.Component {
@@ -14,7 +14,7 @@ export default class board extends React.Component {
     x3: "",
     y3: "",
     color: "black",
-    size: 6,
+    size: "4",
     clickPress: false,
     mouseReleased: false,
     trazo: [],
@@ -27,7 +27,8 @@ export default class board extends React.Component {
     text: false,
     diameter: 0,
     texto: "",
-    Show:0
+    Show:0,
+    draft:false
   };
   // c:
   componentWillMount(){
@@ -56,10 +57,17 @@ export default class board extends React.Component {
     const socket = io(this.props.socketUrl, {
       query: { pin: this.props.id_access }
     });
-    var data = {
-      color: this.state.color,
-      size: this.state.size
-    };
+    if (this.state.draft){
+      var data = {
+        color: 'white',
+        size: this.state.size
+      };
+    }else{
+      var data = {
+        color: this.state.color,
+        size: this.state.size
+      };
+    }
     socket.emit("startPencil", {
       data: data
     });
@@ -69,7 +77,7 @@ export default class board extends React.Component {
     const socket = io(this.props.socketUrl, {
       query: { pin: this.props.id_access }
     });
-    if (this.state.pencil) {
+    if (this.state.pencil||this.state.draft) {
       console.log(this.state.trazo);
       socket.emit("DrawPencil", {
         data: this.state.trazo
@@ -164,7 +172,7 @@ export default class board extends React.Component {
   }
   // c: evento al mover el mouse precionando el click
   mouseDragged(e) {
-    if (this.state.pencil) {
+    if (this.state.pencil || this.state.draft) {
       this.setState({
         x2: e.pmouseX,
         y2: e.pmouseY
@@ -189,7 +197,22 @@ export default class board extends React.Component {
           x1: this.state.x2,
           y1: this.state.y2
         });
-      } else if (this.state.text && this.state.texto !== "") {
+      }else if(this.state.draft){
+        p5.stroke("white");
+        p5.fill("#be525200");
+        p5.strokeWeight(this.state.size);
+        p5.line(this.state.x1, this.state.y1, this.state.x2, this.state.y2);
+        this.state.trazo.push({
+          x: this.state.x1,
+          y: this.state.y1,
+          x1: this.state.x2,
+          y1: this.state.y2
+        });
+        this.setState({
+          x1: this.state.x2,
+          y1: this.state.y2
+        });
+      }else if (this.state.text && this.state.texto !== "") {
         p5.fill(this.state.color);
         p5.stroke(this.state.color);
         p5.strokeWeight(1);
@@ -275,7 +298,8 @@ export default class board extends React.Component {
       pencil: false,
       mouseReleased: false,
       text: false,
-      line: false
+      line: false,
+      draft:false
     });
   };
   // c: Cambiar opcion a rectangulo
@@ -287,7 +311,8 @@ export default class board extends React.Component {
       pencil: false,
       mouseReleased: false,
       text: false,
-      line: false
+      line: false,
+      draft:false
     });
   };
   // c: Cambiar opcion a triangulo
@@ -299,7 +324,8 @@ export default class board extends React.Component {
       pencil: false,
       mouseReleased: false,
       text: false,
-      line: false
+      line: false,
+      draft:false
     });
   };
   // c: Cambiar opcion a lapiz
@@ -311,7 +337,8 @@ export default class board extends React.Component {
       pencil: true,
       mouseReleased: false,
       text: false,
-      line: false
+      line: false,
+      draft:false
     });
   };
   line = () => {
@@ -322,7 +349,8 @@ export default class board extends React.Component {
       pencil: false,
       mouseReleased: false,
       line: true,
-      text: false
+      text: false,
+      draft:false
     });
   };
   text = () => {
@@ -334,9 +362,22 @@ export default class board extends React.Component {
       mouseReleased: false,
       line: false,
       text: false,
-      Show:1
+      Show:1,
+      draft:false
     });
   };
+  draft=()=>{
+    this.setState({
+      circle: false,
+      rect: false,
+      triangle: false,
+      pencil: false,
+      mouseReleased: false,
+      line: false,
+      text: false,
+      draft:true
+    });
+  }
   textOn = () => {
     this.setState({
       Show:2,
@@ -351,8 +392,141 @@ export default class board extends React.Component {
   render() {
     return (
       <>
+      {this.state.pageinit ? (
         <div className="divSketch">
-          {this.state.pageinit ? (
+          <div className="divCuadro contColor">
+              COLORES
+              <ul className="ulcolors">
+                <li className={this.state.color==="white" ? "sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="white"
+                    className="white "
+                  ></div>
+                </li>
+                <li className={ this.state.color==="silver" ?"sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="silver"
+                    className="silver"
+                  ></div>
+                </li>
+                <li className={this.state.color==="gray" ? " sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="gray"
+                    className="gray"
+                  ></div>
+                </li>
+                <li className={this.state.color==="black" ? "sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="black"
+                    className="black"
+                  ></div>
+                </li>
+                <li className={this.state.color==="red" ? "sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="red"
+                    className="red"
+                  ></div>
+                </li>
+                <li className={this.state.color==="maroon" ? "sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="maroon"
+                    className="maroon"
+                  ></div>
+                </li>
+                <li className={this.state.color==="yellow" ? "sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="yellow"
+                    className="yellow"
+                  ></div>
+                </li>
+                <li className={this.state.color==="olive" ? "sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="olive"
+                    className="olive"
+                  ></div>
+                </li>
+                <li className={this.state.color==="lime" ? " sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="lime"
+                    className="lime"
+                  ></div>
+                </li>
+                <li className={this.state.color==="green" ? "sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="green"
+                    className="green"
+                  ></div>
+                </li>
+                <li className={this.state.color==="aqua" ? "sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="aqua"
+                    className="aqua"
+                  ></div>
+                </li>
+                <li className={this.state.color==="teal" ? " sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="teal"
+                    className="teal"
+                  ></div>
+                </li>
+                <li className={this.state.color==="blue" ? "sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="blue"
+                    className="blue"
+                  ></div>
+                </li>
+                <li className={this.state.color==="navy" ? "sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="navy"
+                    className="navy"
+                  ></div>
+                </li>
+                <li className={this.state.color==="fuchsia" ? "sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="fuchsia"
+                    className="fuchsia"
+                  ></div>
+                </li>
+                <li className={this.state.color==="purple" ? "sombreado":""}>
+                  <div
+                    type="button"
+                    onClick={e => this.getColor(e)}
+                    id="purple"
+                    className="purple"
+                  ></div>
+                </li>
+              </ul>
+            </div>
             <Sketch
               onclick
               mouseWheel={
@@ -371,22 +545,112 @@ export default class board extends React.Component {
               touchStarted={e => this.mousePressed(e)}
               mouseReleased={e => this.mouseReleased(e)}
             />
-          ) : null}
-        </div>
+            <div className="divCuadro contSize">
+              TAMAÑO
+              <ul className="ulSize">
+                <li className={this.state.size==="4" ? " sombreado":""}>
+                  <div
+                    onClick={e => this.getSize(e)}
+                    className="size-4"
+                    id="4"
+                  ></div>
+                </li>
+                <li className={this.state.size==="8" ? " sombreado":""}>
+                  <div
+                    onClick={e => this.getSize(e)}
+                    className="size-8"
+                    id="8"
+                  ></div>
+                </li>
+                <li className={this.state.size==="12" ? "sombreado":""}>
+                  <div
+                    onClick={e => this.getSize(e)}
+                    className="size-12"
+                    id="12"
+                  ></div>
+                </li>
+                <li className={this.state.size==="16" ? "sombreado":""}>
+                  <div
+                    onClick={e => this.getSize(e)}
+                    className="size-16"
+                    id="16"
+                  ></div>
+                </li>
+                <li className={this.state.size==="20" ? "sombreado":""}>
+                  <div
+                    onClick={e => this.getSize(e)}
+                    className="size-20"
+                    id="20"
+                  ></div>
+                </li>
+                <li className={this.state.size==="24" ? "sombreado":""}>
+                  <div
+                    onClick={e => this.getSize(e)}
+                    className="size-24"
+                    id="24"
+                  ></div>
+                </li>
+              </ul>
+              OPCIONES
+              <ul className="ulOptions">
+                <li className={this.state.clear ? "iclear sombreado":"iclear"}>
+                  <i  className="material-icons" onClick={() => this.clear()}>
+                    refresh
+                  </i>
+                </li>
+                <li className={this.state.draft ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.draft()}>
+                    how_to_vote
+                  </i>
+                </li>
+                <li className={this.state.pencil ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.pencil()}>
+                    create
+                  </i>
+                </li>
+                <li className={this.state.circle ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.circle()}>
+                    panorama_fish_eye
+                  </i>
+                </li>
+                <li className={this.state.rect ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.rect()}>
+                    check_box_outline_blank
+                  </i>
+                </li>
+                <li className={this.state.triangle ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.triangle()}>
+                    change_history
+                  </i>
+                </li>
+                <li className={this.state.line ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.line()}>
+                    remove
+                  </i>
+                </li>
+                {/* <li className={this.state.text ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.text()}>
+                    title
+                  </i>
+                </li> */}
+              </ul>
+            </div>
+            </div>
+            ) : null}
         <ul className="divPalette">
           <li className="liPalette liColor">
             <div className="divCuadro contColor">
               COLORES
               <ul className="ulcolors">
-                <li>
+                <li className={this.state.color==="white" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
                     id="white"
-                    className="white"
+                    className="white "
                   ></div>
                 </li>
-                <li>
+                <li className={ this.state.color==="silver" ?"sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -394,7 +658,7 @@ export default class board extends React.Component {
                     className="silver"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="gray" ? " sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -402,7 +666,7 @@ export default class board extends React.Component {
                     className="gray"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="black" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -410,7 +674,7 @@ export default class board extends React.Component {
                     className="black"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="red" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -418,7 +682,7 @@ export default class board extends React.Component {
                     className="red"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="maroon" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -426,7 +690,7 @@ export default class board extends React.Component {
                     className="maroon"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="yellow" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -434,7 +698,7 @@ export default class board extends React.Component {
                     className="yellow"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="olive" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -442,7 +706,7 @@ export default class board extends React.Component {
                     className="olive"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="lime" ? " sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -450,7 +714,7 @@ export default class board extends React.Component {
                     className="lime"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="green" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -458,7 +722,7 @@ export default class board extends React.Component {
                     className="green"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="aqua" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -466,7 +730,7 @@ export default class board extends React.Component {
                     className="aqua"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="teal" ? " sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -474,7 +738,7 @@ export default class board extends React.Component {
                     className="teal"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="blue" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -482,7 +746,7 @@ export default class board extends React.Component {
                     className="blue"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="navy" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -490,7 +754,7 @@ export default class board extends React.Component {
                     className="navy"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="fuchsia" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -498,7 +762,7 @@ export default class board extends React.Component {
                     className="fuchsia"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.color==="purple" ? "sombreado":""}>
                   <div
                     type="button"
                     onClick={e => this.getColor(e)}
@@ -513,42 +777,42 @@ export default class board extends React.Component {
             <div className="divCuadro contSize">
               TAMAÑO
               <ul className="ulSize">
-                <li>
+                <li className={this.state.size==="4" ? " sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
                     className="size-4"
                     id="4"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="8" ? " sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
                     className="size-8"
                     id="8"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="12" ? "sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
                     className="size-12"
                     id="12"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="16" ? "sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
                     className="size-16"
                     id="16"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="20" ? "sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
                     className="size-20"
                     id="20"
                   ></div>
                 </li>
-                <li>
+                <li className={this.state.size==="24" ? "sombreado":""}>
                   <div
                     onClick={e => this.getSize(e)}
                     className="size-24"
@@ -559,39 +823,45 @@ export default class board extends React.Component {
             </div>
           </li>
           <li className="liPalette liClear">
-            <div className="divCuadro contSize">
+            <div className="divCuadro contOption">
+              OPCIONES
               <ul className="ulOptions">
-                <li className="iclear">
-                  <i className="material-icons" onClick={() => this.clear()}>
+                <li className={this.state.clear ? "iclear sombreado":"iclear"}>
+                  <i  className="material-icons" onClick={() => this.clear()}>
                     refresh
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className="material-icons" onClick={() => this.circle()}>
-                    panorama_fish_eye
+                <li className={this.state.draft ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.draft()}>
+                    how_to_vote
                   </i>
                 </li>
-                <li className="iclear">
-                  <i className="material-icons" onClick={() => this.rect()}>
-                    check_box_outline_blank
-                  </i>
-                </li>
-                <li className="iclear">
-                  <i className="material-icons" onClick={() => this.triangle()}>
-                    change_history
-                  </i>
-                </li>
-                <li className="iclear">
+                <li className={this.state.pencil ? "iclear sombreado":"iclear"}>
                   <i className="material-icons" onClick={() => this.pencil()}>
                     create
                   </i>
                 </li>
-                <li className="iclear">
+                <li className={this.state.circle ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.circle()}>
+                    panorama_fish_eye
+                  </i>
+                </li>
+                <li className={this.state.rect ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.rect()}>
+                    check_box_outline_blank
+                  </i>
+                </li>
+                <li className={this.state.triangle ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.triangle()}>
+                    change_history
+                  </i>
+                </li>
+                <li className={this.state.line ? "iclear sombreado":"iclear"}>
                   <i className="material-icons" onClick={() => this.line()}>
                     remove
                   </i>
                 </li>
-                {/* <li className="iclear">
+                {/* <li className={this.state.text ? "iclear sombreado":"iclear"}>
                   <i className="material-icons" onClick={() => this.text()}>
                     title
                   </i>
@@ -600,7 +870,13 @@ export default class board extends React.Component {
             </div>
           </li>
         </ul>
-        <div
+        {/* <div className="textoinput">
+          <textarea name="" id="" cols="30" rows="10">
+            asdasdasdasdasd
+          </textarea>
+        </div> */}
+
+        {/* <div
           id="modal-general_container"
           className={
             this.state.Show === 0 ? "" : this.state.Show === 1 ? "six" : this.state.Show === 2 ? "six out" : ""
@@ -659,7 +935,7 @@ export default class board extends React.Component {
               </svg>
             </div>
           </div>
-        </div>
+        </div> */}
       </>
     );
   }
