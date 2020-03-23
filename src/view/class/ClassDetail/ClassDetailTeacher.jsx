@@ -5,6 +5,7 @@ import NavClass from "./NavClass";
 import Upload from "../../classAndCourse/upload/Upload";
 import './ClassDetail.sass'
 import AllQuestions from "./AllQuestions";
+import trivia  from "module";
 export default class ClassDetailTeacher extends Component {
   constructor(props) {
     super(props)
@@ -273,7 +274,7 @@ export default class ClassDetailTeacher extends Component {
                       </div>
                     </div>
                   </div>  
-                  <div className="Item-card__text">
+                  <div className="Item-card__textTrivia">
                     <div className="footerTriviaClass">
                       <button className="modal-body__button backCursos" onClick={() => this.setShow() + this.clearAll()}>
                         <div className="button-zoom">AGREGAR PREGUNTA</div>
@@ -284,7 +285,7 @@ export default class ClassDetailTeacher extends Component {
                       {this.state.preguntas.length > 0 ? (
                         this.state.preguntas.map((questions, id) => (
                       <li className="Question-cards" key={id}>
-                        {/* {questions.question} */}
+                        {/* {questions.question} */} 
                         <AllQuestions
                           vistaBancoPreguntas={this.vistaBancoPreguntas}
                           id_class={questions.id_class}
@@ -294,10 +295,11 @@ export default class ClassDetailTeacher extends Component {
                           answer2={questions.answer2}
                           answer3={questions.answer3}
                           answer4={questions.answer4}
+                          correctAnswer={question.correctAnswer}
                           />
                       </li>
                         ))
-                          ) : (<h3 className="Questioncards-nullcards">Cargando cursos... Si no tiene, puede crear uno.</h3>
+                            ) : (<h3 className="Questioncards-nullcards">Cargando cursos... Si no tiene, puede crear uno.</h3>
                       )}
                       
                     </ul>

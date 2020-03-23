@@ -170,7 +170,6 @@ export default class Trivia extends React.Component {
                 </div>
               </div>
             </div>
-
         }
 
 
