@@ -21,19 +21,19 @@ export default class Chat extends Component
           { pin: this.props.id_access }
       })
      
-    componentDidMount(){    
-      const name = localStorage.getItem("name")
-      const lastName = localStorage.getItem("lastName")
-      this.setState({
-        name: name,
-        lastName : lastName
-      })
+    componentDidMount(){
+      setTimeout(() => {
+        const name = localStorage.getItem("name")
+        const lastName = localStorage.getItem("lastName")
+        this.setState({
+          name: name,
+          lastName : lastName
+        })      
+      
 
       console.log(name);
       console.log(lastName);
-      console.log(this.props.id_access);
-      console.log(this.props.name);
-      console.log(this.lastName);
+      }, 4000);    
 
       this.socket.on('TeachWriting',(data) => {
         if(data.pin === (this.props.id_access).toUpperCase()) {
