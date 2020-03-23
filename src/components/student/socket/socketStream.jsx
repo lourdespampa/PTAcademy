@@ -123,6 +123,7 @@ export default class Audio extends Component {
             const overlayDiapo = document.getElementById('overlay')
             const popupDiapo = document.getElementById('popup')
             this.openPopup(overlayDiapo.id, popupDiapo.id)}
+            this.setState({showGrupo:2});
         })
         socket.on('closeSlidesS', (data) => {
             const pinTeacher = this.pin.toUpperCase();
@@ -152,6 +153,7 @@ export default class Audio extends Component {
             const pinTeacher = this.pin.toUpperCase();
             if(data.pin === (pinTeacher).toUpperCase()) {
             this.enviarvideo(data.url)}
+            this.setState({showGrupo:2});
         })
         socket.on('closeVideo', (data) => {
             const pinTeacher = this.pin.toUpperCase();
@@ -245,6 +247,7 @@ export default class Audio extends Component {
 
             overlay_popup.className = 'overlay active'
             popup.className = 'popup active '}
+            this.setState({showGrupo:2});
         })
         socket.on('closeForm', (data) => {
             const pinTeacher = this.pin.toUpperCase();

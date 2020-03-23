@@ -115,6 +115,15 @@ class Header extends React.Component {
     const socket = io(this.props.socketUrl, {
       query: { pin: this.props.id_access }
     });
+    var varToken = localStorage.getItem("token");
+    const res = axios({
+      url: `${this.props.apiUrl}/v1/api/teacher/change_state_all_students/${this.props.id_class}`,
+      method: "get",
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    });
+    console.log(res.data);
     socket.emit("ExitSocket");
   };
   UNSAFE_componentWillMount = async () => {
@@ -126,6 +135,7 @@ class Header extends React.Component {
     localStorage.clear();
     this.setState({ token: false });
     this.ExitSocket();
+    
   };
   render() {
     return (
