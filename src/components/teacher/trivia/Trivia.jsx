@@ -437,6 +437,26 @@ class Trivia extends React.Component {
                     <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                   </button>
                   <h2>Banco de preguntas</h2>
+                  {/* <div className="QuestionsListClass">
+                    <div className="QuestionsCards">
+                        {this.props.question}
+                        <button className="classTrivia__button-Edit" onClick={() => this.ShowAnswer(true)}>
+                             <i className="far fa-eye"></i>
+                        </button>
+                        <button className="classTrivia__button-Edit" onClick={() => this.ShowAnswer(false)}>
+                            <i class="far fa-eye-slash"></i>
+                        </button>
+                        {this.state.see ? (
+                        <div id="AnswersCards">
+                            <p>{this.props.answer1}</p>
+                            <p>{this.props.answer2}</p>
+                            <p>{this.props.answer3}</p>
+                            <p>{this.props.answer4}</p>
+                        </div>) : ( 
+                            <div id="AnswersCards"></div>
+                        )}
+                    </div>
+                </div> */}
                 </div>
               </div>
               :
