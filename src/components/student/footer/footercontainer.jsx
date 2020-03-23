@@ -1,18 +1,24 @@
 import React from 'react';
 import './footerStyles.sass';
+import Chat from '../chat/chat_stud'
 
 export default function footercontainer(props) {
   return (
     <>
+     
+     <Chat name={props.name} lastName={props.lastName} socketUrl={props.socketUrl} id_access={props.id_access} />
       <footer id="footer" className="fixed-footer">
+      
         {/* se esta poniendo el class name */}
         <div className="slide-container">
+          <span>hola</span>
               <a id="btn-abrir-popup"href style={{right :"auto",left:"10px",position: "absolute"}} className="btn-abrir-popup">
                 <div className="envoltura" onClick={()=>props.openPopup('overlay','popup')} style={{width: "100%" ,height: "100%", position: "absolute", pointerEvents:"none"}}></div>
                 <iframe title="iframe" id="diminute" className="miniatura" src=""  style={{background: "url(https://s3-us-west-2.amazonaws.com/joinnus.com/user/308917/avatar.jpg) no-repeat",backgroundsize: "cover", pointerEvents:"none"}}>
                 </iframe>
               </a>
         </div>
+      
         {/* <div className="overlay" id="overlay" style={{pointerEvents:"none"}}>
           <div className="popup" id="popup">
               <a href onClick={()=>props.closePopup('overlay','popup')} id="btn-cerrar-popup" className="btn-cerrar-popup"><p>X</p></a>

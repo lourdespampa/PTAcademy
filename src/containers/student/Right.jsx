@@ -1,13 +1,17 @@
-import React, { Component } from "react";
+import React from 'react';
 
-export default class Right extends Component {
-  render() {
-    return (
-      <div>
-        <div class="teacherCourses__floatingActionButton teacherCourses_editStudent">
-          <i class="fas fa-edit"></i>
-        </div>
-      </div>
-    );
-  }
+import RightContainer from '../../components/student/chat/chat_stud'
+
+class Right extends React.Component{
+
+    render(){
+        return(
+        
+            <RightContainer socketUrl={this.props.socketUrl} id_access={this.props.id_access} id_student={this.props.id_student} 
+            name={this.props.name} lastName={this.props.lastName} apiUrl={this.props.apiUrl}/>
+    
+        )
+    }
 }
+
+export default Right
