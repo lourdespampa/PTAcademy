@@ -11,6 +11,7 @@ import LoginStu from "./view/login.Stud/login.stu";
 import FormLoginStu from "./view/login.Stud/login.dataForm";
 import Index from "./view/index/Inicio";
 import CourseDetailTeacher from "./view/courses/CourseDetail/CourseDetail";
+import FormTeacher from './view/class/Forms'
 // se va poner los componentes de dos login de alumnos
 import LoginSchool from "./view/login.Stud/loginSchool";
 import LoginPrivate from "./view/login.Stud/loginPrivate";
@@ -49,6 +50,13 @@ export default class Access extends Component {
             exact
             path="/loginTeacher"
             component={() => <Login apiUrl={this.state.apiUrl} />}
+          />
+          <Route
+            exact
+            path="/CoursesTeacher/form/:id"
+            component={props => (
+              <FormTeacher {...props} apiUrl={this.state.apiUrl} />
+            )}
           />
           <Route
             exact

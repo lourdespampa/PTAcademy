@@ -88,12 +88,18 @@ export default class NavCourse extends Component {
         {this.state.token ? null : <Redirect to="/"></Redirect>}
         <header className="teacherCourses__main-header">
           <div className="teacherCourses__l-container teacherCourses__main-header__block">
-            <h3>
-              Bienvenido(a){" "}
-              {this.props.nombreProfesor.replace(/\w\S*/g, s =>
-                s.replace(/^\w/, c => c.toUpperCase())
-              )}{" "}
-            </h3>
+            {this.props.agregarX === "formulario" ?
+             <h3>
+               bienvenido(a)
+             </h3> : (
+              <h3>
+                Bienvenido(a){" "}
+                {this.props.nombreProfesor.replace(/\w\S*/g, s =>
+                  s.replace(/^\w/, c => c.toUpperCase())
+                )}{" "}
+              </h3>
+            )}
+
             <div
               className="teacherCourses__main-menu-toggle"
               id="main-menu-toggle"
@@ -101,7 +107,19 @@ export default class NavCourse extends Component {
             ></div>
             <nav className="teacherCourses__main-nav" id="main-nav">
               <ul className="teacherCourses__main-menu">
-                <li className="teacherCourses__main-menu__item">
+                {this.props.agregarX ==='formulario' ? (
+                  <li className="teacherCourses__main-menu__item">
+                      <Link
+                        to={`/CoursesTeacher/${this.props.idteacher}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <div className="teacherCourses__main-menu__addCourse">
+                          Regresar a cursos
+                        </div>
+                      </Link>
+                  </li>
+                ): (
+                  <li className="teacherCourses__main-menu__item">
                   <ModalAddCourseAndClass
                     apiUrl={this.props.apiUrl}
                     idteacher={this.props.idteacher}
@@ -111,6 +129,8 @@ export default class NavCourse extends Component {
                     menuToggleNavbar={this.AbriryCerrar}
                   ></ModalAddCourseAndClass>
                 </li>
+                )}
+               
                 {this.props.agregarX === "clase" ? (
                   <>
                     <li className="teacherCourses__main-menu__item">
@@ -123,16 +143,16 @@ export default class NavCourse extends Component {
                         </div>
                       </Link>
                     </li>
-                    {/* <li className="teacherCourses__main-menu__item">
+                    <li className="teacherCourses__main-menu__item">
                       <Link
-                        to={`/CoursesTeacher/${this.props.idteacher}`}
+                        to={`/CoursesTeacher/form/${this.props.idteacher}`}
                         style={{ textDecoration: "none" }}
                       >
                         <div className="teacherCourses__main-menu__addCourse">
-                          Formularios
+                          Formulario
                         </div>
                       </Link>
-                    </li> */}
+                    </li>
                   </>
                 ) : null}
                 <li className="teacherCourses__main-menu__item">

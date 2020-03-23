@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class right extends Component {
+export default class NavForm extends Component {
     render() {
         return (
             <div>
-                
+                formulario
             </div>
         )
     }

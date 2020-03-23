@@ -4,6 +4,7 @@ import NavCourse from "./NavCourseDetail";
 import axios from "axios";
 import iconExit from "../../../img/cerrar.png";
 export default class CourseDetail extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
