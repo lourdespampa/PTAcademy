@@ -3,6 +3,6 @@
   visibility: hidden;
 }*/
 
-.blockly {
-  visibility: visible;
+.categoria {
+  display: none;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/text_code.css';
-import '../App';
+import '../AppStudent';
 
 
 class Arduino extends React.Component {

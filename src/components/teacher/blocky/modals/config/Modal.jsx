@@ -100,7 +100,7 @@ class Menu extends React.Component {
             positivos.push({[element] : p})
           
         }
-        this.props.cambioCategorias(positivos)
+        // this.props.cambioCategorias(positivos)
         this.setState({ modalIsOpen: false });
         
     }

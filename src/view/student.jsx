@@ -5,7 +5,7 @@ import Index from '../pages/student/Index'
 import Trivia from '../pages/student/Trivia'
 import Temporizador from '../pages/student/temporizador'
 import Board from '../pages/student/board'
-import Blockly from '../components/student/blocky/App'
+import Blockly from '../components/student/blocky/AppStudent'
 import Access from '../access'
 //socket initial
 import io from 'socket.io-client';
