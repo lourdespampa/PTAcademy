@@ -16898,4 +16898,10 @@ declare module Blockly.Msg {
 
     /** @type {string} */
     var COLLAPSED_WARNINGS_WARNING: string;
+
+    /**@type {string} */
+    var INOUT_DIGITAL_WRITE_APPENDTEXT_PIN: string;
+    
+    /**@type {string} */
+    var INOUT_DIGITAL_WRITE_APPENDTEXT_PIN: string;
 }

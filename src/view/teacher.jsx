@@ -11,6 +11,7 @@ import Pizarra from "../pages/teacher/Pizarra";
 import Access from "../access";
 import NotFound from "./404/NotFound";
 import Bloque from '../components/teacher/blocky/App'
+
 //socket initial
 // import io from 'socket.io-client'; //no se esta usando
 //
@@ -21,7 +22,6 @@ export default class Views extends Component {
     this.state = {
       socket: null,
       class: "clase3",
-      // socketUrl:"http://localhost:8080/teacher",
       socketUrl: "https://socket.playtecedu.com/teacher",
       user: null,
       id: "",
@@ -160,6 +160,7 @@ export default class Views extends Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={() => <Access />} />
+          
           <Route
             exact
             path="/CoursesTeacher/:id"
@@ -179,7 +180,7 @@ export default class Views extends Component {
             changeOn={this.changeOn}
             apiUrl={this.props.apiUrl}
             txt={this.state.txt}
-          >
+          >            
             <Route
               exact
               path="/teacher/:id_class/:id_access"

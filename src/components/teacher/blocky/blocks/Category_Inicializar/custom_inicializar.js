@@ -4,28 +4,59 @@ import '../../fields/BlocklyReactField';
 import '../../fields/DateField';
 
 //*1er Bloque//
-var reactSetup = {
-
+var ReactInitSetup = {
+    nextStatement: null,
     type: "react_setup",
-    message0: "%{BKY_CONTROLS_IF_MSG_IF} %1",
-    args0: [{
-        type: "input_value",
-        name: "IF0",
-        check: "Boolean"
-    }],
-    message1: "%{BKY_CONTROLS_IF_MSG_THEN} %1",
+    message0: "%{BKY_INITIALIZES_SETUP_APPENDTEXT}",
+    message1: "%1",
     args1: [{
         type: "input_statement",
-        name: "DO0"
+        name: "CONTENT"
     }],
-    previousStatement: null,
-    nextStatement: null,
-    style: "logic_blocks",
-    helpUrl: "%{BKY_CONTROLS_IF_HELPURL}",
+    colour: 0,
+    tooltip: "%{BKY_INITIALIZES_SETUP_TOOLTIP}",
+    helpUrl: "%{BKY_INITIALIZES_SETUP_HELPURL}",
 }
 Blockly.Blocks['react_setup'] = {
     init: function () {
-        this.jsonInit(reactSetup);
-        this.setStyle('logic_blocks');
+        this.jsonInit(ReactInitSetup);
+    }
+};
+
+/* 2er Bloque  */
+var ReactInitLoop = {
+    previousStatement: null,
+    type: "react_initializes_loop",
+    message0: "%{BKY_INITIALIZES_LOOP_APPENDTEXT}",
+    message1: "%1",
+    args1: [{
+        type: "input_statement",
+        name: "CONTENT"
+    }],
+    colour: 0,
+    tooltip: "%{BKY_INITIALIZES_LOOP_TOOLTIP}",
+    helpUrl: "%{BKY_INITIALIZES_LOOP_HELPURL}",
+}
+Blockly.Blocks['react_initializes_loop'] = {
+    init: function () {
+        this.jsonInit(ReactInitLoop);
+    }
+};
+/* 3er bloque  */
+var ReactInitTemp = {
+    type: "react_initializes_temp",
+    message0: "%{BKY_INITIALIZES_TEMP_APPENDTEXT}",
+    message1: "%1",
+    args1: [{
+        type: "input_statement",
+        name: "CONTENT"
+    }],
+    colour: 0,
+    tooltip: "%{BKY_INITIALIZES_TEMP_TOOLTIP}",
+    helpUrl: "%{BKY_INITIALIZES_TEMP_HELPURL}",
+}
+Blockly.Blocks['react_initializes_temp'] = {
+    init: function () {
+        this.jsonInit(ReactInitTemp);
     }
 };

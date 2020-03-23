@@ -4,7 +4,7 @@ import "./cardCourses.sass";
 import axios from 'axios';
 export default class AllCourses extends Component {
   constructor(props) {
-    super(props)
+    super(props) 
     this.state = {
       cursoConAlumnos: true,
       hola: "holamunod"

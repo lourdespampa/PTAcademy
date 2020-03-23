@@ -84,9 +84,16 @@ export default class GrupoPage extends Component {
         console.log("error",err)
       })
     }
-    
-    
   };
+
+  closeModalGrupo(){
+    const socket = io(this.props.socketUrl,{
+      query: {pin:this.props.id_access}
+    });
+    this.setState({ showModal: 2})
+    socket.emit('closeModalGrupo')
+  }
+  
   groupGenerator = () => {
     this.setState({
       Refrescar:true,

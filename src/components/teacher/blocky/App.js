@@ -8,27 +8,49 @@ import Generar from "./Code/generar";
 import Blockly from "./blockly copy/blockly";
 import BlocklyJSA from "./Code/Arduino";
 import BlocklyComponent from "./Blockly";
-import Menu from "./Code/Modal";
-
+import AlertDialog from "./modals/config/Modal.jsx";
 //Categorias//
 import CategoryBucles from "./blocks/Category_Bucles/categ_bucle.jsx";
 import CategoryLogica from "./blocks/Category_Logic/cate_logic.jsx";
-import CategoryMath from "./blocks/Category_Math/cate_math.jsx";
+import CategoryMath from "./blocks/Category_Math/cate_math";
 import CategoryInicial from "./blocks/Category_Inicializar/cate_inicializar"
 import CategoryText from "./blocks/Category_Text/cate_text.jsx";
+import CategoryVariable from "./blocks/Category_Variables/categ_variable";
+import CategoryDigital from "./blocks/Category_Digital/categ_digital";
+import CategoryFuncion from "./blocks/Category_Function/categ_funcion.jsx";
+
+import CategoryAnalog from "./blocks/Category_Analog/categ_analog.jsx";
+import CategorySerial from "./blocks/Category_Serial/cate_serial.jsx";
+import CategoryTone from "./blocks/Category_Tone/categ_tone"
+import CategoryTime from "./blocks/Category_Timer/categ_timer";
+import CategoryServo from "./blocks/Category_Servo/categ_Servo"
+import CategoryRobot from "./blocks/Category_Robot/Category_Engines/categ_engines";
 
 
-class App extends React.Component {
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      "PlayBot": false,
+      "lcd": false,
+      "ultrasonic": false,
+      "Bluetooth": false,
+      "RFID": false,
+      "Sensores": false
+    }
+    let l = Blockly.Block.prototype.getInputsInline 
+    
+  }
+
   generateXml = () => {
+
     const newXml = Blockly.Xml.domToText(
       Blockly.Xml.workspaceToDom(this.simpleWorkspace.workspace)
     );
-    console.log(newXml);
+    console.log(newXml)
   };
   generateCode = () => {
     var code = BlocklyJSA.workspaceToCode(this.simpleWorkspace.workspace);
-
-
     document.getElementById("content_arduino").value = code;
 
     var arduino = document.getElementById("content_arduino");
@@ -36,7 +58,6 @@ class App extends React.Component {
     arduino.style.visibility = "visible"
     bloques.style.visibility = "hidden"
   };
-
   Bloques = () => {
     var bloques = document.getElementById("bloques");
     var arduino = document.getElementById("content_arduino");
@@ -48,7 +69,10 @@ class App extends React.Component {
       arduino.style.visibility = "hidden";
     }
   };
+  ConfLang = ()=>{
+   // let modal = document.querySelector("#ModalLang") 
 
+  }
   render() {
     return (
       <div name="app">
@@ -61,8 +85,11 @@ class App extends React.Component {
         <button type="button" onClick={this.generateXml}>
           Xml
         </button>
-        <Menu />
+        <AlertDialog
+          // cambioCategorias={this.handleChangeOtrosComponent.bind(this)}
+        />
         <Generar />
+
         <div id="bloques" className="blockly">
           <header className="App-header">
             <BlocklyComponent
@@ -76,9 +103,18 @@ class App extends React.Component {
             >
               <CategoryLogica />
               <CategoryBucles />
-              <CategoryMath />
+              <CategoryMath /> 
               <CategoryText />
+              <CategoryVariable />
+              <CategoryFuncion />
               <CategoryInicial />
+              <CategoryDigital /> 
+              <CategoryAnalog />
+              <CategorySerial /> 
+              <CategoryTone />
+              <CategoryTime />
+              <CategoryServo />
+              <CategoryRobot/>
             </BlocklyComponent>
           </header>
         </div>
@@ -87,4 +123,3 @@ class App extends React.Component {
   }
 }
 
-export default App;

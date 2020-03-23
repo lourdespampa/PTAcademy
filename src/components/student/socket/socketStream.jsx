@@ -217,7 +217,12 @@ export default class Audio extends Component {
             console.log('escucha el alum')
             this.setState({show:1});
             document.getElementById("modal_luckyStudent").innerHTML = data.data;
-            
+            }
+        })
+        socket.on('closeModalAzar',  (data) =>{
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
+                this.setState({show:2});
             }
         })
         //ROULETTE END 

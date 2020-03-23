@@ -20,6 +20,11 @@ export default class FormPostCourse extends Component {
       [name]: value
     });
   };
+
+  changeLenguage (env){
+    console.log('hola mundo')
+    
+  }
   handleCleanInput = () => {
     this.setState({class_name: "", desc: ""})
   }
@@ -50,7 +55,7 @@ export default class FormPostCourse extends Component {
               required
               placeholder="Ingrese la descripción de la clase"
             />
-            <Upload EditDiapo={false} handleClose={this.props.handleClose} handleEnableX={this.props.handleEnableX} handleDisableX={this.props.handleDisableX} cleanInputs={this.handleCleanInput} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc} apiUrl={this.props.apiUrl}   ></Upload>
+            <Upload EditDiapo={false} handleClose={this.props.handleClose} handleEnableX={this.props.handleEnableX} handleDisableX={this.props.handleDisableX} cleanInputs={this.handleCleanInput} idteacher={this.props.idteacher}  idcourse={this.props.idcourse} class_name={this.state.class_name} desc={this.state.desc} apiUrl={this.props.apiUrl}></Upload>
           </Form.Group>
       </>
     );
