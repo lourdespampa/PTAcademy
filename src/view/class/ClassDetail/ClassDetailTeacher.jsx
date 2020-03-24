@@ -93,6 +93,7 @@ export default class ClassDetailTeacher extends Component {
     })
 
     this.setState({ "newQuestionModal": 2 });
+    this.vistaBancoPreguntas()
 
   }
   vistaBancoPreguntas = () => {
