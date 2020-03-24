@@ -42,6 +42,7 @@ export default class AllQuestions extends Component {
                             <p>{this.props.answer2}</p>
                             <p>{this.props.answer3}</p>
                             <p>{this.props.answer4}</p>
+                            {this.vistaBancoPreguntas}
                         </div>) : ( 
                             <div id="AnswersCards"></div>
                         )}
