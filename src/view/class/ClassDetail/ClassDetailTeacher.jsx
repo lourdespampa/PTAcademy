@@ -154,7 +154,7 @@ export default class ClassDetailTeacher extends Component {
                     Diapositivas
                       </div><br />
                   <div className="Item-card__text">
-                    <Upload EditDiapo={true} id_class={this.state.id_class} fileActual={[{
+                    <Upload EditDiapo={true} apiUrl={this.props.apiUrl} id_class={this.state.id_class} fileActual={[{
                       name: this.state.fileActual,
                       lastModified: 1568327872965,
                       webkitRelativePath: "",
