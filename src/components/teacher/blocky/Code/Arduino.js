@@ -9,7 +9,7 @@
 	return""
 */
 /* eslint-disable */
-;
+
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) { // AMD
     define(['../blockly copy/core'], factory);
@@ -71,8 +71,260 @@
     [Blockly.Arduino.ORDER_LOGICAL_AND, Blockly.Arduino.ORDER_LOGICAL_AND],
     [Blockly.Arduino.ORDER_LOGICAL_OR, Blockly.Arduino.ORDER_LOGICAL_OR]
   ];
+  var profile = {
+    common: {
+      number_type: "Number Byte Unsigned_Int Long Unsigned_Long Word Char Float Double Volatile_Int".split(" ")
+    },
+    arduino: {
+      description: "Arduino standard-compatible board",
+      digital: [
+        ["0", "0"],
+        ["1", "1"],
+        ["2", "2"],
+        ["3", "3"],
+        ["4", "4"],
+        ["5", "5"],
+        ["6", "6"],
+        ["7", "7"],
+        ["8", "8"],
+        ["9", "9"],
+        ["10", "10"],
+        ["11", "11"],
+        ["12", "12"],
+        ["13", "13"],
+        ["14", "14"],
+        ["15", "15"],
+        ["16", "16"],
+        ["17", "17"]
+      ],
+      grove_digital: [
+        ["D2", "2"],
+        ["D3", "3"],
+        ["D4", "4"],
+        ["D5", "5"],
+        ["D6", "6"],
+        ["D7", "7"],
+        ["D8", "8"],
+        ["D10", "10"],
+        ["D11",
+          "11"
+        ],
+        ["D12", "12"],
+        ["A0", "A0"],
+        ["A1", "A1"],
+        ["A2", "A2"],
+        ["A3", "A3"]
+      ],
+      //bluetooth 1
+      rxtx: [
+        ["0-RX", "0"],
+        ["1-TX", "1"],
+        ["2", "2"],
+        ["3", "3"],
+        ["4", "4"],
+        ["5", "5"],
+        ["6", "6"],
+        ["7", "7"],
+        ["8", "8"],
+        ["9", "9"],
+        ["10", "10"],
+        ["11", "11"],
+        ["12", "12"]
+      ],
+
+      //pontenciometro
+
+      sensor_range: [
+        ["%", "PERCENT"],
+        ["0..1023",
+          "RAW"
+        ]
+      ],
+      digital_4: [
+        ["0-RX", "0"],
+        ["1-TX", "1"],
+        ["2", "2"],
+        ["3", "3"],
+        ["4", "4"],
+        ["5", "5"],
+        ["6", "6"],
+        ["7", "7"],
+        ["8", "8"],
+        ["9", "9"],
+        ["10", "10"],
+        ["11", "11"],
+        ["12", "12"],
+        ["13", "13"],
+        ["A0", "A0"],
+        ["A1", "A1"],
+        ["A2", "A2"],
+        ["A3", "A3"],
+        ["A4", "A4"],
+        ["A5", "A5"]
+      ],
+
+
+      analog: [
+        ["A0", "A0"],
+        ["A1", "A1"],
+        ["A2", "A2"],
+        ["A3", "A3"],
+        ["A4", "A4"],
+        ["A5", "A5"],
+        ["A6", "A6"],
+        ["A7", "A7"]
+      ],
+      analog_2: [
+        ["A0", "A0"],
+        ["A1", "A1"],
+        ["A2", "A2"],
+        ["A3", "A3"],
+        ["A4", "A4"],
+        ["A5", "A5"]
+      ],
+      grove_analog: [
+        ["A0", "A0"],
+        ["A1", "A1"],
+        ["A2", "A2"],
+        ["A3", "A3"]
+      ],
+      pwm: [
+        ["0", "0"],
+        ["1", "1"],
+        ["2", "2"],
+        ["3", "3"],
+        ["4", "4"],
+        ["5", "5"],
+        ["6", "6"],
+        ["7", "7"],
+        ["8", "8"],
+        ["9", "9"],
+        ["10", "10"],
+        ["11", "11"],
+        ["12", "12"],
+        ["13", "13"],
+        ["14", "14"],
+        ["15", "15"],
+        ["16", "16"],
+        ["17", "17"]
+      ],
+      serial: 9600,
+      tone: [
+        ["C:Do", "262"],
+        ["D:Re", "294"],
+        ["E:Mi", "330"],
+        ["F:Fa", "349"],
+        ["G:So", "392"],
+        ["A:La", "440"],
+        ["B:Ti", "494"],
+        ["C:Do", "523"]
+      ],
+      lcd: [
+        ["-", "-"],
+        ["0", "0"],
+        ["1", "1"],
+        ["2", "2"],
+        ["3", "3"],
+        ["4", "4"],
+        ["5", "5"],
+        ["6", "6"],
+        ["7", "7"],
+        ["8", "8"],
+        ["9", "9"],
+        ["10", "10"],
+        ["11", "11"],
+        ["12", "12"],
+        ["13", "13"],
+        ["A0", "A0"],
+        ["A1", "A1"],
+        ["A2", "A2"],
+        ["A3", "A3"],
+        ["A4", "A4"],
+        ["A5", "A5"]
+      ],
+      dht: [
+        ["DHT11", "DHT11"],
+        ["DHT21", "DHT21"],
+        ["DHT22", "DHT22"]
+      ],
+      i2c_matrix_type: [
+        ["8x8", "8x8matrix"],
+        ["16x8", "8x16matrix"],
+        ["bi_color8x8", "BicolorMatrix"]
+      ],
+      led_backpack_address: [
+        ["0x70", "0x70"],
+        ["0x71", "0x71"],
+        ["0x72", "0x72"],
+        ["0x73", "0x73"]
+      ],
+      blynk_merge_index: [
+        ["0", "0"],
+        ["1", "1"],
+        ["2", "2"]
+      ],
+      shield_bot_sensor: [
+        ["1", "1"],
+        ["2", "2"],
+        ["3", "3"],
+        ["4", "4"],
+        ["5", "5"]
+      ],
+      interrupt: [
+        ["2", "0"],
+        ["3", "1"]
+      ],
+      //PULSADOR PIN
+
+      ir_remote_button: [
+        ["Power", "POWER"],
+        ["A", "A"],
+        ["B", "B"],
+        ["C", "C"],
+        ["Up", "UP"],
+        ["Down", "DOWN"],
+        ["Left", "LEFT"],
+        ["Right", "RIGHT"],
+        ["Select", "SELECT"]
+      ]
+    },
+    arduino_mega: {
+      description: "Arduino Mega-compatible board",
+      analog: [
+        ["A0", "A0"],
+        ["A1", "A1"],
+        ["A2", "A2"],
+        ["A3", "A3"],
+        ["A4", "A4"],
+        ["A5", "A5"],
+        ["A6", "A6"],
+        ["A7", "A7"],
+        ["A8", "A8"],
+        ["A9", "A9"],
+        ["A10", "A10"],
+        ["A11", "A11"],
+        ["A12", "A12"],
+        ["A13", "A13"],
+        ["A14", "A14"],
+        ["A15", "A15"]
+      ]
+
+
+    },
+    color: {
+      cate_bucles: "#007CFF",
+      cate_digital: "#E67E22"
+
+    }
+  };
+  profile["default"] = profile.arduino;
+
+  Blockly.Arduino.pinesNormal = profile.arduino
+  Blockly.Arduino.colores = profile.color
+  //iniciador
   Blockly.Arduino.init = function (a) {
     Blockly.Arduino.definitions_ = Object.create(null);
+    Blockly.Arduino.setups_ = Object.create(null);
     Blockly.Arduino.functionNames_ = Object.create(null);
     Blockly.Arduino.variableDB_ ? Blockly.Arduino.variableDB_.reset() : Blockly.Arduino.variableDB_ = new Blockly.Names(Blockly.Arduino.RESERVED_WORDS_);
     Blockly.Arduino.variableDB_.setVariableMap(a.getVariableMap());
@@ -81,7 +333,7 @@
     for (d = 0; d < a.length; d++) b.push(Blockly.Arduino.variableDB_.getName(a[d].getId(), Blockly.Variables.NAME_TYPE));
     b.length && (Blockly.Arduino.definitions_.variables = "var " + b.join(", ") + ";")
   };
-
+  /*16*/
   Blockly.Arduino.finish = function (a) {
     a = "  " + a.replace(/\n/g, "\n");
     a = a.replace(/\n\s+$/, "\n");
@@ -292,6 +544,7 @@
   //1er Bloque
   Blockly.Arduino.react_math_number = function (a) {
     a = Number(a.getFieldValue("NUM"));
+
     return [a, 0 <= a ? Blockly.Arduino.ORDER_ATOMIC : Blockly.Arduino.ORDER_UNARY_NEGATION]
   };
   //2do bloque
@@ -426,25 +679,346 @@
 
 
 
-
-
-
-
-
-
+  // ---->->-> categoria variables
+  Blockly.Arduino.variables = {};
+  Blockly.Arduino.variables_get = function (a) {
+    return [Blockly.Arduino.variableDB_.getName(this.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE), Blockly.Arduino.ORDER_ATOMIC]
+  };
+  Blockly.Arduino.variables_set = function (a) {
+    var b = Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_ASSIGNMENT) || "0",
+      c = Blockly.Arduino.variableDB_.getName(this.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE);
+    for (var d = 0; d < a.length; d++)
+      if (a[d][0] == c && "Array" == a[d][1]) return b = "int " + a[d][0] + "[] = " + b + ";\n", Blockly.Arduino.definitions_[a[d][0]] = b, "";
+    return c + " = " + b + ";\n"
+  };
+  // ----> end region categoria variables
 
   ///Category Initializes
 
   //1 Bloque
+  Blockly.Arduino.initializes = {};
+
   Blockly.Arduino.react_setup = function () {
     var a = Blockly.Arduino.statementToCode(this, "CONTENT");
     a = a.replace(/(^\s+)|(\s+$)/g, "");
-    Blockly.Arduino.setups_ = a;
+    Blockly.Arduino.setups_['react_setup'] = a;
     return ""
   };
+  Blockly.Arduino.react_initializes_loop = function () {
+    var a = Blockly.Arduino.statementToCode(this, "CONTENT");
+    return a = a.replace(/(^\s+)|(\s+$)/g, "")
+  };
+  Blockly.Arduino.react_initializes_temp = function () {
+    return ""
+  };
+  //categoria procedure
+
+  Blockly.Arduino.procedures = {};
+  Blockly.Arduino.procedures_defreturn = function () {
+    var a = Blockly.Arduino.variableDB_.getName(this.getFieldValue("NAME"), Blockly.Procedures.NAME_TYPE),
+      b = Blockly.Arduino.statementToCode(this, "STACK");
+    Blockly.Arduino.INFINITE_LOOP_TRAP && (b = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g, "'" + this.id + "'") + b);
+    var c = Blockly.Arduino.valueToCode(this, "RETURN", Blockly.Arduino.ORDER_NONE) || "",
+      d = this.getFieldValue("TYPE");
+    c && (c = "  return " + c + ";\n");
+    d = c ? d : "void";
+    for (var e = [], f = 0; f < this.arguments_.length; f++) e[f] =
+      Blockly.Arduino.variableDB_.getName(this.arguments_[f], Blockly.Variables.NAME_TYPE);
+    b = d + " " + a + "(" + e.join(", ") + ") {\n" + b + c + "}\n";
+    b = Blockly.Arduino.scrub_(this, b);
+    Blockly.Arduino.definitions_[a] = b;
+    return null
+  };
+
+  Blockly.Arduino.procedures_defnoreturn = Blockly.Arduino.procedures_defreturn;
+  Blockly.Arduino.procedures_callreturn = function () {
+    for (var a = Blockly.Arduino.variableDB_.getName(this.getFieldValue("NAME"), Blockly.Procedures.NAME_TYPE), b = [], c = 0; c < this.arguments_.length; c++) b[c] = Blockly.Arduino.valueToCode(this, "ARG" + c, Blockly.Arduino.ORDER_NONE) || "null";
+    return [a + "(" + b.join(", ") + ")", Blockly.Arduino.ORDER_UNARY_POSTFIX]
+  };
+
+  Blockly.Arduino.procedures_callnoreturn = function () {
+    for (var a = Blockly.Arduino.variableDB_.getName(this.getFieldValue("NAME"), Blockly.Procedures.NAME_TYPE), b = [], c = 0; c < this.arguments_.length; c++) b[c] = Blockly.Arduino.valueToCode(this, "ARG" + c, Blockly.Arduino.ORDER_NONE) || "null";
+    return a + "(" + b.join(", ") + ");\n"
+  };
+
+  Blockly.Arduino.procedures_ifreturn = function () {
+    var a = "if (" + (Blockly.Arduino.valueToCode(this, "CONDITION", Blockly.Arduino.ORDER_NONE) || "false") + ") {\n";
+    if (this.hasReturnValue_) {
+      var b = Blockly.Arduino.valueToCode(this, "VALUE", Blockly.Arduino.ORDER_NONE) || "null";
+      a += "  return " + b + ";\n"
+    } else a += "  return;\n";
+    return a + "}\n"
+  };
+
+
+  //categoria iniciador 
+
+
+  //categoria digital 
+  Blockly.Arduino.Digital = {};
+  Blockly.Arduino.react_inout_digital = function () {
+    var a = this.getFieldValue("PIN"),
+      b = this.getFieldValue("STAT");
+    Blockly.Arduino.setups_["setup_output_" + a] = "pinMode(" + a + ", OUTPUT);";
+    return "digitalWrite(" + a + ", " + b + ");\n"
+  };
+  Blockly.Arduino.inout_highlow = function () {
+    var a = this.getFieldValue("PIN"),
+      b = this.getFieldValue("STAT");
+    Blockly.Arduino.setups_["setup_output_" + a] = "pinMode(" + a + ", OUTPUT);";
+    return "digitalWrite(" + a + ", " + b + ");\n"
+  };
+  Blockly.Arduino.react_inout_highlow = function () {
+    return ["HIGH" == this.getFieldValue("BOOL") ? "HIGH" : "LOW", Blockly.Arduino.ORDER_ATOMIC]
+  };
+  Blockly.Arduino.react_digital_read_pullup = function () {
+    var a = Blockly.Arduino.valueToCode(this, "PIN_READ", Blockly.Arduino.ORDER_ATOMIC);
+    Blockly.Arduino.setups_["setup_output_" + a] = "pinMode(" + a + ", INPUT_PULLUP);";
+    return ["digitalRead(" + a + ")", Blockly.Arduino.ORDER_ATOMIC]
+  };
+  //end categoria iniciador 
+
+  //categoria analog
+  //READ
+  Blockly.Arduino.react_Analog_Read = function () {
+    return ["analogRead(" + this.getFieldValue("PIN") + ")", Blockly.Arduino.ORDER_ATOMIC]
+  };
+  Blockly.Arduino.react_Analog_Read = function () {
+    Blockly.Arduino.setups_ = ["pinMode(" + this.getFieldValue("PIN") + ",INPUT" + ");"];
+    return ["analogRead(" + this.getFieldValue("PIN") + ")", Blockly.Arduino.ORDER_ATOMIC]
+  };
+  Blockly.Arduino.react_custom_analog_read = function () {
+    return ["analogRead(" + Blockly.Arduino.valueToCode(this, "PIN_ANALOGREAD", Blockly.Arduino.ORDER_ATOMIC) + ")", Blockly.Arduino.ORDER_ATOMIC]
+  }
+  //WRITE
+  Blockly.Arduino.react_Analog_write = function () {
+    var a = this.getFieldValue("PIN"),
+      b = Blockly.Arduino.valueToCode(this, "NUM", Blockly.Arduino.ORDER_ATOMIC);
+    return "analogWrite(" + a + ", " + b + ");\n"
+  };
+  Blockly.Arduino.react_Analog_write = function () {
+    var a = this.getFieldValue("PIN"),
+      b = Blockly.Arduino.valueToCode(this, "NUM", Blockly.Arduino.ORDER_ATOMIC) || "255";
+    Blockly.Arduino.setups_["setup_output_" + a] = "pinMode(" + a + ", OUTPUT);";
+    return "analogWrite(" + a + ", " + b + ");\n"
+  };
+  //end categoria analog
+
+  //categoria serial 
+  Blockly.Arduino.serial = {};
+  Blockly.Arduino.react_serial_init = function () {
+    var a = Blockly.Arduino.valueToCode(this, "SPEED", Blockly.Arduino.ORDER_ATOMIC) || profile["default"].serial;
+    void 0 == Blockly.Arduino.setups_.setup_serial && (Blockly.Arduino.setups_.setup_serial = "Serial.begin(" + a + ");\n");
+    return ""
+  };
+  Blockly.Arduino.react_serial_available = function () {
+    Blockly.Arduino.valueToCode(this, "CONTENT", Blockly.Arduino.ORDER_ATOMIC);
+    void 0 == Blockly.Arduino.setups_.setup_serial && (Blockly.Arduino.setups_.setup_serial = "Serial.begin(" + profile["default"].serial + ");\n");
+    return ["Serial.available()", Blockly.Arduino.ORDER_ATOMIC]
+  };
+  Blockly.Arduino.react_serial_print = function () {
+    var a = Blockly.Arduino.valueToCode(this, "CONTENT", Blockly.Arduino.ORDER_ATOMIC);
+    void 0 == Blockly.Arduino.setups_.setup_serial && (Blockly.Arduino.setups_.setup_serial = "Serial.begin(" + profile["default"].serial + ");\n");
+    return "Serial.print(" + a + ");\n"
+  };
+  Blockly.Arduino.react_serial_println = function () {
+    var a = Blockly.Arduino.valueToCode(this, "CONTENT", Blockly.Arduino.ORDER_ATOMIC) || "0";
+    void 0 == Blockly.Arduino.setups_.setup_serial && (Blockly.Arduino.setups_.setup_serial = "Serial.begin(" + profile["default"].serial + ");\n");
+    return "Serial.println(" + a + ");\n"
+  };
+  Blockly.Arduino.react_serial_read = function () {
+    Blockly.Arduino.valueToCode(this, "CONTENT", Blockly.Arduino.ORDER_ATOMIC);
+    void 0 == Blockly.Arduino.setups_.setup_serial && (Blockly.Arduino.setups_.setup_serial = "Serial.begin(" + profile["default"].serial + ");\n");
+    return ["Serial.read()", Blockly.Arduino.ORDER_ATOMIC]
+  };
+  /* end category serial */
+
+
+  /*categoria tone*/
+  Blockly.Arduino.react_tone = function () {
+    var a = this.getFieldValue("PIN"),
+        b = this.getFieldValue("FREQ");
+    return "tone(" + a + ", " + b + ");\n"
+};
+  Blockly.Arduino.react_custom_tone = function () {
+    var a = Blockly.Arduino.valueToCode(this, "PIN", Blockly.Arduino.ORDER_ATOMIC) || 0,
+        b = Blockly.Arduino.valueToCode(this, "FREQ", Blockly.Arduino.ORDER_ATOMIC) || 0,
+        c = Blockly.Arduino.valueToCode(this, "DURATION", Blockly.Arduino.ORDER_ATOMIC) || 0;
+    return "tone(" + a + ", " + b + ", " + c + ");\n"
+};
+
+  /*end tone*/
+  /* categoria times */
+  Blockly.Arduino.times = {};
+  Blockly.Arduino.react_delay_custom = function () {
+    return "delay(" + (Blockly.Arduino.valueToCode(this, "DELAY_TIME", Blockly.Arduino.ORDER_ATOMIC) || "1000") + ");\n"
+  };
+  Blockly.Arduino.react_millis = function () {
+    return ["millis()", Blockly.Arduino.ORDER_ATOMIC]
+  };
+  Blockly.Arduino.react_micros = function () {
+    return ["micros()", Blockly.Arduino.ORDER_ATOMIC]
+  };
+  /* end categoria times */
+  /* categoria servo */
+  Blockly.Arduino.servo = {};
+  Blockly.Arduino.react_servo_write = function () {
+    var a = this.getFieldValue("PIN"),
+      b = Blockly.Arduino.valueToCode(this, "ANGLE", Blockly.Arduino.ORDER_ATOMIC) || "90";
+    Blockly.Arduino.definitions_.define_servo = "#include <Servo.h>";
+    Blockly.Arduino.definitions_["define_class_servo_" + a] = "Servo __myservo" + a + ";";
+    Blockly.Arduino.setups_["servo_" + a] || (Blockly.Arduino.setups_["servo_" + a] = "__myservo" + a + ".attach(" + a + ");");
+    return "__myservo" + a + ".write(" + b + ");\n"
+  };
+
+  Blockly.Arduino.react_servo_read = function () {
+    var a = this.getFieldValue("PIN");
+    Blockly.Arduino.definitions_.define_servo = "#include <Servo.h>";
+    Blockly.Arduino.definitions_["define_class_servo_" + a] = "Servo __myservo" + a + ";";
+    return ["__myservo" + a + ".read()", Blockly.Arduino.ORDER_ATOMIC]
+  };
+  Blockly.Arduino.react_servo_custom_attach = function () {
+    var a = this.getFieldValue("PIN"),
+      b = this.getFieldValue("MAX"),
+      c = this.getFieldValue("MIN"),
+      d = "";
+    Blockly.Arduino.definitions_.define_servo = "#include <Servo.h>";
+    Blockly.Arduino.definitions_["define_class_servo_" + a] = "Servo __myservo" + a + ";";
+    void 0 === Blockly.Arduino.setups_["servo_" + a] ? Blockly.Arduino.setups_["servo_" + a] = "__myservo" + a + ".attach(" + a + "," + c + "," + b + ");" : d = "__myservo" + a + ".attach(" + a + "," + c + "," + b + ");\n";
+    return d
+  };
+
+  Blockly.Arduino.react_servo_writeus = function () {
+    var a = this.getFieldValue("PIN"),
+      b = Blockly.Arduino.valueToCode(this, "ANGLE_US", Blockly.Arduino.ORDER_ATOMIC) || "1500";
+    Blockly.Arduino.definitions_.define_servo = "#include <Servo.h>";
+    Blockly.Arduino.definitions_["define_class_servo_" + a] = "Servo __myservo" + a + ";";
+    void 0 === Blockly.Arduino.setups_["servo_" + a] && (Blockly.Arduino.setups_["servo_" + a] = "__myservo" + a + ".attach(" + a + ");");
+    return "__myservo" + a + ".writeMicroseconds(" + b + ");\n"
+  };
+
+
+  ///fin Digital
+
+  /* categoria_robot */
+  Blockly.Arduino.robot = {};
+  Blockly.Arduino.react_playbot = function () {
+      var a = Blockly.Arduino.valueToCode(this, "Derecho", Blockly.Arduino.ORDER_ATOMIC);
+      var b = Blockly.Arduino.valueToCode(this, "Izquierdo", Blockly.Arduino.ORDER_ATOMIC);
+      Blockly.Arduino.definitions_.define_derecho = "int MotorD=" + a + ";"
+      Blockly.Arduino.definitions_.define_izquierdo = "int MotorI=" + b + ";"
+      Blockly.Arduino.definitions_.define_avanzar =
+          "\n void Avanzar() {\n" +
+          "\n" +
+          "    digitalWrite(4, HIGH);\n" +
+          "    digitalWrite(5, LOW);\n" +
+          "    digitalWrite(7, LOW);\n" +
+          "    digitalWrite(8, HIGH);\n}"
+      Blockly.Arduino.definitions_.define_retroceder =
+          "\n void Retroceder() {\n" +
+          "\n" +
+          "    digitalWrite(4, LOW);\n" +
+          "    digitalWrite(5, HIGH);\n" +
+          "    digitalWrite(7, HIGH);\n" +
+          "    digitalWrite(8, LOW);\n}"
+      Blockly.Arduino.definitions_.define_izquierda =
+          "\n void Izquierda() {\n" +
+          "\n" +
+          "    digitalWrite(4, LOW);\n" +
+          "    digitalWrite(5, HIGH);\n" +
+          "    digitalWrite(7, LOW);\n" +
+          "    digitalWrite(8, HIGH);\n}"
+      Blockly.Arduino.definitions_.define_derecha =
+          "\n void Derecha() {\n" +
+          "\n" +
+          "    digitalWrite(4, HIGH);\n" +
+          "    digitalWrite(5, LOW);\n" +
+          "    digitalWrite(7, HIGH);\n" +
+          "    digitalWrite(8, LOW);\n}"
+      Blockly.Arduino.definitions_.define_detener =
+          "\n void Detener() {\n" +
+          "\n" +
+          "    digitalWrite(4, LOW);\n" +
+          "    digitalWrite(5, LOW);\n" +
+          "    digitalWrite(7, LOW);\n" +
+          "    digitalWrite(8, LOW);\n}"
+      Blockly.Arduino.setups_.setup_softserial =
+          " pinMode(4, OUTPUT);\n" +
+          "   pinMode(5, OUTPUT);\n" +
+          "   pinMode(7, OUTPUT);\n" +
+          "   pinMode(8, OUTPUT);\n" +
+          "   pinMode(3, OUTPUT);\n" +
+          "   pinMode(6, OUTPUT);\n" +
+          "   analogWrite(" + 6 + "," + b + ");\n" +
+          "   analogWrite(" + 3 + "," + a + ");\n"
+      return "\n"
+  
+  };
+  
+  Blockly.Arduino.react_robot_avanzar = function () {
+      return "  Avanzar();\n"
+  };
+  Blockly.Arduino.react_robot_atras = function () {
+      return "  Retroceder();\n"
+  };
+  Blockly.Arduino.react_robot_izquierda = function () {
+      return "  Izquierda();\n"
+  };
+  Blockly.Arduino.react_robot_derecha = function () {
+      return "  Derecha();\n"
+  };
+  
+  Blockly.Arduino.react_robot_detener = function () {
+      return "  Detener();\n"
+  };
+  /*categoria linefollower */
+
+  Blockly.Arduino.react_controls_switch = function () {
+    var a = 0,
+        b = Blockly.Arduino.valueToCode(this, "IF" + a, Blockly.Arduino.ORDER_NONE) || "false",
+        c = Blockly.Arduino.statementToCode(this, "DO" + a),
+        d = "switch (" + b + ") {\n" + c + "\n}";
+    for (a = 1; a <= this.elseifCount_; a++) b = Blockly.Arduino.valueToCode(this, "IF" + a, Blockly.Arduino.ORDER_NONE) || "false", c = Blockly.Arduino.statementToCode(this, "DO" + a), d += " else if (" + b + ") {\n" + c + "}";
+    this.elseCount_ && (c = Blockly.Arduino.statementToCode(this, "ELSE"), d += " else {\n" + c + "\n}");
+    return d + "\n"
+};
+
+Blockly.Arduino.react_controls_case = function () {
+    var a = 0,
+        b = Blockly.Arduino.valueToCode(this, "establecer", Blockly.Arduino.ORDER_ATOMIC) || "false",
+        c = Blockly.Arduino.statementToCode(this, "DO" + a),
+        d = "case " + b + ":\n" + c + "\n break;\n";
+    for (a = 1; a <= this.elseifCount_; a++) b = Blockly.Arduino.valueToCode(this, "establecer" + a, Blockly.Arduino.ORDER_NONE) || "false", c = Blockly.Arduino.statementToCode(this, "DO" + a), d += " else if (" + b + ") {\n" + c + "}";
+    this.elseCount_ && (c = Blockly.Arduino.statementToCode(this, "ELSE"), d += " else {\n" + c + "\n}");
+    return d + "\n"
+};
+Blockly.Arduino.react_SensorDerecha = function () {
+  var a = window.parseFloat(this.getFieldValue("NUM"));
+  Blockly.Arduino.setups_.seguir = 'pinMode(' + a + ',INPUT);'
+  return ["digitalRead(" + a + ")", Blockly.Arduino.ORDER_UNARY_PREFIX, Blockly.Arduino.ORDER_ATOMIC]
+};
+
+
+Blockly.Arduino.react_SensorIzquierda = function () {
+  var b = window.parseFloat(this.getFieldValue("NUM"));
+  Blockly.Arduino.setups_.seguidor = 'pinMode(' + b + ',INPUT);'
+  return ["digitalRead(" + b + ")", Blockly.Arduino.ORDER_UNARY_PREFIX, Blockly.Arduino.ORDER_ATOMIC]
+};
+//Analogico_Velocidad
+
+Blockly.Arduino.react_Analogico_Velocidad = function () {
+    var a = window.parseFloat(this.getFieldValue("NUM3")),
+        b = window.parseFloat(this.getFieldValue("NUM6"));
+    return "  analogWrite(3," + a + ");\n  analogWrite(6," + b + ");\n"
+};
+
+
+   /*end categoria linefollower*/
   Blockly.Arduino.variablesDynamic = {};
 
   Blockly.Arduino.variables_get_dynamic = Blockly.Arduino.variables_get;
   Blockly.Arduino.variables_set_dynamic = Blockly.Arduino.variables_set;
+
+
   return Blockly.Arduino;
 }));

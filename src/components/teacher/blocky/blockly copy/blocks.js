@@ -15,11 +15,9 @@
 
 
 	Blockly.Blocks.colour = {};
-
 	Blockly.Constants = {};
 
 	Blockly.Constants.Colour = {};
-
 	Blockly.Constants.Colour.HUE = 20;
 	Blockly.defineBlocksWithJsonArray([{
 		type: "colour_picker",
@@ -1293,42 +1291,6 @@
 		callType_: "procedures_callnoreturn"
 	};
 
-	Blockly.Blocks.procedures_defreturn = {
-		init: function () {
-			var a = new Blockly.FieldTextInput("", Blockly.Procedures.rename);
-			a.setSpellcheck(!1);
-			this.appendDummyInput().appendField(Blockly.Msg.PROCEDURES_DEFRETURN_TITLE).appendField(a, "NAME").appendField("", "PARAMS");
-			this.appendValueInput("RETURN").setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN);
-			this.setMutator(new Blockly.Mutator(["procedures_mutatorarg"]));
-			(this.workspace.options.comments || this.workspace.options.parentWorkspace && this.workspace.options.parentWorkspace.options.comments) && Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT && this.setCommentText(Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT);
-			this.setStyle("procedure_blocks");
-			this.setTooltip(Blockly.Msg.PROCEDURES_DEFRETURN_TOOLTIP);
-			this.setHelpUrl(Blockly.Msg.PROCEDURES_DEFRETURN_HELPURL);
-			this.arguments_ = [];
-			this.argumentVarModels_ = [];
-			this.setStatements_(!0);
-			this.statementConnection_ = null
-		},
-
-		setStatements_: Blockly.Blocks.procedures_defnoreturn.setStatements_,
-		updateParams_: Blockly.Blocks.procedures_defnoreturn.updateParams_,
-		mutationToDom: Blockly.Blocks.procedures_defnoreturn.mutationToDom,
-		domToMutation: Blockly.Blocks.procedures_defnoreturn.domToMutation,
-		decompose: Blockly.Blocks.procedures_defnoreturn.decompose,
-		compose: Blockly.Blocks.procedures_defnoreturn.compose,
-		getProcedureDef: function () {
-			return [this.getFieldValue("NAME"), this.arguments_, !0]
-		},
-
-		getVars: Blockly.Blocks.procedures_defnoreturn.getVars,
-		getVarModels: Blockly.Blocks.procedures_defnoreturn.getVarModels,
-		renameVarById: Blockly.Blocks.procedures_defnoreturn.renameVarById,
-		updateVarName: Blockly.Blocks.procedures_defnoreturn.updateVarName,
-		displayRenamedVar_: Blockly.Blocks.procedures_defnoreturn.displayRenamedVar_,
-		customContextMenu: Blockly.Blocks.procedures_defnoreturn.customContextMenu,
-		callType_: "procedures_callreturn"
-	};
-
 	Blockly.Blocks.procedures_mutatorcontainer = {
 		init: function () {
 			this.appendDummyInput().appendField(Blockly.Msg.PROCEDURES_MUTATORCONTAINER_TITLE);
@@ -1354,49 +1316,6 @@
 					c.setFieldValue(a.name, "NAME");
 					break
 				}
-			}
-		}
-	};
-
-	Blockly.Blocks.procedures_mutatorarg = {
-		init: function () {
-			var a = new Blockly.FieldTextInput("x", this.validator_);
-			a.oldShowEditorFn_ = a.showEditor_;
-			a.showEditor_ = function () {
-				this.createdVariables_ = [];
-				this.oldShowEditorFn_()
-			};
-
-			this.appendDummyInput().appendField(Blockly.Msg.PROCEDURES_MUTATORARG_TITLE).appendField(a, "NAME");
-			this.setPreviousStatement(!0);
-			this.setNextStatement(!0);
-			this.setStyle("procedure_blocks");
-			this.setTooltip(Blockly.Msg.PROCEDURES_MUTATORARG_TOOLTIP);
-			this.contextMenu = !1;
-			a.onFinishEditing_ =
-				this.deleteIntermediateVars_;
-			a.createdVariables_ = [];
-			a.onFinishEditing_("x")
-		},
-
-		validator_: function (a) {
-			var b = this.getSourceBlock(),
-				c = Blockly.Mutator.findParentWs(b.workspace);
-			a = a.replace(/[\s\xa0]+/g, " ").replace(/^ | $/g, "");
-			if (!a) return null;
-			b = b.workspace.getAllBlocks();
-
-			for (var d = 0; d < b.length; d++) if (b[d].id != this.getSourceBlock().id && b[d].getFieldValue("NAME") == a) return null;
-			(b = c.getVariable(a, "")) && b.name != a && c.renameVariableById(b.getId(), a);
-			b || (b = c.createVariable(a, "")) && this.createdVariables_ && this.createdVariables_.push(b);
-			return a
-		},
-
-		deleteIntermediateVars_: function (a) {
-			var b = Blockly.Mutator.findParentWs(this.getSourceBlock().workspace);
-			if (b) for (var c = 0; c < this.createdVariables_.length; c++) {
-				var d = this.createdVariables_[c];
-				d.name != a && b.deleteVariableById(d.getId())
 			}
 		}
 	};
@@ -1541,74 +1460,6 @@
 		defType_: "procedures_defnoreturn"
 	};
 
-	Blockly.Blocks.procedures_callreturn = {
-		init: function () {
-			this.appendDummyInput("TOPROW").appendField("", "NAME");
-			this.setOutput(!0);
-			this.setStyle("procedure_blocks");
-			this.setHelpUrl(Blockly.Msg.PROCEDURES_CALLRETURN_HELPURL);
-			this.arguments_ = [];
-			this.quarkConnections_ = {};
-
-			this.quarkIds_ = null;
-			this.previousEnabledState_ = !0
-		},
-
-		getProcedureCall: Blockly.Blocks.procedures_callnoreturn.getProcedureCall,
-		renameProcedure: Blockly.Blocks.procedures_callnoreturn.renameProcedure,
-		setProcedureParameters_: Blockly.Blocks.procedures_callnoreturn.setProcedureParameters_,
-		updateShape_: Blockly.Blocks.procedures_callnoreturn.updateShape_,
-		mutationToDom: Blockly.Blocks.procedures_callnoreturn.mutationToDom,
-		domToMutation: Blockly.Blocks.procedures_callnoreturn.domToMutation,
-		getVarModels: Blockly.Blocks.procedures_callnoreturn.getVarModels,
-		onchange: Blockly.Blocks.procedures_callnoreturn.onchange,
-		customContextMenu: Blockly.Blocks.procedures_callnoreturn.customContextMenu,
-		defType_: "procedures_defreturn"
-	};
-
-	Blockly.Blocks.procedures_ifreturn = {
-		init: function () {
-			this.appendValueInput("CONDITION").setCheck("Boolean").appendField(Blockly.Msg.CONTROLS_IF_MSG_IF);
-			this.appendValueInput("VALUE").appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN);
-			this.setInputsInline(!0);
-			this.setPreviousStatement(!0);
-			this.setNextStatement(!0);
-			this.setStyle("procedure_blocks");
-			this.setTooltip(Blockly.Msg.PROCEDURES_IFRETURN_TOOLTIP);
-			this.setHelpUrl(Blockly.Msg.PROCEDURES_IFRETURN_HELPURL);
-			this.hasReturnValue_ = !0
-		},
-
-		mutationToDom: function () {
-			var a =
-				Blockly.utils.xml.createElement("mutation");
-			a.setAttribute("value", Number(this.hasReturnValue_));
-			return a
-		},
-
-		domToMutation: function (a) {
-			this.hasReturnValue_ = 1 == a.getAttribute("value");
-			this.hasReturnValue_ || (this.removeInput("VALUE"), this.appendDummyInput("VALUE").appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN))
-		},
-
-		onchange: function (a) {
-			if (this.workspace.isDragging && !this.workspace.isDragging()) {
-				a = !1;
-				var b = this;
-				do {
-					if (-1 != this.FUNCTION_TYPES.indexOf(b.type)) {
-						a = !0;
-						break
-					}
-					b = b.getSurroundParent()
-				} while
-					(b);
-				a ? ("procedures_defnoreturn" == b.type && this.hasReturnValue_ ? (this.removeInput("VALUE"), this.appendDummyInput("VALUE").appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN), this.hasReturnValue_ = !1) : "procedures_defreturn" != b.type || this.hasReturnValue_ || (this.removeInput("VALUE"), this.appendValueInput("VALUE").appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN), this.hasReturnValue_ = !0), this.setWarningText(null), this.isInFlyout || this.setEnabled(!0)) : (this.setWarningText(Blockly.Msg.PROCEDURES_IFRETURN_WARNING), this.isInFlyout || this.getInheritedDisabled() || this.setEnabled(!1))
-			}
-		},
-
-		FUNCTION_TYPES: ["procedures_defnoreturn", "procedures_defreturn"]
-	};
 
 	Blockly.Blocks.texts = {};
 

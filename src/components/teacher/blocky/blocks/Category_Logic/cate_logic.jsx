@@ -8,7 +8,7 @@ class Cate_logic extends React.Component {
 
     render() {
         return (
-            <Category name="Logica">
+            <Category name="Logic">
                 <Block type="react_controls_if"></Block>
                 <Block type="react_logic_compare"></Block>
                 <Block type="react_logic_operation"></Block>

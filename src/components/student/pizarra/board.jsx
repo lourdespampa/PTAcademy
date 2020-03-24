@@ -151,7 +151,7 @@ export default class board extends React.Component {
   };
   render() {
     return (
-      <div className='divSketch'>
+      <div className='divSketch boardStudent'>
         {this.state.pageinit ? (
           <Sketch
             onclick

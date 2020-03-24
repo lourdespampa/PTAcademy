@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import iconExit from "../../../img/cerrar1.png";
 import NavClass from "./NavClass";
@@ -21,6 +21,7 @@ export default class ClassDetailTeacher extends Component {
       answer4: '',
       correctAnswer: 'rojo',
 
+
     }
 
     this.handleChangeQuestion = this.handleChangeQuestion.bind(this);
@@ -36,7 +37,7 @@ export default class ClassDetailTeacher extends Component {
 
     console.log(params.id)
     axios({
-      url: `http://192.168.1.66:4200/v1/api/teacher/presentation_detail/${params.id}`,
+      url: `${this.props.apiUrl}/v1/api/teacher/presentation_detail/${params.id}`,
       method: "GET",
       headers: {
         "x-access-token": `${varToken}`

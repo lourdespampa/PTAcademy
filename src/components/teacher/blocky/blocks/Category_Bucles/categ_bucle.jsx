@@ -11,7 +11,7 @@ class Cate_bucle extends React.Component {
 
     render() {
         return (
-            <Category name="Bucles">
+            <Category name="Loops">
                 <Block type="react_controls_repeat">
                     <Value name="TIMES">
                         <Shadow type="react_math_number">

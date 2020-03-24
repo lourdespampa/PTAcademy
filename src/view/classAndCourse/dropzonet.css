@@ -1,0 +1,44 @@
+.container-dropzone {
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  width: 352px;
+  height: 147px;
+  margin-left: 40px;
+  border: #cecece 3px dashed;
+  cursor: pointer;
+}
+
+.container-dropzone:hover {
+  border: #6699ff 3px dashed;
+}
+.dropzone {
+  padding: 2px;
+  width: 352px;
+  height: 144px;
+}
+.text {
+  margin-top: 52px;
+  text-align: center;
+  font-family: "Opal";
+  font-size: 20px;
+}
+
+.imagenes {
+  margin-top: -30px;
+  width: 60px;
+  height: 55px;
+}
+
+.letras {
+  margin-top: 0px;
+  color: black;
+}
+
+.centrado {
+  margin-left: -36px;
+  margin-top: 14px;
+}
+
+.boton {
+  margin-top: 45px;
+}

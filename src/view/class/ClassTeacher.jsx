@@ -34,6 +34,8 @@ export default class ClassTeacher extends Component {
       this.setState({
         nombreProfesor: data.user_name + " " + data.user_lastName
       });
+      localStorage.setItem("name_teacher",data.user_name)
+      localStorage.setItem("lastName_teacher",data.user_lastName)
     });
     // console.log(this.state.compentecias);
   }

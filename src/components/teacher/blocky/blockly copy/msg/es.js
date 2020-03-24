@@ -447,6 +447,138 @@
   Blockly.Msg["PROCEDURES_HUE"] = "290";
   Blockly.Msg["COLOUR_HUE"] = "20";
   Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
+  /* digital i/o */
+  Blockly.Msg["INOUT_ANALOGPIN_TEXT"] = "Analog Pin";
+  Blockly.Msg["INOUT_ANALOG_READ_APPENDTEXT"] = "analogRead pin";
+  Blockly.Msg["INOUT_ANALOG_READ_HELPURL"] = "http://arduino.cc/en/Reference/AnalogRead";
+  Blockly.Msg["INOUT_ANALOG_READ_TOOLTIP"] = "Return value between 0 and 1024.";
+  Blockly.Msg["INOUT_ANALOG_WRITE_APPENDTEXT_PIN"] = "analogWrite pin";
+  Blockly.Msg["INOUT_ANALOG_WRITE_APPENDTEXT_VALUE"] = "value (0 - 255)";
+  Blockly.Msg["INOUT_ANALOG_WRITE_HELPURL"] = "http://arduino.cc/en/Reference/AnalogWrite";
+  Blockly.Msg["INOUT_ANALOG_WRITE_TOOLTIP"] = "Write analog value between 0 and 255 to a specific Port.";
+  Blockly.Msg["INOUT_DIGITALPIN_TEXT"] = "Digital Pin";
+  Blockly.Msg["INOUT_DIGITAL_READ_APPENDTEXT_PIN"] = "digitalRead pin";
+  Blockly.Msg["INOUT_DIGITAL_READ_APPENDTEXT_PULLUP"] = "pullup";
+  Blockly.Msg["INOUT_DIGITAL_READ_HELPURL"] = "http://arduino.cc/en/Reference/DigitalRead";
+  Blockly.Msg["INOUT_DIGITAL_READ_TOOLTIP"] = "";
+  Blockly.Msg["INOUT_DIGITAL_READ_PULLUP_APPENDTEXT_PIN"] = "digitalRead (default pullup) pin"
+  Blockly.Msg["INOUT_ENABLE_INTERNAL_PULLUP_PIN"] = "Internal pullup on pin";
+  Blockly.Msg["INOUT_ENABLE_INTERNAL_PULLUP_TOOLTIP"] = "Enable internal pullup resistor of about 50KOhm.";
+  Blockly.Msg["INOUT_ENABLE_INTERNAL_PULLUP_HELPURL"] = "https://www.arduino.cc/en/Reference/PinMode";
+  Blockly.Msg["INOUT_DIGITAL_WRITE_APPENDTEXT_PIN"] = "Digital Define pin";
+  Blockly.Msg["INOUT_DIGITAL_WRITE_APPENDTEXT_STAT"] = "State";
+  Blockly.Msg["INOUT_DIGITAL_WRITE_HELPURL"] = "http://arduino.cc/en/Reference/DigitalWrite";
+  Blockly.Msg["INOUT_DIGITAL_WRITE_TOOLTIP"] = "Write digital value to a specific Port.";
+  Blockly.Msg["INOUT_LED_BUINTIN"] = "Define LED";
+  Blockly.Msg["INOUT_LED_BUINTIN_TOOLTIP"] = "light or off the build-in LED";
+  Blockly.Msg["INOUT_HIGH"] = "HIGH";
+  Blockly.Msg["INOUT_LOW"] = "LOW";
+  Blockly.Msg["INOUT_OFF"] = "OFF";
+  Blockly.Msg["INOUT_ON"] = "ON";
+  Blockly.Msg["INOUT_PULSEIN_APPENDTEXT_PIN"] = "Pulsein Pin";
+  Blockly.Msg["INOUT_PULSEIN_APPENDTEXT_TIMEOUT"] = "Timeout";
+  Blockly.Msg["INOUT_PULSEIN_APPENDTEXT_TYPE"] = "Type";
+  Blockly.Msg["INOUT_PULSEIN_HELPURL"] = "http://arduino.cc/en/Reference/pulseIn";
+  Blockly.Msg["INOUT_PULSEIN_TOOLTIP"] = "Reads a pulse (either HIGH or LOW) on a pin.";
+  Blockly.Msg["INOUT_TONE_APPENDTEXT_DURATION"] = "duration (ms)";
+  Blockly.Msg["INOUT_TONE_APPENDTEXT_FREQ"] = "frequency";
+  Blockly.Msg["INOUT_TONE_APPENDTEXT_PIN"] = "Tone pin";
+  Blockly.Msg["INOUT_TONE_HELPURL"] = "http://arduino.cc/en/reference/tone";
+  Blockly.Msg["INOUT_TONE_TOOLTIP"] = "The pin can be connected to a piezo buzzer or other speaker to play tones.";
+  /*end digital i/o */
+
+  /*inticialite */
+  Blockly.Msg["INITIALIZES_SETUP_APPENDTEXT"] = "setup";
+  Blockly.Msg["INITIALIZES_LOOP_APPENDTEXT"] = "loop";
+  Blockly.Msg["INITIALIZES_SETUP_HELPURL"] = "http://www.arduino.cc/en/Reference/Setup";
+  Blockly.Msg["INITIALIZES_SETUP_TOOLTIP"] = "The setup() function is called when a sketch starts. ";
+  Blockly.Msg["INITIALIZES_LOOP_HELPURL"] = "http://www.arduino.cc/en/Reference/Loop";
+  Blockly.Msg["INITIALIZES_LOOP_TOOLTIP"] = "After creating a setup() function, the loop() function loops consecutively, allowing your program to change and respond.";
+  Blockly.Msg["INITIALIZES_TEMP_APPENDTEXT"] = "Temp";
+  Blockly.Msg["INITIALIZES_TEMP_HELPURL"] = "";
+  Blockly.Msg["INITIALIZES_SETUP_TOOLTIP"] = "Blocks within this scope will not be generate.";
+  /*end initialite  */
+
+  /* categoria analogi  */
+
+  Blockly.Msg["INOUT_ANALOGPIN_TEXT"] = "Analog Pin";
+  Blockly.Msg["INOUT_ANALOG_READ_APPENDTEXT"] = "analogRead pin";
+  Blockly.Msg["INOUT_ANALOG_READ_HELPURL"] = "http://arduino.cc/en/Reference/AnalogRead";
+  Blockly.Msg["INOUT_ANALOG_READ_TOOLTIP"] = "Return value between 0 and 1024.";
+  Blockly.Msg["INOUT_ANALOG_WRITE_APPENDTEXT_PIN"] = "analogWrite pin";
+  Blockly.Msg["INOUT_ANALOG_WRITE_APPENDTEXT_VALUE"] = "value (0 - 255)";
+  Blockly.Msg["INOUT_ANALOG_WRITE_HELPURL"] = "http://arduino.cc/en/Reference/AnalogWrite";
+  Blockly.Msg["INOUT_ANALOG_WRITE_TOOLTIP"] = "Write analog value between 0 and 255 to a specific Port.";
+  /* end cat analog */
+
+  /* categoria serial  */
+  Blockly.Msg["SERIAL_INIT"] = "Serial Begin";
+  Blockly.Msg["SERIAL_INIT_HELPURL"] = "https://www.arduino.cc/en/Serial/Begin";
+  Blockly.Msg["SERIAL_INIT_TOOLTIP"] = "Sets the data rate in bits per second (baud) for serial data transmission.";
+  Blockly.Msg["SERIAL_AVAILABLE_APPENDTEXT"] = "Serial habilitado";
+  Blockly.Msg["SERIAL_AVAILABLE_HELPURL"] = "http://www.arduino.cc/en/Serial/available";
+  Blockly.Msg["SERIAL_AVAILABLE_TOOLTIP"] = "Get the number of bytes (characters) available for reading from the serial port.";
+  Blockly.Msg["SERIAL_BYTE_NUMBER"] = "Byte Code of Number";
+  Blockly.Msg["SERIAL_BYTE_NUMBER_TEXT1"] = "Byte code of";
+  Blockly.Msg["SERIAL_BYTE_NUMBER_TEXT2"] = "";
+  Blockly.Msg["SERIAL_PRINTLN_APPENDTEXT"] = "Serial println";
+  Blockly.Msg["SERIAL_PRINTLN_HELPURL"] = "http://www.arduino.cc/en/Serial/Println";
+  Blockly.Msg["SERIAL_PRINTLN_TOOLTIP"] = "Prints data to the serial port as human-readable ASCII text followed by a carriage return character and a newline characte.";
+  Blockly.Msg["SERIAL_PRINT_APPENDTEXT"] = "Serial print";
+  Blockly.Msg["SERIAL_PRINT_HELPURL"] = "http://www.arduino.cc/en/Serial/Print";
+  Blockly.Msg["SERIAL_PRINT_TOOLTIP"] = "Prints data to the console/serial port as human-readable ASCII text.";
+  Blockly.Msg["SERIAL_READ_APPENDTEXT"] = "Leer serial";
+  Blockly.Msg["SERIAL_READ_HELPURL"] = "http://www.arduino.cc/en/Serial/Read";
+  Blockly.Msg["SERIAL_READ_TOOLTIP"] = "the first byte of incoming serial data available (or -1 if no data is available).";
+  /* end cat serial */
+  /* categoria timer */
+  Blockly.Msg.TIMES_DELAYMICROSECONDS_APPENDTEXT = "Retrasar MicroSegundos";
+  Blockly.Msg.TIMES_DELAYMICROSECONDS_HELPURL = "http://arduino.cc/en/Reference/DelayMicroseconds";
+  Blockly.Msg.TIMES_DELAYMICROSECONDS_TOOLTIP = "Pauses the program for the amount of time (in microseconds) specified as parameter.";
+  Blockly.Msg.TIMES_DELAY_APPENDTEXT = "esperar";
+  Blockly.Msg.TIMES_DELAY_HELPURL = "http://arduino.cc/en/Reference/delay";
+  Blockly.Msg.TIMES_DELAY_TOOLTIP = "Delay specific time";
+  Blockly.Msg.TIMES_MICROS_APPENDTEXT = "micros";
+  Blockly.Msg.TIMES_MICROS_HELPURL = "hhttp://arduino.cc/en/Reference/Micros";
+  Blockly.Msg.TIMES_MICROS_TOOLTIP = "Returns the number of microseconds since the Arduino board began running the current program.";
+  Blockly.Msg.TIMES_MILLIS_APPENDTEXT = "millis";
+  Blockly.Msg.TIMES_MILLIS_HELPURL = "hhttp://arduino.cc/en/Reference/Millis";
+  Blockly.Msg.TIMES_MILLIS_TOOLTIP = "Returns the number of milliseconds since the Arduino board began running the current program.";
+  /* end cat timer */
+
+  /* CATEGORY SERVO */
+  Blockly.Msg.SERVO_ANGLE_TEXT1 = "ángulo (1 - 180)";
+  Blockly.Msg.SERVO_ANGLE_TEXT2 = "";
+  Blockly.Msg.SERVO_ANGLE_US_TEXT1 = "ancho de pulso";
+  Blockly.Msg.SERVO_ANGLE_US_TEXT2 = "";
+  Blockly.Msg.SERVO_ATTACHED_HELPURL = "http://www.arduino.cc/en/Reference/ServoAttached";
+  Blockly.Msg.SERVO_ATTACHED_TEXT1 = "Pin";
+  Blockly.Msg.SERVO_ATTACHED_TEXT2 = "Attached?";
+  Blockly.Msg.SERVO_ATTACHED_TOOLTIP = "Check whether the Servo variable is attached to a pin.";
+  Blockly.Msg.SERVO_ATTACH_HELPURL = "http://www.arduino.cc/en/Reference/ServoAttach";
+  Blockly.Msg.SERVO_ATTACH_MAX_TEXT1 = "max";
+  Blockly.Msg.SERVO_ATTACH_MAX_TEXT2 = "";
+  Blockly.Msg.SERVO_ATTACH_MIN_TEXT1 = "min";
+  Blockly.Msg.SERVO_ATTACH_MIN_TEXT2 = "";
+  Blockly.Msg.SERVO_ATTACH_TEXT1 = "Adjuntar servo pin";
+  Blockly.Msg.SERVO_ATTACH_TEXT2 = "";
+  Blockly.Msg.SERVO_ATTACH_TOOLTIP = "Attach the Servo variable to a pin.";
+  Blockly.Msg.SERVO_DETACH_HELPURL = "http://www.arduino.cc/en/Reference/ServoDetach";
+  Blockly.Msg.SERVO_DETACH_TEXT1 = "Pin";
+  Blockly.Msg.SERVO_DETACH_TEXT2 = "Detach";
+  Blockly.Msg.SERVO_DETACH_TOOLTIP = "Detach the Servo variable from its pin.";
+  Blockly.Msg.SERVO_READ_HELPURL = "http://www.arduino.cc/en/Reference/ServoRead";
+  Blockly.Msg.SERVO_READ_TEXT1 = "Leer servo pin";
+  Blockly.Msg.SERVO_READ_TEXT2 = "ángulo actual";
+  Blockly.Msg.SERVO_READ_TOOLTIP = "Read the current angle of the servo (the value passed to the last call to write()).";
+  Blockly.Msg.SERVO_WRITE_HELPURL = "http://www.arduino.cc/en/Reference/ServoWrite";
+  Blockly.Msg.SERVO_WRITE_TEXT1 = "Girar servo en pin";
+  Blockly.Msg.SERVO_WRITE_TEXT2 = "";
+  Blockly.Msg.SERVO_WRITE_TOOLTIP = "Writes a value to the servo, controlling the shaft accordingly.";
+  Blockly.Msg.SERVO_WRITE_US_HELPURL = "http://www.arduino.cc/en/Reference/ServoWriteMicroseconds";
+  Blockly.Msg.SERVO_WRITE_US_TOOLTIP = "Writes a value in microSeconds(uS) to the servo, controlling the shaft accordingly.";
+
+  /* END SERVO */
 
   Blockly.Msg.variables = "juan jesus";
   return Blockly.Msg;

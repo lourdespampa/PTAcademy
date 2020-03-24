@@ -94,50 +94,55 @@ class Azar extends React.Component {
     var varToken = localStorage.getItem("token");
     var id_teacher = localStorage.getItem("id_teacher");
     var id_course = localStorage.getItem("id_course");
-    console.log(this.props.school)
-    if(this.props.school){
+    console.log(this.props.school);
+    if (this.props.school) {
       axios({
         url: `${this.props.apiUrl}/v1/api/student/${id_teacher}/${id_course}/students`,
         method: "GET",
         headers: {
           "x-access-token": `${varToken}`
         }
-      }).then(({ data }) => {
-        console.log(data)
-        const temp = [];
-        data.map(alumno => {
-        if (alumno.randonCode){
-          if (alumno.state === "active") {
-            temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`);
-            return null;}  
-        }else{
-          temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`);
-          return null;}  
-        });
-        this.setState({
-          alumnos: this.sortearElementos(temp),
-          todosAlumnos: data
-        });
       })
+        .then(({ data }) => {
+          console.log(data);
+          const temp = [];
+          data.map(alumno => {
+            if (alumno.randonCode) {
+              if (alumno.state === "active") {
+                temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`);
+                return null;
+              }
+            } else {
+              temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`);
+              return null;
+            }
+          });
+          this.setState({
+            alumnos: this.sortearElementos(temp),
+            todosAlumnos: data
+          });
+        })
         .catch(err => {
           console.log(err);
         });
     } else {
       axios({
         url: `${this.props.apiUrl}/v1/api/lesson/${this.props.id_access}/students/roulette`,
-        method: 'GET',
+        method: "GET",
         headers: {
-            'x-access-token': `${varToken}`
+          "x-access-token": `${varToken}`
         }
-    })
-        .then((res) => {
-            const temp = [];
-            res.data.map(alumno => {
-                temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`)
-                return null
-            })
-            this.setState({ alumnos: this.sortearElementos(temp), todosAlumnos: res.data })
-        })
+      }).then(res => {
+        const temp = [];
+        res.data.map(alumno => {
+          temp.push(`${alumno.name_stu} ${alumno.lastName_stu}`);
+          return null;
+        });
+        this.setState({
+          alumnos: this.sortearElementos(temp),
+          todosAlumnos: res.data
+        });
+      });
     }
   };
   sortearElementos = array => {
@@ -196,14 +201,12 @@ class Azar extends React.Component {
     this.setState({ showModal: 2 });
   };
 
-  
-  closeModalAzar(){
+  closeModalAzar() {
     const socket = io(this.props.socketUrl, {
       query: { pin: this.props.id_access }
     });
-    this.setState({ showModal: 2 })
-    socket.emit('closeModalAzar')
-
+    this.setState({ showModal: 2 });
+    socket.emit("closeModalAzar");
   }
   render() {
     if (this.state.alumnos.length > 0) {
@@ -222,10 +225,10 @@ class Azar extends React.Component {
               this.state.showModal === 0
                 ? ""
                 : this.state.showModal === 1
-                  ? "six"
-                  : this.state.showModal === 2
-                    ? "six out"
-                    : ""
+                ? "six"
+                : this.state.showModal === 2
+                ? "six out"
+                : ""
             }
           >
             <div class="modal-general_background">
@@ -277,11 +280,11 @@ class Azar extends React.Component {
                         funcion={this.onClickPointAdd}
                       />
                     ) : (
-                        <BtnPuntos
-                          data={this.state.datapoint.negativo}
-                          funcion={this.onClickPointRemove}
-                        />
-                      )}
+                      <BtnPuntos
+                        data={this.state.datapoint.negativo}
+                        funcion={this.onClickPointRemove}
+                      />
+                    )}
                   </div>
                 </div>
                 <svg

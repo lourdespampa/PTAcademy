@@ -494,10 +494,14 @@ template {
   cursor: pointer;
 }
 
+
+
+
 .modal-body__button.cursos,
 .modal-body__button.yes {
   background: #52be7f;
   cursor: pointer;
+  margin-top: 13px;
 }
 
 .modal-body__button.yes .button-zoom,

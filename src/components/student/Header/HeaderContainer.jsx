@@ -36,9 +36,10 @@ const WindowFocusHandler = props => {
 };
 export default function HeaderContainer(props) {
   const [showResponsive, setShowResponsive] = useState(false);
-  const [redirect,setredirect]=useState(false); //no se esta usando
+  // const [redirect,setredirect]=useState(false); //no se esta usando
   const [trivia, settrivia] = useState(false);
   const [temporizador, settemporizador] = useState(false);
+  const [board, setboard] = useState(false);
   const [Exit, setExit] = useState(false);
   // const reinicio = () => settrivia(false) + settemporizador(false);
 
@@ -81,8 +82,14 @@ export default function HeaderContainer(props) {
         if (data.page === "trivia") {
           settrivia(true);
           settemporizador(false);
+          setboard(false)
         } else if (data.page === "temporizador") {
           settemporizador(true);
+          settrivia(false);
+          setboard(false)
+        } else if(data.page ==="board"){
+          setboard(true)
+          settemporizador(false);
           settrivia(false);
         }
       }
@@ -126,6 +133,11 @@ export default function HeaderContainer(props) {
       {temporizador ? (
         <Redirect
           to={`/student/${props.id_student}/${props.id_access}/temporizador`}
+        />
+      ) : null}
+      {board ? (
+        <Redirect
+          to={`/student/${props.id_student}/${props.id_access}/pizarra`}
         />
       ) : null}
       {Exit ? <Redirect to={`/`} /> : null}
