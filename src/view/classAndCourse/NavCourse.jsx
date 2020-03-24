@@ -143,7 +143,7 @@ export default class NavCourse extends Component {
                         </div>
                       </Link>
                     </li>
-                    {/* <li className="teacherCourses__main-menu__item">
+                    <li className="teacherCourses__main-menu__item">
                       <Link
                         to={`/CoursesTeacher/form/${this.props.idteacher}`}
                         style={{ textDecoration: "none" }}
@@ -152,7 +152,7 @@ export default class NavCourse extends Component {
                           Formulario
                         </div>
                       </Link>
-                    </li> */}
+                    </li>
                   </>
                 ) : null}
                 <li className="teacherCourses__main-menu__item">

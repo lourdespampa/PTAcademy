@@ -5,7 +5,6 @@ import NavClass from "./NavClass";
 import Upload from "../../classAndCourse/upload/Upload";
 import './ClassDetail.sass'
 import AllQuestions from "./AllQuestions";
-import trivia  from "module";
 export default class ClassDetailTeacher extends Component {
   constructor(props) {
     super(props)
@@ -50,12 +49,13 @@ export default class ClassDetailTeacher extends Component {
     });
   };
   clearAll = () => {
-    this.state.question = '';
-    this.state.answer1 = '';
-    this.state.answer2 = '';
-    this.state.answer3 = '';
-    this.state.answer4 = '';
-    this.state.correctAnswer = '';
+    this.setState({
+      question: '',
+      answer1: '',
+      answer2: '',
+      answer3: '',
+      correctAnswer: ''
+    })
   }
   setShow = () => {
     this.setState({ newQuestionModal: 1 });
@@ -74,11 +74,9 @@ export default class ClassDetailTeacher extends Component {
       answer4: this.state.answer4,
       correctAnswer: this.state.correctAnswer
     }
-    console.log(data)
     if (this.state.question === '' || this.state.answer1 === '' || this.state.answer2 === '' || this.state.answer3 === '' || this.state.answer4 === '') {
       return alert('debe completar todos los campos')
     }
-    console.log(this.props.apiUrl)
     axios({
       url: `${this.props.apiUrl}/v1/api/question/new_question/${clase}`,
       method: "POST",

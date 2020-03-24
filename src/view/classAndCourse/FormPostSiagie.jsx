@@ -13,9 +13,6 @@ export default class FormPostSiagie extends Component {
       nomArch: '',
       files: []
     };
-    // this.state = {
-    //   files: []
-    // };
   }
   componentDidMount() {}
 
@@ -27,17 +24,6 @@ export default class FormPostSiagie extends Component {
     });
     console.log(event[0]);
   };
-
-
-  // onChangeHandler = event => {
-  //   this.setState({
-  //     selectedFile: event.target.files[0],
-  //     nomArch: event.target.files[0].name,
-  //     loaded: 0
-  //   });
-
-  //   console.log(event.target.files[0].name);
-  // };
   onClickHandler = () => {
     const data = new FormData();
     data.append("file", this.state.selectedFile);
@@ -75,7 +61,7 @@ export default class FormPostSiagie extends Component {
             <div {...getRootProps({className: 'dropzone'})}>
               <input {...getInputProps() } accept="application/vnd.ms-Microsoft Excel, .xlsx"/>
               <div className="text">
-                <img  className="imagenes" width="50px" height="50px" src={require("../../img/subir.png")} />
+                <img alt="imagen de subir"  className="imagenes" width="50px" height="50px" src={require("../../img/subir.png")} />
                 <p className="letras">Sube Tu Archivo</p>
               </div>
             </div>

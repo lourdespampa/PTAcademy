@@ -38,7 +38,7 @@ export default class App extends React.Component {
       "RFID": false,
       "Sensores": false
     }
-    let l = Blockly.Block.prototype.getInputsInline 
+    // let l = Blockly.Block.prototype.getInputsInline no se esta usando 
     
   }
 

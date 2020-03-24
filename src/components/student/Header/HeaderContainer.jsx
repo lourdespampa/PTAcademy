@@ -6,11 +6,9 @@ import axios from "axios";
 import io from "socket.io-client";
 
 const WindowFocusHandler = props => {
-  // User has switched back to the tab
   const onFocus = () => {
     console.log("Tab is in focus");
   };
-  // User has switched away from the tab (AKA tab is hidden)
   const onBlur = () => {
     let pin = props.id_access;
     const socket = io(props.socketUrl, {

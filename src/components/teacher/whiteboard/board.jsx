@@ -57,13 +57,14 @@ export default class board extends React.Component {
     const socket = io(this.props.socketUrl, {
       query: { pin: this.props.id_access }
     });
+    var data;
     if (this.state.draft){
-      var data = {
+      data = {
         color: 'white',
         size: this.state.size
       };
     }else{
-      var data = {
+      data = {
         color: this.state.color,
         size: this.state.size
       };

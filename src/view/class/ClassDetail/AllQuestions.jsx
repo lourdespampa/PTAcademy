@@ -1,5 +1,4 @@
-import React, { Component, useState } from "react";
-import axios from 'axios';
+import React, { Component } from "react";
 export default class AllQuestions extends Component {
     constructor(props) {
         super(props)
