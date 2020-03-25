@@ -2,7 +2,7 @@ import React from "react";
 import Sketch from "react-p5";
 import io from "socket.io-client";
 import "./board.sass";
-// import iconExit from "../../../img/cerrar1.png";
+import iconExit from "../../../img/cerrar1.png";
 
 
 export default class board extends React.Component {
@@ -28,7 +28,8 @@ export default class board extends React.Component {
     diameter: 0,
     texto: "",
     Show:0,
-    draft:false
+    draft:false,
+    image:false
   };
   // c:
   componentWillMount(){
@@ -168,6 +169,22 @@ export default class board extends React.Component {
         x2: e.pmouseX,
         y2: e.pmouseY
       });
+    }else if(this.state.text){
+      this.setState({
+        clickPress: false,
+        mouseReleased: true,
+        x2: e.pmouseX - this.state.x1,
+        y2: e.pmouseY - this.state.y1
+      });
+      const data = {
+        x1: this.state.x1,
+        y1: this.state.y1,
+        x2: e.pmouseX - this.state.x1,
+        y2: e.pmouseY - this.state.y1
+      };
+      socket.emit("DrawText", {
+        data: data
+      });
     }
   }
   // c: evento al mover el mouse precionando el click
@@ -212,23 +229,6 @@ export default class board extends React.Component {
           x1: this.state.x2,
           y1: this.state.y2
         });
-      }else if (this.state.text && this.state.texto !== "") {
-        p5.fill(this.state.color);
-        p5.stroke(this.state.color);
-        p5.strokeWeight(1);
-        p5.textSize(this.state.size*2);
-        p5.textFont("Opal");
-        p5.text(this.state.texto, this.state.x1, this.state.y1);
-        this.setState({
-          text: false,
-          texto: ""
-        });
-        setTimeout(() => {
-          this.setState({
-            pencil:true,
-            clickPress:false
-          })
-        }, 500);
       }
     } else if (this.state.mouseReleased) {
       p5.fill("#be525200");
@@ -255,6 +255,23 @@ export default class board extends React.Component {
         p5.stroke(this.state.color);
         p5.strokeWeight(this.state.size);
         p5.line(this.state.x1, this.state.y1, this.state.x2, this.state.y2);
+      }else if (this.state.text && this.state.texto !== "") {
+        p5.fill(this.state.color);
+        p5.stroke(this.state.color);
+        p5.strokeWeight(1);
+        p5.textSize(this.state.size*2);
+        p5.textFont("Opal");
+        p5.text(this.state.texto, this.state.x1, this.state.y1,this.state.x2);
+        this.setState({
+          text: false,
+          texto: ""
+        });
+        setTimeout(() => {
+          this.setState({
+            pencil:true,
+            clickPress:false
+          })
+        }, 500);
       }
       this.setState({
         mouseReleased: false
@@ -299,7 +316,8 @@ export default class board extends React.Component {
       mouseReleased: false,
       text: false,
       line: false,
-      draft:false
+      draft:false,
+      imagen:false
     });
   };
   // c: Cambiar opcion a rectangulo
@@ -312,7 +330,8 @@ export default class board extends React.Component {
       mouseReleased: false,
       text: false,
       line: false,
-      draft:false
+      draft:false,
+      imagen:false
     });
   };
   // c: Cambiar opcion a triangulo
@@ -325,7 +344,8 @@ export default class board extends React.Component {
       mouseReleased: false,
       text: false,
       line: false,
-      draft:false
+      draft:false,
+      imagen:false
     });
   };
   // c: Cambiar opcion a lapiz
@@ -338,7 +358,8 @@ export default class board extends React.Component {
       mouseReleased: false,
       text: false,
       line: false,
-      draft:false
+      draft:false,
+      imagen:false
     });
   };
   line = () => {
@@ -350,7 +371,8 @@ export default class board extends React.Component {
       mouseReleased: false,
       line: true,
       text: false,
-      draft:false
+      draft:false,
+      imagen:false
     });
   };
   text = () => {
@@ -363,7 +385,8 @@ export default class board extends React.Component {
       line: false,
       text: false,
       Show:1,
-      draft:false
+      draft:false,
+      imagen:false
     });
   };
   draft=()=>{
@@ -375,7 +398,8 @@ export default class board extends React.Component {
       mouseReleased: false,
       line: false,
       text: false,
-      draft:true
+      draft:true,
+      imagen:false
     });
   }
   textOn = () => {
@@ -389,6 +413,19 @@ export default class board extends React.Component {
       });
     }, 500);
   };
+  image=()=>{
+    this.setState({
+      circle: false,
+      rect: false,
+      triangle: false,
+      pencil: false,
+      mouseReleased: false,
+      line: false,
+      text: false,
+      draft: false,
+      imagel:true
+    });
+  }
   render() {
     return (
       <>
@@ -628,11 +665,16 @@ export default class board extends React.Component {
                     remove
                   </i>
                 </li>
-                {/* <li className={this.state.text ? "iclear sombreado":"iclear"}>
+                <li className={this.state.text ? "iclear sombreado":"iclear"}>
                   <i className="material-icons" onClick={() => this.text()}>
                     title
                   </i>
-                </li> */}
+                </li>
+                <li className={this.state.image ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.image()}>
+                    insert_photo
+                  </i>
+                </li>
               </ul>
             </div>
             </div>
@@ -861,11 +903,16 @@ export default class board extends React.Component {
                     remove
                   </i>
                 </li>
-                {/* <li className={this.state.text ? "iclear sombreado":"iclear"}>
+                <li className={this.state.text ? "iclear sombreado":"iclear"}>
                   <i className="material-icons" onClick={() => this.text()}>
                     title
                   </i>
-                </li> */}
+                </li>
+                <li className={this.state.image ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons" onClick={() => this.image()}>
+                    insert_photo
+                  </i>
+                </li>
               </ul>
             </div>
           </li>
@@ -876,7 +923,7 @@ export default class board extends React.Component {
           </textarea>
         </div> */}
 
-        {/* <div
+        <div
           id="modal-general_container"
           className={
             this.state.Show === 0 ? "" : this.state.Show === 1 ? "six" : this.state.Show === 2 ? "six out" : ""
@@ -935,7 +982,7 @@ export default class board extends React.Component {
               </svg>
             </div>
           </div>
-        </div> */}
+        </div>
       </>
     );
   }
