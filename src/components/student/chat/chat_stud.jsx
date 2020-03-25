@@ -22,18 +22,18 @@ export default class Chat extends Component
       })
      
     componentDidMount(){
-      setTimeout(() => {
+    /*  setTimeout(() => {
         const name = localStorage.getItem("name")
         const lastName = localStorage.getItem("lastName")
         this.setState({
           name: name,
           lastName : lastName
-        })      
+        })     
       
 
       console.log(name);
       console.log(lastName);
-      }, 4000);    
+      }, 4000);    */ 
 
       this.socket.on('TeachWriting',(data) => {
         if(data.pin === (this.props.id_access).toUpperCase()) {
@@ -103,8 +103,8 @@ export default class Chat extends Component
           lastName : this.props.lastName
           el props dejo de funcionar no se porque 
           */
-          name : this.state.name,
-          lastName : this.state.lastName
+          name : localStorage.getItem("name"),
+          lastName : localStorage.getItem("lastName")
       }
       this.socket.emit('studentSendMessage',data)
       this.state.message.push(data)
