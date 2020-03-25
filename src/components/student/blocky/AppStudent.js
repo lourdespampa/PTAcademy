@@ -9,7 +9,7 @@ import Blockly from "./blockly copy/blockly";
 import BlocklyJSA from "./Code/Arduino";
 import BlocklyComponent from "./Blockly";
 import AlertDialog from "./modals/config/Modal.jsx";
-//Categorias//
+// //Categorias//
 import CategoryBucles from "./blocks/Category_Bucles/categ_bucle.jsx";
 import CategoryLogica from "./blocks/Category_Logic/cate_logic.jsx";
 import CategoryMath from "./blocks/Category_Math/cate_math";
@@ -29,9 +29,20 @@ import CategoryRobot from "./blocks/Category_Robot/Category_Engines/categ_engine
 import io from 'socket.io-client';
 
 export default class App extends React.Component {
- 
-  socket =io(this.props.socketUrl, {query:{ pin: this.props.id_access}})
-           
+
+
+  socket = io(this.props.socketUrl, { query: { pin: this.props.id_access } })
+  componentDidMount() {
+    this.socket.on("blockly-student",async (data) => {
+        
+        var xmlDoc = Blockly.Xml.textToDom(data.xml);
+        await Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDoc); 
+        console.log(Blockly.mainWorkspace)  
+    }
+    )
+
+  }
+
   generateCode = () => {
     var code = BlocklyJSA.workspaceToCode(this.simpleWorkspace.workspace);
     document.getElementById("content_arduino").value = code;
@@ -41,14 +52,6 @@ export default class App extends React.Component {
     arduino.style.visibility = "visible"
     bloques.style.visibility = "hidden"
   };
-
-  generateXml = () => {
-    var newXml = Blockly.Xml.domToText(
-    Blockly.Xml.workspaceToDom(this.simpleWorkspace.workspace)
-    );
-    this.socket.emit('blockly-xml',newXml)
-  };
-
   Bloques = () => {
     var bloques = document.getElementById("bloques");
     var arduino = document.getElementById("content_arduino");
@@ -60,19 +63,25 @@ export default class App extends React.Component {
       arduino.style.visibility = "hidden";
     }
   };
-  ConfLang = ()=>{
-   // let modal = document.querySelector("#ModalLang") 
+  ConfLang = () => {
+    // let modal = document.querySelector("#ModalLang") 
 
   }
   render() {
     return (
       <div name="app">
-        <button type="button" onClick={this.Bloques}> Bloques</button>
-        <button type="button" onClick={this.generateCode}>Arduino</button>
-        <button type="button" onClick={this.generateXml}> Xml</button>
-        <AlertDialog // cambioCategorias={this.handleChangeOtrosComponent.bind(this)
-         />
+        <button type="button" onClick={this.Bloques}>
+          Bloques
+        </button>
+        <button type="button" onClick={this.generateCode}>
+          Arduino
+        </button>
+
+        <AlertDialog
+        // cambioCategorias={this.handleChangeOtrosComponent.bind(this)}
+        />
         <Generar />
+
         <div id="bloques" className="blockly">
           <header className="App-header">
             <BlocklyComponent
@@ -84,20 +93,22 @@ export default class App extends React.Component {
                 wheel: true
               }}
             >
-              <CategoryLogica />
-              <CategoryBucles />
-              <CategoryMath /> 
-              <CategoryText />
-              <CategoryVariable />
-              <CategoryFuncion />
-              <CategoryInicial />
-              <CategoryDigital /> 
-              <CategoryAnalog />
-              <CategorySerial /> 
-              <CategoryTone />
-              <CategoryTime />
-              <CategoryServo />
-              <CategoryRobot/>
+              <div className="categorias">
+                <CategoryLogica />
+                <CategoryBucles />
+                <CategoryMath />
+                <CategoryText />
+                <CategoryVariable />
+                <CategoryFuncion />
+                <CategoryInicial />
+                <CategoryDigital />
+                <CategoryAnalog />
+                <CategorySerial />
+                <CategoryTone />
+                <CategoryTime />
+                <CategoryServo />
+                <CategoryRobot />
+              </div>
             </BlocklyComponent>
           </header>
         </div>
