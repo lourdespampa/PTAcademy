@@ -180,7 +180,7 @@ getFile(){
         }
       }else{
         console.log(file)
-        req.open("PUT", `http://3.16.110.136:4200/v1/api/teacher/presentation/${this.props.id_class}`);
+        req.open("PUT", `${this.props.apiUrl}/v1/api/teacher/presentation/${this.props.id_class}`);
         // req.open("POST", `${this.props.apiUrl}/v1/api/teacher/${this.props.idteacher}/course/${this.props.idcourse}/falllaApropocito`);
         req.setRequestHeader('x-access-token', `${varToken}`)
         req.send(formData);
@@ -228,7 +228,7 @@ getFile(){
           <>
           <button className='modal-body__button backCursos'
             onClick={() =>{
-              this.props.cleanInputs()
+              // this.props.cleanInputs()
               this.setState({ files: [], uploading: false, errorUploaded: false,slideOn:false })
             }}
           >
