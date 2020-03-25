@@ -199,6 +199,14 @@ class Temporizador extends React.Component {
               .
             </div>
             <div className="unit_name">SEGUNDOS</div>
+            <audio id="alarm" hidden controls>
+              <source
+                src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"
+                type="audio/wav"
+              />
+              <source src="/images/clock.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
           </div>
         </div>
         <div hidden>
