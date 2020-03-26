@@ -122,7 +122,7 @@ export default class Forms extends Component {
     return (
       <>
         <div>seccion donde se van a mostrar los formularios</div>
-          {/* <select
+          <select
             value={this.state.handleChange}
             onChange={this.handleChange}
             name="tipo"
@@ -132,10 +132,10 @@ export default class Forms extends Component {
             <option value="2">True and false</option>
             <option value="3">responder preguntar</option>
             <option value="4">Rellenar</option>
-          </select> */}
+          </select>
         <form onSubmit={this.handleSubmit}>
         
-          {/* {this.state.valueType === "1" ? (
+          {this.state.valueType === "1" ? (
             <div>
               <div onChange={this.saveInputs.bind(this)}>
                 <label>pregunta</label>
@@ -220,7 +220,7 @@ export default class Forms extends Component {
             </div>
           ) : (
             <div>pregunta para rellenar</div>
-          )} */}
+          )}
           <input type="submit" value="xd"/>
         </form>
       </>
