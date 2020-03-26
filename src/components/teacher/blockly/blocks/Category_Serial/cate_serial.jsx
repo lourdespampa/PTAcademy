@@ -10,8 +10,6 @@ class Cate_serial extends React.Component {
 
     render() {
         return (
-            
-            (this.props.visible)?
             <Category id="category_serial" name="Serial I/O">
                 <Block type="react_serial_init">
                     <Value name="SPEED">
@@ -35,9 +33,8 @@ class Cate_serial extends React.Component {
                         </Block>
                     </Value>
                 </Block>
-                <Block type="react_serial_read"></Block> 
+                <Block type="react_serial_read"></Block>
             </Category>
-            :null
         );
     }
 }

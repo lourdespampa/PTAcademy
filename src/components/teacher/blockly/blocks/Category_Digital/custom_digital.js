@@ -14,7 +14,7 @@ var ReactInoutDigital = {
     {
       type: "field_dropdown",
       name: "PIN",
-      options: Blockly.Arduino.pinesNormal.digital
+      options: Blockly.Arduino.pinesNormal.digital 
     }
   ],
   message1: "%{BKY_INOUT_DIGITAL_STAT} %1",
@@ -54,7 +54,7 @@ var ReactInoutHighLow =
   inputsInline: !0,
   output: "Boolean",
 
-}
+} 
 Blockly.Blocks['react_inout_highlow'] = {
   init: function () {
     this.jsonInit(ReactInoutHighLow);

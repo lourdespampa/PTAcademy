@@ -14,6 +14,7 @@ class Left extends React.Component {
     return (
       <MenuLeft
         view={this.props.view}
+        viewBlockly={this.props.viewBlockly}
         socketUrl={this.props.socketUrl}
         id_access={this.props.id_access}
         id_class={this.props.id_class}
@@ -24,4 +25,4 @@ class Left extends React.Component {
   }
 }
 
-export default Left;
+export default Left; 

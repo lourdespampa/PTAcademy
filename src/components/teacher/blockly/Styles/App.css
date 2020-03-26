@@ -6,3 +6,7 @@
 .blockly {
   visibility: visible;
 }
+.ROBOT{
+
+  display: none;
+}

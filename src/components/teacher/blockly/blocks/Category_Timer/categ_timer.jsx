@@ -19,7 +19,7 @@ class Cate_time extends React.Component {
                             <Field name="NUM">1000</Field>
                         </Block>
                     </Value>
-                </Block> 
+                </Block>
             </Category>
             
         );

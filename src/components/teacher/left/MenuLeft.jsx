@@ -46,7 +46,8 @@ function MenuLeft(props) {
             {console.log(props.id_access)}
             <Link
               className="icon-twitter"
-              to={`/teacher/${props.id_class}/${props.id_access}/bloque`}
+              //to={`/teacher/${props.id_class}/${props.id_access}/bloque`}
+              to={props.viewBlockly}
             >
               {" "}
               <img src={puzzle} width="40px" alt="blocks"></img>{" "}

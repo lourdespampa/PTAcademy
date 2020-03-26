@@ -1,5 +1,5 @@
 import React from "react";
-import {
+import { 
     Block,
     Value,
     Field,
@@ -10,7 +10,7 @@ class Cate_digital extends React.Component {
 
     render() {
         return (
-            <Category id="category_digital" name="Digital I/O">
+            <Category id="category_digital" name="Digital I/O"> 
                 <Block type="react_inout_digital"></Block>
                 <Block type="react_inout_highlow"></Block>
                 <Block type="react_digital_read_pullup">
