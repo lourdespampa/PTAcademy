@@ -1,5 +1,4 @@
-import React, { Component, useState } from "react";
-import axios from 'axios';
+import React, { Component } from "react";
 export default class AllQuestions extends Component {
     constructor(props) {
         super(props)
@@ -42,6 +41,7 @@ export default class AllQuestions extends Component {
                             <p>{this.props.answer2}</p>
                             <p>{this.props.answer3}</p>
                             <p>{this.props.answer4}</p>
+                            {this.vistaBancoPreguntas}
                         </div>) : ( 
                             <div id="AnswersCards"></div>
                         )}

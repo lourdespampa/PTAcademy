@@ -1,0 +1,12 @@
+/*
+.App{
+  visibility: hidden;
+}*/
+
+.blockly {
+  visibility: visible;
+}
+.ROBOT{
+
+  display: none;
+}

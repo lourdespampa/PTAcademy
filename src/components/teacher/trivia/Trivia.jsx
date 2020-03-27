@@ -37,6 +37,7 @@ class Trivia extends React.Component {
       showpuntosmas: 0,
       showpuntosmenos: 0,
       point: "",
+      _id: "",
       datapoint: {
         positivo: [
           {
@@ -272,35 +273,9 @@ class Trivia extends React.Component {
     //finalmente cambia el estado del boton a restaurar.
     this.setState(state => ({ preguntaEnviada: !state.preguntaEnviada }));
   }
-  handleAddAndRemovePoint = (alumnoTop, punto) => {
-    this.puntaje += punto
-    console.log('punto', punto)
-    console.log('this.punto', this.puntaje)
-    // const data = {
-    //   point: this.puntaje
-    // }
-    for (var alumno of this.state.todosAlumnos) {
-      if (alumno.nombre === alumnoTop.data.alumno) {
-        var varToken = localStorage.getItem('token');
-        let data = {
-          point: alumno.puntos + punto
-        }
-        axios({
-          url: this.props.apiUrl + '/v1/api/student/update_score/' + alumno._id,
-          data,
-          method: 'put',
-          headers: {
-            'x-access-token': `${varToken}`
-          }
-        })
-          .then(res => this.getStudents())
-          .catch(e => console.log(e))
-        // await this.setState({ point: alumno.point })
-      }
-    }
-  }
+  
   onClickPoint = (id, point) => {
-    this.setState({
+      this.setState({
       _id: id,
       point: point
     });
@@ -308,9 +283,7 @@ class Trivia extends React.Component {
   };
   onClickPointAdd = async valor => {
     const point = this.state.point + valor;
-    const data = {
-      point: point
-    };
+    const data = { point: point };
     var varToken = localStorage.getItem("token");
     await axios({
       url: this.props.apiUrl + "/v1/api/student/update_score/" + this.state._id,
@@ -328,7 +301,7 @@ class Trivia extends React.Component {
     const data = { point: point };
     var varToken = localStorage.getItem("token");
     await axios({
-      url: this.props.apiUrl + "/v1/api/student/update_score/" + this.props._id,
+      url: this.props.apiUrl + "/v1/api/student/update_score/" + this.state._id,
       data,
       method: "put",
       headers: {
@@ -338,6 +311,7 @@ class Trivia extends React.Component {
     this.getStudents();
     this.setState({ "showpuntosmenos": 2 });
   };
+
   setShow = (nom, val) => {
     this.setState({ [nom]: val });
   };
@@ -391,32 +365,32 @@ class Trivia extends React.Component {
                           ?
                           null
                           :
-                          <li className="lista-contenedora" key={index}>
-                            {/* <img className="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
-                            <div className="trivia-respuestas">
-                              <div className="name-contenedor">alumno:&nbsp;&nbsp;{alumno.data.alumno}&nbsp;&nbsp;
-                              {/* puntaje:&nbsp;&nbsp;{alumno.data.puntaje}&nbsp;&nbsp; */}
-                              </div>
-                              <div className="points-contenedor">
-                                puntos:&nbsp;&nbsp;
-                                <button className="button btnMyM material-icons" onClick={() => this.onClickPoint(alumno._id, alumno.point) + this.setShow("showpuntosmas", 1)}>
-                                  add_circle_outline
-                                </button>
-                                &nbsp;
-                                {this.state.todosAlumnos.map(todoAlumno => (
-                                  todoAlumno.nombre === alumno.data.alumno
-                                    ?
+                          this.state.todosAlumnos.map(todoAlumno => (
+                            todoAlumno.nombre === alumno.data.alumno
+                            ?
+                            <li className="lista-contenedora" key={index}>
+                              {/* <img className="imagenClasificacion" src={require('./1ro.webp')} width="35"/> */}
+                              <div className="trivia-respuestas">
+                                <div className="name-contenedor">alumno:&nbsp;&nbsp;{alumno.data.alumno}&nbsp;&nbsp;
+                                {/* puntaje:&nbsp;&nbsp;{alumno.data.puntaje}&nbsp;&nbsp; */}
+                                </div>
+                                <div className="points-contenedor">
+                                  puntos:&nbsp;&nbsp;
+                                  <button className="button btnMyM material-icons" onClick={() => this.onClickPoint(todoAlumno._id, todoAlumno.puntos) + this.setShow("showpuntosmas", 1)}>
+                                    add_circle_outline
+                                  </button>
+                                  &nbsp;
                                     <label key={index}>{todoAlumno.puntos}</label>
-                                    :
-                                    null
-                                ))}
-                                &nbsp;
-                                <button className="button btnMyM material-icons" onClick={() => this.onClickPoint(alumno._id, alumno.point) + this.setShow("showpuntosmenos", 1)}>
-                                  remove_circle_outline
-                                </button>
+                                  &nbsp;
+                                  <button className="button btnMyM material-icons" onClick={() => this.onClickPoint(todoAlumno._id, todoAlumno.puntos) + this.setShow("showpuntosmenos", 1)}>
+                                    remove_circle_outline
+                                  </button>
+                                </div>
                               </div>
-                            </div>
-                          </li>
+                            </li>
+                            :
+                            null
+                          ))
                       ))
                       :
                       <h2>Aún no hay alumnos en el top.</h2>
@@ -437,26 +411,6 @@ class Trivia extends React.Component {
                     <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
                   </button>
                   <h2>Banco de preguntas</h2>
-                  {/* <div className="QuestionsListClass">
-                    <div className="QuestionsCards">
-                        {this.props.question}
-                        <button className="classTrivia__button-Edit" onClick={() => this.ShowAnswer(true)}>
-                             <i className="far fa-eye"></i>
-                        </button>
-                        <button className="classTrivia__button-Edit" onClick={() => this.ShowAnswer(false)}>
-                            <i class="far fa-eye-slash"></i>
-                        </button>
-                        {this.state.see ? (
-                        <div id="AnswersCards">
-                            <p>{this.props.answer1}</p>
-                            <p>{this.props.answer2}</p>
-                            <p>{this.props.answer3}</p>
-                            <p>{this.props.answer4}</p>
-                        </div>) : ( 
-                            <div id="AnswersCards"></div>
-                        )}
-                    </div>
-                </div> */}
                 </div>
               </div>
               :

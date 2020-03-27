@@ -5,8 +5,7 @@ import Index from '../pages/student/Index'
 import Trivia from '../pages/student/Trivia'
 import Temporizador from '../pages/student/temporizador'
 import Board from '../pages/student/board'
-
-
+import Blockly from '../components/student/blocky/AppStudent'
 import Access from '../access'
 //socket initial
 import io from 'socket.io-client';
@@ -17,7 +16,10 @@ export default class Student extends Component {
     super(props);
     this.state={
         id_access:'',
-        socketUrl:"https://socket.playtecedu.com/student",
+        //  socketUrl:"http://192.168.1.15:4000/student",
+        // //socketUrl:"https://socket.playtecedu.com/student",
+        socketUrl:"http://localhost:8080/student",
+
         id_student:'',
         name:'',
         lastName:''
@@ -63,7 +65,7 @@ initSocket=()=>{
 						<Route exact path="/student/:id/:cod/trivia" component={() => <Trivia socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student} fullname={`${this.state.name} ${this.state.lastName}`}/>}/>
 						<Route exact path="/student/:id/:cod/temporizador" component={() => <Temporizador socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student}/>}/>
 						<Route exact path="/student/:id/:cod/pizarra" component={() => <Board socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student}/>}/>
-            {/* <Redirect from="/" to="/student/:id/:cod" /> */}
+            <Route exact path="/student/:id/:cod/blockly" component={() => <Blockly socketUrl={this.state.socketUrl} id_access={this.state.id_access} id_student={this.state.id_student}/>}/>
         </Container>
         </Switch>
       </BrowserRouter>

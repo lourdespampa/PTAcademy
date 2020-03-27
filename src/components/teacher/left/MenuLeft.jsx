@@ -37,16 +37,15 @@ function MenuLeft(props) {
         <ul>
           <li>
             <Link className="icon-facebook" to={props.view}>
-              {" "}
               <img src={board} width="40px" alt="board"></img>{" "}
               <p className="text-menu-left">PIZARRA</p>
             </Link>
           </li>
           <li>
-            {console.log(props.id_access)}
             <Link
               className="icon-twitter"
-              to={`/teacher/${props.id_class}/${props.id_access}/bloque`}
+              //to={`/teacher/${props.id_class}/${props.id_access}/bloque`}
+              to={props.viewBlockly}
             >
               {" "}
               <img src={puzzle} width="40px" alt="blocks"></img>{" "}

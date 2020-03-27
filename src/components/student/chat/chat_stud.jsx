@@ -21,19 +21,19 @@ export default class Chat extends Component
           { pin: this.props.id_access }
       })
      
-    componentDidMount(){    
-      const name = localStorage.getItem("name")
-      const lastName = localStorage.getItem("lastName")
-      this.setState({
-        name: name,
-        lastName : lastName
-      })
+    componentDidMount(){
+    /*  setTimeout(() => {
+        const name = localStorage.getItem("name")
+        const lastName = localStorage.getItem("lastName")
+        this.setState({
+          name: name,
+          lastName : lastName
+        })     
+      
 
       console.log(name);
       console.log(lastName);
-      console.log(this.props.id_access);
-      console.log(this.props.name);
-      console.log(this.lastName);
+      }, 4000);    */ 
 
       this.socket.on('TeachWriting',(data) => {
         if(data.pin === (this.props.id_access).toUpperCase()) {
@@ -103,8 +103,8 @@ export default class Chat extends Component
           lastName : this.props.lastName
           el props dejo de funcionar no se porque 
           */
-          name : this.state.name,
-          lastName : this.state.lastName
+          name : localStorage.getItem("name"),
+          lastName : localStorage.getItem("lastName")
       }
       this.socket.emit('studentSendMessage',data)
       this.state.message.push(data)
@@ -127,7 +127,7 @@ export default class Chat extends Component
   <div className="chat-messages-container" ref="messageList" id="div_chat_container">
               {
                   this.state.message.map(message =>{
-                    if (message.sendByTeacher==true) {
+                    if (message.sendByTeacher===true) {
                       return <ChatItem
                       avatar={'https://image.flaticon.com/icons/svg/1089/1089129.svg'}
                       alt={'Reactjs'}
