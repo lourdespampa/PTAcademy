@@ -6,7 +6,7 @@ export default class Forms extends Component {
     this.state = {
       id_class: "",
       valueType: "0",
-      questions: [],
+      questions: [{}],
       type: "",
       question: "",
       answer: "",
@@ -17,6 +17,8 @@ export default class Forms extends Component {
       correctAnswer: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.saveInputs = this.saveInputs.bind(this);
   }
 
   componentDidMount() {
@@ -24,6 +26,22 @@ export default class Forms extends Component {
     console.log(this.props.id_class);
     // "add form": "POST  /v1/api/form/add_form/:id_class    (questions:array)",
     // "get form": "GET  /v1/api/form/get_form/:id_class",
+    this.getQuestions()
+  }
+  getQuestions() {
+    var varToken = localStorage.getItem("token");
+    axios({
+      url: `${this.props.apiUrl}/v1/api/form/get_form/${this.props.id_class}`,
+      method: "GET",
+      headers: {
+        "x-access-token": `${varToken}`
+      }
+    })
+      .then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
   }
   handleChange = e => {
     this.setState({
@@ -36,18 +54,10 @@ export default class Forms extends Component {
         console.log("no se realiza ninguna accion");
         break;
       case "1":
-        // console.log("primera opcion");
         this.setState({
           [e.target.name]: e.target.value
         });
-        setTimeout(() => {
-          console.log("1. pregunta", this.state.question);
-          console.log("2. res1", this.state.answer1);
-          console.log("3. res2", this.state.answer2);
-          console.log("4. res3", this.state.answer3);
-          console.log("5. res4", this.state.answer4);
-          console.log("6. correcta", this.state.correctAnswer);
-        }, 2000);
+
         break;
       case "2":
         this.setState({
@@ -83,6 +93,7 @@ export default class Forms extends Component {
             res4: this.state.answer4,
             correctAnswer: this.state.correctAnswer
           });
+          this.setState(this.state);
         } else {
           console.log("esta vacio los campos");
         }
@@ -98,6 +109,7 @@ export default class Forms extends Component {
         } else {
           console.log("esta vacio los campos");
         }
+        this.setState(this.state);
 
         break;
       case "3":
@@ -110,18 +122,70 @@ export default class Forms extends Component {
         } else {
           console.log("esta vacio los campos");
         }
+        this.setState(this.state);
         break;
       default:
+        console.log(this.state.questions);
     }
   };
-  handleSubmit = (e) => {
+  handleSubmit = e => {
+    console.log(this.state.questions)
     e.preventDefault();
-    console.log("se tiene que enviar el formulario");
+    axios({
+      url: `${this.props.apiUrl}/v1/api/form/add_form/${this.props.id_class}`,
+      method: "POST",
+      data: {questions: this.state.questions}
+    })
+      .then(res => {
+        console.log(res);
+        this.getQuestions()
+      }).catch(err => {
+        console.log(err)
+      })
   };
   render() {
+    let { questions } = this.state;
     return (
       <>
         <div>seccion donde se van a mostrar los formularios</div>
+        <div>
+          {questions.map((pregunta,id) => {
+            return (
+              <div key={id}>
+                pregunta {id+1}
+                {pregunta.type === "1" ? (
+                  <div>
+                    pregunta: {pregunta.pregunta}
+                    <br />
+                    respuesta 1: {pregunta.res1}
+                    <br />
+                    respuesta 2: {pregunta.res2}
+                    <br />
+                    respuesta 3: {pregunta.res3}
+                    <br />
+                    respuesta 4: {pregunta.res4}
+                    <br />
+                  </div>
+                ) : pregunta.type === "2" ? (
+                  <div>
+                    pregunta: {pregunta.pregunta}
+                    <br />
+                    respuesta correcta: {pregunta.correctAnswer}
+                    <br />
+                  </div>
+                ) : pregunta.type === "3" ? (
+                  <div>pregunta: {pregunta.pregunta}
+                  <br />
+                  respuesta correcta: {pregunta.correctAnswer}
+                  <br /></div>
+                ) : pregunta.type === "4" ? (
+                  <div>pregunta tipo 4</div>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+        <form onSubmit={this.handleSubmit}>
           <select
             value={this.state.handleChange}
             onChange={this.handleChange}
@@ -133,8 +197,6 @@ export default class Forms extends Component {
             <option value="3">responder preguntar</option>
             <option value="4">Rellenar</option>
           </select>
-        <form onSubmit={this.handleSubmit}>
-        
           {this.state.valueType === "1" ? (
             <div>
               <div onChange={this.saveInputs.bind(this)}>
@@ -221,7 +283,7 @@ export default class Forms extends Component {
           ) : (
             <div>pregunta para rellenar</div>
           )}
-          <input type="submit" value="xd"/>
+          <input type="submit" value="GUARDAR FORMULARIO" />
         </form>
       </>
     );
