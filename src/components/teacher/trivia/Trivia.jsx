@@ -233,7 +233,6 @@ class Trivia extends React.Component {
       console.log("restaurando...")
       this.setState({
         pregunta: '',
-        tiempo: '5',
         imagen64: '',
         respuestaOne: '',
         respuestaTwo: '',
