@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import "./board.sass";
 import iconExit from "../../../img/cerrar1.png";
 
-
+let img
 export default class board extends React.Component {
   state = {
     x1: "",
@@ -29,7 +29,8 @@ export default class board extends React.Component {
     texto: "",
     Show:0,
     draft:false,
-    image:false
+    image:false,
+    file:''
   };
   // c:
   componentWillMount(){
@@ -186,6 +187,22 @@ export default class board extends React.Component {
       socket.emit("DrawText", {
         data: data
       });
+    }else if(this.state.image){
+      this.setState({
+        clickPress: false,
+        mouseReleased: true,
+        x2: e.pmouseX - this.state.x1,
+        y2: e.pmouseY - this.state.y1
+      });
+      const data = {
+        x1: this.state.x1,
+        y1: this.state.y1,
+        x2: e.pmouseX - this.state.x1,
+        y2: e.pmouseY - this.state.y1
+      };
+      socket.emit("DrawImg", {
+        data: data
+      });
     }
   }
   // c: evento al mover el mouse precionando el click
@@ -273,6 +290,9 @@ export default class board extends React.Component {
             clickPress:false
           })
         }, 500);
+      }else if(this.state.image){
+        // p5.image(img,this.state.x1, this.state.y1,this.state.x2,this.state.y2)
+        // this.pencil()
       }
       this.setState({
         mouseReleased: false
@@ -318,7 +338,7 @@ export default class board extends React.Component {
       text: false,
       line: false,
       draft:false,
-      imagen:false
+      image:false
     });
   };
   // c: Cambiar opcion a rectangulo
@@ -332,7 +352,7 @@ export default class board extends React.Component {
       text: false,
       line: false,
       draft:false,
-      imagen:false
+      image:false
     });
   };
   // c: Cambiar opcion a triangulo
@@ -346,7 +366,7 @@ export default class board extends React.Component {
       text: false,
       line: false,
       draft:false,
-      imagen:false
+      image:false
     });
   };
   // c: Cambiar opcion a lapiz
@@ -360,7 +380,7 @@ export default class board extends React.Component {
       text: false,
       line: false,
       draft:false,
-      imagen:false
+      image:false
     });
   };
   line = () => {
@@ -373,7 +393,7 @@ export default class board extends React.Component {
       line: true,
       text: false,
       draft:false,
-      imagen:false
+      image:false
     });
   };
   text = () => {
@@ -387,7 +407,7 @@ export default class board extends React.Component {
       text: false,
       Show:1,
       draft:false,
-      imagen:false
+      image:false
     });
   };
   draft=()=>{
@@ -400,7 +420,7 @@ export default class board extends React.Component {
       line: false,
       text: false,
       draft:true,
-      imagen:false
+      image:false
     });
   }
   textOn = () => {
@@ -424,8 +444,21 @@ export default class board extends React.Component {
       line: false,
       text: false,
       draft: false,
-      imagel:true
+      image:true
     });
+  }
+  openFile=(e)=>{
+    let file = e.target.files[0]
+    if (file.type.substr(0, 6) !== "image/") {
+      return alert("Ingrese una imagen.")
+    }
+    var reader = new FileReader();
+    reader.onload = eventImg => {
+      var result = eventImg.target.result;
+      this.setState({ file: result })
+    }
+    reader.readAsDataURL(file);
+    this.image()
   }
   render() {
     return (
@@ -576,6 +609,7 @@ export default class board extends React.Component {
               className="canvasBoard"
               setup={(p5, parentRef) => {
                 p5.createCanvas(1000, 500).parent(parentRef);
+                // img = p5.loadImage(this.state.file)
               }}
               draw={p5 => this.draw(p5)}
               mouseDragged={e => this.mouseDragged(e)}
@@ -671,11 +705,13 @@ export default class board extends React.Component {
                     title
                   </i>
                 </li>
-                <li className={this.state.image ? "iclear sombreado":"iclear"}>
-                  <i className="material-icons" onClick={() => this.image()}>
+                {/* <li className={this.state.image ? "iclear sombreado":"iclear"}>
+                  <i className="material-icons">
                     insert_photo
                   </i>
-                </li>
+                  <input type="file" className="inputFile-board" name="" id="" onChange={(e)=>this.openFile(e)}>
+                    </input> 
+                </li> */}
               </ul>
             </div>
             </div>
@@ -909,11 +945,12 @@ export default class board extends React.Component {
                     title
                   </i>
                 </li>
-                <li className={this.state.image ? "iclear sombreado":"iclear"}>
+                {/* <li className={this.state.image ? "iclear sombreado":"iclear"}>
                   <i className="material-icons" onClick={() => this.image()}>
                     insert_photo
                   </i>
-                </li>
+                  <input type="file" name="" id=""/>
+                </li> */}
               </ul>
             </div>
           </li>

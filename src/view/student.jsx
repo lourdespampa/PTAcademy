@@ -19,7 +19,6 @@ export default class Student extends Component {
         //  socketUrl:"http://192.168.1.15:4000/student",
         socketUrl:"https://socket.playtecedu.com/student",
         // socketUrl:"http://localhost:8080/student",
-
         id_student:'',
         name:'',
         lastName:''

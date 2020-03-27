@@ -24,7 +24,6 @@ export default class Views extends Component {
       // socketUrl:"http://192.168.1.15:4000/teacher",
       socketUrl: "https://socket.playtecedu.com/teacher",
       // socketUrl:"http://localhost:8080/teacher",
-
       user: null,
       id: "",
       grabar: false,

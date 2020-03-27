@@ -83,8 +83,8 @@ export default class FormAddStudent extends Component {
       var varToken = localStorage.getItem("token");
       event.preventDefault();
       const data = {
-        name_stu: this.state.name_stu,
-        lastName_stu: this.state.lastName_stu,
+        name_stu: this.state.name_stu.trim(),
+        lastName_stu: this.state.lastName_stu.trim(),
         id_teach: this.props.idteacher,
         id_course: this.props.idcourse
       };

@@ -33,8 +33,11 @@ export default class loginPrivate extends Component {
   handleChange = e => {
     const target = e.target;
     const name = target.name;
-    const value = target.value;
-
+    var value = target.value;
+    if(value.charAt(0)===" "){
+      value=value.trim()
+    }
+    console.log(value)
     this.setState({
       [name]: value
     });
@@ -45,14 +48,14 @@ export default class loginPrivate extends Component {
     console.log("apiURl: "+this.props.apiUrl);
 
     const data = {
-      name_stu: this.state.name_student,
-      lastName_stu: this.state.last_student,
+      name_stu: this.state.name_student.trim(),
+      lastName_stu: this.state.last_student.trim(),
       id_teach:this.state.id_teacher,
       id_course:this.state.id_course
     };
     const data2={
-      name_stu: this.state.name_student,
-      lastName_stu: this.state.last_student,
+      name_stu: this.state.name_student.trim(),
+      lastName_stu: this.state.last_student.trim(),
       randonCode:this.state.codigoSecreto
     }
     if(this.state.hasStudents===true){
