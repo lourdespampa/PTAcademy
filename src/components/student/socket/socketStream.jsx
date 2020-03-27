@@ -18,6 +18,7 @@ export default class Audio extends Component {
    * Fix notificatión 
    *  :: valor inicial de PIN al cargar component
    * */ 
+
   pin = ''
   /******************* */
     state={
@@ -85,6 +86,7 @@ export default class Audio extends Component {
 
         const socket = io(socketUrl, {
             query:
+
                 { pin: this.pin }
           })
       let varToken = localStorage.getItem('token')
@@ -101,6 +103,7 @@ export default class Audio extends Component {
             axios({
                 url : `${this.props.apiUrl}/v1/api/teacher/presentations/${response.data.id_class.id_class}`,
                 method : 'GET',
+
                 headers:{                
                     "x-access-token" :`${varToken}`
                 }
@@ -112,6 +115,7 @@ export default class Audio extends Component {
               }else{
                 console.log(response.data);
                 this.setState({Slides:response.data})
+
               }
             }).catch((err)=>{
                   console.log(err)
@@ -121,6 +125,7 @@ export default class Audio extends Component {
             const pinTeacher = this.pin.toUpperCase();
             if(data.pin === (pinTeacher).toUpperCase()) {
             const overlayDiapo = document.getElementById('overlay')
+
             const popupDiapo = document.getElementById('popup')
             this.openPopup(overlayDiapo.id, popupDiapo.id)}
             this.setState({showGrupo:2});
@@ -168,20 +173,30 @@ export default class Audio extends Component {
         var btn_play = document.getElementById('btn_play');
         // var debug = document.querySelector('#debug2');
         btn_play.style.visibility = 'hidden'
+
         btn_play.addEventListener('click', () => {
+
 
             btn_play.disabled = true;
             if (audioStreamer === false) {
                 // Set latency to 100ms (Equal with presenter)
                 audioStreamer = new AudioStreamer(500);
+
                 audioStreamer.playStream();
 
+
                 // Buffer header must be received first
+
                 socket.on('bufferHeader',  (packet) =>{
+
                     const pinTeacher = this.pin.toUpperCase();
+
                     if(packet.pin === (pinTeacher).toUpperCase()) {
+
                     // if (packet.pin === ('<%= pin %>').toUpperCase()) {
+
                     console.log('ejecutando buffer');
+
                     audioStreamer.setBufferHeader(packet.audio);
                     // console.log('El profesor iniciara una demostracion de audio');
                     }
@@ -190,12 +205,16 @@ export default class Audio extends Component {
                 // Receive buffer and play it
                 socket.on('stream', (packet) =>{
                     const pinTeacher = this.pin.toUpperCase();
+
                     if(packet.pin === (pinTeacher).toUpperCase()) {
+
                     //    console.log("3");
                     //if (packet.pin === ('<%= pin %>').toUpperCase()) {
+
                     //   debug.value = "Buffer received: " + packet.audio[0].byteLength + "bytes";
                     audioStreamer.receiveBuffer(packet.audio)
                     console.log('recibiendo stream...');
+
                      }
                     // audioStreamer.realtimeBufferPlay(packet);
                 });
@@ -208,6 +227,7 @@ export default class Audio extends Component {
         socket.on('onPlay',  (data)=> {
             const pinTeacher = this.pin.toUpperCase();
             if(data.pin === (pinTeacher).toUpperCase()) {
+
             btn_play.click()}
         })
         //ROULETTE
