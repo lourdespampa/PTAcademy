@@ -251,7 +251,7 @@ getFile(){
       return (
         <>
         <p className="mensageAction pocitive"> 
-        Subiendo diapositiva...
+        Subiendo diapositiva... Esto tomara algunos minutos...
         </p>
         </>
       );

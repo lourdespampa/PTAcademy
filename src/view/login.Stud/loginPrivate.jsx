@@ -22,7 +22,7 @@ export default class loginPrivate extends Component {
   handleChange = e => {
     const target = e.target;
     const name = target.name;
-    const value = target.value;
+    var value = target.value;
     if(value.charAt(0)===" "){
       value=value.trim()
     }
