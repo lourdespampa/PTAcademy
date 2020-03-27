@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.56f3fe1b.chunk.css",
-    "main.js": "/static/js/main.1b45db26.chunk.js",
-    "main.js.map": "/static/js/main.1b45db26.chunk.js.map",
+    "main.css": "/static/css/main.c18148ba.chunk.css",
+    "main.js": "/static/js/main.fbb95e4f.chunk.js",
+    "main.js.map": "/static/js/main.fbb95e4f.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.210dec86.js",
     "runtime-main.js.map": "/static/js/runtime-main.210dec86.js.map",
     "static/css/2.dbf329f2.chunk.css": "/static/css/2.dbf329f2.chunk.css",
-    "static/js/2.49443fe9.chunk.js": "/static/js/2.49443fe9.chunk.js",
-    "static/js/2.49443fe9.chunk.js.map": "/static/js/2.49443fe9.chunk.js.map",
+    "static/js/2.b5100ef3.chunk.js": "/static/js/2.b5100ef3.chunk.js",
+    "static/js/2.b5100ef3.chunk.js.map": "/static/js/2.b5100ef3.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.70b93dacfcae999315edf62173e522f4.js": "/precache-manifest.70b93dacfcae999315edf62173e522f4.js",
+    "precache-manifest.0a218f6c43a63873c46cbec937de4093.js": "/precache-manifest.0a218f6c43a63873c46cbec937de4093.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.dbf329f2.chunk.css.map": "/static/css/2.dbf329f2.chunk.css.map",
-    "static/css/main.56f3fe1b.chunk.css.map": "/static/css/main.56f3fe1b.chunk.css.map",
-    "static/js/2.49443fe9.chunk.js.LICENSE.txt": "/static/js/2.49443fe9.chunk.js.LICENSE.txt",
-    "static/js/main.1b45db26.chunk.js.LICENSE.txt": "/static/js/main.1b45db26.chunk.js.LICENSE.txt",
+    "static/css/main.c18148ba.chunk.css.map": "/static/css/main.c18148ba.chunk.css.map",
+    "static/js/2.b5100ef3.chunk.js.LICENSE.txt": "/static/js/2.b5100ef3.chunk.js.LICENSE.txt",
+    "static/js/main.fbb95e4f.chunk.js.LICENSE.txt": "/static/js/main.fbb95e4f.chunk.js.LICENSE.txt",
     "static/media/InactiveIcon.svg": "/static/media/InactiveIcon.4f5910bc.svg",
     "static/media/Logo.svg": "/static/media/Logo.7b64d487.svg",
     "static/media/login.sass": "/static/media/bg-teacher-login.fc4d0dde.jpg",
@@ -66,8 +66,8 @@
   "entrypoints": [
     "static/js/runtime-main.210dec86.js",
     "static/css/2.dbf329f2.chunk.css",
-    "static/js/2.49443fe9.chunk.js",
-    "static/css/main.56f3fe1b.chunk.css",
-    "static/js/main.1b45db26.chunk.js"
+    "static/js/2.b5100ef3.chunk.js",
+    "static/css/main.c18148ba.chunk.css",
+    "static/js/main.fbb95e4f.chunk.js"
   ]
 }
