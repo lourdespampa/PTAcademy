@@ -168,8 +168,11 @@ img {
   border-style: none;
 }
 
-.modal-general-background .modal-general_bg_content .modal-general_close .button-zoom{
-  width: 17px !important
+.modal-general-background
+  .modal-general_bg_content
+  .modal-general_close
+  .button-zoom {
+  width: 17px !important;
 }
 
 /* Forms
@@ -249,7 +252,8 @@ button:-moz-focusring,
 }
 
 /* solo para contraseñas */
-input[type="text"], input[type="password"] {
+input[type="text"],
+input[type="password"] {
   font-family: monospace;
 }
 /**
@@ -436,7 +440,7 @@ template {
   width: 100%;
   cursor: pointer;
 }
-.modal-teacher__general-close .button-zoom{
+.modal-teacher__general-close .button-zoom {
   width: 17px;
 }
 
@@ -493,9 +497,6 @@ template {
   background: #fb9600;
   cursor: pointer;
 }
-
-
-
 
 .modal-body__button.cursos,
 .modal-body__button.yes {
@@ -560,7 +561,7 @@ template {
 }
 
 .list-course {
-  background-color:#fb9600;
+  background-color: #fb9600;
   width: 95%;
   padding: 2px;
   text-align-last: center;
@@ -581,9 +582,7 @@ template {
   margin: 9px;
   margin-left: 30px;
   line-height: 1.4;
-  letter-spacing: .02em;
-
-  
+  letter-spacing: 0.02em;
 }
 
 @keyframes fadeIn {
@@ -687,7 +686,56 @@ template {
   color: #b6b6b6;
   /* color: #E91E63; */
 }
-/* 
-.modal-formulario {
 
-} */
+.modal-general-form {
+  height: 500px;
+  overflow-y: scroll;
+}
+.div-form-select{
+  position: relative;
+  height: 3em;
+  line-height: 3;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+  text-align: center;
+  font-size: 15px;
+}
+
+.form-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 100%;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #2c3e50;
+  background-image: none;
+  
+}
+.form-select::-ms-expand {
+  display: none;
+}
+.form-select{
+  flex: 1;
+  padding: 0 .5em;
+  color: #fff;
+  cursor: pointer;
+}
+.div-form-select::after {
+  content: 'xd';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #34495e;
+  color: #fff;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}

@@ -70,7 +70,7 @@ export default function App(props) {
   const handleToLogin = event => {
     event.preventDefault();
     const { email, pass } = inputsLogin;
-    console.log(email)
+    console.log(email);
     getMessage({ message: "" });
     setLoading({ loading: true });
     //llamamos a la función de firebase que crea al usuario por correo y contraseña
@@ -142,13 +142,13 @@ export default function App(props) {
           displayName: `${username} ${lastname}`
         });
         const configuracion = {
-          url: "http://www.app.playtecedu.com"
+          url: "https://www.app.playtecedu.com"
         };
         result.user.sendEmailVerification(configuracion).catch(error => {
           console.log(error);
         });
         firebase.auth().signOut();
-        console.log(email,pass, username, lastname)
+        console.log(email, pass, username, lastname);
         axios
           .post(`${props.apiUrl}/signup`, {
             email,
