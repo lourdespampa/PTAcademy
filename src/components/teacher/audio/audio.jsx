@@ -16,20 +16,27 @@ export default class Audio extends Component{
   handleClose = () => this.setState({show:2});
   handleShow = () => this.setState({show:1});
   componentDidMount(){
+      console.log(this.props.socketUrl)
+      console.log(this.props.id_access)   
   var presenterMedia = false;
   var micon = document.getElementById('btn');
   var btn = document.getElementById('btn');
   var micro = document.getElementById('micro');
   //EMISOR
+
   const controller = []
+
   micon.addEventListener('click', () => {
       const socket = io(this.props.socketUrl, {
+
           query:
               { pin: this.props.id_access }
         })
+
           socket.emit('onPlay', {
               txt: "Se inicio una nueva emision de voz.Por favor da click en el boton reproducir"
           });
+
           if (presenterMedia === false) {
               // Set latency to 100ms (Equal with streamer)
               presenterMedia = new MediaPresenter({
@@ -39,14 +46,15 @@ export default class Audio extends Component{
                   }
               }, 500);
               presenterMedia.onRecordingReady = function(packet) {
-                  // Every new client streamer must receive this header buffer data
+                  // Every nedw client streamer must receive this header buffer data
                   socket.emit('bufferHeader', packet);
+                  console.log(packet)
               }
               presenterMedia.onBufferProcess = function(streamData) {
                   
                   socket.emit('stream', streamData);
-                  // console.log("2");
-                  // console.log(streamData)
+                  console.log("2d");
+                  console.log(streamData)
               }
               presenterMedia.startRecording();
               controller.push("xd")
@@ -58,7 +66,7 @@ export default class Audio extends Component{
               presenterMedia.stopRecording();
               presenterMedia = false
               controller.push("xd")
-              // console.log('Stop');
+              console.log('Stop');
               socket.emit('msj_stop', {
                   txt: "La transmicion de voz ha finalizado"
               });
@@ -66,21 +74,26 @@ export default class Audio extends Component{
               this.setState({
                   txtTransmision:'DESEA TRANSMITIR AUDIO'
               })
+
           }       
+
       })
       const i = [];
+
       btn.addEventListener('click',()=>{
       
           if(i.length%2 === 0){
       	micro.style.animation ='ripple 1000ms infinite' ;
         i.push("sx");
       }else{
+
       micro.style.animation ='none';
+
       i.push("sx");
+
       }
       })
     }
-    // asdasd
     render(){  
         return  (
         <>
@@ -93,18 +106,18 @@ export default class Audio extends Component{
           <div className="modal-general_background">
             <div className="modal-general_bg_content">
               <button className="modal-general_close" onClick={this.handleClose}>
-                <img className="button-zoom" src={iconExit} alt="imagen de cerrar modal" />
+                <img className="button-zoom" src={iconExit} alt="imagen  de cerrar modal" />
               </button>
               <div className="modal-general_container">
                 <div className="modal-general_container_header" style={{color:'#000000'}}>
-                  <span className="modal-title__controlname">¿{this.state.txtTransmision}?</span>
+                  <span className="modal-title__controlname"> ¿{this.state.txtTransmision}?</span>
                 </div>
                 <div className="modal-general_container_body">
                   <button  id="btn" className="modal-body__button yes" variant="primary">
-                        <div className="button-zoom">SI</div>
+                        <div className="button-zoom">SI </div>
                   </button>
                   <button className="modal-body__button no"  onClick={this.handleClose} >
-                      <div className="button-zoom">NO</div>
+                      <div className="button-zoom">NO </div>
                   </button>
                 </div>
               </div>
