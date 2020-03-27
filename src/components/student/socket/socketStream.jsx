@@ -181,7 +181,7 @@ export default class Audio extends Component {
                     const pinTeacher = this.pin.toUpperCase();
                     if(packet.pin === (pinTeacher).toUpperCase()) {
                     // if (packet.pin === ('<%= pin %>').toUpperCase()) {
-                    console.log('ejecutando buffer');
+                    //console.log('ejecutando buffer');
                     audioStreamer.setBufferHeader(packet.audio);
                     // console.log('El profesor iniciara una demostracion de audio');
                     }
@@ -195,7 +195,7 @@ export default class Audio extends Component {
                     //if (packet.pin === ('<%= pin %>').toUpperCase()) {
                     //   debug.value = "Buffer received: " + packet.audio[0].byteLength + "bytes";
                     audioStreamer.receiveBuffer(packet.audio)
-                    console.log('recibiendo stream...');
+                    //console.log('recibiendo stream...');
                      }
                     // audioStreamer.realtimeBufferPlay(packet);
                 });
@@ -206,6 +206,12 @@ export default class Audio extends Component {
 
         })
         socket.on('onPlay',  (data)=> {
+            const pinTeacher = this.pin.toUpperCase();
+            if(data.pin === (pinTeacher).toUpperCase()) {
+            btn_play.click()}
+        })
+
+        socket.on('playNewAlumInVoiceStream',  (data)=> {
             const pinTeacher = this.pin.toUpperCase();
             if(data.pin === (pinTeacher).toUpperCase()) {
             btn_play.click()}
