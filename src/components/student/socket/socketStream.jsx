@@ -31,7 +31,7 @@ export default class Audio extends Component {
     }
     enviarvideo(url) {
         var urlnombre = url
-        console.log(urlnombre)
+        // console.log(urlnombre)
         document.getElementById('overlay2').classList.add('active');
         document.getElementById('popupvideo').classList.add('active');
         var expresionRegular = 'https://www.youtube.com/watch?v=';
@@ -69,7 +69,7 @@ export default class Audio extends Component {
         var old = this.state.src;
         var casi = old.replace("pub", "embed");
         var enlace = casi.replace("delayms=3000", "delayms=3000&rm=minimal&slide=id.p"+this.state.positionPpt);
-        console.log('get URL: ' + enlace)
+        // console.log('get URL: ' + enlace)
         document.getElementById("diapo-frame").src = enlace;
         // document.getElementById("diminute").src = enlace;
     }
@@ -80,7 +80,7 @@ export default class Audio extends Component {
           } = this.props
 
           this.pin = id_access
-          console.log('valor de pin cuando inicia componente: ' + this.pin)
+        //   console.log('valor de pin cuando inicia componente: ' + this.pin)
 
 
         const socket = io(socketUrl, {
@@ -97,7 +97,7 @@ export default class Audio extends Component {
             }
         }).then((response)=>{
             this.setState({id_class:response.data.id_class.id_class})
-            console.log(response.data.id_class.id_class)
+            // console.log(response.data.id_class.id_class)
             axios({
                 url : `${this.props.apiUrl}/v1/api/teacher/presentations/${response.data.id_class.id_class}`,
                 method : 'GET',
@@ -105,12 +105,12 @@ export default class Audio extends Component {
                     "x-access-token" :`${varToken}`
                 }
             }).then((response) => {
-              console.log(response.data)
+            //   console.log(response.data)
               if(response.data.presentationIframe){
                 this.setState({iframeon:true,src:response.data.presentationIframe})
                 this.getUrl()
               }else{
-                console.log(response.data);
+                // console.log(response.data);
                 this.setState({Slides:response.data})
               }
             }).catch((err)=>{
@@ -181,7 +181,7 @@ export default class Audio extends Component {
                     const pinTeacher = this.pin.toUpperCase();
                     if(packet.pin === (pinTeacher).toUpperCase()) {
                     // if (packet.pin === ('<%= pin %>').toUpperCase()) {
-                    //console.log('ejecutando buffer');
+                    // console.log('ejecutando buffer');
                     audioStreamer.setBufferHeader(packet.audio);
                     // console.log('El profesor iniciara una demostracion de audio');
                     }
@@ -195,7 +195,7 @@ export default class Audio extends Component {
                     //if (packet.pin === ('<%= pin %>').toUpperCase()) {
                     //   debug.value = "Buffer received: " + packet.audio[0].byteLength + "bytes";
                     audioStreamer.receiveBuffer(packet.audio)
-                    //console.log('recibiendo stream...');
+                    // console.log('recibiendo stream...');
                      }
                     // audioStreamer.realtimeBufferPlay(packet);
                 });
@@ -210,17 +210,11 @@ export default class Audio extends Component {
             if(data.pin === (pinTeacher).toUpperCase()) {
             btn_play.click()}
         })
-
-        socket.on('playNewAlumInVoiceStream',  (data)=> {
-            const pinTeacher = this.pin.toUpperCase();
-            if(data.pin === (pinTeacher).toUpperCase()) {
-            btn_play.click()}
-        })
         //ROULETTE
         socket.on('rouletteWinnerS',  (data) =>{
             const pinTeacher = this.pin.toUpperCase();
             if(data.pin === (pinTeacher).toUpperCase()) {
-            console.log('escucha el alum')
+            // console.log('escucha el alum')
             this.setState({show:1});
             document.getElementById("modal_luckyStudent").innerHTML = data.data;
             }
@@ -236,7 +230,7 @@ export default class Audio extends Component {
         socket.on('enviando grupos',  (data) =>{
             const pinTeacher = this.pin.toUpperCase();
             if(data.pin === (pinTeacher).toUpperCase()) {
-            console.log(data.data.data)
+            // console.log(data.data.data)
             document.getElementById("imprimir").innerHTML = data.data.data;
             this.setState({showGrupo:1});
             }
@@ -272,7 +266,7 @@ componentWillUnmount() {
     // valor despues de salir del component
     this.pin = ''
 
-    console.log('componente desmontado')
+    // console.log('componente desmontado')
   }
   /****************** */
    

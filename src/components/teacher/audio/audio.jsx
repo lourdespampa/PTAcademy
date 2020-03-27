@@ -16,8 +16,6 @@ export default class Audio extends Component{
   handleClose = () => this.setState({show:2});
   handleShow = () => this.setState({show:1});
   componentDidMount(){
-      console.log(this.props.socketUrl)
-      console.log(this.props.id_access)   
   var presenterMedia = false;
   var micon = document.getElementById('btn');
   var btn = document.getElementById('btn');
@@ -25,7 +23,6 @@ export default class Audio extends Component{
   //EMISOR
   const controller = []
   micon.addEventListener('click', () => {
-    console.log("Emitiendo");
       const socket = io(this.props.socketUrl, {
           query:
               { pin: this.props.id_access }
@@ -44,13 +41,12 @@ export default class Audio extends Component{
               presenterMedia.onRecordingReady = function(packet) {
                   // Every new client streamer must receive this header buffer data
                   socket.emit('bufferHeader', packet);
-                  //console.log(packet)
               }
               presenterMedia.onBufferProcess = function(streamData) {
                   
                   socket.emit('stream', streamData);
-                  //console.log("2");
-                  //console.log(streamData)
+                  // console.log("2");
+                  // console.log(streamData)
               }
               presenterMedia.startRecording();
               controller.push("xd")
@@ -62,7 +58,7 @@ export default class Audio extends Component{
               presenterMedia.stopRecording();
               presenterMedia = false
               controller.push("xd")
-              console.log('Stop');
+              // console.log('Stop');
               socket.emit('msj_stop', {
                   txt: "La transmicion de voz ha finalizado"
               });
@@ -70,12 +66,7 @@ export default class Audio extends Component{
               this.setState({
                   txtTransmision:'DESEA TRANSMITIR AUDIO'
               })
-          }
-          //alumno nuevo mientras se transmitia audio
-          socket.on('newAlum',()=>{
-            socket.emit("newAlumInVoiceStream")
-          })
-          //
+          }       
       })
       const i = [];
       btn.addEventListener('click',()=>{
