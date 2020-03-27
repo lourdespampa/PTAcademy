@@ -22,7 +22,7 @@ export default class Contenido extends Component {
             <>
                 <div className="main-teacher-container">
                     <Header id_access={this.props.id_access} apiUrl={this.props.apiUrl} id_class={this.props.id_class} socketUrl={this.props.socketUrl} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick} />
-                    <Left id_class={this.props.id_class} id_access={this.props.id_access} socketUrl={this.props.socketUrl} view={`/teacher/${this.props.id_class}/${this.props.id_access}/pizarra`} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick} />
+                    <Left id_class={this.props.id_class} id_access={this.props.id_access} socketUrl={this.props.socketUrl} view={`/teacher/${this.props.id_class}/${this.props.id_access}/pizarra`} viewBlockly={`/teacher/${this.props.id_class}/${this.props.id_access}/bloque`} botonClick={this.props.botonClick} grabar={this.props.grabar} reproclick={this.props.reproclick} />
                     <div id="div_children">
                         {children}
                     </div>

@@ -29,6 +29,7 @@ export default class Container extends Component {
         <Left
           id_class={this.props.id_student}
           view={`/student/${this.props.id_student}/${this.props.id_access}/pizarra`}
+          viewBlockly={`/student/${this.props.id_student}/${this.props.id_access}/blockly`}
           socketUrl={this.props.socketUrl}
           id_access={this.props.id_access}
         />
