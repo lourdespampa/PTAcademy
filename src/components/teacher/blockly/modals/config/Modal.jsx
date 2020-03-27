@@ -1,9 +1,9 @@
 import React from 'react';
 import Blockly from "../../blockly copy/core";
-// import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-// import SettingsIcon from '@material-ui/icons/Settings';
+//import SettingsIcon from '@material-ui/icons/Settings';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -29,7 +29,6 @@ import fr from "../../blockly copy/msg/fr";
 //         transform: 'translate(-50%, -50%)'
 //     }
 // };
-
 
 
 
@@ -72,7 +71,9 @@ class Menu extends React.Component {
             "RFID",
             "Sensores"
         ]
+
     }
+    
 
     openModal() {
         this.setState({ modalIsOpen: true });
@@ -83,7 +84,6 @@ class Menu extends React.Component {
         });
     }
     handleFormSubmit = (formSubmitEvent) => {
-        formSubmitEvent.preventDefault();
 
         if (this.state.selectedOption === 'Es') {
             Blockly.setLocale(es);
@@ -91,18 +91,18 @@ class Menu extends React.Component {
             Blockly.setLocale(en);
         } else if (this.state.selectedOption === 'Fr') {
             Blockly.setLocale(fr);
-           
+
         }
-        let positivos =[]
+        let positivos = []
         for (const key in this.arregloBloques) {
             let element = this.arregloBloques[key]
-            let p = (this.state[element] !== undefined || null ) ? this.state[element] : 0;
-            positivos.push({[element] : p})
-          
+            let p = (this.state[element] !== undefined || null) ? this.state[element] : 0;
+            positivos.push({ [element]: p })
+
         }
-        // this.props.cambioCategorias(positivos)
+        this.props.cambioCategorias(positivos)
         this.setState({ modalIsOpen: false });
-        
+
     }
 
     afterOpenModal() {
@@ -116,18 +116,18 @@ class Menu extends React.Component {
         let variableBlock = elem.target.value
         let StateBlock = elem.target.checked
         if (StateBlock === true) {
-            this.setState({ [variableBlock]: true } )
+            this.setState({ [variableBlock]: true })
         } else {
-            this.setState( { [variableBlock]: false } )
+            this.setState({ [variableBlock]: false })
         }
 
 
     }
     render() {
         return (
-            <div id="modal" 
+            <div id="modal"
             >
-                <button onClick={this.openModal}>Open Modal</button>
+                <button onClick={this.openModal}>Language</button>
                 <Dialog
                     disableBackdropClick
                     disableEscapeKeyDown
@@ -164,19 +164,19 @@ class Menu extends React.Component {
                                         />
                                     } label={"ingles"} />
 
-                                    <FormControlLabel value={"frances"} key={"frances"} control={
+                                    {/* <FormControlLabel value={"frances"} key={"frances"} control={
                                         <Radio id={'radio_frances'}
 
                                             checked={this.state.selectedOption === 'Fr'}
                                             onChange={this.handleOptionChange}
                                             value={'Fr'}
                                         />
-                                    } label={"frances"} />
+                                    } label={"frances"} /> */}
 
                                 </RadioGroup>
-                                <p>otros Componetes</p>
+                                {/* <p>otros Componetes</p> */}
                                 <FormGroup row id="contenedor_radio">
-                                    {
+                                    {/* {
                                         this.arregloBloques.map(element => {
                                             return <FormControlLabel
                                                 control={
@@ -189,7 +189,7 @@ class Menu extends React.Component {
                                             />
                                         })
                                     }
-
+ */}
 
 
                                 </FormGroup>

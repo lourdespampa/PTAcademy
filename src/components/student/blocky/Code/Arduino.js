@@ -1014,11 +1014,155 @@ Blockly.Arduino.react_Analogico_Velocidad = function () {
 
 
    /*end categoria linefollower*/
+
+   
+/*CATEGORY LCD */
+Blockly.Arduino.LCD = {};
+
+
+
+
+//setupComucacion();
+
+
+  Blockly.Arduino.react_lcd_init = function () {
+    var
+    a = this.getFieldValue("RS"),
+    b = this.getFieldValue("Enable"),
+    c = this.getFieldValue("RW"),
+    d = this.getFieldValue("D4"),
+    e = this.getFieldValue("D5"),
+    f = this.getFieldValue("D6"),
+    g = this.getFieldValue("D7");
+    Blockly.Arduino.definitions_.define_lcd = "#include <LiquidCrystal.h>\n"+
+                                              "LiquidCrystal lcd"+"("+(a)+","+(b)+","+(c)+","+(d)+","+(e)+","+(f)+","+(g)+")"
+return"" ;
+  };
+
+
+  Blockly.Arduino.react_lcd_begin = function () {
+    var a = this.getFieldValue("COL"),
+        b = this.getFieldValue("ROW");
+    Blockly.Arduino.setups_.setup_lcd =
+        "lcd.begin(" + a + "," + b + ");\n";
+    return ""
+
+};
+
+Blockly.Arduino.react_lcd_print = function () {
+  return "lcd.print(" + Blockly.Arduino.valueToCode(this, "PRINT", Blockly.Arduino.ORDER_NONE) + ");\n"
+};
+
+Blockly.Arduino.react_lcd_setcursor = function () {
+  var a = Blockly.Arduino.valueToCode(this, "COLS", Blockly.Arduino.ORDER_NONE) || "0",
+      b = Blockly.Arduino.valueToCode(this, "ROWS", Blockly.Arduino.ORDER_NONE) || "0";
+  return "lcd.setCursor(" + a + "," + b + ");\n"
+};
+Blockly.Arduino.react_lcd_clear = function () {
+  return "lcd.clear();\n"
+};
+Blockly.Arduino.react_lcd_scroll = function () {
+  var a = "lcd.";
+  return a = 1 == this.getFieldValue("SW") ? a + "autoscroll();\n" : a + "noAutoscroll();\n"
+};
+//END LCD
+
+
+
+
+
   Blockly.Arduino.variablesDynamic = {};
 
   Blockly.Arduino.variables_get_dynamic = Blockly.Arduino.variables_get;
   Blockly.Arduino.variables_set_dynamic = Blockly.Arduino.variables_set;
 
+ //region bluetooth
+
+ Blockly.Arduino.bluetooth = {};
+
+ function bluetooth_varDef(a, b, d, e) {
+   var c = "\n\ int VCC=(" + a + ");\n\ int EN =(" + b + ");\n";
+   0 == b && 1 == a && (c = "HardwareSerial & bt_serial=Serial;",
+     Blockly.Arduino.definitions_.define_hardserial = "#include <HardwareSerial.h>\n");
+
+   var f = "SoftwareSerial bt_serial(" + d + "," + e + ");\n\n\n";
+   0 == e && 1 == d && (f = "HardwareSerial &bt_serial=Serial;",
+     Blockly.Arduino.definitions_.define_hardserial = "#include <HardwareSerial.h>\n");
+
+   "Arduino Mega" == profile["default"].description && (19 == b && 18 == a
+
+     (c = "HardwareSerial &Serial=Serial1;",
+       Blockly.Arduino.definitions_.define_hardserial = "#include <HardwareSerial.h>\n"),
+     17 == b && 16 == a && (c = "HardwareSerial &Serial=Serial2;",
+       Blockly.Arduino.definitions_.define_hardserial = "#include <HardwareSerial.h>\n"),
+     15 == b && 14 == a && (c = "HardwareSerial &Serial=Serial3;",
+       Blockly.Arduino.definitions_.define_hardserial = "#include <HardwareSerial.h>\n"));
+   "Arduino Mega" == profile["default"].description && (19 == e && 18 == d &&
+     (f = "HardwareSerial &BT=Serial1;",
+       Blockly.Arduino.definitions_.define_hardserial = "#include <HardwareSerial.h>\n"),
+     17 == d && 16 == e && (f = "HardwareSerial &BT=Serial2;",
+       Blockly.Arduino.definitions_.define_hardserial = "#include <HardwareSerial.h>\n"),
+     15 == d && 14 == e && (f = "HardwareSerial &BT=Serial3;",
+       Blockly.Arduino.definitions_.define_hardserial = "#include <HardwareSerial.h>\n"));
+
+   return f + c
+ }
+
+ function setupComucacion() {
+   Blockly.Arduino.definitions_.define_inclserial = "#include <SoftwareSerial.h>\n"
+   Blockly.Arduino.setups_.setup_softserial =
+     ' \n\
+     pinMode(VCC, OUTPUT);\n\
+     pinMode(EN, OUTPUT);\n\
+     digitalWrite(EN, HIGH);\n\
+     delay(500);\n\
+     digitalWrite (VCC, HIGH);\n\
+   '
+ }
+ Blockly.Arduino.react_bluetooth_comando = function () {
+   var
+     a = this.getFieldValue("COMANDO"),
+     b = this.getFieldValue("VCC"),
+     c = this.getFieldValue("EN"),
+     d = this.getFieldValue("BAUD"),
+     e = this.getFieldValue("RX"),
+     f = this.getFieldValue("TX");
+
+   setupComucacion();
+   Blockly.Arduino.definitions_.var_bluetooth = bluetooth_varDef(b, c, e, f);
+   Blockly.Arduino.setups_.setup_bluetooth = "\n Serial.begin(" + d + ");" +
+     "\n bt_serial.begin(" + a + ");\n" + ' Serial.println ("Esperando comandos AT...");\n';
+   return ""
+ };
+ Blockly.Arduino.react_bluetooth_read_available = function () {
+
+   return ["Serial.available()", Blockly.Arduino.ORDER_ATOMIC]
+ };
+ Blockly.Arduino.react_serial_print_bluetooth = function () {
+   var a = Blockly.Arduino.valueToCode(this, "CONTENT", Blockly.Arduino.ORDER_ATOMIC) || "0";
+   void 0 == Blockly.Arduino.setups_.setup_serial
+   return "bt_serial.write(" + a + ");\n"
+ };
+ Blockly.Arduino.react_serial_read_bluetooth = function () {
+   Blockly.Arduino.valueToCode(this, "CONTENT", Blockly.Arduino.ORDER_ATOMIC);
+   void 0 == Blockly.Arduino.setups_.setup_serial
+   return ["Serial.read()", Blockly.Arduino.ORDER_ATOMIC]
+ };
+ Blockly.Arduino.react_bluetooth_read = function () {
+
+   return ["bt_serial.available()", Blockly.Arduino.ORDER_ATOMIC]
+ };
+ Blockly.Arduino.react_serial_write = function () {
+   var a = Blockly.Arduino.valueToCode(this, "CONTENT", Blockly.Arduino.ORDER_ATOMIC) || "0";
+   void 0 == Blockly.Arduino.setups_.setup_serial
+   return "Serial.write(" + a + ");\n"
+ };
+ Blockly.Arduino.react_serial_bt_read = function () {
+   Blockly.Arduino.valueToCode(this, "CONTENT", Blockly.Arduino.ORDER_ATOMIC);
+   void 0 == Blockly.Arduino.setups_.setup_serial
+   return ["bt_serial.read()", Blockly.Arduino.ORDER_ATOMIC]
+ };
+ //end region bluethoo
 
   return Blockly.Arduino;
 }));

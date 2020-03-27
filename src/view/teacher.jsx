@@ -10,8 +10,7 @@ import Trivia from "../pages/teacher/Trivia";
 import Pizarra from "../pages/teacher/Pizarra";
 import Access from "../access";
 import NotFound from "./404/NotFound";
-import Bloque from '../components/teacher/blocky/App'
-
+import Bloque from '../components/teacher/blockly/App'
 //socket initial
 // import io from 'socket.io-client'; //no se esta usando
 //

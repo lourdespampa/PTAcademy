@@ -580,6 +580,17 @@
 
   /* END SERVO */
 
+  // Bluetooth
+  Blockly.Msg.CATEGORY_BLUETOOTH = "Bluetooth";
+  Blockly.Msg.BLUETOOTH_LECTURA = "Lectura";
+  Blockly.Msg.BLUETOOTH_AVAILABLE = "Habilitar Serial";
+  Blockly.Msg.BT_WRITE = "BT Escribir";
+  Blockly.Msg.SERIAL_READ = "Leer serial";
+  Blockly.Msg.BLUETOOTH_AVAILABLE_BT = "Habilitar BT";
+  Blockly.Msg.SERIAL_WRITE = "Serial Escribir";
+  Blockly.Msg.SERIAL_BT_READ = "Leer BT";
+  // end bluetooth
+
   Blockly.Msg.variables = "juan jesus";
   return Blockly.Msg;
 })); 

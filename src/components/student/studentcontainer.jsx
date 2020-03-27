@@ -27,22 +27,15 @@ export default class Container extends Component {
           lastName={this.props.lastName}
         />
         <Left
-          id_class={this.props.id_student}
-          view={`/student/${this.props.id_student}/${this.props.id_access}/pizarra`}
           viewBlockly={`/student/${this.props.id_student}/${this.props.id_access}/blockly`}
+          view={`/student/${this.props.id_student}/${this.props.id_access}/pizarra`}
           socketUrl={this.props.socketUrl}
           id_access={this.props.id_access}
         />
         {children}
-        <Right
-          socketUrl={this.props.socketUrl}
-          id_access={this.props.id_access}
-        />
         <Footer
           socketUrl={this.props.socketUrl}
           id_access={this.props.id_access}
-          name={this.props.name}
-          lastName={this.props.lastName}
         />
       </div>
     );

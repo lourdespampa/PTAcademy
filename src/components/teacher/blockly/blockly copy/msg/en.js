@@ -602,6 +602,18 @@ Blockly.Msg.CONTROLS_SWITCH="switch";
 //Blockly.Msg.MOTORES_ROBOT = "%1 Right Engine %2 Left Engine %3";
 Blockly.Msg.CONTROLS_CASE="case";
 Blockly.Msg.CONTROLS_VACIO="";
+  // Bluetooth
+  Blockly.Msg.CATEGORY_BLUETOOTH = "Bluetooth";
+
+  //
+  Blockly.Msg.BLUETOOTH_LECTURA = "Reading";
+  Blockly.Msg.BLUETOOTH_AVAILABLE = "Enable Serial";
+  Blockly.Msg.BT_WRITE = "BT Write";
+  Blockly.Msg.SERIAL_READ = "Leer serial";
+  Blockly.Msg.BLUETOOTH_AVAILABLE_BT = "Enable BT";
+  Blockly.Msg.SERIAL_WRITE = "Serial Write";
+  Blockly.Msg.SERIAL_BT_READ = "Read BT";
+  // end bluetooth
 
 Blockly.Msg.SENSOR_DERECHA="Sensor-Right";
 Blockly.Msg.SENSOR_IZQUIERDA="Sensor-Left  ";
@@ -619,5 +631,11 @@ Blockly.Msg.ANALOG_VELOCIDAD6="Left  Engine  Pin 6 %1 Speed";
   Blockly.Msg["PROCEDURES_HUE"] = "290";
   Blockly.Msg["COLOUR_HUE"] = "20";
   Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
+
+
+  ///LCD
+
+  Blockly.Msg.LCD_PIN = "Pin";
+
   return Blockly.Msg;
 })); 
