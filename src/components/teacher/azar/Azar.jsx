@@ -176,7 +176,7 @@ class Azar extends React.Component {
       }
     }
     this.getStudents();
-    this.setState({ showModal: 2 });
+    this.closeModalAzar()
   };
   onClickPointRemove = async valor => {
     let varToken = localStorage.getItem("token");
@@ -198,7 +198,7 @@ class Azar extends React.Component {
       }
     }
     this.getStudents();
-    this.setState({ showModal: 2 });
+    this.closeModalAzar()
   };
 
   closeModalAzar() {

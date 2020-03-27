@@ -23,6 +23,9 @@ export default class loginPrivate extends Component {
     const target = e.target;
     const name = target.name;
     const value = target.value;
+    if(value.charAt(0)===" "){
+      value=value.trim()
+    }
     console.log(value);
 
     this.setState({
@@ -35,8 +38,8 @@ export default class loginPrivate extends Component {
 
     e.preventDefault();
     const data = {
-      name_stu: this.state.name_student,
-      lastName_stu: this.state.last_student,
+      name_stu: this.state.name_student.trim(),
+      lastName_stu: this.state.last_student.trim(),
       id_access: this.state.id_access
     };
     axios({
