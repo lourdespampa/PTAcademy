@@ -33,7 +33,7 @@
     "sfmediastream": "^1.1.0",
     "socket.io": "^2.3.0",
     "vendor": "^1.7.0",
-    "xlsx": "^0.15.1"
+    "xlsx": "^0.17.0"
   },
   "scripts": {
     "start": "react-scripts start",
